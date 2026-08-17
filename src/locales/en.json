@@ -118,10 +118,10 @@
   "download_qr_text": "Scan to download",
 
   "legal_privacy_title": "Privacy Policy",
-  "legal_privacy_content": "Your privacy is important to us. Patika encrypts all medical records and does not share your data with third parties without explicit consent. Your pet's profile visibility is entirely up to you. (Note: This is a placeholder policy for demonstration.)",
+  "legal_privacy_content": "Your privacy is of utmost importance to us. Patika employs bank-grade encryption to protect all medical records and user data. We do not sell, rent, or share your personal data with third-party advertisers. Your pet's health information is shared only with the veterinary clinics you explicitly authorize. You maintain full control over your profile's visibility and can request data exports at any time.",
   
   "legal_terms_title": "Terms of Service",
-  "legal_terms_content": "By using Patika, you agree to our terms of service. You must provide accurate information regarding your pet's health. Patika is not a substitute for professional veterinary advice in emergency situations. (Note: This is a placeholder terms document.)",
+  "legal_terms_content": "By using the Patika platform, you agree to comply with our Terms of Service. Patika serves as a digital health record and scheduling platform, not a substitute for professional veterinary advice. In the event of a medical emergency, please contact your nearest veterinary clinic immediately. Users must provide accurate information regarding their pets to ensure proper care coordination.",
   
   "legal_deletion_title": "Account Deletion",
   "legal_deletion_content": "If you wish to delete your Patika account and all associated data, you can do so directly from the mobile app settings (Profile > Settings > Delete Account). Alternatively, you can email our support team to process the deletion. All medical records will be permanently erased.",

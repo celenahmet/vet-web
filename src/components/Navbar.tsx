@@ -24,6 +24,10 @@ const Navbar = () => {
     }
   }, [isDarkMode]);
 
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
+
   const toggleLanguage = () => {
     const nextLang = i18n.language === 'en' ? 'tr' : 'en';
     i18n.changeLanguage(nextLang);
@@ -75,7 +79,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        <button className="mobile-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <button className="mobile-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle mobile menu">
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
