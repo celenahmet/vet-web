@@ -150,5 +150,18 @@
   "blog_p2_category": "Corporate",
   "blog_p3_title": "Building a Community of Pet Lovers",
   "blog_p3_excerpt": "Why the social aspect of pet care is just as important as the medical one.",
-  "blog_p3_category": "Community"
+  "blog_p3_category": "Community",
+
+  "pets_search_placeholder": "Search pets by name or breed...",
+  "pets_filter_all": "All",
+  "pets_filter_dogs": "Dogs",
+  "pets_filter_cats": "Cats",
+  "pets_filter_birds": "Birds",
+  "pets_filter_others": "Others",
+  "pets_no_results": "No pets found matching your search.",
+
+  "blog_sidebar_categories": "Categories",
+  "blog_sidebar_recent": "Recent Posts",
+  "blog_sidebar_tags": "Tags",
+  "blog_back_to_blog": "Back to Blog"
 }

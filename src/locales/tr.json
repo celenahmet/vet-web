@@ -149,5 +149,18 @@
   "blog_p2_category": "Kurumsal",
   "blog_p3_title": "Hayvanseverler Topluluğu Oluşturmak",
   "blog_p3_excerpt": "Evcil hayvan bakımının sosyal yönü neden tıbbi yönü kadar önemlidir?",
-  "blog_p3_category": "Topluluk"
+  "blog_p3_category": "Topluluk",
+
+  "pets_search_placeholder": "İsme veya ırka göre arayın...",
+  "pets_filter_all": "Tümü",
+  "pets_filter_dogs": "Köpekler",
+  "pets_filter_cats": "Kediler",
+  "pets_filter_birds": "Kuşlar",
+  "pets_filter_others": "Diğerleri",
+  "pets_no_results": "Aramanıza uygun patili dost bulunamadı.",
+
+  "blog_sidebar_categories": "Kategoriler",
+  "blog_sidebar_recent": "Son Yazılar",
+  "blog_sidebar_tags": "Etiketler",
+  "blog_back_to_blog": "Blog'a Dön"
 }
