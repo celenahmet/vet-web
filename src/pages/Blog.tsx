@@ -1,4 +1,5 @@
 import { ArrowRight, Calendar, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 import { brandConfig } from '../config/brand';
@@ -66,9 +67,9 @@ const Blog = () => {
                   </div>
                   <h3>{post.title}</h3>
                   <p>{post.excerpt}</p>
-                  <a href="#" className="read-more">
+                  <Link to={`/blog/${post.id}`} className="read-more">
                     {t('blog_read_more')} <ArrowRight size={16} />
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}
