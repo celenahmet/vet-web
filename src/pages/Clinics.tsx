@@ -24,10 +24,10 @@ const Clinics = () => {
           <p className="subtitle mx-auto mb-8">{t('clinics_hero_p')}</p>
           <button className="btn btn-primary">{t('clinics_btn_contact')}</button>
           
-          <div className="mt-12">
+            <div className="mt-12">
             <img 
-              src="https://images.unsplash.com/photo-1606425271394-c3ca9aa1fc06?auto=format&fit=crop&q=80&w=1200" 
-              alt="Veterinary Clinic" 
+              src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1200" 
+              alt="Veterinary Clinic Software" 
               className="rounded-img shadow-xl mx-auto"
               fetchPriority="high"
               width="1200"
@@ -72,7 +72,7 @@ const Clinics = () => {
             </div>
             <div className="showcase-image">
               <img 
-                src="https://images.unsplash.com/photo-1576091160550-2173ff9e5ee5?auto=format&fit=crop&q=80&w=800" 
+                src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80&w=800" 
                 alt="Medical Records" 
                 className="rounded-img shadow-lg"
                 loading="lazy"
