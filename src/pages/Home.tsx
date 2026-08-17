@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, Heart, Calendar, Activity } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Heart, Calendar, Activity, QrCode } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
@@ -118,6 +118,35 @@ const Home = () => {
               <li><CheckCircle2 color="var(--color-success)" size={20} /> {t('home_trust_li2')}</li>
               <li><CheckCircle2 color="var(--color-success)" size={20} /> {t('home_trust_li3')}</li>
             </ul>
+          </div>
+        </div>
+    </div>
+      </section>
+
+      {/* Download Section */}
+      <section id="download" className="section download-section bg-secondary text-center">
+        <div className="container">
+          <div className="download-content mx-auto" style={{ maxWidth: '600px' }}>
+            <h2 className="mb-4">{t('download_h2')}</h2>
+            <p className="subtitle mb-8 text-secondary">{t('download_p')}</p>
+            
+            <div className="download-options" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '32px' }}>
+              <div className="qr-code-box" style={{ background: 'var(--color-surface)', padding: '24px', borderRadius: 'var(--radius-lg)', display: 'inline-block', boxShadow: 'var(--shadow-sm)' }}>
+                <div style={{ width: '150px', height: '150px', backgroundColor: 'var(--color-border)', margin: '0 auto 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 'var(--radius-md)' }}>
+                  <QrCode size={64} color="var(--color-text-muted)" />
+                </div>
+                <p style={{ fontWeight: 600, fontSize: '0.875rem' }}>{t('download_qr_text')}</p>
+              </div>
+
+              <div className="app-badges" style={{ justifyContent: 'center' }}>
+                <a href="#" className="store-badge">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on App Store" />
+                </a>
+                <a href="#" className="store-badge">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

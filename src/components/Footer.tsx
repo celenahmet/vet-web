@@ -37,9 +37,9 @@ const Footer = () => {
           </div>
           <div className="link-group">
             <h3>{t('footer_legal')}</h3>
-            <a href="#">{t('footer_privacy')}</a>
-            <a href="#">{t('footer_terms')}</a>
-            <a href="#">{t('footer_deletion')}</a>
+            <Link to="/privacy">{t('footer_privacy')}</Link>
+            <Link to="/terms">{t('footer_terms')}</Link>
+            <Link to="/deletion">{t('footer_deletion')}</Link>
           </div>
           <div className="link-group">
             <h3>{t('footer_contact')}</h3>

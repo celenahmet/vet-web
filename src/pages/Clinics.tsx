@@ -1,6 +1,7 @@
 import { Building, CalendarCheck, FileStack, Users } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
+import { brandConfig } from '../config/brand';
 import './Clinics.css';
 
 const Clinics = () => {
@@ -79,7 +80,9 @@ const Clinics = () => {
         <div className="container">
           <h2 className="mb-4">{t('clinics_cta_h2')}</h2>
           <p className="subtitle mx-auto mb-8 opacity-90">{t('clinics_cta_p')}</p>
-          <button className="btn btn-secondary">{t('clinics_btn_contact')}</button>
+          <a href={`mailto:${brandConfig.social.contactEmail}`} className="btn btn-secondary">
+            {t('clinics_btn_contact')}
+          </a>
         </div>
       </section>
     </div>

@@ -1,6 +1,7 @@
 import { Building2, Award, HeartHandshake } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
+import { brandConfig } from '../config/brand';
 import './About.css';
 
 const About = () => {
@@ -60,7 +61,9 @@ const About = () => {
               <li>{t('about_corp_li2')}</li>
               <li>{t('about_corp_li3')}</li>
             </ul>
-            <button className="btn btn-primary">{t('about_btn_partner')}</button>
+            <a href={`mailto:${brandConfig.social.contactEmail}`} className="btn btn-primary">
+              {t('about_btn_partner')}
+            </a>
           </div>
           <div className="corporate-image">
             <div className="image-grid">
