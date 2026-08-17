@@ -46,7 +46,7 @@ const Home = () => {
           
           <div className="hero-image-wrapper">
             <div className="phone-mockup">
-              <div className="phone-screen">
+              <div className="phone-screen" style={{ backgroundImage: `linear-gradient(to bottom, rgba(250, 248, 243, 0.9) 0%, rgba(250, 248, 243, 0.4) 100%), url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=400')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="mockup-header">
                   <h3>{t('home_mockup_greeting')}</h3>
                   <div className="mockup-avatar"></div>
@@ -119,6 +119,20 @@ const Home = () => {
               <li><CheckCircle2 color="var(--color-success)" size={20} /> {t('home_trust_li2')}</li>
               <li><CheckCircle2 color="var(--color-success)" size={20} /> {t('home_trust_li3')}</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Community Gallery Section */}
+      <section className="section bg-primary-soft text-center">
+        <div className="container">
+          <h2 className="mb-4">The Patika Pack</h2>
+          <p className="subtitle mx-auto mb-8 text-secondary">Join thousands of happy pets and their humans.</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px' }}>
+            <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=400" alt="Dog at vet" className="rounded-img shadow-sm" style={{ width: '100%', height: '250px', objectFit: 'cover' }} loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=400" alt="Cat profile" className="rounded-img shadow-sm" style={{ width: '100%', height: '250px', objectFit: 'cover' }} loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&q=80&w=400" alt="Persian cat" className="rounded-img shadow-sm" style={{ width: '100%', height: '250px', objectFit: 'cover' }} loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1589952283406-b53a7d1347e8?auto=format&fit=crop&q=80&w=400" alt="German shepherd" className="rounded-img shadow-sm" style={{ width: '100%', height: '250px', objectFit: 'cover' }} loading="lazy" />
           </div>
         </div>
       </section>
