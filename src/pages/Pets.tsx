@@ -19,12 +19,12 @@ const Pets = () => {
 
   // Mock database of pets
   const allPets = [
-    { id: 1, name: 'Max', type: 'Dog', breed: 'Golden Retriever', age: '3 yrs', weight: '32 kg', nextVax: 'Oct 12', image: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=400' },
-    { id: 2, name: 'Luna', type: 'Cat', breed: 'Scottish Fold', age: '2 yrs', weight: '4.5 kg', nextVax: 'Nov 05', image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=400' },
-    { id: 3, name: 'Charlie', type: 'Dog', breed: 'French Bulldog', age: '1 yr', weight: '12 kg', nextVax: 'Dec 01', image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=400' },
-    { id: 4, name: 'Bella', type: 'Cat', breed: 'Persian', age: '4 yrs', weight: '5 kg', nextVax: 'Jan 15', image: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&q=80&w=400' },
+    { id: 1, name: 'Max', type: 'Dog', breed: 'Beagle', age: '3 yrs', weight: '14 kg', nextVax: 'Oct 12', image: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=400' },
+    { id: 2, name: 'Luna', type: 'Cat', breed: 'Tabby (Tekir)', age: '2 yrs', weight: '4.5 kg', nextVax: 'Nov 05', image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=400' },
+    { id: 3, name: 'Charlie', type: 'Dog', breed: 'Labrador', age: '1 yr', weight: '22 kg', nextVax: 'Dec 01', image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=400' },
+    { id: 4, name: 'Bella', type: 'Cat', breed: 'British Shorthair', age: '4 yrs', weight: '5 kg', nextVax: 'Jan 15', image: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&q=80&w=400' },
     { id: 5, name: 'Rio', type: 'Bird', breed: 'Macaw', age: '5 yrs', weight: '1.2 kg', nextVax: 'Mar 10', image: 'https://images.unsplash.com/photo-1552728089-571692582847?auto=format&fit=crop&q=80&w=400' },
-    { id: 6, name: 'Rocky', type: 'Dog', breed: 'German Shepherd', age: '2 yrs', weight: '35 kg', nextVax: 'Feb 20', image: 'https://images.unsplash.com/photo-1589952283406-b53a7d1347e8?auto=format&fit=crop&q=80&w=400' },
+    { id: 6, name: 'Rocky', type: 'Dog', breed: 'Mix / Melez', age: '2 yrs', weight: '18 kg', nextVax: 'Feb 20', image: 'https://images.unsplash.com/photo-1589952283406-b53a7d1347e8?auto=format&fit=crop&q=80&w=400' },
   ];
 
   const filteredPets = allPets.filter(pet => {
