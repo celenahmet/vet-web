@@ -1,5 +1,6 @@
 import { ArrowRight, CheckCircle2, Heart, Calendar, Activity, QrCode } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { brandConfig } from '../config/brand';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 import './Home.css';
