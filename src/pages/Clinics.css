@@ -1,0 +1,40 @@
+.clinics-page .badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.clinics-page .badge-primary {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.clinics-page .icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background-color: var(--color-secondary);
+  border-radius: 50%;
+  color: var(--color-primary);
+}
+
+.clinics-page .feature-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.clinics-page .bg-primary {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.clinics-page .bg-primary p.text-secondary {
+  color: var(--color-on-primary);
+  opacity: 0.9;
+}

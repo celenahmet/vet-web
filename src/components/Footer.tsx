@@ -31,6 +31,7 @@ const Footer = () => {
             <h3>{t('footer_explore')}</h3>
             <Link to="/features">{t('nav_features')}</Link>
             <Link to="/pets">{t('nav_pets')}</Link>
+            <Link to="/clinics">{t('nav_clinics')}</Link>
             <Link to="/about">{t('nav_about')}</Link>
             <Link to="/blog">{t('nav_blog')}</Link>
           </div>

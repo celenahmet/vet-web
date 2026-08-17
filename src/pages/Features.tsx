@@ -1,4 +1,4 @@
-import { Activity, Bell, FileText, Heart, Shield, Users } from 'lucide-react';
+import { Activity, Bell, Calendar, Heart, Shield, Users } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 import './Features.css';
@@ -13,22 +13,22 @@ const Features = () => {
       description: t('feat_1_desc')
     },
     {
-      icon: <Bell size={32} color="var(--color-accent)" />,
+      icon: <Users size={32} color="var(--color-accent)" />,
       title: t('feat_2_title'),
       description: t('feat_2_desc')
     },
     {
-      icon: <FileText size={32} color="var(--color-success)" />,
+      icon: <Heart size={32} color="var(--color-success)" />,
       title: t('feat_3_title'),
       description: t('feat_3_desc')
     },
     {
-      icon: <Users size={32} color="var(--color-coral)" />,
+      icon: <Bell size={32} color="var(--color-coral)" />,
       title: t('feat_4_title'),
       description: t('feat_4_desc')
     },
     {
-      icon: <Heart size={32} color="var(--color-danger)" />,
+      icon: <Calendar size={32} color="var(--color-danger)" />,
       title: t('feat_5_title'),
       description: t('feat_5_desc')
     },
