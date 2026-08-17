@@ -21,7 +21,7 @@
 .hero-badge {
   display: inline-block;
   background-color: var(--color-primary-soft);
-  color: var(--color-primary-deep);
+  color: var(--color-primary);
   padding: 6px 16px;
   border-radius: var(--radius-full);
   font-weight: 600;
@@ -182,7 +182,7 @@
 .blob-2 {
   width: 250px;
   height: 250px;
-  background-color: rgba(198, 161, 91, 0.2); /* Accent soft */
+  background-color: var(--color-accent-soft);
   bottom: 50px;
   left: 0;
 }
@@ -241,8 +241,8 @@
 }
 
 .bg-primary-soft { background-color: var(--color-primary-soft); }
-.bg-accent-soft { background-color: rgba(198, 161, 91, 0.15); }
-.bg-coral-soft { background-color: rgba(232, 131, 114, 0.15); }
+.bg-accent-soft { background-color: var(--color-accent-soft); }
+.bg-coral-soft { background-color: var(--color-coral-soft); }
 
 .feature-card h3 {
   font-size: 1.5rem;

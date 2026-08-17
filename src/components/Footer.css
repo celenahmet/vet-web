@@ -1,6 +1,6 @@
 .footer {
   background-color: var(--color-primary-deep);
-  color: var(--color-surface);
+  color: #FFFFFF;
   padding: 64px 0 24px;
 }
 
@@ -27,7 +27,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--color-surface);
+  color: #FFFFFF;
   font-weight: 700;
   font-size: 1.5rem;
 }
@@ -48,7 +48,7 @@
 }
 
 .social-links a {
-  color: var(--color-surface);
+  color: #FFFFFF;
   opacity: 0.8;
 }
 
@@ -72,17 +72,17 @@
 .link-group h3 {
   font-size: 1.125rem;
   margin-bottom: 8px;
-  color: var(--color-surface);
+  color: #FFFFFF;
 }
 
 .link-group a, .link-group p {
-  color: var(--color-disabled);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 0.875rem;
   transition: color 0.2s;
 }
 
 .link-group a:hover {
-  color: var(--color-surface);
+  color: #FFFFFF;
 }
 
 .footer-bottom {

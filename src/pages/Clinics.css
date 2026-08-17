@@ -19,7 +19,7 @@
   justify-content: center;
   width: 64px;
   height: 64px;
-  background-color: var(--color-secondary);
+  background-color: var(--color-bg-secondary);
   border-radius: 50%;
   color: var(--color-primary);
 }

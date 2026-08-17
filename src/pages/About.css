@@ -6,7 +6,7 @@
 .about-hero-content h1 {
   font-size: 3rem;
   margin-bottom: 24px;
-  color: var(--color-primary-deep);
+  color: var(--color-primary);
 }
 
 .about-hero-content .subtitle {

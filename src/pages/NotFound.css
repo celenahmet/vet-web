@@ -9,7 +9,7 @@
 .error-code {
   font-size: 8rem;
   font-weight: 700;
-  color: var(--color-primary-soft);
+  color: var(--color-primary);
   line-height: 1;
   margin-bottom: 24px;
 }

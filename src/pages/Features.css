@@ -1,7 +1,7 @@
 .features-hero h1 {
   font-size: 3rem;
   margin-bottom: 16px;
-  color: var(--color-primary-deep);
+  color: var(--color-primary);
 }
 
 .features-hero .subtitle {

@@ -7,11 +7,14 @@
   --color-surface-elevated: #FFFFFF;
   --color-primary-soft: #DDEFE8;
   --color-primary: #0F6B57;
+  --color-primary-hover: #073F35;
   --color-primary-deep: #073F35;
   --color-on-primary: #FFFFFF;
   --color-mint: #0F6B57;
   --color-accent: #C6A15B;
+  --color-accent-soft: rgba(198, 161, 91, 0.15);
   --color-coral: #E88372;
+  --color-coral-soft: rgba(232, 131, 114, 0.15);
   --color-text: #202825;
   --color-text-muted: #6F7C77;
   --color-disabled: #AAB7B1;
@@ -44,11 +47,14 @@
   --color-surface-elevated: #20312B;
   --color-primary-soft: #20312B;
   --color-primary: #2FAE8F;
+  --color-primary-hover: #9ED8C5;
   --color-primary-deep: #0F6B57;
   --color-on-primary: #08120D;
   --color-mint: #9ED8C5;
   --color-accent: #D3B06A;
+  --color-accent-soft: rgba(211, 176, 106, 0.15);
   --color-coral: #F08D7D;
+  --color-coral-soft: rgba(240, 141, 125, 0.15);
   --color-text: #F4F7F5;
   --color-text-muted: #AAB8B2;
   --color-disabled: #5A6B64;
@@ -94,7 +100,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-primary-deep);
+  color: var(--color-primary-hover);
 }
 
 h1, h2, h3, h4, h5, h6 {
