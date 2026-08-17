@@ -34,12 +34,12 @@ const Home = () => {
             </div>
             
             <div className="app-badges">
-              <div className="store-badge">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on App Store" />
-              </div>
-              <div className="store-badge">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" />
-              </div>
+              <a href="#download" className="store-badge" aria-label="Download on App Store">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on App Store" width="135" height="40" fetchPriority="high" />
+              </a>
+              <a href="#download" className="store-badge" aria-label="Get it on Google Play">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" width="135" height="40" fetchPriority="high" />
+              </a>
             </div>
           </div>
           
@@ -138,11 +138,11 @@ const Home = () => {
               </div>
 
               <div className="app-badges" style={{ justifyContent: 'center' }}>
-                <a href="#" className="store-badge">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on App Store" />
+                <a href="#" className="store-badge" aria-label="Download on App Store">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on App Store" width="135" height="40" loading="lazy" />
                 </a>
-                <a href="#" className="store-badge">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" />
+                <a href="#" className="store-badge" aria-label="Get it on Google Play">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" width="135" height="40" loading="lazy" />
                 </a>
               </div>
             </div>

@@ -50,7 +50,7 @@ const Clinics = () => {
               src="https://images.unsplash.com/photo-1606425271394-c3ca9aa1fc06?auto=format&fit=crop&q=80&w=1200" 
               alt="Veterinary Clinic" 
               className="rounded-img shadow-xl mx-auto"
-              loading="lazy"
+              fetchPriority="high"
               width="1200"
               height="800"
             />

@@ -19,6 +19,7 @@ export default function SEO({ title, description, name, type, image, url }: SEOP
       {/* Standard metadata tags */}
       <title>{pageTitle}</title>
       <meta name='description' content={description} />
+      {url && <link rel="canonical" href={url} />}
       
       {/* Open Graph tags for social media sharing */}
       <meta property='og:type' content={type || 'website'} />
