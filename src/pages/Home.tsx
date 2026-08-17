@@ -120,7 +120,6 @@ const Home = () => {
             </ul>
           </div>
         </div>
-    </div>
       </section>
 
       {/* Download Section */}
