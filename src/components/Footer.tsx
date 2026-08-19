@@ -49,7 +49,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>{t('footer_copyright').replace('{{year}}', year.toString()).replace('Patika', brandConfig.name)}</p>
+        <p>{t('footer_copyright').replace('{{year}}', year.toString()).replace('Veterito', brandConfig.name)}</p>
       </div>
     </footer>
   );

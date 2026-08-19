@@ -126,7 +126,7 @@ const Clinics = () => {
         </div>
       </section>
 
-      {/* Why Patika Section */}
+      {/* Why Veterito Section */}
       <section className="section bg-secondary">
         <div className="container">
           <h2 className="text-center mb-12">{t('clinics_why_title')}</h2>

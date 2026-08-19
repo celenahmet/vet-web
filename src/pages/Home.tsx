@@ -126,7 +126,7 @@ const Home = () => {
       {/* Community Gallery Section */}
       <section className="section bg-primary-soft text-center">
         <div className="container">
-          <h2 className="mb-4">The Patika Pack</h2>
+          <h2 className="mb-4">The Veterito Pack</h2>
           <p className="subtitle mx-auto mb-8 text-secondary">Join thousands of happy pets and their humans.</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px' }}>
             <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=400" alt="Dog at vet" className="rounded-img shadow-sm" style={{ width: '100%', height: '250px', objectFit: 'cover' }} loading="lazy" />
