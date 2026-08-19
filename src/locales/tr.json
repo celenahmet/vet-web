@@ -6,14 +6,12 @@
   "nav_blog": "Blog",
   "nav_get_app": "Uygulamayı İndir",
   "nav_clinics": "Klinikler İçin",
-  
   "seo_desc_home": "Patika: Modern veteriner hekimlikte güvenilir ortağınız. Evcil hayvanınızın sağlığını yönetin, randevu alın ve diğer hayvanseverlerle bağlantı kurun.",
   "seo_desc_features": "Sağlık paneli, sahiplendirme platformu, sosyal ağ ve akıllı hatırlatıcılar dahil olmak üzere Patika'nın güçlü özelliklerini keşfedin.",
   "seo_desc_pets": "Tüm evcil hayvanlarınızın sağlık profillerini tek bir yerden yönetin. Kilo, aşılar ve yaklaşan randevuları kolayca takip edin.",
   "seo_desc_about": "Patika'nın veteriner bakımını kurumsal standartlar, teknoloji ve topluluk ile yeniden tanımlama misyonu hakkında bilgi edinin.",
   "seo_desc_blog": "Evcil hayvan bakımı ile ilgili en son ipuçlarını okuyun, yeni özellikleri keşfedin ve topluluktan haberdar olun.",
   "seo_desc_clinics": "Klinikler İçin Patika: Veteriner hekimler için nihai CRM ve randevu yönetim sistemi. Kliniğinizi bugün dijitalleştirin.",
-  
   "footer_desc": "Modern veteriner hekimlikte güvenilir ortağınız. Evcil hayvanınızın sağlığını yönetmeyi basit, sosyal ve güvenilir hale getiriyoruz.",
   "footer_explore": "Keşfet",
   "footer_legal": "Yasal",
@@ -22,7 +20,6 @@
   "footer_terms": "Kullanım Koşulları",
   "footer_deletion": "Hesap Silme",
   "footer_copyright": "© {{year}} Patika. Tüm hakları saklıdır.",
-
   "home_hero_badge": "Evcil Hayvan Bakımının Geleceği",
   "home_hero_title": "En iyi dostunuzun sağlığı,",
   "home_hero_title_span": "cebinizde.",
@@ -47,7 +44,6 @@
   "home_trust_li1": "Doğrulanmış Veteriner Hekimler",
   "home_trust_li2": "Güvenli Tıbbi Kayıtlar",
   "home_trust_li3": "7/24 Acil Destek Yönlendirmesi",
-
   "feat_hero_h1": "Evcil Hayvanlar İçin Üretildi, Sizin İçin Tasarlandı",
   "feat_hero_p": "Patika'nın profesyonel veteriner bakımı, topluluk oluşturma ve günlük yaşamınız arasındaki boşluğu nasıl doldurduğunu keşfedin.",
   "feat_1_title": "Kapsamlı Sağlık Paneli",
@@ -65,7 +61,6 @@
   "feat_preview_h2": "Kliniklerle Kesintisiz Entegrasyon",
   "feat_preview_p": "Veterineriniz bir ziyaret sırasında bir kaydı güncellediğinde, Patika uygulamanız anında senkronize olur. Artık kağıt dosyalar taşımanıza veya karmaşık tıbbi terimleri hatırlamaya çalışmanıza gerek yok.",
   "feat_btn_learn": "Klinik Entegrasyonu Hakkında Daha Fazla Bilgi Edinin",
-
   "clinics_hero_h1": "Modern Klinikler İçin İşletim Sistemi",
   "clinics_hero_p": "Patika, veteriner hekimler için eksiksiz bir B2B CRM ve randevu yönetim paketi sunar. Kliniğinizi dijitalleştirin ve ilgili evcil hayvan sahipleriyle doğrudan bağlantı kurun.",
   "clinics_f1_title": "Hasta ve Müşteri CRM",
@@ -79,7 +74,6 @@
   "clinics_cta_h2": "Kliniğinizi dijitalleştirmeye hazır mısınız?",
   "clinics_cta_p": "Patika ağına katılın ve veteriner kliniğinizi modern çağa taşıyın.",
   "clinics_btn_contact": "Satış Ekibiyle İletişime Geçin",
-
   "pets_hero_h1": "Patika Sürüsüyle Tanışın",
   "pets_hero_p": "Her evcil hayvan kişiselleştirilmiş bir profil alır. Tüylü dostlarınızı ekleyin ve özel ihtiyaçlarını bugün takip etmeye başlayın.",
   "pets_stat_weight": "Ağırlık",
@@ -89,7 +83,6 @@
   "pets_add_p": "Yeni bir profil oluştur",
   "pets_multi_h2": "Birden Fazla Evcil Hayvan mı? Sorun Değil.",
   "pets_multi_p": "Tüm evcil hayvanlarınızı tek bir hesaptan yönetin. Sağlık kayıtlarını kontrol etmek veya randevu almak için profiller arasında kolayca geçiş yapın.",
-
   "about_hero_h1": "Veteriner Bakımını Yeniden Tanımlıyoruz",
   "about_hero_p": "Patika basit bir fikirden doğdu: veteriner bakımı, hayatımızın geri kalanı kadar modern, sorunsuz ve bağlantılı olmalıdır. Size en iyi kurumsal düzeyde bakımı sunmak için en iyi kliniklerle ortaklık yapıyoruz.",
   "about_m1_title": "Kurumsal Standartlar",
@@ -104,27 +97,21 @@
   "about_corp_li2": "Otomatik Hasta Hatırlatıcıları",
   "about_corp_li3": "Güvenli Bulut Kayıtları",
   "about_btn_partner": "Bizimle Ortak Olun",
-
   "blog_hero_h1": "İçgörüler",
   "blog_hero_p": "Evcil hayvan bakımı ile ilgili en son ipuçlarını okuyun, yeni uygulama özelliklerini keşfedin ve topluluktan haberdar olun.",
   "blog_read_more": "Devamını Oku",
   "blog_p1_title": "Akıllı Hatırlatıcılar Hayat Kurtarır",
   "blog_p1_excerpt": "Zamanında gelen bildirimlerin kedi ve köpeklerde ciddi sağlık sorunlarını nasıl önleyebileceğini keşfedin...",
   "blog_p1_category": "Öne Çıkan Özellik",
-
   "download_h2": "Patika Uygulamasını Hemen İndirin",
   "download_p": "Karekodu okutun veya mağaza rozetlerine tıklayarak Patika'yı indirin ve evcil hayvanınızın dijital sağlık yolculuğuna başlayın.",
   "download_qr_text": "İndirmek için okutun",
-
   "legal_privacy_title": "Gizlilik Politikası",
   "legal_privacy_content": "Gizliliğiniz bizim için büyük önem taşımaktadır. Patika, tüm tıbbi kayıtları ve kullanıcı verilerini korumak için banka düzeyinde şifreleme kullanır. Kişisel verilerinizi üçüncü taraf reklamverenlere satmaz, kiralama yapmaz veya paylaşmayız. Evcil hayvanınızın sağlık bilgileri yalnızca açıkça yetki verdiğiniz veteriner klinikleriyle paylaşılır. Profil görünürlüğünüz üzerinde tam kontrol sahibi olursunuz ve dilediğiniz zaman veri aktarımı talep edebilirsiniz.",
-  
   "legal_terms_title": "Kullanım Koşulları",
   "legal_terms_content": "Patika platformunu kullanarak Kullanım Koşullarımıza uymayı kabul etmiş olursunuz. Patika, profesyonel veteriner tavsiyesinin yerini almaz, dijital bir sağlık kaydı ve planlama platformu olarak hizmet verir. Tıbbi bir acil durumda lütfen derhal en yakın veteriner kliniğiyle iletişime geçin. Kullanıcılar, uygun bakım koordinasyonunu sağlamak için evcil hayvanları hakkında doğru bilgiler vermelidir.",
-  
   "legal_deletion_title": "Hesap Silme Talebi",
   "legal_deletion_content": "Patika hesabınızı ve ilişkili tüm verileri silmek isterseniz, bunu doğrudan mobil uygulama ayarlarından (Profil > Ayarlar > Hesabı Sil) yapabilirsiniz. Alternatif olarak, destek ekibimize e-posta göndererek de silme işlemini başlatabilirsiniz. Silinen tüm tıbbi kayıtlar kalıcı olarak yok edilir.",
-  
   "clinics_showcase_1_title": "Akıllı Randevu Yönetimi",
   "clinics_showcase_1_desc": "Çifte rezervasyonlara ve kaçırılan randevulara veda edin. Patika'nın akıllı takvim sistemi hayvan sahipleriyle anında senkronize olur, otomatik hatırlatıcılar gönderir ve birden fazla veterineri tek bir ekrandan yönetmenizi sağlar.",
   "clinics_showcase_2_title": "Elektronik Sağlık Kayıtları (EHR)",
@@ -133,7 +120,6 @@
   "clinics_showcase_3_desc": "Stok yönetiminizi otomatikleştirin. İlaçları takip edin, düşük stok uyarıları alın ve tedarikçilerinizi doğrudan panelinizden yönetin. İsrafı en aza indirin ve eczanenizin her zaman tam stoklu olduğundan emin olun.",
   "clinics_showcase_4_title": "Gelişmiş Analitik ve Raporlama",
   "clinics_showcase_4_desc": "Kliniğinizin performansını derin analizlerle anlayın. Günlük geliri, hasta tutma oranlarını ve personel verimliliğini okunması kolay, özelleştirilebilir görsel raporlarla takip edin.",
-  
   "clinics_why_title": "Neden Patika ile Çalışmalısınız?",
   "clinics_why_sec1_title": "Bulut Tabanlı & Güvenli",
   "clinics_why_sec1_desc": "Banka düzeyinde şifreleme ile hassas hasta verileriniz korunur, her yerden erişilebilir.",
@@ -143,14 +129,12 @@
   "clinics_why_sec3_desc": "Uygulama içi doğrudan mesajlaşma ile hayvan sahipleriyle anında bağlantıda kalın.",
   "clinics_why_sec4_title": "Kolay Veri Taşıma",
   "clinics_why_sec4_desc": "Eski sistemlerdeki mevcut kayıtlarınızı kesinti olmadan içe aktarırız.",
-
   "blog_p2_title": "Kurumsal Veteriner Standartları Açıklandı",
   "blog_p2_excerpt": "Bir kliniğin sertifikalı olması ne anlama geliyor? Zorlu seçim sürecimiz hakkında bilgi edinin.",
   "blog_p2_category": "Kurumsal",
   "blog_p3_title": "Hayvanseverler Topluluğu Oluşturmak",
   "blog_p3_excerpt": "Evcil hayvan bakımının sosyal yönü neden tıbbi yönü kadar önemlidir?",
   "blog_p3_category": "Topluluk",
-
   "pets_search_placeholder": "İsme veya ırka göre arayın...",
   "pets_filter_all": "Tümü",
   "pets_filter_dogs": "Köpekler",
@@ -158,7 +142,6 @@
   "pets_filter_birds": "Kuşlar",
   "pets_filter_others": "Diğerleri",
   "pets_no_results": "Aramanıza uygun patili dost bulunamadı.",
-
   "blog_sidebar_categories": "Kategoriler",
   "blog_sidebar_recent": "Son Yazılar",
   "blog_sidebar_tags": "Etiketler",

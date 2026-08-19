@@ -1,140 +1,133 @@
-import { Activity, Bell, Calendar, Heart, Shield, Users, ArrowRight } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Calendar, Stethoscope, Users, CheckCircle2 } from 'lucide-react';
 import SEO from '../components/SEO';
-import './Features.css';
 
-const Features = () => {
-  const { t } = useTranslation();
-
-  const otherFeatures = [
-    {
-      icon: <Bell size={32} color="var(--color-coral)" />,
-      title: t('feat_4_title'),
-      description: t('feat_4_desc')
-    },
-    {
-      icon: <Calendar size={32} color="var(--color-danger)" />,
-      title: t('feat_5_title'),
-      description: t('feat_5_desc')
-    },
-    {
-      icon: <Shield size={32} color="var(--color-primary-deep)" />,
-      title: t('feat_6_title'),
-      description: t('feat_6_desc')
-    }
-  ];
+export default function Features() {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 50 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-100px" },
+    whileHover: { y: -10 },
+    transition: { type: "spring", stiffness: 300, damping: 20, duration: 0.6 }
+  };
 
   return (
-    <div className="features-page">
-      <SEO 
-        title={t('nav_features')} 
-        description={t('seo_desc_features')} 
-      />
-      <section className="features-hero section bg-secondary">
-        <div className="container text-center">
-          <h1>{t('feat_hero_h1')}</h1>
-          <p className="subtitle mx-auto">{t('feat_hero_p')}</p>
-        </div>
-      </section>
+    <div className="min-h-screen pt-32 pb-24 relative overflow-hidden bg-[var(--bg-main)]">
+      <SEO title="Özellikler - Veterito" description="Veterito'nun sunduğu tüm özellikleri keşfedin." />
+      
+      {/* Background Orbs */}
+      <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-emerald-200/40 rounded-full blur-3xl mix-blend-multiply opacity-50 animate-float" style={{ animationDuration: '15s' }}></div>
+        <div className="absolute bottom-[20%] left-[-10%] w-[500px] h-[500px] bg-amber-100/60 rounded-full blur-3xl mix-blend-multiply opacity-50 animate-float" style={{ animationDuration: '20s', animationDelay: '2s' }}></div>
+        <div className="absolute bottom-[-10%] right-[10%] w-[500px] h-[500px] bg-teal-100/50 rounded-full blur-3xl mix-blend-multiply opacity-50 animate-float" style={{ animationDuration: '18s', animationDelay: '4s' }}></div>
+      </div>
 
-      {/* Feature 1: Zig-Zag */}
-      <section className="section">
-        <div className="container feature-zigzag">
-          <div className="zigzag-content">
-            <div className="icon-wrapper bg-primary-soft mb-4">
-              <Activity size={28} color="var(--color-primary)" />
+      <div className="container mx-auto px-6 max-w-7xl">
+        {/* Hero Section */}
+        <div className="text-center max-w-3xl mx-auto mb-24">
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl lg:text-6xl font-extrabold mb-6 text-[var(--text-main)] tracking-tight">
+            Tüm İhtiyaçlarınız <br/> <span className="text-[var(--color-vet-primary)]">Tek Bir Yerde</span>
+          </motion.h1>
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-xl text-[var(--text-muted)] font-medium leading-relaxed">
+            Evcil hayvanınızın sağlığı ve mutluluğu için ihtiyacınız olan tüm araçlar, sezgisel ve modern uygulamamızda bir araya geldi.
+          </motion.p>
+        </div>
+
+        <div className="space-y-32">
+          {/* Feature 1: Ana Sayfa Ekranı (Image Left, Text Right) */}
+          <motion.div {...fadeInUp} className="flex flex-col lg:flex-row items-center gap-8 lg:gap-10">
+            <div className="flex-1 w-full relative group flex justify-center">
+              <div className="absolute inset-0 bg-emerald-200/30 rounded-full blur-[80px] -z-10 group-hover:bg-emerald-300/40 transition-colors duration-500"></div>
+              <img src="/app-home.png" alt="Veterito Ana Sayfa Ekranı" className="max-h-[360px] lg:max-h-[460px] w-auto object-contain mx-auto transform group-hover:scale-105 group-hover:-rotate-2 transition-transform duration-500 drop-shadow-2xl" />
             </div>
-            <h2>{t('feat_1_title')}</h2>
-            <p>{t('feat_1_desc')}</p>
-            <ul className="feature-bullets">
-              <li>Track weight, vaccinations, and lab results</li>
-              <li>Sync directly with your veterinarian</li>
-              <li>Get smart health insights</li>
-            </ul>
-          </div>
-          <div className="zigzag-image">
-             <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=800" alt="Health Tracking" className="rounded-img shadow-lg" loading="lazy" />
-          </div>
-        </div>
-      </section>
-
-      {/* Feature 2: Zig-Zag Reversed */}
-      <section className="section bg-secondary">
-        <div className="container feature-zigzag reversed">
-          <div className="zigzag-content">
-            <div className="icon-wrapper bg-accent-soft mb-4">
-              <Users size={28} color="var(--color-accent)" />
-            </div>
-            <h2>{t('feat_2_title')}</h2>
-            <p>{t('feat_2_desc')}</p>
-            <ul className="feature-bullets">
-              <li>Join breed-specific groups</li>
-              <li>Organize local playdates</li>
-              <li>Share photos with the community</li>
-            </ul>
-          </div>
-          <div className="zigzag-image">
-             <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?auto=format&fit=crop&q=80&w=800" alt="Social Network" className="rounded-img shadow-lg" loading="lazy" />
-          </div>
-        </div>
-      </section>
-
-      {/* Feature 3: Zig-Zag */}
-      <section className="section">
-        <div className="container feature-zigzag">
-          <div className="zigzag-content">
-            <div className="icon-wrapper bg-success-soft mb-4" style={{ backgroundColor: 'var(--color-primary-soft)' }}>
-              <Heart size={28} color="var(--color-success)" />
-            </div>
-            <h2>{t('feat_3_title')}</h2>
-            <p>{t('feat_3_desc')}</p>
-            <ul className="feature-bullets">
-              <li>Secure form-based adoption system</li>
-              <li>Rich photo galleries of adoptable pets</li>
-              <li>Direct messaging with shelters</li>
-            </ul>
-          </div>
-          <div className="zigzag-image">
-             <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=800" alt="Adoption Platform" className="rounded-img shadow-lg" loading="lazy" />
-          </div>
-        </div>
-      </section>
-
-      {/* Other Features Grid */}
-      <section className="section bg-secondary">
-        <div className="container">
-          <h2 className="text-center mb-12">More Powerful Features</h2>
-          <div className="features-list-grid">
-            {otherFeatures.map((feature, index) => (
-              <div key={index} className="feature-item">
-                <div className="feature-icon">{feature.icon}</div>
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
+            <div className="flex-1 space-y-6">
+              <div className="inline-flex p-4 rounded-2xl bg-emerald-100/50 text-emerald-600 mb-2">
+                <Calendar size={32} />
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              <h2 className="text-3xl lg:text-5xl font-extrabold text-[var(--text-main)]">Kontrol Her An <br/> Elinizin Altında</h2>
+              <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+                Kişiselleştirilmiş ana sayfa ekranınız ile evcil hayvanınızın yaklaşan aşılarını, randevularını ve günlük görevlerini tek bir bakışta görün.
+              </p>
+              <ul className="space-y-4 pt-4">
+                <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
+                  <div className="p-1 rounded-full bg-[var(--color-vet-primary)]/10 text-[var(--color-vet-primary)]"><CheckCircle2 size={20} /></div>
+                  Akıllı Görev Yönetimi
+                </li>
+                <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
+                  <div className="p-1 rounded-full bg-[var(--color-vet-primary)]/10 text-[var(--color-vet-primary)]"><CheckCircle2 size={20} /></div>
+                  Otomatik Hatırlatıcılar
+                </li>
+                <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
+                  <div className="p-1 rounded-full bg-[var(--color-vet-primary)]/10 text-[var(--color-vet-primary)]"><CheckCircle2 size={20} /></div>
+                  Çoklu Evcil Hayvan Desteği
+                </li>
+              </ul>
+            </div>
+          </motion.div>
 
-      <section className="section app-preview-section bg-primary-soft">
-        <div className="container preview-container">
-          <div className="preview-content">
-            <h2>{t('feat_preview_h2')}</h2>
-            <p>
-              {t('feat_preview_p')}
-            </p>
-            <Link to="/clinics" className="btn btn-primary mt-24">
-              {t('feat_btn_learn')} <ArrowRight size={18} className="ml-2" style={{ display: 'inline', marginLeft: '8px' }} />
-            </Link>
-          </div>
-          <div className="preview-image">
-             <img src="https://images.unsplash.com/photo-1628009368231-7bb7cb18a4a5?auto=format&fit=crop&q=80&w=800" alt="Veterinary Clinic" className="rounded-img shadow-lg" loading="lazy" width="800" height="533" />
-          </div>
+          {/* Feature 2: Dijital Kart Ekranı (Text Left, Image Right) */}
+          <motion.div {...fadeInUp} className="flex flex-col-reverse lg:flex-row items-center gap-8 lg:gap-10">
+            <div className="flex-1 space-y-6">
+              <div className="inline-flex p-4 rounded-2xl bg-amber-100/50 text-amber-600 mb-2">
+                <Stethoscope size={32} />
+              </div>
+              <h2 className="text-3xl lg:text-5xl font-extrabold text-[var(--text-main)]">Evrensel Dijital <br/> Sağlık Kartı</h2>
+              <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+                Tüm tıbbi geçmiş, aşı karnesi ve mikroçip bilgileri tek bir ekranda. İhtiyaç duyduğunuzda saniyeler içinde veterinerinizle paylaşın.
+              </p>
+              <ul className="space-y-4 pt-4">
+                <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
+                  <div className="p-1 rounded-full bg-amber-500/10 text-amber-500"><CheckCircle2 size={20} /></div>
+                  Anında PDF Çıktısı
+                </li>
+                <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
+                  <div className="p-1 rounded-full bg-amber-500/10 text-amber-500"><CheckCircle2 size={20} /></div>
+                  Veteriner Senkronizasyonu
+                </li>
+                <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
+                  <div className="p-1 rounded-full bg-amber-500/10 text-amber-500"><CheckCircle2 size={20} /></div>
+                  Mikroçip Entegrasyonu
+                </li>
+              </ul>
+            </div>
+            <div className="flex-1 w-full relative group flex justify-center">
+              <div className="absolute inset-0 bg-amber-200/30 rounded-full blur-[80px] -z-10 group-hover:bg-amber-300/40 transition-colors duration-500"></div>
+              <img src="/app-health.png" alt="Veterito Dijital Kart Ekranı" className="max-h-[320px] lg:max-h-[400px] w-auto object-contain mx-auto transform group-hover:scale-105 group-hover:rotate-2 transition-transform duration-500 drop-shadow-2xl" />
+            </div>
+          </motion.div>
+
+          {/* Feature 3: Sosyal Topluluk Ekranı (Image Left, Text Right) */}
+          <motion.div {...fadeInUp} className="flex flex-col lg:flex-row items-center gap-8 lg:gap-10">
+            <div className="flex-1 w-full relative group flex justify-center">
+              <div className="absolute inset-0 bg-rose-200/30 rounded-full blur-[80px] -z-10 group-hover:bg-rose-300/40 transition-colors duration-500"></div>
+              <img src="/app-community.png" alt="Veterito Sosyal Topluluk Ekranı" className="max-h-[360px] lg:max-h-[460px] w-auto object-contain mx-auto transform group-hover:scale-105 group-hover:-rotate-2 transition-transform duration-500 drop-shadow-2xl" />
+            </div>
+            <div className="flex-1 space-y-6">
+              <div className="inline-flex p-4 rounded-2xl bg-rose-100/50 text-rose-500 mb-2">
+                <Users size={32} />
+              </div>
+              <h2 className="text-3xl lg:text-5xl font-extrabold text-[var(--text-main)]">Biz Büyük Bir <br/> Aileyiz</h2>
+              <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+                Yalnız değilsiniz. Çevrenizdeki hayvanseverleri keşfedin, yürüyüş arkadaşları bulun ve deneyimlerinizi güvenilir bir toplulukta paylaşın.
+              </p>
+              <ul className="space-y-4 pt-4">
+                <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
+                  <div className="p-1 rounded-full bg-rose-500/10 text-rose-500"><CheckCircle2 size={20} /></div>
+                  Lokasyon Bazlı Eşleşme
+                </li>
+                <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
+                  <div className="p-1 rounded-full bg-rose-500/10 text-rose-500"><CheckCircle2 size={20} /></div>
+                  Soru - Cevap Forumları
+                </li>
+                <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
+                  <div className="p-1 rounded-full bg-rose-500/10 text-rose-500"><CheckCircle2 size={20} /></div>
+                  Ortak Yürüyüş Etkinlikleri
+                </li>
+              </ul>
+            </div>
+          </motion.div>
         </div>
-      </section>
+      </div>
     </div>
   );
-};
-
-export default Features;
+}

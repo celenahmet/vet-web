@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Stethoscope, Globe, MessageCircle, Mail } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { brandConfig } from '../config/brand';
@@ -7,10 +7,12 @@ import './Footer.css';
 const Footer = () => {
   const { t } = useTranslation();
   const year = new Date().getFullYear();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   return (
-    <footer className="footer">
-      <div className="container footer-container">
+    <footer className={`footer relative z-10 ${isHome ? 'bg-emerald-950 dark:bg-[#0B1711]' : 'bg-[var(--color-vet-primary)]'}`}>
+      <div className="container mx-auto px-6 max-w-7xl footer-container">
         <div className="footer-brand">
           <Link to="/" className="footer-logo">
             <Stethoscope size={24} />

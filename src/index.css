@@ -1,170 +1,127 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --color-bg: #FAF8F3;
-  --color-bg-secondary: #EEF6F1;
-  --color-surface: #FFFFFF;
-  --color-surface-elevated: #FFFFFF;
-  --color-primary-soft: #DDEFE8;
-  --color-primary: #0F6B57;
-  --color-primary-hover: #073F35;
-  --color-primary-deep: #073F35;
-  --color-on-primary: #FFFFFF;
-  --color-mint: #0F6B57;
-  --color-accent: #C6A15B;
-  --color-accent-soft: rgba(198, 161, 91, 0.15);
-  --color-coral: #E88372;
-  --color-coral-soft: rgba(232, 131, 114, 0.15);
-  --color-text: #202825;
-  --color-text-muted: #6F7C77;
-  --color-disabled: #AAB7B1;
-  --color-border: #D9E5DF;
-
-  /* Additional utility colors */
-  --color-success: #2F8F6B;
-  --color-warning: #D6A23D;
-  --color-danger: #D95C5C;
-
-  /* Typography */
-  --font-family: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --bg-main: #FDFBF7; /* Sıcak fildişi/krem zemin */
+  --bg-surface: #FFFFFF;
+  --bg-secondary: #EAF3EC; /* Açık yeşil vurgu */
   
-  /* Radii */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-full: 9999px;
-
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(15, 107, 87, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(15, 107, 87, 0.1), 0 2px 4px -1px rgba(15, 107, 87, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(15, 107, 87, 0.1), 0 4px 6px -2px rgba(15, 107, 87, 0.05);
+  --text-main: #172B20;
+  --text-muted: #3D5245; 
+  
+  --color-vet-primary: #2D5A43; /* Zengin adaçayı & zümrüt */
+  --color-vet-secondary: #437A5B;
+  --color-vet-accent: #E5A93C; /* Sıcak bal/şampanya */
+  --color-vet-accent-light: #F5E5C9;
 }
 
-[data-theme="dark"] {
-  --color-bg: #0E1714;
-  --color-bg-secondary: #14201C;
-  --color-surface: #192823;
-  --color-surface-elevated: #20312B;
-  --color-primary-soft: #20312B;
-  --color-primary: #2FAE8F;
-  --color-primary-hover: #9ED8C5;
-  --color-primary-deep: #0F6B57;
-  --color-on-primary: #08120D;
-  --color-mint: #9ED8C5;
-  --color-accent: #D3B06A;
-  --color-accent-soft: rgba(211, 176, 106, 0.15);
-  --color-coral: #F08D7D;
-  --color-coral-soft: rgba(240, 141, 125, 0.15);
-  --color-text: #F4F7F5;
-  --color-text-muted: #AAB8B2;
-  --color-disabled: #5A6B64;
-  --color-border: #2B3B35;
-
-  --color-success: #4DC28E;
-  --color-warning: #E2B657;
-  --color-danger: #EF6B6B;
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+[data-theme='dark'] {
+  --bg-main: #0B1711; /* Derin kadife gece zümrüdü */
+  --bg-surface: #13241A;
+  --bg-secondary: #193023;
+  
+  --text-main: #F4F7F5;
+  --text-muted: #A0B2A8;
+  
+  --color-vet-primary: #5FD39B;
+  --color-vet-secondary: #3F7859;
+  --color-vet-accent: #D4AF37;
+  --color-vet-accent-light: #F5E5C9;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-.loading-spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 50vh;
-  color: var(--color-primary);
-  font-weight: 600;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
 body {
-  font-family: var(--font-family);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.6;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Outfit', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
+@layer utilities {
+  .glass-nav {
+    background-color: rgba(253, 251, 247, 0.65);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(45, 90, 67, 0.05);
+  }
+  
+  .dark .glass-nav {
+    background-color: rgba(11, 23, 17, 0.65);
+    border-bottom: 1px solid rgba(95, 211, 155, 0.1);
+  }
 
-a:hover {
-  color: var(--color-primary-hover);
-}
+  .glass-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(45, 90, 67, 0.1);
+    box-shadow: 0 20px 40px -15px rgba(45, 90, 67, 0.05);
+  }
+  
+  .dark .glass-card {
+    background-color: rgba(11, 23, 17, 0.6);
+    border: 1px solid rgba(95, 211, 155, 0.2);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  }
+  
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold transition-all duration-300;
+    background-color: var(--color-vet-primary);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--color-vet-secondary);
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px -5px rgba(45, 90, 67, 0.4);
+  }
+  
+  .dark .btn-primary {
+    background-color: var(--color-vet-primary);
+    color: white;
+  }
+  
+  .dark .btn-primary:hover {
+    background-color: var(--color-vet-secondary);
+    box-shadow: 0 10px 25px -5px rgba(95, 211, 155, 0.4);
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.2;
-  font-weight: 700;
-  color: var(--color-text);
-  letter-spacing: -0.02em;
-}
-
-button {
-  font-family: inherit;
-}
-
-/* Layout Utilities */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.section {
-  padding: 80px 0;
-}
-
-@media (min-width: 768px) {
-  .section {
-    padding: 120px 0;
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(to right, var(--color-vet-primary), var(--color-vet-accent));
+  }
+  
+  .dark .text-gradient {
+    background-image: linear-gradient(to right, var(--color-vet-primary), var(--color-vet-accent));
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 }
 
-/* Global Utilities */
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
 }
 
-.mb-4 {
-  margin-bottom: 16px;
-}
-
-.mb-6 {
-  margin-bottom: 24px;
-}
-
-.mb-8 {
-  margin-bottom: 32px;
-}
-
-.mb-12 {
-  margin-bottom: 48px;
-}
-
-.max-w-800 {
-  max-width: 800px;
-}
-
-.mt-8 {
-  margin-top: 32px;
-}
-
-.mt-12 {
-  margin-top: 48px;
-}
-
-.mt-24 {
-  margin-top: 96px;
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0px rgba(95, 211, 155, 0.4); }
+  50% { opacity: .8; transform: scale(1.05); box-shadow: 0 0 0 10px rgba(95, 211, 155, 0); }
 }
