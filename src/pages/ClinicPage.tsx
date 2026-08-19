@@ -45,6 +45,8 @@ export default function ClinicPage() {
   const [staff, setStaff] = useState<StaffMember[]>([]);
   const [media, setMedia] = useState<ClinicMedia>({ logo: null, cover: null, gallery: [], staff: {} });
   const [loading, setLoading] = useState(true);
+  // Görseller ayrı yükleniyor: iskelet gösterip metni bekletmiyoruz.
+  const [mediaLoading, setMediaLoading] = useState(true);
 
   // Ayrı pencereler: galeri ve ekip (İSTEK: Ahmet, 20.08.2026).
   const [modal, setModal] = useState<'gallery' | 'staff' | null>(null);
@@ -58,22 +60,43 @@ export default function ClinicPage() {
     let iptal = false;
     setLoading(true);
     (async () => {
-      const p = await fetchClinicPage(username);
-      if (iptal) return;
-      setPage(p);
-      if (p) {
-        // ⚠️ PARALEL: ekip ve görseller birbirini beklemiyor. Sıralı olsaydı sayfa
-        // iki tur gecikirdi.
-        const [ekip, gorsel] = await Promise.all([
-          fetchClinicStaff(p.clinic_id),
-          fetchClinicMedia(username),
-        ]);
-        if (!iptal) {
-          setStaff(ekip);
-          setMedia(gorsel);
+      /**
+       * ⚠️ `finally` OLMADAN SAYFA SONSUZA KADAR "Yükleniyor" KALIYOR.
+       * İlk yazımda try/finally yoktu: herhangi bir ağ hatası bu fonksiyonu
+       * yarıda kesiyor, `setLoading(false)` hiç çalışmıyor ve kullanıcı boş
+       * ekrana bakıyordu. Hata yutulmuyor — konsola yazılıyor — ama ekran her
+       * hâlde bir sonuca varıyor.
+       */
+      try {
+        const p = await fetchClinicPage(username);
+        if (iptal) return;
+        setPage(p);
+
+        /**
+         * ⚠️ METİN GÖRSELLERİ BEKLEMİYOR. Önce sayfa çiziliyor, görseller sonra
+         * doluyor. Beklemek, hızlı gelen iletişim bilgilerini yavaş gelen
+         * fotoğrafların arkasında tutmak demekti — sayfanın amacı kliniğe ulaşmak.
+         */
+        if (p) {
+          fetchClinicStaff(p.clinic_id)
+            .then((e) => !iptal && setStaff(e))
+            .catch((e) => console.error('[clinicPage] ekip alınamadı:', e));
+          fetchClinicMedia(username)
+            .then((m) => {
+              if (iptal) return;
+              setMedia(m);
+              setMediaLoading(false);
+            })
+            .catch((e) => {
+              console.error('[clinicPage] görseller alınamadı:', e);
+              if (!iptal) setMediaLoading(false);
+            });
         }
+      } catch (e) {
+        console.error('[clinicPage] sayfa alınamadı:', e);
+      } finally {
+        if (!iptal) setLoading(false);
       }
-      if (!iptal) setLoading(false);
     })();
     return () => {
       // Kullanıcı hızlıca başka adrese geçerse eski yanıt yeni sayfanın üstüne yazmasın.
@@ -193,7 +216,12 @@ export default function ClinicPage() {
   }, [modal, lightbox]);
 
   if (!bizeAit) return <NotFound />;
-  if (loading) return <div className="vc-loading">Yükleniyor…</div>;
+  /**
+   * ⚠️ TAM EKRAN "Yükleniyor" YAZISI YERİNE İSKELET. Boş bir sayfada tek satır yazı,
+   * kullanıcıya "bir şey olmuyor" hissi veriyor; iskelet ise sayfanın nereye
+   * oturacağını gösteriyor ve bekleme kısa görünüyor.
+   */
+  if (loading) return <PageSkeleton />;
   if (!page) return <NotFound />;
 
   const konum = [page.district, page.city].filter(Boolean).join(' / ');
@@ -207,7 +235,11 @@ export default function ClinicPage() {
         {media.cover ? (
           <img className="vc-hero-cover" src={media.cover} alt="" aria-hidden="true" />
         ) : (
-          <div className="vc-hero-cover vc-hero-cover-fallback" aria-hidden="true" />
+          // Görseller gelene kadar da marka rengi duruyor: boş beyaz alan yok.
+          <div
+            className={`vc-hero-cover vc-hero-cover-fallback${mediaLoading ? ' vc-shimmer' : ''}`}
+            aria-hidden="true"
+          />
         )}
         <div className="vc-hero-scrim" aria-hidden="true" />
 
@@ -512,6 +544,45 @@ function Modal({
         </div>
         <div className="vc-modal-body">{children}</div>
       </div>
+    </div>
+  );
+}
+
+/**
+ * Sayfa iskeleti — veri gelene kadar.
+ * ⚠️ GERÇEK DÜZENİ TAKLİT EDİYOR (kapak + kartlar): rastgele kutular, içerik gelince
+ * sayfanın zıplamasına yol açardı.
+ */
+function PageSkeleton() {
+  return (
+    <div className="vc" aria-busy="true" aria-live="polite">
+      <div className="vc-hero">
+        <div className="vc-hero-cover vc-hero-cover-fallback vc-shimmer" />
+        <div className="vc-hero-scrim" />
+        <div className="vc-hero-body">
+          <div className="vc-hero-logo vc-shimmer" />
+          <div className="vc-hero-text">
+            <div className="vc-sk vc-sk-title" />
+            <div className="vc-sk vc-sk-line" />
+          </div>
+        </div>
+      </div>
+      <div className="vc-wrap">
+        <div className="vc-contact">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="vc-contact-card vc-shimmer" style={{ height: 80 }} />
+          ))}
+        </div>
+        <div className="vc-grid">
+          <div className="vc-col">
+            <div className="vc-block vc-shimmer" style={{ height: 220 }} />
+          </div>
+          <div className="vc-col">
+            <div className="vc-block vc-shimmer" style={{ height: 320 }} />
+          </div>
+        </div>
+      </div>
+      <span className="vc-sr">Sayfa yükleniyor</span>
     </div>
   );
 }

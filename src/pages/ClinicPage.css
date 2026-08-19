@@ -598,3 +598,52 @@
   .vc-contact { margin-top: -20px; }
   .vc-block { padding: 20px; }
 }
+
+/* ============================================================== İSKELET */
+
+/**
+ * ⚠️ İSKELET GERÇEK DÜZENİ TAKLİT EDİYOR. Rastgele kutular içerik gelince sayfanın
+ * zıplamasına (layout shift) yol açar; hem kötü görünür hem SEO'da ceza yazar.
+ */
+.vc-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg-secondary, #eef6f1);
+}
+
+.vc-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  animation: vc-shimmer 1.4s infinite;
+}
+
+@keyframes vc-shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* ⚠️ HAREKETİ AZALT tercihi olan kullanıcıda parlama YOK: sürekli animasyon
+   baş dönmesi yapabiliyor (WCAG 2.3.3). */
+@media (prefers-reduced-motion: reduce) {
+  .vc-shimmer::after { animation: none; }
+}
+
+.vc-sk {
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.vc-sk-title { width: min(280px, 60vw); height: 34px; margin-bottom: 12px; }
+.vc-sk-line { width: min(200px, 45vw); height: 16px; }
+
+/* Ekran okuyucu için: görsel iskelet ona bir şey söylemiyor. */
+.vc-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
