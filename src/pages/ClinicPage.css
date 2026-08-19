@@ -1,250 +1,600 @@
 /**
  * Klinik vitrini — veterito.com/@kullaniciadi
  *
- * ⚠️ RENKLER YENİDEN TANIMLANMADI. Hepsi `index.css`teki değişkenlerden geliyor;
- * burada sabit bir renk yazsaydık koyu tema ve ileride yapılacak marka değişikliği
- * bu sayfayı atlardı.
+ * ⚠️ RENKLER YENİDEN TANIMLANMADI. Hepsi `index.css` değişkenlerinden; buraya sabit
+ * bir renk yazsaydık koyu tema ve ileride yapılacak marka değişikliği bu sayfayı
+ * atlardı. Uygulamayla aynı palet: bej zemin, koyu yeşil, altın vurgu.
  *
- * ⚠️ TÜM SEÇİCİLER `.clinic-page` ALTINDA. Genel bir `h2` kuralı yazsaydık öteki
- * sayfaları da etkilerdi — bu repoda başkası çalışıyor.
+ * ⚠️ TÜM SEÇİCİLER `.vc` ALTINDA. Genel bir `h2` kuralı öteki sayfaları da etkilerdi —
+ * bu repoda başkası çalışıyor.
  */
 
-.clinic-loading {
-  padding: 96px 24px;
+.vc-loading {
+  padding: 120px 24px;
   text-align: center;
   color: var(--color-text-muted, #6b7280);
 }
 
-.clinic-page {
-  --clinic-max: 880px;
-  padding-bottom: 64px;
+.vc {
+  --vc-max: 1120px;
+  --vc-radius: 20px;
+  background: var(--color-bg, #faf8f3);
+  padding-bottom: 72px;
 }
 
-/* ------------------------------------------------------------------ BAŞLIK */
-
-.clinic-hero {
-  background: linear-gradient(160deg, var(--color-primary) 0%, var(--color-primary-deep) 100%);
-  color: var(--color-on-primary);
-  padding: 72px 24px 56px;
-}
-
-.clinic-hero-inner {
-  max-width: var(--clinic-max);
+.vc-wrap {
+  max-width: var(--vc-max);
   margin: 0 auto;
+  padding: 0 20px;
 }
 
-.clinic-name {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  line-height: 1.15;
+/* ================================================================== ÜST */
+
+.vc-hero {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.vc-hero-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vc-hero-cover-fallback {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-deep) 100%);
+}
+
+/* Metnin okunabilirliği fotoğrafa bırakılmıyor: her kapakta aynı kontrast. */
+.vc-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7, 63, 53, 0.92) 0%, rgba(7, 63, 53, 0.45) 55%, rgba(7, 63, 53, 0.15) 100%);
+}
+
+.vc-hero-body {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--vc-max);
+  margin: 0 auto;
+  padding: 32px 20px 28px;
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.vc-hero-logo {
+  flex: 0 0 auto;
+  width: 104px;
+  height: 104px;
+  border-radius: 24px;
+  background: var(--color-surface, #fff);
+  box-shadow: 0 12px 32px rgba(7, 63, 53, 0.28);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.vc-hero-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vc-hero-logo-fallback {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.vc-hero-text {
+  min-width: 0;
+}
+
+.vc-title {
   margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.clinic-tagline {
-  margin: 12px 0 0;
-  font-size: clamp(1rem, 2.2vw, 1.25rem);
-  opacity: 0.92;
-  max-width: 40ch;
+.vc-verified {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-accent, #c6a15b);
+  color: #1a1a1a;
+  font-size: 0.875rem;
+  font-weight: 900;
 }
 
-.clinic-meta {
+.vc-tagline {
+  margin: 10px 0 0;
+  font-size: clamp(0.9375rem, 1.6vw, 1.0625rem);
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 52ch;
+  line-height: 1.5;
+}
+
+.vc-hero-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 24px;
+  margin-top: 16px;
 }
 
-.clinic-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+.vc-chip {
   padding: 6px 14px;
   border-radius: 99px;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  background: rgba(255, 255, 255, 0.16);
-  color: var(--color-on-primary);
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  backdrop-filter: blur(6px);
 }
 
-.clinic-chip-rating {
-  background: var(--color-accent);
+.vc-chip-gold {
+  background: var(--color-accent, #c6a15b);
   color: #1a1a1a;
 }
 
-.clinic-rating-count {
-  font-weight: 500;
-  opacity: 0.75;
-}
+/* ============================================================= İLETİŞİM */
 
-/* ---------------------------------------------------------------- BÖLÜMLER */
-
-.clinic-section {
-  max-width: var(--clinic-max);
-  margin: 0 auto;
-  padding: 40px 24px 0;
-}
-
-.clinic-h2 {
-  font-size: 1.375rem;
-  font-weight: 700;
-  color: var(--color-text, #111827);
-  margin: 0 0 16px;
-}
-
-.clinic-text {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--color-text, #111827);
-  margin: 0 0 8px;
-  max-width: 65ch;
-}
-
-.clinic-muted {
-  color: var(--color-text-muted, #6b7280);
-}
-
-.clinic-note {
-  margin-top: 16px;
-  font-size: 0.8125rem;
-  color: var(--color-text-muted, #6b7280);
-}
-
-/* ---------------------------------------------------------------- İLETİŞİM */
-
-/* ⚠️ İLETİŞİM KUTULARI EN BELİRGİN ÖĞE: sayfanın amacı kliniğe ulaşmak.
-   Izgara, dar ekranda tek sütuna düşüyor — telefonda yan yana sıkışmasın. */
-.clinic-contact {
-  padding-top: 28px;
-}
-
-.clinic-actions {
+.vc-contact {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+  margin-top: -34px;
+  position: relative;
+  z-index: 2;
 }
 
-.clinic-action {
+.vc-contact-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border-radius: var(--vc-radius);
+  background: var(--color-surface, #fff);
+  border: 1px solid rgba(15, 107, 87, 0.1);
+  box-shadow: 0 6px 20px rgba(7, 63, 53, 0.07);
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.vc-contact-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(7, 63, 53, 0.14);
+}
+
+.vc-contact-icon {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  background: var(--color-primary-soft, #ddefe8);
+  color: var(--color-primary, #0f6b57);
+}
+
+.vc-icon-wa {
+  background: #e3f7ea;
+  color: #10692f;
+}
+
+.vc-contact-body {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 2px;
-  padding: 16px 18px;
-  border-radius: 16px;
-  background: var(--color-surface, #fff);
-  border: 1px solid var(--color-border, #e5e7eb);
-  text-decoration: none;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.clinic-action:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(7, 63, 53, 0.1);
-}
-
-.clinic-action-label {
+.vc-contact-label {
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--color-text-muted, #6b7280);
 }
 
-.clinic-action-value {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-text, #111827);
-}
-
-.clinic-action-primary {
-  background: var(--color-primary-soft);
-  border-color: transparent;
-}
-
-.clinic-action-primary .clinic-action-label,
-.clinic-action-primary .clinic-action-value {
-  color: var(--color-primary-deep);
-}
-
-.clinic-action-whatsapp {
-  background: #e8f7ee;
-  border-color: transparent;
-}
-
-.clinic-action-whatsapp .clinic-action-label,
-.clinic-action-whatsapp .clinic-action-value {
-  color: #10692f;
-}
-
-/* ------------------------------------------------------------------- EKİP */
-
-.clinic-staff {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-}
-
-.clinic-staff-card {
-  padding: 20px;
-  border-radius: 16px;
-  background: var(--color-surface, #fff);
-  border: 1px solid var(--color-border, #e5e7eb);
-}
-
-.clinic-staff-name {
-  margin: 0;
-  font-size: 1.0625rem;
+.vc-contact-value {
+  font-size: 0.9375rem;
   font-weight: 700;
-  color: var(--color-text, #111827);
+  color: var(--color-text, #202825);
+  overflow-wrap: anywhere;
 }
 
-.clinic-staff-title {
-  margin: 4px 0 0;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--color-primary);
+/* =============================================================== IZGARA */
+
+.vc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: 24px;
+  margin-top: 32px;
+  align-items: start;
 }
 
-.clinic-staff-edu,
-.clinic-staff-bio {
-  margin: 8px 0 0;
-  font-size: 0.875rem;
+.vc-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.vc-block {
+  background: var(--color-surface, #fff);
+  border: 1px solid rgba(15, 107, 87, 0.08);
+  border-radius: var(--vc-radius);
+  padding: 24px;
+}
+
+.vc-block-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.vc-h2 {
+  margin: 0 0 14px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text, #202825);
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.vc-block-head .vc-h2 {
+  margin-bottom: 0;
+}
+
+/* İnce altın çizgi: uygulamadaki vurgu rengiyle aynı. */
+.vc-h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 36px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--color-accent, #c6a15b);
+}
+
+.vc-text {
+  margin: 0 0 10px;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--color-text, #202825);
+  max-width: 62ch;
+}
+
+.vc-strong { font-weight: 600; }
+.vc-muted { color: var(--color-text-muted, #6b7280); }
+
+.vc-note {
+  margin: 14px 0 0;
+  font-size: 0.75rem;
   line-height: 1.6;
   color: var(--color-text-muted, #6b7280);
 }
 
-/* ---------------------------------------------------------- SOSYAL MEDYA */
+.vc-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 9px 16px;
+  border-radius: 99px;
+  border: 1px solid rgba(15, 107, 87, 0.22);
+  background: transparent;
+  color: var(--color-primary, #0f6b57);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
 
-.clinic-social {
+.vc-btn-ghost:hover {
+  background: var(--color-primary-soft, #ddefe8);
+}
+
+/* ================================================================ KADRO */
+
+.vc-staff-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+.vc-staff-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.vc-staff {
+  background: var(--color-bg, #faf8f3);
+  border: 1px solid rgba(15, 107, 87, 0.08);
+  border-radius: 16px;
+  padding: 14px;
+  text-align: left;
+}
+
+.vc-staff-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-primary-soft, #ddefe8);
+  display: grid;
+  place-items: center;
+  margin-bottom: 12px;
+}
+
+.vc-staff-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vc-staff-initials {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primary, #0f6b57);
+}
+
+.vc-staff-title {
+  margin: 0 0 2px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted, #6b7280);
+}
+
+.vc-staff-name {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: var(--color-text, #202825);
+}
+
+.vc-staff-edu {
+  margin: 6px 0 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-text-muted, #6b7280);
+}
+
+.vc-staff-bio {
+  display: inline-block;
+  margin: 10px 0 0;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: var(--color-primary-soft, #ddefe8);
+  color: var(--color-primary-deep, #073f35);
+  font-size: 0.6875rem;
+  font-weight: 700;
+}
+
+/* ============================================================== GALERİ */
+
+.vc-gallery-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+.vc-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.vc-thumb {
+  position: relative;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  background: var(--color-bg-secondary, #eef6f1);
+}
+
+.vc-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.vc-thumb:hover img { transform: scale(1.05); }
+
+.vc-thumb-lg { aspect-ratio: 3 / 2; }
+
+.vc-thumb-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: left;
+  background: linear-gradient(to top, rgba(7, 63, 53, 0.85), transparent);
+}
+
+/* ======================================================= SOSYAL / KAPANIŞ */
+
+.vc-social {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.clinic-social-link {
-  padding: 10px 20px;
+.vc-social-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 8px;
   border-radius: 99px;
-  background: var(--color-bg-secondary);
-  color: var(--color-primary-deep);
-  font-weight: 600;
-  font-size: 0.9375rem;
+  background: var(--color-bg, #faf8f3);
+  border: 1px solid rgba(15, 107, 87, 0.1);
+  color: var(--color-text, #202825);
+  font-size: 0.8125rem;
+  font-weight: 700;
   text-decoration: none;
   transition: background 0.15s ease;
 }
 
-.clinic-social-link:hover {
-  background: var(--color-primary-soft);
+.vc-social-item:hover { background: var(--color-primary-soft, #ddefe8); }
+
+.vc-social-dot {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-primary, #0f6b57);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
 }
 
-/* ---------------------------------------------------------------- KAPANIŞ */
+.vc-cta {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-deep) 100%);
+  border: 0;
+}
 
-.clinic-cta {
-  margin-top: 24px;
+.vc-cta .vc-h2 { color: #fff; }
+.vc-cta .vc-text { color: rgba(255, 255, 255, 0.9); }
+
+/* =============================================================== MODAL */
+
+.vc-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(7, 63, 53, 0.55);
+  backdrop-filter: blur(4px);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.vc-modal-panel {
+  width: min(920px, 100%);
+  max-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg, #faf8f3);
+  border-radius: var(--vc-radius);
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(7, 63, 53, 0.3);
+}
+
+.vc-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 12px;
+  background: var(--color-surface, #fff);
+}
+
+.vc-modal-close {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-bg-secondary, #eef6f1);
+  color: var(--color-primary-deep, #073f35);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.vc-modal-body {
+  padding: 20px 24px 28px;
+  overflow-y: auto;
+}
+
+/* ============================================================ LIGHTBOX */
+
+.vc-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  background: rgba(7, 63, 53, 0.9);
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  cursor: zoom-out;
+}
+
+.vc-lightbox img {
+  max-width: min(1100px, 92vw);
+  max-height: 78vh;
+  border-radius: 14px;
+  object-fit: contain;
+  cursor: default;
+}
+
+.vc-lightbox-caption {
+  margin: 14px 0 0;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.vc-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ============================================================== MOBİL */
+
+@media (max-width: 900px) {
+  .vc-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
-  .clinic-hero {
-    padding: 48px 20px 40px;
+  .vc-hero { min-height: 280px; }
+  .vc-hero-body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 24px 20px 24px;
   }
-  .clinic-section {
-    padding: 32px 20px 0;
-  }
+  .vc-hero-logo { width: 84px; height: 84px; border-radius: 20px; }
+  .vc-contact { margin-top: -20px; }
+  .vc-block { padding: 20px; }
 }

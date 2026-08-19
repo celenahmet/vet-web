@@ -1,13 +1,16 @@
-import { lazy, useEffect, useState } from 'react';
+import { lazy, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
+  fetchClinicMedia,
   fetchClinicPage,
   fetchClinicStaff,
   formatPhone,
+  initials,
   mapsUrl,
   socialLabel,
   socialUrl,
+  type ClinicMedia,
   type ClinicPage as ClinicPageData,
   type StaffMember,
 } from '../lib/clinicPage';
@@ -19,31 +22,33 @@ const NotFound = lazy(() => import('./NotFound'));
  * `veterito.com/@kullaniciadi` — kliniğin herkese açık vitrini.
  *
  * ⚠️ BÖLÜM YOKSA HİÇ ÇİZİLMİYOR. Kliniğin girmediği alan için başlık bırakmak sayfayı
- * yarım gösterir; yarım bir vitrin kliniği eksik gösterir. Her bölüm kendi verisi
- * varsa var.
+ * yarım gösterir; yarım bir vitrin kliniği eksik gösterir.
  *
  * ⚠️ RANDEVU / ÖDEME DÜĞMESİ YOK. Para platformdan geçmiyor (Anayasa §1.6/1).
- * İletişim kanalları var, işlem yok.
  *
- * ⚠️ SEO SINIRI: bu bir Vite SPA ve içerik istemcide çiziliyor. `noindex` etiketi
- * çalışıyor (aşağıda) ama tam SEO için sayfanın ön-üretimi (prerender/SSR) gerekir.
- * Bugün Google JS çalıştırıyor, yine de kritik sayfalar için ön-üretim önerilir.
+ * ⚠️ SEO SINIRI DÜRÜSTÇE: bu bir Vite SPA, içerik istemcide çiziliyor. Başlık, açıklama,
+ * Open Graph ve JSON-LD ekleniyor; Google JS çalıştırdığı için çoğunlukla okunuyor.
+ * Ama garanti değil — tam SEO için ön-üretim (prerender/SSR) gerekir. Bu, uygulama
+ * tarafının değil web mimarisinin kararı.
  */
 export default function ClinicPage() {
   const { handle } = useParams<{ handle: string }>();
   const raw = handle ?? '';
   /**
    * ⚠️ '@' İLE BAŞLAMAYAN ADRES BU SAYFAYA AİT DEĞİL. Rota tüm segmenti yakalıyor
-   * (react-router v6 parçalı parametre desteklemiyor), o yüzden ayrımı burada
-   * yapıyoruz. Aksi halde /rastgele gibi bir adres "klinik aranıyor" diye
-   * gereksiz bir istek atardı.
+   * (react-router v6 parçalı parametre desteklemiyor), ayrımı burada yapıyoruz.
    */
   const bizeAit = raw.startsWith('@');
   const username = raw.replace(/^@/, '');
 
   const [page, setPage] = useState<ClinicPageData | null>(null);
   const [staff, setStaff] = useState<StaffMember[]>([]);
+  const [media, setMedia] = useState<ClinicMedia>({ logo: null, cover: null, gallery: [], staff: {} });
   const [loading, setLoading] = useState(true);
+
+  // Ayrı pencereler: galeri ve ekip (İSTEK: Ahmet, 20.08.2026).
+  const [modal, setModal] = useState<'gallery' | 'staff' | null>(null);
+  const [lightbox, setLightbox] = useState<number | null>(null);
 
   useEffect(() => {
     if (!bizeAit) {
@@ -52,194 +57,461 @@ export default function ClinicPage() {
     }
     let iptal = false;
     setLoading(true);
-    fetchClinicPage(username)
-      .then(async (p) => {
-        if (iptal) return;
-        setPage(p);
-        if (p) {
-          const ekip = await fetchClinicStaff(p.clinic_id);
-          if (!iptal) setStaff(ekip);
+    (async () => {
+      const p = await fetchClinicPage(username);
+      if (iptal) return;
+      setPage(p);
+      if (p) {
+        // ⚠️ PARALEL: ekip ve görseller birbirini beklemiyor. Sıralı olsaydı sayfa
+        // iki tur gecikirdi.
+        const [ekip, gorsel] = await Promise.all([
+          fetchClinicStaff(p.clinic_id),
+          fetchClinicMedia(username),
+        ]);
+        if (!iptal) {
+          setStaff(ekip);
+          setMedia(gorsel);
         }
-      })
-      .finally(() => {
-        if (!iptal) setLoading(false);
-      });
-    // ⚠️ İPTAL BAYRAĞI: kullanıcı hızlıca başka bir adrese geçerse eski isteğin
-    // yanıtı yeni sayfanın üstüne yazardı.
+      }
+      if (!iptal) setLoading(false);
+    })();
     return () => {
+      // Kullanıcı hızlıca başka adrese geçerse eski yanıt yeni sayfanın üstüne yazmasın.
       iptal = true;
     };
   }, [username, bizeAit]);
 
-  // Arama motoru etiketi: `is_indexable` false ise indekslenmiyor. Sayfa yokken de
-  // noindex — 404 içeriği aramalarda çıkmasın.
+  /**
+   * SEO — başlık, açıklama, Open Graph ve JSON-LD.
+   * ⚠️ BAŞLIK "Klinik Adı - Veterito" (İSTEK: Ahmet, 20.08.2026). Marka sonda:
+   * arama sonucunda önce klinik adı okunmalı, sekmede de kesilirse marka gitsin.
+   * ⚠️ ETİKETLER TEMİZLENİYOR: başka sayfaya geçildiğinde kalsalardı yanlış sayfanın
+   * açıklaması aramada görünürdü.
+   */
   useEffect(() => {
-    const etiket = document.createElement('meta');
-    etiket.name = 'robots';
-    etiket.content = page?.is_indexable ? 'index, follow' : 'noindex, nofollow';
-    document.head.appendChild(etiket);
-    if (page) {
-      document.title = `${page.name} · Veterito`;
-    }
-    return () => {
-      etiket.remove();
+    const eklenen: HTMLElement[] = [];
+    const meta = (attr: 'name' | 'property', key: string, content: string) => {
+      const el = document.createElement('meta');
+      el.setAttribute(attr, key);
+      el.content = content;
+      document.head.appendChild(el);
+      eklenen.push(el);
     };
-  }, [page]);
+
+    const oncekiBaslik = document.title;
+    meta('name', 'robots', page?.is_indexable ? 'index, follow' : 'noindex, nofollow');
+
+    if (page) {
+      const baslik = `${page.name} - Veterito`;
+      const aciklama =
+        page.tagline ??
+        page.about?.slice(0, 155) ??
+        `${page.name}${page.district ? ` · ${page.district}` : ''} veteriner kliniği. İletişim, ekip ve hizmetler.`;
+
+      document.title = baslik;
+      meta('name', 'description', aciklama);
+      meta('property', 'og:title', baslik);
+      meta('property', 'og:description', aciklama);
+      meta('property', 'og:type', 'profile');
+      meta('property', 'og:url', `https://veterito.com/@${username}`);
+      if (media.cover) meta('property', 'og:image', media.cover);
+      meta('name', 'twitter:card', media.cover ? 'summary_large_image' : 'summary');
+
+      // Yapısal veri: arama sonucunda adres, telefon ve puan görünsün.
+      const ld = document.createElement('script');
+      ld.type = 'application/ld+json';
+      ld.text = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'VeterinaryCare',
+        name: page.name,
+        description: aciklama,
+        url: `https://veterito.com/@${username}`,
+        ...(page.phone ? { telephone: page.phone } : {}),
+        ...(page.email ? { email: page.email } : {}),
+        ...(media.logo ? { logo: media.logo } : {}),
+        ...(media.cover ? { image: media.cover } : {}),
+        ...(page.address || page.city
+          ? {
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: page.address ?? undefined,
+                addressLocality: page.district ?? undefined,
+                addressRegion: page.city ?? undefined,
+                addressCountry: 'TR',
+              },
+            }
+          : {}),
+        ...(page.rating_count && page.rating_count > 0
+          ? {
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: page.rating_avg,
+                reviewCount: page.rating_count,
+              },
+            }
+          : {}),
+      });
+      document.head.appendChild(ld);
+      eklenen.push(ld);
+    }
+
+    return () => {
+      eklenen.forEach((el) => el.remove());
+      document.title = oncekiBaslik;
+    };
+  }, [page, media.cover, media.logo, username]);
+
+  const sosyal = useMemo(
+    () =>
+      page
+        ? (Object.keys(socialUrl) as (keyof typeof socialUrl)[])
+            .map((k) => ({ key: k, value: page[k] }))
+            .filter((s): s is { key: keyof typeof socialUrl; value: string } => !!s.value)
+        : [],
+    [page],
+  );
+
+  // Modal açıkken arka planın kaymaması için gövde kilitleniyor.
+  useEffect(() => {
+    if (!modal && lightbox === null) return;
+    const onceki = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = onceki;
+    };
+  }, [modal, lightbox]);
+
+  // Esc ile kapanma: modalın tek çıkışı düğme olmamalı.
+  useEffect(() => {
+    const kapat = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      if (lightbox !== null) setLightbox(null);
+      else if (modal) setModal(null);
+    };
+    window.addEventListener('keydown', kapat);
+    return () => window.removeEventListener('keydown', kapat);
+  }, [modal, lightbox]);
 
   if (!bizeAit) return <NotFound />;
-
-  if (loading) {
-    return <div className="clinic-loading">Yükleniyor…</div>;
-  }
-
-  // Yayında olmayan ya da olmayan kullanıcı adı: normal 404.
+  if (loading) return <div className="vc-loading">Yükleniyor…</div>;
   if (!page) return <NotFound />;
 
   const konum = [page.district, page.city].filter(Boolean).join(' / ');
-  const sosyal = (Object.keys(socialUrl) as (keyof typeof socialUrl)[])
-    .map((k) => ({ key: k, value: page[k] }))
-    .filter((s): s is { key: keyof typeof socialUrl; value: string } => !!s.value);
+  const gorunenGaleri = media.gallery.slice(0, 6);
+  const gorunenKadro = staff.slice(0, 4);
 
   return (
-    <div className="clinic-page">
-      {/* ---------------------------------------------------------- BAŞLIK */}
-      <header className="clinic-hero">
-        <div className="clinic-hero-inner">
-          <h1 className="clinic-name">{page.name}</h1>
-          {page.tagline ? <p className="clinic-tagline">{page.tagline}</p> : null}
+    <div className="vc">
+      {/* ============================================================ ÜST */}
+      <header className="vc-hero">
+        {media.cover ? (
+          <img className="vc-hero-cover" src={media.cover} alt="" aria-hidden="true" />
+        ) : (
+          <div className="vc-hero-cover vc-hero-cover-fallback" aria-hidden="true" />
+        )}
+        <div className="vc-hero-scrim" aria-hidden="true" />
 
-          <div className="clinic-meta">
-            {konum ? <span className="clinic-chip">{konum}</span> : null}
-            {/* Puan yalnız oy varsa: "0,0 (0)" güven vermez, boşluk bırakmak daha dürüst. */}
-            {page.rating_count && page.rating_count > 0 ? (
-              <span className="clinic-chip clinic-chip-rating">
-                ★ {Number(page.rating_avg ?? 0).toFixed(1)}
-                <span className="clinic-rating-count"> ({page.rating_count})</span>
+        <div className="vc-hero-body">
+          <div className="vc-hero-logo">
+            {media.logo ? (
+              <img src={media.logo} alt={`${page.name} logosu`} />
+            ) : (
+              <span className="vc-hero-logo-fallback">{initials(page.name)}</span>
+            )}
+          </div>
+
+          <div className="vc-hero-text">
+            <h1 className="vc-title">
+              {page.name}
+              <span className="vc-verified" title="Doğrulanmış klinik" aria-label="Doğrulanmış klinik">
+                ✓
               </span>
-            ) : null}
+            </h1>
+            {page.tagline ? <p className="vc-tagline">{page.tagline}</p> : null}
+            <div className="vc-hero-chips">
+              {konum ? <span className="vc-chip">{konum}</span> : null}
+              {/* Puan yalnız oy varsa: "0,0 (0)" güven vermez. */}
+              {page.rating_count && page.rating_count > 0 ? (
+                <span className="vc-chip vc-chip-gold">
+                  ★ {Number(page.rating_avg ?? 0).toFixed(1)} ({page.rating_count})
+                </span>
+              ) : null}
+            </div>
           </div>
         </div>
       </header>
 
-      {/* ------------------------------------------------------- İLETİŞİM */}
-      {/* Sayfanın en çok tıklanan yeri: katlamanın hemen altında. */}
-      <section className="clinic-section clinic-contact">
-        <div className="clinic-actions">
+      {/* ======================================================= İLETİŞİM */}
+      {/* Sayfanın en çok tıklanan yeri — kapağın hemen altında, kartlar hâlinde. */}
+      <div className="vc-wrap">
+        <section className="vc-contact">
           {page.phone ? (
-            <a className="clinic-action clinic-action-primary" href={`tel:${page.phone}`}>
-              <span className="clinic-action-label">Ara</span>
-              {/* ⚠️ NUMARA METİN OLARAK DA YAZILI: masaüstünde tel: tıklanamaz,
-                  kullanıcı numarayı görüp elle arayabilmeli. */}
-              <span className="clinic-action-value">{formatPhone(page.phone)}</span>
+            <a className="vc-contact-card" href={`tel:${page.phone}`}>
+              <span className="vc-contact-icon" aria-hidden="true">☎</span>
+              <span className="vc-contact-body">
+                <span className="vc-contact-label">Telefon</span>
+                {/* Numara METİN olarak da yazılı: masaüstünde tel: tıklanamaz. */}
+                <span className="vc-contact-value">{formatPhone(page.phone)}</span>
+              </span>
             </a>
           ) : null}
 
           {page.whatsapp ? (
             <a
-              className="clinic-action clinic-action-whatsapp"
+              className="vc-contact-card"
               href={`https://wa.me/${page.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer">
-              <span className="clinic-action-label">WhatsApp</span>
-              <span className="clinic-action-value">{formatPhone(page.whatsapp)}</span>
+              <span className="vc-contact-icon vc-icon-wa" aria-hidden="true">✆</span>
+              <span className="vc-contact-body">
+                <span className="vc-contact-label">WhatsApp</span>
+                <span className="vc-contact-value">{formatPhone(page.whatsapp)}</span>
+              </span>
             </a>
           ) : null}
 
           {page.email ? (
-            <a className="clinic-action" href={`mailto:${page.email}`}>
-              <span className="clinic-action-label">E-posta</span>
-              <span className="clinic-action-value">{page.email}</span>
+            <a className="vc-contact-card" href={`mailto:${page.email}`}>
+              <span className="vc-contact-icon" aria-hidden="true">✉</span>
+              <span className="vc-contact-body">
+                <span className="vc-contact-label">E-posta</span>
+                <span className="vc-contact-value">{page.email}</span>
+              </span>
             </a>
           ) : null}
 
           {page.address || page.city ? (
             <a
-              className="clinic-action"
+              className="vc-contact-card"
               href={mapsUrl(page)}
               target="_blank"
               rel="noopener noreferrer">
-              <span className="clinic-action-label">Yol tarifi</span>
-              <span className="clinic-action-value">Haritada aç</span>
+              <span className="vc-contact-icon" aria-hidden="true">◎</span>
+              <span className="vc-contact-body">
+                <span className="vc-contact-label">Yol tarifi</span>
+                <span className="vc-contact-value">Haritada aç</span>
+              </span>
             </a>
           ) : null}
-        </div>
-      </section>
-
-      {/* -------------------------------------------------------- HAKKINDA */}
-      {page.about ? (
-        <section className="clinic-section">
-          <h2 className="clinic-h2">Hakkımızda</h2>
-          <p className="clinic-text">{page.about}</p>
         </section>
-      ) : null}
 
-      {/* ---------------------------------------------------------- EKİBİMİZ */}
-      {staff.length > 0 ? (
-        <section className="clinic-section">
-          <h2 className="clinic-h2">Ekibimiz</h2>
-          <div className="clinic-staff">
-            {staff.map((k) => (
-              <article key={k.user_id} className="clinic-staff-card">
-                <h3 className="clinic-staff-name">{k.display_name}</h3>
-                {k.title ? <p className="clinic-staff-title">{k.title}</p> : null}
-                {k.education ? <p className="clinic-staff-edu">{k.education}</p> : null}
-                {k.bio ? <p className="clinic-staff-bio">{k.bio}</p> : null}
-              </article>
-            ))}
-          </div>
-          {/* ⚠️ BEYAN OLDUĞU YAZIYOR: platform diploma doğrulaması yapmıyor
-              (ürün briefi §4.4.2c). Doğrulanmış gibi göstermek yanıltıcı olurdu. */}
-          <p className="clinic-note">
-            Eğitim bilgileri kliniğin beyanıdır; platform belge doğrulaması yapmaz.
-          </p>
-        </section>
-      ) : null}
+        {/* ==================================================== İKİ SÜTUN */}
+        <div className="vc-grid">
+          <div className="vc-col">
+            {page.about ? (
+              <section className="vc-block">
+                <h2 className="vc-h2">Hakkımızda</h2>
+                {page.about.split('\n').filter(Boolean).map((p, i) => (
+                  <p key={i} className="vc-text">{p}</p>
+                ))}
+              </section>
+            ) : null}
 
-      {/* ------------------------------------------------------------- ADRES */}
-      {page.address || page.directions ? (
-        <section className="clinic-section">
-          <h2 className="clinic-h2">Adres ve ulaşım</h2>
-          {page.address ? <p className="clinic-text">{page.address}</p> : null}
-          {konum ? <p className="clinic-text clinic-muted">{konum}</p> : null}
-          {page.directions ? <p className="clinic-text">{page.directions}</p> : null}
-        </section>
-      ) : null}
-
-      {/* ------------------------------------------------------ SOSYAL MEDYA */}
-      {sosyal.length > 0 || page.website ? (
-        <section className="clinic-section">
-          <h2 className="clinic-h2">Bizi takip edin</h2>
-          <div className="clinic-social">
-            {sosyal.map((s) => (
-              <a
-                key={s.key}
-                className="clinic-social-link"
-                href={socialUrl[s.key](s.value)}
-                target="_blank"
-                rel="noopener noreferrer">
-                {socialLabel[s.key]}
-              </a>
-            ))}
-            {page.website ? (
-              <a
-                className="clinic-social-link"
-                href={page.website}
-                target="_blank"
-                rel="noopener noreferrer">
-                Web sitesi
-              </a>
+            {page.address || page.directions ? (
+              <section className="vc-block">
+                <h2 className="vc-h2">Adres ve ulaşım</h2>
+                {page.address ? <p className="vc-text vc-strong">{page.address}</p> : null}
+                {konum ? <p className="vc-text vc-muted">{konum}</p> : null}
+                {page.directions ? <p className="vc-text">{page.directions}</p> : null}
+                <a
+                  className="vc-btn-ghost"
+                  href={mapsUrl(page)}
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  ◎ Haritada görüntüle
+                </a>
+              </section>
             ) : null}
           </div>
-        </section>
+
+          <div className="vc-col">
+            {/* ------------------------------------------------ EKİBİMİZ */}
+            {staff.length > 0 ? (
+              <section className="vc-block">
+                <div className="vc-block-head">
+                  <h2 className="vc-h2">Çalışanlarımız</h2>
+                  {/* İSTEK: ekip AYRI bir düğmeyle açılsın. */}
+                  {staff.length > gorunenKadro.length ? (
+                    <button type="button" className="vc-btn-ghost" onClick={() => setModal('staff')}>
+                      Tümünü gör ({staff.length})
+                    </button>
+                  ) : null}
+                </div>
+
+                <div className="vc-staff-row">
+                  {gorunenKadro.map((k) => (
+                    <StaffCard key={k.user_id} member={k} photo={media.staff[k.user_id]} />
+                  ))}
+                </div>
+
+                {/* ⚠️ BEYAN OLDUĞU YAZIYOR: platform diploma doğrulaması yapmıyor
+                    (ürün briefi §4.4.2c). Doğrulanmış gibi göstermek yanıltıcı olurdu. */}
+                <p className="vc-note">
+                  Eğitim ve ünvan bilgileri kliniğin beyanıdır; platform belge doğrulaması yapmaz.
+                </p>
+              </section>
+            ) : null}
+
+            {/* -------------------------------------------- FOTO GALERİ */}
+            {media.gallery.length > 0 ? (
+              <section className="vc-block">
+                <div className="vc-block-head">
+                  <h2 className="vc-h2">Foto galeri</h2>
+                  <button type="button" className="vc-btn-ghost" onClick={() => setModal('gallery')}>
+                    Tüm fotoğraflar ({media.gallery.length})
+                  </button>
+                </div>
+                <div className="vc-gallery-row">
+                  {gorunenGaleri.map((g, i) => (
+                    <button
+                      key={g.id}
+                      type="button"
+                      className="vc-thumb"
+                      onClick={() => setLightbox(i)}
+                      aria-label={g.caption ?? 'Fotoğrafı büyüt'}>
+                      <img src={g.url} alt={g.caption ?? ''} loading="lazy" />
+                    </button>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
+            {/* ------------------------------------------ SOSYAL + İNDİR */}
+            {sosyal.length > 0 || page.website ? (
+              <section className="vc-block">
+                <h2 className="vc-h2">Bizi takip edin</h2>
+                <div className="vc-social">
+                  {sosyal.map((s) => (
+                    <a
+                      key={s.key}
+                      className="vc-social-item"
+                      href={socialUrl[s.key](s.value)}
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      <span className="vc-social-dot" aria-hidden="true">
+                        {socialLabel[s.key][0]}
+                      </span>
+                      {socialLabel[s.key]}
+                    </a>
+                  ))}
+                  {page.website ? (
+                    <a
+                      className="vc-social-item"
+                      href={page.website}
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      <span className="vc-social-dot" aria-hidden="true">W</span>
+                      Web sitesi
+                    </a>
+                  ) : null}
+                </div>
+              </section>
+            ) : null}
+
+            <section className="vc-block vc-cta">
+              <h2 className="vc-h2">Veterito&apos;da bul</h2>
+              <p className="vc-text">
+                Sağlık kaydı, aşı takvimi ve mesajlaşma için Veterito uygulamasını kullanabilirsin.
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      {/* ========================================================= MODALLAR */}
+      {modal === 'staff' ? (
+        <Modal title="Çalışanlarımız" onClose={() => setModal(null)}>
+          <div className="vc-staff-grid">
+            {staff.map((k) => (
+              <StaffCard key={k.user_id} member={k} photo={media.staff[k.user_id]} detayli />
+            ))}
+          </div>
+        </Modal>
       ) : null}
 
-      {/* ------------------------------------------------------------ KAPANIŞ */}
-      <section className="clinic-section clinic-cta">
-        <h2 className="clinic-h2">Veterito&apos;da bul</h2>
-        <p className="clinic-text">
-          Randevu, sağlık kaydı ve mesajlaşma için Veterito uygulamasını kullanabilirsin.
-        </p>
-      </section>
+      {modal === 'gallery' ? (
+        <Modal title="Foto galeri" onClose={() => setModal(null)}>
+          <div className="vc-gallery-grid">
+            {media.gallery.map((g, i) => (
+              <button
+                key={g.id}
+                type="button"
+                className="vc-thumb vc-thumb-lg"
+                onClick={() => setLightbox(i)}
+                aria-label={g.caption ?? 'Fotoğrafı büyüt'}>
+                <img src={g.url} alt={g.caption ?? ''} loading="lazy" />
+                {g.caption ? <span className="vc-thumb-caption">{g.caption}</span> : null}
+              </button>
+            ))}
+          </div>
+        </Modal>
+      ) : null}
+
+      {lightbox !== null && media.gallery[lightbox] ? (
+        <div className="vc-lightbox" onClick={() => setLightbox(null)} role="presentation">
+          <button type="button" className="vc-lightbox-close" aria-label="Kapat">×</button>
+          <img
+            src={media.gallery[lightbox].url}
+            alt={media.gallery[lightbox].caption ?? ''}
+            onClick={(e) => e.stopPropagation()}
+          />
+          {media.gallery[lightbox].caption ? (
+            <p className="vc-lightbox-caption">{media.gallery[lightbox].caption}</p>
+          ) : null}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+/** Kadro kartı. `detayli` modalda: tanıtım metni de gösteriliyor. */
+function StaffCard({
+  member,
+  photo,
+  detayli = false,
+}: {
+  member: StaffMember;
+  photo?: string;
+  detayli?: boolean;
+}) {
+  return (
+    <article className={`vc-staff${detayli ? ' vc-staff-detail' : ''}`}>
+      <div className="vc-staff-photo">
+        {photo ? (
+          <img src={photo} alt={member.display_name} loading="lazy" />
+        ) : (
+          // ⚠️ FOTOĞRAF OPSİYONEL: yoksa baş harfler. Boş bir kutu, kartı bozuk gösterirdi.
+          <span className="vc-staff-initials">{initials(member.display_name)}</span>
+        )}
+      </div>
+      {member.title ? <p className="vc-staff-title">{member.title}</p> : null}
+      <h3 className="vc-staff-name">{member.display_name}</h3>
+      {member.education ? <p className="vc-staff-edu">{member.education}</p> : null}
+      {member.bio ? <p className="vc-staff-bio">{member.bio}</p> : null}
+    </article>
+  );
+}
+
+function Modal({
+  title,
+  onClose,
+  children,
+}: {
+  title: string;
+  onClose: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="vc-modal" role="dialog" aria-modal="true" aria-label={title} onClick={onClose}>
+      <div className="vc-modal-panel" onClick={(e) => e.stopPropagation()}>
+        <div className="vc-modal-head">
+          <h2 className="vc-h2">{title}</h2>
+          <button type="button" className="vc-modal-close" onClick={onClose} aria-label="Kapat">
+            ×
+          </button>
+        </div>
+        <div className="vc-modal-body">{children}</div>
+      </div>
     </div>
   );
 }

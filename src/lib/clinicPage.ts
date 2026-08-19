@@ -1,13 +1,17 @@
 /**
  * Klinik vitrini verisi — `veterito.com/@kullaniciadi`
  *
- * ⚠️ YENİ BAĞIMLILIK EKLENMEDİ. `@supabase/supabase-js` bu repoda yok ve tek bir
- * okuma çağrısı için paket eklemek gereksiz; PostgREST düz `fetch` ile çağrılabiliyor.
+ * ⚠️ YENİ BAĞIMLILIK EKLENMEDİ. `@supabase/supabase-js` bu repoda yok ve iki okuma
+ * çağrısı için paket eklemek gereksiz; PostgREST düz `fetch` ile çağrılabiliyor.
  *
  * ⚠️ ANON ANAHTAR TARAYICIYA ÇIKIYOR VE BU BEKLENEN. Koruma anahtarda değil, satır
  * güvenliğinde (RLS): `clinic_public_page` yalnız YAYINDAKİ ve DOĞRULANMIŞ kliniği
  * döndürüyor. Yayında olmayan bir kullanıcı adı sorulursa boş dönüyor — "var ama
  * kapalı" bilgisi bile sızmıyor.
+ *
+ * ⚠️ GÖRSELLER AYRI BİR UÇTAN GELİYOR (`clinic-media`). R2 kovası internete kapalı;
+ * okuma imzalı adresle yapılıyor ve imzalama sırrı SUNUCUDA kalmak zorunda. Bu yüzden
+ * anahtarları burada imzalayamayız — sunucu imzalayıp hazır adres döndürüyor.
  *
  * Sözleşme: ../../docs/WEB_SAYFA_SOZLESMESI.md (uygulama reposunda)
  */
@@ -51,20 +55,35 @@ export type StaffMember = {
   bio: string | null;
 };
 
+export type ClinicMedia = {
+  logo: string | null;
+  cover: string | null;
+  gallery: { id: string; caption: string | null; url: string }[];
+  /** user_id -> imzalı fotoğraf adresi */
+  staff: Record<string, string>;
+};
+
+function headers() {
+  return {
+    apikey: SUPABASE_ANON_KEY,
+    Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+    'Content-Type': 'application/json',
+  };
+}
+
+function yapilandirmaEksik(): boolean {
+  if (SUPABASE_URL && SUPABASE_ANON_KEY) return false;
+  // ⚠️ SESSİZ BOŞ DÖNMÜYORUZ. Env eksikse sayfa "klinik yok" der ve kimse sebebini
+  // anlamaz; konsola açık bir satır bırakmak saatler kazandırır.
+  console.error('[clinicPage] VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY tanımlı değil.');
+  return true;
+}
+
 async function rpc<T>(fn: string, body: Record<string, unknown>): Promise<T[]> {
-  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-    // ⚠️ SESSİZ BOŞ DÖNMÜYORUZ. Env eksikse sayfa "klinik yok" der ve kimse sebebini
-    // anlamaz; konsola açık bir satır bırakmak saatler kazandırır.
-    console.error('[clinicPage] VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY tanımlı değil.');
-    return [];
-  }
+  if (yapilandirmaEksik()) return [];
   const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${fn}`, {
     method: 'POST',
-    headers: {
-      apikey: SUPABASE_ANON_KEY,
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-      'Content-Type': 'application/json',
-    },
+    headers: headers(),
     body: JSON.stringify(body),
   });
   if (!res.ok) {
@@ -82,6 +101,22 @@ export async function fetchClinicPage(username: string): Promise<ClinicPage | nu
 
 export async function fetchClinicStaff(clinicId: string): Promise<StaffMember[]> {
   return rpc<StaffMember>('clinic_public_staff', { p_clinic: clinicId });
+}
+
+/** Görseller: imzayı sunucu üretiyor, burada yalnız kullanılıyor. */
+export async function fetchClinicMedia(username: string): Promise<ClinicMedia> {
+  const bos: ClinicMedia = { logo: null, cover: null, gallery: [], staff: {} };
+  if (yapilandirmaEksik()) return bos;
+  const res = await fetch(`${SUPABASE_URL}/functions/v1/clinic-media`, {
+    method: 'POST',
+    headers: headers(),
+    body: JSON.stringify({ username }),
+  });
+  if (!res.ok) {
+    console.error(`[clinicPage] clinic-media başarısız: HTTP ${res.status}`);
+    return bos;
+  }
+  return (await res.json()) as ClinicMedia;
 }
 
 // ---------------------------------------------------------------------------
@@ -120,6 +155,9 @@ export function formatPhone(raw: string): string {
   if (d.length === 11 && d.startsWith('0')) {
     return `${d.slice(0, 4)} ${d.slice(4, 7)} ${d.slice(7, 9)} ${d.slice(9)}`;
   }
+  if (d.length === 10) {
+    return `0${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6, 8)} ${d.slice(8)}`;
+  }
   return raw;
 }
 
@@ -127,4 +165,14 @@ export function formatPhone(raw: string): string {
 export function mapsUrl(page: ClinicPage): string {
   const parts = [page.name, page.address, page.district, page.city].filter(Boolean);
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(parts.join(' '))}`;
+}
+
+/** Ad baş harfleri — fotoğrafı olmayan kadro kartı için. */
+export function initials(name: string): string {
+  return name
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w[0]?.toLocaleUpperCase('tr') ?? '')
+    .join('');
 }
