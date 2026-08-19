@@ -1,4 +1,4 @@
-import { lazy, useEffect, useMemo, useState } from 'react';
+import { lazy, useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -14,9 +14,24 @@ import {
   type ClinicPage as ClinicPageData,
   type StaffMember,
 } from '../lib/clinicPage';
+import {
+  IconCheck,
+  IconClose,
+  IconGlobe,
+  IconMail,
+  IconNext,
+  IconPhone,
+  IconPin,
+  IconPrev,
+  IconWhatsApp,
+  IconZoom,
+  socialIcon,
+} from './clinicIcons';
 import './ClinicPage.css';
 
 const NotFound = lazy(() => import('./NotFound'));
+
+type Sekme = 'staff' | 'gallery';
 
 /**
  * `veterito.com/@kullaniciadi` — kliniğin herkese açık vitrini.
@@ -43,14 +58,22 @@ export default function ClinicPage() {
 
   const [page, setPage] = useState<ClinicPageData | null>(null);
   const [staff, setStaff] = useState<StaffMember[]>([]);
-  const [media, setMedia] = useState<ClinicMedia>({ logo: null, cover: null, gallery: [], staff: {} });
+  const [media, setMedia] = useState<ClinicMedia>({
+    logo: null,
+    cover: null,
+    gallery: [],
+    staff: {},
+  });
   const [loading, setLoading] = useState(true);
-  // Görseller ayrı yükleniyor: iskelet gösterip metni bekletmiyoruz.
-  const [mediaLoading, setMediaLoading] = useState(true);
 
-  // Ayrı pencereler: galeri ve ekip (İSTEK: Ahmet, 20.08.2026).
-  const [modal, setModal] = useState<'gallery' | 'staff' | null>(null);
+  /**
+   * Vitrin: ekip ve galeri AYNI panelde, sekmeyle geçişli (İSTEK: Ahmet, 20.08.2026).
+   * ⚠️ ÖNCEKİ HÂLİ İKİ AYRI KÜÇÜK BLOKTU. Yan yana iki dar blok hem kartları
+   * küçültüyor hem sayfayı uzatıyordu; sekme ikisine de tam genişlik veriyor.
+   */
+  const [sekme, setSekme] = useState<Sekme>('staff');
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const [secilenKisi, setSecilenKisi] = useState<StaffMember | null>(null);
 
   useEffect(() => {
     if (!bizeAit) {
@@ -82,15 +105,8 @@ export default function ClinicPage() {
             .then((e) => !iptal && setStaff(e))
             .catch((e) => console.error('[clinicPage] ekip alınamadı:', e));
           fetchClinicMedia(username)
-            .then((m) => {
-              if (iptal) return;
-              setMedia(m);
-              setMediaLoading(false);
-            })
-            .catch((e) => {
-              console.error('[clinicPage] görseller alınamadı:', e);
-              if (!iptal) setMediaLoading(false);
-            });
+            .then((m) => !iptal && setMedia(m))
+            .catch((e) => console.error('[clinicPage] görseller alınamadı:', e));
         }
       } catch (e) {
         console.error('[clinicPage] sayfa alınamadı:', e);
@@ -194,26 +210,46 @@ export default function ClinicPage() {
     [page],
   );
 
-  // Modal açıkken arka planın kaymaması için gövde kilitleniyor.
+  const galeriSayisi = media.gallery.length;
+
+  // Işık kutusu gezinme — sonda başa, başta sona sarıyor.
+  const kaydir = useCallback(
+    (yon: 1 | -1) => {
+      setLightbox((i) => (i === null ? i : (i + yon + galeriSayisi) % galeriSayisi));
+    },
+    [galeriSayisi],
+  );
+
+  // Pencere açıkken arka planın kaymaması için gövde kilitleniyor.
+  const acikPencere = lightbox !== null || secilenKisi !== null;
   useEffect(() => {
-    if (!modal && lightbox === null) return;
+    if (!acikPencere) return;
     const onceki = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = onceki;
     };
-  }, [modal, lightbox]);
+  }, [acikPencere]);
 
-  // Esc ile kapanma: modalın tek çıkışı düğme olmamalı.
+  /**
+   * Klavye: Esc kapatır, ok tuşları fotoğraflar arasında gezer.
+   * ⚠️ TEK ÇIKIŞ DÜĞME OLMAMALI — dokunmatikte düğme, klavyede Esc, farede zemin.
+   */
   useEffect(() => {
-    const kapat = (e: KeyboardEvent) => {
-      if (e.key !== 'Escape') return;
-      if (lightbox !== null) setLightbox(null);
-      else if (modal) setModal(null);
+    if (!acikPencere) return;
+    const tus = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setLightbox(null);
+        setSecilenKisi(null);
+        return;
+      }
+      if (lightbox === null) return;
+      if (e.key === 'ArrowRight') kaydir(1);
+      if (e.key === 'ArrowLeft') kaydir(-1);
     };
-    window.addEventListener('keydown', kapat);
-    return () => window.removeEventListener('keydown', kapat);
-  }, [modal, lightbox]);
+    window.addEventListener('keydown', tus);
+    return () => window.removeEventListener('keydown', tus);
+  }, [acikPencere, lightbox, kaydir]);
 
   if (!bizeAit) return <NotFound />;
   /**
@@ -225,61 +261,116 @@ export default function ClinicPage() {
   if (!page) return <NotFound />;
 
   const konum = [page.district, page.city].filter(Boolean).join(' / ');
-  const gorunenGaleri = media.gallery.slice(0, 6);
-  const gorunenKadro = staff.slice(0, 4);
+  const vitrinVar = staff.length > 0 || galeriSayisi > 0;
+  // Ekip yoksa sekme galeride açılsın: boş bir sekmeyle karşılamak kötü.
+  const aktifSekme: Sekme = staff.length === 0 ? 'gallery' : galeriSayisi === 0 ? 'staff' : sekme;
 
   return (
     <div className="vc">
-      {/* ============================================================ ÜST */}
+      {/* ============================================================== ÜST */}
       <header className="vc-hero">
         {media.cover ? (
           <img className="vc-hero-cover" src={media.cover} alt="" aria-hidden="true" />
         ) : (
-          // Görseller gelene kadar da marka rengi duruyor: boş beyaz alan yok.
-          <div
-            className={`vc-hero-cover vc-hero-cover-fallback${mediaLoading ? ' vc-shimmer' : ''}`}
-            aria-hidden="true"
-          />
+          /**
+           * ⚠️ BEKLERKEN ANİMASYON YOK. Önce kapağa sağdan sola kayan bir parlama
+           * konmuştu; ekranın en büyük yüzeyinde sürekli hareket eden bir bant
+           * rahatsız ediyordu. Yerine sabit marka gradyanı — boş beyaz alan da yok,
+           * göz de yorulmuyor.
+           */
+          <div className="vc-hero-cover vc-hero-cover-fallback" aria-hidden="true" />
         )}
         <div className="vc-hero-scrim" aria-hidden="true" />
 
-        <div className="vc-hero-body">
-          <div className="vc-hero-logo">
-            {media.logo ? (
-              <img src={media.logo} alt={`${page.name} logosu`} />
-            ) : (
-              <span className="vc-hero-logo-fallback">{initials(page.name)}</span>
-            )}
-          </div>
+        <div className="vc-hero-inner">
+          <div className="vc-hero-main">
+            <div className="vc-hero-logo">
+              {media.logo ? (
+                <img src={media.logo} alt={`${page.name} logosu`} />
+              ) : (
+                <span className="vc-hero-logo-fallback">{initials(page.name)}</span>
+              )}
+            </div>
 
-          <div className="vc-hero-text">
-            <h1 className="vc-title">
-              {page.name}
-              <span className="vc-verified" title="Doğrulanmış klinik" aria-label="Doğrulanmış klinik">
-                ✓
-              </span>
-            </h1>
-            {page.tagline ? <p className="vc-tagline">{page.tagline}</p> : null}
-            <div className="vc-hero-chips">
-              {konum ? <span className="vc-chip">{konum}</span> : null}
-              {/* Puan yalnız oy varsa: "0,0 (0)" güven vermez. */}
-              {page.rating_count && page.rating_count > 0 ? (
-                <span className="vc-chip vc-chip-gold">
-                  ★ {Number(page.rating_avg ?? 0).toFixed(1)} ({page.rating_count})
+            <div className="vc-hero-text">
+              <h1 className="vc-title">
+                <span>{page.name}</span>
+                <span
+                  className="vc-verified"
+                  title="Doğrulanmış klinik"
+                  aria-label="Doğrulanmış klinik">
+                  <IconCheck className="vc-verified-tick" />
                 </span>
-              ) : null}
+              </h1>
+              {page.tagline ? <p className="vc-tagline">{page.tagline}</p> : null}
+              <div className="vc-hero-chips">
+                {konum ? (
+                  <span className="vc-chip">
+                    <IconPin className="vc-chip-icon" />
+                    {konum}
+                  </span>
+                ) : null}
+                {/* Puan yalnız oy varsa: "0,0 (0)" güven vermez. */}
+                {page.rating_count && page.rating_count > 0 ? (
+                  <span className="vc-chip vc-chip-gold">
+                    ★ {Number(page.rating_avg ?? 0).toFixed(1)} ({page.rating_count})
+                  </span>
+                ) : null}
+              </div>
             </div>
           </div>
+
+          {/*
+            ⚠️ SOSYAL AĞLAR SAYFANIN DİBİNDEYDİ, ŞİMDİ KAPAKTA (İSTEK: Ahmet).
+            En altta kimse görmüyordu; kimlik bilgisi olarak adın yanında duruyor.
+            Etiket yerine logo — "Instagram" bir "I" harfi olarak görünmemeli.
+          */}
+          {sosyal.length > 0 || page.website ? (
+            <nav className="vc-social" aria-label="Sosyal medya hesapları">
+              {sosyal.map((s) => {
+                const Ikon = socialIcon[s.key];
+                return (
+                  <a
+                    key={s.key}
+                    className="vc-social-btn"
+                    href={socialUrl[s.key](s.value)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={socialLabel[s.key]}
+                    aria-label={socialLabel[s.key]}>
+                    <Ikon className="vc-social-icon" />
+                  </a>
+                );
+              })}
+              {page.website ? (
+                <a
+                  className="vc-social-btn"
+                  href={page.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Web sitesi"
+                  aria-label="Web sitesi">
+                  <IconGlobe className="vc-social-icon" />
+                </a>
+              ) : null}
+            </nav>
+          ) : null}
         </div>
       </header>
 
-      {/* ======================================================= İLETİŞİM */}
-      {/* Sayfanın en çok tıklanan yeri — kapağın hemen altında, kartlar hâlinde. */}
+      {/* ========================================================= İLETİŞİM */}
+      {/*
+        ⚠️ KAPAĞIN ÜSTÜNE BİNMİYOR. Önce negatif üst boşlukla kapağa taşırılmıştı;
+        başlıkla çakışıyor, iki blok birbirine giriyordu. Artık kapak biter, boşluk
+        gelir, kartlar başlar.
+      */}
       <div className="vc-wrap">
-        <section className="vc-contact">
+        <section className="vc-contact" aria-label="İletişim">
           {page.phone ? (
             <a className="vc-contact-card" href={`tel:${page.phone}`}>
-              <span className="vc-contact-icon" aria-hidden="true">☎</span>
+              <span className="vc-contact-icon">
+                <IconPhone className="vc-ci" />
+              </span>
               <span className="vc-contact-body">
                 <span className="vc-contact-label">Telefon</span>
                 {/* Numara METİN olarak da yazılı: masaüstünde tel: tıklanamaz. */}
@@ -294,7 +385,9 @@ export default function ClinicPage() {
               href={`https://wa.me/${page.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer">
-              <span className="vc-contact-icon vc-icon-wa" aria-hidden="true">✆</span>
+              <span className="vc-contact-icon vc-icon-wa">
+                <IconWhatsApp className="vc-ci" />
+              </span>
               <span className="vc-contact-body">
                 <span className="vc-contact-label">WhatsApp</span>
                 <span className="vc-contact-value">{formatPhone(page.whatsapp)}</span>
@@ -304,7 +397,9 @@ export default function ClinicPage() {
 
           {page.email ? (
             <a className="vc-contact-card" href={`mailto:${page.email}`}>
-              <span className="vc-contact-icon" aria-hidden="true">✉</span>
+              <span className="vc-contact-icon">
+                <IconMail className="vc-ci" />
+              </span>
               <span className="vc-contact-body">
                 <span className="vc-contact-label">E-posta</span>
                 <span className="vc-contact-value">{page.email}</span>
@@ -318,7 +413,9 @@ export default function ClinicPage() {
               href={mapsUrl(page)}
               target="_blank"
               rel="noopener noreferrer">
-              <span className="vc-contact-icon" aria-hidden="true">◎</span>
+              <span className="vc-contact-icon">
+                <IconPin className="vc-ci" />
+              </span>
               <span className="vc-contact-body">
                 <span className="vc-contact-label">Yol tarifi</span>
                 <span className="vc-contact-value">Haritada aç</span>
@@ -327,18 +424,14 @@ export default function ClinicPage() {
           ) : null}
         </section>
 
-        {/* ==================================================== İKİ SÜTUN */}
+        {/* ====================================================== İKİ SÜTUN */}
         <div className="vc-grid">
-          <div className="vc-col">
-            {page.about ? (
-              <section className="vc-block">
-                <h2 className="vc-h2">Hakkımızda</h2>
-                {page.about.split('\n').filter(Boolean).map((p, i) => (
-                  <p key={i} className="vc-text">{p}</p>
-                ))}
-              </section>
-            ) : null}
-
+          <aside className="vc-col vc-col-side">
+            {/*
+              ⚠️ ADRES, "HAKKIMIZDA"NIN ÜSTÜNDE (İSTEK: Ahmet, 20.08.2026).
+              Yerel bir işletme sayfasında en sık sorulan şey "nerede, nasıl giderim,
+              park var mı"; tanıtım metni bu kararı destekleyen ikinci bilgi.
+            */}
             {page.address || page.directions ? (
               <section className="vc-block">
                 <h2 className="vc-h2">Adres ve ulaşım</h2>
@@ -346,149 +439,193 @@ export default function ClinicPage() {
                 {konum ? <p className="vc-text vc-muted">{konum}</p> : null}
                 {page.directions ? <p className="vc-text">{page.directions}</p> : null}
                 <a
-                  className="vc-btn-ghost"
+                  className="vc-btn-solid"
                   href={mapsUrl(page)}
                   target="_blank"
                   rel="noopener noreferrer">
-                  ◎ Haritada görüntüle
+                  <IconPin className="vc-btn-icon" />
+                  Haritada görüntüle
                 </a>
               </section>
             ) : null}
-          </div>
 
-          <div className="vc-col">
-            {/* ------------------------------------------------ EKİBİMİZ */}
-            {staff.length > 0 ? (
+            {page.about ? (
               <section className="vc-block">
-                <div className="vc-block-head">
-                  <h2 className="vc-h2">Çalışanlarımız</h2>
-                  {/* İSTEK: ekip AYRI bir düğmeyle açılsın. */}
-                  {staff.length > gorunenKadro.length ? (
-                    <button type="button" className="vc-btn-ghost" onClick={() => setModal('staff')}>
-                      Tümünü gör ({staff.length})
-                    </button>
-                  ) : null}
-                </div>
-
-                <div className="vc-staff-row">
-                  {gorunenKadro.map((k) => (
-                    <StaffCard key={k.user_id} member={k} photo={media.staff[k.user_id]} />
+                <h2 className="vc-h2">Hakkımızda</h2>
+                {page.about
+                  .split('\n')
+                  .filter(Boolean)
+                  .map((p, i) => (
+                    <p key={i} className="vc-text">
+                      {p}
+                    </p>
                   ))}
-                </div>
-
-                {/* ⚠️ BEYAN OLDUĞU YAZIYOR: platform diploma doğrulaması yapmıyor
-                    (ürün briefi §4.4.2c). Doğrulanmış gibi göstermek yanıltıcı olurdu. */}
-                <p className="vc-note">
-                  Eğitim ve ünvan bilgileri kliniğin beyanıdır; platform belge doğrulaması yapmaz.
-                </p>
-              </section>
-            ) : null}
-
-            {/* -------------------------------------------- FOTO GALERİ */}
-            {media.gallery.length > 0 ? (
-              <section className="vc-block">
-                <div className="vc-block-head">
-                  <h2 className="vc-h2">Foto galeri</h2>
-                  <button type="button" className="vc-btn-ghost" onClick={() => setModal('gallery')}>
-                    Tüm fotoğraflar ({media.gallery.length})
-                  </button>
-                </div>
-                <div className="vc-gallery-row">
-                  {gorunenGaleri.map((g, i) => (
-                    <button
-                      key={g.id}
-                      type="button"
-                      className="vc-thumb"
-                      onClick={() => setLightbox(i)}
-                      aria-label={g.caption ?? 'Fotoğrafı büyüt'}>
-                      <img src={g.url} alt={g.caption ?? ''} loading="lazy" />
-                    </button>
-                  ))}
-                </div>
-              </section>
-            ) : null}
-
-            {/* ------------------------------------------ SOSYAL + İNDİR */}
-            {sosyal.length > 0 || page.website ? (
-              <section className="vc-block">
-                <h2 className="vc-h2">Bizi takip edin</h2>
-                <div className="vc-social">
-                  {sosyal.map((s) => (
-                    <a
-                      key={s.key}
-                      className="vc-social-item"
-                      href={socialUrl[s.key](s.value)}
-                      target="_blank"
-                      rel="noopener noreferrer">
-                      <span className="vc-social-dot" aria-hidden="true">
-                        {socialLabel[s.key][0]}
-                      </span>
-                      {socialLabel[s.key]}
-                    </a>
-                  ))}
-                  {page.website ? (
-                    <a
-                      className="vc-social-item"
-                      href={page.website}
-                      target="_blank"
-                      rel="noopener noreferrer">
-                      <span className="vc-social-dot" aria-hidden="true">W</span>
-                      Web sitesi
-                    </a>
-                  ) : null}
-                </div>
               </section>
             ) : null}
 
             <section className="vc-block vc-cta">
               <h2 className="vc-h2">Veterito&apos;da bul</h2>
               <p className="vc-text">
-                Sağlık kaydı, aşı takvimi ve mesajlaşma için Veterito uygulamasını kullanabilirsin.
+                Sağlık kaydı, aşı takvimi ve klinikle mesajlaşma için Veterito uygulamasını
+                kullanabilirsin.
               </p>
             </section>
-          </div>
+          </aside>
+
+          {/* -------------------------------------------------------- VİTRİN */}
+          <main className="vc-col vc-col-main">
+            {vitrinVar ? (
+              <section className="vc-showcase">
+                <div className="vc-tabs" role="tablist" aria-label="Klinik vitrini">
+                  {staff.length > 0 ? (
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={aktifSekme === 'staff'}
+                      className={`vc-tab${aktifSekme === 'staff' ? ' vc-tab-on' : ''}`}
+                      onClick={() => setSekme('staff')}>
+                      Çalışanlarımız
+                      <span className="vc-tab-count">{staff.length}</span>
+                    </button>
+                  ) : null}
+                  {galeriSayisi > 0 ? (
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={aktifSekme === 'gallery'}
+                      className={`vc-tab${aktifSekme === 'gallery' ? ' vc-tab-on' : ''}`}
+                      onClick={() => setSekme('gallery')}>
+                      Foto galeri
+                      <span className="vc-tab-count">{galeriSayisi}</span>
+                    </button>
+                  ) : null}
+                </div>
+
+                {aktifSekme === 'staff' ? (
+                  <div className="vc-panel" role="tabpanel">
+                    <div className="vc-staff-grid">
+                      {staff.map((k) => (
+                        <StaffCard
+                          key={k.user_id}
+                          member={k}
+                          photo={media.staff[k.user_id]}
+                          onOpen={() => setSecilenKisi(k)}
+                        />
+                      ))}
+                    </div>
+                    {/* ⚠️ BEYAN OLDUĞU YAZIYOR: platform diploma doğrulaması yapmıyor
+                        (ürün briefi §4.4.2c). Doğrulanmış gibi göstermek yanıltıcı olurdu. */}
+                    <p className="vc-note">
+                      Eğitim ve ünvan bilgileri kliniğin beyanıdır; platform belge doğrulaması
+                      yapmaz.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="vc-panel" role="tabpanel">
+                    <div className="vc-gallery-grid">
+                      {media.gallery.map((g, i) => (
+                        <button
+                          key={g.id}
+                          type="button"
+                          className="vc-thumb"
+                          onClick={() => setLightbox(i)}
+                          aria-label={g.caption ?? `Fotoğraf ${i + 1} — büyüt`}>
+                          <img src={g.url} alt={g.caption ?? ''} loading="lazy" />
+                          <span className="vc-thumb-veil" aria-hidden="true">
+                            <IconZoom className="vc-thumb-zoom" />
+                          </span>
+                          {g.caption ? <span className="vc-thumb-caption">{g.caption}</span> : null}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </section>
+            ) : null}
+          </main>
         </div>
       </div>
 
-      {/* ========================================================= MODALLAR */}
-      {modal === 'staff' ? (
-        <Modal title="Çalışanlarımız" onClose={() => setModal(null)}>
-          <div className="vc-staff-grid">
-            {staff.map((k) => (
-              <StaffCard key={k.user_id} member={k} photo={media.staff[k.user_id]} detayli />
-            ))}
+      {/* ====================================================== KİŞİ KARTI */}
+      {secilenKisi ? (
+        <Modal title={secilenKisi.display_name} onClose={() => setSecilenKisi(null)}>
+          <div className="vc-person">
+            <div className="vc-person-photo">
+              {media.staff[secilenKisi.user_id] ? (
+                <img src={media.staff[secilenKisi.user_id]} alt={secilenKisi.display_name} />
+              ) : (
+                <span className="vc-staff-initials">{initials(secilenKisi.display_name)}</span>
+              )}
+            </div>
+            <div className="vc-person-body">
+              {secilenKisi.title ? <p className="vc-person-title">{secilenKisi.title}</p> : null}
+              <h3 className="vc-person-name">{secilenKisi.display_name}</h3>
+              {secilenKisi.education ? (
+                <p className="vc-person-edu">{secilenKisi.education}</p>
+              ) : null}
+              {secilenKisi.bio ? <p className="vc-person-bio">{secilenKisi.bio}</p> : null}
+            </div>
           </div>
         </Modal>
       ) : null}
 
-      {modal === 'gallery' ? (
-        <Modal title="Foto galeri" onClose={() => setModal(null)}>
-          <div className="vc-gallery-grid">
-            {media.gallery.map((g, i) => (
-              <button
-                key={g.id}
-                type="button"
-                className="vc-thumb vc-thumb-lg"
-                onClick={() => setLightbox(i)}
-                aria-label={g.caption ?? 'Fotoğrafı büyüt'}>
-                <img src={g.url} alt={g.caption ?? ''} loading="lazy" />
-                {g.caption ? <span className="vc-thumb-caption">{g.caption}</span> : null}
-              </button>
-            ))}
-          </div>
-        </Modal>
-      ) : null}
-
+      {/* ======================================================= IŞIK KUTUSU */}
       {lightbox !== null && media.gallery[lightbox] ? (
-        <div className="vc-lightbox" onClick={() => setLightbox(null)} role="presentation">
-          <button type="button" className="vc-lightbox-close" aria-label="Kapat">×</button>
-          <img
-            src={media.gallery[lightbox].url}
-            alt={media.gallery[lightbox].caption ?? ''}
-            onClick={(e) => e.stopPropagation()}
-          />
-          {media.gallery[lightbox].caption ? (
-            <p className="vc-lightbox-caption">{media.gallery[lightbox].caption}</p>
+        <div
+          className="vc-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Fotoğraf"
+          onClick={() => setLightbox(null)}>
+          <button
+            type="button"
+            className="vc-lb-close"
+            onClick={() => setLightbox(null)}
+            aria-label="Kapat">
+            <IconClose className="vc-lb-icon" />
+          </button>
+
+          {galeriSayisi > 1 ? (
+            <button
+              type="button"
+              className="vc-lb-nav vc-lb-prev"
+              onClick={(e) => {
+                e.stopPropagation();
+                kaydir(-1);
+              }}
+              aria-label="Önceki fotoğraf">
+              <IconPrev className="vc-lb-icon" />
+            </button>
+          ) : null}
+
+          <figure className="vc-lb-figure" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={media.gallery[lightbox].url}
+              alt={media.gallery[lightbox].caption ?? `Fotoğraf ${lightbox + 1}`}
+            />
+            <figcaption className="vc-lb-caption">
+              {media.gallery[lightbox].caption ? (
+                <span>{media.gallery[lightbox].caption}</span>
+              ) : null}
+              {galeriSayisi > 1 ? (
+                <span className="vc-lb-count">
+                  {lightbox + 1} / {galeriSayisi}
+                </span>
+              ) : null}
+            </figcaption>
+          </figure>
+
+          {galeriSayisi > 1 ? (
+            <button
+              type="button"
+              className="vc-lb-nav vc-lb-next"
+              onClick={(e) => {
+                e.stopPropagation();
+                kaydir(1);
+              }}
+              aria-label="Sonraki fotoğraf">
+              <IconNext className="vc-lb-icon" />
+            </button>
           ) : null}
         </div>
       ) : null}
@@ -496,31 +633,37 @@ export default function ClinicPage() {
   );
 }
 
-/** Kadro kartı. `detayli` modalda: tanıtım metni de gösteriliyor. */
+/**
+ * Kadro kartı. Tıklanınca kişinin tam kartı açılıyor.
+ * ⚠️ TAMAMI DÜĞME: kartın bir köşesini tıklanabilir yapmak, dokunmatikte hedefi
+ * küçültür. Kartın zaten tek bir eylemi var — kişiyi açmak.
+ */
 function StaffCard({
   member,
   photo,
-  detayli = false,
+  onOpen,
 }: {
   member: StaffMember;
   photo?: string;
-  detayli?: boolean;
+  onOpen: () => void;
 }) {
   return (
-    <article className={`vc-staff${detayli ? ' vc-staff-detail' : ''}`}>
-      <div className="vc-staff-photo">
+    <button type="button" className="vc-staff" onClick={onOpen}>
+      <span className="vc-staff-photo">
         {photo ? (
           <img src={photo} alt={member.display_name} loading="lazy" />
         ) : (
           // ⚠️ FOTOĞRAF OPSİYONEL: yoksa baş harfler. Boş bir kutu, kartı bozuk gösterirdi.
           <span className="vc-staff-initials">{initials(member.display_name)}</span>
         )}
-      </div>
-      {member.title ? <p className="vc-staff-title">{member.title}</p> : null}
-      <h3 className="vc-staff-name">{member.display_name}</h3>
-      {member.education ? <p className="vc-staff-edu">{member.education}</p> : null}
-      {member.bio ? <p className="vc-staff-bio">{member.bio}</p> : null}
-    </article>
+      </span>
+      <span className="vc-staff-body">
+        {member.title ? <span className="vc-staff-title">{member.title}</span> : null}
+        <span className="vc-staff-name">{member.display_name}</span>
+        {member.education ? <span className="vc-staff-edu">{member.education}</span> : null}
+      </span>
+      <span className="vc-staff-more">Profili gör</span>
+    </button>
   );
 }
 
@@ -536,13 +679,10 @@ function Modal({
   return (
     <div className="vc-modal" role="dialog" aria-modal="true" aria-label={title} onClick={onClose}>
       <div className="vc-modal-panel" onClick={(e) => e.stopPropagation()}>
-        <div className="vc-modal-head">
-          <h2 className="vc-h2">{title}</h2>
-          <button type="button" className="vc-modal-close" onClick={onClose} aria-label="Kapat">
-            ×
-          </button>
-        </div>
-        <div className="vc-modal-body">{children}</div>
+        <button type="button" className="vc-modal-close" onClick={onClose} aria-label="Kapat">
+          <IconClose className="vc-lb-icon" />
+        </button>
+        {children}
       </div>
     </div>
   );
@@ -552,33 +692,37 @@ function Modal({
  * Sayfa iskeleti — veri gelene kadar.
  * ⚠️ GERÇEK DÜZENİ TAKLİT EDİYOR (kapak + kartlar): rastgele kutular, içerik gelince
  * sayfanın zıplamasına yol açardı.
+ * ⚠️ KAYAN PARLAMA YOK, YUMUŞAK NEFES VAR. Sağdan sola geçen bant büyük yüzeylerde
+ * göz alıyordu; yerini yerinde duran, çok düşük kontrastlı bir soluklaşma aldı.
  */
 function PageSkeleton() {
   return (
     <div className="vc" aria-busy="true" aria-live="polite">
       <div className="vc-hero">
-        <div className="vc-hero-cover vc-hero-cover-fallback vc-shimmer" />
+        <div className="vc-hero-cover vc-hero-cover-fallback" />
         <div className="vc-hero-scrim" />
-        <div className="vc-hero-body">
-          <div className="vc-hero-logo vc-shimmer" />
-          <div className="vc-hero-text">
-            <div className="vc-sk vc-sk-title" />
-            <div className="vc-sk vc-sk-line" />
+        <div className="vc-hero-inner">
+          <div className="vc-hero-main">
+            <div className="vc-hero-logo vc-pulse" />
+            <div className="vc-hero-text">
+              <div className="vc-sk vc-sk-title vc-pulse" />
+              <div className="vc-sk vc-sk-line vc-pulse" />
+            </div>
           </div>
         </div>
       </div>
       <div className="vc-wrap">
         <div className="vc-contact">
           {[0, 1, 2, 3].map((i) => (
-            <div key={i} className="vc-contact-card vc-shimmer" style={{ height: 80 }} />
+            <div key={i} className="vc-contact-card vc-pulse" style={{ height: 84 }} />
           ))}
         </div>
         <div className="vc-grid">
           <div className="vc-col">
-            <div className="vc-block vc-shimmer" style={{ height: 220 }} />
+            <div className="vc-block vc-pulse" style={{ height: 260 }} />
           </div>
           <div className="vc-col">
-            <div className="vc-block vc-shimmer" style={{ height: 320 }} />
+            <div className="vc-block vc-pulse" style={{ height: 420 }} />
           </div>
         </div>
       </div>
