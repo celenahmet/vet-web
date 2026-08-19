@@ -1,0 +1,250 @@
+/**
+ * Klinik vitrini — veterito.com/@kullaniciadi
+ *
+ * ⚠️ RENKLER YENİDEN TANIMLANMADI. Hepsi `index.css`teki değişkenlerden geliyor;
+ * burada sabit bir renk yazsaydık koyu tema ve ileride yapılacak marka değişikliği
+ * bu sayfayı atlardı.
+ *
+ * ⚠️ TÜM SEÇİCİLER `.clinic-page` ALTINDA. Genel bir `h2` kuralı yazsaydık öteki
+ * sayfaları da etkilerdi — bu repoda başkası çalışıyor.
+ */
+
+.clinic-loading {
+  padding: 96px 24px;
+  text-align: center;
+  color: var(--color-text-muted, #6b7280);
+}
+
+.clinic-page {
+  --clinic-max: 880px;
+  padding-bottom: 64px;
+}
+
+/* ------------------------------------------------------------------ BAŞLIK */
+
+.clinic-hero {
+  background: linear-gradient(160deg, var(--color-primary) 0%, var(--color-primary-deep) 100%);
+  color: var(--color-on-primary);
+  padding: 72px 24px 56px;
+}
+
+.clinic-hero-inner {
+  max-width: var(--clinic-max);
+  margin: 0 auto;
+}
+
+.clinic-name {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.clinic-tagline {
+  margin: 12px 0 0;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  opacity: 0.92;
+  max-width: 40ch;
+}
+
+.clinic-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.clinic-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--color-on-primary);
+}
+
+.clinic-chip-rating {
+  background: var(--color-accent);
+  color: #1a1a1a;
+}
+
+.clinic-rating-count {
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+/* ---------------------------------------------------------------- BÖLÜMLER */
+
+.clinic-section {
+  max-width: var(--clinic-max);
+  margin: 0 auto;
+  padding: 40px 24px 0;
+}
+
+.clinic-h2 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--color-text, #111827);
+  margin: 0 0 16px;
+}
+
+.clinic-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text, #111827);
+  margin: 0 0 8px;
+  max-width: 65ch;
+}
+
+.clinic-muted {
+  color: var(--color-text-muted, #6b7280);
+}
+
+.clinic-note {
+  margin-top: 16px;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted, #6b7280);
+}
+
+/* ---------------------------------------------------------------- İLETİŞİM */
+
+/* ⚠️ İLETİŞİM KUTULARI EN BELİRGİN ÖĞE: sayfanın amacı kliniğe ulaşmak.
+   Izgara, dar ekranda tek sütuna düşüyor — telefonda yan yana sıkışmasın. */
+.clinic-contact {
+  padding-top: 28px;
+}
+
+.clinic-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.clinic-action {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border, #e5e7eb);
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.clinic-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(7, 63, 53, 0.1);
+}
+
+.clinic-action-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted, #6b7280);
+}
+
+.clinic-action-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text, #111827);
+}
+
+.clinic-action-primary {
+  background: var(--color-primary-soft);
+  border-color: transparent;
+}
+
+.clinic-action-primary .clinic-action-label,
+.clinic-action-primary .clinic-action-value {
+  color: var(--color-primary-deep);
+}
+
+.clinic-action-whatsapp {
+  background: #e8f7ee;
+  border-color: transparent;
+}
+
+.clinic-action-whatsapp .clinic-action-label,
+.clinic-action-whatsapp .clinic-action-value {
+  color: #10692f;
+}
+
+/* ------------------------------------------------------------------- EKİP */
+
+.clinic-staff {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.clinic-staff-card {
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border, #e5e7eb);
+}
+
+.clinic-staff-name {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--color-text, #111827);
+}
+
+.clinic-staff-title {
+  margin: 4px 0 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.clinic-staff-edu,
+.clinic-staff-bio {
+  margin: 8px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-muted, #6b7280);
+}
+
+/* ---------------------------------------------------------- SOSYAL MEDYA */
+
+.clinic-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.clinic-social-link {
+  padding: 10px 20px;
+  border-radius: 99px;
+  background: var(--color-bg-secondary);
+  color: var(--color-primary-deep);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.clinic-social-link:hover {
+  background: var(--color-primary-soft);
+}
+
+/* ---------------------------------------------------------------- KAPANIŞ */
+
+.clinic-cta {
+  margin-top: 24px;
+}
+
+@media (max-width: 640px) {
+  .clinic-hero {
+    padding: 48px 20px 40px;
+  }
+  .clinic-section {
+    padding: 32px 20px 0;
+  }
+}
