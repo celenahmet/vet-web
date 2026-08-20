@@ -14,6 +14,7 @@ const Pricing = lazy(() => import('./pages/Pricing'));
 const Legal = lazy(() => import('./pages/Legal'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Download = lazy(() => import('./pages/Download'));
+const ClinicPage = lazy(() => import('./pages/ClinicPage'));
 
 function App() {
   return (
@@ -34,6 +35,13 @@ function App() {
             <Route path="/terms" element={<Legal />} />
             <Route path="/deletion" element={<Legal />} />
             <Route path="/download" element={<Download />} />
+            {/* Klinik vitrini: /@kullaniciadi
+                ⚠️ react-router v6 parcali parametre (":@kullanici") DESTEKLEMIYOR;
+                bu yuzden tum segment yakalanip '@' kontrolu sayfada yapiliyor.
+                Bilinen rotalardan SONRA duruyor — onlarin onune gecmesin.
+                '@' ile baslamayan adresler ClinicPage icinde NotFound'a dusuyor,
+                yani davranis degismiyor. */}
+            <Route path="/:handle" element={<ClinicPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

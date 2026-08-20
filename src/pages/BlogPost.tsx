@@ -18,11 +18,11 @@ const BlogPost = () => {
       <h2>The Importance of Certification</h2>
       <p>When you choose a veterinary clinic, you want to ensure that your pet is receiving the best possible care. That's why we emphasize the importance of corporate standards and rigorous certification processes. A certified clinic means they have passed stringent checks on hygiene, technological integration, and staff qualifications.</p>
       <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=800" alt="Veterinary Exam" />
-      <p>By partnering with Patika, clinics are not only upgrading their own internal tools but also providing transparency to pet owners. Every appointment, every vaccination, and every health record is securely stored and easily accessible.</p>
+      <p>By partnering with Veterito, clinics are not only upgrading their own internal tools but also providing transparency to pet owners. Every appointment, every vaccination, and every health record is securely stored and easily accessible.</p>
       <blockquote>
         "The integration of modern technology in veterinary practices is no longer a luxury; it's a necessity for providing top-tier care." - Dr. Sarah Jenkins
       </blockquote>
-      <p>Thank you for being a part of the Patika community. We are continuously working to improve our platform and bring you more features that make pet care easier and more social.</p>
+      <p>Thank you for being a part of the Veterito community. We are continuously working to improve our platform and bring you more features that make pet care easier and more social.</p>
     `,
     date: "Oct 12, 2026",
     author: "Dr. Sarah Jenkins",
