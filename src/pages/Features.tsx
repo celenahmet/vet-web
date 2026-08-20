@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
 import { Calendar, Stethoscope, Users, CheckCircle2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 
 export default function Features() {
-  const fadeInUp = {
+  const { t } = useTranslation();
+  const fadeInUp: any = {
     initial: { opacity: 0, y: 50 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, margin: "-100px" },
@@ -13,7 +15,7 @@ export default function Features() {
 
   return (
     <div className="min-h-screen pt-32 pb-24 relative overflow-hidden bg-[var(--bg-main)]">
-      <SEO title="Özellikler - Veterito" description="Veterito'nun sunduğu tüm özellikleri keşfedin." />
+      <SEO title={t('seo_title_features')} description={t('seo_desc_features_v2')} />
       
       {/* Background Orbs */}
       <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
@@ -26,10 +28,10 @@ export default function Features() {
         {/* Hero Section */}
         <div className="text-center max-w-3xl mx-auto mb-24">
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl lg:text-6xl font-extrabold mb-6 text-[var(--text-main)] tracking-tight">
-            Tüm İhtiyaçlarınız <br/> <span className="text-[var(--color-vet-primary)]">Tek Bir Yerde</span>
+            {t('feat_h1_1')} <br/> <span className="text-[var(--color-vet-primary)]">{t('feat_h1_2')}</span>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-xl text-[var(--text-muted)] font-medium leading-relaxed">
-            Evcil hayvanınızın sağlığı ve mutluluğu için ihtiyacınız olan tüm araçlar, sezgisel ve modern uygulamamızda bir araya geldi.
+            {t('feat_desc')}
           </motion.p>
         </div>
 
@@ -44,22 +46,22 @@ export default function Features() {
               <div className="inline-flex p-4 rounded-2xl bg-emerald-100/50 text-emerald-600 mb-2">
                 <Calendar size={32} />
               </div>
-              <h2 className="text-3xl lg:text-5xl font-extrabold text-[var(--text-main)]">Kontrol Her An <br/> Elinizin Altında</h2>
+              <h2 className="text-3xl lg:text-5xl font-extrabold text-[var(--text-main)]">{t('feat_s1_h2_1')} <br/> {t('feat_s1_h2_2')}</h2>
               <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
-                Kişiselleştirilmiş ana sayfa ekranınız ile evcil hayvanınızın yaklaşan aşılarını, randevularını ve günlük görevlerini tek bir bakışta görün.
+                {t('feat_s1_desc')}
               </p>
               <ul className="space-y-4 pt-4">
                 <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
                   <div className="p-1 rounded-full bg-[var(--color-vet-primary)]/10 text-[var(--color-vet-primary)]"><CheckCircle2 size={20} /></div>
-                  Akıllı Görev Yönetimi
+                  {t('feat_s1_li1')}
                 </li>
                 <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
                   <div className="p-1 rounded-full bg-[var(--color-vet-primary)]/10 text-[var(--color-vet-primary)]"><CheckCircle2 size={20} /></div>
-                  Otomatik Hatırlatıcılar
+                  {t('feat_s1_li2')}
                 </li>
                 <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
                   <div className="p-1 rounded-full bg-[var(--color-vet-primary)]/10 text-[var(--color-vet-primary)]"><CheckCircle2 size={20} /></div>
-                  Çoklu Evcil Hayvan Desteği
+                  {t('feat_s1_li3')}
                 </li>
               </ul>
             </div>
@@ -71,22 +73,22 @@ export default function Features() {
               <div className="inline-flex p-4 rounded-2xl bg-amber-100/50 text-amber-600 mb-2">
                 <Stethoscope size={32} />
               </div>
-              <h2 className="text-3xl lg:text-5xl font-extrabold text-[var(--text-main)]">Evrensel Dijital <br/> Sağlık Kartı</h2>
+              <h2 className="text-3xl lg:text-5xl font-extrabold text-[var(--text-main)]">{t('feat_s2_h2_1')} <br/> {t('feat_s2_h2_2')}</h2>
               <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
-                Tüm tıbbi geçmiş, aşı karnesi ve mikroçip bilgileri tek bir ekranda. İhtiyaç duyduğunuzda saniyeler içinde veterinerinizle paylaşın.
+                {t('feat_s2_desc')}
               </p>
               <ul className="space-y-4 pt-4">
                 <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
                   <div className="p-1 rounded-full bg-amber-500/10 text-amber-500"><CheckCircle2 size={20} /></div>
-                  Anında PDF Çıktısı
+                  {t('feat_s2_li1')}
                 </li>
                 <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
                   <div className="p-1 rounded-full bg-amber-500/10 text-amber-500"><CheckCircle2 size={20} /></div>
-                  Veteriner Senkronizasyonu
+                  {t('feat_s2_li2')}
                 </li>
                 <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
                   <div className="p-1 rounded-full bg-amber-500/10 text-amber-500"><CheckCircle2 size={20} /></div>
-                  Mikroçip Entegrasyonu
+                  {t('feat_s2_li3')}
                 </li>
               </ul>
             </div>
@@ -106,22 +108,22 @@ export default function Features() {
               <div className="inline-flex p-4 rounded-2xl bg-rose-100/50 text-rose-500 mb-2">
                 <Users size={32} />
               </div>
-              <h2 className="text-3xl lg:text-5xl font-extrabold text-[var(--text-main)]">Biz Büyük Bir <br/> Aileyiz</h2>
+              <h2 className="text-3xl lg:text-5xl font-extrabold text-[var(--text-main)]">{t('feat_s3_h2_1')} <br/> {t('feat_s3_h2_2')}</h2>
               <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
-                Yalnız değilsiniz. Çevrenizdeki hayvanseverleri keşfedin, yürüyüş arkadaşları bulun ve deneyimlerinizi güvenilir bir toplulukta paylaşın.
+                {t('feat_s3_desc')}
               </p>
               <ul className="space-y-4 pt-4">
                 <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
                   <div className="p-1 rounded-full bg-rose-500/10 text-rose-500"><CheckCircle2 size={20} /></div>
-                  Lokasyon Bazlı Eşleşme
+                  {t('feat_s3_li1')}
                 </li>
                 <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
                   <div className="p-1 rounded-full bg-rose-500/10 text-rose-500"><CheckCircle2 size={20} /></div>
-                  Soru - Cevap Forumları
+                  {t('feat_s3_li2')}
                 </li>
                 <li className="flex items-center gap-4 text-lg font-bold text-[var(--text-main)]">
                   <div className="p-1 rounded-full bg-rose-500/10 text-rose-500"><CheckCircle2 size={20} /></div>
-                  Ortak Yürüyüş Etkinlikleri
+                  {t('feat_s3_li3')}
                 </li>
               </ul>
             </div>

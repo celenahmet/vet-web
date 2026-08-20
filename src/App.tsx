@@ -13,6 +13,7 @@ const Clinics = lazy(() => import('./pages/Clinics'));
 const Pricing = lazy(() => import('./pages/Pricing'));
 const Legal = lazy(() => import('./pages/Legal'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const Download = lazy(() => import('./pages/Download'));
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/privacy" element={<Legal />} />
             <Route path="/terms" element={<Legal />} />
             <Route path="/deletion" element={<Legal />} />
+            <Route path="/download" element={<Download />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

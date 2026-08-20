@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import { Building2, HeartHandshake, Award } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 
 export default function About() {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen pt-32 pb-24 relative overflow-hidden bg-[var(--bg-main)]">
-      <SEO title="Hakkımızda - Veterito" description="Veterito'nun kuruluş hikayesi ve misyonu." />
+      <SEO title={t('seo_title_about')} description={t('seo_desc_about_v2')} />
       
       {/* Background Orbs (Standard Light Theme) */}
       <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
@@ -16,12 +18,10 @@ export default function About() {
       <div className="container mx-auto px-6 max-w-7xl relative z-10 text-center text-[var(--text-main)]">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-4xl mx-auto mb-20">
           <h1 className="text-4xl lg:text-5xl font-extrabold mb-8 text-[var(--color-vet-primary)] tracking-tight">
-            Veteriner Bakımını Yeniden Tanımlıyoruz
+            {t('about_h1')}
           </h1>
           <p className="text-xl md:text-2xl text-[var(--text-muted)] font-medium leading-relaxed">
-            Veterito basit bir fikirden doğdu: veteriner bakımı, hayatımızın geri kalanı kadar modern, 
-            sorunsuz ve bağlantılı olmalıdır. Size en iyi kurumsal düzeyde bakımı sunmak için en iyi 
-            kliniklerle ortaklık yapıyoruz.
+            {t('about_desc')}
           </p>
         </motion.div>
         
@@ -39,9 +39,9 @@ export default function About() {
             <motion.div whileHover={{ rotate: 10, scale: 1.1 }} className="mb-6 inline-flex p-4 rounded-2xl bg-[var(--color-vet-primary)]/10 text-[var(--color-vet-primary)]">
               <Building2 size={32} strokeWidth={1.5} />
             </motion.div>
-            <h3 className="text-2xl font-bold mb-4 text-[var(--text-main)] group-hover:text-[var(--color-vet-primary)] transition-colors">Kurumsal Standartlar</h3>
+            <h3 className="text-2xl font-bold mb-4 text-[var(--text-main)] group-hover:text-[var(--color-vet-primary)] transition-colors">{t('about_c1_title')}</h3>
             <p className="text-[var(--text-muted)] font-medium leading-relaxed">
-              Sadece bakım, hijyen ve teknolojik entegrasyon konusundaki katı standartlarımızı karşılayan sertifikalı veteriner klinikleriyle çalışıyoruz.
+              {t('about_c1_desc')}
             </p>
           </motion.div>
 
@@ -58,9 +58,9 @@ export default function About() {
             <motion.div whileHover={{ rotate: -10, scale: 1.1 }} className="mb-6 inline-flex p-4 rounded-2xl bg-rose-400/10 text-rose-500">
               <HeartHandshake size={32} strokeWidth={1.5} />
             </motion.div>
-            <h3 className="text-2xl font-bold mb-4 text-[var(--text-main)] group-hover:text-rose-500 transition-colors">Sosyal Bağlantı</h3>
+            <h3 className="text-2xl font-bold mb-4 text-[var(--text-main)] group-hover:text-rose-500 transition-colors">{t('about_c2_title')}</h3>
             <p className="text-[var(--text-muted)] font-medium leading-relaxed">
-              Tıbbi bakımın ötesinde, topluluğun gücüne inanıyoruz. Veterito, evcil hayvan ebeveynlerini deneyimlerini paylaşmak ve birbirlerini desteklemek için bir araya getiriyor.
+              {t('about_c2_desc')}
             </p>
           </motion.div>
 
@@ -77,9 +77,9 @@ export default function About() {
             <motion.div whileHover={{ rotate: 10, scale: 1.1 }} className="mb-6 inline-flex p-4 rounded-2xl bg-amber-400/10 text-amber-500">
               <Award size={32} strokeWidth={1.5} />
             </motion.div>
-            <h3 className="text-2xl font-bold mb-4 text-[var(--text-main)] group-hover:text-amber-500 transition-colors">Teknolojide Mükemmellik</h3>
+            <h3 className="text-2xl font-bold mb-4 text-[var(--text-main)] group-hover:text-amber-500 transition-colors">{t('about_c3_title')}</h3>
             <p className="text-[var(--text-muted)] font-medium leading-relaxed">
-              Platformumuz, evcil hayvanınızın verilerinin her zaman güvenli, erişilebilir ve doğru bir şekilde senkronize edilmesini sağlamak için modern ve güvenli bir teknoloji üzerine inşa edilmiştir.
+              {t('about_c3_desc')}
             </p>
           </motion.div>
         </div>

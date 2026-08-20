@@ -1,5 +1,5 @@
 export const brandConfig = {
-  name: "Veterito",
+  name: "PatiCare",
   appStoreUrl: "https://apps.apple.com/",
   playStoreUrl: "https://play.google.com/store/apps/",
   social: {

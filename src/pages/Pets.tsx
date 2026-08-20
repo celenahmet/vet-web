@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 
 const PETS_DATA = [
@@ -45,6 +46,7 @@ const FILTERS = [
 ];
 
 export default function Pets() {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -57,7 +59,7 @@ export default function Pets() {
 
   return (
     <div className="min-h-screen pt-32 pb-24 relative overflow-hidden bg-[var(--bg-main)]">
-      <SEO title="Evcil Hayvanlar - Veterito" description="Veterito sürüsüyle tanışın." />
+      <SEO title={t('seo_title_pets')} description={t('seo_desc_pets_v2')} />
       
       {/* Ambient Orbs */}
       <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
@@ -67,8 +69,8 @@ export default function Pets() {
 
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl lg:text-5xl font-extrabold mb-4 text-[var(--text-main)]">Veterito Sürüsüyle Tanışın</motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-lg text-[var(--text-muted)] font-medium">Her evcil hayvan kişiselleştirilmiş bir profil alır. Tüylü dostlarınızı ekleyin ve özel ihtiyaçlarını bugün takip etmeye başlayın.</motion.p>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl lg:text-5xl font-extrabold mb-4 text-[var(--text-main)]">{t('pets_h1')}</motion.h1>
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-lg text-[var(--text-muted)] font-medium">{t('pets_desc')}</motion.p>
         </div>
 
         <div className="max-w-3xl mx-auto mb-16 space-y-8">
@@ -79,7 +81,7 @@ export default function Pets() {
             </div>
             <input 
               type="text" 
-              placeholder="İsme veya ırka göre arayın..." 
+              placeholder={t('pets_search')} 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-14 pr-6 py-4 rounded-full border-2 border-[var(--border-color)] bg-white/70 backdrop-blur-md focus:outline-none focus:border-[var(--color-vet-primary)] text-lg transition-all shadow-sm focus:shadow-md"
@@ -98,7 +100,7 @@ export default function Pets() {
                     : 'bg-white/70 text-[var(--text-muted)] border-[var(--border-color)] hover:border-[var(--color-vet-primary)] hover:text-[var(--color-vet-primary)] backdrop-blur-sm'
                 }`}
               >
-                {filter.label}
+                {t(`pets_f_${filter.id}`)}
               </button>
             ))}
           </motion.div>
@@ -126,11 +128,11 @@ export default function Pets() {
               
               <div className="border-t border-[var(--border-color)] pt-6 flex justify-between">
                 <div>
-                  <p className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">AĞIRLIK</p>
+                  <p className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">{t('pets_w')}</p>
                   <p className="text-xl font-extrabold text-[var(--text-main)]">{pet.weight}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">SONRAKİ AŞI</p>
+                  <p className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">{t('pets_vax')}</p>
                   <p className="text-xl font-extrabold text-[var(--color-vet-primary)]">{pet.nextVaccine}</p>
                 </div>
               </div>

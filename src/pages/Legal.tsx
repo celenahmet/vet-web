@@ -33,8 +33,8 @@ const Legal = () => {
       });
     } else {
       setContent({
-        title: 'Legal',
-        body: 'Information not found.'
+        title: t('legal_default_title'),
+        body: t('legal_default_body')
       });
     }
   }, [location.pathname, t]);
@@ -52,7 +52,7 @@ const Legal = () => {
             <p>{content.body}</p>
             {/* Real terms can be added here using markdown or rich text later */}
             <br />
-            <p><strong>Contact:</strong> <a href={`mailto:${brandConfig.social.contactEmail}`}>{brandConfig.social.contactEmail}</a></p>
+            <p><strong>{t('legal_contact')}:</strong> <a href={`mailto:${brandConfig.social.contactEmail}`}>{brandConfig.social.contactEmail}</a></p>
           </div>
         </div>
       </div>

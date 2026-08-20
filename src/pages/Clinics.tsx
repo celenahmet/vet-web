@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import { Building2, ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 
 export default function Clinics() {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen pt-24 relative overflow-hidden bg-[var(--bg-main)]">
-      <SEO title="Klinikler İçin - Veterito" description="Veteriner klinikleri için modern yönetim çözümleri." />
+      <SEO title={t('seo_title_clinics')} description={t('seo_desc_clinics')} />
       
       {/* Background Orbs (Standard Light Theme) */}
       <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
@@ -17,33 +19,32 @@ export default function Clinics() {
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} className="flex-1 space-y-8 text-[var(--text-main)]">
             <div className="inline-flex flex-col">
-              <span className="text-[var(--color-vet-primary)] font-bold tracking-wider uppercase mb-2">B2B Çözümler</span>
-              <h2 className="text-4xl lg:text-6xl font-extrabold leading-tight text-[var(--text-main)]">Kliniğinizi geleceğe <br/> taşıyın</h2>
+              <span className="text-[var(--color-vet-primary)] font-bold tracking-wider uppercase mb-2">{t('clinics_badge')}</span>
+              <h2 className="text-4xl lg:text-6xl font-extrabold leading-tight text-[var(--text-main)]">{t('clinics_h2_1')} <br/> {t('clinics_h2_2')}</h2>
             </div>
             
             <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed max-w-xl">
-              Veterito Clinic paneli ile randevuları yönetin, dijital reçeteler yazın ve hasta sahipleriyle kesintisiz iletişim kurun. 
-              Hasta sadakatini %40'a kadar artırın.
+              {t('clinics_desc')}
             </p>
 
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-[var(--text-main)] font-medium">
                 <div className="p-1 rounded-full bg-[var(--color-vet-primary)]/10 text-[var(--color-vet-primary)]"><Building2 size={16} /></div>
-                Akıllı Randevu ve Takvim Yönetimi
+                {t('clinics_li1')}
               </li>
               <li className="flex items-center gap-3 text-[var(--text-main)] font-medium">
                 <div className="p-1 rounded-full bg-[var(--color-vet-primary)]/10 text-[var(--color-vet-primary)]"><Building2 size={16} /></div>
-                Dijital Sağlık Geçmişi ve Otomatik Aşı Hatırlatıcıları
+                {t('clinics_li2')}
               </li>
               <li className="flex items-center gap-3 text-[var(--text-main)] font-medium">
                 <div className="p-1 rounded-full bg-[var(--color-vet-primary)]/10 text-[var(--color-vet-primary)]"><Building2 size={16} /></div>
-                Hasta Sahipleriyle Direkt Mesajlaşma (Tele-sağlık)
+                {t('clinics_li3')}
               </li>
             </ul>
             
             <div className="pt-6">
               <button className="bg-[var(--color-vet-primary)] text-white px-8 py-4 rounded-2xl font-bold hover:bg-[var(--color-vet-primary)]/90 transition-colors flex items-center gap-2 group shadow-xl shadow-[var(--color-vet-primary)]/20">
-                Ücretsiz Demo Talep Et
+                {t('clinics_demo')}
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
