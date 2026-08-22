@@ -287,53 +287,169 @@
 
 /* --- İletişim sayfası (23.08.2026) --- */
 
+/* ⚠️ Tek eylem, marka renginde ve dokunulabilir. Sayfanın işi kullanıcıyı bir
+   adrese ulaştırmak; geri kalan her şey onu destekliyor. */
 .contact-primary {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 16px;
-  color: inherit;
+  gap: 18px;
+  padding: 22px 24px;
+  border-radius: var(--radius-lg, 14px);
+  background-color: var(--color-primary);
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 14px;
+  transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-.contact-primary h3 {
-  margin: 0 0 4px;
-  font-size: 1.15rem;
-  color: var(--color-primary);
+.contact-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.contact-primary-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+.contact-primary-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.contact-primary-text strong {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   word-break: break-all;
+  color: #fff;
 }
 
-.contact-primary p {
-  margin: 0;
+.contact-primary-text span {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .contact-response {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 32px;
-}
-
-.contact-topic h3 {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.contact-topic code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.9em;
-  padding: 2px 6px;
-  border-radius: 6px;
-  background-color: var(--color-bg-secondary, rgba(0, 0, 0, 0.05));
-}
-
-.contact-topic a {
+  align-items: flex-start;
+  gap: 9px;
+  margin: 0 0 40px;
+  padding: 0 4px;
   font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+.contact-response svg {
+  flex: none;
+  margin-top: 3px;
+}
+
+.contact-section {
+  margin-bottom: 36px;
+}
+
+.contact-section h2 {
+  font-size: 1.05rem;
+  font-weight: 650;
+  margin: 0 0 14px;
+  color: var(--color-text);
+}
+
+/* ⚠️ LİSTE, IZGARA DEĞİL. Izgarada satırlar en uzun karta göre geriliyor ve kısa
+   maddelerin altında kocaman boşluk kalıyordu (23.08.2026'da görüldü). */
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg, 14px);
+  overflow: hidden;
+  background-color: var(--color-surface);
+}
+
+.contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 15px 18px;
+  border-top: 1px solid var(--color-border);
+}
+
+.contact-list li:first-child {
+  border-top: none;
+}
+
+.contact-list-icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border-radius: 9px;
+  background-color: var(--color-bg-secondary, rgba(0, 0, 0, 0.05));
+  color: var(--color-primary);
+}
+
+.contact-list-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.contact-list-body strong {
+  font-size: 0.99rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.contact-list-meta {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.contact-list-meta code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+  padding: 1px 6px;
+  border-radius: 5px;
+  background-color: var(--color-bg-secondary, rgba(0, 0, 0, 0.05));
+  color: var(--color-text);
+}
+
+.contact-list-meta a {
   color: var(--color-primary);
 }
 
 .contact-operator {
-  font-size: 1rem;
-  line-height: 1.8;
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  line-height: 1.7;
   color: var(--color-text-muted);
+}
+
+.contact-operator a {
+  color: var(--color-primary);
+}
+
+@media (max-width: 640px) {
+  .contact-primary {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .contact-primary-text strong {
+    font-size: 1.02rem;
+  }
 }

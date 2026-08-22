@@ -22,5 +22,5 @@ export const brandConfig = {
   },
   // Acik adres yerine sehir: veri sorumlusu kimligi hukuki metinlerde duruyor,
   // pazarlama alt bilgisinde ev adresi yayimlamanin bir faydasi yok.
-  address: "İstanbul, Türkiye"
+  address: "Ankara, Türkiye"
 };

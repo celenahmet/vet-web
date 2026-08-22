@@ -54,40 +54,50 @@ const Contact = () => {
           <p>{t('contact_desc')}</p>
         </header>
 
-        {/* Tek ve gerçekten çalışan kanal, en üstte ve büyük. */}
-        <a href={`mailto:${LEGAL_CONTACT_EMAIL}`} className="legal-card contact-primary">
-          <Mail size={22} />
-          <div>
-            <h3>{LEGAL_CONTACT_EMAIL}</h3>
-            <p>{t('contact_email_hint')}</p>
-          </div>
+        {/* ⚠️ TEK KANAL, EN ÜSTTE VE BÜYÜK. Sayfanın işi kullanıcıyı bir adrese
+            ulaştırmak; geri kalan her şey o adresi süsler. Marka renginde ve
+            dokunulabilir bir blok, sayfanın tek eylemi olduğunu söylüyor. */}
+        <a href={`mailto:${LEGAL_CONTACT_EMAIL}`} className="contact-primary">
+          <span className="contact-primary-icon"><Mail size={24} /></span>
+          <span className="contact-primary-text">
+            <strong>{LEGAL_CONTACT_EMAIL}</strong>
+            <span>{t('contact_email_hint')}</span>
+          </span>
         </a>
 
-        <div className="legal-callout contact-response">
-          <Clock size={18} />
+        <p className="contact-response">
+          <Clock size={16} />
           <span>{t('contact_response')}</span>
-        </div>
+        </p>
 
-        <section className="legal-hub-group">
+        <section className="contact-section">
           <h2>{t('contact_topics')}</h2>
-          <div className="legal-card-grid">
+          {/* ⚠️ IZGARA DEĞİL LİSTE. Izgarada satırlar en uzun karta göre geriliyordu
+              ve kısa kartların altında kocaman boşluk kalıyordu. Bunlar zaten
+              tek satırlık maddeler; liste hem sıkı duruyor hem okuma sırasını
+              koruyor. */}
+          <ul className="contact-list">
             {konular.map(({ icon: Icon, key, konu, to }) => (
-              <div key={key} className="legal-card contact-topic">
-                <h3><Icon size={18} /> {t(`contact_topic_${key}`)}</h3>
-                <p>
-                  {t('contact_subject')}: <code>{konu}</code>
-                </p>
-                {to ? <Link to={to}>{t('contact_read_more')}</Link> : null}
-              </div>
+              <li key={key}>
+                <span className="contact-list-icon"><Icon size={17} /></span>
+                <span className="contact-list-body">
+                  <strong>{t(`contact_topic_${key}`)}</strong>
+                  <span className="contact-list-meta">
+                    {t('contact_subject')}: <code>{konu}</code>
+                    {to ? <> · <Link to={to}>{t('contact_read_more')}</Link></> : null}
+                  </span>
+                </span>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
 
-        <section className="legal-hub-group">
+        <section className="contact-section">
           <h2>{t('contact_operator')}</h2>
           <p className="contact-operator">
             {brandConfig.name} · {brandConfig.address}
-            <br />
+          </p>
+          <p className="contact-operator">
             <Link to="/legal">{t('legal_hub_title')}</Link>
           </p>
         </section>
