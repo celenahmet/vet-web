@@ -1,0 +1,19 @@
+Created At: 2026-08-22T16:54:04+03:00
+Completed At: 2026-08-22T16:54:04+03:00
+File Path: `file:///Users/rumeysabuyuk/Desktop/vetweb/src/pages/Home.tsx`
+Total Lines: 793
+Total Bytes: 54671
+Showing lines 55 to 65
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+55:                 <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-indigo-200 dark:border-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-bold shadow-sm mb-6 bg-indigo-50/50 dark:bg-indigo-900/20 backdrop-blur-sm">
+56:                   <Sparkles size={16} />
+57:                   Evcil hayvan sahipleri ve klinikler için ilk yıl ücretsiz
+58:                 </motion.div>
+59:                 
+60:                 <motion.h1 variants={fadeInUp} className="font-extrabold leading-[1.1] tracking-tight mb-8 text-[var(--text-main)] max-w-3xl">
+61:                   <span className="text-5xl lg:text-[4.5rem] bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-vet-primary)] to-[var(--color-vet-accent)]">Veterito</span> 
+62:                   <span className="text-4xl lg:text-5xl leading-tight"> ile <br/>
+63:                   Hayvanseverler ve Klinikler <span className="whitespace-nowrap">Tek Çatıda.</span></span>
+64:                 </motion.h1>
+65:                 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

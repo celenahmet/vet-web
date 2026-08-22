@@ -1,9 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
-import { PawPrint, Menu, X, Globe, Sun, Moon } from 'lucide-react';
+import { Menu, X, Globe, Sun, Moon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-// Removing old Navbar.css dependency to fully embrace Tailwind + index.css global styles
+import logoUrl from '../assets/logo.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,6 +40,15 @@ const Navbar = () => {
     i18n.changeLanguage(nextLang);
   };
 
+  const navLinks = [
+    { to: "/features", label: "nav_features" },
+    // { to: "/pets", label: "nav_pets" },
+    { to: "/clinics", label: "nav_clinics" },
+    { to: "/pricing", label: "nav_pricing" },
+    { to: "/about", label: "nav_about" },
+    { to: "/blog", label: "nav_blog" }
+  ];
+
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -50,26 +59,21 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 z-50 group flex-1">
-            <div className="bg-[var(--color-vet-primary)] text-white p-2 rounded-xl group-hover:rotate-12 transition-transform shadow-lg shadow-[var(--color-vet-primary)]/20">
-              <PawPrint size={24} />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl md:text-2xl font-extrabold tracking-tight text-[var(--color-vet-primary)] dark:text-[var(--color-vet-primary-glow)]">
-                Veterito<span className="text-[var(--color-vet-accent)]">.</span>
-              </span>
-              <span className="text-[0.65rem] font-bold text-[var(--text-muted)] -mt-1 hidden md:block uppercase tracking-wider whitespace-nowrap">{t('nav_subtitle', 'Pati Dostunuzun Dijital Sağlık Asistanı')}</span>
-            </div>
+          <Link to="/" className="flex items-center z-50 flex-1 hover:opacity-80 transition-opacity">
+            <img src={logoUrl} alt="Veterito Logo" className="h-10 md:h-12 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center justify-center gap-4 xl:gap-8 whitespace-nowrap text-sm xl:text-base flex-none">
-            <Link to="/features" className={`font-bold transition-colors ${location.pathname === '/features' ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-muted)] hover:text-[var(--color-vet-primary)]'}`}>{t('nav_features')}</Link>
-            <Link to="/pets" className={`font-bold transition-colors ${location.pathname === '/pets' ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-muted)] hover:text-[var(--color-vet-primary)]'}`}>{t('nav_pets')}</Link>
-            <Link to="/clinics" className={`font-bold transition-colors ${location.pathname === '/clinics' ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-muted)] hover:text-[var(--color-vet-primary)]'}`}>{t('nav_clinics')}</Link>
-            <Link to="/pricing" className={`font-bold transition-colors ${location.pathname === '/pricing' ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-muted)] hover:text-[var(--color-vet-primary)]'}`}>{t('nav_pricing')}</Link>
-            <Link to="/about" className={`font-bold transition-colors ${location.pathname === '/about' ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-muted)] hover:text-[var(--color-vet-primary)]'}`}>{t('nav_about')}</Link>
-            <Link to="/blog" className={`font-bold transition-colors ${location.pathname === '/blog' ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-muted)] hover:text-[var(--color-vet-primary)]'}`}>{t('nav_blog')}</Link>
+            {navLinks.map((link) => (
+              <Link 
+                key={link.to}
+                to={link.to} 
+                className={`font-bold transition-colors ${location.pathname === link.to ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-muted)] hover:text-[var(--color-vet-primary)]'}`}
+              >
+                {t(link.label)}
+              </Link>
+            ))}
           </div>
 
           {/* Desktop Actions */}
@@ -89,7 +93,7 @@ const Navbar = () => {
               {i18n.language.toUpperCase()}
             </button>
             
-            <Link to="/download" className="hidden lg:flex btn-primary px-5 py-2.5 text-sm shadow-lg shadow-[var(--color-vet-primary)]/30 hover:scale-105 animate-pulse-glow hover:animate-none whitespace-nowrap">
+            <Link to="/pricing" className="hidden lg:flex bg-[var(--color-vet-secondary)] text-white hover:bg-[var(--color-vet-accent)] rounded-full font-semibold transition-all duration-300 px-5 py-2.5 text-sm shadow-sm hover:scale-105 whitespace-nowrap">
               {t('nav_explore')}
             </Link>
           </div>
@@ -113,13 +117,17 @@ const Navbar = () => {
             exit={{ opacity: 0, y: -20 }}
             className="absolute top-full left-0 right-0 glass-nav border-t border-[var(--border-color)] p-6 flex flex-col gap-4 shadow-xl md:hidden"
           >
-            <Link to="/features" onClick={() => setIsMenuOpen(false)} className={`block text-2xl font-bold ${location.pathname === '/features' ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-main)]'}`}>{t('nav_features')}</Link>
-            <Link to="/pets" onClick={() => setIsMenuOpen(false)} className={`block text-2xl font-bold ${location.pathname === '/pets' ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-main)]'}`}>{t('nav_pets')}</Link>
-            <Link to="/clinics" onClick={() => setIsMenuOpen(false)} className={`block text-2xl font-bold ${location.pathname === '/clinics' ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-main)]'}`}>{t('nav_clinics')}</Link>
-            <Link to="/pricing" onClick={() => setIsMenuOpen(false)} className={`block text-2xl font-bold ${location.pathname === '/pricing' ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-main)]'}`}>{t('nav_pricing')}</Link>
-            <Link to="/about" onClick={() => setIsMenuOpen(false)} className={`block text-2xl font-bold ${location.pathname === '/about' ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-main)]'}`}>{t('nav_about')}</Link>
-            <Link to="/blog" onClick={() => setIsMenuOpen(false)} className={`block text-2xl font-bold ${location.pathname === '/blog' ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-main)]'}`}>{t('nav_blog')}</Link>
-            <Link to="/download" onClick={() => setIsMenuOpen(false)} className="btn-primary w-full justify-center text-lg py-4 mt-4 shadow-xl shadow-[var(--color-vet-primary)]/30 animate-pulse-glow">
+            {navLinks.map((link) => (
+              <Link 
+                key={link.to}
+                to={link.to}
+                onClick={() => setIsMenuOpen(false)} 
+                className={`block text-2xl font-bold ${location.pathname === link.to ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-main)]'}`}
+              >
+                {t(link.label)}
+              </Link>
+            ))}
+            <Link to="/pricing" onClick={() => setIsMenuOpen(false)} className="flex items-center bg-[var(--color-vet-secondary)] text-white hover:bg-[var(--color-vet-accent)] rounded-full font-semibold transition-all duration-300 w-full justify-center text-lg py-4 mt-4 shadow-sm">
               {t('nav_explore')}
             </Link>
             <div className="flex items-center justify-between mt-4">
@@ -140,3 +148,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
