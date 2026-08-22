@@ -1,11 +1,11 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
-import { Heart, Activity, Globe, Users, Target, ShieldCheck, HeartPulse } from 'lucide-react';
+import { Heart, Globe, Users, Target, ShieldCheck, HeartPulse } from 'lucide-react';
 import SEO from '../components/SEO';
-import { useTranslation } from 'react-i18next';
+
 
 export default function About() {
-  const { t } = useTranslation();
+  
   
   return (
     <div className="min-h-screen pt-24 relative overflow-hidden bg-[var(--bg-main)]">

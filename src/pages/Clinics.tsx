@@ -1,13 +1,13 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 import { 
   Building2, Calendar, Archive, Megaphone, Stethoscope, MapPin, 
-  Award, ArrowRight, Grid, Heart, ShieldCheck, FileText, Activity, 
-  CheckCircle, Bell, Clock, MoreVertical, LayoutGrid, AlertCircle, 
-  Phone, Search, MessageCircle, ChevronRight, Play, Check
+  Award, ArrowRight, Grid, Heart, FileText, Activity, 
+  CheckCircle, Bell, LayoutGrid, 
+  Phone, Search, MessageCircle, ChevronRight
 } from 'lucide-react';
 import SEO from '../components/SEO';
-import { Link } from 'react-router-dom';
+
 import Footer from '../components/Footer';
 
 const AnimatedBorder = ({ color, rx = "32" }: { color: string, rx?: string }) => (

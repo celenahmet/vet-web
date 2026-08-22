@@ -3,11 +3,11 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { 
   Calendar, Stethoscope, Users, CheckCircle2, 
   ShieldCheck, Activity, QrCode, PhoneCall, 
-  PawPrint, Bell, Search, FileText, Share2, Heart, MessageCircle, MoreHorizontal,
+  PawPrint, Bell, FileText, Share2, Heart, MessageCircle, MoreHorizontal,
   ArrowLeft, Syringe, Bookmark, Plus, ArrowRight, Image as ImageIcon, Menu,
   MapPin, Globe, Building2
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+
 import SEO from '../components/SEO';
 
 export default function Features() {

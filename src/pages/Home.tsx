@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import {
   Heart, Activity, QrCode, ArrowRight,
   Users, Stethoscope, CheckCircle2,
-  PawPrint, Calendar, PhoneCall, ShieldCheck,
+  PawPrint, Calendar, ShieldCheck,
   Check, Bell, MessageCircle, Share2, MoreHorizontal, Sparkles
 } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import SEO from '../components/SEO';
 
 export default function Home() {

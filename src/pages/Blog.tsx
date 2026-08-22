@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar, Clock, Cat, Dog, Utensils, HeartPulse, Building2, Users } from 'lucide-react';
+import { ArrowRight, Clock, Cat, Dog, Utensils, HeartPulse, Building2, Users } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
