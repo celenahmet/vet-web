@@ -11,7 +11,8 @@ const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Clinics = lazy(() => import('./pages/Clinics'));
 const Pricing = lazy(() => import('./pages/Pricing'));
-const Legal = lazy(() => import('./pages/Legal'));
+const LegalHub = lazy(() => import('./pages/LegalHub'));
+const LegalDocument = lazy(() => import('./pages/LegalDocument'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Download = lazy(() => import('./pages/Download'));
 const ClinicPage = lazy(() => import('./pages/ClinicPage'));
@@ -31,9 +32,29 @@ function App() {
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/clinics" element={<Clinics />} />
             <Route path="/pricing" element={<Pricing />} />
-            <Route path="/privacy" element={<Legal />} />
-            <Route path="/terms" element={<Legal />} />
-            <Route path="/deletion" element={<Legal />} />
+            {/* HUKUKİ SAYFALAR (22.08.2026)
+                ⚠️ Adresler `data/legal` içindeki `slug` alanlarıyla BİREBİR aynı olmak
+                zorunda; belge kendi adresini orada tanımlıyor ve toplu sayfa oradan
+                bağlantı üretiyor. Buradaki bir yazım hatası, listede görünen ama
+                açılmayan bir sözleşme demek.
+
+                ⚠️ `/deletion` ESKİ ADRES, silinmedi. Google Play hesap silme bağlantısı
+                bu adrese verilmiş olabilir; kırılırsa doğrudan red sebebi olur.
+                `LegalDocument` onu `/account-deletion` belgesine eşliyor. */}
+            <Route path="/legal" element={<LegalHub />} />
+            <Route path="/privacy" element={<LegalDocument />} />
+            <Route path="/kvkk" element={<LegalDocument />} />
+            <Route path="/consent" element={<LegalDocument />} />
+            <Route path="/terms" element={<LegalDocument />} />
+            <Route path="/service-agreement" element={<LegalDocument />} />
+            <Route path="/cookies" element={<LegalDocument />} />
+            <Route path="/account-deletion" element={<LegalDocument />} />
+            <Route path="/child-safety" element={<LegalDocument />} />
+            <Route path="/deletion" element={<LegalDocument />} />
+            <Route path="/gizlilik" element={<LegalDocument />} />
+            <Route path="/cerez" element={<LegalDocument />} />
+            <Route path="/kvkk-aydinlatma" element={<LegalDocument />} />
+            <Route path="/account-deletion-request" element={<LegalDocument />} />
             <Route path="/download" element={<Download />} />
             {/* Klinik vitrini: /@kullaniciadi
                 ⚠️ react-router v6 parcali parametre (":@kullanici") DESTEKLEMIYOR;

@@ -37,11 +37,15 @@ const Footer = () => {
             <Link to="/about">{t('nav_about')}</Link>
             <Link to="/blog">{t('nav_blog')}</Link>
           </div>
+          {/* ⚠️ Alt bilgide TÜM sözleşmeler değil, en çok arananlar duruyor; gerisi
+              "Tüm sözleşmeler" bağlantısının arkasında. Sekiz maddelik bir alt bilgi
+              sütunu, aranan üç bağlantıyı da bulunmaz hâle getirirdi. */}
           <div className="link-group">
             <h3>{t('footer_legal')}</h3>
             <Link to="/privacy">{t('footer_privacy')}</Link>
             <Link to="/terms">{t('footer_terms')}</Link>
-            <Link to="/deletion">{t('footer_deletion')}</Link>
+            <Link to="/account-deletion">{t('footer_deletion')}</Link>
+            <Link to="/legal">{t('footer_all_legal')}</Link>
           </div>
           <div className="link-group">
             <h3>{t('footer_contact')}</h3>

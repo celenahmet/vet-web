@@ -42,3 +42,245 @@
 .legal-body a:hover {
   color: var(--color-primary-hover);
 }
+
+/* ==========================================================================
+   HUKUKİ BELGELER (22.08.2026)
+
+   ⚠️ Var olan `.legal-page` / `.legal-container` / `.legal-content` kuralları
+   DEĞİŞTİRİLMEDİ, üzerine eklendi. O kuralları sitenin geri kalanıyla birlikte
+   başka biri yazdı; ezmek yerine genişletmek çakışmayı önlüyor.
+   ========================================================================== */
+
+.legal-breadcrumb {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.legal-breadcrumb a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.legal-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.legal-header {
+  margin-bottom: 8px;
+}
+
+.legal-meta {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin: 0 0 24px;
+}
+
+.legal-section {
+  margin-top: 32px;
+}
+
+.legal-body h2 {
+  font-size: 1.35rem;
+  line-height: 1.4;
+  margin: 0 0 12px;
+  color: var(--color-text);
+  scroll-margin-top: 96px;
+}
+
+.legal-num {
+  color: var(--color-primary);
+  margin-right: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.legal-body strong {
+  color: var(--color-text);
+  font-weight: 650;
+}
+
+.legal-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background-color: var(--color-bg-secondary, rgba(0, 0, 0, 0.05));
+  word-break: break-word;
+}
+
+.legal-list,
+.legal-steps {
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+
+.legal-list li,
+.legal-steps li {
+  margin-bottom: 8px;
+}
+
+/* Adım listesi numaralı ve biraz daha ferah: sırayla yapılacak bir iş anlatıyor. */
+.legal-steps {
+  counter-reset: legal-step;
+}
+
+.legal-steps li {
+  margin-bottom: 12px;
+}
+
+.legal-callout {
+  border-left: 4px solid var(--color-primary);
+  background-color: var(--color-bg-secondary, rgba(0, 0, 0, 0.04));
+  padding: 16px 20px;
+  border-radius: 0 var(--radius-md, 10px) var(--radius-md, 10px) 0;
+  margin: 0 0 24px;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* ⚠️ Tablo kendi kabında kayıyor; sayfa gövdesi yana taşmıyor. */
+.legal-table-wrap {
+  overflow-x: auto;
+  margin: 0 0 24px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.legal-table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: 0.98rem;
+}
+
+.legal-table th,
+.legal-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.legal-table th {
+  background-color: var(--color-bg-secondary, rgba(0, 0, 0, 0.04));
+  color: var(--color-text);
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.legal-footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+
+.legal-related h3 {
+  font-size: 1rem;
+  margin: 20px 0 8px;
+  color: var(--color-text);
+}
+
+.legal-related ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.legal-related a {
+  color: var(--color-primary);
+}
+
+/* --- Toplu sayfa --- */
+
+.legal-hub-header {
+  margin-bottom: 40px;
+}
+
+.legal-hub-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  color: var(--color-primary);
+}
+
+.legal-hub-header p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.legal-hub-group {
+  margin-bottom: 40px;
+}
+
+.legal-hub-group h2 {
+  font-size: 1.2rem;
+  margin: 0 0 16px;
+  color: var(--color-text);
+}
+
+.legal-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.legal-card {
+  display: block;
+  padding: 20px;
+  border-radius: var(--radius-lg, 14px);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.legal-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.legal-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+
+.legal-card p {
+  margin: 0 0 12px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.legal-card-date {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  opacity: 0.8;
+}
+
+.legal-hub-contact {
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .legal-content {
+    padding: 24px 20px;
+  }
+
+  .legal-content h1,
+  .legal-hub-header h1 {
+    font-size: 1.9rem;
+  }
+
+  .legal-body h2 {
+    font-size: 1.2rem;
+  }
+}
