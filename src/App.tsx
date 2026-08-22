@@ -21,6 +21,7 @@ const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Clinics = lazy(() => import('./pages/Clinics'));
 const Pricing = lazy(() => import('./pages/Pricing'));
+const Contact = lazy(() => import('./pages/Contact'));
 const LegalHub = lazy(() => import('./pages/LegalHub'));
 const LegalDocument = lazy(() => import('./pages/LegalDocument'));
 const NotFound = lazy(() => import('./pages/NotFound'));
@@ -52,6 +53,12 @@ function App() {
                 ⚠️ `/deletion` ESKİ ADRES, silinmedi. Google Play hesap silme bağlantısı
                 bu adrese verilmiş olabilir; kırılırsa doğrudan red sebebi olur.
                 `LegalDocument` onu `/account-deletion` belgesine eşliyor. */}
+            {/* ⚠️ APPLE ISTIYOR: App Store Connect'te Support URL zorunlu ve o
+                adreste gercek bir iletisim yolu bulunmali. Alt bilgideki mailto tek
+                basina yetmiyor; inceleyici adresi acip sayfa gormek istiyor.
+                /iletisim eski/Turkce adres olarak ayni sayfaya gidiyor. */}
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/iletisim" element={<Contact />} />
             <Route path="/legal" element={<LegalHub />} />
             <Route path="/privacy" element={<LegalDocument />} />
             <Route path="/kvkk" element={<LegalDocument />} />

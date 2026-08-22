@@ -43,6 +43,7 @@ const Footer = () => {
             </div>
             <div className="flex flex-col gap-3">
               <h3 className="font-semibold text-slate-900 dark:text-white mb-2">{t('footer_contact')}</h3>
+            <Link to="/contact" className="text-sm hover:text-emerald-600 transition-colors">{t('contact_title')}</Link>
               <a href={`mailto:${brandConfig.social.contactEmail}`} className="text-sm hover:text-emerald-600 transition-colors">{brandConfig.social.contactEmail}</a>
             </div>
           </div>

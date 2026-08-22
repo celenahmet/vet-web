@@ -284,3 +284,56 @@
     font-size: 1.2rem;
   }
 }
+
+/* --- İletişim sayfası (23.08.2026) --- */
+
+.contact-primary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  color: inherit;
+}
+
+.contact-primary h3 {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+  color: var(--color-primary);
+  word-break: break-all;
+}
+
+.contact-primary p {
+  margin: 0;
+}
+
+.contact-response {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.contact-topic h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-topic code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background-color: var(--color-bg-secondary, rgba(0, 0, 0, 0.05));
+}
+
+.contact-topic a {
+  font-size: 0.9rem;
+  color: var(--color-primary);
+}
+
+.contact-operator {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+}

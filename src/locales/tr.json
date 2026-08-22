@@ -320,5 +320,18 @@
   "legal_hub_contact": "Belgelerle ilgili sorularınız için:",
   "legal_effective_date": "Yürürlük tarihi",
   "legal_related": "İlgili belgeler",
-  "footer_all_legal": "Tüm sözleşmeler"
+  "footer_all_legal": "Tüm sözleşmeler",
+  "contact_title": "İletişim",
+  "contact_desc": "Sorularınız, başvurularınız ve bildirimleriniz için tek adresimiz. Yazdığınız her ileti bir insana ulaşır.",
+  "contact_email_hint": "Doğrudan yazabilirsiniz. Konu satırını belirtirseniz daha hızlı dönebiliriz.",
+  "contact_response": "İletileri en geç 3 iş günü içinde yanıtlıyoruz. Çocuk güvenliği bildirimleri 24 saat içinde önceliklendirilir; yasal başvurular için azami süre 30 gündür.",
+  "contact_topics": "Ne için yazıyorsunuz?",
+  "contact_subject": "Konu satırı",
+  "contact_topic_support": "Destek ve hata bildirimi",
+  "contact_topic_privacy": "Kişisel veri başvurusu",
+  "contact_topic_deletion": "Hesap silme",
+  "contact_topic_child": "Çocuk güvenliği",
+  "contact_topic_clinic": "Klinik ve kurumsal",
+  "contact_read_more": "Ayrıntılı bilgi",
+  "contact_operator": "Platform işletmecisi"
 }

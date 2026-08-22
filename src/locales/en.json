@@ -320,5 +320,18 @@
   "legal_hub_contact": "For questions about these documents:",
   "legal_effective_date": "Effective date",
   "legal_related": "Related documents",
-  "footer_all_legal": "All legal documents"
+  "footer_all_legal": "All legal documents",
+  "contact_title": "Contact",
+  "contact_desc": "One address for your questions, requests and reports. Every message reaches a person.",
+  "contact_email_hint": "Write to us directly. Naming the subject helps us reply faster.",
+  "contact_response": "We reply within 3 business days at the latest. Child safety reports are prioritised within 24 hours; the statutory maximum for legal requests is 30 days.",
+  "contact_topics": "What are you writing about?",
+  "contact_subject": "Subject line",
+  "contact_topic_support": "Support and bug reports",
+  "contact_topic_privacy": "Personal data requests",
+  "contact_topic_deletion": "Account deletion",
+  "contact_topic_child": "Child safety",
+  "contact_topic_clinic": "Clinics and business",
+  "contact_read_more": "Read more",
+  "contact_operator": "Platform operator"
 }
