@@ -144,11 +144,17 @@ export default function BlogPost() {
         {yazi.sss.length ? (
           <section className="yazi-sss">
             <h2>Sık sorulanlar</h2>
+            {/*
+              ⚠️ ACILIR KAPANIR DEGIL (Ahmet, 23.08.2026): "sikca sorulan sorular
+              acilir kapanirda degil de direkt gozukse tasarimi ayri gozukur".
+              Ayrica kapali metin arama motoru icin de zayif: acilir kutudaki cevap
+              sayfada var ama okuyucunun gormesi bir tiklamaya bagli.
+            */}
             {yazi.sss.map((s) => (
-              <details key={s.soru}>
-                <summary>{s.soru}</summary>
+              <div className="sss-kart" key={s.soru}>
+                <h3>{s.soru}</h3>
                 <p>{s.cevap}</p>
-              </details>
+              </div>
             ))}
           </section>
         ) : null}

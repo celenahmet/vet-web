@@ -43,8 +43,15 @@
 .yazi-govde p { margin: 0 0 20px; }
 .yazi-govde h2 { font-size: 1.55rem; line-height: 1.3; margin: 40px 0 16px; }
 .yazi-govde h3 { font-size: 1.15rem; margin: 28px 0 10px; color: var(--color-vet-accent); }
-.yazi-govde ul { margin: 0 0 22px; padding-left: 22px; }
-.yazi-govde li { margin-bottom: 9px; }
+/* ⚠️ Madde isaretleri ACIKCA tanimlaniyor (Ahmet, 23.08.2026): sitede baska bir
+   yerdeki liste sifirlamasi govdeye sizabiliyordu ve maddeler isaretsiz cikiyordu. */
+.yazi-govde ul {
+  margin: 0 0 22px;
+  padding-left: 24px;
+  list-style: disc outside;
+}
+.yazi-govde li { margin-bottom: 9px; list-style: inherit; }
+.yazi-govde li::marker { color: var(--color-vet-primary); }
 .yazi-govde strong { font-weight: 700; }
 
 .yazi-uyari {
@@ -68,22 +75,23 @@
   padding: 12px 14px; border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.07));
 }
 
-/* --- SSS --- */
-.yazi-sss { margin-top: 48px; }
-.yazi-sss h2 { margin-bottom: 18px; }
-.yazi-sss details {
-  border: 1px solid var(--color-border, rgba(0,0,0,0.08));
-  border-radius: 12px; padding: 4px 18px; margin-bottom: 12px;
-  background: var(--color-surface);
+/* --- SSS: hepsi acik, ayri tasarim --- */
+.yazi-sss { margin-top: 52px; }
+.yazi-sss > h2 { margin-bottom: 20px; }
+.sss-kart {
+  border: 1px solid var(--border-color, rgba(0,0,0,0.08));
+  border-left: 4px solid var(--color-vet-primary);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  background: var(--bg-surface, #fff);
 }
-.yazi-sss summary {
-  cursor: pointer; font-weight: 600; padding: 14px 0; list-style: none;
-  display: flex; justify-content: space-between; gap: 12px;
+.sss-kart h3 {
+  font-size: 1.02rem;
+  margin: 0 0 8px;
+  color: var(--text-main, #0f172a);
 }
-.yazi-sss summary::-webkit-details-marker { display: none; }
-.yazi-sss summary::after { content: '+'; color: var(--color-vet-secondary); font-size: 1.3rem; line-height: 1; }
-.yazi-sss details[open] summary::after { content: '\2212'; }
-.yazi-sss details p { margin: 0 0 16px; color: var(--color-text-muted); }
+.sss-kart p { margin: 0; color: var(--text-muted, #475569); }
 
 .yazi-kaynaklar { margin-top: 40px; }
 .yazi-kaynaklar ul { padding-left: 20px; }

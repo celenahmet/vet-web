@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import {
   ArrowRight, BarChart3, Cat, Clock, Dog, HeartPulse, Mail, Star, Users, Utensils, Building2,
 } from 'lucide-react';
@@ -47,27 +46,17 @@ export default function Blog() {
 
       {oneCikan ? (
         <section className="container blog-one-cikan">
-          <motion.div
-            className="one-cikan-metin"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
+          <div className="one-cikan-metin belir">
             <span className="one-cikan-etiket">ÖNE ÇIKAN YAZI</span>
             <h1>{oneCikan.baslik}</h1>
             <p>{oneCikan.ozet}</p>
             <Link to={`/blog/${oneCikan.slug}`} className="one-cikan-dugme">
               Yazıyı Oku <ArrowRight size={18} />
             </Link>
-          </motion.div>
-          <motion.div
-            className="one-cikan-gorsel"
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-          >
+          </div>
+          <div className="one-cikan-gorsel belir gecikmeli">
             <BlogKapak ad={oneCikan.kapak} kategori={oneCikan.kategori} alt={oneCikan.baslik} boyut={64} />
-          </motion.div>
+          </div>
         </section>
       ) : null}
 

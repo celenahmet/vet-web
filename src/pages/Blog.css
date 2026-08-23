@@ -307,3 +307,19 @@
 .blog-kart-gorsel .kapak-yedek { aspect-ratio: 16 / 10; }
 .blog-liste-kart .kapak-yedek { width: 84px; height: 64px; border-radius: 10px; flex-shrink: 0; }
 .kapak-yedek svg { opacity: 0.9; }
+
+
+/*
+ * ⚠️ FRAMER-MOTION KALDIRILDI (23.08.2026). Blog sayfasi yalniz iki solma
+ * animasyonu icin 120 kB'lik bir kutuphane cekiyordu. Ayni etki CSS ile bedelsiz.
+ * Hareket azaltma tercihi olan kullanicida animasyon hic calismiyor.
+ */
+.belir { animation: belir 0.4s ease both; }
+.belir.gecikmeli { animation-delay: 0.1s; }
+@keyframes belir {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .belir { animation: none; }
+}

@@ -65,7 +65,7 @@ function blokHtml(b) {
   }
 }
 
-function kafaDegistir(sablon, { baslik, aciklama, adres, tip, jsonLd }) {
+function kafaDegistir(sablon, { baslik, aciklama, adres, tip, jsonLd, onYukle }) {
   let html = sablon;
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${kac(baslik)}</title>`);
   html = html.replace(
@@ -80,7 +80,8 @@ function kafaDegistir(sablon, { baslik, aciklama, adres, tip, jsonLd }) {
     `<meta property="og:url" content="${adres}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     ...jsonLd.map((v) => `<script type="application/ld+json">${JSON.stringify(v)}</script>`),
-  ].join('\n    ');
+    onYukle ?? '',
+  ].filter(Boolean).join('\n    ');
   return html.replace('</head>', `    ${ek}\n  </head>`);
 }
 
@@ -112,6 +113,33 @@ if (!existsSync(sablonYolu)) {
   process.exit(1);
 }
 const sablon = readFileSync(sablonYolu, 'utf8');
+
+/**
+ * ⚠️ "Loading..." BOSLUGU (23.08.2026, Ahmet cihazda gordu):
+ * App.tsx butun rotalari `lazy()` ile yukluyor. Prerender edilen gercek icerik
+ * ekranda duruyor, React acilinca onu siliyor ve rota parcasi inene kadar cıplak
+ * "Loading..." yazisi kaliyor. Kullanicinin gordugu sey: icerik, sonra bosluk,
+ * sonra tekrar icerik.
+ *
+ * Cozum: sayfanin ihtiyac duydugu parcalari BAS KISMINDA on yukluyoruz. Boylece
+ * rota parcasi ana paketle ayni anda iniyor ve Suspense boslugu milisaniyeye
+ * dusuyor. App.tsx'e dokunulmuyor; o dosya web deposunda ortak alan.
+ */
+function onYuklemeler(desenler) {
+  const varliklar = readdirSync(join(KOK, 'dist/assets'));
+  const satirlar = [];
+  for (const desen of desenler) {
+    for (const dosya of varliklar) {
+      if (!dosya.startsWith(desen)) continue;
+      if (dosya.endsWith('.js')) satirlar.push(`<link rel="modulepreload" crossorigin href="/assets/${dosya}">`);
+      else if (dosya.endsWith('.css')) satirlar.push(`<link rel="stylesheet" crossorigin href="/assets/${dosya}">`);
+    }
+  }
+  return satirlar.join('\n    ');
+}
+
+const YAZI_ON_YUKLEME = onYuklemeler(['BlogPost-', 'BlogKapak-']);
+const LISTE_ON_YUKLEME = onYuklemeler(['Blog-', 'BlogKapak-']);
 
 // --- Tek tek yazilar ---
 for (const y of yazilar) {
@@ -155,7 +183,7 @@ for (const y of yazilar) {
   ].join('\n');
 
   const html = govdeDegistir(
-    kafaDegistir(sablon, { baslik: `${y.baslik} | Veterito`, aciklama: y.ozet, adres, tip: 'article', jsonLd: [makale, ...sss] }),
+    kafaDegistir(sablon, { baslik: `${y.baslik} | Veterito`, aciklama: y.ozet, adres, tip: 'article', jsonLd: [makale, ...sss], onYukle: YAZI_ON_YUKLEME }),
     govde,
   );
   yaz(join(KOK, 'dist/blog', y.slug, 'index.html'), html);
@@ -182,6 +210,7 @@ yaz(
       adres: `${SITE}/blog`,
       tip: 'website',
       jsonLd: [],
+      onYukle: LISTE_ON_YUKLEME,
     }),
     listeGovde,
   ),
