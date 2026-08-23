@@ -7,7 +7,7 @@ export const kedilerKacYilYasar: BlogYazi = {
   kategori: 'Kedi',
   tarih: '2026-08-23',
   bloklar: [
-    { kind: 'paragraf', metin: 'Ev kedileri ortalama **13 ile 17 yıl** yaşar. Bakımı düzenli olan bir kedi 20 yaşını görebilir. Tamamen dışarıda yaşayan kedilerde ise ortalama **3 ile 6 yıl** arasında konuşuyoruz.' },
+    { kind: 'paragraf', metin: 'Ev kedileri ortalama **13 ile 17 yıl** yaşayabilmektedir. Bakımı düzenli olan bir kedi 20 yaşını görebilir. Tamamen dışarıda yaşayan kedilerde ise ortalama **3 ile 6 yıl** arasında konuşuyoruz.' },
     { kind: 'paragraf', metin: 'Aradaki fark üç katı aşıyor ve bu farkı ırk açıklamıyor. Aynı tekir kedi, evde yaşadığında dışarıda yaşadığının iki üç katı ömür sürüyor. Bu yazı, o farkın nereden geldiğini ve hangi kısmının sizin elinizde olduğunu anlatıyor.' },
 
     { kind: 'baslik', metin: 'Ömrü belirleyen şey ırk değil, kapı' },
@@ -19,13 +19,13 @@ export const kedilerKacYilYasar: BlogYazi = {
     ]},
     { kind: 'paragraf', metin: 'Tablodaki dört satırın hepsi aynı hayvan. Değişen tek şey riske ne kadar maruz kaldığı. Ev kedisi trafiğe çıkmıyor, kavgada ısırılmıyor, aç kalmıyor ve hastalandığında biri fark ediyor. Dördü de ömrü doğrudan uzatan şeyler ve dördü de kapının hangi tarafında durduğuna bağlı.' },
 
-    { kind: 'yanilgi', baslik: '"Sokak kedileri daha dayanıklıdır" yanılgısı', metin: 'Sokakta yaşayan kediler dayanıklı oldukları için değil, dayanıksızları erken elendiği için güçlü görünür. Gördüğünüz kedi hayatta kalanı; hayatta kalamayanı zaten görmüyorsunuz. Bu, dayanıklılık değil seçilim.' },
+    { kind: 'yanilgi', baslik: '"Sokak kedileri daha dayanıklıdır" yanılgısı', metin: 'Sokakta yaşayan kediler dayanıklı oldukları için değil, dayanıksızları erken elendiği için güçlü görünür. Gördüğünüz kedi hayatta kalanı; hayatta kalamayanı zaten görmüyorsunuz. Bu, dayanıklılık değil seçilimdir.' },
 
     { kind: 'baslik', metin: 'Kısırlaştırma bir kısıtlama değil, ömre yapılan en büyük tek müdahale' },
-    { kind: 'paragraf', metin: 'Kısırlaştırılmış kediler istatistiklerde açık ara önde ve sebebi iki katmanlı.' },
+    { kind: 'paragraf', metin: 'Kısırlaştırılmış kedilerin daha uzun yaşadığı bildiriliyor ve bunun iki katmanlı bir açıklaması var.' },
     { kind: 'paragraf', metin: 'Birincisi doğrudan tıbbi: dişilerde rahim iltihabı ve meme tümörü riski, erkeklerde testis tümörü ya tamamen ortadan kalkıyor ya da belirgin biçimde düşüyor. İkincisi davranışsal ve aslında daha belirleyici: kısırlaştırılan kedi kaçmayı, uzağa gitmeyi ve kavga etmeyi büyük ölçüde bırakıyor. Kavga bırakılınca ısırıkla bulaşan hastalıklar da bırakılıyor.' },
     { kind: 'paragraf', metin: 'Yani kısırlaştırma yalnız üremeyi durdurmuyor, kediyi ömrünü kısaltan davranışlardan çıkarıyor.' },
-    { kind: 'yanilgi', baslik: '"Kısırlaştırma kediyi şişmanlatır" yanılgısı', metin: 'Kısırlaştırma sonrası enerji ihtiyacı düşüyor. Porsiyon aynı kalırsa kedi kilo alıyor. Şişmanlatan ameliyat değil, güncellenmeyen mama miktarı. Kontrolde veteriner hekiminize yeni porsiyonu sorun, mesele orada bitiyor.' },
+    { kind: 'yanilgi', baslik: '"Kısırlaştırma kediyi şişmanlatır" yanılgısı', metin: 'Kısırlaştırma sonrası enerji ihtiyacı düşüyor. Porsiyon aynı kalırsa kedi kilo alıyor. Şişmanlatan ameliyat değil, güncellenmeyen mama miktarıdır. Kontrolde veteriner hekiminize yeni porsiyonu sorun, mesele orada bitiyor.' },
 
     { kind: 'baslik', metin: 'Kilonun ölçüsü terazi değil, kaburga' },
     { kind: 'paragraf', metin: 'Fazla kilo kedilerde şeker hastalığı, eklem sorunları ve karaciğer yağlanması riskini artırıyor. Ama "kaç kilo olmalı" sorusunun tek bir cevabı yok, çünkü iskelet yapısı kediden kediye değişiyor.' },
@@ -33,10 +33,10 @@ export const kedilerKacYilYasar: BlogYazi = {
 
     { kind: 'baslik', metin: 'Ağızda başlayan sorun ağızda kalmıyor' },
     { kind: 'paragraf', metin: 'Diş taşı ve diş eti iltihabı, kedi bakımında en çok atlanan başlık. Atlanmasının sebebi de belli: kedi şikâyet etmiyor, ağzını açıp göstermiyor ve sahibi bir sorun olduğunu ancak koku ya da yeme zorluğu başlayınca fark ediyor.' },
-    { kind: 'paragraf', metin: 'Kronik ağız enfeksiyonu vücutta sürekli bir iltihap yükü oluşturuyor. Bu yük uzun vadede böbrek ve kalp sağlığını etkiliyor. Yani ağız bakımı estetik bir konu değil, ömürle ilgili bir konu.' },
+    { kind: 'paragraf', metin: 'Kronik ağız enfeksiyonu vücutta sürekli bir iltihap yükü oluşturuyor. Bu yük uzun vadede böbrek ve kalp sağlığını etkiliyor. Yani ağız bakımı estetik bir konu değil, ömürle ilgili bir konudur.' },
 
     { kind: 'baslik', metin: 'Tahlil gözlemin yerine geçmez, gözlem de tahlilin' },
-    { kind: 'paragraf', metin: 'Kediler rahatsızlığını saklamakta ustadır. Bu bir kişilik özelliği değil, avlanan bir hayvanın zayıflığını belli etmeme refleksi. Sonucu şu: siz bir şey fark ettiğinizde hastalık genellikle başlamış olmuyor, ilerlemiş oluyor.' },
+    { kind: 'paragraf', metin: 'Kediler rahatsızlığını saklamakta ustadır. Bu bir kişilik özelliği değil, avlanan bir hayvanın zayıflığını belli etmeme refleksidir. Sonucu şu: siz bir şey fark ettiğinizde hastalık genellikle başlamış olmuyor, ilerlemiş oluyor.' },
     { kind: 'paragraf', metin: 'Böbrek yetmezliği bunun en net örneği. Böbrek fonksiyonunun büyük kısmı kaybedilmeden dışarıdan belirti görülmüyor. Kan ve idrar tahlili ise değişimi belirtiler başlamadan önce gösterebiliyor. Bu yüzden yılda bir kontrol, yaşlı kedide altı ayda bir kontrol öneriliyor; tahlil, gözlemin göremediğini görüyor.' },
     { kind: 'paragraf', metin: 'Tersi de doğru: tahlil de her şeyi göstermiyor. Kedinin gece huzursuzlanması, yüksek yerlere çıkmayı bırakması ya da kumun dışına yapmaya başlaması hiçbir tahlilde çıkmaz. İkisi birbirinin yerine geçmiyor, birbirini tamamlıyor.' },
 
@@ -73,7 +73,7 @@ export const kedilerKacYilYasar: BlogYazi = {
       ['Scottish Fold', '11-14 yıl', 'Kıkırdak ve eklem sorunları'],
       ['İran (Pers)', '10-15 yıl', 'Böbrek kisti (PKD), solunum sorunları'],
     ]},
-    { kind: 'paragraf', metin: 'Melez kediler genellikle saf ırklardan uzun yaşıyor. Sebep basit: kalıtsal hastalıkların aynı hayvanda birikme ihtimali daha düşük.' },
+    { kind: 'paragraf', metin: 'Melez kedilerin saf ırklardan daha uzun yaşadığı genel olarak kabul ediliyor. Sebep basit: kalıtsal hastalıkların aynı hayvanda birikme ihtimali daha düşük.' },
 
     { kind: 'baslik', metin: 'Yaygın yanlışlar ve doğruları' },
     { kind: 'tablo', basliklar: ['Yaygın yanlış', 'Doğrusu'], satirlar: [

@@ -8,7 +8,7 @@ export const kediAsiTakvimi: BlogYazi = {
   tarih: '2026-08-23',
   bloklar: [
     { kind: 'paragraf', metin: 'Yavru kedilerde aşı takvimi genellikle **8-9 haftalıkken** karma aşı ile başlıyor, **3-4 hafta arayla** tekrarlanıyor ve **kuduz aşısı 12. haftadan sonra** ekleniyor. Yetişkinlikte ise yıllık tekrar düzeni kuruluyor.' },
-    { kind: 'paragraf', metin: 'Bu bir şablon, reçete değil. Kedinin yaşı, sağlık durumu, dışarı çıkıp çıkmadığı ve annesinden aldığı bağışıklık takvimi değiştiriyor. Aşağıda hem genel düzeni hem de en sık yapılan hataları bulacaksınız.' },
+    { kind: 'paragraf', metin: 'Bu bir şablon, reçete değildir. Kedinin yaşı, sağlık durumu, dışarı çıkıp çıkmadığı ve annesinden aldığı bağışıklık takvimi değiştiriyor. Aşağıda hem genel düzeni hem de en sık yapılan hataları bulacaksınız.' },
 
     { kind: 'baslik', metin: 'Yavru kedide aşı takvimi' },
     { kind: 'tablo', basliklar: ['Yaş', 'Yapılan', 'Not'], satirlar: [
@@ -34,7 +34,7 @@ export const kediAsiTakvimi: BlogYazi = {
     { kind: 'baslik', metin: 'Yetişkin kedide düzen' },
     { kind: 'paragraf', metin: 'Yavruluk serisi tamamlandıktan sonra yıllık tekrar düzenine geçiliyor. Kuduz aşısının tekrarı Türkiye\'de yasal bir yükümlülük ve kayıt altına alınıyor.' },
     { kind: 'paragraf', metin: 'Karma aşının tekrar sıklığı konusunda ise uygulama ürüne ve kedinin yaşam biçimine göre değişebiliyor: ev içinde yaşayan ve hiç dışarı çıkmayan bir kedide düzen farklı kurulabiliyor. Bu kararı, kediyi gören veteriner hekim veriyor.' },
-    { kind: 'yanilgi', baslik: '"Ev kedisi, aşıya gerek yok" yanılgısı', metin: 'Ev kedisi risksiz değil, riski düşük. Panlökopeni virüsü ayakkabı tabanıyla eve girebiliyor, dayanıklı bir virüs. Ayrıca kedinin bir gün kaçması, kliniğe ya da pansiyona gitmesi, eve yeni bir hayvan gelmesi ihtimali var. Kuduz aşısı ise yaşam biçiminden bağımsız olarak yasal bir yükümlülük.' },
+    { kind: 'yanilgi', baslik: '"Ev kedisi, aşıya gerek yok" yanılgısı', metin: 'Ev kedisi risksiz değildir, riski düşüktür. Panlökopeni virüsü ayakkabı tabanıyla eve girebiliyor, dayanıklı bir virüs. Ayrıca kedinin bir gün kaçması, kliniğe ya da pansiyona gitmesi, eve yeni bir hayvan gelmesi ihtimali var. Kuduz aşısı ise yaşam biçiminden bağımsız olarak yasal bir yükümlülük.' },
 
     { kind: 'uyari', metin: 'Bu içerik genel bilgidir, tıbbi tavsiye değildir. Aşı ve tedavi programını, hayvanı gören veteriner hekim belirler.' },
 

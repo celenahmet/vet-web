@@ -7,7 +7,7 @@ export const kedimYemekYemiyor: BlogYazi = {
   kategori: 'Kedi',
   tarih: '2026-08-23',
   bloklar: [
-    { kind: 'paragraf', metin: 'Kedinizin bir öğün atlaması tek başına panik sebebi değil. Ama kedilerde iştahsızlık, köpeklerde olduğu gibi "acıkınca yer" diye beklenebilecek bir durum da değil. **24 saati aşan açlık** kedilerde karaciğer için gerçek bir risk oluşturuyor.' },
+    { kind: 'paragraf', metin: 'Kedinizin bir öğün atlaması tek başına panik sebebi değildir. Ama kedilerde iştahsızlık, köpeklerde olduğu gibi "acıkınca yer" diye beklenebilecek bir durum da değil. **24 saati aşan açlık** kedilerde karaciğer için gerçek bir risk oluşturuyor.' },
     { kind: 'paragraf', metin: 'Bu yazı iki soruyu ayırıyor: ne zaman gözlemle yetinilir, ne zaman kliniğe gidilir.' },
 
     { kind: 'baslik', metin: 'Kedilerde açlık neden köpeklerdekinden farklı' },
@@ -78,7 +78,7 @@ export const kedimYemekYemiyor: BlogYazi = {
     { soru: 'Kedim yemiyor ama su içiyor, yine de gitmeli miyim?', cevap: 'Su içmesi iyi bir işaret ama açlık süresini değiştirmiyor. 24 saati aşıyorsa kliniğe gidin.' },
     { soru: 'Sadece mama değiştirdim, o yüzden mi yemiyor?', cevap: 'Olabilir, ama bunu varsayıp beklemek doğru değil. Eski mamaya geri dönün; bir gün içinde iştahı gelmiyorsa sebep mama değil.' },
     { soru: 'Zorla mama vermeli miyim?', cevap: 'Şırıngayla besleme veteriner hekim önerisiyle ve tekniği öğrenildikten sonra yapılır. Yanlış uygulama mamanın soluk borusuna kaçmasına yol açabiliyor.' },
-    { soru: 'İştah açıcı ilaç kullanabilir miyim?', cevap: 'Kedilerde kullanılan iştah açıcılar var ama bunlar reçeteli ilaçlar ve altta yatan sebep bulunmadan verilmesi doğru değil. İştahsızlık bir belirti, hastalığın kendisi değil.' },
+    { soru: 'İştah açıcı ilaç kullanabilir miyim?', cevap: 'Kedilerde kullanılan iştah açıcılar var ama bunlar reçeteli ilaçlar ve altta yatan sebep bulunmadan verilmesi doğru değil. İştahsızlık bir belirtidir, hastalığın kendisi değildir.' },
     { soru: 'Yaşlı kedim eskisinden az yiyor, normal mi?', cevap: 'Yaşlılıkta enerji ihtiyacı bir miktar düşebilir ama belirgin azalma ve kilo kaybı normal değil. Böbrek, tiroid ve diş sorunları bu yaşta sık görülüyor, kontrol gerekiyor.' },
   ],
 };

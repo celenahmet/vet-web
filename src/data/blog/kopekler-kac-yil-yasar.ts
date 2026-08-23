@@ -7,7 +7,7 @@ export const kopeklerKacYilYasar: BlogYazi = {
   kategori: 'Köpek',
   tarih: '2026-08-23',
   bloklar: [
-    { kind: 'paragraf', metin: 'Köpeklerde ortalama ömür **10 ile 13 yıl** arasında ama bu ortalama tek başına yanıltıcı. Çünkü köpekler, aynı türün içinde ömrü en çok değişen memelilerden biri: küçük bir terrier 16 yıl yaşarken bir Danua 7 yılda yaşlanmış sayılıyor.' },
+    { kind: 'paragraf', metin: 'Köpeklerde ortalama ömür **10 ile 13 yıl** aralığında bildiriliyor, ama bu ortalama tek başına yanıltıcı. Çünkü köpekler, aynı türün içinde ömrü en çok değişen memelilerden biri: küçük bir terrier 16 yıl yaşarken bir Danua 7 yılda yaşlanmış sayılıyor.' },
     { kind: 'paragraf', metin: 'Farkı yaratan şey ırkın kendisinden çok **boy**. Bu yazıda o bağlantıyı, hangi kısmının elinizde olduğunu ve köpeğinizin yaşlandığını nereden anlayacağınızı bulacaksınız.' },
 
     { kind: 'baslik', metin: 'Köpeklerde büyük olmak, erken yaşlanmak demek' },
@@ -34,7 +34,7 @@ export const kopeklerKacYilYasar: BlogYazi = {
     ]},
 
     { kind: 'baslik', metin: 'Kilo, ömürden yıl çalıyor' },
-    { kind: 'paragraf', metin: 'Fazla kilo köpeklerde eklem yükünü artırıyor, şeker hastalığı ve kalp sorunları riskini yükseltiyor. Etkisi de küçük değil: ideal kiloda tutulan köpekler, fazla kilolu benzerlerinden belirgin biçimde uzun yaşıyor.' },
+    { kind: 'paragraf', metin: 'Fazla kilo köpeklerde eklem yükünü artırıyor, şeker hastalığı ve kalp sorunları riskini yükseltiyor. Etkisi de küçük görünmüyor: ideal kiloda tutulan köpeklerin daha uzun yaşadığı bildiriliyor.' },
     { kind: 'paragraf', metin: 'Evde ölçü şu: köpeğin yan tarafına avucunuzu koyup gezdirin. Kaburgaları **bastırmadan** hissetmelisiniz. Üstten baktığınızda bel çizgisi görünmeli, yandan baktığınızda karın göğüs hizasından yukarı doğru toplanmalı. Bu üç işaretten ikisi yoksa kilo fazla demektir.' },
     { kind: 'yanilgi', baslik: '"Mama paketindeki miktar doğrudur" yanılgısı', metin: 'Paketteki tablo ortalama bir köpek için yazılıyor; kısırlaştırılmış, az hareket eden ya da yaşlı bir köpekte fazla geliyor. Miktarı pakete göre değil, köpeğin vücut durumuna göre ayarlayın ve kontrolde veteriner hekiminize sordurun.' },
 

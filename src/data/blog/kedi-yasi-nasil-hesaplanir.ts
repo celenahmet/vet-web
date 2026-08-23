@@ -55,7 +55,7 @@ export const kediYasiNasilHesaplanir: BlogYazi = {
     { kind: 'paragraf', metin: 'Yedi yaş bir eşik: bu yaştan sonra yıllık kontrole kan tahlili eklenmesi öneriliyor. Sebebi, böbrek yetmezliği gibi hastalıkların belirtileri geç vermesi.' },
 
     { kind: 'baslik', metin: 'Doğum tarihini bilmiyorsanız bir tarih seçin' },
-    { kind: 'paragraf', metin: 'Sahiplendiğiniz kedinin doğum tarihi belli değilse, veteriner hekimin verdiği aralığın ortasını alıp bir tarih belirleyin ve kayıtlarınızda hep onu kullanın. Kesin olmaması sorun değil; tutarlı olması aşı tekrarlarını ve yaşa bağlı kontrolleri takip etmeyi mümkün kılıyor.' },
+    { kind: 'paragraf', metin: 'Sahiplendiğiniz kedinin doğum tarihi belli değilse, veteriner hekimin verdiği aralığın ortasını alıp bir tarih belirleyin ve kayıtlarınızda hep onu kullanın. Kesin olmaması sorun değildir; tutarlı olması aşı tekrarlarını ve yaşa bağlı kontrolleri takip etmeyi mümkün kılıyor.' },
     { kind: 'paragraf', metin: 'Kaydı tutmadığınızda olan şey şu: "geçen sene mi yapmıştık, önceki sene mi" sorusu, aşı tekrarının atlanmasıyla bitiyor.' },
   ],
   sss: [
