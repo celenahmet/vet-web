@@ -21,7 +21,7 @@ export const kediAsiTakvimi: BlogYazi = {
     ]},
     { kind: 'paragraf', metin: 'Lösemi (FeLV) aşısı bu tablonun dışında ayrı değerlendiriliyor. Dışarı çıkan ya da başka kedilerle temas eden kedilerde öneriliyor ve **aşı öncesi test** yapılıyor, çünkü hastalığı taşıyan bir kediyi aşılamak koruma sağlamıyor.' },
 
-    { kind: 'tuzak', baslik: '"Anne sütü aldı, aşıya gerek yok" tuzağı', metin: 'Anneden gelen bağışıklık gerçek ama geçici; 8-12 hafta arasında sönüyor. Üstelik bu bağışıklık, erken yapılan aşının işe yaramasını da engelleyebiliyor. Aşı takviminin birden fazla dozdan oluşmasının sebebi tam olarak bu: anne bağışıklığının ne zaman söndüğü kediden kediye değişiyor ve tekrar dozları o boşluğu kapatıyor.' },
+    { kind: 'yanilgi', baslik: '"Anne sütü aldı, aşıya gerek yok" yanılgısı', metin: 'Anneden gelen bağışıklık gerçek ama geçici; 8-12 hafta arasında sönüyor. Üstelik bu bağışıklık, erken yapılan aşının işe yaramasını da engelleyebiliyor. Aşı takviminin birden fazla dozdan oluşmasının sebebi tam olarak bu: anne bağışıklığının ne zaman söndüğü kediden kediye değişiyor ve tekrar dozları o boşluğu kapatıyor.' },
 
     { kind: 'baslik', metin: 'Karma aşı neye karşı koruyor' },
     { kind: 'liste', maddeler: [
@@ -34,7 +34,7 @@ export const kediAsiTakvimi: BlogYazi = {
     { kind: 'baslik', metin: 'Yetişkin kedide düzen' },
     { kind: 'paragraf', metin: 'Yavruluk serisi tamamlandıktan sonra yıllık tekrar düzenine geçiliyor. Kuduz aşısının tekrarı Türkiye\'de yasal bir yükümlülük ve kayıt altına alınıyor.' },
     { kind: 'paragraf', metin: 'Karma aşının tekrar sıklığı konusunda ise uygulama ürüne ve kedinin yaşam biçimine göre değişebiliyor: ev içinde yaşayan ve hiç dışarı çıkmayan bir kedide düzen farklı kurulabiliyor. Bu kararı, kediyi gören veteriner hekim veriyor.' },
-    { kind: 'tuzak', baslik: '"Ev kedisi, aşıya gerek yok" tuzağı', metin: 'Ev kedisi risksiz değil, riski düşük. Panlökopeni virüsü ayakkabı tabanıyla eve girebiliyor, dayanıklı bir virüs. Ayrıca kedinin bir gün kaçması, kliniğe ya da pansiyona gitmesi, eve yeni bir hayvan gelmesi ihtimali var. Kuduz aşısı ise yaşam biçiminden bağımsız olarak yasal bir yükümlülük.' },
+    { kind: 'yanilgi', baslik: '"Ev kedisi, aşıya gerek yok" yanılgısı', metin: 'Ev kedisi risksiz değil, riski düşük. Panlökopeni virüsü ayakkabı tabanıyla eve girebiliyor, dayanıklı bir virüs. Ayrıca kedinin bir gün kaçması, kliniğe ya da pansiyona gitmesi, eve yeni bir hayvan gelmesi ihtimali var. Kuduz aşısı ise yaşam biçiminden bağımsız olarak yasal bir yükümlülük.' },
 
     { kind: 'uyari', metin: 'Bu içerik genel bilgidir, tıbbi tavsiye değildir. Aşı ve tedavi programını, hayvanı gören veteriner hekim belirler.' },
 

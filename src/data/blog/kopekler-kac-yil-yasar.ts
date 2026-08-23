@@ -18,7 +18,7 @@ export const kopeklerKacYilYasar: BlogYazi = {
       ['Dev', '45 kg üzeri', '6-10 yıl'],
     ]},
     { kind: 'paragraf', metin: 'Memelilerde genel kural bunun tersidir: büyük hayvan uzun yaşar, fil fareden çok yaşar. Köpekler bu kuralın içinde bir istisna oluşturuyor, çünkü ırklar arasındaki boy farkı doğal seçilimle değil, insan eliyle ve çok kısa sürede oluştu. Hızlı büyüyen iri bir vücut, hücre yenilenmesi ve eklem yükü açısından bedel ödüyor.' },
-    { kind: 'tuzak', baslik: '"Büyük köpek daha dayanıklıdır" tuzağı', metin: 'Büyük ırklar güçlü görünür ama kalp hastalıkları, eklem sorunları ve bazı tümör türleri onlarda daha erken ve daha sık çıkıyor. Dayanıklılıkla ömür aynı şey değil. Dev ırk bir köpek, yedi yaşında küçük bir ırkın on iki yaşındaki hâline denk sayılıyor.' },
+    { kind: 'yanilgi', baslik: '"Büyük köpek daha dayanıklıdır" yanılgısı', metin: 'Büyük ırklar güçlü görünür ama kalp hastalıkları, eklem sorunları ve bazı tümör türleri onlarda daha erken ve daha sık çıkıyor. Dayanıklılıkla ömür aynı şey değil. Dev ırk bir köpek, yedi yaşında küçük bir ırkın on iki yaşındaki hâline denk sayılıyor.' },
 
     { kind: 'baslik', metin: 'Yaygın ırklarda ortalama ömür' },
     { kind: 'tablo', basliklar: ['Irk', 'Ortalama ömür', 'Dikkat edilecek'], satirlar: [
@@ -36,7 +36,7 @@ export const kopeklerKacYilYasar: BlogYazi = {
     { kind: 'baslik', metin: 'Kilo, ömürden yıl çalıyor' },
     { kind: 'paragraf', metin: 'Fazla kilo köpeklerde eklem yükünü artırıyor, şeker hastalığı ve kalp sorunları riskini yükseltiyor. Etkisi de küçük değil: ideal kiloda tutulan köpekler, fazla kilolu benzerlerinden belirgin biçimde uzun yaşıyor.' },
     { kind: 'paragraf', metin: 'Evde ölçü şu: köpeğin yan tarafına avucunuzu koyup gezdirin. Kaburgaları **bastırmadan** hissetmelisiniz. Üstten baktığınızda bel çizgisi görünmeli, yandan baktığınızda karın göğüs hizasından yukarı doğru toplanmalı. Bu üç işaretten ikisi yoksa kilo fazla demektir.' },
-    { kind: 'tuzak', baslik: '"Mama paketindeki miktar doğrudur" tuzağı', metin: 'Paketteki tablo ortalama bir köpek için yazılıyor; kısırlaştırılmış, az hareket eden ya da yaşlı bir köpekte fazla geliyor. Miktarı pakete göre değil, köpeğin vücut durumuna göre ayarlayın ve kontrolde veteriner hekiminize sordurun.' },
+    { kind: 'yanilgi', baslik: '"Mama paketindeki miktar doğrudur" yanılgısı', metin: 'Paketteki tablo ortalama bir köpek için yazılıyor; kısırlaştırılmış, az hareket eden ya da yaşlı bir köpekte fazla geliyor. Miktarı pakete göre değil, köpeğin vücut durumuna göre ayarlayın ve kontrolde veteriner hekiminize sordurun.' },
 
     { kind: 'baslik', metin: 'Kısırlaştırma: ömre etkisi var ama zamanlaması ırka bağlı' },
     { kind: 'paragraf', metin: 'Kısırlaştırma dişilerde rahim iltihabı ve meme tümörü riskini, erkeklerde testis tümörünü azaltıyor. Ayrıca kaçma ve kavga davranışını düşürerek kaza riskini indiriyor.' },
@@ -71,7 +71,7 @@ export const kopeklerKacYilYasar: BlogYazi = {
       'Karında şişkinlik ve huzursuzluk, özellikle dev ırklarda acildir',
       'Gece dolaşma, sahibini tanımakta gecikme, kafa karışıklığı',
     ]},
-    { kind: 'tuzak', baslik: '"Yaşlandı, o yüzden yavaşladı" tuzağı', metin: 'Yavaşlama tek başına yaşın sonucu olabilir ama eklem ağrısının, kalp yetmezliğinin ve tiroid sorununun da ilk belirtisi. İkisini ayıran tek şey muayene. "Yaşlandı" demek belirtiyi açıklamıyor, yalnız ertelemenizi sağlıyor.' },
+    { kind: 'yanilgi', baslik: '"Yaşlandı, o yüzden yavaşladı" yanılgısı', metin: 'Yavaşlama tek başına yaşın sonucu olabilir ama eklem ağrısının, kalp yetmezliğinin ve tiroid sorununun da ilk belirtisi. İkisini ayıran tek şey muayene. "Yaşlandı" demek belirtiyi açıklamıyor, yalnız ertelemenizi sağlıyor.' },
 
     { kind: 'baslik', metin: 'Yaygın yanlışlar ve doğruları' },
     { kind: 'tablo', basliklar: ['Yaygın yanlış', 'Doğrusu'], satirlar: [

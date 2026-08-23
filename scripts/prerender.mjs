@@ -56,7 +56,7 @@ function blokHtml(b) {
     case 'paragraf': return `<p>${kalin(b.metin)}</p>`;
     case 'liste': return `<ul>${b.maddeler.map((m) => `<li>${kalin(m)}</li>`).join('')}</ul>`;
     case 'uyari': return `<aside class="yazi-uyari"><p>${kac(b.metin)}</p></aside>`;
-    case 'tuzak': return `<aside class="yazi-tuzak"><strong>${kac(b.baslik)}</strong><p>${kac(b.metin)}</p></aside>`;
+    case 'yanilgi': return `<aside class="yazi-yanilgi"><strong>${kac(b.baslik)}</strong><p>${kac(b.metin)}</p></aside>`;
     case 'tablo':
       return `<table><thead><tr>${b.basliklar.map((h) => `<th>${kac(h)}</th>`).join('')}</tr></thead><tbody>${b.satirlar
         .map((s) => `<tr>${s.map((h) => `<td>${kac(h)}</td>`).join('')}</tr>`)

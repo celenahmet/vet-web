@@ -150,7 +150,7 @@
   .yazi-govde { font-size: 1rem; line-height: 1.72; }
   .yazi-govde h2 { font-size: 1.3rem; margin: 32px 0 12px; }
   .yazi-govde h3 { font-size: 1.05rem; }
-  .yazi-uyari, .yazi-tuzak { padding: 16px; gap: 10px; }
+  .yazi-uyari, .yazi-yanilgi { padding: 16px; gap: 10px; }
   .yazi-tablo-sarmal { margin-inline: -16px; padding-inline: 16px; }
   .yazi-tablo-sarmal table { font-size: 0.88rem; }
   .yazi-tablo-sarmal th, .yazi-tablo-sarmal td { padding: 10px 12px; }
@@ -175,14 +175,14 @@
 }
 
 
-/* Tuzak kutusu: tibbi uyaridan ayri, yaygin yanlis inanis icin. */
-.yazi-tuzak {
+/* Yanilgi kutusu: tibbi uyaridan ayri, yaygin yanlis inanis icin. */
+.yazi-yanilgi {
   display: flex; gap: 14px; align-items: flex-start;
   background: #FFF8E6; border-left: 4px solid #E9A23B;
   border-radius: 12px; padding: 18px 20px; margin: 28px 0;
 }
-.yazi-tuzak svg { color: #E9A23B; flex-shrink: 0; margin-top: 3px; }
-.yazi-tuzak strong { display: block; margin-bottom: 6px; color: #8A5A12; }
-.yazi-tuzak p { margin: 0; font-size: 0.98rem; }
-:root[data-theme='dark'] .yazi-tuzak { background: rgba(233,162,59,0.12); }
-:root[data-theme='dark'] .yazi-tuzak strong { color: #E9A23B; }
+.yazi-yanilgi svg { color: #E9A23B; flex-shrink: 0; margin-top: 3px; }
+.yazi-yanilgi strong { display: block; margin-bottom: 6px; color: #8A5A12; }
+.yazi-yanilgi p { margin: 0; font-size: 0.98rem; }
+:root[data-theme='dark'] .yazi-yanilgi { background: rgba(233,162,59,0.12); }
+:root[data-theme='dark'] .yazi-yanilgi strong { color: #E9A23B; }

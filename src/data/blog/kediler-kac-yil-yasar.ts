@@ -19,13 +19,13 @@ export const kedilerKacYilYasar: BlogYazi = {
     ]},
     { kind: 'paragraf', metin: 'Tablodaki dört satırın hepsi aynı hayvan. Değişen tek şey riske ne kadar maruz kaldığı. Ev kedisi trafiğe çıkmıyor, kavgada ısırılmıyor, aç kalmıyor ve hastalandığında biri fark ediyor. Dördü de ömrü doğrudan uzatan şeyler ve dördü de kapının hangi tarafında durduğuna bağlı.' },
 
-    { kind: 'tuzak', baslik: '"Sokak kedileri daha dayanıklıdır" tuzağı', metin: 'Sokakta yaşayan kediler dayanıklı oldukları için değil, dayanıksızları erken elendiği için güçlü görünür. Gördüğünüz kedi hayatta kalanı; hayatta kalamayanı zaten görmüyorsunuz. Bu, dayanıklılık değil seçilim.' },
+    { kind: 'yanilgi', baslik: '"Sokak kedileri daha dayanıklıdır" yanılgısı', metin: 'Sokakta yaşayan kediler dayanıklı oldukları için değil, dayanıksızları erken elendiği için güçlü görünür. Gördüğünüz kedi hayatta kalanı; hayatta kalamayanı zaten görmüyorsunuz. Bu, dayanıklılık değil seçilim.' },
 
     { kind: 'baslik', metin: 'Kısırlaştırma bir kısıtlama değil, ömre yapılan en büyük tek müdahale' },
     { kind: 'paragraf', metin: 'Kısırlaştırılmış kediler istatistiklerde açık ara önde ve sebebi iki katmanlı.' },
     { kind: 'paragraf', metin: 'Birincisi doğrudan tıbbi: dişilerde rahim iltihabı ve meme tümörü riski, erkeklerde testis tümörü ya tamamen ortadan kalkıyor ya da belirgin biçimde düşüyor. İkincisi davranışsal ve aslında daha belirleyici: kısırlaştırılan kedi kaçmayı, uzağa gitmeyi ve kavga etmeyi büyük ölçüde bırakıyor. Kavga bırakılınca ısırıkla bulaşan hastalıklar da bırakılıyor.' },
     { kind: 'paragraf', metin: 'Yani kısırlaştırma yalnız üremeyi durdurmuyor, kediyi ömrünü kısaltan davranışlardan çıkarıyor.' },
-    { kind: 'tuzak', baslik: '"Kısırlaştırma kediyi şişmanlatır" tuzağı', metin: 'Kısırlaştırma sonrası enerji ihtiyacı düşüyor. Porsiyon aynı kalırsa kedi kilo alıyor. Şişmanlatan ameliyat değil, güncellenmeyen mama miktarı. Kontrolde veteriner hekiminize yeni porsiyonu sorun, mesele orada bitiyor.' },
+    { kind: 'yanilgi', baslik: '"Kısırlaştırma kediyi şişmanlatır" yanılgısı', metin: 'Kısırlaştırma sonrası enerji ihtiyacı düşüyor. Porsiyon aynı kalırsa kedi kilo alıyor. Şişmanlatan ameliyat değil, güncellenmeyen mama miktarı. Kontrolde veteriner hekiminize yeni porsiyonu sorun, mesele orada bitiyor.' },
 
     { kind: 'baslik', metin: 'Kilonun ölçüsü terazi değil, kaburga' },
     { kind: 'paragraf', metin: 'Fazla kilo kedilerde şeker hastalığı, eklem sorunları ve karaciğer yağlanması riskini artırıyor. Ama "kaç kilo olmalı" sorusunun tek bir cevabı yok, çünkü iskelet yapısı kediden kediye değişiyor.' },
@@ -53,7 +53,7 @@ export const kedilerKacYilYasar: BlogYazi = {
       'Zıplamaktan kaçınma, yüksek yerlere çıkmayı bırakma',
       'Gece artan miyavlama ve huzursuzluk',
     ]},
-    { kind: 'tuzak', baslik: '"Yaşlandı, normaldir" tuzağı', metin: 'Yukarıdaki maddelerin hiçbiri yaşlılığın normal parçası değil. Her biri, erken yakalandığında yönetilebilen bir hastalığın ilk işareti olabilir. "Yaşlandı" demek, belirtiyi açıklamıyor, yalnız ertelemenizi sağlıyor.' },
+    { kind: 'yanilgi', baslik: '"Yaşlandı, normaldir" yanılgısı', metin: 'Yukarıdaki maddelerin hiçbiri yaşlılığın normal parçası değil. Her biri, erken yakalandığında yönetilebilen bir hastalığın ilk işareti olabilir. "Yaşlandı" demek, belirtiyi açıklamıyor, yalnız ertelemenizi sağlıyor.' },
 
     { kind: 'baslik', metin: 'Bir kedi yılı yedi insan yılı değil' },
     { kind: 'paragraf', metin: 'Yaygın bilinen yedi ile çarpma kuralı yanlış. Kediler ilk iki yılda çok hızlı olgunlaşıyor, sonra yavaşlıyor. Bir yaşındaki kedi bebek değil, genç bir yetişkin.' },

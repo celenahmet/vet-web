@@ -13,7 +13,7 @@ export const kedimYemekYemiyor: BlogYazi = {
     { kind: 'baslik', metin: 'Kedilerde açlık neden köpeklerdekinden farklı' },
     { kind: 'paragraf', metin: 'Kedi yemek yemeyi kestiğinde vücut enerjiyi yağ depolarından karşılamaya başlıyor. Bu yağ karaciğere taşınıyor ama kedinin karaciğeri bu yükü işlemekte diğer türlere göre yetersiz kalıyor. Yağ karaciğerde birikince organ işlevini kaybetmeye başlıyor.' },
     { kind: 'paragraf', metin: 'Tabloyu daha da tersine çeviren şey şu: karaciğer bozuldukça kedi daha da iştahsızlaşıyor. Yani açlık kendi kendini besleyen bir döngüye giriyor. Fazla kilolu kedilerde risk daha yüksek, çünkü karaciğere gidecek yağ deposu daha büyük.' },
-    { kind: 'tuzak', baslik: '"Acıkınca yer" tuzağı', metin: 'Bu cümle köpekler için çoğu zaman doğru, kediler için tehlikeli. Kedi inatçılıktan değil, çoğunlukla bir rahatsızlık yüzünden yemiyor. Beklemek sorunu çözmüyor, açlığın kendisini ikinci bir soruna dönüştürüyor.' },
+    { kind: 'yanilgi', baslik: '"Acıkınca yer" yanılgısı', metin: 'Bu cümle köpekler için çoğu zaman doğru, kediler için tehlikeli. Kedi inatçılıktan değil, çoğunlukla bir rahatsızlık yüzünden yemiyor. Beklemek sorunu çözmüyor, açlığın kendisini ikinci bir soruna dönüştürüyor.' },
 
     { kind: 'baslik', metin: 'Saat kaça göre ne yapmalı' },
     { kind: 'tablo', basliklar: ['Süre', 'Durum', 'Yapılacak'], satirlar: [
@@ -59,7 +59,7 @@ export const kedimYemekYemiyor: BlogYazi = {
       'Küçük porsiyon verin, dolu kap bazı kedileri kaçırıyor',
       'Aynı anda birden fazla yeni mama denemeyin, hangisinin işe yaradığını anlayamazsınız',
     ]},
-    { kind: 'tuzak', baslik: '"İnsan yemeği veririm, hiç olmazsa bir şey yesin" tuzağı', metin: 'Soğan, sarımsak, çikolata, üzüm ve kuru üzüm kediler için zehirli. Tuzlu ve baharatlı yiyecekler de uygun değil. Bir şey yemesi iyi ama yanlış şeyi yemesi, yememesinden daha kötü sonuç verebiliyor.' },
+    { kind: 'yanilgi', baslik: '"İnsan yemeği veririm, hiç olmazsa bir şey yesin" yanılgısı', metin: 'Soğan, sarımsak, çikolata, üzüm ve kuru üzüm kediler için zehirli. Tuzlu ve baharatlı yiyecekler de uygun değil. Bir şey yemesi iyi ama yanlış şeyi yemesi, yememesinden daha kötü sonuç verebiliyor.' },
 
     { kind: 'baslik', metin: 'Kliniğe giderken hazırlayın' },
     { kind: 'liste', maddeler: [

@@ -16,10 +16,12 @@ export type BlogBlock =
   | { kind: 'uyari'; metin: string }
   /**
    * Yaygin yanlis inanisi acikca soyleyen kutu. UniConnectly blogundaki "tuzak"
-   * bolumlerinin karsiligi: okuyucunun dogru sandigi seyi once adiyla soyleyip
+   * bolumlerinin karsiligi. ⚠️ ADI "tuzak" DEGIL "yanilgi" (Ahmet, 23.08.2026):
+   * "kodlama yapmiyoruz, yanilgi kelimesi daha dogru olur". Okuyucunun dogru
+   * sandigi seyi once adiyla soyleyip
    * sonra duzeltiyor. Tibbi uyaridan AYRI tutuluyor, ikisi farkli sey.
    */
-  | { kind: 'tuzak'; baslik: string; metin: string };
+  | { kind: 'yanilgi'; baslik: string; metin: string };
 
 export type BlogSSS = { soru: string; cevap: string };
 

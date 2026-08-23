@@ -10,7 +10,7 @@ export const kediYasiNasilHesaplanir: BlogYazi = {
     { kind: 'paragraf', metin: 'Kedi yaşını insan yaşına çevirmenin kuralı basit: **ilk yıl 15 insan yılı**, **ikinci yıl 9 insan yılı**, sonraki her yıl yaklaşık **4 insan yılı**. Yani iki yaşındaki bir kedi 24 yaşında bir insana denk sayılıyor.' },
     { kind: 'paragraf', metin: 'Bu hesabın neden böyle olduğunu, tam tabloyu ve yaşı bilinmeyen bir kedide yaşın nasıl tahmin edildiğini aşağıda bulacaksınız.' },
 
-    { kind: 'tuzak', baslik: '"Yedi ile çarp" tuzağı', metin: 'Yedi ile çarpma kuralı ne kedilerde ne köpeklerde doğru. O hesaba göre bir yaşındaki kedi yedi yaşında bir çocuğa denk gelirdi. Oysa bir yaşındaki kedi üreyebiliyor, avlanabiliyor ve yetişkin boyutuna ulaşmış oluyor. Çocukla değil, genç bir yetişkinle karşılaştırılması gerekiyor.' },
+    { kind: 'yanilgi', baslik: '"Yedi ile çarp" yanılgısı', metin: 'Yedi ile çarpma kuralı ne kedilerde ne köpeklerde doğru. O hesaba göre bir yaşındaki kedi yedi yaşında bir çocuğa denk gelirdi. Oysa bir yaşındaki kedi üreyebiliyor, avlanabiliyor ve yetişkin boyutuna ulaşmış oluyor. Çocukla değil, genç bir yetişkinle karşılaştırılması gerekiyor.' },
 
     { kind: 'baslik', metin: 'Kedi yaşı insan yaşı tablosu' },
     { kind: 'tablo', basliklar: ['Kedi yaşı', 'İnsan karşılığı', 'Dönem'], satirlar: [
@@ -40,7 +40,7 @@ export const kediYasiNasilHesaplanir: BlogYazi = {
     { kind: 'paragraf', metin: 'Yaşlı kedilerde göz merceğinde bulanıklaşma görülüyor. Bu tek başına yaş göstergesi değil ama diğer bulgularla birlikte değerlendiriliyor.' },
     { kind: 'altBaslik', metin: 'Tüy ve kas yapısı' },
     { kind: 'paragraf', metin: 'Genç kedide tüy ince ve parlak, kas yapısı belirgin. Yaşlandıkça tüy kalınlaşıyor, matlaşıyor ve kas kütlesi azalıyor.' },
-    { kind: 'tuzak', baslik: '"Dişine bakınca kesin yaş anlaşılır" tuzağı', metin: 'Diş yapısı yavrularda haftalık ayrım verebilecek kadar hassas, ama yetişkin bir kedide yalnız kaba bir aralık söyler. Bakımlı bir sekiz yaşındaki kedi, bakımsız bir dört yaşındakinden daha temiz dişli olabilir. Yaş tahmini bir tahmindir, kayıt yerine geçmez.' },
+    { kind: 'yanilgi', baslik: '"Dişine bakınca kesin yaş anlaşılır" yanılgısı', metin: 'Diş yapısı yavrularda haftalık ayrım verebilecek kadar hassas, ama yetişkin bir kedide yalnız kaba bir aralık söyler. Bakımlı bir sekiz yaşındaki kedi, bakımsız bir dört yaşındakinden daha temiz dişli olabilir. Yaş tahmini bir tahmindir, kayıt yerine geçmez.' },
 
     { kind: 'uyari', metin: 'Bu içerik genel bilgidir, tıbbi tavsiye değildir. Kedinizin yaşı ve sağlığıyla ilgili değerlendirmeyi, hayvanı gören bir veteriner hekim yapar.' },
 

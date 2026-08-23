@@ -31,7 +31,7 @@ export const kopekAsiTakvimi: BlogYazi = {
     ]},
     { kind: 'paragraf', metin: 'Leptospiroz diğerlerinden farklı: bakteriyel olduğu için bağışıklık daha kısa sürüyor ve genellikle iki doz gerekiyor. İnsana bulaşabilen bir hastalık olması da onu ayrı bir başlık yapıyor.' },
 
-    { kind: 'tuzak', baslik: 'Sosyalleşme ile aşı arasındaki ikilem', metin: 'Yavru köpeklerde sosyalleşme penceresi 3-16 hafta arasında ve bu pencere kapanınca bir daha açılmıyor. Ama aynı dönemde aşı serisi henüz bitmemiş oluyor. "Aşılar bitene kadar hiç dışarı çıkarma" tavsiyesi hastalıktan koruyor ama davranış sorunlarına açık kapı bırakıyor. Doğru olan tam izolasyon değil, kontrollü sosyalleşme: aşıları tam olan sağlıklı köpeklerle, temiz ve tanıdık ortamlarda, sokak köpeklerinin yoğun kullandığı alanlardan uzak. Bu dengeyi veteriner hekiminizle konuşun.' },
+    { kind: 'yanilgi', baslik: 'Sosyalleşme ile aşı arasındaki ikilem', metin: 'Yavru köpeklerde sosyalleşme penceresi 3-16 hafta arasında ve bu pencere kapanınca bir daha açılmıyor. Ama aynı dönemde aşı serisi henüz bitmemiş oluyor. "Aşılar bitene kadar hiç dışarı çıkarma" tavsiyesi hastalıktan koruyor ama davranış sorunlarına açık kapı bırakıyor. Doğru olan tam izolasyon değil, kontrollü sosyalleşme: aşıları tam olan sağlıklı köpeklerle, temiz ve tanıdık ortamlarda, sokak köpeklerinin yoğun kullandığı alanlardan uzak. Bu dengeyi veteriner hekiminizle konuşun.' },
 
     { kind: 'uyari', metin: 'Bu içerik genel bilgidir, tıbbi tavsiye değildir. Aşı ve tedavi programını, hayvanı gören veteriner hekim belirler.' },
 

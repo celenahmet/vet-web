@@ -49,9 +49,9 @@ function Blok({ blok }: { blok: BlogBlock }) {
           <p>{blok.metin}</p>
         </aside>
       );
-    case 'tuzak':
+    case 'yanilgi':
       return (
-        <aside className="yazi-tuzak">
+        <aside className="yazi-yanilgi">
           <CircleAlert size={20} />
           <div>
             <strong>{blok.baslik}</strong>
