@@ -38,10 +38,10 @@ export default function Clinics() {
         <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-amber-100/60 rounded-full blur-3xl mix-blend-multiply opacity-50 animate-float" style={{ animationDuration: '20s', animationDelay: '2s' }}></div>
       </div>
 
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
         
         {/* Section 1: Hero */}
-        <section className="h-screen snap-always snap-start flex flex-col lg:flex-row items-center justify-center gap-16 pt-16">
+        <section className="min-h-screen h-auto lg:h-screen snap-always snap-start py-24 lg:py-0 flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 pt-16">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{once:true}} className="flex-1 space-y-8">
             <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-600 px-4 py-2 rounded-full font-bold text-sm border border-indigo-100">
               <Building2 size={16} />
@@ -75,7 +75,7 @@ export default function Clinics() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{once:true}} className="flex-1 w-full relative">
-            <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-6 flex flex-col relative h-[450px]">
+            <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-6 flex flex-col relative h-auto lg:h-auto lg:min-h-[450px]">
               <AnimatedBorder color="#8B5CF6" />
               {/* Header */}
               <div className="flex items-center justify-between mb-8">
@@ -85,19 +85,19 @@ export default function Clinics() {
                   </div>
                   <span className="font-bold text-slate-900">Veterito.</span>
                 </div>
-                <div className="flex items-center gap-4 bg-slate-50 px-4 py-2 rounded-full border border-slate-100 flex-1 mx-8">
+                <div className="flex items-center gap-3 lg:p-4 bg-slate-50 px-4 py-2 rounded-full border border-slate-100 flex-1 mx-2 lg:mx-8">
                   <Search size={16} className="text-slate-400" />
-                  <span className="text-slate-400 text-sm">Hasta veya no ara...</span>
+                  <span className="text-slate-400 text-sm hidden sm:inline">Hasta veya no ara...</span>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 lg:p-4">
                   <Bell size={20} className="text-slate-600" />
                   <div className="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold text-xs">DP</div>
                 </div>
               </div>
               
-              <div className="flex gap-8 flex-1">
+              <div className="flex flex-col lg:flex-row gap-8 flex-1">
                 {/* Sidebar */}
-                <div className="w-48 space-y-2">
+                <div className="w-full lg:w-48 space-y-2 lg:space-y-4">
                   <div className="flex items-center gap-3 bg-teal-50 text-teal-700 px-4 py-3 rounded-xl font-medium text-sm">
                     <LayoutGrid size={18} /> Panonuz
                   </div>
@@ -112,28 +112,28 @@ export default function Clinics() {
                 {/* Content */}
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-slate-900 mb-4">Bugünkü Özet</h3>
-                  <div className="grid grid-cols-3 gap-4 mb-6">
-                    <div className="border border-slate-200 rounded-xl p-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 lg:gap-3 lg:p-4 mb-6">
+                    <div className="border border-slate-200 rounded-xl p-3 lg:p-4">
                       <div className="text-sm text-slate-500 font-medium mb-2">Toplam Randevu</div>
                       <div className="text-3xl font-bold text-slate-900">12</div>
                     </div>
-                    <div className="border border-slate-200 rounded-xl p-4">
+                    <div className="border border-slate-200 rounded-xl p-3 lg:p-4">
                       <div className="text-sm text-slate-500 font-medium mb-2">Yeni Hasta</div>
                       <div className="text-3xl font-bold text-teal-500">3</div>
                     </div>
-                    <div className="border border-slate-200 rounded-xl p-4">
+                    <div className="border border-slate-200 rounded-xl p-3 lg:p-4">
                       <div className="text-sm text-slate-500 font-medium mb-2">Aşı Bekleyen</div>
                       <div className="text-3xl font-bold text-amber-500">8</div>
                     </div>
                   </div>
                   
-                  <div className="border border-slate-200 rounded-xl p-4">
+                  <div className="border border-slate-200 rounded-xl p-3 lg:p-4">
                     <div className="flex justify-between items-center mb-4">
                       <h4 className="font-bold text-slate-900">Yaklaşan Randevular</h4>
                       <span className="text-teal-600 text-sm font-medium">Tümünü Gör</span>
                     </div>
                     <div className="flex items-center justify-between py-2 border-b border-slate-100">
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-3 lg:p-4">
                         <div className="bg-slate-100 text-slate-700 px-3 py-1 rounded-lg text-sm font-bold">14:00</div>
                         <div>
                           <div className="font-bold text-slate-900 text-sm">Tarçın (Golden Retr.)</div>
@@ -150,26 +150,26 @@ export default function Clinics() {
         </section>
 
         {/* Section 2: Dijital Klinik Profili */}
-        <section className="h-screen snap-always snap-start flex flex-col-reverse lg:flex-row items-center justify-center gap-16">
+        <section className="min-h-screen h-auto lg:h-screen snap-always snap-start py-24 lg:py-0 flex flex-col-reverse lg:flex-row items-center justify-center gap-16">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{once:true}} className="flex-1 w-full relative">
-            <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-8 relative h-[450px]">
+            <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-8 relative h-auto lg:h-auto lg:min-h-[450px]">
               <AnimatedBorder color="#F59E0B" />
-              <div className="flex gap-4 mb-8">
-                <div className="flex-1 border border-slate-200 rounded-xl p-4 flex items-center gap-3">
+              <div className="flex gap-3 lg:p-4 mb-8">
+                <div className="flex-1 border border-slate-200 rounded-xl p-3 lg:p-4 flex items-center gap-3">
                   <Phone size={20} className="text-teal-500" />
                   <div>
                     <div className="text-[10px] font-bold text-slate-400 uppercase">TELEFON</div>
                     <div className="text-sm font-bold text-slate-800">0216 111 22 33</div>
                   </div>
                 </div>
-                <div className="flex-1 border border-slate-200 rounded-xl p-4 flex items-center gap-3">
+                <div className="flex-1 border border-slate-200 rounded-xl p-3 lg:p-4 flex items-center gap-3">
                   <MessageCircle size={20} className="text-green-500" />
                   <div>
                     <div className="text-[10px] font-bold text-slate-400 uppercase">WHATSAPP</div>
                     <div className="text-sm font-bold text-slate-800">+90 532 111</div>
                   </div>
                 </div>
-                <div className="flex-1 border border-slate-200 rounded-xl p-4 flex items-center gap-3">
+                <div className="flex-1 border border-slate-200 rounded-xl p-3 lg:p-4 flex items-center gap-3">
                   <MapPin size={20} className="text-emerald-500" />
                   <div>
                     <div className="text-[10px] font-bold text-slate-400 uppercase">YOL TARİFİ</div>
@@ -178,7 +178,7 @@ export default function Clinics() {
                 </div>
               </div>
 
-              <div className="flex gap-8 h-full">
+              <div className="flex flex-col lg:flex-row gap-8 h-full">
                 <div className="flex-1 space-y-6">
                   <div>
                     <h3 className="font-bold text-slate-900 mb-2">Adres ve ulaşım</h3>
@@ -198,12 +198,12 @@ export default function Clinics() {
                 </div>
                 
                 <div className="flex-1">
-                  <div className="flex gap-4 border-b border-slate-200 mb-4 pb-2">
+                  <div className="flex gap-3 lg:p-4 border-b border-slate-200 mb-4 pb-2">
                     <div className="font-bold text-teal-600 text-sm border-b-2 border-teal-600 pb-2 -mb-[10px]">Çalışanlar <span className="bg-teal-100 text-teal-700 px-2 py-0.5 rounded-full text-xs ml-1">3</span></div>
                     <div className="font-bold text-slate-400 text-sm">Fotoğraflar <span className="bg-slate-100 px-2 py-0.5 rounded-full text-xs ml-1">6</span></div>
                   </div>
-                  <div className="flex gap-4">
-                    <div className="w-32 rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col">
+                  <div className="flex gap-3 lg:p-4">
+                    <div className="w-full rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col">
                       <div className="h-20 bg-teal-800 flex items-center justify-center">
                         <div className="w-12 h-12 bg-teal-200 rounded-full mt-8 border-4 border-white"></div>
                       </div>
@@ -212,7 +212,7 @@ export default function Clinics() {
                         <div className="font-bold text-slate-900 text-sm">Aylin Demir</div>
                       </div>
                     </div>
-                    <div className="w-32 rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col">
+                    <div className="w-full rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col">
                       <div className="h-20 bg-teal-800 flex items-center justify-center">
                         <div className="w-12 h-12 bg-orange-200 rounded-full mt-8 border-4 border-white"></div>
                       </div>
@@ -235,15 +235,15 @@ export default function Clinics() {
               Kliniğinizi Veterito ekosistemindeki on binlerce bilinçli evcil hayvan sahibine profesyonel bir marka olarak sunun:
             </p>
             <div className="space-y-4">
-              <div className="flex items-center gap-4 bg-white border border-blue-200 p-4 rounded-2xl shadow-sm">
+              <div className="flex items-center gap-3 lg:p-4 bg-white border border-blue-200 p-3 lg:p-4 rounded-2xl shadow-sm">
                 <Stethoscope className="text-blue-500 shrink-0" size={24} />
                 <span className="font-bold text-slate-800">Uzmanlık alanlarınızı ve kadronuzu sergileyin.</span>
               </div>
-              <div className="flex items-center gap-4 bg-white border border-rose-200 p-4 rounded-2xl shadow-sm">
+              <div className="flex items-center gap-3 lg:p-4 bg-white border border-rose-200 p-3 lg:p-4 rounded-2xl shadow-sm">
                 <MapPin className="text-rose-500 shrink-0" size={24} />
                 <span className="font-bold text-slate-800">Tek tıkla yol tarifi ve randevu oluşturma imkanı.</span>
               </div>
-              <div className="flex items-center gap-4 bg-white border border-purple-200 p-4 rounded-2xl shadow-sm">
+              <div className="flex items-center gap-3 lg:p-4 bg-white border border-purple-200 p-3 lg:p-4 rounded-2xl shadow-sm">
                 <Award className="text-purple-500 shrink-0" size={24} />
                 <span className="font-bold text-slate-800">Doktor profil kartları ile yüksek standartları gösterin.</span>
               </div>
@@ -252,7 +252,7 @@ export default function Clinics() {
         </section>
 
         {/* Section 3: Akıllı Ajanda Yönetimi */}
-        <section className="h-screen snap-always snap-start flex flex-col lg:flex-row items-center justify-center gap-16">
+        <section className="min-h-screen h-auto lg:h-screen snap-always snap-start py-24 lg:py-0 flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{once:true}} className="flex-1 space-y-8">
             <h2 className="text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight">
               Akıllı Ajanda Yönetimi
@@ -261,15 +261,15 @@ export default function Clinics() {
               Geleneksel ajandaların yarattığı karmaşaya son verin ve tüm hekimlerinizin programını tek ekrandan yönetin:
             </p>
             <div className="space-y-4">
-              <div className="flex items-center gap-4 bg-white border border-blue-200 p-4 rounded-2xl shadow-sm">
+              <div className="flex items-center gap-3 lg:p-4 bg-white border border-blue-200 p-3 lg:p-4 rounded-2xl shadow-sm">
                 <Calendar className="text-blue-500 shrink-0" size={24} />
                 <span className="font-bold text-slate-800">Sürükle-bırak takvimle tüm programı kolayca koordine edin.</span>
               </div>
-              <div className="flex items-center gap-4 bg-white border border-teal-200 p-4 rounded-2xl shadow-sm">
+              <div className="flex items-center gap-3 lg:p-4 bg-white border border-teal-200 p-3 lg:p-4 rounded-2xl shadow-sm">
                 <Grid className="text-teal-500 shrink-0" size={24} />
                 <span className="font-bold text-slate-800">İşlemleri renk kodlarıyla kategorize edip akışı görselleştirin.</span>
               </div>
-              <div className="flex items-center gap-4 bg-white border border-amber-200 p-4 rounded-2xl shadow-sm">
+              <div className="flex items-center gap-3 lg:p-4 bg-white border border-amber-200 p-3 lg:p-4 rounded-2xl shadow-sm">
                 <Bell className="text-amber-500 shrink-0" size={24} />
                 <span className="font-bold text-slate-800">Otomatik hatırlatmalar ile "gelmeyen hasta" oranını indirin.</span>
               </div>
@@ -277,7 +277,7 @@ export default function Clinics() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{once:true}} className="flex-1 w-full relative">
-            <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-6 relative h-[450px]">
+            <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-6 relative h-auto lg:h-auto lg:min-h-[450px]">
               <AnimatedBorder color="#10B981" />
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-xl font-bold text-slate-900">Ekim 2024</h3>
@@ -288,7 +288,7 @@ export default function Clinics() {
               </div>
               
               {/* Calendar Grid */}
-              <div className="border border-slate-200 rounded-xl overflow-hidden flex flex-col h-[320px]">
+              <div className="border border-slate-200 rounded-xl overflow-hidden flex flex-col h-[320px] overflow-x-auto"><div className="min-w-[500px] lg:min-w-0 flex flex-col h-full">
                 <div className="flex border-b border-slate-200 bg-slate-50">
                   <div className="w-16 border-r border-slate-200"></div>
                   <div className="flex-1 border-r border-slate-200 p-2 text-center">
@@ -305,7 +305,7 @@ export default function Clinics() {
                   </div>
                 </div>
                 
-                <div className="flex-1 flex overflow-hidden relative">
+                <div className="flex-1 flex flex-col lg:flex-row overflow-hidden relative">
                   <div className="w-16 border-r border-slate-200 flex flex-col">
                     <div className="flex-1 border-b border-slate-100 p-2 text-xs text-slate-400 font-medium text-right">09:00</div>
                     <div className="flex-1 border-b border-slate-100 p-2 text-xs text-slate-400 font-medium text-right">10:00</div>
@@ -337,18 +337,18 @@ export default function Clinics() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div></div>
             </div>
           </motion.div>
         </section>
 
         {/* Section 4: Elektronik Hasta Dosyaları */}
-        <section className="h-screen snap-always snap-start flex flex-col-reverse lg:flex-row items-center justify-center gap-16">
+        <section className="min-h-screen h-auto lg:h-screen snap-always snap-start py-24 lg:py-0 flex flex-col-reverse lg:flex-row items-center justify-center gap-16">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{once:true}} className="flex-1 w-full relative">
-            <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-0 relative h-[450px] flex overflow-hidden">
+            <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-0 relative h-auto lg:h-auto lg:min-h-[450px] flex flex-col lg:flex-row overflow-hidden">
               <AnimatedBorder color="#3B82F6" />
               {/* Sidebar */}
-              <div className="w-1/3 bg-slate-50 border-r border-slate-200 p-6 flex flex-col items-center">
+              <div className="w-full lg:w-1/3 bg-slate-50 border-r border-slate-200 p-6 flex flex-col items-center">
                 <div className="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center border-4 border-white shadow-sm mb-4">
                    <div className="text-amber-500"><Activity size={32} /></div>
                 </div>
@@ -372,7 +372,7 @@ export default function Clinics() {
               </div>
               
               {/* Content */}
-              <div className="w-2/3 p-6 flex flex-col">
+              <div className="w-full lg:w-2/3 p-6 flex flex-col">
                 <div className="flex justify-between items-center mb-6">
                   <h3 className="font-bold text-lg text-slate-900">Tıbbi Geçmiş</h3>
                   <button className="text-teal-600 bg-teal-50 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1">
@@ -384,7 +384,7 @@ export default function Clinics() {
                   <div className="relative pl-6">
                     <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white"></div>
                     <div className="text-[10px] font-bold text-slate-400 mb-2 uppercase">12 Ekim 2024</div>
-                    <div className="border border-slate-200 rounded-xl p-4 bg-white shadow-sm">
+                    <div className="border border-slate-200 rounded-xl p-3 lg:p-4 bg-white shadow-sm">
                       <h4 className="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2"><Activity size={16} className="text-emerald-500" /> Genel Muayene & İç-Dış Parazit</h4>
                       <p className="text-xs text-slate-500 leading-relaxed">Rutin kontrol yapıldı, değerler normal. Sonraki dozu takvime eklendi.</p>
                     </div>
@@ -392,7 +392,7 @@ export default function Clinics() {
                   <div className="relative pl-6">
                     <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white"></div>
                     <div className="text-[10px] font-bold text-slate-400 mb-2 uppercase">15 Haziran 2024</div>
-                    <div className="border border-slate-200 rounded-xl p-4 bg-white shadow-sm">
+                    <div className="border border-slate-200 rounded-xl p-3 lg:p-4 bg-white shadow-sm">
                       <h4 className="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2"><Activity size={16} className="text-indigo-500" /> Karma Aşı (Feline)</h4>
                       <p className="text-xs text-slate-500 leading-relaxed">Uygulandı: Nobivac Tricat Trio. Barkod e-karneye okutuldu.</p>
                     </div>
@@ -410,15 +410,15 @@ export default function Clinics() {
               Fiziksel karnelere ve eksik bilgi aktarımlarına veda edin, tüm verileri güvenli bulutta saklayın:
             </p>
             <div className="space-y-4">
-              <div className="flex items-center gap-4 bg-white border border-teal-200 p-4 rounded-2xl shadow-sm">
+              <div className="flex items-center gap-3 lg:p-4 bg-white border border-teal-200 p-3 lg:p-4 rounded-2xl shadow-sm">
                 <FileText className="text-teal-500 shrink-0" size={24} />
                 <span className="font-bold text-slate-800">Hastanın ırk, yaş, kilo ve alerji gibi kritik bilgilerine tek tıkla erişin.</span>
               </div>
-              <div className="flex items-center gap-4 bg-white border border-emerald-200 p-4 rounded-2xl shadow-sm">
+              <div className="flex items-center gap-3 lg:p-4 bg-white border border-emerald-200 p-3 lg:p-4 rounded-2xl shadow-sm">
                 <Activity className="text-emerald-500 shrink-0" size={24} />
                 <span className="font-bold text-slate-800">Tüm aşıları ve operasyonları timeline üzerinde kronolojik görün.</span>
               </div>
-              <div className="flex items-center gap-4 bg-white border border-indigo-200 p-4 rounded-2xl shadow-sm">
+              <div className="flex items-center gap-3 lg:p-4 bg-white border border-indigo-200 p-3 lg:p-4 rounded-2xl shadow-sm">
                 <CheckCircle className="text-indigo-500 shrink-0" size={24} />
                 <span className="font-bold text-slate-800">Hekimler arası bilgi akışı ile daha doğru teşhisler koyun.</span>
               </div>
@@ -427,8 +427,8 @@ export default function Clinics() {
         </section>
 
         {/* Section 5: Neden Veterito'ya Katılmalısınız? */}
-        <section className="min-h-screen snap-always snap-start flex flex-col justify-center py-24">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+        <section className="min-h-screen h-auto lg:h-screen snap-always snap-start py-24 lg:py-0 flex flex-col justify-center py-24">
+          <div className="text-center max-w-2xl lg:max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6">Neden Veterito'ya Katılmalısınız?</h2>
             <p className="text-lg text-slate-600">Sadece bir yönetim paneli değil, aynı zamanda hasta sadakatini artıran ve iş akışınızı hızlandıran uçtan uca bir çözüm sunuyoruz.</p>
           </div>

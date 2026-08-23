@@ -47,9 +47,9 @@ export default function Home() {
         {/* =========================================
             1. HERO SECTION
             ========================================= */}
-        <section className="h-[100dvh] w-full snap-start snap-always relative flex items-center justify-center pt-20 border-b border-[var(--border-color)] bg-[var(--bg-main)] overflow-hidden">
-          <div className="container mx-auto px-6 max-w-[85rem] relative z-10">
-            <div className="flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-24 w-full">
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] w-full snap-start snap-always relative flex items-center justify-center pt-20 border-b border-[var(--border-color)] bg-[var(--bg-main)] overflow-hidden">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
+            <div className="flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-12 lg:gap-8 lg:gap-12 lg:gap-24 w-full">
               
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="flex flex-col items-start z-10 w-full lg:w-auto">
                 <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-indigo-200 dark:border-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-bold shadow-sm mb-6 bg-indigo-50/50 dark:bg-indigo-900/20 backdrop-blur-sm">
@@ -57,17 +57,17 @@ export default function Home() {
                   Evcil hayvan sahipleri ve klinikler için ilk yıl ücretsiz
                 </motion.div>
                 
-                <motion.h1 variants={fadeInUp} className="font-extrabold leading-[1.1] tracking-tight mb-8 text-[var(--text-main)] max-w-3xl">
+                <motion.h1 variants={fadeInUp} className="font-extrabold leading-[1.1] tracking-tight mb-8 text-[var(--text-main)] max-w-2xl lg:max-w-3xl">
                   <span className="text-5xl lg:text-[4.5rem] bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-vet-primary)] to-[var(--color-vet-accent)]">Veterito</span> 
                   <span className="text-4xl lg:text-5xl leading-tight"> ile <br/>
                   Hayvanseverler ve Klinikler <span className="whitespace-nowrap">Tek Çatıda.</span></span>
                 </motion.h1>
                 
-                <motion.p variants={fadeInUp} className="text-lg md:text-xl text-[var(--text-muted)] mb-10 max-w-2xl leading-relaxed font-medium">
+                <motion.p variants={fadeInUp} className="text-lg md:text-xl text-[var(--text-muted)] mb-14 max-w-xl lg:max-w-lg xl:max-w-xl leading-relaxed font-medium">
                   Evcil hayvanınızın tüm sağlık geçmişini, aşı takvimini ve veteriner randevularını tek bir güvenli dijital kimlik altında toplayın. Karma, kuduz ve iç-dış parazit gibi uygulamaları otomatik olarak planlayıp akıllı bildirimler alın ve binlerce hayvan severin yer aldığı pati topluluğuyla etkileşime geçin.
                 </motion.p>
                 
-                <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-2">
                   <Link to="/features" className="group flex items-center justify-center gap-3 px-8 py-4 rounded-3xl font-bold text-white bg-slate-900 dark:bg-white dark:text-slate-900 hover:scale-105 transition-transform shadow-xl">
                     Evcil Hayvan Sahibiyim <PawPrint size={20} className="group-hover:rotate-12 transition-transform" />
                   </Link>
@@ -83,7 +83,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }} 
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="relative flex justify-center items-center w-full lg:w-auto h-[600px] lg:h-[700px] lg:-translate-x-16"
+                className="relative flex justify-center items-center w-full lg:w-auto h-[600px] lg:h-[700px] lg:-translate-x-16 mt-16 lg:mt-0"
               >
                 
                 {/* 1) Central Phone Frame (Dashboard) */}
@@ -274,11 +274,11 @@ export default function Home() {
         {/* =========================================
             1.5. HIGHLIGHTS (Neden Veterito?)
             ========================================= */}
-        <section className="h-[100dvh] w-full snap-start snap-always flex items-center justify-center bg-[var(--bg-main)] border-b border-[var(--border-color)]">
-          <div className="container mx-auto px-6 max-w-7xl">
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] w-full snap-start py-20 lg:py-0 snap-always flex items-center justify-center bg-[var(--bg-main)] border-b border-[var(--border-color)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-6">Her Şey Kontrol Altında</h2>
-              <p className="text-lg text-[var(--text-muted)] max-w-2xl mx-auto font-medium">Veterito ile evcil hayvanınızın sağlık süreçlerini yönetmek çok daha keyifli ve güvenilir.</p>
+              <p className="text-lg text-[var(--text-muted)] max-w-xl lg:max-w-2xl mx-auto font-medium">Veterito ile evcil hayvanınızın sağlık süreçlerini yönetmek çok daha keyifli ve güvenilir.</p>
             </div>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full text-left">
               {/* Card 1 */}
@@ -320,8 +320,8 @@ export default function Home() {
         {/* =========================================
             2. DIGITAL ID & HEALTH (Dijital Sağlık Kartı)
             ========================================= */}
-        <section className="h-[100dvh] snap-start snap-always flex items-center bg-[var(--bg-surface)] border-b border-[var(--border-color)]">
-          <div className="container mx-auto px-6 max-w-7xl">
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 snap-always flex items-center bg-[var(--bg-surface)] border-b border-[var(--border-color)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
             <div className="flex flex-col-reverse lg:flex-row gap-16 items-center">
               
               {/* Abstract UI: Digital Health Card (Wallet Style) */}
@@ -430,9 +430,9 @@ export default function Home() {
         {/* =========================================
             3. SMART REMINDERS
             ========================================= */}
-        <section className="h-[100dvh] snap-start snap-always flex items-center border-b border-[var(--border-color)] bg-[var(--bg-main)]">
-          <div className="container mx-auto px-6 max-w-7xl">
-            <div className="flex flex-col lg:flex-row gap-16 items-center">
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 snap-always flex items-center border-b border-[var(--border-color)] bg-[var(--bg-main)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
               
               <div className="flex-1 space-y-6 text-left">
                 <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)]">Akıllı Takvim ve Hatırlatıcılar</h2>
@@ -529,9 +529,9 @@ export default function Home() {
         {/* =========================================
             4. COMMUNITY (Sosyal Alan)
             ========================================= */}
-        <section className="h-[100dvh] snap-start snap-always flex items-center bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
-          <div className="container mx-auto px-6 max-w-7xl">
-            <div className="flex flex-col lg:flex-row gap-16 items-center">
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 snap-always flex items-center bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
               
               <div className="flex-1 space-y-6">
                 <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)]">Pati Topluluğu</h2>
@@ -643,9 +643,9 @@ export default function Home() {
         {/* =========================================
             5. CLINICS B2B
             ========================================= */}
-        <section className="h-[100dvh] snap-start snap-always flex items-center bg-[var(--bg-surface)] border-b border-[var(--border-color)]">
-          <div className="container mx-auto px-6 max-w-7xl">
-            <div className="flex flex-col lg:flex-row gap-16 items-center">
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 snap-always flex items-center bg-[var(--bg-surface)] border-b border-[var(--border-color)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
               
               <div className="flex-1 space-y-6 text-left">
                 <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)]">Klinikler İçin Veterito</h2>
@@ -766,12 +766,12 @@ export default function Home() {
             6. PRICING & FOOTER
             ========================================= */}
         <section className="snap-start snap-always bg-[var(--bg-main)] py-24">
-          <div className="container mx-auto px-6 max-w-7xl text-center">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 text-center">
             <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-6">Hemen Başlayın</h2>
             <p className="text-xl text-[var(--text-main)] font-bold mb-4">
               İlk yıl tamamen ücretsiz!
             </p>
-            <p className="text-lg text-[var(--text-muted)] max-w-2xl mx-auto mb-10 font-medium">
+            <p className="text-lg text-[var(--text-muted)] max-w-xl lg:max-w-2xl mx-auto mb-10 font-medium">
               Veterito ekosistemini risk almadan deneyin. Sonrasında bütçe dostu abonelik modeliyle kesintisiz hizmete devam edin.
             </p>
             

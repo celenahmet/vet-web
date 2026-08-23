@@ -17,10 +17,10 @@ export default function About() {
         <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-emerald-100/60 rounded-full blur-3xl mix-blend-multiply opacity-50 animate-float" style={{ animationDuration: '20s', animationDelay: '2s' }}></div>
       </div>
 
-      <div className="container mx-auto px-6 max-w-7xl py-12 relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-12 relative z-10">
         
         {/* Hero Section */}
-        <div className="text-center max-w-3xl mx-auto mb-24">
+        <div className="text-center max-w-2xl lg:max-w-3xl mx-auto mb-24">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="inline-flex items-center gap-2 bg-teal-50 text-teal-600 px-4 py-2 rounded-full font-bold text-sm border border-teal-100 mb-6">
             <Heart size={16} className="fill-teal-500" />
             Biz Kimiz?

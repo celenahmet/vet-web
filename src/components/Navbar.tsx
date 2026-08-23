@@ -51,7 +51,7 @@ const Navbar = () => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
         scrolled ? 'py-3 glass-nav shadow-sm' : 'py-5 bg-transparent'
       }`}
     >
@@ -59,7 +59,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center z-50 flex-1 hover:opacity-80 transition-opacity">
+          <Link to="/" className="flex items-center z-[110] flex-1 hover:opacity-80 transition-opacity">
             <img src={logoUrl} alt="Veterito Logo" className="h-10 md:h-12 w-auto" />
           </Link>
 
@@ -100,7 +100,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Toggle */}
           <button 
-            className="md:hidden p-2 text-[var(--text-main)]"
+            className="md:hidden p-2 text-[var(--text-main)] relative z-[110]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -115,7 +115,7 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 glass-nav border-t border-[var(--border-color)] p-6 flex flex-col gap-4 shadow-xl md:hidden"
+            className="absolute top-full left-0 right-0 bg-white dark:bg-slate-900 border-t border-[var(--border-color)] p-6 flex flex-col gap-4 shadow-xl md:hidden z-[100] h-screen overflow-y-auto pb-32"
           >
             {navLinks.map((link) => (
               <Link 

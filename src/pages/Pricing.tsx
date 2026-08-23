@@ -16,8 +16,8 @@ export default function Pricing() {
     <div className="min-h-screen pt-24 pb-12 relative bg-[var(--bg-main)] flex flex-col justify-center">
       <SEO title={t('seo_title_pricing', 'Fiyatlandırma | Veterito')} description={t('seo_desc_pricing', 'Veteriner klinikleri için şeffaf paketler')} />
 
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="text-center max-w-2xl mx-auto mb-10">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        <div className="text-center max-w-xl lg:max-w-2xl mx-auto mb-10">
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-3xl lg:text-4xl font-extrabold mb-4 text-[var(--text-main)] leading-tight">
             Klinikleriniz İçin <br/> <span className="text-[var(--color-vet-primary)]">Şeffaf ve Esnek Paketler</span>
           </motion.h1>

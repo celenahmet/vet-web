@@ -48,7 +48,7 @@ export default function Features() {
       <SEO title="Özellikler - Veterito" description="Veterito'nun hayvan sahipleri ve klinikler için sunduğu tüm özellikleri detaylıca keşfedin." />
 
       {/* 1. HERO / ECOSYSTEM OVERVIEW (Snap Section 1) */}
-      <section className="h-[100dvh] w-full snap-start snap-always relative z-0">
+      <section className="min-h-[100dvh] h-auto lg:h-[100dvh] w-full snap-start py-20 lg:py-0 snap-always relative z-0">
         <motion.div 
           style={{ opacity: heroOpacity, scale: heroScale }}
           className="sticky top-0 left-0 w-full h-[100dvh] flex flex-col items-center justify-center overflow-hidden z-0 pt-24 pb-12"
@@ -58,7 +58,7 @@ export default function Features() {
             <div className="absolute bottom-[10%] right-[10%] w-[30%] h-[50%] bg-emerald-500/10 dark:bg-emerald-500/20 rounded-full blur-[100px]"></div>
           </div>
           
-          <div className="container mx-auto px-6 max-w-5xl text-center relative z-10 flex flex-col items-center justify-center">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 text-center relative z-10 flex flex-col items-center justify-center">
             <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="flex flex-col items-center">
               <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-indigo-200 dark:border-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-bold shadow-sm mb-6 bg-indigo-50/50 dark:bg-indigo-900/20 backdrop-blur-sm">
                 <ShieldCheck size={16} />
@@ -72,7 +72,7 @@ export default function Features() {
                 </span>
               </motion.h1>
               
-              <motion.p variants={fadeInUp} className="text-xl text-[var(--text-muted)] max-w-3xl leading-relaxed font-medium">
+              <motion.p variants={fadeInUp} className="text-xl text-[var(--text-muted)] max-w-2xl lg:max-w-3xl leading-relaxed font-medium">
                 Veterito; evcil hayvanların, sahiplerinin ve kliniklerin hayatını kolaylaştırmak için tasarlandı. Sadece bir hatırlatıcı değil; hastalıklara erken müdahale edilmesini sağlayan, kliniklerin iş yükünü azaltan ve hayvan severleri bir araya getiren devasa bir ağdır.
               </motion.p>
             </motion.div>
@@ -81,8 +81,8 @@ export default function Features() {
       </section>
 
       {/* 2. INTERACTIVE APP SHOWCASE (Snap Section 2) */}
-      <section className="h-[100dvh] w-full snap-start snap-always relative z-10 bg-[var(--bg-surface)] flex flex-col justify-center pt-24 pb-8 shadow-[0_-20px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_-20px_40px_rgba(0,0,0,0.3)]">
-        <div className="container mx-auto px-6 max-w-7xl flex flex-col justify-center h-full">
+      <section className="min-h-[100dvh] h-auto lg:h-[100dvh] w-full snap-start snap-always relative z-10 bg-[var(--bg-surface)] flex flex-col justify-center pt-24 pb-8 shadow-[0_-20px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_-20px_40px_rgba(0,0,0,0.3)]">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 flex flex-col justify-center h-full">
           <div className="text-center mb-2 transform translate-y-4 lg:translate-y-8 relative z-20">
             <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-6 py-1 leading-tight">
               Herkes İçin <br/>
@@ -117,10 +117,10 @@ export default function Features() {
               
               {/* TAB 1: OWNERS */}
               {activeTab === 'owners' && (
-                <motion.div key="owners" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} transition={{duration:0.2}} className="flex flex-col lg:flex-row items-center gap-8 w-full max-w-5xl mx-auto lg:pl-8 mt-6 lg:mt-8">
+                <motion.div key="owners" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} transition={{duration:0.2}} className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-20 w-full max-w-6xl mx-auto lg:pl-8 mt-6 lg:mt-8">
                   
                   {/* Column 1: Title, Description & Modern Features */}
-                  <div className="w-full lg:w-[55%] flex flex-col space-y-4 text-center lg:text-left">
+                  <div className="w-full lg:w-[50%] flex flex-col space-y-4 text-center lg:text-left">
                     <div>
                       <h2 className="text-sm font-bold tracking-widest text-amber-600 dark:text-amber-400 uppercase mb-2">EVCİL HAYVAN SAHİPLERİ İÇİN</h2>
                       <h3 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-2 leading-tight">Sıfır Stres, <br/>Kesintisiz Takip.</h3>
@@ -151,7 +151,7 @@ export default function Features() {
                   </div>
 
                   {/* Column 2: Center UI */}
-                  <div className="w-full lg:w-[45%] flex justify-center lg:justify-end h-[520px] relative perspective-1000 mt-4 lg:mt-0">
+                  <div className="w-full lg:w-[40%] flex justify-center lg:justify-end h-[520px] relative perspective-1000 mt-4 lg:mt-0">
                       <div className="w-[320px] h-[640px] transform scale-[0.85] origin-top lg:origin-top-right bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl overflow-hidden relative flex flex-col z-10 border border-slate-100 dark:border-slate-800">
 
                       <div className="flex justify-between items-center px-6 pt-10 pb-2">
@@ -253,10 +253,10 @@ export default function Features() {
 
               {/* TAB 2: PETS */}
               {activeTab === 'pets' && (
-                <motion.div key="pets" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} transition={{duration:0.2}} className="flex flex-col lg:flex-row items-center gap-8 w-full max-w-5xl mx-auto lg:pl-8 mt-6 lg:mt-8">
+                <motion.div key="pets" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} transition={{duration:0.2}} className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-20 w-full max-w-6xl mx-auto lg:pl-8 mt-6 lg:mt-8">
                   
                   {/* Column 1: Title, Description & Modern Features */}
-                  <div className="w-full lg:w-[55%] flex flex-col space-y-4 text-center lg:text-left">
+                  <div className="w-full lg:w-[50%] flex flex-col space-y-4 text-center lg:text-left">
                     <div>
                       <h2 className="text-sm font-bold tracking-widest text-teal-600 dark:text-teal-400 uppercase mb-2">PATİLİ DOSTLAR İÇİN</h2>
                       <h3 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-2 leading-tight">Hayat Kurtaran <br/>Dijital Kimlik.</h3>
@@ -287,7 +287,7 @@ export default function Features() {
                   </div>
 
                   {/* Column 2: Center UI */}
-                  <div className="w-full lg:w-[45%] flex justify-center lg:justify-end h-[520px] relative perspective-1000 mt-4 lg:mt-0">
+                  <div className="w-full lg:w-[40%] flex justify-center lg:justify-end h-[520px] relative perspective-1000 mt-4 lg:mt-0">
                       <div className="w-[320px] h-[640px] transform scale-[0.85] origin-top lg:origin-top-right bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl overflow-hidden relative flex flex-col z-10 border border-slate-100 dark:border-slate-800">
 
                       <div className="flex justify-between items-center px-4 pt-10 pb-2">
@@ -408,10 +408,10 @@ export default function Features() {
               )}
               {/* TAB 3: COMMUNITY */}
               {activeTab === 'community' && (
-                <motion.div key="community" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} transition={{duration:0.2}} className="flex flex-col lg:flex-row items-center gap-8 w-full max-w-5xl mx-auto lg:pl-8 mt-6 lg:mt-8">
+                <motion.div key="community" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} transition={{duration:0.2}} className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-20 w-full max-w-6xl mx-auto lg:pl-8 mt-6 lg:mt-8">
                   
                   {/* Column 1: Title, Description & Modern Features */}
-                  <div className="w-full lg:w-[55%] flex flex-col space-y-4 text-center lg:text-left">
+                  <div className="w-full lg:w-[50%] flex flex-col space-y-4 text-center lg:text-left">
                     <div>
                       <h2 className="text-sm font-bold tracking-widest text-rose-500 uppercase mb-2">PATİ TOPLULUĞU</h2>
                       <h3 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-2 leading-tight">Yalnız Değilsiniz. <br/>Deneyimleri Paylaşın.</h3>
@@ -442,7 +442,7 @@ export default function Features() {
                   </div>
 
                   {/* Column 2: Center UI */}
-                  <div className="w-full lg:w-[45%] flex justify-center lg:justify-end h-[520px] relative perspective-1000 mt-4 lg:mt-0">
+                  <div className="w-full lg:w-[40%] flex justify-center lg:justify-end h-[520px] relative perspective-1000 mt-4 lg:mt-0">
                       <div className="w-[320px] h-[640px] transform scale-[0.85] origin-top lg:origin-top-right bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl overflow-hidden relative flex flex-col z-10 border border-slate-100 dark:border-slate-800">
 
                       <div className="flex justify-between items-center px-6 pt-10 pb-2">
@@ -546,11 +546,11 @@ export default function Features() {
       </section>
 
       {/* 3. SMART HEALTH ASSISTANT (Bento Box) */}
-      <section className="min-h-[100dvh] w-full snap-start snap-always relative z-20 bg-[var(--bg-main)] flex flex-col justify-center pt-16 pb-8 shadow-[0_-20px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_-20px_40px_rgba(0,0,0,0.3)] border-t border-[var(--border-color)]">
-        <div className="container mx-auto px-6 max-w-7xl flex flex-col justify-center">
+      <section className="min-h-[100dvh] h-auto lg:h-[100dvh] w-full snap-start snap-always relative z-20 bg-[var(--bg-main)] flex flex-col justify-center pt-16 pb-8 shadow-[0_-20px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_-20px_40px_rgba(0,0,0,0.3)] border-t border-[var(--border-color)]">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 flex flex-col justify-center">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
             <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-6">Sadece Bir Karne Değil, <br/><span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-orange-500">Akıllı Yaşam Koçu</span></h2>
-            <p className="text-lg text-[var(--text-muted)] font-medium max-w-2xl mx-auto">Verileri analiz eden sistemimiz, dostunuzun ırkına ve yaşına özel proaktif tavsiyeler sunar. İhtiyaç duyduğunuz tüm bilgiler tek bakışta karşınızda.</p>
+            <p className="text-lg text-[var(--text-muted)] font-medium max-w-xl lg:max-w-2xl mx-auto">Verileri analiz eden sistemimiz, dostunuzun ırkına ve yaşına özel proaktif tavsiyeler sunar. İhtiyaç duyduğunuz tüm bilgiler tek bakışta karşınızda.</p>
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[220px]">
@@ -615,9 +615,9 @@ export default function Features() {
       </section>
 
       {/* 4. DIGITAL ECOSYSTEM (Clinic Sync) */}
-      <section className="min-h-[100dvh] w-full snap-start snap-always relative z-20 bg-[var(--bg-surface)] flex flex-col justify-center pt-24 pb-8 border-t border-[var(--border-color)]">
-        <div className="container mx-auto px-6 max-w-7xl flex flex-col justify-center h-full">
-          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+      <section className="min-h-[100dvh] h-auto lg:h-[100dvh] w-full snap-start snap-always relative z-20 bg-[var(--bg-surface)] flex flex-col justify-center pt-24 pb-8 border-t border-[var(--border-color)]">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 flex flex-col justify-center h-full">
+          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 lg:gap-8 lg:gap-12 lg:gap-24">
              <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full lg:w-1/2 space-y-8">
                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal-200 dark:border-teal-900/50 text-teal-700 dark:text-teal-400 text-xs font-bold shadow-sm bg-teal-50/50 dark:bg-teal-900/20">
                   <Building2 size={16} /> Kusursuz Senkronizasyon
@@ -723,7 +723,7 @@ export default function Features() {
 
       {/* 5. CALL TO ACTION */}
       <section className="min-h-[60dvh] w-full snap-start snap-always relative z-20 bg-[var(--bg-main)] flex flex-col justify-center py-24">
-        <div className="container mx-auto px-6 max-w-5xl">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
           <div className="relative bg-[var(--color-vet-primary)] rounded-[3rem] shadow-[0_30px_60px_-15px_rgba(20,184,166,0.4)] border border-teal-400/30 p-12 lg:p-20 text-white overflow-hidden flex flex-col items-center justify-center text-center">
             {/* Abstract Background pattern */}
             <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -734,7 +734,7 @@ export default function Features() {
             <div className="relative z-10 w-full flex flex-col items-center">
               <PawPrint size={48} className="mx-auto mb-6 opacity-90" />
               <h2 className="text-3xl lg:text-5xl font-extrabold mb-4 leading-tight">Dostunuzun Tüm İhtiyaçları <br/>Tek Bir Yerde.</h2>
-              <p className="text-lg opacity-90 mb-10 max-w-2xl mx-auto font-medium">Veterito'yu hemen indirin, hem dostunuzun sağlığını güvence altına alın hem de binlerce hayvanseverin arasına katılın.</p>
+              <p className="text-lg opacity-90 mb-10 max-w-xl lg:max-w-2xl mx-auto font-medium">Veterito'yu hemen indirin, hem dostunuzun sağlığını güvence altına alın hem de binlerce hayvanseverin arasına katılın.</p>
               
               <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full sm:w-auto">
                 <button className="bg-white text-[var(--color-vet-primary)] font-bold text-base px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-xl flex items-center justify-center gap-3 w-full sm:w-auto">

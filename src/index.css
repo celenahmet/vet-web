@@ -1,6 +1,6 @@
 @import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
-
 :root {
   --bg-main: #FFFFFF; /* Pure White */
   --bg-surface: #FFFFFF;
@@ -16,7 +16,7 @@
   --color-vet-accent-light: #e0f2f1; /* Light Teal bg */
 }
 
-[data-theme='dark'] {
+.dark {
   --bg-main: #041416; /* Almost black Navy Teal */
   --bg-surface: #071F22; 
   --bg-secondary: #0B2A2E;

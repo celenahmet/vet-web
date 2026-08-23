@@ -67,13 +67,13 @@ export default function Pets() {
         <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-amber-100/60 rounded-full blur-3xl mix-blend-multiply opacity-50 animate-float" style={{ animationDuration: '20s', animationDelay: '2s' }}></div>
       </div>
 
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="text-center max-w-2xl mx-auto mb-10">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        <div className="text-center max-w-xl lg:max-w-2xl mx-auto mb-10">
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl lg:text-5xl font-extrabold mb-4 text-[var(--text-main)]">{t('pets_h1')}</motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-lg text-[var(--text-muted)] font-medium">{t('pets_desc')}</motion.p>
         </div>
 
-        <div className="max-w-3xl mx-auto mb-16 space-y-8">
+        <div className="max-w-2xl lg:max-w-3xl mx-auto mb-16 space-y-8">
           {/* Search Bar */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="relative">
             <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">

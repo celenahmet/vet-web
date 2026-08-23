@@ -16,7 +16,7 @@ export default function Download() {
         <div className="absolute bottom-[10%] right-[20%] w-[400px] h-[400px] bg-amber-100/50 rounded-full blur-3xl animate-float-delayed opacity-60"></div>
       </div>
 
-      <div className="container mx-auto px-6 max-w-3xl relative z-10 flex flex-col items-center text-center">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 relative z-10 flex flex-col items-center text-center">
         
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}
