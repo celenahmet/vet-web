@@ -123,41 +123,38 @@ export default function BlogPost() {
         {yazi.sss.length ? <script type="application/ld+json">{JSON.stringify(sssVerisi)}</script> : null}
       </Helmet>
 
-      <header className="container yazi-basi">
-        <Link to="/blog" className="yazi-geri"><ArrowLeft size={16} /> Bloga dön</Link>
-        <span className="yazi-kategori">{yazi.kategori.toLocaleUpperCase('tr-TR')}</span>
-        <h1>{yazi.baslik}</h1>
-        <p className="yazi-ozet">{yazi.ozet}</p>
-        <div className="yazi-kunye">
-          <span className="yazi-yazar">Veterito Editör</span>
-          <span><CalendarDays size={14} /> {tarihiYaz(yazi.tarih)}</span>
-          <span><Clock size={14} /> {dakika} dk okuma</span>
-        </div>
-      </header>
-
-      <div className="container yazi-kapak">
-        <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.baslik} boyut={72} />
-      </div>
-
       {/*
-        ⚠️ IKI SUTUN: govde solda, kenar cubugu sagda (referans UniConnectly blogu).
-        Dar ekranda kenar cubugu govdenin ALTINA duşuyor; yanina sikistirmak
-        okunabilirligi bitiriyordu.
-      */}
-      {/*
-        ⚠️ IKI SUTUN: govde solda, kenar cubugu sagda (referans UniConnectly blogu).
-        Dar ekranda kenar cubugu govdenin ALTINA duşuyor; yanina sikistirmak
-        okunabilirligi bitiriyordu.
+        ⚠️ TEK IZGARA (24.08.2026). Onceki halde sayfada UC FARKLI OLCU vardi:
+        baslik ve kapak 820 pikselde ortalaniyordu, govde ve kenar cubugu izgarasi
+        1160'ta. Iki farkli genislik ortalaninca sol kenarlari tutmuyor ve her blok
+        baska yerden basliyordu; Ahmet'in "denge sorunlari" dedigi sey buydu.
 
-        ⚠️ SSS, KONTROL LISTESI VE KAYNAKLAR BU IZGARANIN DISINDA (Ahmet, 24.08.2026:
-        "sik sorulan sorular cok yer kapliyor, sagdaki alanda o kadar icerigimiz yok,
-        sayfa dengesizligine yol aciyor"). Uzun bolumler kenar cubugunun yaninda
-        durunca sag sutun bitiyor ve altinda bos bir serit kaliyordu. Artik tam
-        genislikte, altta.
+        Artik baslik, kapak ve govde AYNI sol sutunda; kenar cubugu en bastan sagda
+        ve tek bir sol kenar cizgisi var.
       */}
       <div className="container yazi-duzen">
-        <div className="yazi-govde">
-          {yazi.bloklar.map((b, i) => <Blok key={i} blok={b} />)}
+        <div className="yazi-ana">
+          <header className="yazi-basi">
+            <div className="yazi-ust-satir">
+              <Link to="/blog" className="yazi-geri"><ArrowLeft size={16} /> Bloga dön</Link>
+              <span className="yazi-kategori">{yazi.kategori.toLocaleUpperCase('tr-TR')}</span>
+            </div>
+            <h1>{yazi.baslik}</h1>
+            <p className="yazi-ozet">{yazi.ozet}</p>
+            <div className="yazi-kunye">
+              <span className="yazi-yazar">Veterito Editör</span>
+              <span><CalendarDays size={14} /> {tarihiYaz(yazi.tarih)}</span>
+              <span><Clock size={14} /> {dakika} dk okuma</span>
+            </div>
+          </header>
+
+          <div className="yazi-kapak">
+            <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.baslik} boyut={72} />
+          </div>
+
+          <div className="yazi-govde">
+            {yazi.bloklar.map((b, i) => <Blok key={i} blok={b} />)}
+          </div>
         </div>
 
         <BlogKenarCubugu haricSlug={yazi.slug} />
