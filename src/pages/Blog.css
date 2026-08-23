@@ -25,14 +25,37 @@
  * diğer sayfalar başka birinin alanı ve onların kahraman bölümü var.
  */
 .blog-sayfa { padding: calc(88px + 28px) 0 72px; }
+
+/*
+ * ⚠️ `margin-inline` KULLANILIYOR, `margin: 0 auto` DEGIL (duzeltme 24.08.2026).
+ *
+ * Her bolum hem `container` hem kendi sinifini tasiyor:
+ *   <section className="container blog-one-cikan">
+ *
+ * Eskiden burada `margin: 0 auto` yaziyordu. Kisayol DORT kenari birden yaziyor,
+ * yani alt kenar bosluguna da `0` basiyor. Ustelik `.blog-sayfa .container`
+ * ozgullugu (0,2,0), `.blog-sayfa section` ozgullugunden (0,1,1) YUKSEK. Sonuc:
+ * asagidaki 40px kurali hicbir zaman uygulanmadi.
+ *
+ * OLCUM (CDP `CSS.getMatchedStylesForNode`, canli site, 24.08.2026): alti bolumun
+ * hepsinde `margin-bottom: 0px` ve her bolumun alt kenari bir sonrakinin ust
+ * kenarina birebir esitti (499=499, 626=626, 966=966, 1148=1148, 1384=1384).
+ * "Yaziyi Oku" dugmesinin alt kenari 499, kategori seridinin ust kenari 499:
+ * dugme seride yapisikti. Bolumler ic ice gecmis gorunuyordu.
+ *
+ * Ders: yatay ortalama icin kisayol yazma. `margin-inline` yalniz sag/solu
+ * yaziyor, dikey boslugu baska bir kuralin yonetmesine izin veriyor.
+ */
 .blog-sayfa .container {
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
+  margin-inline: auto;
   padding: 0 24px;
 }
 @media (max-width: 760px) { .blog-sayfa .container { padding: 0 16px; } }
 .blog-sayfa section { margin-bottom: 40px; }
+/* Son bolumun altinda `.blog-sayfa` zaten 72px tasiyor; ustune 40px binmesin. */
+.blog-sayfa section:last-child { margin-bottom: 0; }
 
 /* --- One cikan yazi --- */
 .blog-one-cikan {
@@ -91,28 +114,52 @@
 }
 
 /* --- Kategori seridi --- */
+
+/*
+ * ⚠️ IZGARA DEGIL, SARAN SATIR (duzeltme 24.08.2026).
+ *
+ * Eskiden `repeat(6, 1fr)` idi ama seritte YEDI dugme var: "Tumu" + alti kategori.
+ * Yedinci ("Pet Sahipleri") alt satira dusuyor ve alti sutunluk satirda tek
+ * basina kaliyordu; sagindaki bes sutun bos gorunuyordu. Olculdu (CDP, canli
+ * site 24.08.2026): cocuk sayisi 7, sutun sayisi 6, satir sayisi 2.
+ *
+ * Sabit sutun sayisi yazmak, kategori sayisi her degistiginde ayni hatayi geri
+ * getirir. `flex: 1 1 auto` ile dugmeler kendi metin genisligini taban aliyor,
+ * artan bosluk aralarinda paylasiliyor; sigmadiklarinda saran satirin SON satiri
+ * da tam genisligi dolduruyor, yani hicbir genislikte bosluk kalmiyor.
+ *
+ * ⚠️ AYIRACLAR ARTIK `gap`. Eskiden her dugmede `border-right` vardi ama dosyanin
+ * ilerisindeki `.kategori-oge { border: none }` kurali (dugmeye cevrilirken
+ * yazilmis) ayni ozgullukte ve DAHA SONRA geldigi icin hepsini siliyordu:
+ * seritte ayirac hic cizilmiyordu. Simdi ayirac 1px `gap` ve altindan seridin
+ * kendi arka plani gorunuyor; sonraki bir `border` kurali bunu bozamaz.
+ */
 .kategori-seridi {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  background: var(--color-surface);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  background: var(--color-border, rgba(0,0,0,0.07));
   border: 1px solid var(--color-border, rgba(0,0,0,0.07));
   border-radius: 16px;
   overflow: hidden;
 }
 .kategori-oge {
+  flex: 1 1 auto;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   padding: 20px 12px;
+  background: var(--color-surface);
   color: var(--color-text);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
-  border-right: 1px solid var(--color-border, rgba(0,0,0,0.07));
   transition: background 0.15s ease;
 }
-.kategori-oge:last-child { border-right: none; }
+/* Etiket satir ortasindan kirilmasin; kirilirsa serit yukselip zipliyor. */
+.kategori-oge span { white-space: nowrap; }
 .kategori-oge:hover { background: var(--color-vet-accent-light); }
 .kategori-oge svg { color: var(--color-vet-secondary); flex-shrink: 0; }
 
@@ -272,9 +319,9 @@
 @media (max-width: 1180px) {
   .blog-izgara { grid-template-columns: repeat(2, 1fr); }
   .blog-liste { grid-template-columns: repeat(2, 1fr); }
-  .kategori-seridi { grid-template-columns: repeat(3, 1fr); }
-  .kategori-oge { border-right: 1px solid var(--color-border, rgba(0,0,0,0.07)); }
-  .kategori-oge:nth-child(3n) { border-right: none; }
+  /* Serit kendi sariyor; sutun sayisi yazmak orta genisliklerde tek basina
+     kalan dugme uretiyordu. Yalniz taban genislik daraltiliyor. */
+  .kategori-oge { padding: 18px 10px; }
   .one-cikan-metin h1 { font-size: 2.35rem; }
 }
 
@@ -294,10 +341,9 @@
   .one-cikan-metin h1 { font-size: 1.7rem; }
   .one-cikan-metin p { font-size: 0.98rem; }
   .blog-izgara, .blog-liste { grid-template-columns: 1fr; }
-  .kategori-seridi { grid-template-columns: repeat(2, 1fr); }
-  .kategori-oge { padding: 16px 10px; font-size: 0.9rem; }
-  .kategori-oge { border-right: 1px solid var(--color-border, rgba(0,0,0,0.07)); }
-  .kategori-oge:nth-child(2n) { border-right: none; }
+  /* Telefonda iki dugme yan yana kalsin: taban genislik veriliyor ki
+     `flex-wrap` satir basina ikiden fazlasini sikistirmasin. */
+  .kategori-oge { flex-basis: 38%; padding: 16px 10px; font-size: 0.9rem; }
   .blog-liste-baslik h2 { font-size: 1.15rem; }
   .klinik-bandi { flex-direction: column; align-items: flex-start; gap: 18px; padding: 26px 20px; }
   .klinik-bandi-metin h2 { font-size: 1.2rem; }
@@ -342,9 +388,16 @@
 }
 
 /* --- Kategori seridi: dugme oldu, sayili ve secilebilir --- */
+
+/*
+ * ⚠️ `background: transparent` BURADAN KALDIRILDI (24.08.2026). Ayiraclar artik
+ * seridin arka planini gosteren 1px `gap`; dugme saydam olursa o arka plan
+ * dugmenin ALTINDAN da gorunur ve serit bastan asagi cizgi rengine boyanir.
+ * Dugmenin dolgusu yukaridaki `.kategori-oge` kuralinda `--color-surface`.
+ * `border: none` da kaldirildi: zaten kenarlik verilmiyor, ama bu kural daha
+ * sonra geldigi icin ileride yazilacak bir kenarligi sessizce siliyordu.
+ */
 .kategori-oge {
-  border: none;
-  background: transparent;
   font-family: inherit;
   cursor: pointer;
   gap: 8px;
@@ -365,7 +418,8 @@
 .kategori-oge.secili em { background: var(--color-vet-secondary); color: #fff; }
 /* Yazisi olmayan kategori tiklanamaz: sonuc vermeyen baglanti gostermiyoruz. */
 .kategori-oge.bos { opacity: 0.4; cursor: default; }
-.kategori-oge.bos:hover { background: transparent; }
+/* Saydam degil dolgu rengi: saydamlik seridin ayirac rengini altindan gosterir. */
+.kategori-oge.bos:hover { background: var(--color-surface); }
 
 .blog-bos { text-align: center; padding: 32px 0; }
 .blog-bos p { color: var(--text-muted, #475569); margin: 0 0 14px; }
