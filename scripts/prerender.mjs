@@ -174,6 +174,11 @@ for (const y of yazilar) {
     `<p>${kac(y.ozet)}</p>`,
     `<p>Veterito Editör · ${kac(tarihiYaz(y.tarih))} · ${dakika} dk okuma</p>`,
     ...y.bloklar.map(blokHtml),
+    y.kontrolListesi?.length
+      ? `<section><h2>Kontrol listesi</h2><ul>${y.kontrolListesi
+          .map((m) => `<li>${kac(m)}</li>`)
+          .join('')}</ul></section>`
+      : '',
     y.sss?.length
       ? `<section><h2>Sık sorulanlar</h2>${y.sss
           .map((s) => `<h3>${kac(s.soru)}</h3><p>${kac(s.cevap)}</p>`)
