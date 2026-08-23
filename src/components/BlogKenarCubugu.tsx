@@ -59,7 +59,7 @@ export default function BlogKenarCubugu({ haricSlug }: Props) {
               <li key={y.slug}>
                 <Link to={`/blog/${y.slug}`}>
                   <div className="kenar-gorsel">
-                    <BlogKapak ad={y.kapak} kategori={y.kategori} alt={y.baslik} boyut={20} />
+                    <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.baslik} boyut={20} />
                   </div>
                   <div>
                     <h3>{y.baslik}</h3>

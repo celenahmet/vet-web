@@ -42,15 +42,17 @@ export type BlogYazi = {
   kategori: BlogKategori;
   /** ISO tarih, ornek 2026-08-23 */
   tarih: string;
-  /**
-   * ⚠️ OPSIYONEL. Elimizdeki blog-1..4 gorselleri BASKA YAZILARIN afisleri ve
-   * baslıklari gorselin icine basili; birini alakasiz bir yaziya kapak yapmak
-   * yanlis bilgi gosteriyor (23.08.2026'da yakalandi). Kapagi olmayan yazi,
-   * marka renginde yedek blokla gosteriliyor.
-   */
-  kapak?: string;
   bloklar: BlogBlock[];
   sss: BlogSSS[];
+  /**
+   * Yazinin sonundaki kontrol listesi (İSTEK: Ahmet, 24.08.2026 —
+   * "yazilarin sonunda kontrol listesi yapalim faydasi olur").
+   *
+   * Okuyucuya elle tutulur bir sey birakiyor: yaziyi okuyup kapatmak yerine
+   * uygulanabilir maddeler kaliyor. SSS'ten farki, SSS soruyu cevapliyor,
+   * kontrol listesi EYLEM soyluyor.
+   */
+  kontrolListesi?: string[];
   /** Opsiyonel. Yalniz DOGRULANMIS kaynak yazilir, uydurma bagi konmaz. */
   kaynaklar?: { etiket: string; adres?: string }[];
 };

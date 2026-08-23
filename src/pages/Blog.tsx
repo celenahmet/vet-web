@@ -80,7 +80,7 @@ export default function Blog() {
             </Link>
           </div>
           <div className="one-cikan-gorsel belir gecikmeli">
-            <BlogKapak ad={oneCikan.kapak} kategori={oneCikan.kategori} alt={oneCikan.baslik} boyut={64} />
+            <BlogKapak slug={oneCikan.slug} kategori={oneCikan.kategori} alt={oneCikan.baslik} boyut={64} />
           </div>
         </section>
       ) : null}
@@ -120,7 +120,7 @@ export default function Blog() {
           {izgara.map((yazi) => (
             <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-kart">
               <div className="blog-kart-gorsel">
-                <BlogKapak ad={yazi.kapak} kategori={yazi.kategori} alt={yazi.baslik} boyut={40} />
+                <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.baslik} boyut={40} />
               </div>
               <div className="blog-kart-govde">
                 <span className="blog-kart-kategori">{yazi.kategori.toLocaleUpperCase('tr-TR')}</span>
@@ -144,7 +144,7 @@ export default function Blog() {
           <div className="blog-liste">
             {liste.map((yazi) => (
               <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-liste-kart">
-                <BlogKapak ad={yazi.kapak} kategori={yazi.kategori} alt={yazi.baslik} boyut={24} />
+                <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.baslik} boyut={24} />
                 <div>
                   <h4>{yazi.baslik}</h4>
                   <div className="blog-liste-alt">

@@ -82,10 +82,10 @@
 .one-cikan-dugme:hover,
 .klinik-bandi-dugme:hover,
 .bulten-dugme:hover { transform: translateY(-1px); opacity: 0.94; }
+/* Afislerde baslik gorselin icinde: kirpma yok, dogal oran. */
 .one-cikan-gorsel img {
   width: 100%;
-  aspect-ratio: 16 / 11;
-  object-fit: cover;
+  height: auto;
   border-radius: 20px;
   display: block;
 }
@@ -381,3 +381,10 @@
 .blog-liste-baslik h2 { font-weight: 700; }
 .blog-liste-kart h4 { font-weight: 700; }
 .klinik-bandi-metin h2, .bulten-metin h2 { font-weight: 700; }
+
+/* Govde metni Inter, basliklar Outfit (bkz. BlogPost.css). */
+.one-cikan-metin p,
+.blog-kart-alt,
+.blog-liste-alt,
+.klinik-bandi-metin p,
+.bulten-metin p { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }

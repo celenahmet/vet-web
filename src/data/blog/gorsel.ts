@@ -1,22 +1,35 @@
 /**
- * Kapak gorselleri: yazi verisinde dosya ADI duruyor, import burada yapiliyor.
- * Boylece yazi dosyalari saf veri kaliyor ve derleme aninda statik HTML uretmek
- * kolaylasiyor.
+ * KAPAK GORSELLERI
+ *
+ * ⚠️ DOSYA ADI = SLUG. `src/assets/blog/<slug>.webp`. Bu kural sayesinde yazi
+ * verisinde kapak alani tutmaya gerek kalmiyor: 100 yazida hangi gorselin hangi
+ * yaziya ait oldugu elle eslestirilirse er ya da gec kayar. Nitekim ilk turda
+ * kaydi: alakasiz bir afis kapak olarak gorunuyordu.
+ *
+ * ⚠️ `import.meta.glob` KULLANILIYOR, tek tek import degil. 100 gorsel icin 100
+ * satir import yazmak, her yeni yazida bir satir daha unutulacak demek.
+ *
+ * Gorseller kaynak PNG'lerden uretiliyor: 1200 px genislik, WEBP kalite 82.
+ * Olculdu: 9.6 MB'lik alti kapak 402 KB'ye indi, yaklasik 25 kat.
  */
-import blog1 from '../../assets/blog-1.jpg';
-import blog2 from '../../assets/blog-2.jpg';
-import blog3 from '../../assets/blog-3.jpg';
-import blog4 from '../../assets/blog-4.jpg';
+const GORSELLER = import.meta.glob('../../assets/blog/*.webp', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>;
 
-const HARITA: Record<string, string> = {
-  'blog-1.jpg': blog1,
-  'blog-2.jpg': blog2,
-  'blog-3.jpg': blog3,
-  'blog-4.jpg': blog4,
-};
+const HARITA: Record<string, string> = {};
+for (const [yol, kaynak] of Object.entries(GORSELLER)) {
+  const ad = yol.split('/').pop()?.replace(/\.webp$/, '');
+  if (ad) HARITA[ad] = kaynak;
+}
 
-/** Eslesme yoksa null doner; cagiran taraf marka renginde yedek blok gosterir. */
-export function kapakGorseli(ad: string | undefined): string | null {
-  if (!ad) return null;
-  return HARITA[ad] ?? null;
+/** Slug'a karsilik gelen kapak. Yoksa null doner, cagiran yedek blok gosterir. */
+export function kapakGorseli(slug: string | undefined): string | null {
+  if (!slug) return null;
+  return HARITA[slug] ?? null;
+}
+
+/** Kac yazinin kapagi var: denetim ve uyari icin. */
+export function kapakSayisi(): number {
+  return Object.keys(HARITA).length;
 }

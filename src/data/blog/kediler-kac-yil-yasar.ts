@@ -67,7 +67,7 @@ export const kedilerKacYilYasar: BlogYazi = {
     { kind: 'tablo', basliklar: ['Irk', 'Ortalama ömür', 'Dikkat edilecek'], satirlar: [
       ['Tekir (melez)', '14-18 yıl', 'Genetik çeşitlilik avantaj sağlıyor'],
       ['Siyam', '15-20 yıl', 'Uzun ömürlü ırklardan'],
-      ['Birman', '14-16 yıl', ''],
+      ['Birman', '14-16 yıl', 'Yarı uzun tüylü, düzenli tüy bakımı gerektiriyor'],
       ['British Shorthair', '12-16 yıl', 'Kalp kası hastalığı (HCM) riski'],
       ['Maine Coon', '10-14 yıl', 'HCM ve kalça displazisi'],
       ['Scottish Fold', '11-14 yıl', 'Kıkırdak ve eklem sorunları'],
@@ -97,6 +97,18 @@ export const kedilerKacYilYasar: BlogYazi = {
       'Kum kabını temiz tutun; tuvalet alışkanlığındaki değişim en erken uyarıdır',
     ]},
     { kind: 'paragraf', metin: 'Bu sekiz maddenin hiçbiri pahalı ya da zor değil. Zor olan, hepsini yıllarca aksatmadan sürdürmek. Aşı ve kontrol tarihlerini takip eden bir yer tutmak, listedeki en sıkıcı maddeyi en kolayı hâline getiriyor.' },
+  ],
+  kontrolListesi: [
+    'Kedinizi ev içinde tutuyor musunuz, dışarı çıkıyorsa güvenli bir alanda mı?',
+    'Kısırlaştırma yapıldı mı, yapıldıysa porsiyon buna göre güncellendi mi?',
+    'Karma ve kuduz aşısının tekrar tarihi kayıtlı mı?',
+    'İç ve dış parazit uygulaması aksamıyor mu?',
+    'Kaburga testiyle kiloyu son bir ayda kontrol ettiniz mi?',
+    'Kedinizin günlük su tüketimi yeterli mi, yaş mama veriliyor mu?',
+    'Son veteriner kontrolünün üzerinden bir yıldan az mı geçti?',
+    '11 yaş üstündeyse kontroller altı ayda bire çıkarıldı mı?',
+    'Ağız içine ve diş taşına bakıldı mı?',
+    'Kum kabındaki alışkanlık değişimini takip ediyor musunuz?',
   ],
   sss: [
     { soru: 'En uzun yaşayan kedi kaç yaşına kadar yaşadı?', cevap: 'Kayıtlara geçen en uzun ömürlü kedi 38 yaşına kadar yaşadı. Bu bir istisna; 20 yaşını gören kedi bile nadir sayılır.' },

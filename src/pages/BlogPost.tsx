@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Clock, CalendarDays, AlertTriangle, CircleAlert } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Clock, CalendarDays, AlertTriangle, CircleAlert, CheckCircle2 } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
@@ -136,7 +136,7 @@ export default function BlogPost() {
       </header>
 
       <div className="container yazi-kapak">
-        <BlogKapak ad={yazi.kapak} kategori={yazi.kategori} alt={yazi.baslik} boyut={72} />
+        <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.baslik} boyut={72} />
       </div>
 
       {/*
@@ -144,44 +144,70 @@ export default function BlogPost() {
         Dar ekranda kenar cubugu govdenin ALTINA duşuyor; yanina sikistirmak
         okunabilirligi bitiriyordu.
       */}
+      {/*
+        ⚠️ IKI SUTUN: govde solda, kenar cubugu sagda (referans UniConnectly blogu).
+        Dar ekranda kenar cubugu govdenin ALTINA duşuyor; yanina sikistirmak
+        okunabilirligi bitiriyordu.
+
+        ⚠️ SSS, KONTROL LISTESI VE KAYNAKLAR BU IZGARANIN DISINDA (Ahmet, 24.08.2026:
+        "sik sorulan sorular cok yer kapliyor, sagdaki alanda o kadar icerigimiz yok,
+        sayfa dengesizligine yol aciyor"). Uzun bolumler kenar cubugunun yaninda
+        durunca sag sutun bitiyor ve altinda bos bir serit kaliyordu. Artik tam
+        genislikte, altta.
+      */}
       <div className="container yazi-duzen">
         <div className="yazi-govde">
-        {yazi.bloklar.map((b, i) => <Blok key={i} blok={b} />)}
+          {yazi.bloklar.map((b, i) => <Blok key={i} blok={b} />)}
+        </div>
 
-        {yazi.sss.length ? (
-          <section className="yazi-sss">
-            <h2>Sık sorulanlar</h2>
-            {/*
-              ⚠️ ACILIR KAPANIR DEGIL (Ahmet, 23.08.2026): "sikca sorulan sorular
-              acilir kapanirda degil de direkt gozukse tasarimi ayri gozukur".
-              Ayrica kapali metin arama motoru icin de zayif: acilir kutudaki cevap
-              sayfada var ama okuyucunun gormesi bir tiklamaya bagli.
-            */}
+        <BlogKenarCubugu haricSlug={yazi.slug} />
+      </div>
+
+      {yazi.kontrolListesi?.length ? (
+        <section className="container yazi-kontrol">
+          <h2><CheckCircle2 size={20} /> Kontrol listesi</h2>
+          <p className="yazi-kontrol-alt">Yazıyı kapatmadan önce bunları gözden geçirin.</p>
+          <ul>
+            {yazi.kontrolListesi.map((m) => <li key={m}>{m}</li>)}
+          </ul>
+        </section>
+      ) : null}
+
+      {yazi.sss.length ? (
+        <section className="container yazi-sss">
+          <h2>Sık sorulanlar</h2>
+          {/*
+            ⚠️ ACILIR KAPANIR DEGIL (Ahmet, 23.08.2026): "sikca sorulan sorular
+            acilir kapanirda degil de direkt gozukse tasarimi ayri gozukur".
+            Ayrica kapali metin arama motoru icin de zayif: acilir kutudaki cevap
+            sayfada var ama okuyucunun gormesi bir tiklamaya bagli.
+
+            Genis ekranda iki sutuna aciliyor; tek sutunda cok uzun bir serit
+            oluyordu.
+          */}
+          <div className="sss-izgara">
             {yazi.sss.map((s) => (
               <div className="sss-kart" key={s.soru}>
                 <h3>{s.soru}</h3>
                 <p>{s.cevap}</p>
               </div>
             ))}
-          </section>
-        ) : null}
+          </div>
+        </section>
+      ) : null}
 
-        {yazi.kaynaklar?.length ? (
-          <section className="yazi-kaynaklar">
-            <h2>Kaynaklar</h2>
-            <ul>
-              {yazi.kaynaklar.map((k) => (
-                <li key={k.etiket}>
-                  {k.adres ? <a href={k.adres} target="_blank" rel="noopener noreferrer">{k.etiket}</a> : k.etiket}
-                </li>
-              ))}
-            </ul>
-          </section>
-        ) : null}
-        </div>
-
-        <BlogKenarCubugu haricSlug={yazi.slug} />
-      </div>
+      {yazi.kaynaklar?.length ? (
+        <section className="container yazi-kaynaklar">
+          <h2>Kaynaklar</h2>
+          <ul>
+            {yazi.kaynaklar.map((k) => (
+              <li key={k.etiket}>
+                {k.adres ? <a href={k.adres} target="_blank" rel="noopener noreferrer">{k.etiket}</a> : k.etiket}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       {ilgili.length ? (
         <section className="container yazi-ilgili">
@@ -189,7 +215,7 @@ export default function BlogPost() {
           <div className="yazi-ilgili-liste">
             {ilgili.map((y) => (
               <Link key={y.slug} to={`/blog/${y.slug}`} className="yazi-ilgili-kart">
-                <BlogKapak ad={y.kapak} kategori={y.kategori} alt={y.baslik} boyut={36} />
+                <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.baslik} boyut={36} />
                 <div>
                   <span>{y.kategori}</span>
                   <h3>{y.baslik}</h3>

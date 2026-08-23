@@ -1,3 +1,14 @@
+/*
+ * ⚠️ INTER YUKLENIYOR (Ahmet, 24.08.2026: "yazi fontunu uniconnectlydeki gibi
+ * kullanalim"). Olculdu: uniconnectly.com iki font kullaniyor, govde metni Inter,
+ * basliklar Outfit. Veterito her yerde Outfit kullaniyordu; uzun paragraflarda
+ * Outfit'in genis harf yapisi okumayi yoruyor.
+ *
+ * Yalniz gereken agirliklar isteniyor (400/500/600/700). Tam aile cekmek bosuna
+ * yuk; blogun yuklenme suresi zaten bir kez sorun oldu.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /**
  * DEGISKEN UYUMLULUK KATMANI
  *
