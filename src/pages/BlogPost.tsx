@@ -1,123 +1,188 @@
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { ArrowLeft, ArrowRight, Clock, CalendarDays, AlertTriangle } from 'lucide-react';
+import { Link, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+
 import SEO from '../components/SEO';
-import { brandConfig } from '../config/brand';
+import { YAZILAR, yaziBul, okumaSuresi, tarihiYaz } from '../data/blog';
+import type { BlogBlock } from '../data/blog';
+import { kapakGorseli } from '../data/blog/gorsel';
 import './BlogPost.css';
 
-const BlogPost = () => {
-  const { id } = useParams();
-  const { t } = useTranslation();
+/**
+ * TEK YAZI SAYFASI
+ *
+ * ⚠️ ESKI HALI SAHTE ICERIK GOSTERIYORDU: govde birebir soyleydi, "This is a
+ * placeholder for the full blog post content. In a real application, this would be
+ * fetched from a database or CMS". Ingilizce sablon metni yayindaydi. Artik yazi
+ * `src/data/blog/*` icinden tipli bloklar olarak geliyor.
+ *
+ * ⚠️ SSS BOLUMU AYNI ZAMANDA YAPILANDIRILMIS VERI URETIYOR (FAQPage). Arama
+ * sonucunda sorular acilir kutu olarak gorunebiliyor; blogun amaci arama oldugu
+ * icin bu bolum sussuz degil, isin kendisi.
+ */
 
-  // Mock fetching blog post data
-  const post = {
-    id: Number(id),
-    title: t(`blog_p${id}_title`, { defaultValue: "Corporate Veterinary Standards Explained" }),
-    content: `
-      <p>This is a placeholder for the full blog post content. In a real application, this would be fetched from a database or CMS based on the ID: ${id}.</p>
-      <h2>The Importance of Certification</h2>
-      <p>When you choose a veterinary clinic, you want to ensure that your pet is receiving the best possible care. That's why we emphasize the importance of corporate standards and rigorous certification processes. A certified clinic means they have passed stringent checks on hygiene, technological integration, and staff qualifications.</p>
-      <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=800" alt="Veterinary Exam" />
-      <p>By partnering with Veterito, clinics are not only upgrading their own internal tools but also providing transparency to pet owners. Every appointment, every vaccination, and every health record is securely stored and easily accessible.</p>
-      <blockquote>
-        "The integration of modern technology in veterinary practices is no longer a luxury; it's a necessity for providing top-tier care." - Dr. Sarah Jenkins
-      </blockquote>
-      <p>Thank you for being a part of the Veterito community. We are continuously working to improve our platform and bring you more features that make pet care easier and more social.</p>
-    `,
-    date: "Oct 12, 2026",
-    author: "Dr. Sarah Jenkins",
-    image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=1200",
-    category: t(`blog_p${id}_category`, { defaultValue: "Corporate" }),
-    tags: ["Health", "Tech", "Community"]
+function KalinMetin({ metin }: { metin: string }) {
+  const parcalar = metin.split(/(\*\*[^*]+\*\*)/g);
+  return (
+    <>
+      {parcalar.map((p, i) =>
+        p.startsWith('**') && p.endsWith('**') ? <strong key={i}>{p.slice(2, -2)}</strong> : <span key={i}>{p}</span>,
+      )}
+    </>
+  );
+}
+
+function Blok({ blok }: { blok: BlogBlock }) {
+  switch (blok.kind) {
+    case 'baslik':
+      return <h2>{blok.metin}</h2>;
+    case 'altBaslik':
+      return <h3>{blok.metin}</h3>;
+    case 'paragraf':
+      return <p><KalinMetin metin={blok.metin} /></p>;
+    case 'liste':
+      return <ul>{blok.maddeler.map((m, i) => <li key={i}><KalinMetin metin={m} /></li>)}</ul>;
+    case 'uyari':
+      return (
+        <aside className="yazi-uyari">
+          <AlertTriangle size={20} />
+          <p>{blok.metin}</p>
+        </aside>
+      );
+    case 'tablo':
+      return (
+        <div className="yazi-tablo-sarmal">
+          <table>
+            <thead><tr>{blok.basliklar.map((b, i) => <th key={i}>{b}</th>)}</tr></thead>
+            <tbody>
+              {blok.satirlar.map((satir, i) => (
+                <tr key={i}>{satir.map((h, j) => <td key={j}>{h}</td>)}</tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+  }
+}
+
+export default function BlogPost() {
+  const { slug } = useParams<{ slug: string }>();
+  const yazi = yaziBul(slug);
+
+  if (!yazi) {
+    return (
+      <div className="container yazi-bulunamadi">
+        <h1>Yazı bulunamadı</h1>
+        <p>Aradığınız yazı kaldırılmış ya da adresi değişmiş olabilir.</p>
+        <Link to="/blog" className="yazi-geri"><ArrowLeft size={16} /> Bloga dön</Link>
+      </div>
+    );
+  }
+
+  const adres = `https://veterito.com/blog/${yazi.slug}`;
+  const dakika = okumaSuresi(yazi);
+  const ilgili = YAZILAR.filter((y) => y.slug !== yazi.slug).slice(0, 3);
+
+  const makaleVerisi = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: yazi.baslik,
+    description: yazi.ozet,
+    datePublished: yazi.tarih,
+    author: { '@type': 'Organization', name: 'Veterito' },
+    publisher: { '@type': 'Organization', name: 'Veterito' },
+    mainEntityOfPage: adres,
   };
 
-  const recentPosts = [
-    { id: 1, title: t('blog_p1_title'), date: "Oct 12, 2026" },
-    { id: 2, title: t('blog_p2_title'), date: "Oct 05, 2026" },
-    { id: 3, title: t('blog_p3_title'), date: "Sep 28, 2026" },
-  ].filter(p => p.id !== post.id);
-
-  const categories = ["Feature Spotlight", "Corporate", "Community", "Tips & Tricks", "News"];
+  const sssVerisi = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: yazi.sss.map((s) => ({
+      '@type': 'Question',
+      name: s.soru,
+      acceptedAnswer: { '@type': 'Answer', text: s.cevap },
+    })),
+  };
 
   return (
-    <div className="blog-post-page">
-      <SEO 
-        title={post.title} 
-        description={post.content.substring(0, 150).replace(/<[^>]+>/g, '')} 
-        image={post.image}
-      />
-      
-      {/* Hero Cover */}
-      <div className="post-hero" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url(${post.image})` }}>
-        <div className="container post-hero-content text-center">
-          <Link to="/blog" className="back-link">
-            <ArrowLeft size={16} /> {t('blog_back_to_blog')}
-          </Link>
-          <div className="badge badge-primary mx-auto mb-4">{post.category}</div>
-          <h1>{post.title}</h1>
-          <div className="post-meta mx-auto">
-            <span className="meta-item"><Calendar size={16} /> {post.date}</span>
-            <span className="meta-item"><User size={16} /> {post.author}</span>
-          </div>
+    <article className="yazi-sayfa">
+      <SEO title={yazi.baslik} description={yazi.ozet} url={adres} type="article" />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(makaleVerisi)}</script>
+        {yazi.sss.length ? <script type="application/ld+json">{JSON.stringify(sssVerisi)}</script> : null}
+      </Helmet>
+
+      <header className="container yazi-basi">
+        <Link to="/blog" className="yazi-geri"><ArrowLeft size={16} /> Bloga dön</Link>
+        <span className="yazi-kategori">{yazi.kategori.toLocaleUpperCase('tr-TR')}</span>
+        <h1>{yazi.baslik}</h1>
+        <p className="yazi-ozet">{yazi.ozet}</p>
+        <div className="yazi-kunye">
+          <span className="yazi-yazar">Veterito Editör</span>
+          <span><CalendarDays size={14} /> {tarihiYaz(yazi.tarih)}</span>
+          <span><Clock size={14} /> {dakika} dk okuma</span>
         </div>
+      </header>
+
+      <div className="container yazi-kapak">
+        <img src={kapakGorseli(yazi.kapak)} alt={yazi.baslik} />
       </div>
 
-      <div className="container section">
-        <div className="post-layout">
-          {/* Main Content */}
-          <main className="post-main-content">
-            <div className="post-body" dangerouslySetInnerHTML={{ __html: post.content }} />
-            
-            <div className="post-tags-footer">
-              <Tag size={16} className="text-secondary" />
-              {post.tags.map(tag => (
-                <span key={tag} className="tag-pill">#{tag}</span>
+      <div className="container yazi-govde">
+        {yazi.bloklar.map((b, i) => <Blok key={i} blok={b} />)}
+
+        {yazi.sss.length ? (
+          <section className="yazi-sss">
+            <h2>Sık sorulanlar</h2>
+            {yazi.sss.map((s) => (
+              <details key={s.soru}>
+                <summary>{s.soru}</summary>
+                <p>{s.cevap}</p>
+              </details>
+            ))}
+          </section>
+        ) : null}
+
+        {yazi.kaynaklar?.length ? (
+          <section className="yazi-kaynaklar">
+            <h2>Kaynaklar</h2>
+            <ul>
+              {yazi.kaynaklar.map((k) => (
+                <li key={k.etiket}>
+                  {k.adres ? <a href={k.adres} target="_blank" rel="noopener noreferrer">{k.etiket}</a> : k.etiket}
+                </li>
               ))}
-            </div>
-          </main>
-
-          {/* Sidebar */}
-          <aside className="post-sidebar">
-            <div className="sidebar-widget">
-              <h3>{t('blog_sidebar_categories')}</h3>
-              <ul className="category-list">
-                {categories.map(cat => (
-                  <li key={cat}><a href="#">{cat}</a></li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="sidebar-widget">
-              <h3>{t('blog_sidebar_recent')}</h3>
-              <div className="recent-posts">
-                {recentPosts.map(rp => (
-                  <Link to={`/blog/${rp.id}`} key={rp.id} className="recent-post-card">
-                    <h4>{rp.title}</h4>
-                    <span className="recent-date">{rp.date}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="sidebar-widget">
-              <h3>{t('blog_sidebar_tags')}</h3>
-              <div className="tags-cloud">
-                {["Health", "Tech", "Dogs", "Cats", "Community", "News"].map(tag => (
-                  <span key={tag} className="tag-pill">#{tag}</span>
-                ))}
-              </div>
-            </div>
-            
-            <div className="sidebar-cta" style={{ backgroundColor: 'var(--color-primary-soft)', padding: '24px', borderRadius: 'var(--radius-lg)', textAlign: 'center', marginTop: '32px' }}>
-              <h3 style={{ marginBottom: '8px' }}>{brandConfig.name}</h3>
-              <p style={{ color: 'var(--color-text-muted)', fontSize: '0.875rem', marginBottom: '16px' }}>Join the modern veterinary network.</p>
-              <a href="#download" className="btn btn-primary" style={{ width: '100%', boxSizing: 'border-box' }}>Get the App</a>
-            </div>
-          </aside>
-        </div>
+            </ul>
+          </section>
+        ) : null}
       </div>
-    </div>
-  );
-};
 
-export default BlogPost;
+      {ilgili.length ? (
+        <section className="container yazi-ilgili">
+          <h2>İlgili yazılar</h2>
+          <div className="yazi-ilgili-liste">
+            {ilgili.map((y) => (
+              <Link key={y.slug} to={`/blog/${y.slug}`} className="yazi-ilgili-kart">
+                <img src={kapakGorseli(y.kapak)} alt={y.baslik} />
+                <div>
+                  <span>{y.kategori}</span>
+                  <h3>{y.baslik}</h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      <section className="container">
+        <div className="yazi-uygulama-bandi">
+          <div>
+            <h2>Dostunuzun sağlık defteri cebinizde olsun</h2>
+            <p>Aşı takvimi, sağlık kaydı ve veteriner randevusu tek uygulamada. Veterito ücretsizdir.</p>
+          </div>
+          <Link to="/" className="yazi-uygulama-dugme">Uygulamayı keşfet <ArrowRight size={16} /></Link>
+        </div>
+      </section>
+    </article>
+  );
+}

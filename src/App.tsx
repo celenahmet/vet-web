@@ -41,7 +41,7 @@ function App() {
             <Route path="/pets" element={<Pets />} />
             <Route path="/about" element={<About />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/clinics" element={<Clinics />} />
             <Route path="/pricing" element={<Pricing />} />
             {/* HUKUKİ SAYFALAR (22.08.2026)

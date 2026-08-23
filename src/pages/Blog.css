@@ -1,107 +1,242 @@
-.blog-hero h1 {
-  font-size: 3rem;
-  margin-bottom: 16px;
-  color: var(--color-primary);
-}
+/* BLOG ANA SAYFASI — duzen Ahmet'in tasarim referansini izliyor. */
 
-.blog-hero .subtitle {
-  font-size: 1.25rem;
-  color: var(--color-text-muted);
-  max-width: 600px;
-}
+.blog-sayfa { padding: 32px 0 72px; }
+.blog-sayfa section { margin-bottom: 40px; }
 
-.blog-grid {
+/* --- One cikan yazi --- */
+.blog-one-cikan {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 32px;
-}
-
-.blog-card {
-  background-color: var(--color-surface);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid var(--color-border);
-  display: flex;
-  flex-direction: column;
-}
-
-.blog-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
-}
-
-.blog-image {
-  position: relative;
-  height: 220px;
-}
-
-.blog-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.blog-category {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  background-color: var(--color-surface);
-  color: var(--color-primary);
-  padding: 4px 12px;
-  border-radius: var(--radius-full);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  box-shadow: var(--shadow-sm);
-}
-
-.blog-content {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.blog-meta {
-  display: flex;
-  gap: 16px;
-  color: var(--color-text-muted);
-  font-size: 0.875rem;
-  margin-bottom: 12px;
-}
-
-.meta-item {
-  display: flex;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 48px;
   align-items: center;
-  gap: 6px;
 }
-
-.blog-content h3 {
-  font-size: 1.25rem;
-  margin-bottom: 12px;
-  line-height: 1.4;
+.one-cikan-etiket {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--color-vet-secondary);
+  background: var(--color-vet-accent-light);
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 20px;
 }
-
-.blog-content p {
+.one-cikan-metin h1 {
+  font-size: 2.75rem;
+  line-height: 1.15;
+  margin: 0 0 18px;
+  color: var(--color-text);
+}
+.one-cikan-metin p {
+  font-size: 1.05rem;
+  line-height: 1.7;
   color: var(--color-text-muted);
-  font-size: 0.95rem;
-  margin-bottom: 24px;
-  flex-grow: 1;
+  margin: 0 0 28px;
+  max-width: 46ch;
 }
-
-.read-more {
+.one-cikan-dugme,
+.klinik-bandi-dugme,
+.bulten-dugme {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  background: var(--color-vet-secondary);
+  color: #fff;
+  padding: 13px 24px;
+  border-radius: 999px;
   font-weight: 600;
-  color: var(--color-primary);
-  transition: color 0.2s, gap 0.2s;
+  text-decoration: none;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.one-cikan-dugme:hover,
+.klinik-bandi-dugme:hover,
+.bulten-dugme:hover { transform: translateY(-1px); opacity: 0.94; }
+.one-cikan-gorsel img {
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
 }
 
-.read-more:hover {
-  color: var(--color-primary-hover);
+/* --- Kategori seridi --- */
+.kategori-seridi {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border, rgba(0,0,0,0.07));
+  border-radius: 16px;
+  overflow: hidden;
+}
+.kategori-oge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 12px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-right: 1px solid var(--color-border, rgba(0,0,0,0.07));
+  transition: background 0.15s ease;
+}
+.kategori-oge:last-child { border-right: none; }
+.kategori-oge:hover { background: var(--color-vet-accent-light); }
+.kategori-oge svg { color: var(--color-vet-secondary); flex-shrink: 0; }
+
+/* --- Kart izgarasi --- */
+.blog-izgara {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.blog-kart {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border, rgba(0,0,0,0.07));
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.blog-kart:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
+.blog-kart-gorsel img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+.blog-kart-govde { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; }
+.blog-kart-kategori {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  color: var(--color-vet-secondary);
+  margin-bottom: 10px;
+}
+.blog-kart-govde h3 {
+  font-size: 1.05rem;
+  line-height: 1.4;
+  margin: 0 0 16px;
+  flex: 1;
+}
+.blog-kart-alt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+.blog-kart-alt span { display: inline-flex; align-items: center; gap: 5px; }
+
+/* --- One cikan yazilar listesi --- */
+.blog-liste-baslik {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.blog-liste-baslik h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.35rem;
+  margin: 0;
+}
+.blog-liste-baslik h2 svg { color: #F5A524; }
+.blog-liste-baslik a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-vet-secondary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.blog-liste { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.blog-liste-kart {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border, rgba(0,0,0,0.07));
+  border-radius: 14px;
+  padding: 12px;
+  transition: background 0.15s ease;
+}
+.blog-liste-kart:hover { background: var(--color-vet-accent-light); }
+.blog-liste-kart img {
+  width: 84px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.blog-liste-kart h4 { font-size: 0.9rem; line-height: 1.35; margin: 0 0 8px; }
+.blog-liste-alt {
+  display: flex;
   gap: 12px;
+  font-size: 0.74rem;
+  color: var(--color-text-muted);
+}
+
+/* --- Klinik bandi --- */
+.klinik-bandi {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  background: var(--color-vet-accent-light);
+  border-radius: 20px;
+  padding: 36px 40px;
+}
+.klinik-bandi-ikon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-vet-secondary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.klinik-bandi-metin h2 { font-size: 1.5rem; margin: 0 0 10px; color: var(--color-vet-accent); }
+.klinik-bandi-metin p { margin: 0 0 20px; color: var(--color-text-muted); max-width: 62ch; }
+
+/* --- Bulten bandi --- */
+.bulten-bandi {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+  background: var(--color-vet-secondary);
+  border-radius: 20px;
+  padding: 32px 40px;
+  color: #fff;
+}
+.bulten-metin { display: flex; gap: 18px; align-items: center; }
+.bulten-metin h2 { font-size: 1.25rem; margin: 0 0 6px; color: #fff; }
+.bulten-metin p { margin: 0; opacity: 0.88; font-size: 0.95rem; }
+.bulten-dugme { background: #fff; color: var(--color-vet-accent); flex-shrink: 0; }
+
+/* --- Duyarli --- */
+@media (max-width: 1080px) {
+  .blog-izgara { grid-template-columns: repeat(2, 1fr); }
+  .blog-liste { grid-template-columns: repeat(2, 1fr); }
+  .kategori-seridi { grid-template-columns: repeat(3, 1fr); }
+  .kategori-oge:nth-child(3n) { border-right: none; }
+}
+@media (max-width: 760px) {
+  .blog-one-cikan { grid-template-columns: 1fr; gap: 28px; }
+  .one-cikan-metin h1 { font-size: 2rem; }
+  .blog-izgara, .blog-liste { grid-template-columns: 1fr; }
+  .kategori-seridi { grid-template-columns: repeat(2, 1fr); }
+  .kategori-oge:nth-child(2n) { border-right: none; }
+  .klinik-bandi { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+  .bulten-bandi { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
 }

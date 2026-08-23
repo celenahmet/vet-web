@@ -1,0 +1,107 @@
+import type { BlogYazi } from './types';
+
+export const kedilerKacYilYasar: BlogYazi = {
+  slug: 'kediler-kac-yil-yasar',
+  baslik: 'Kediler Kaç Yıl Yaşar? Ev Kedisi ve Sokak Kedisi Ömrü',
+  ozet: 'Ev kedileri ortalama 13-17 yıl yaşar, sokak kedilerinde bu süre çok daha kısadır. Ömrü belirleyen etkenler, ırka göre farklar ve yaşam süresini uzatmanın yolları.',
+  kategori: 'Kedi',
+  tarih: '2026-08-23',
+  kapak: 'blog-3.jpg',
+  bloklar: [
+    { kind: 'paragraf', metin: 'Ev kedileri ortalama **13 ile 17 yıl** arasında yaşar. Bakımı iyi yapılan, ev içinde tutulan ve düzenli veteriner kontrolünden geçen kediler 20 yaşını görebilir. Dışarıda yaşayan kedilerde ise ortalama ömür çok daha kısadır; trafik, hastalık, kavga ve beslenme sorunları yüzünden çoğu kedi birkaç yılı geçemez.' },
+    { kind: 'paragraf', metin: 'Bu yazıda kedilerin ne kadar yaşadığını, ömrü kısaltan ve uzatan etkenleri, ırka göre farkları ve kedinizin yaşlanma belirtilerini ne zaman ciddiye almanız gerektiğini bulacaksınız.' },
+
+    { kind: 'baslik', metin: 'Kısa cevap: yaşam ortamına göre ömür' },
+    { kind: 'tablo', basliklar: ['Yaşam biçimi', 'Ortalama ömür'], satirlar: [
+      ['Ev içinde yaşayan, kısırlaştırılmış kedi', '13-17 yıl'],
+      ['Eve girip çıkan kedi', '8-12 yıl'],
+      ['Tamamen dışarıda yaşayan kedi', '3-6 yıl'],
+      ['Bakımsız sokak kedisi', '2-5 yıl'],
+    ]},
+    { kind: 'paragraf', metin: 'Aradaki fark ırktan ya da şanstan değil, maruz kalınan riskten geliyor. Ev içindeki kedi trafiğe çıkmıyor, bulaşıcı hastalık taşıyan kedilerle temas etmiyor, aç kalmıyor ve hastalandığında fark ediliyor.' },
+
+    { kind: 'baslik', metin: 'Ev kedisi neden daha uzun yaşıyor' },
+    { kind: 'paragraf', metin: 'Dört sebep var ve dördü de birbirini besliyor.' },
+    { kind: 'altBaslik', metin: 'Kaza riski yok' },
+    { kind: 'paragraf', metin: 'Dışarıdaki kedilerde ölüm sebeplerinin başında trafik geliyor. Ev kedisi bu riskin tamamen dışında.' },
+    { kind: 'altBaslik', metin: 'Bulaşıcı hastalık teması az' },
+    { kind: 'paragraf', metin: 'Kedi lösemisi (FeLV) ve kedi bağışıklık yetmezliği virüsü (FIV) çoğunlukla kavga sırasında ısırıkla ve yakın temasla bulaşıyor. Dışarı çıkmayan kedide bu yol büyük ölçüde kapalı.' },
+    { kind: 'altBaslik', metin: 'Beslenme düzenli' },
+    { kind: 'paragraf', metin: 'Sokakta beslenme hem düzensiz hem kalitesiz. Uzun vadede bu, böbrek ve diş sorunlarını hızlandırıyor.' },
+    { kind: 'altBaslik', metin: 'Hastalık erken fark ediliyor' },
+    { kind: 'paragraf', metin: 'Kediler rahatsızlığını saklamakta ustadır. Her gün gözlemlenen bir kedide iştah değişikliği, kilo kaybı ya da tuvalet alışkanlığındaki bozulma günler içinde fark edilir; sokakta aylarca fark edilmez.' },
+
+    { kind: 'baslik', metin: 'Yaşam süresini belirleyen etkenler' },
+    { kind: 'altBaslik', metin: 'Kısırlaştırma' },
+    { kind: 'paragraf', metin: 'Kısırlaştırılmış kediler istatistiksel olarak daha uzun yaşıyor. Sebebi çift yönlü: üreme organı kaynaklı hastalıklar (dişilerde meme tümörü ve rahim iltihabı, erkeklerde testis tümörü) ortadan kalkıyor ya da azalıyor, ve kedi kaçma, kavga etme, uzağa gitme davranışını büyük ölçüde bırakıyor. İkinci etki kaza ve bulaşıcı hastalık riskini doğrudan düşürüyor.' },
+    { kind: 'altBaslik', metin: 'Beslenme ve kilo' },
+    { kind: 'paragraf', metin: 'Fazla kilo kedilerde şeker hastalığı, eklem sorunları ve karaciğer yağlanması riskini artırıyor. Bir kedinin kaburgalarını hafif bir dokunuşla hissedebiliyorsanız kilosu büyük ihtimalle uygundur; kaburgaları bulmak için bastırmanız gerekiyorsa fazla kilo var demektir.' },
+    { kind: 'altBaslik', metin: 'Diş ve ağız sağlığı' },
+    { kind: 'paragraf', metin: 'Diş taşı ve diş eti iltihabı yalnız ağızda kalan bir sorun değil. Kronik ağız enfeksiyonu vücutta sürekli bir iltihap yükü oluşturuyor ve uzun vadede böbrek ve kalp sağlığını etkiliyor. Kedilerde en çok atlanan bakım başlığı budur.' },
+    { kind: 'altBaslik', metin: 'Düzenli veteriner kontrolü' },
+    { kind: 'paragraf', metin: 'Yılda bir kontrol, yaşlı kedilerde altı ayda bir kontrol öneriliyor. Kan ve idrar tahlili, böbrek yetmezliği gibi sinsi ilerleyen hastalıkları belirtiler başlamadan önce gösterebiliyor. Kedilerde böbrek fonksiyonunun büyük kısmı kaybedilmeden dışarıdan belirti görülmüyor; bu yüzden tahlil, gözlemin yerini tutmayan ayrı bir araç.' },
+    { kind: 'altBaslik', metin: 'Aşılar ve parazit koruması' },
+    { kind: 'paragraf', metin: 'Karma aşı ve kuduz aşısı, ölümcül seyredebilen hastalıklara karşı temel korumadır. İç ve dış parazit uygulaması ise hem kediyi hem evdeki insanları koruyor.' },
+
+    { kind: 'baslik', metin: 'Irka göre yaşam süresi' },
+    { kind: 'paragraf', metin: 'Irk, ömrü belirleyen tek etken değil ama bazı ırklarda kalıtsal hastalık riski daha yüksek.' },
+    { kind: 'tablo', basliklar: ['Irk', 'Ortalama ömür', 'Dikkat edilecek'], satirlar: [
+      ['Tekir (melez)', '14-18 yıl', 'Genetik çeşitlilik avantaj sağlıyor'],
+      ['Siyam', '15-20 yıl', 'Uzun ömürlü ırklardan'],
+      ['Birman', '14-16 yıl', ''],
+      ['British Shorthair', '12-16 yıl', 'Kalp kası hastalığı (HCM) riski'],
+      ['Maine Coon', '10-14 yıl', 'HCM ve kalça displazisi'],
+      ['Scottish Fold', '11-14 yıl', 'Kıkırdak ve eklem sorunları'],
+      ['İran (Pers)', '10-15 yıl', 'Böbrek kisti (PKD), solunum sorunları'],
+    ]},
+    { kind: 'paragraf', metin: 'Melez kediler genellikle saf ırklardan daha uzun yaşıyor. Sebebi genetik çeşitlilik: kalıtsal hastalıkların birikme ihtimali daha düşük.' },
+
+    { kind: 'uyari', metin: 'Bu içerik genel bilgidir, tıbbi tavsiye değildir. Kedinizin sağlığıyla ilgili her kararı, hayvanı gören bir veteriner hekimle birlikte alın.' },
+
+    { kind: 'baslik', metin: 'Kedi yaşı insan yaşına nasıl çevrilir' },
+    { kind: 'paragraf', metin: 'Yaygın bilinen "bir kedi yılı yedi insan yılıdır" kuralı yanlış. Kediler ilk iki yılda çok hızlı olgunlaşıyor, sonra yavaşlıyor.' },
+    { kind: 'tablo', basliklar: ['Kedi yaşı', 'İnsan karşılığı'], satirlar: [
+      ['6 ay', '10 yaş'], ['1 yaş', '15 yaş'], ['2 yaş', '24 yaş'],
+      ['5 yaş', '36 yaş'], ['10 yaş', '56 yaş'], ['15 yaş', '76 yaş'], ['20 yaş', '96 yaş'],
+    ]},
+    { kind: 'paragraf', metin: 'İlk yıl 15, ikinci yıl 9, sonraki her yıl yaklaşık 4 insan yılına denk geliyor.' },
+
+    { kind: 'baslik', metin: 'Kedilerde yaşlılık ne zaman başlar' },
+    { kind: 'liste', maddeler: [
+      '7-10 yaş: olgun dönem',
+      '11-14 yaş: yaşlı dönem',
+      '15 yaş ve üzeri: ileri yaş',
+    ]},
+    { kind: 'paragraf', metin: 'Yaşlanma bir hastalık değil ama yaşlı kedide bazı hastalıkların görülme sıklığı artıyor: böbrek yetmezliği, tiroid bezinin fazla çalışması, şeker hastalığı, eklem kireçlenmesi ve ağız hastalıkları.' },
+    { kind: 'altBaslik', metin: 'Veterinere gitmeyi gerektiren değişiklikler' },
+    { kind: 'liste', maddeler: [
+      'Su tüketiminde belirgin artış',
+      'Kilo kaybı, özellikle iştah yerindeyken',
+      'Tuvalet alışkanlığının değişmesi, kumun dışına yapmaya başlaması',
+      'Tüylerin matlaşması, kedinin kendini eskisi kadar temizlememesi',
+      'Zıplamaktan kaçınma, yüksek yerlere çıkmayı bırakma',
+      'Gece artan miyavlama ve huzursuzluk',
+    ]},
+    { kind: 'paragraf', metin: 'Bu belirtilerin hiçbiri "yaşlılıktandır" diye geçiştirilmemeli. Çoğu, erken yakalandığında yönetilebilen hastalıkların ilk işareti.' },
+
+    { kind: 'baslik', metin: 'Kedinizin ömrünü uzatmak için' },
+    { kind: 'liste', maddeler: [
+      'Ev içinde tutun, dışarı çıkacaksa güvenli bir bahçe ya da tasmalı gezinti tercih edin',
+      'Kısırlaştırın',
+      'Aşı ve parazit takvimini aksatmayın',
+      'Kilosunu takip edin, serbest mama yerine ölçülü porsiyon verin',
+      'Su tüketimini artırın, yaş mama ve akan su kabı işe yarıyor',
+      'Ağız bakımını ihmal etmeyin',
+      'Yılda en az bir kez, yaşlandıkça altı ayda bir kontrole götürün',
+      'Kum kabını temiz tutun, tuvalet alışkanlığındaki değişimi erken fark edin',
+    ]},
+  ],
+  sss: [
+    { soru: 'En uzun yaşayan kedi kaç yaşına kadar yaşadı?', cevap: 'Kayıtlara geçen en uzun ömürlü kedi 38 yaşına kadar yaşadı. Bu bir istisna; 20 yaşını gören kedi bile nadir sayılır.' },
+    { soru: 'Sokak kedisini eve alırsam ömrü uzar mı?', cevap: 'Evet. Riskin büyük kısmı ortamdan kaynaklandığı için, eve alınan ve bakımı yapılan bir kedi çok daha uzun yaşayabilir. Eve almadan önce veteriner kontrolü, parazit uygulaması ve bulaşıcı hastalık testi yaptırmak gerekiyor, özellikle evde başka kedi varsa.' },
+    { soru: 'Kısırlaştırma kediyi şişmanlatır mı?', cevap: 'Kısırlaştırma sonrası enerji ihtiyacı düşüyor, porsiyon aynı kalırsa kilo alıyor. Şişmanlık kısırlaştırmanın değil porsiyonun sonucu. Veteriner hekiminizle mama miktarını güncellemek yeterli.' },
+    { soru: 'Erkek kediler mi dişi kediler mi daha uzun yaşar?', cevap: 'Kısırlaştırılmış dişi kediler istatistiklerde biraz önde görünüyor, ama aradaki fark yaşam biçiminin yanında küçük kalıyor. Ev içinde yaşayan bir erkek kedi, dışarı çıkan bir dişi kediden çok daha uzun yaşar.' },
+    { soru: 'Kedimin yaşını nasıl öğrenebilirim?', cevap: 'Sokaktan alınan kedilerde yaş; diş yapısı, göz merceğinin berraklığı ve genel vücut durumuna bakılarak tahmin ediliyor. Kesin bir yöntem değil ama veteriner hekim birkaç yıllık bir aralık verebilir.' },
+    { soru: 'Yaşlı kedinin maması değişmeli mi?', cevap: 'Genellikle evet. Yaşlı kedi mamaları böbrek yükünü ve kalori yoğunluğunu gözeterek hazırlanıyor. Ancak kedide böbrek yetmezliği ya da başka bir hastalık varsa mama seçimi paket üzerindeki yaş grubuna göre değil, tahlil sonucuna göre yapılmalı.' },
+  ],
+};
