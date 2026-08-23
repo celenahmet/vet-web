@@ -34,7 +34,13 @@ export type BlogYazi = {
   kategori: BlogKategori;
   /** ISO tarih, ornek 2026-08-23 */
   tarih: string;
-  kapak: string;
+  /**
+   * ⚠️ OPSIYONEL. Elimizdeki blog-1..4 gorselleri BASKA YAZILARIN afisleri ve
+   * baslıklari gorselin icine basili; birini alakasiz bir yaziya kapak yapmak
+   * yanlis bilgi gosteriyor (23.08.2026'da yakalandi). Kapagi olmayan yazi,
+   * marka renginde yedek blokla gosteriliyor.
+   */
+  kapak?: string;
   bloklar: BlogBlock[];
   sss: BlogSSS[];
   /** Opsiyonel. Yalniz DOGRULANMIS kaynak yazilir, uydurma bagi konmaz. */

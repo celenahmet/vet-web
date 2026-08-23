@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import SEO from '../components/SEO';
 import { YAZILAR, yaziBul, okumaSuresi, tarihiYaz } from '../data/blog';
 import type { BlogBlock } from '../data/blog';
-import { kapakGorseli } from '../data/blog/gorsel';
+import BlogKapak from '../components/BlogKapak';
 import './BlogPost.css';
 
 /**
@@ -125,7 +125,7 @@ export default function BlogPost() {
       </header>
 
       <div className="container yazi-kapak">
-        <img src={kapakGorseli(yazi.kapak)} alt={yazi.baslik} />
+        <BlogKapak ad={yazi.kapak} kategori={yazi.kategori} alt={yazi.baslik} boyut={72} />
       </div>
 
       <div className="container yazi-govde">
@@ -163,7 +163,7 @@ export default function BlogPost() {
           <div className="yazi-ilgili-liste">
             {ilgili.map((y) => (
               <Link key={y.slug} to={`/blog/${y.slug}`} className="yazi-ilgili-kart">
-                <img src={kapakGorseli(y.kapak)} alt={y.baslik} />
+                <BlogKapak ad={y.kapak} kategori={y.kategori} alt={y.baslik} boyut={36} />
                 <div>
                   <span>{y.kategori}</span>
                   <h3>{y.baslik}</h3>

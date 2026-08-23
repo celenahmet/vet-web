@@ -1,7 +1,13 @@
 /* TEK YAZI SAYFASI — okunabilirlik oncelikli, olcu 68ch. */
 
 .yazi-sayfa { padding: 28px 0 72px; }
-.yazi-sayfa .container { max-width: 820px; }
+.yazi-sayfa .container {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (max-width: 760px) { .yazi-sayfa .container { padding: 0 16px; } }
 
 .yazi-geri {
   display: inline-flex; align-items: center; gap: 6px;
@@ -122,4 +128,18 @@
   .yazi-basi h1 { font-size: 1.8rem; }
   .yazi-ilgili-liste { grid-template-columns: 1fr; }
   .yazi-uygulama-bandi { flex-direction: column; align-items: flex-start; padding: 26px 22px; }
+}
+
+
+.yazi-kapak .kapak-yedek {
+  aspect-ratio: 16 / 9; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--color-vet-primary), var(--color-vet-accent));
+  color: #fff;
+}
+.yazi-ilgili-kart .kapak-yedek {
+  aspect-ratio: 16 / 10;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--color-vet-primary), var(--color-vet-accent));
+  color: #fff;
 }

@@ -6,7 +6,6 @@ export const kedilerKacYilYasar: BlogYazi = {
   ozet: 'Ev kedileri ortalama 13-17 yıl yaşar, sokak kedilerinde bu süre çok daha kısadır. Ömrü belirleyen etkenler, ırka göre farklar ve yaşam süresini uzatmanın yolları.',
   kategori: 'Kedi',
   tarih: '2026-08-23',
-  kapak: 'blog-3.jpg',
   bloklar: [
     { kind: 'paragraf', metin: 'Ev kedileri ortalama **13 ile 17 yıl** arasında yaşar. Bakımı iyi yapılan, ev içinde tutulan ve düzenli veteriner kontrolünden geçen kediler 20 yaşını görebilir. Dışarıda yaşayan kedilerde ise ortalama ömür çok daha kısadır; trafik, hastalık, kavga ve beslenme sorunları yüzünden çoğu kedi birkaç yılı geçemez.' },
     { kind: 'paragraf', metin: 'Bu yazıda kedilerin ne kadar yaşadığını, ömrü kısaltan ve uzatan etkenleri, ırka göre farkları ve kedinizin yaşlanma belirtilerini ne zaman ciddiye almanız gerektiğini bulacaksınız.' },

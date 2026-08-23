@@ -1,6 +1,20 @@
 /* BLOG ANA SAYFASI — duzen Ahmet'in tasarim referansini izliyor. */
 
+/**
+ * ⚠️ `.container` SITE GENELINDE TANIMLI DEGIL. Eski Blog.tsx onu kullaniyordu ama
+ * hicbir CSS dosyasinda karsiligi yoktu; bolumler genislik siniri ve ic bosluk
+ * almadigi icin metin sol kenardan tasiyordu (cihazda goruldu 23.08.2026).
+ * Ortak dosyaya global bir `.container` eklemek yerine kendi sayfamiza kapsamli
+ * tanim yaziliyor: baska birinin calistigi depoda global sinif tanimlamak carpisma.
+ */
 .blog-sayfa { padding: 32px 0 72px; }
+.blog-sayfa .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (max-width: 760px) { .blog-sayfa .container { padding: 0 16px; } }
 .blog-sayfa section { margin-bottom: 40px; }
 
 /* --- One cikan yazi --- */
@@ -240,3 +254,17 @@
   .klinik-bandi { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
   .bulten-bandi { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
 }
+
+
+/* --- Kapak gorseli olmayan yazilar --- */
+.kapak-yedek {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-vet-primary), var(--color-vet-accent));
+  color: #fff;
+}
+.one-cikan-gorsel .kapak-yedek { aspect-ratio: 16 / 11; border-radius: 20px; }
+.blog-kart-gorsel .kapak-yedek { aspect-ratio: 16 / 10; }
+.blog-liste-kart .kapak-yedek { width: 84px; height: 64px; border-radius: 10px; flex-shrink: 0; }
+.kapak-yedek svg { opacity: 0.9; }

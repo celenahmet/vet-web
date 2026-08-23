@@ -15,6 +15,8 @@ const HARITA: Record<string, string> = {
   'blog-4.jpg': blog4,
 };
 
-export function kapakGorseli(ad: string): string {
-  return HARITA[ad] ?? blog1;
+/** Eslesme yoksa null doner; cagiran taraf marka renginde yedek blok gosterir. */
+export function kapakGorseli(ad: string | undefined): string | null {
+  if (!ad) return null;
+  return HARITA[ad] ?? null;
 }

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import SEO from '../components/SEO';
 import { YAZILAR, okumaSuresi, tarihiYaz } from '../data/blog';
-import { kapakGorseli } from '../data/blog/gorsel';
+import BlogKapak from '../components/BlogKapak';
 import './Blog.css';
 
 /**
@@ -66,7 +66,7 @@ export default function Blog() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, delay: 0.1 }}
           >
-            <img src={kapakGorseli(oneCikan.kapak)} alt={oneCikan.baslik} />
+            <BlogKapak ad={oneCikan.kapak} kategori={oneCikan.kategori} alt={oneCikan.baslik} boyut={64} />
           </motion.div>
         </section>
       ) : null}
@@ -90,7 +90,7 @@ export default function Blog() {
           {izgara.map((yazi) => (
             <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-kart">
               <div className="blog-kart-gorsel">
-                <img src={kapakGorseli(yazi.kapak)} alt={yazi.baslik} />
+                <BlogKapak ad={yazi.kapak} kategori={yazi.kategori} alt={yazi.baslik} boyut={40} />
               </div>
               <div className="blog-kart-govde">
                 <span className="blog-kart-kategori">{yazi.kategori.toLocaleUpperCase('tr-TR')}</span>
@@ -114,7 +114,7 @@ export default function Blog() {
           <div className="blog-liste">
             {liste.map((yazi) => (
               <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-liste-kart">
-                <img src={kapakGorseli(yazi.kapak)} alt={yazi.baslik} />
+                <BlogKapak ad={yazi.kapak} kategori={yazi.kategori} alt={yazi.baslik} boyut={24} />
                 <div>
                   <h4>{yazi.baslik}</h4>
                   <div className="blog-liste-alt">
