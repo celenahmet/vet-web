@@ -13,8 +13,10 @@ import { kedilerKacYilYasar } from './kediler-kac-yil-yasar';
 import { kopeklerKacYilYasar } from './kopekler-kac-yil-yasar';
 import { kediYasiNasilHesaplanir } from './kedi-yasi-nasil-hesaplanir';
 import { kedimYemekYemiyor } from './kedim-yemek-yemiyor';
+import { kediAsiTakvimi } from './kedi-asi-takvimi';
+import { kopekAsiTakvimi } from './kopek-asi-takvimi';
 
-export const YAZILAR: BlogYazi[] = [kedilerKacYilYasar, kopeklerKacYilYasar, kediYasiNasilHesaplanir, kedimYemekYemiyor].sort((a, b) =>
+export const YAZILAR: BlogYazi[] = [kedilerKacYilYasar, kopeklerKacYilYasar, kediYasiNasilHesaplanir, kedimYemekYemiyor, kediAsiTakvimi, kopekAsiTakvimi].sort((a, b) =>
   b.tarih.localeCompare(a.tarih),
 );
 
