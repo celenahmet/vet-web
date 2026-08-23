@@ -7,7 +7,24 @@
  * Ortak dosyaya global bir `.container` eklemek yerine kendi sayfamiza kapsamli
  * tanim yaziliyor: baska birinin calistigi depoda global sinif tanimlamak carpisma.
  */
-.blog-sayfa { padding: 32px 0 72px; }
+
+/*
+ * ⚠️ NAVBAR SABIT (fixed), AKIŞTAN ÇIKMIŞ (ölçüldü 23.08.2026).
+ *
+ * `components/Navbar.tsx` Tailwind ile yazılmış: `fixed top-0 left-0 right-0 z-[100]`
+ * ve kaydırılmadan önce `py-5 bg-transparent`, kaydırınca `py-3 glass-nav`.
+ * Yani navbar bir kahraman görselin ÜSTÜNE binmek için tasarlanmış ve içeriği
+ * aşağı itmiyor. `.main-content` diye bir CSS kuralı da hiç yok.
+ *
+ * Sonucu: kahraman bölümü olmayan her sayfanın içeriği y=0'dan başlıyor ve
+ * navbarın altına giriyor. Blogda "Bloga dön" bağlantısı menünün üstüne biniyor,
+ * tıklanınca navbarın bağlantısı yakalıyor ve kullanıcı ana sayfaya gidiyordu.
+ *
+ * Ölçüm: logo `h-12` (48px) + `py-5` (20+20) = 88px. Üstüne nefes payı ekleniyor.
+ * Ortak dosyaya global kural yazmak yerine yalnız blog sayfaları düzeltiliyor;
+ * diğer sayfalar başka birinin alanı ve onların kahraman bölümü var.
+ */
+.blog-sayfa { padding: calc(88px + 28px) 0 72px; }
 .blog-sayfa .container {
   width: 100%;
   max-width: 1200px;
@@ -272,7 +289,7 @@
 }
 
 @media (max-width: 700px) {
-  .blog-sayfa { padding: 20px 0 56px; }
+  .blog-sayfa { padding: calc(88px + 16px) 0 56px; }
   .blog-sayfa section { margin-bottom: 32px; }
   .one-cikan-metin h1 { font-size: 1.7rem; }
   .one-cikan-metin p { font-size: 0.98rem; }
@@ -322,4 +339,38 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .belir { animation: none; }
+}
+
+/* --- Kategori seridi: dugme oldu, sayili ve secilebilir --- */
+.kategori-oge {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+  gap: 8px;
+}
+.kategori-oge em {
+  font-style: normal;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: var(--bg-secondary, #f1f5f9);
+  color: var(--text-muted, #475569);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.kategori-oge.secili {
+  background: var(--color-vet-accent-light);
+  color: var(--color-vet-accent);
+}
+.kategori-oge.secili em { background: var(--color-vet-secondary); color: #fff; }
+/* Yazisi olmayan kategori tiklanamaz: sonuc vermeyen baglanti gostermiyoruz. */
+.kategori-oge.bos { opacity: 0.4; cursor: default; }
+.kategori-oge.bos:hover { background: transparent; }
+
+.blog-bos { text-align: center; padding: 32px 0; }
+.blog-bos p { color: var(--text-muted, #475569); margin: 0 0 14px; }
+.blog-bos button {
+  background: var(--color-vet-secondary); color: #fff; border: none;
+  padding: 10px 22px; border-radius: 999px; font-weight: 600; cursor: pointer;
+  font-family: inherit;
 }

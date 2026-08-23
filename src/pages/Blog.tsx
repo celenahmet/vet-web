@@ -1,7 +1,7 @@
 import {
   ArrowRight, BarChart3, Cat, Clock, Dog, HeartPulse, Mail, Star, Users, Utensils, Building2,
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import SEO from '../components/SEO';
 import { YAZILAR, okumaSuresi, tarihiYaz } from '../data/blog';
@@ -32,9 +32,27 @@ const KATEGORI_IKON = {
 } as const;
 
 export default function Blog() {
-  const oneCikan = YAZILAR[0];
-  const izgara = YAZILAR.slice(1, 5);
-  const liste = YAZILAR.slice(5, 9);
+  /**
+   * ⚠️ KATEGORI BAGLANTILARI OLU IDI (duzeltme 23.08.2026). Serit `/blog?kategori=Kedi`
+   * adresine gidiyordu ama bu sayfa parametreyi hic okumuyordu: kullanici tikliyor,
+   * hicbir sey degismiyordu. Calismayan bir baglanti, olmayan bir ozellikten kotudur;
+   * kullanici ozelligin bozuk oldugunu dusunur.
+   */
+  const [parametreler, setParametreler] = useSearchParams();
+  const secili = parametreler.get('kategori');
+
+  const suzulmus = secili ? YAZILAR.filter((y) => y.kategori === secili) : YAZILAR;
+  const oneCikan = suzulmus[0];
+  const izgara = suzulmus.slice(1, 5);
+  const liste = suzulmus.slice(5, 9);
+
+  const kategoriSayisi = new Map<string, number>();
+  for (const y of YAZILAR) kategoriSayisi.set(y.kategori, (kategoriSayisi.get(y.kategori) ?? 0) + 1);
+
+  function kategoriSec(ad: string | null) {
+    if (ad) setParametreler({ kategori: ad });
+    else setParametreler({});
+  }
 
   return (
     <div className="blog-sayfa">
@@ -43,6 +61,13 @@ export default function Blog() {
         description="Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine veteriner hekim gözünden yazılar."
         url="https://veterito.com/blog"
       />
+
+      {secili && !suzulmus.length ? (
+        <section className="container blog-bos">
+          <p>Bu kategoride henüz yazı yok.</p>
+          <button type="button" onClick={() => kategoriSec(null)}>Tüm yazılara dön</button>
+        </section>
+      ) : null}
 
       {oneCikan ? (
         <section className="container blog-one-cikan">
@@ -62,13 +87,29 @@ export default function Blog() {
 
       <section className="container">
         <nav className="kategori-seridi" aria-label="Kategoriler">
+          <button
+            type="button"
+            className={`kategori-oge${secili ? '' : ' secili'}`}
+            onClick={() => kategoriSec(null)}
+          >
+            <span>Tümü</span>
+            <em>{YAZILAR.length}</em>
+          </button>
           {(Object.keys(KATEGORI_IKON) as (keyof typeof KATEGORI_IKON)[]).map((ad) => {
             const Ikon = KATEGORI_IKON[ad];
+            const adet = kategoriSayisi.get(ad) ?? 0;
             return (
-              <Link key={ad} to={`/blog?kategori=${encodeURIComponent(ad)}`} className="kategori-oge">
-                <Ikon size={20} />
+              <button
+                type="button"
+                key={ad}
+                className={`kategori-oge${secili === ad ? ' secili' : ''}${adet ? '' : ' bos'}`}
+                onClick={() => adet && kategoriSec(ad)}
+                disabled={!adet}
+              >
+                <Ikon size={18} />
                 <span>{ad}</span>
-              </Link>
+                <em>{adet}</em>
+              </button>
             );
           })}
         </nav>
