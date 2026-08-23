@@ -374,3 +374,10 @@
   padding: 10px 22px; border-radius: 999px; font-weight: 600; cursor: pointer;
   font-family: inherit;
 }
+
+/* Ayni sebep: Tailwind preflight basliklarin kalinligini sifirliyor (bkz. BlogPost.css). */
+.one-cikan-metin h1 { font-weight: 800; letter-spacing: -0.02em; }
+.blog-kart-govde h3 { font-weight: 700; }
+.blog-liste-baslik h2 { font-weight: 700; }
+.blog-liste-kart h4 { font-weight: 700; }
+.klinik-bandi-metin h2, .bulten-metin h2 { font-weight: 700; }

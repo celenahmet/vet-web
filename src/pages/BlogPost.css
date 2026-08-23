@@ -221,3 +221,23 @@
   .yazi-sayfa .yazi-duzen { grid-template-columns: 1fr; gap: 36px; max-width: 820px; }
   .yazi-duzen .blog-kenar { position: static; }
 }
+
+/*
+ * ⚠️ BASLIKLAR INCE CIKIYORDU (Ahmet, 24.08.2026: "uniconnectlydeki daha iyiydi sanki").
+ *
+ * Sebep yazi tipi degil, KALINLIK. Proje Tailwind v4 kullaniyor (`@import "tailwindcss"`)
+ * ve preflight h1-h6 icin `font-weight: inherit` uyguluyor. Yani basliklar govde
+ * agirligini (400) miras aliyor ve tarayicinin varsayilan kalinligi (700) kayboluyor.
+ * `index.css` icinde h1-h6 kurali da yok.
+ *
+ * Cozum: blog basliklarinin agirligi ACIKCA yaziliyor. Ortak dosyaya global h1-h6
+ * kurali koymak diger sayfalarin tasarimini degistirirdi.
+ */
+.yazi-basi h1 { font-weight: 800; letter-spacing: -0.02em; }
+.yazi-govde h2 { font-weight: 700; letter-spacing: -0.01em; }
+.yazi-govde h3 { font-weight: 700; }
+.yazi-sss > h2, .yazi-kaynaklar h2, .yazi-ilgili h2 { font-weight: 700; letter-spacing: -0.01em; }
+.sss-kart h3 { font-weight: 700; }
+.yazi-yanilgi strong, .yazi-uyari strong { font-weight: 700; }
+.yazi-uygulama-bandi h2 { font-weight: 700; }
+.yazi-tablo-sarmal th { font-weight: 700; }
