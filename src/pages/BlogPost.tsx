@@ -1,4 +1,5 @@
-import { ArrowLeft, ArrowRight, Clock, CalendarDays, AlertTriangle, CircleAlert, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Clock, CalendarDays, AlertTriangle, CircleAlert, CheckCircle2, Eye } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
@@ -7,6 +8,7 @@ import { YAZILAR, yaziBul, okumaSuresi, tarihiYaz } from '../data/blog';
 import type { BlogBlock } from '../data/blog';
 import BlogKapak from '../components/BlogKapak';
 import BlogKenarCubugu from '../components/BlogKenarCubugu';
+import { goruntulenmeArtir, sayiyiKisalt } from '../lib/blogGoruntulenme';
 import './BlogPost.css';
 
 /**
@@ -80,6 +82,26 @@ export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const yazi = yaziBul(slug);
 
+  /**
+   * ⚠️ SAYAC HER ACILISTA BIR ARTAR (İSTEK: Ahmet, 24.08.2026).
+   *
+   * `sayildiMi` bayragi neden var: React gelistirme kipinde `useEffect` iki kez
+   * calisiyor. Bayrak olmasaydi her acilis iki sayilirdi ve sayi sessizce sisirdi.
+   * Slug degisince bayrak sifirlaniyor, cunku baska bir yaziya gecilmis oluyor.
+   */
+  const [goruntulenme, setGoruntulenme] = useState<number | null>(null);
+  const sayildiMi = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!slug || sayildiMi.current === slug) return;
+    sayildiMi.current = slug;
+    let iptal = false;
+    void goruntulenmeArtir(slug).then((n) => {
+      if (!iptal && typeof n === 'number') setGoruntulenme(n);
+    });
+    return () => { iptal = true; };
+  }, [slug]);
+
   if (!yazi) {
     return (
       <div className="container yazi-bulunamadi">
@@ -145,6 +167,11 @@ export default function BlogPost() {
               <span className="yazi-yazar">Veterito Editör</span>
               <span><CalendarDays size={14} /> {tarihiYaz(yazi.tarih)}</span>
               <span><Clock size={14} /> {dakika} dk okuma</span>
+              {/* Sayac gelene kadar hic gosterilmiyor: "0 goruntulenme" yazmak,
+                  hic yazmamaktan kotu. */}
+              {goruntulenme !== null ? (
+                <span><Eye size={14} /> {sayiyiKisalt(goruntulenme)} görüntülenme</span>
+              ) : null}
             </div>
           </header>
 
@@ -162,11 +189,18 @@ export default function BlogPost() {
 
       {yazi.kontrolListesi?.length ? (
         <section className="container yazi-kontrol">
-          <h2><CheckCircle2 size={20} /> Kontrol listesi</h2>
-          <p className="yazi-kontrol-alt">Yazıyı kapatmadan önce bunları gözden geçirin.</p>
-          <ul>
-            {yazi.kontrolListesi.map((m) => <li key={m}>{m}</li>)}
-          </ul>
+          <div className="kontrol-panel">
+            <header>
+              <CheckCircle2 size={22} />
+              <div>
+                <h2>Kontrol listesi</h2>
+                <p>Yazıyı kapatmadan önce bunları gözden geçirin.</p>
+              </div>
+            </header>
+            <ul>
+              {yazi.kontrolListesi.map((m) => <li key={m}>{m}</li>)}
+            </ul>
+          </div>
         </section>
       ) : null}
 
@@ -183,10 +217,13 @@ export default function BlogPost() {
             oluyordu.
           */}
           <div className="sss-izgara">
-            {yazi.sss.map((s) => (
+            {yazi.sss.map((s, i) => (
               <div className="sss-kart" key={s.soru}>
-                <h3>{s.soru}</h3>
-                <p>{s.cevap}</p>
+                <span className="sss-no">{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3>{s.soru}</h3>
+                  <p>{s.cevap}</p>
+                </div>
               </div>
             ))}
           </div>
