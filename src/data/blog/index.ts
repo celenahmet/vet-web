@@ -10,8 +10,11 @@
  */
 import type { BlogYazi } from './types';
 import { kedilerKacYilYasar } from './kediler-kac-yil-yasar';
+import { kopeklerKacYilYasar } from './kopekler-kac-yil-yasar';
+import { kediYasiNasilHesaplanir } from './kedi-yasi-nasil-hesaplanir';
+import { kedimYemekYemiyor } from './kedim-yemek-yemiyor';
 
-export const YAZILAR: BlogYazi[] = [kedilerKacYilYasar].sort((a, b) =>
+export const YAZILAR: BlogYazi[] = [kedilerKacYilYasar, kopeklerKacYilYasar, kediYasiNasilHesaplanir, kedimYemekYemiyor].sort((a, b) =>
   b.tarih.localeCompare(a.tarih),
 );
 

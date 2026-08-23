@@ -1,0 +1,84 @@
+import type { BlogYazi } from './types';
+
+export const kedimYemekYemiyor: BlogYazi = {
+  slug: 'kedim-yemek-yemiyor',
+  baslik: 'Kedim Yemek Yemiyor, Ne Yapmalıyım?',
+  ozet: 'Kedilerde iştahsızlık köpeklerdeki gibi beklenebilecek bir durum değil. 24 saati aşan açlık karaciğer için gerçek bir risk taşıyor. Ne zaman beklenir, ne zaman kliniğe gidilir.',
+  kategori: 'Kedi',
+  tarih: '2026-08-23',
+  bloklar: [
+    { kind: 'paragraf', metin: 'Kedinizin bir öğün atlaması tek başına panik sebebi değil. Ama kedilerde iştahsızlık, köpeklerde olduğu gibi "acıkınca yer" diye beklenebilecek bir durum da değil. **24 saati aşan açlık** kedilerde karaciğer için gerçek bir risk oluşturuyor.' },
+    { kind: 'paragraf', metin: 'Bu yazı iki soruyu ayırıyor: ne zaman gözlemle yetinilir, ne zaman kliniğe gidilir.' },
+
+    { kind: 'baslik', metin: 'Kedilerde açlık neden köpeklerdekinden farklı' },
+    { kind: 'paragraf', metin: 'Kedi yemek yemeyi kestiğinde vücut enerjiyi yağ depolarından karşılamaya başlıyor. Bu yağ karaciğere taşınıyor ama kedinin karaciğeri bu yükü işlemekte diğer türlere göre yetersiz kalıyor. Yağ karaciğerde birikince organ işlevini kaybetmeye başlıyor.' },
+    { kind: 'paragraf', metin: 'Tabloyu daha da tersine çeviren şey şu: karaciğer bozuldukça kedi daha da iştahsızlaşıyor. Yani açlık kendi kendini besleyen bir döngüye giriyor. Fazla kilolu kedilerde risk daha yüksek, çünkü karaciğere gidecek yağ deposu daha büyük.' },
+    { kind: 'tuzak', baslik: '"Acıkınca yer" tuzağı', metin: 'Bu cümle köpekler için çoğu zaman doğru, kediler için tehlikeli. Kedi inatçılıktan değil, çoğunlukla bir rahatsızlık yüzünden yemiyor. Beklemek sorunu çözmüyor, açlığın kendisini ikinci bir soruna dönüştürüyor.' },
+
+    { kind: 'baslik', metin: 'Saat kaça göre ne yapmalı' },
+    { kind: 'tablo', basliklar: ['Süre', 'Durum', 'Yapılacak'], satirlar: [
+      ['12 saate kadar', 'Tek öğün atlanmış olabilir', 'Gözlem. Su içiyor mu, oynuyor mu, tuvaleti normal mi'],
+      ['12-24 saat', 'Dikkat', 'Mamayı ısıtıp kokusunu artırın, yaş mama deneyin, kliniği arayıp durumu anlatın'],
+      ['24 saati aşarsa', 'Klinik', 'Yavru, yaşlı, gebe ya da kilolu kedide beklemeyin'],
+      ['36-48 saat', 'Acil', 'Kedi tamamen sağlıklı görünse bile muayene gerekiyor'],
+    ]},
+    { kind: 'paragraf', metin: 'Yavru kedilerde süre çok daha kısa. Birkaç aylık bir yavru birkaç öğün atladığında kan şekeri düşebiliyor; onlarda 12 saat bile beklenmemeli.' },
+
+    { kind: 'baslik', metin: 'Hemen kliniğe gitmeyi gerektiren belirtiler' },
+    { kind: 'paragraf', metin: 'Aşağıdakilerden biri varsa süre saymayı bırakın:' },
+    { kind: 'liste', maddeler: [
+      'Kusma, özellikle tekrarlayan kusma',
+      'Diş etlerinde ya da göz aklarında sararma',
+      'Nefes almakta zorlanma, ağzı açık soluma',
+      'Saklanma, dokunulmaya tepki verme, ağrı işareti',
+      'İdrar yapamama ya da kum kabında zorlanma, erkek kedilerde acildir',
+      'Su da içmiyor olması',
+      'Belirgin halsizlik, ayağa kalkmakta zorlanma',
+    ]},
+    { kind: 'uyari', metin: 'Bu içerik genel bilgidir, tıbbi tavsiye değildir. Kedinizde iştahsızlık varsa değerlendirmeyi ve tedaviyi hayvanı gören bir veteriner hekim yapar.' },
+
+    { kind: 'baslik', metin: 'İştahsızlığın sık görülen sebepleri' },
+    { kind: 'altBaslik', metin: 'Ağız ve diş sorunları' },
+    { kind: 'paragraf', metin: 'En çok atlanan sebep. Diş eti iltihabı ya da kırık diş yemeyi acı verici hâle getiriyor. Kedi mamaya yaklaşıp geri çekiliyorsa, tek taraflı çiğniyorsa ya da ağzından koku geliyorsa ağız içi mutlaka bakılmalı.' },
+    { kind: 'altBaslik', metin: 'Böbrek ve karaciğer hastalıkları' },
+    { kind: 'paragraf', metin: 'Özellikle orta yaş üstü kedilerde iştahsızlık, böbrek yetmezliğinin ilk görünen belirtilerinden biri. Yanında su tüketiminde artış varsa bu ihtimal güçleniyor.' },
+    { kind: 'altBaslik', metin: 'Stres ve çevre değişikliği' },
+    { kind: 'paragraf', metin: 'Ev taşınması, yeni bir hayvan, mama ya da kum değişikliği, misafir. Kediler rutine bağlı yaşıyor. Stres kaynaklı iştahsızlık gerçek ama bu teşhis ancak diğerleri elendikten sonra konuyor, ilk varsayım olarak değil.' },
+    { kind: 'altBaslik', metin: 'Mama değişikliği' },
+    { kind: 'paragraf', metin: 'Ani mama değişimi kedilerde sık sorun çıkarıyor. Yeni mamaya geçerken bir hafta boyunca kademeli karıştırmak gerekiyor.' },
+    { kind: 'altBaslik', metin: 'Tüy yumağı ve sindirim' },
+    { kind: 'paragraf', metin: 'Özellikle uzun tüylü kedilerde tüy yumağı mide çıkışını rahatsız edip iştahı kesebiliyor. Kusma girişimi eşlik ediyorsa akla gelmeli.' },
+
+    { kind: 'baslik', metin: 'Evde deneyebilecekleriniz' },
+    { kind: 'paragraf', metin: 'Aşağıdakiler yalnız **ilk 24 saat içinde** ve kedide başka belirti yokken denenir. Tedavi yerine geçmez, zaman kazandırmaz.' },
+    { kind: 'liste', maddeler: [
+      'Yaş mamayı hafifçe ısıtın, koku arttıkça iştah artıyor',
+      'Mama kabını değiştirin, bazı kediler derin kaplarda bıyık teması yüzünden yemiyor',
+      'Kabı su kabından ve kum kabından uzaklaştırın',
+      'Sessiz, kalabalıktan uzak bir köşeye koyun',
+      'Küçük porsiyon verin, dolu kap bazı kedileri kaçırıyor',
+      'Aynı anda birden fazla yeni mama denemeyin, hangisinin işe yaradığını anlayamazsınız',
+    ]},
+    { kind: 'tuzak', baslik: '"İnsan yemeği veririm, hiç olmazsa bir şey yesin" tuzağı', metin: 'Soğan, sarımsak, çikolata, üzüm ve kuru üzüm kediler için zehirli. Tuzlu ve baharatlı yiyecekler de uygun değil. Bir şey yemesi iyi ama yanlış şeyi yemesi, yememesinden daha kötü sonuç verebiliyor.' },
+
+    { kind: 'baslik', metin: 'Kliniğe giderken hazırlayın' },
+    { kind: 'liste', maddeler: [
+      'Ne zamandır yemediği, saat olarak',
+      'Su içip içmediği',
+      'Son kilo bilgisi, varsa değişim',
+      'Kusma, ishal, kabızlık var mı',
+      'Tuvalet alışkanlığı değişti mi',
+      'Yakın zamanda mama, kum ya da ev değişikliği oldu mu',
+      'Kullandığı ilaçlar ve son aşı tarihleri',
+    ]},
+    { kind: 'paragraf', metin: 'Bu bilgiler muayene süresini kısaltıyor ve gereksiz tetkiki azaltıyor. Aşı ve kilo geçmişini bir yerde tutuyorsanız işiniz kolay; tutmuyorsanız çoğu soru "sanırım" ile cevaplanıyor.' },
+  ],
+  sss: [
+    { soru: 'Kedi kaç gün aç kalabilir?', cevap: 'Sağlıklı bir yetişkin kedi teknik olarak birkaç gün dayanabilir ama bu güvenli olduğu anlamına gelmiyor. 24 saati aşan açlıkta karaciğer yağlanması riski başlıyor, 48 saatte ciddi hâle geliyor. Yavru ve yaşlılarda süre çok daha kısa.' },
+    { soru: 'Kedim yemiyor ama su içiyor, yine de gitmeli miyim?', cevap: 'Su içmesi iyi bir işaret ama açlık süresini değiştirmiyor. 24 saati aşıyorsa kliniğe gidin.' },
+    { soru: 'Sadece mama değiştirdim, o yüzden mi yemiyor?', cevap: 'Olabilir, ama bunu varsayıp beklemek doğru değil. Eski mamaya geri dönün; bir gün içinde iştahı gelmiyorsa sebep mama değil.' },
+    { soru: 'Zorla mama vermeli miyim?', cevap: 'Şırıngayla besleme veteriner hekim önerisiyle ve tekniği öğrenildikten sonra yapılır. Yanlış uygulama mamanın soluk borusuna kaçmasına yol açabiliyor.' },
+    { soru: 'İştah açıcı ilaç kullanabilir miyim?', cevap: 'Kedilerde kullanılan iştah açıcılar var ama bunlar reçeteli ilaçlar ve altta yatan sebep bulunmadan verilmesi doğru değil. İştahsızlık bir belirti, hastalığın kendisi değil.' },
+    { soru: 'Yaşlı kedim eskisinden az yiyor, normal mi?', cevap: 'Yaşlılıkta enerji ihtiyacı bir miktar düşebilir ama belirgin azalma ve kilo kaybı normal değil. Böbrek, tiroid ve diş sorunları bu yaşta sık görülüyor, kontrol gerekiyor.' },
+  ],
+};
