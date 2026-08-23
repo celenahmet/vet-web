@@ -35,6 +35,13 @@ export const kedilerKacYilYasar: BlogYazi = {
     { kind: 'paragraf', metin: 'Diş taşı ve diş eti iltihabı, kedi bakımında en çok atlanan başlık. Atlanmasının sebebi de belli: kedi şikâyet etmiyor, ağzını açıp göstermiyor ve sahibi bir sorun olduğunu ancak koku ya da yeme zorluğu başlayınca fark ediyor.' },
     { kind: 'paragraf', metin: 'Kronik ağız enfeksiyonu vücutta sürekli bir iltihap yükü oluşturuyor. Bu yük uzun vadede böbrek ve kalp sağlığını etkiliyor. Yani ağız bakımı estetik bir konu değil, ömürle ilgili bir konudur.' },
 
+    { kind: 'baslik', metin: 'Aşı, ömrü kısaltan hastalıkların önünü kesiyor' },
+    { kind: 'paragraf', metin: 'Karma aşı ve kuduz aşısı temel korumadır. Ama ömür açısından en çok konuşulması gereken üçüncü bir aşı var ve çoğu zaman atlanıyor: **lösemi (FeLV) aşısı**.' },
+    { kind: 'paragraf', metin: 'Cornell Üniversitesi Veteriner Fakültesi\'nin kedi sağlığı merkezine göre FeLV, kediler arasındaki her türlü yakın temasla bulaşabiliyor: ısırık, karşılıklı temizlenme, aynı mama ve su kabını ya da kum kabını paylaşma. Anne kediden yavrusuna, doğumdan önce ya da emzirme sırasında da geçebiliyor. Buna karşılık virüs vücut dışında uzun süre yaşamıyor; ev şartlarında birkaç saati bile zor buluyor. Yani bulaşma yolu ortam değil, **temas**.' },
+    { kind: 'paragraf', metin: 'Aynı kaynak, FeLV aşısını **yavru kedilerde temel aşı** olarak tanımlıyor; sebebi yavrularda hastalığın ilerleyici seyretme ihtimalinin daha yüksek olması. Yetişkinlerde ise karar kedinin dışarı çıkıp çıkmadığına ve başka kedilerle temasına göre veriliyor. Aşı yüzde yüz koruma sağlamıyor ama riski belirgin biçimde düşürüyor.' },
+    { kind: 'yanilgi', baslik: '"Ev kedisi, aşıya gerek yok" yanılgısı', metin: 'Ev kedisi risksiz değildir, riski düşüktür. Kedi bir gün kaçabilir, kliniğe ya da pansiyona gidebilir, eve yeni bir hayvan gelebilir. Cornell kaynağı, bütün kedilerin eve alınmadan önce FeLV açısından test edilmesini öneriyor; evde başka kedi varsa bu adım isteğe bağlı değildir.' },
+    { kind: 'paragraf', metin: 'İç ve dış parazit uygulaması da bu başlığın parçası: hem kediyi hem evdeki insanları koruyor.' },
+
     { kind: 'baslik', metin: 'Tahlil gözlemin yerine geçmez, gözlem de tahlilin' },
     { kind: 'paragraf', metin: 'Kediler rahatsızlığını saklamakta ustadır. Bu bir kişilik özelliği değil, avlanan bir hayvanın zayıflığını belli etmeme refleksidir. Sonucu şu: siz bir şey fark ettiğinizde hastalık genellikle başlamış olmuyor, ilerlemiş oluyor.' },
     { kind: 'paragraf', metin: 'Böbrek yetmezliği bunun en net örneği. Böbrek fonksiyonunun büyük kısmı kaybedilmeden dışarıdan belirti görülmüyor. Kan ve idrar tahlili ise değişimi belirtiler başlamadan önce gösterebiliyor. Bu yüzden yılda bir kontrol, yaşlı kedide altı ayda bir kontrol öneriliyor; tahlil, gözlemin göremediğini görüyor.' },
@@ -98,6 +105,16 @@ export const kedilerKacYilYasar: BlogYazi = {
     ]},
     { kind: 'paragraf', metin: 'Bu sekiz maddenin hiçbiri pahalı ya da zor değil. Zor olan, hepsini yıllarca aksatmadan sürdürmek. Aşı ve kontrol tarihlerini takip eden bir yer tutmak, listedeki en sıkıcı maddeyi en kolayı hâline getiriyor.' },
   ],
+  kaynaklar: [
+    {
+      etiket: 'Cornell University College of Veterinary Medicine — Feline Leukemia Virus',
+      adres: 'https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-leukemia-virus',
+    },
+    {
+      etiket: 'Cornell University College of Veterinary Medicine — Loving Care for Older Cats',
+      adres: 'https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/loving-care-older-cats',
+    },
+  ],
   kontrolListesi: [
     'Kedinizi ev içinde tutuyor musunuz, dışarı çıkıyorsa güvenli bir alanda mı?',
     'Kısırlaştırma yapıldı mı, yapıldıysa porsiyon buna göre güncellendi mi?',
@@ -108,6 +125,7 @@ export const kedilerKacYilYasar: BlogYazi = {
     'Son veteriner kontrolünün üzerinden bir yıldan az mı geçti?',
     '11 yaş üstündeyse kontroller altı ayda bire çıkarıldı mı?',
     'Ağız içine ve diş taşına bakıldı mı?',
+    'Dışarı çıkıyorsa lösemi (FeLV) aşısı yapıldı mı?',
     'Kum kabındaki alışkanlık değişimini takip ediyor musunuz?',
   ],
   sss: [

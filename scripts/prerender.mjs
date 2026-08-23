@@ -186,6 +186,19 @@ for (const y of yazilar) {
       : '',
     `</article>`,
     /*
+     * ⚠️ KAYNAKLAR PRERENDER CIKTISINA DA KONUYOR (24.08.2026). Onceden yalniz
+     * React tarafinda ciziliyordu; tarama botu ve yapay zeka tarayicisi kaynak
+     * gormeden yaziyi degerlendiriyordu. Saglik iceriginde kaynak, sayfanin
+     * guvenilirlik sinyali.
+     */
+    y.kaynaklar?.length
+      ? `<section><h2>Kaynaklar</h2><ul>${y.kaynaklar
+          .map((k) => (k.adres
+            ? `<li><a href="${kac(k.adres)}" rel="noopener noreferrer">${kac(k.etiket)}</a></li>`
+            : `<li>${kac(k.etiket)}</li>`))
+          .join('')}</ul></section>`
+      : '',
+    /*
      * ⚠️ IC BAGLANTILAR PRERENDER CIKTISINA DA KONUYOR. React acilinca yerini kenar
      * cubugu aliyor, ama tarama botu JS calistirmadan da diger yazilara gecebiliyor.
      * Ic baglanti agi, tek tek yazilarin degil blogun butununun siralanmasini

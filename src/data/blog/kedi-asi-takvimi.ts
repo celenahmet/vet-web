@@ -19,7 +19,8 @@ export const kediAsiTakvimi: BlogYazi = {
       ['15-17 hafta', 'Karma aşı, üçüncü doz', 'Veteriner hekim gerekli görürse'],
       ['12 ay', 'Yıllık tekrarlar başlar', 'Karma ve kuduz'],
     ]},
-    { kind: 'paragraf', metin: 'Lösemi (FeLV) aşısı bu tablonun dışında ayrı değerlendiriliyor. Dışarı çıkan ya da başka kedilerle temas eden kedilerde öneriliyor ve **aşı öncesi test** yapılıyor, çünkü hastalığı taşıyan bir kediyi aşılamak koruma sağlamıyor.' },
+    { kind: 'paragraf', metin: 'Lösemi (FeLV) aşısı bu tablonun yanında ayrıca değerlendiriliyor. Cornell Üniversitesi Veteriner Fakültesi bu aşıyı **yavru kedilerde temel aşı** olarak tanımlıyor; sebebi, yavrularda hastalığın ilerleyici seyretme ihtimalinin daha yüksek olması. Yetişkinlerde ise kedinin dışarı çıkıp çıkmadığına ve başka kedilerle temasına göre karar veriliyor.' },
+    { kind: 'paragraf', metin: 'Eve yeni kedi alınırken **önce test** yapılması öneriliyor. Aynı kaynak, bütün kedilerin eve girmeden önce FeLV açısından test edilmesi gerektiğini söylüyor; özellikle evde başka kedi varsa bu adım isteğe bağlı değil.' },
 
     { kind: 'yanilgi', baslik: '"Anne sütü aldı, aşıya gerek yok" yanılgısı', metin: 'Anneden gelen bağışıklık gerçek ama geçici; 8-12 hafta arasında sönüyor. Üstelik bu bağışıklık, erken yapılan aşının işe yaramasını da engelleyebiliyor. Aşı takviminin birden fazla dozdan oluşmasının sebebi tam olarak bu: anne bağışıklığının ne zaman söndüğü kediden kediye değişiyor ve tekrar dozları o boşluğu kapatıyor.' },
 
@@ -58,6 +59,12 @@ export const kediAsiTakvimi: BlogYazi = {
       ['Aşılıysa hiç hastalanmaz', 'Aşı riski düşürür, sıfırlamaz; hastalık daha hafif seyreder'],
     ]},
     { kind: 'paragraf', metin: 'Aşı kartını kaybetmek sanılandan sık oluyor. Tarihleri telefonda tutmak, kartı kaybetseniz bile takvimin bozulmamasını sağlıyor. Veterito bu takvimi kediniz için tutuyor ve tekrar tarihi yaklaşınca hatırlatıyor; uygulama ücretsiz.' },
+  ],
+  kaynaklar: [
+    {
+      etiket: 'Cornell University College of Veterinary Medicine — Feline Leukemia Virus',
+      adres: 'https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-leukemia-virus',
+    },
   ],
   sss: [
     { soru: 'Yavru kediye ilk aşı kaç haftalıkken yapılır?', cevap: 'Genellikle 8-9 haftalıkken karma aşı ile başlanıyor. Öncesinde iç parazit uygulaması yapılıyor. Kesin zamanı, yavrunun sağlık durumuna bakarak veteriner hekim belirliyor.' },
