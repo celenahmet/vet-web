@@ -1,0 +1,73 @@
+/**
+ * DEGISKEN UYUMLULUK KATMANI
+ *
+ * ⚠️ BULGU (23.08.2026): sitede kullanilan 30 CSS degiskeni HICBIR yerde tanimli
+ * degil. En gorunur sonucu Navbar: `background-color: var(--color-surface)` diyor,
+ * degisken olmadigi icin arka plan SEFFAF kaliyor. Icerik navbarin altindan
+ * gorunuyor ve navbar `z-index: 100` oldugu icin tiklamalari o yakaliyor; kullanici
+ * "Bloga don"e basiyor, ana sayfaya gidiyor.
+ *
+ * Sebep: tema sistemi `--bg-*` / `--text-*` / `--border-color` adlarina gecmis ama
+ * bilesen dosyalari eski `--color-*` adlarini kullanmaya devam ediyor.
+ *
+ * Bu dosya eski adlari yeni adlara BAGLIYOR. Hicbir dosyayi degistirmiyor, yalniz
+ * eksik tanimi dolduruyor. Boylece hem navbar hem butonlar hem golgeler calisiyor.
+ *
+ * ⚠️ KALICI COZUM DEGIL: dogrusu bilesen dosyalarindaki adlarin guncellenmesi.
+ * O is web deposunda baska birinin alaninda; bu katman siteyi ayakta tutuyor.
+ * Adlar birlestirildiginde bu dosya silinebilir.
+ */
+
+:root {
+  /* Marka */
+  --color-primary: var(--color-vet-primary);
+  --color-primary-hover: var(--color-vet-secondary);
+  --color-primary-deep: var(--color-vet-accent);
+  --color-primary-soft: var(--color-vet-accent-light);
+  --color-on-primary: #ffffff;
+  --color-accent: var(--color-vet-primary);
+  --color-accent-soft: var(--color-vet-accent-light);
+  --accent: var(--color-vet-primary);
+  --accent-bg: var(--color-vet-accent-light);
+  --accent-border: var(--border-color);
+
+  /* Zemin ve metin */
+  --color-bg: var(--bg-main);
+  --color-surface: var(--bg-surface);
+  --color-bg-secondary: var(--bg-secondary);
+  --social-bg: var(--bg-secondary);
+  --color-text: var(--text-main);
+  --text-h: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-disabled: var(--text-muted);
+
+  /* Kenarlik */
+  --color-border: var(--border-color);
+  --border: var(--border-color);
+
+  /* Vurgu rengi: markanin disinda kalan tek renk, uyari ve rozet icin */
+  --color-coral: #E9695B;
+  --color-coral-soft: rgba(233, 105, 91, 0.12);
+
+  /* Tipografi */
+  --font-family: 'Outfit', sans-serif;
+
+  /* Kose yaricapi */
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 999px;
+
+  /* Golgeler */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 6px 18px rgba(15, 23, 42, 0.10);
+  --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.14);
+}
+
+/* Koyu temada golgeler beyaz zemine gore ayarlanmis degerlerle silik kaliyor. */
+:root[data-theme='dark'] {
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
