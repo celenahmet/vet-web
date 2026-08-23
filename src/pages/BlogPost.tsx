@@ -6,6 +6,7 @@ import SEO from '../components/SEO';
 import { YAZILAR, yaziBul, okumaSuresi, tarihiYaz } from '../data/blog';
 import type { BlogBlock } from '../data/blog';
 import BlogKapak from '../components/BlogKapak';
+import BlogKenarCubugu from '../components/BlogKenarCubugu';
 import './BlogPost.css';
 
 /**
@@ -138,7 +139,13 @@ export default function BlogPost() {
         <BlogKapak ad={yazi.kapak} kategori={yazi.kategori} alt={yazi.baslik} boyut={72} />
       </div>
 
-      <div className="container yazi-govde">
+      {/*
+        ⚠️ IKI SUTUN: govde solda, kenar cubugu sagda (referans UniConnectly blogu).
+        Dar ekranda kenar cubugu govdenin ALTINA duşuyor; yanina sikistirmak
+        okunabilirligi bitiriyordu.
+      */}
+      <div className="container yazi-duzen">
+        <div className="yazi-govde">
         {yazi.bloklar.map((b, i) => <Blok key={i} blok={b} />)}
 
         {yazi.sss.length ? (
@@ -171,6 +178,9 @@ export default function BlogPost() {
             </ul>
           </section>
         ) : null}
+        </div>
+
+        <BlogKenarCubugu haricSlug={yazi.slug} />
       </div>
 
       {ilgili.length ? (

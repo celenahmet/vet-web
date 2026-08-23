@@ -186,3 +186,18 @@
 .yazi-yanilgi p { margin: 0; font-size: 0.98rem; }
 :root[data-theme='dark'] .yazi-yanilgi { background: rgba(233,162,59,0.12); }
 :root[data-theme='dark'] .yazi-yanilgi strong { color: #E9A23B; }
+
+/* --- Iki sutunlu duzen: govde + kenar cubugu --- */
+.yazi-sayfa .yazi-duzen {
+  max-width: 1160px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 48px;
+  align-items: start;
+}
+.yazi-duzen .blog-kenar { position: sticky; top: 92px; }
+
+@media (max-width: 1080px) {
+  .yazi-sayfa .yazi-duzen { grid-template-columns: 1fr; gap: 36px; max-width: 820px; }
+  .yazi-duzen .blog-kenar { position: static; }
+}

@@ -180,7 +180,20 @@ for (const y of yazilar) {
           .join('')}</section>`
       : '',
     `</article>`,
-  ].join('\n');
+    /*
+     * ⚠️ IC BAGLANTILAR PRERENDER CIKTISINA DA KONUYOR. React acilinca yerini kenar
+     * cubugu aliyor, ama tarama botu JS calistirmadan da diger yazilara gecebiliyor.
+     * Ic baglanti agi, tek tek yazilarin degil blogun butununun siralanmasini
+     * etkiliyor.
+     */
+    yazilar.length > 1
+      ? `<nav aria-label="Diğer yazılar"><h2>Diğer yazılar</h2><ul>${yazilar
+          .filter((d) => d.slug !== y.slug)
+          .slice(0, 6)
+          .map((d) => `<li><a href="/blog/${d.slug}">${kac(d.baslik)}</a></li>`)
+          .join('')}</ul></nav>`
+      : '',
+  ].filter(Boolean).join('\n');
 
   const html = govdeDegistir(
     kafaDegistir(sablon, { baslik: `${y.baslik} | Veterito`, aciklama: y.ozet, adres, tip: 'article', jsonLd: [makale, ...sss], onYukle: YAZI_ON_YUKLEME }),
