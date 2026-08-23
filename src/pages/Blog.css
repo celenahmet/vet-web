@@ -239,22 +239,61 @@
 .bulten-dugme { background: #fff; color: var(--color-vet-accent); flex-shrink: 0; }
 
 /* --- Duyarli --- */
-@media (max-width: 1080px) {
+
+/*
+ * Kirilma noktalari icerige gore secildi, cihaz adina gore degil:
+ *  1180 -> izgara 4 sutunda sikisiyor
+ *   980 -> one cikan yazinin iki sutunu dar geliyor, baslik kiriliyor
+ *   700 -> kartlar tek sutuna dusuyor, bantlar diklesiyor
+ */
+
+/* Uzun baslik dar ekranda tasmasin */
+.one-cikan-metin h1,
+.blog-kart-govde h3,
+.blog-liste-kart h4 { overflow-wrap: anywhere; }
+
+@media (max-width: 1180px) {
   .blog-izgara { grid-template-columns: repeat(2, 1fr); }
   .blog-liste { grid-template-columns: repeat(2, 1fr); }
   .kategori-seridi { grid-template-columns: repeat(3, 1fr); }
+  .kategori-oge { border-right: 1px solid var(--color-border, rgba(0,0,0,0.07)); }
   .kategori-oge:nth-child(3n) { border-right: none; }
-}
-@media (max-width: 760px) {
-  .blog-one-cikan { grid-template-columns: 1fr; gap: 28px; }
-  .one-cikan-metin h1 { font-size: 2rem; }
-  .blog-izgara, .blog-liste { grid-template-columns: 1fr; }
-  .kategori-seridi { grid-template-columns: repeat(2, 1fr); }
-  .kategori-oge:nth-child(2n) { border-right: none; }
-  .klinik-bandi { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
-  .bulten-bandi { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+  .one-cikan-metin h1 { font-size: 2.35rem; }
 }
 
+@media (max-width: 980px) {
+  .blog-one-cikan { grid-template-columns: 1fr; gap: 28px; }
+  .one-cikan-metin h1 { font-size: 2.1rem; }
+  .one-cikan-metin p { max-width: none; }
+  .one-cikan-gorsel img,
+  .one-cikan-gorsel .kapak-yedek { aspect-ratio: 16 / 9; }
+  .klinik-bandi { padding: 30px 28px; }
+  .bulten-bandi { padding: 28px 28px; }
+}
+
+@media (max-width: 700px) {
+  .blog-sayfa { padding: 20px 0 56px; }
+  .blog-sayfa section { margin-bottom: 32px; }
+  .one-cikan-metin h1 { font-size: 1.7rem; }
+  .one-cikan-metin p { font-size: 0.98rem; }
+  .blog-izgara, .blog-liste { grid-template-columns: 1fr; }
+  .kategori-seridi { grid-template-columns: repeat(2, 1fr); }
+  .kategori-oge { padding: 16px 10px; font-size: 0.9rem; }
+  .kategori-oge { border-right: 1px solid var(--color-border, rgba(0,0,0,0.07)); }
+  .kategori-oge:nth-child(2n) { border-right: none; }
+  .blog-liste-baslik h2 { font-size: 1.15rem; }
+  .klinik-bandi { flex-direction: column; align-items: flex-start; gap: 18px; padding: 26px 20px; }
+  .klinik-bandi-metin h2 { font-size: 1.2rem; }
+  .bulten-bandi { flex-direction: column; align-items: flex-start; gap: 20px; padding: 26px 20px; }
+  .bulten-metin { align-items: flex-start; }
+  .bulten-dugme { width: 100%; justify-content: center; }
+}
+
+/* Cok dar telefonlarda kategori seridi tek sutun yerine iki sutun kalsin,
+   tek sutun cok uzun bir liste yapiyordu. */
+@media (max-width: 380px) {
+  .kategori-oge { flex-direction: column; gap: 6px; text-align: center; font-size: 0.82rem; }
+}
 
 /* --- Kapak gorseli olmayan yazilar --- */
 .kapak-yedek {

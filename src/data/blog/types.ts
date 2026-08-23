@@ -13,7 +13,13 @@ export type BlogBlock =
   | { kind: 'altBaslik'; metin: string }
   | { kind: 'liste'; maddeler: string[] }
   | { kind: 'tablo'; basliklar: string[]; satirlar: string[][] }
-  | { kind: 'uyari'; metin: string };
+  | { kind: 'uyari'; metin: string }
+  /**
+   * Yaygin yanlis inanisi acikca soyleyen kutu. UniConnectly blogundaki "tuzak"
+   * bolumlerinin karsiligi: okuyucunun dogru sandigi seyi once adiyla soyleyip
+   * sonra duzeltiyor. Tibbi uyaridan AYRI tutuluyor, ikisi farkli sey.
+   */
+  | { kind: 'tuzak'; baslik: string; metin: string };
 
 export type BlogSSS = { soru: string; cevap: string };
 

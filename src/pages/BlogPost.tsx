@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Clock, CalendarDays, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Clock, CalendarDays, AlertTriangle, CircleAlert } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
@@ -47,6 +47,16 @@ function Blok({ blok }: { blok: BlogBlock }) {
         <aside className="yazi-uyari">
           <AlertTriangle size={20} />
           <p>{blok.metin}</p>
+        </aside>
+      );
+    case 'tuzak':
+      return (
+        <aside className="yazi-tuzak">
+          <CircleAlert size={20} />
+          <div>
+            <strong>{blok.baslik}</strong>
+            <p>{blok.metin}</p>
+          </div>
         </aside>
       );
     case 'tablo':
