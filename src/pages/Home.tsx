@@ -785,7 +785,8 @@ export default function Home() {
             
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link to="/pricing" className="btn-primary text-lg px-8 py-4 rounded-2xl shadow-sm">
-                Uygulamayı İndir
+                {/* ⚠️ UYGULAMA HENUZ MAGAZADA YAYINDA DEGIL (Ahmet, 24.08.2026: "uygulama cikmadi ya, google play ve app store cok yakinda diyelim"). App Store incelemede, Google Play kapali testte. "Indir" demek, tiklayana indiremeyecegi bir sey vaat etmek. */}
+                App Store ve Google Play’de Çok Yakında
               </Link>
               <Link to="/clinics" className="group flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-bold text-[var(--text-main)] bg-[var(--bg-secondary)] hover:bg-[var(--border-color)] border border-[var(--border-color)] transition-colors">
                 Kliniğini Kaydet

@@ -739,11 +739,11 @@ export default function Features() {
               <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full sm:w-auto">
                 <button className="bg-white text-[var(--color-vet-primary)] font-bold text-base px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-xl flex items-center justify-center gap-3 w-full sm:w-auto">
                    <img src="/apple-logo.png" alt="App Store" className="w-9 h-9 object-contain" />
-                   App Store'dan İndir
+                   App Store’da Çok Yakında
                 </button>
                 <button className="bg-transparent border-2 border-white/80 text-white font-bold text-base px-8 py-4 rounded-full hover:bg-white/10 transition-colors shadow-xl flex items-center justify-center gap-3 w-full sm:w-auto">
                    <img src="/google-play-logo.png" alt="Google Play" className="w-9 h-9 object-contain scale-[2.8]" />
-                   Google Play'den İndir
+                   Google Play’de Çok Yakında
                 </button>
               </div>
             </div>

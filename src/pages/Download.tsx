@@ -65,7 +65,7 @@ export default function Download() {
           <a href={brandConfig.appStoreUrl} target="_blank" rel="noopener noreferrer" className="bg-black text-white px-6 py-3 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform shadow-lg group">
             <Apple size={32} className="fill-white" />
             <div className="text-left">
-              <div className="text-[10px] opacity-80 font-medium">Download on the</div>
+              <div className="text-[10px] opacity-80 font-medium">Çok yakında</div>
               <div className="text-xl font-bold leading-tight">App Store</div>
             </div>
           </a>
@@ -78,7 +78,7 @@ export default function Download() {
               <path fill="#EA4335" d="M225 294l112.8-112.8c-6.6 11-15.9 20.3-27.6 27L37.3 481.6l152.7-87.5z"></path>
             </svg>
             <div className="text-left">
-              <div className="text-[10px] opacity-80 font-medium uppercase tracking-wider">Get it on</div>
+              <div className="text-[10px] opacity-80 font-medium uppercase tracking-wider">Çok yakında</div>
               <div className="text-xl font-bold leading-tight">Google Play</div>
             </div>
           </a>
