@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { Suspense, lazy, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import { ONCEDEN_URETILMIS } from './main';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -28,24 +29,55 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 const Download = lazy(() => import('./pages/Download'));
 const ClinicPage = lazy(() => import('./pages/ClinicPage'));
 
+/**
+ * ⚠️ ARA DURUM: onceden uretilmis icerik varsa ONU gosteriyoruz.
+ *
+ * Prerender edilen sayfalarda (blog yazilari ve blog listesi) HTML govdesinde
+ * gercek metin duruyor; `createRoot` onu siliyor. Silinen metni ara durumda
+ * geri koyunca okuyucu icin kesinti olmuyor ve sayfanin yuksekligi degismiyor.
+ * Yukseklik degismeyince alt bilgi de ziplamiyor.
+ *
+ * Prerender edilmemis sayfalarda (ana sayfa, klinikler...) govde bos geliyor;
+ * orada eski davranis suruyor, olculu bir donen halka.
+ *
+ * ⚠️ Yalniz ILK yuklemede gecerli. Uygulama icinde gezinirken `ONCEDEN_URETILMIS`
+ * hala eski sayfanin metnini tasiyor; `ilkYukleme` bayragi bunu engelliyor,
+ * yoksa kullanici B sayfasina giderken A sayfasinin metnini gorurdu.
+ */
+let ilkYukleme = true;
+
+function Yedek() {
+  if (ilkYukleme && ONCEDEN_URETILMIS) {
+    ilkYukleme = false;
+    return <div dangerouslySetInnerHTML={{ __html: ONCEDEN_URETILMIS }} />;
+  }
+  return <div className="loading-spinner" role="status" aria-label="Sayfa yükleniyor" />;
+}
+
 function App() {
   return (
     <div className="app-container">
       <ScrollToTop />
       <Navbar />
-      <main className="main-content">
-        {/*
-            ⚠️ GORUNUR "Loading..." YAZISI KALDIRILDI (24.08.2026). Site yalniz
-            Turkce ve yazi bicimsizdi: sol ust kosede, sayfanin disinda duruyordu.
-            Yerine `styles/yuklenme.css` icinde olculu bir ara durum var; metin
-            ekran okuyucuya `aria-label` ile veriliyor.
+      {/*
+        ⚠️ ALT BILGI DE ARA DURUMUN ICINDE (24.08.2026). Once <Suspense> yalniz
+        <main> icindeydi ve alt bilgi disinda kaliyordu. Olculdu: ara durumda alt
+        bilgi ekranin hemen altina ciziliyor, rota parcasi inince gercek icerik
+        araya giriyor ve alt bilgi BINLERCE PIKSEL asagi ziplıyordu. Lighthouse
+        bunu CLS 0.40-0.42 olarak olctu ve TEK suclu buydu; hem prerender edilen
+        yazi sayfasinda hem prerender EDILMEYEN ana sayfada ayni deger cikti,
+        yani sebep icerik degil YERLESIMDI.
 
-            ⚠️ Ara durumun yer kaplamasi sus degil: yer kaplamadigi icin alt bilgi
-            yukari tirmaniyor ve navbar logosuyla alt bilgi logosu ust uste
-            gorunuyordu. */}
-        <Suspense
-          fallback={<div className="loading-spinner" role="status" aria-label="Sayfa yükleniyor" />}
-        >
+        ⚠️ Uzun sure gorunmedi cunku Google Fonts render'i ~4.4 sn bloklarken ilk
+        boyama zaten bu gecisten SONRA oluyordu. Fontlar kendi sunucumuza alinip
+        FCP 2.6 sn'ye inince ara durum GORUNUR oldu. Hizlanma sorunu yaratmadi,
+        var olani ortaya cikardi.
+
+        Alt bilgi artik icerikle ayni anda ciziliyor; yanlis yere hic konmadigi
+        icin kaymasi da gerekmiyor.
+      */}
+      <Suspense fallback={<Yedek />}>
+      <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/features" element={<Features />} />
@@ -94,9 +126,9 @@ function App() {
             <Route path="/:handle" element={<ClinicPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Suspense>
-      </main>
-      <Footer />
+        </main>
+        <Footer />
+      </Suspense>
     </div>
   );
 }

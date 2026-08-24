@@ -14,22 +14,32 @@
     <meta name="description" content="Veterito, hayvanseverlerin sosyal platformu. Dostunuzun sağlık geçmişini tutun, klinikten randevu alın, hayvanseverlerle buluşun." />
 
     <!--
-      YAZI TIPLERI (24.08.2026). Onceden iki ayri CSS dosyasindan `@import` ile
-      geliyorlardi ve Outfit HIC INMIYORDU: `index.css` icinde import'tan once
-      `@custom-variant` satiri vardi, CSS kurali geregi o import gecersiz sayilip
-      dusuyordu. Basliklar jenerik `sans-serif`e dusuyor, Mac'te Helvetica
-      Windows'ta Arial gorunuyordu.
+      YAZI TIPLERI — iki asamada duzeldi (24.08.2026).
 
-      Simdi iki aile tek istekte ve preconnect'li geliyor. CSS icinden `@import`
-      seri bir zincir kuruyordu (once CSS, sonra font CSS'i, sonra font dosyalari);
-      Lighthouse bunu ~1980 ms render engeli olarak olcmustu.
+      1) Once iki ayri CSS dosyasindan `@import` ile geliyorlardi ve Outfit HIC
+         INMIYORDU: `index.css` icinde import'tan once `@custom-variant` satiri
+         vardi, CSS kurali geregi o import gecersiz sayilip dusuyordu. Basliklar
+         jenerik `sans-serif`e dusuyor, Mac'te Helvetica Windows'ta Arial
+         gorunuyordu.
+      2) Google'dan tek <link> ile cekmek Outfit'i getirdi ama render'i ~1550 ms
+         bloklamaya devam etti. Ucuncu taraf stil sayfasi render'i
+      ~1550 ms bloklauyordu; dosyalar `public/fonts/` altina alindi, tanimlar
+      `src/styles/yazi-tipleri.css` icinde.
+
+      Buradaki iki `preload`, sayfanin ILK gordugu iki yuz: govde metni Inter,
+      baslik Outfit. CSS inmeden once inmeye baslasinlar diye burada duruyorlar.
+      ⚠️ `crossorigin` sart: font istekleri anonim kipte gidiyor, olmazsa tarayici
+      dosyayi IKI KEZ indiriyor (biri preload, biri gercek kullanim).
+      ⚠️ DORDU DE ON YUKLENIYOR, ikisi degil. Ilk denemede yalniz `latin` on
+      yuklendi ve "on yukleme bir oncelik sinyali, hepsini yuklemek sinyali
+      degersizlestirir" diye gerekcelendirildi. OLCUM BUNU CURUTTU: site Turkce,
+      yani `latin-ext` her sayfada ZORUNLU (s, g, i, I harfleri orada). Gec gelen
+      alt kume metni yeniden akitiyor ve duzen kayiyordu.
     -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
-    />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin-ext.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/outfit-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/outfit-latin-ext.woff2" crossorigin />
 
     <!--
       TEMA ILK BOYAMADAN ONCE (24.08.2026). Tema React tarafinda `useEffect`
@@ -54,6 +64,68 @@
           }
         } catch (e) { /* depolama yok: aydinlik temada kal */ }
       })();
+    </script>
+
+
+    <!--
+      VARSAYILAN PAYLASIM ETIKETLERI (24.08.2026).
+      Blog disindaki sayfalarda hicbir `og:` etiketi yoktu: baglanti paylasilinca
+      baslik, aciklama ve gorsel cikmiyordu. Bunlar TUM sayfalar icin taban;
+      prerender edilen blog sayfalari kendi degerleriyle DEGISTIRIYOR (uzerine
+      eklemiyor, `kafaDegistir` once bunlari soküyor).
+      ⚠️ Gorsel yeni tasarim degil: Play magazasi icin onaylanmis ozellik
+      grafiginin 1200x630 tuvale alinmis hali.
+    -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Veterito" />
+    <meta property="og:title" content="Veterito" />
+    <meta property="og:description" content="Veterito, hayvanseverlerin sosyal platformu. Dostunuzun sağlık geçmişini tutun, klinikten randevu alın, hayvanseverlerle buluşun." />
+    <meta property="og:url" content="https://veterito.com/" />
+    <meta property="og:image" content="https://veterito.com/paylasim-gorseli.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://veterito.com/paylasim-gorseli.png" />
+
+    <!--
+      KURUM VE SITE SEMASI.
+      ⚠️ Ana sayfada HICBIR yapilandirilmis veri yoktu (olculdu 24.08.2026).
+      Marka aramasinda Google'in kullandigi kaynak bu: ad, logo, alan adi ve
+      resmi hesaplar buradan okunuyor.
+      ⚠️ `sameAs` BILEREK BOS BIRAKILMADI, HIC YAZILMADI: dogrulanmis resmi
+      hesabimiz yok. Olmayan hesabi listelemek, semanin isini bozar.
+      ⚠️ Magaza adresleri de yok cunku `src/config/brand.ts` icindekiler su an
+      yer tutucu. Uygulama yayina girince buraya `sameAs` olarak eklenecek.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://veterito.com/#kurum",
+            "name": "Veterito",
+            "url": "https://veterito.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://veterito.com/icon-512.png",
+              "width": 512,
+              "height": 512
+            },
+            "email": "info@veterito.com",
+            "description": "Evcil hayvan sağlık kaydı, aşı takvimi ve veteriner randevusu için mobil uygulama."
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://veterito.com/#site",
+            "url": "https://veterito.com/",
+            "name": "Veterito",
+            "inLanguage": "tr-TR",
+            "publisher": { "@id": "https://veterito.com/#kurum" }
+          }
+        ]
+      }
     </script>
 
     <title>Veterito</title>

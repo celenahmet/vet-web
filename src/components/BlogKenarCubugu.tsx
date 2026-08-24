@@ -123,7 +123,7 @@ export default function BlogKenarCubugu({
               <li key={y.slug}>
                 <Link to={`/blog/${y.slug}`}>
                   <div className="kenar-gorsel">
-                    <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.baslik} boyut={20} />
+                    <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.baslik} boyut={20} olcu="kucuk" />
                   </div>
                   <div>
                     <h3>{y.baslik}</h3>
@@ -196,7 +196,7 @@ export default function BlogKenarCubugu({
               <li key={y.slug}>
                 <Link to={`/blog/${y.slug}`}>
                   <div className="kenar-gorsel">
-                    <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.baslik} boyut={20} />
+                    <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.baslik} boyut={20} olcu="kucuk" />
                   </div>
                   <div>
                     <h3>{y.baslik}</h3>

@@ -65,8 +65,18 @@ function blokHtml(b) {
   }
 }
 
-function kafaDegistir(sablon, { baslik, aciklama, adres, tip, jsonLd, onYukle }) {
+function kafaDegistir(sablon, { baslik, aciklama, adres, tip, jsonLd, onYukle, gorsel, ekBaglantilar }) {
   let html = sablon;
+  /*
+   * ⚠️ VARSAYILAN og ETIKETLERI ONCE SOKULUYOR. `index.html` her sayfa icin taban
+   * degerler tasiyor; asagida kendi degerlerimizi EKLIYORUZ. Sokmezsek sayfada
+   * iki `og:title` ve iki `og:image` kalir ve hangisinin kazandigi tarayiciya
+   * gore degisir. Sessiz bir tutarsizlik olurdu.
+   */
+  html = html.replace(
+    /\n?\s*<meta (?:property="og:(?:type|title|description|url|image|image:width|image:height)"|name="twitter:(?:card|image)") content="[^"]*" \/>/g,
+    '',
+  );
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${kac(baslik)}</title>`);
   html = html.replace(
     /<meta name="description" content="[^"]*" \/>/,
@@ -78,7 +88,17 @@ function kafaDegistir(sablon, { baslik, aciklama, adres, tip, jsonLd, onYukle })
     `<meta property="og:title" content="${kac(baslik)}" />`,
     `<meta property="og:description" content="${kac(aciklama)}" />`,
     `<meta property="og:url" content="${adres}" />`,
+    /*
+     * ⚠️ `og:image` YOKTU (duzeltme 24.08.2026). `twitter:card` "buyuk gorsel"
+     * diyordu ama gosterecek gorsel verilmiyordu: paylasimlarda kart bos
+     * cikiyordu. Adres MUTLAK olmali, gorece adres paylasimda cozulmez.
+     */
+    gorsel ? `<meta property="og:image" content="${SITE}${gorsel}" />` : '',
+    gorsel ? `<meta property="og:image:width" content="1200" />` : '',
+    gorsel ? `<meta property="og:image:height" content="675" />` : '',
+    gorsel ? `<meta name="twitter:image" content="${SITE}${gorsel}" />` : '',
     `<meta name="twitter:card" content="summary_large_image" />`,
+    ekBaglantilar ?? '',
     ...jsonLd.map((v) => `<script type="application/ld+json">${JSON.stringify(v)}</script>`),
     onYukle ?? '',
   ].filter(Boolean).join('\n    ');
@@ -138,6 +158,33 @@ function onYuklemeler(desenler) {
   return satirlar.join('\n    ');
 }
 
+
+/**
+ * Yazinin kapak gorsellerini derlenmis varliklar arasinda bulur.
+ *
+ * ⚠️ NEDEN GEREKLI: Vite dosya adlarina hash ekliyor
+ * (`kediler-kac-yil-yasar-BRfh4cGZ.webp`). Prerender bu adlari bilmeden LCP
+ * gorselini on yukleyemez ve `og:image` veremez. Klasor taraniyor, tahmin
+ * edilmiyor.
+ *
+ * ⚠️ Dar surumler ayni onekle basliyor (`<slug>-400-<hash>.webp`), o yuzden
+ * eslesme sirasi onemli: once dar surumler ayiklaniyor, kalan asil dosya.
+ */
+function kapakVarliklari(slug) {
+  const hepsi = readdirSync(join(KOK, 'dist/assets')).filter((f) => f.endsWith('.webp'));
+  const dar = {};
+  let asil = null;
+  for (const dosya of hepsi) {
+    const m = dosya.match(new RegExp(`^${slug}-(\\d+)-[^-]+\\.webp$`));
+    if (m) { dar[Number(m[1])] = `/assets/${dosya}`; continue; }
+    if (new RegExp(`^${slug}-[^-]+\\.webp$`).test(dosya)) asil = `/assets/${dosya}`;
+  }
+  if (!asil) return null;
+  const parcalar = Object.keys(dar).map(Number).sort((a, b) => a - b).map((en) => `${dar[en]} ${en}w`);
+  parcalar.push(`${asil} 1200w`);
+  return { asil, srcset: parcalar.join(', ') };
+}
+
 const YAZI_ON_YUKLEME = onYuklemeler(['BlogPost-', 'BlogKapak-']);
 const LISTE_ON_YUKLEME = onYuklemeler(['Blog-', 'BlogKapak-']);
 
@@ -145,14 +192,25 @@ const LISTE_ON_YUKLEME = onYuklemeler(['Blog-', 'BlogKapak-']);
 for (const y of yazilar) {
   const adres = `${SITE}/blog/${y.slug}`;
   const dakika = okumaSuresi(y);
+  const kapak = kapakVarliklari(y.slug);
   const makale = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: y.baslik,
     description: y.ozet,
     datePublished: y.tarih,
+    /* ⚠️ `dateModified` yoksa Google yaziyi hic guncellenmemis sayiyor. Ayri bir
+       alan tutmadigimiz icin yayin tarihiyle ayni; yazi guncellenirse veride
+       ayri alan acilir. */
+    dateModified: y.tarih,
+    /* ⚠️ `image` Article zengin sonucu icin Google'in ISTEDIGI alan. Yoktu. */
+    ...(kapak ? { image: [`${SITE}${kapak.asil}`] } : {}),
     author: { '@type': 'Organization', name: 'Veterito' },
-    publisher: { '@type': 'Organization', name: 'Veterito' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Veterito',
+      logo: { '@type': 'ImageObject', url: `${SITE}/icon-512.png` },
+    },
     mainEntityOfPage: adres,
   };
   const sss = y.sss?.length
@@ -173,6 +231,22 @@ for (const y of yazilar) {
     `<h1>${kac(y.baslik)}</h1>`,
     `<p>${kac(y.ozet)}</p>`,
     `<p>Veterito Editör · ${kac(tarihiYaz(y.tarih))} · ${dakika} dk okuma</p>`,
+    /*
+     * ⚠️ KAPAK GORSELI PRERENDER GOVDESINE DE KONUYOR (24.08.2026).
+     *
+     * Olculdu: sayfanin en buyuk ogesi (LCP) bu gorsel ve suresinin %81'i
+     * "render gecikmesi"ydi — dosya 13 ms'de iniyordu ama gorsel yalniz React
+     * agacinda oldugu icin parca inip calisana kadar CIZILEMIYORDU. On yukleme
+     * dosyayi erken getiriyor, cizdirmiyor.
+     *
+     * Burada durunca tarayici HTML'i okur okumaz ciziyor; LCP, FCP'ye yaklasiyor.
+     * ⚠️ `srcset`, `sizes`, `width` ve `height` React'teki <img> ile BIREBIR ayni
+     * olmali. Ayrisirsa tarayici iki farkli dosya indirir ve gorsel React
+     * baglandiginda yeniden yerlesir.
+     */
+    kapak
+      ? `<div class="yazi-kapak"><img src="${kapak.asil}" srcset="${kac(kapak.srcset)}" sizes="(max-width: 700px) 100vw, (max-width: 1080px) 780px, 784px" width="1200" height="675" alt="${kac(y.baslik)}" fetchpriority="high" decoding="sync"></div>`
+      : '',
     ...y.bloklar.map(blokHtml),
     y.kontrolListesi?.length
       ? `<section><h2>Kontrol listesi</h2><ul>${y.kontrolListesi
@@ -233,7 +307,27 @@ for (const y of yazilar) {
   ].filter(Boolean).join('\n');
 
   const html = govdeDegistir(
-    kafaDegistir(sablon, { baslik: `${y.baslik} | Veterito`, aciklama: y.ozet, adres, tip: 'article', jsonLd: [makale, ...sss], onYukle: YAZI_ON_YUKLEME }),
+    kafaDegistir(sablon, {
+      baslik: `${y.baslik} | Veterito`,
+      aciklama: y.ozet,
+      adres,
+      tip: 'article',
+      jsonLd: [makale, ...sss],
+      onYukle: YAZI_ON_YUKLEME,
+      gorsel: kapak?.asil,
+      /*
+       * ⚠️ EN BUYUK GORSEL ON YUKLENIYOR. Lighthouse "prioritize-lcp-image"
+       * basliginda 2250 ms kazanc gosteriyordu: kapak, React acilip bileseni
+       * cizene kadar KESFEDILMIYORDU. Bu satir tarayiciya HTML'i okurken
+       * soyluyor.
+       * ⚠️ `imagesrcset` ve `imagesizes`, <img> uzerindekiyle BIREBIR ayni
+       * olmali; ayrisirsa tarayici iki farkli dosya indirir ve on yukleme
+       * kazanc yerine kayip olur.
+       */
+      ekBaglantilar: kapak
+        ? `<link rel="preload" as="image" fetchpriority="high" href="${kapak.asil}" imagesrcset="${kapak.srcset}" imagesizes="(max-width: 700px) 100vw, (max-width: 1080px) 780px, 784px" />`
+        : '',
+    }),
     govde,
   );
   yaz(join(KOK, 'dist/blog', y.slug, 'index.html'), html);
