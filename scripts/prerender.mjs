@@ -183,10 +183,23 @@ function kapakVarliklari(slug) {
   const hepsi = readdirSync(join(KOK, 'dist/assets')).filter((f) => f.endsWith('.webp'));
   const dar = {};
   let asil = null;
+  /*
+   * ⚠️ KARMA TIRE ICEREBILIYOR (duzeltme 24.08.2026).
+   *
+   * Ilk halinde desen `^slug-[^-]+\.webp$` idi, yani karmada tire olmadigi
+   * varsayiliyordu. Vite bazen tireli karma uretiyor:
+   * `veteriner-klinigi-nasil-secilir-Bp-Cpfsq.webp`. O yazinin kapagi
+   * dosyada VARDI ama burasi bulamadi ve sonuc SESSIZ oldu: og:image yok,
+   * LCP on yuklemesi yok, kimse hata gormedi.
+   *
+   * Simdi karma serbest. Dar surumler once ayikaniyor (`-400-`, `-800-`),
+   * kalan tek dosya asil. Sira onemli: asil deseni dar surumleri de
+   * eslestirebilirdi.
+   */
   for (const dosya of hepsi) {
-    const m = dosya.match(new RegExp(`^${slug}-(\\d+)-[^-]+\\.webp$`));
+    const m = dosya.match(new RegExp(`^${slug}-(\\d+)-(.+)\\.webp$`));
     if (m) { dar[Number(m[1])] = `/assets/${dosya}`; continue; }
-    if (new RegExp(`^${slug}-[^-]+\\.webp$`).test(dosya)) asil = `/assets/${dosya}`;
+    if (new RegExp(`^${slug}-(.+)\\.webp$`).test(dosya)) asil = `/assets/${dosya}`;
   }
   if (!asil) return null;
   const parcalar = Object.keys(dar).map(Number).sort((a, b) => a - b).map((en) => `${dar[en]} ${en}w`);
