@@ -1,10 +1,11 @@
-import { FileText, Syringe, MessagesSquare, Heart, Settings, Clock, Megaphone, Stethoscope, Bell, Star, UserRound } from 'lucide-react';
+import { FileText, Syringe, MessagesSquare, Heart, Settings, Clock, Megaphone, Stethoscope, Bell, Star } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import {
   saglikKayitlariniOku, hatirlatmalariOku, gonderileriOku, ilanlariOku,
   duyurulariOku, hizmetleriOku, saatleriOku, hizmetAdlariniOku,
-  bildirimleriOku, degerlendirmeleriOku, cevrimdisiMusterileriOku,
+  bildirimleriOku, degerlendirmeleriOku,
+  duyuruOlusturVeGonder,
   type Hizmet, type CalismaSaati, type Duyuru, type HizmetAdi,
 } from './veri';
 import { KAYIT_TURU, TUR, tarihYaz } from './sozluk';
@@ -12,6 +13,7 @@ import PanelListe from './PanelListe';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
 import Bos from './Bos';
+import Diyalog from './Diyalog';
 
 /**
  * REFERANS MENUSUNDEKI BOLUMLER
@@ -269,15 +271,47 @@ const KITLE: Record<string, string> = {
 };
 
 export function PanelDuyurular({ klinik }: { klinik: string }) {
+  const [acik, setAcik] = useState(false);
+  const [metin, setMetin] = useState('');
+  const [kitle, setKitle] = useState<'customers' | 'followers' | 'both'>('customers');
+  const [push, setPush] = useState(false);
+  const [bekliyor, setBekliyor] = useState(false);
+  const [islemHatasi, setIslemHatasi] = useState<string | null>(null);
+  const [bilgi, setBilgi] = useState<string | null>(null);
+  const [tazele, setTazele] = useState(0);
+
+  async function gonder(e: React.FormEvent) {
+    e.preventDefault();
+    if (bekliyor) return;
+    setBekliyor(true); setIslemHatasi(null); setBilgi(null);
+    try {
+      const kisi = await duyuruOlusturVeGonder(klinik, { metin, kitle, pushGonder: push });
+      setAcik(false); setMetin(''); setPush(false);
+      setBilgi(kisi > 0 ? `Duyuru ${kisi} kişiye gönderildi.` : 'Duyuru oluşturuldu ama ulaşacak kimse bulunamadı.');
+      setTazele((n) => n + 1);
+    } catch (err) {
+      setIslemHatasi((err as { message?: string })?.message ?? '');
+    } finally { setBekliyor(false); }
+  }
+
   return (
-    <PanelListe
+    <>
+      {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
+      {bilgi ? <p className="pnl-bilgi" role="status">{bilgi}</p> : null}
+
+      <PanelListe
+      key={tazele}
       baslik="Duyurular"
       aciklama="Kliniğinizin gönderdiği duyurular ve kaç kişiye ulaştıkları."
       yukle={() => duyurulariOku(klinik)}
       bosBaslik="Henüz duyuru göndermediniz"
       bosAciklama="Müşterilerinize ya da takipçilerinize duyuru gönderdiğinizde, kime gittiği ve kaç kişiye ulaştığıyla birlikte burada listelenir."
       anahtar={(d: Duyuru) => d.id}
-      altNot={{ ikon: Megaphone, metin: 'Yeni duyuru gönderme şimdilik telefondaki uygulamada.' }}
+      eylem={
+        <button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => { setAcik(true); setIslemHatasi(null); }}>
+          <Megaphone size={15} /> Duyuru oluştur
+        </button>
+      }
       satir={(d: Duyuru) => (
         <>
           <span className="pnl-avatar" aria-hidden="true"><Megaphone size={17} /></span>
@@ -291,7 +325,76 @@ export function PanelDuyurular({ klinik }: { klinik: string }) {
           </div>
         </>
       )}
-    />
+      />
+
+      <Diyalog
+        acik={acik}
+        kapat={() => setAcik(false)}
+        baslik="Duyuru oluştur"
+        aciklama="Duyurunuz seçtiğiniz kitleye anında gider. Gönderilen duyuru geri alınamaz.">
+        <form onSubmit={gonder}>
+          {/*
+            ⚠️ BASLIK ALANI YOK ve olamaz: sunucudaki duyuru tablosunda baslik
+            kolonu bulunmuyor, baslik gonderim aninda klinigin adindan
+            turetiliyor. Alan koymak, calismayan bir alan gostermek olurdu.
+          */}
+          <div className="pnl-alan">
+            <label htmlFor="pnl-duyuru-metin">Duyuru metni</label>
+            <textarea
+              id="pnl-duyuru-metin"
+              required
+              maxLength={600}
+              value={metin}
+              onChange={(e) => setMetin(e.target.value)}
+              placeholder="Örnek: Bayram boyunca 10:00-16:00 arası açığız. Acil durumlar için telefonla ulaşabilirsiniz."
+            />
+            <span className="pnl-alan-ipucu">{metin.length} / 600 karakter · Başlık kliniğinizin adından oluşur.</span>
+          </div>
+
+          <div className="pnl-alan">
+            <label htmlFor="pnl-duyuru-kitle">Kime gitsin</label>
+            <select
+              id="pnl-duyuru-kitle"
+              value={kitle}
+              onChange={(e) => {
+                const y = e.target.value as 'customers' | 'followers' | 'both';
+                setKitle(y);
+                /* ⚠️ Push yalniz musterilere acik; kitle degisince secim sessizce
+                   kalmasin, kullanici gondereceğini sandigi bildirimi gonderemez. */
+                if (y !== 'customers') setPush(false);
+              }}>
+              <option value="customers">Müşterilerime</option>
+              <option value="followers">Takipçilerime</option>
+              <option value="both">Müşteri ve takipçilerime</option>
+            </select>
+          </div>
+
+          <label className={kitle === 'customers' ? 'pnl-anahtar' : 'pnl-anahtar pnl-anahtar-kapali'}>
+            <input
+              type="checkbox"
+              checked={push}
+              disabled={kitle !== 'customers'}
+              onChange={(e) => setPush(e.target.checked)}
+            />
+            <span className="pnl-anahtar-yazi">
+              <span className="pnl-anahtar-ad">Telefonlarına bildirim de gitsin</span>
+              <span className="pnl-anahtar-alt">
+                {kitle === 'customers'
+                  ? 'Uygulama açık olmasa da bildirim alırlar.'
+                  : 'Bildirim yalnızca müşterilere gönderilebilir; takipçiler bunu kabul etmemiş olabilir.'}
+              </span>
+            </span>
+          </label>
+
+          <div className="pnl-diyalog-eylem">
+            <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setAcik(false)}>Vazgeç</button>
+            <button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor || metin.trim().length < 5}>
+              {bekliyor ? 'Gönderiliyor…' : 'Duyuruyu gönder'}
+            </button>
+          </div>
+        </form>
+      </Diyalog>
+    </>
   );
 }
 
@@ -356,30 +459,6 @@ export function PanelDegerlendirmeler({ klinik }: { klinik: string }) {
             </p>
             {d.comment ? <p className="pnl-kisi-anlam">{d.comment}</p> : <p className="pnl-kisi-anlam pnl-soluk">Yorum yazılmamış, yalnızca puan verilmiş.</p>}
             <p className="pnl-kisi-ek pnl-soluk">{tarihYaz(d.created_at, false)}</p>
-          </div>
-        </>
-      )}
-    />
-  );
-}
-
-/** Klinigin kendi defterine yazdigi, uygulamada hesabi olmayan musteriler. */
-export function PanelCevrimdisi({ klinik }: { klinik: string }) {
-  return (
-    <PanelListe
-      baslik="Kayıt defteri"
-      aciklama="Uygulamada hesabı olmayan, kliniğinizin kendi defterine yazdığı müşteriler."
-      yukle={() => cevrimdisiMusterileriOku(klinik)}
-      bosBaslik="Defterde kayıt yok"
-      bosAciklama="Uygulamayı kullanmayan bir müşteriyi kendi kaydınıza eklediğinizde burada görünür."
-      anahtar={(m) => m.id}
-      satir={(m) => (
-        <>
-          <span className="pnl-avatar" aria-hidden="true"><UserRound size={17} /></span>
-          <div className="pnl-kisi-bilgi">
-            <p className="pnl-kisi-ad">{m.full_name || 'İsim girilmemiş'}</p>
-            <p className="pnl-kisi-rol">{m.phone || m.email || 'İletişim bilgisi yok'}</p>
-            {m.note ? <p className="pnl-kisi-ek">{m.note}</p> : null}
           </div>
         </>
       )}

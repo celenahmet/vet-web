@@ -942,3 +942,20 @@ a.pnl-widget-eylem { text-decoration: none; }
 @media (max-width: 900px) {
   .pnl-icerik { padding: 0 16px 24px; }
 }
+
+/* Bolum basliginda birden fazla dugme. */
+.pnl-basi-dugmeler { display: flex; gap: 8px; margin-left: auto; flex-shrink: 0; }
+.pnl-bolum-basi > .pnl-basi-dugmeler { margin-left: auto; }
+
+/* ⚠️ Kaynak etiketi RENKLE DEGIL METINLE de ayirt ediliyor. */
+.pnl-etiket-mavi {
+  background: color-mix(in srgb, #3B82F6 15%, transparent);
+  color: #1D4ED8;
+  display: inline-flex; align-items: center; gap: 3px;
+}
+.pnl-anahtar-kapali { opacity: .55; cursor: not-allowed; }
+.pnl-alan select {
+  font: inherit; font-size: 14px; padding: 9px 11px;
+  border: 1px solid var(--pnl-cizgi); border-radius: var(--pnl-yaricap);
+  background: var(--pnl-bg); color: inherit;
+}

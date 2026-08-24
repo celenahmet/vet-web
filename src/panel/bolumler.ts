@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, CalendarClock, Users, PawPrint, FileText, Syringe, Building2,
   MessagesSquare, MessageCircle, Heart, UsersRound, Wallet, Globe, BarChart3, Settings,
-  Megaphone, Bell, Star,
+  Megaphone, Star,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -13,8 +13,13 @@ import {
  * sirada duruyor. Ustune Ahmet'in iki eklemesi geliyor:
  *   · **Gelir / Gider** (*"gelir gider taraflarını da ekleyelim sol menüye"*)
  *   · **Klinik web sitesi** (*"web klinik benim eklememdi site tarafı"*)
- *   · **Duyurular**, **Bildirimler**, **Değerlendirmeler** (*"sol tarafa duyuru
- *     ve bildirimler de ekleyelim eksikmiş... proaktif olalım"*)
+ *   · **Duyurular** ve **Değerlendirmeler** (*"sol tarafa duyuru ve bildirimler
+ *     de ekleyelim eksikmiş... proaktif olalım"*)
+ *
+ * ⚠️ **Bildirimler MENUDE YOK** (Ahmet, 25.08.2026: *"bildirimleri solda yer
+ * vermeye gerek yok zaten çan ikonu koymuşuz"*). Bolum duruyor ve calisiyor;
+ * yalnizca ust cubuktaki zilden aciliyor. Ayni yere iki kapi acmak, menuyu
+ * uzatmaktan baska bir sey yapmiyordu.
  *   · **Raporlar**
  * Ikisi de referansta yok; bilerek eklendi ve karistirilmasin diye burada
  * isaretli.
@@ -55,7 +60,6 @@ export const BOLUMLER: {
   { anahtar: 'sahiplendirme', ad: 'Sahiplendirme',     aciklama: 'Sahiplendirme ilanları',        ikon: Heart },
   { anahtar: 'ekip',          ad: 'Ekip',              aciklama: 'Klinikte çalışanlar',           ikon: UsersRound },
   { anahtar: 'duyurular',     ad: 'Duyurular',         aciklama: 'Gönderdiğiniz duyurular',       ikon: Megaphone, ekleme: true },
-  { anahtar: 'bildirimler',   ad: 'Bildirimler',       aciklama: 'Size gelen bildirimler',        ikon: Bell, ekleme: true },
   { anahtar: 'degerlendirmeler', ad: 'Değerlendirmeler', aciklama: 'Müşteri puan ve yorumları',  ikon: Star, ekleme: true },
   { anahtar: 'defter',        ad: 'Gelir / Gider',     aciklama: 'Klinik defteri',                ikon: Wallet, ekleme: true },
   { anahtar: 'websitesi',     ad: 'Klinik web sitesi', aciklama: 'Genel sayfanız',                ikon: Globe, ekleme: true },

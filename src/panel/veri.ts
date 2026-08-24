@@ -474,3 +474,163 @@ export async function okunmamisBildirimSayisi(): Promise<number> {
 
 export const cevrimdisiMusterileriOku = (klinik: string) =>
   tablo<CevrimdisiMusteri>('clinic_offline_customers', 'id, full_name, phone, email, note, created_at', klinik, 'created_at');
+
+/* ═══════════════════════════════════════════════════════════════════════════
+ * UYGULAMADAN BAGIMSIZ KAYIT (Ahmet, 25.08.2026: *"hasta kaydı felan yok
+ * oluşturma kısmı uygulamadan bağımsız kayıt da yapabilmeliler çoğu zaten
+ * uygulama kullanmayanlar olacak"*)
+ *
+ * ⚠️ BU KLINIGIN KENDI DEFTERI. `clinic_offline_customers` ve
+ * `clinic_offline_pets`, uygulamada hesabi OLMAYAN musteriler ve hayvanlari
+ * icin. Klinigin gunluk isi buradan yuruyor; uygulama kullanan musteri
+ * istisna, kural degil.
+ *
+ * ⚠️ `clinic_pet_records.pet_id` **`clinic_offline_pets`e** bagli, `pets`e
+ * degil. Yani saglik kaydi ancak defterdeki bir hayvana yazilabiliyor. Bu bir
+ * eksiklik degil tasarim: klinigin tuttugu kayit, hayvan sahibinin uygulamadaki
+ * profilinden ayri.
+ *
+ * ⚠️ Yetki RLS'te: `is_clinic_member(clinic_id)` hem `using` hem `with check`
+ * tarafinda. Yani baska klinigin defterine yazilamiyor; istemcide ek kontrol
+ * yok, olsaydi guvenlik sanilan ama olmayan bir katman olurdu.
+ * ═══════════════════════════════════════════════════════════════════════════ */
+
+export type DefterHastasi = {
+  id: string;
+  customer_id: string;
+  name: string;
+  species_code: string;
+  sex: string | null;
+  birth_date: string | null;
+  note: string | null;
+};
+
+export type Tur = { code: string; name_tr: string };
+
+/**
+ * Hayvan turleri — SUNUCUDAN.
+ *
+ * ⚠️ Elde yazilmis sozluk EKSIKTI: `at`, `gelincik`, `papagan` ve `ciftlik
+ * hayvani` yoktu. Tur listesi `species` tablosunda ve orasi tek dogru kaynak;
+ * yeni bir tur eklendiginde panel kendiliginden ogreniyor.
+ */
+export const turleriOku = () => tablo<Tur>('species', 'code, name_tr', null);
+
+export const defterHastalariniOku = (klinik: string) =>
+  tablo<DefterHastasi>('clinic_offline_pets', 'id, customer_id, name, species_code, sex, birth_date, note', klinik, 'created_at');
+
+/** Deftere musteri ekler. */
+export async function defterMusterisiEkle(
+  klinik: string,
+  alanlar: { adSoyad: string; telefon?: string; eposta?: string; not?: string },
+): Promise<string> {
+  const { data: kullanici } = await istemci.auth.getUser();
+  const { data, error } = await istemci
+    .from('clinic_offline_customers')
+    .insert({
+      clinic_id: klinik,
+      full_name: alanlar.adSoyad.trim(),
+      phone: alanlar.telefon?.trim() || null,
+      email: alanlar.eposta?.trim() || null,
+      note: alanlar.not?.trim() || null,
+      created_by: kullanici.user?.id ?? null,
+    })
+    .select('id')
+    .single();
+  if (error) throw error;
+  return (data as { id: string }).id;
+}
+
+/**
+ * Deftere hasta ekler.
+ *
+ * ⚠️ `clinic_id` DE yaziliyor, `customer_id` yetmiyor: tablo bilerek
+ * denormalize (migration 0070). RLS her satirda musteriye zincirlenmek yerine
+ * dogrudan klinige bakiyor; zincirli kontrol her sorguda ekstra birlesim demek.
+ */
+export async function defterHastasiEkle(
+  klinik: string,
+  musteri: string,
+  alanlar: { ad: string; tur: string; cinsiyet?: string; dogum?: string; not?: string },
+): Promise<string> {
+  const { data, error } = await istemci
+    .from('clinic_offline_pets')
+    .insert({
+      clinic_id: klinik,
+      customer_id: musteri,
+      name: alanlar.ad.trim(),
+      species_code: alanlar.tur,
+      sex: alanlar.cinsiyet || null,
+      birth_date: alanlar.dogum || null,
+      note: alanlar.not?.trim() || null,
+    })
+    .select('id')
+    .single();
+  if (error) throw error;
+  return (data as { id: string }).id;
+}
+
+/** Deftere saglik kaydi ekler. */
+export async function saglikKaydiEkle(
+  klinik: string,
+  hasta: string,
+  alanlar: { tur: string; baslik: string; ayrinti?: string; tarih: string; sonraki?: string; kilo?: string },
+): Promise<void> {
+  const { data: kullanici } = await istemci.auth.getUser();
+  const { error } = await istemci.from('clinic_pet_records').insert({
+    clinic_id: klinik,
+    pet_id: hasta,
+    kind: alanlar.tur,
+    title: alanlar.baslik.trim(),
+    detail: alanlar.ayrinti?.trim() || null,
+    performed_at: alanlar.tarih,
+    next_due_at: alanlar.sonraki || null,
+    /* ⚠️ Bos dize `0` olmasin: kilo girilmemisse NULL, sifir DEGIL. */
+    weight_kg: alanlar.kilo?.trim() ? Number(alanlar.kilo) : null,
+    created_by: kullanici.user?.id ?? null,
+  });
+  if (error) throw error;
+}
+
+/**
+ * DUYURU OLUSTURUR VE GONDERIR.
+ *
+ * ⚠️ IKI ADIM ve ayrilmasi zorunlu: once satir aciliyor, sonra
+ * `send_announcement` gonderiyor. Gonderimde bes katmanli spam korumasi
+ * calisiyor (migration 0029) ve `status` kolonuna istemcinin UPDATE yetkisi
+ * YOK; yani "gonderildi" demenin tek yolu RPC.
+ *
+ * ⚠️ BASLIK ALANI YOK ve olamaz: `announcements` tablosunda baslik kolonu
+ * bulunmuyor, baslik gonderim aninda klinigin adindan turetiliyor. Arayuze
+ * baslik alani koymak, calismayan bir alan gostermek olurdu.
+ *
+ * ⚠️ `push` kanali YALNIZ `customers` kitlesinde acik (migration 0115 kisiti).
+ * Takipcilere bildirim gondermek, izin vermemis kisiye bildirim atmak olurdu.
+ */
+export async function duyuruOlusturVeGonder(
+  klinik: string,
+  alanlar: { metin: string; kitle: 'customers' | 'followers' | 'both'; pushGonder: boolean },
+): Promise<number> {
+  const { data: kullanici } = await istemci.auth.getUser();
+  const pushOlur = alanlar.pushGonder && alanlar.kitle === 'customers';
+
+  const { data, error } = await istemci
+    .from('announcements')
+    .insert({
+      clinic_id: klinik,
+      body: alanlar.metin.trim(),
+      audience: alanlar.kitle,
+      channels: pushOlur ? ['inapp', 'push'] : ['inapp'],
+      delivery_kind: 'announcement',
+      created_by: kullanici.user?.id ?? null,
+    })
+    .select('id')
+    .single();
+  if (error) throw error;
+
+  const { data: sayi, error: gonderimHatasi } = await istemci.rpc('send_announcement', {
+    p_announcement: (data as { id: string }).id,
+  });
+  if (gonderimHatasi) throw gonderimHatasi;
+  return (sayi as number) ?? 0;
+}
