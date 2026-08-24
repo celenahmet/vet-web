@@ -28,12 +28,12 @@ Yeni bir ekran açmadan önce: `grep -rhoE "rpc\(\s*['\"][a-z_]+['\"]" ~/Develop
 | Bölüm | Çağırdığı | Durum |
 |---|---|---|
 | Genel bakış | `clinic_dashboard` · `appointment_list` · `clinic_upcoming_records` · `clinic_analytics` · `clinic_staff_list` | ✅ |
-| Randevular | `appointment_list` · **`set_appointment_status`** | ✅ tek yazma işlemi |
-| Müşteriler | `clinic_customer_list` | ✅ salt okuma |
+| Randevular | `appointment_list` · **`set_appointment_status`** · **`propose_appointment_time`** | ✅ onayla / kabul etme / tamamla / iptal / başka saat öner |
+| Müşteriler | `clinic_customer_list` · **`clinic_invite_customer`** | ✅ davet edilebiliyor |
 | Hastalar | `clinic_pet_list` | ✅ salt okuma |
 | Gelir / Gider | `clinic_ledger_summary` · `clinic_ledger_by_category` | ✅ salt okuma |
-| Ekip | `clinic_staff_list` | ✅ salt okuma |
-| Klinik web sitesi | `clinics` (RLS) | ✅ salt okuma |
+| Ekip | `clinic_staff_list` · **`clinic_invite_staff`** · **`clinic_remove_staff`** | ✅ davet / çıkarma (onaylı) |
+| Klinik web sitesi | `clinics` (RLS) · **`update_clinic_page`** · `clinics` kolon güncellemesi | ✅ slogan, tanıtım, yayın ve arama anahtarları düzenlenebiliyor |
 | Raporlar | `clinic_analytics` · `clinic_report` · `clinic_review_list` | ✅ salt okuma |
 
 Ayrıca: kendi tasarımı (pazarlama menüsü bu rotada çizilmiyor) · uygulamanın
@@ -58,17 +58,17 @@ konacak, sayı uydurulmayacak:
 | Doluluk oranı grafiği | zaman serisi yok | günlük özet tablosu |
 | ~~Pro'ya Yükselt~~ | **24.08.2026: fiyatlar full ücretsiz** | yerine başka şey konacak |
 
-### 2. Yazma işlemleri (şu an yalnız randevu durumu yazıyor)
+### 2. Kalan yazma işlemleri
 | İş | RPC | Not |
 |---|---|---|
-| Duyuru gönderme | `send_announcement` | ⚠️ **DÖRT tanımı var**, en sonuncusu alınacak |
+| Duyuru gönderme | `send_announcement` | ⚠️ **DÖRT tanımı var**, en sonuncusu alınacak. Önce duyuru satırı oluşturulmalı |
 | Reçete yazma / iptal | `write_prescription` · `void_prescription` | tıbbi kayıt, onay akışı şart |
-| Klinik sayfası düzenleme | `update_clinic_page` · `update_clinic_contact` | ⚠️ kullanıcı adı değişirse eski adres kırılır |
-| Ekip davet / çıkarma | `clinic_invite_staff` · `clinic_remove_staff` | geri alması zor, onay akışı şart |
-| Müşteri daveti | `clinic_invite_customer` | çift onaylı |
+| Sosyal hesaplar | `update_clinic_contact` | whatsapp, instagram, facebook, x, tiktok, youtube, linkedin |
+| Kullanıcı adı | `set_clinic_username` | ⚠️ değişirse eski adres kırılır, uyarı akışı gerekiyor |
 | Hizmet / kabiliyet düzenleme | `capabilities-api` | yalnız klinik sahibi |
-| Başka saat önerme | `propose_appointment_time` | randevu ekranına eklenecek |
 | Gelir / gider kaydı | `clinic_transactions` | para girişi, geri alma zor |
+| Adres ve konum | — | ⚠️ `latitude`/`longitude` kolon yetkisinde YOK (migration 0022). Panodaki "haritadaki konum eksik" uyarısı bu yüzden panelden kapatılamıyor; ayrı bir yol gerekiyor |
+| Logo ve kapak yükleme | R2 presign | dosya yükleme akışı
 
 ### 3. Yeni bölümler
 - **Sağlık kayıtları** — `clinic_pet_list` + `pet_profile` + `clinic_upcoming_records`
