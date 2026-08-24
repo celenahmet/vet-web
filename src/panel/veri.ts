@@ -314,3 +314,163 @@ export const musteriDavetEt = (klinik: string, alanlar: { eposta?: string; telef
     ...(alanlar.telefon ? { p_phone: alanlar.telefon.trim() } : {}),
     ...(alanlar.not ? { p_note: alanlar.not } : {}),
   });
+
+/* ── REFERANS MENUSUNDEKI DIGER BOLUMLER ────────────────────────────────────
+ * ⚠️ Hepsi TABLO okumasi, RPC degil. Sebep: bu tablolarin RLS politikalari
+ * zaten klinik uyeligine bagli ve ayri bir RPC yazmak yeni bir yuzey acardi.
+ * Yabanci klinik kimligi verilirse bos kume doner, hata degil.
+ */
+
+/**
+ * ⚠️ KOLON ADLARI KAYNAKTAN OKUNDU, tahmin edilmedi (25.08.2026). Ilk halinde
+ * `note` ve `performed_on` yazilmisti; gercek adlar `detail` ve `performed_at`
+ * ve sorgu `42703 column does not exist` donduruyordu. Migration 0074.
+ *
+ * ⚠️ `weight_kg` BURADA: kilo hayvanda degil SAGLIK KAYDINDA tutuluyor. Daha
+ * once "kilo hicbir yerde yok" diye yazilmisti, yanlisti; hayvan tablosunda yok
+ * ama kayit tablosunda var.
+ */
+export type SaglikKaydi = {
+  id: string;
+  pet_id: string | null;
+  kind: string | null;
+  title: string | null;
+  detail: string | null;
+  performed_at: string | null;
+  next_due_at: string | null;
+  weight_kg: number | null;
+};
+
+export type Gonderi = {
+  id: string;
+  body: string | null;
+  status: string | null;
+  like_count: number;
+  comment_count: number;
+  created_at: string;
+};
+
+export type Ilan = {
+  id: string;
+  title: string | null;
+  species_code: string | null;
+  status: string | null;
+  created_at: string;
+};
+
+export type Hizmet = { service_code: string; note: string | null; price_min: number | null; price_max: number | null };
+export type CalismaSaati = { weekday: number; is_closed: boolean; opens_at: string | null; closes_at: string | null };
+export type Duyuru = { id: string; body: string | null; audience: string | null; status: string | null; recipient_count: number | null; created_at: string };
+export type HizmetAdi = { code: string; name_tr: string };
+
+async function tablo<T>(ad: string, secim: string, klinik: string | null, siralama?: string): Promise<T[]> {
+  let q = istemci.from(ad).select(secim);
+  if (klinik) q = q.eq('clinic_id', klinik);
+  if (siralama) q = q.order(siralama, { ascending: false });
+  const { data, error } = await q.limit(60);
+  if (error) throw error;
+  return (data as T[] | null) ?? [];
+}
+
+export const saglikKayitlariniOku = (klinik: string) =>
+  tablo<SaglikKaydi>('clinic_pet_records', 'id, pet_id, kind, title, detail, performed_at, next_due_at, weight_kg', klinik, 'performed_at');
+
+export const ilanlariOku = () =>
+  tablo<Ilan>('adoption_listings', 'id, title, species_code, status, created_at', null, 'created_at');
+
+export const duyurulariOku = (klinik: string) =>
+  tablo<Duyuru>('announcements', 'id, body, audience, status, recipient_count, created_at', klinik, 'created_at');
+
+export const hizmetleriOku = (klinik: string) =>
+  tablo<Hizmet>('clinic_capabilities', 'service_code, note, price_min, price_max', klinik);
+
+export const saatleriOku = (klinik: string) =>
+  tablo<CalismaSaati>('clinic_hours', 'weekday, is_closed, opens_at, closes_at', klinik);
+
+export const hizmetAdlariniOku = () =>
+  tablo<HizmetAdi>('service_catalog', 'code, name_tr', null);
+
+/**
+ * Klinigin kendi paylasimlari.
+ *
+ * ⚠️ `clinic_id` YOK: gonderi tablosu yazarla iliskili, klinikle degil. O yuzden
+ * giren kullanicinin yazdiklari okunuyor. Klinik adina paylasim kavrami
+ * uygulamada baska turlu isliyorsa burasi eksik kalir; ekranda bu acikca
+ * yaziyor, sessizce "hic paylasim yok" denmiyor.
+ */
+export async function gonderileriOku(): Promise<Gonderi[]> {
+  const { data: kullanici } = await istemci.auth.getUser();
+  const kimlik = kullanici.user?.id;
+  if (!kimlik) return [];
+  const { data, error } = await istemci
+    .from('posts')
+    .select('id, body, status, like_count, comment_count, created_at')
+    .eq('author_id', kimlik)
+    .order('created_at', { ascending: false })
+    .limit(40);
+  if (error) throw error;
+  return (data as Gonderi[] | null) ?? [];
+}
+
+/* ── DUYURU, BILDIRIM, DEGERLENDIRME, CEVRIMDISI MUSTERI ────────────────────
+ * ⚠️ Ahmet, 25.08.2026: *"sol tarafa duyuru ve bildirimler de ekleyelim
+ * eksikmiş böyle eksikleri de ilave ekleyelim... proaktif olalım"*.
+ * Hepsinin arkasinda gercek tablo var; menuye "olsun" diye eklenen bolum yok.
+ */
+
+export type Bildirim = {
+  id: number;
+  title: string | null;
+  body: string | null;
+  kind: string | null;
+  read_at: string | null;
+  created_at: string;
+};
+
+export type CevrimdisiMusteri = {
+  id: string;
+  full_name: string | null;
+  phone: string | null;
+  email: string | null;
+  note: string | null;
+  created_at: string;
+};
+
+/**
+ * Giren kullanicinin bildirimleri.
+ *
+ * ⚠️ KLINIGIN DEGIL KISININ bildirimleri: tablo `user_id` uzerinden calisiyor
+ * ve RLS yalniz kendi satirlarini gosteriyor. Olculdu: 25 satirin hepsi giren
+ * kullaniciya ait, hicbiri baskasinin degil.
+ */
+export async function bildirimleriOku(): Promise<Bildirim[]> {
+  const { data, error } = await istemci
+    .from('notifications')
+    .select('id, title, body, kind, read_at, created_at')
+    .order('created_at', { ascending: false })
+    .limit(60);
+  if (error) throw error;
+  return (data as Bildirim[] | null) ?? [];
+}
+
+/**
+ * Okunmamis bildirim sayisi.
+ *
+ * ⚠️ ZIL ROZETI ARTIK UYDURMA DEGIL. Once ust cubuktaki zil yer tutucuydu,
+ * cunku sayiyi verecek bir kaynak bulunamamisti. `notifications.read_at` tam
+ * olarak bunu veriyor: dolu ise okunmus, bos ise okunmamis.
+ *
+ * ⚠️ `head: true` ile SATIRLAR CEKILMIYOR, yalniz sayi geliyor. Zil her sayfa
+ * acilisinda soruluyor; altmis satiri her seferinde indirmek gereksiz.
+ */
+export async function okunmamisBildirimSayisi(): Promise<number> {
+  const { count, error } = await istemci
+    .from('notifications')
+    .select('id', { count: 'exact', head: true })
+    .is('read_at', null);
+  if (error) throw error;
+  return count ?? 0;
+}
+
+export const cevrimdisiMusterileriOku = (klinik: string) =>
+  tablo<CevrimdisiMusteri>('clinic_offline_customers', 'id, full_name, phone, email, note, created_at', klinik, 'created_at');

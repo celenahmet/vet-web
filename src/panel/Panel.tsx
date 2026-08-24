@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { LogOut, Building2, Menu, X, Bell, HelpCircle, ChevronDown } from 'lucide-react';
+import { LogOut, Building2, Menu, X, Bell, ChevronDown } from 'lucide-react';
 import type { Session } from '@supabase/supabase-js';
 
 import SEO from '../components/SEO';
@@ -18,6 +18,11 @@ import PanelEkip from './PanelEkip';
 import PanelRaporlar from './PanelRaporlar';
 import PanelDefter from './PanelDefter';
 import PanelWebSitesi from './PanelWebSitesi';
+import {
+  PanelKayitlar, PanelAsi, PanelTopluluk, PanelSahiplendirme, PanelMesajlar,
+  PanelProfil, PanelAyarlar, PanelDuyurular, PanelBildirimler, PanelDegerlendirmeler,
+} from './PanelBolumler';
+import { okunmamisBildirimSayisi } from './veri';
 import Yukleniyor from './Yukleniyor';
 import './panel.css';
 
@@ -56,6 +61,12 @@ export default function Panel() {
   const [seciliId, setSeciliId] = useState<string | null>(seciliKlinigiOku());
   const [bolum, setBolum] = useState<Bolum>('pano');
   const [menuAcik, setMenuAcik] = useState(false);
+  /*
+   * ⚠️ ZIL ROZETI ARTIK GERCEK. Once yer tutucuydu, cunku sayiyi verecek bir
+   * kaynak bulunamamisti; `notifications.read_at` tam olarak bunu veriyor.
+   * Yer tutucu yerine olcum koyabildigimiz her yerde olcum konuyor.
+   */
+  const [okunmamis, setOkunmamis] = useState(0);
 
   useEffect(() => {
     istemci.auth.getSession().then(({ data }) => {
@@ -87,6 +98,12 @@ export default function Panel() {
     if (oturum) uyelikleriYukle();
     else setKlinikler(null);
   }, [oturum, uyelikleriYukle]);
+
+  useEffect(() => {
+    if (!oturum) { setOkunmamis(0); return; }
+    /* Sayim basarisiz olursa rozet gosterilmiyor; panel yine calisiyor. */
+    okunmamisBildirimSayisi().then(setOkunmamis).catch(() => setOkunmamis(0));
+  }, [oturum, bolum]);
 
   function bolumeGit(b: Bolum) {
     setBolum(b);
@@ -158,9 +175,19 @@ export default function Panel() {
       case 'randevular': return <PanelRandevular klinik={secili.clinic_id} />;
       case 'musteriler': return <PanelMusteriler klinik={secili.clinic_id} />;
       case 'hastalar': return <PanelHastalar klinik={secili.clinic_id} />;
+      case 'kayitlar': return <PanelKayitlar klinik={secili.clinic_id} />;
+      case 'asi': return <PanelAsi klinik={secili.clinic_id} />;
+      case 'profil': return <PanelProfil klinik={secili.clinic_id} />;
+      case 'topluluk': return <PanelTopluluk />;
+      case 'mesajlar': return <PanelMesajlar />;
+      case 'sahiplendirme': return <PanelSahiplendirme />;
+      case 'duyurular': return <PanelDuyurular klinik={secili.clinic_id} />;
+      case 'bildirimler': return <PanelBildirimler />;
+      case 'degerlendirmeler': return <PanelDegerlendirmeler klinik={secili.clinic_id} />;
       case 'defter': return <PanelDefter klinik={secili.clinic_id} />;
       case 'ekip': return <PanelEkip klinik={secili.clinic_id} />;
       case 'websitesi': return <PanelWebSitesi klinik={secili.clinic_id} />;
+      case 'ayarlar': return <PanelAyarlar />;
       case 'raporlar': return <PanelRaporlar klinik={secili.clinic_id} />;
       default: return <PanelPano klinik={secili.clinic_id} git={bolumeGit} />;
     }
@@ -202,6 +229,7 @@ export default function Panel() {
             </span>
           </div>
 
+          <div className="pnl-menu-sarmal">
           <ul className="pnl-menu">
             {BOLUMLER.map((b) => {
               const Ikon = b.ikon;
@@ -211,23 +239,27 @@ export default function Panel() {
                     type="button"
                     aria-current={bolum === b.anahtar ? 'page' : undefined}
                     className={bolum === b.anahtar ? 'pnl-menu-ogesi pnl-menu-etkin' : 'pnl-menu-ogesi'}
+                    /*
+                     * ⚠️ ACIKLAMA MENUDEN CIKTI, `title`e TASINDI (25.08.2026).
+                     * Her satirin altinda bir aciklama satiri vardi ve menu
+                     * ogesini iki katina cikariyordu; sekiz oge ekranin yarisini
+                     * yiyordu. Referans yerlesimde menu tek satirlik ve panel tek
+                     * ekrana sigiyor. Aciklama kaybolmadi: fare uzerine gelince
+                     * cikiyor, ayrica her bolumun kendi basliginda yaziyor.
+                     */
+                    title={b.aciklama}
                     onClick={() => bolumeGit(b.anahtar as Bolum)}>
-                    <Ikon size={17} aria-hidden="true" />
-                    <span className="pnl-menu-yazi">
-                      <span className="pnl-menu-ad">{b.ad}</span>
-                      {/* ⚠️ Aciklama sus degil: "Hastalar" ile "Musteriler" farkini
-                          klinikte calisan biri menuye bakarak anlayabilmeli. */}
-                      <span className="pnl-menu-aciklama">{b.aciklama}</span>
-                    </span>
+                    <Ikon size={18} aria-hidden="true" />
+                    <span className="pnl-menu-ad">{b.ad}</span>
                   </button>
                 </li>
               );
             })}
           </ul>
+          </div>
 
           <p className="pnl-yan-not">
-            Reçete, duyuru ve klinik ayarları şimdilik telefondaki uygulamada. Web panele
-            sırayla ekleniyor.
+            Reçete ve duyuru şimdilik telefonda. Web panele sırayla ekleniyor.
           </p>
 
           {/*
@@ -268,17 +300,18 @@ export default function Panel() {
 
         <div className="pnl-ust-sag">
           {/*
-            ⚠️ ZIL VE YARDIM YER TUTUCU. Referans yerlesimde ust cubugun saginda
-            bildirim zili (rozetli) ve yardim dugmesi var. Zilin sayisini verecek
-            bir kaynak YOK; rozet konmuyor, uydurma sayi gosterilmiyor.
-            `disabled` ve `title` ile durum acikca soyleniyor: tiklanabilir ama
-            bos bir dugme, en can sikici turden yarim ozelliktir.
+            ⚠️ ZIL CALISIYOR. Rozet `notifications.read_at` bos olan satirlarin
+            sayisi; uydurma degil, olculmus. Tiklayinca bildirimler bolumune
+            gidiyor, yani rozet bir yere GOTURUYOR.
           */}
-          <button type="button" className="pnl-ust-ikon" disabled title="Bildirimler yakında eklenecek" aria-label="Bildirimler, yakında">
+          <button
+            type="button"
+            className="pnl-ust-ikon"
+            onClick={() => bolumeGit('bildirimler')}
+            aria-label={okunmamis > 0 ? `Bildirimler, ${okunmamis} okunmamış` : 'Bildirimler'}
+            title="Bildirimler">
             <Bell size={18} aria-hidden="true" />
-          </button>
-          <button type="button" className="pnl-ust-ikon" disabled title="Yardım yakında eklenecek" aria-label="Yardım, yakında">
-            <HelpCircle size={18} aria-hidden="true" />
+            {okunmamis > 0 ? <span className="pnl-zil-rozet" aria-hidden="true">{okunmamis > 99 ? '99+' : okunmamis}</span> : null}
           </button>
 
           <div className="pnl-kullanici-kutu">

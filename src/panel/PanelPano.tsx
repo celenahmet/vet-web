@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Users, Megaphone, Stethoscope, Heart, AlertTriangle, ArrowRight,
+  AlertTriangle, ArrowRight,
   CalendarClock, CalendarDays, Syringe, PawPrint, UsersRound, Inbox,
 } from 'lucide-react';
 
@@ -136,12 +136,11 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
         <div className="pnl-uyari">
           <AlertTriangle size={18} aria-hidden="true" />
           <div>
-            <p className="pnl-uyari-baslik">Klinik sayfanızda eksik bilgiler var</p>
-            <p>
-              Şunlar girilmemiş: {eksikler.join(', ')}. Bu bilgiler girilmediği sürece kliniğiniz
-              uygulamadaki aramalarda daha az görünür.
+            <p className="pnl-uyari-baslik">
+              Klinik sayfanızda eksik bilgiler var:{' '}
+              <span className="pnl-uyari-liste">{eksikler.join(', ')}</span>
             </p>
-            <p className="pnl-uyari-alt">Bu bilgiler şimdilik telefondaki uygulamadan giriliyor.</p>
+            <p className="pnl-uyari-alt">Eksik bilgiler kliniğinizin aramalarda daha az görünmesine yol açıyor.</p>
           </div>
         </div>
       ) : null}
@@ -335,7 +334,13 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
             </button>
           </header>
           <div className="pnl-widget-govde">
-            <div className="pnl-mini-izgara">
+            {/*
+              ⚠️ ALTI MINI KUTU, iki ayri kart degil. Once "Klinik sayfaniz" ayri
+              bir kartti ve pano dorduncu bir satira tasiyordu; referans yerlesim
+              uc satir ve tek ekrana siğiyor. Takipci ve duyuru sayilari buraya
+              katildi, kart sayisi degismedi.
+            */}
+            <div className="pnl-mini-izgara pnl-mini-alti">
               <div className="pnl-mini">
                 <span className="pnl-mini-deger">{ekip.length}</span>
                 <span className="pnl-mini-ad">Ekipte kişi</span>
@@ -352,6 +357,14 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
                 <span className="pnl-mini-deger">{pano?.service_count ?? 0}</span>
                 <span className="pnl-mini-ad">Hizmet</span>
               </div>
+              <div className="pnl-mini">
+                <span className="pnl-mini-deger">{pano?.follower_count ?? 0}</span>
+                <span className="pnl-mini-ad">Takipçi</span>
+              </div>
+              <div className="pnl-mini">
+                <span className="pnl-mini-deger">{pano?.announcement_count ?? 0}</span>
+                <span className="pnl-mini-ad">Duyuru</span>
+              </div>
             </div>
 
             {analiz && analiz.appt_total > 0 ? (
@@ -363,6 +376,14 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
             ) : (
               <p className="pnl-widget-not">Randevu geçmişi biriktikçe burada özet görünür.</p>
             )}
+
+            {/*
+              ⚠️ Doluluk orani REFERANSTA bu kartin icinde bir grafikti. Zaman
+              serisi olmadigi icin grafik cizilemiyor; yeri duruyor, degeri tire.
+            */}
+            <p className="pnl-satir-ic-yakinda">
+              Randevu doluluk oranı <span className="pnl-yakinda-etiket">Yakında</span>
+            </p>
           </div>
         </section>
 
@@ -379,49 +400,11 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
 
       </div>
 
-      <div className="pnl-izgara-ikili">
-        <Yakinda
-          baslik="Randevu doluluk oranı"
-          aciklama="Haftalık doluluk grafiği için günlük geçmiş tutulması gerekiyor; şu an yalnızca güncel durum kaydediliyor."
-        />
-
-        {/* ── VITRIN ── */}
-        <section className="pnl-widget">
-          <header className="pnl-widget-basi">
-            <span className="pnl-widget-ikon" aria-hidden="true"><Heart size={17} /></span>
-            <h3>Klinik sayfanız</h3>
-          </header>
-          <div className="pnl-widget-govde">
-            <div className="pnl-mini-izgara">
-              <div className="pnl-mini">
-                <span className="pnl-mini-deger">{pano?.follower_count ?? 0}</span>
-                <span className="pnl-mini-ad">Takipçi</span>
-              </div>
-              <div className="pnl-mini">
-                <span className="pnl-mini-deger">{pano?.announcement_count ?? 0}</span>
-                <span className="pnl-mini-ad">Duyuru</span>
-              </div>
-            </div>
-            <p className="pnl-widget-not">
-              {pano?.is_verified
-                ? 'Kliniğiniz doğrulanmış, genel klinik listesinde görünüyor.'
-                : 'Kliniğiniz henüz doğrulanmadı; doğrulanana kadar genel listede görünmez.'}
-            </p>
-          </div>
-        </section>
-      </div>
-
       {/*
         ⚠️ Bu not SUS DEGIL, DURUS BILDIRIMI. Panelde olmayan seyleri kullanicinin
         aramasi gerekmemeli; nerede olduklarini ekran soyluyor.
       */}
-      <p className="pnl-dipnot">
-        <Megaphone size={14} aria-hidden="true" />
-        Reçete yazma, duyuru gönderme ve klinik sayfası düzenleme şimdilik telefondaki
-        uygulamada. Web paneline sırayla ekleniyor.
-      </p>
 
-      <span className="pnl-gizli-ikon" aria-hidden="true"><Users size={0} /><Stethoscope size={0} /></span>
     </>
   );
 }

@@ -193,15 +193,23 @@ export function gorecelizaman(iso: string | null | undefined): string | null {
   return `${Math.abs(gun)} gün önce`;
 }
 
-/** Saglik kaydi turleri. Kaynak: migration 0074. */
+/**
+ * Saglik kaydi turleri.
+ *
+ * ⚠️ DEGERLER KAYNAKTAN, TAHMINDEN DEGIL. Migration 0074'teki `check` kisiti
+ * tam olarak sunu diyor: vaccine, parasite, exam, procedure, medication,
+ * weight, note. Ilk halinde `checkup`, `surgery`, `test`, `other` yaziyordu ve
+ * bunlarin hicbiri sunucuda yok; yani sozluk hicbir zaman eslesmeyecekti ve
+ * ekranda ham kod gorunecekti. Ayni hata `done` ile de yapilmisti.
+ */
 export const KAYIT_TURU: Record<string, string> = {
   vaccine: 'Aşı',
   parasite: 'Parazit koruması',
-  checkup: 'Kontrol',
+  exam: 'Muayene',
+  procedure: 'İşlem',
   medication: 'İlaç',
-  surgery: 'Ameliyat',
-  test: 'Tahlil',
-  other: 'Diğer',
+  weight: 'Kilo ölçümü',
+  note: 'Not',
 };
 
 /** '09:30' — ajanda satirlarinda yalniz saat gerekiyor. */
