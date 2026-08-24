@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { AlertTriangle, LogIn } from 'lucide-react';
 
 import { istemci, yapilandirmaEksik } from './istemci';
+import Hata from './Hata';
 
 /**
  * KLINIK GIRISI
@@ -29,7 +30,7 @@ export default function PanelGiris({ girildi }: { girildi: () => void }) {
     const { error } = await istemci.auth.signInWithPassword({ email: eposta.trim(), password: parola });
     setBekliyor(false);
     if (error) {
-      setHata('E-posta ya da parola hatalı.');
+      setHata('E-posta ya da parola hatalı. Kontrol edip tekrar deneyin.');
       return;
     }
     girildi();
@@ -37,50 +38,56 @@ export default function PanelGiris({ girildi }: { girildi: () => void }) {
 
   if (yapilandirmaEksik) {
     return (
-      <div className="panel-kutu">
-        <AlertTriangle size={22} />
-        <h1>Panel yapılandırılmamış</h1>
-        <p>Sunucu adresi tanımlı değil. Bu bir kullanıcı hatası değil; yapılandırma tamamlanmadan giriş yapılamaz.</p>
+      <div className="pnl-kutu">
+        <AlertTriangle size={22} aria-hidden="true" />
+        <h2>Panel şu an açılamıyor</h2>
+        <p>Sunucu bağlantısı tanımlı değil. Bu sizin yaptığınız bir hata değil, bizim tarafımızda bir ayar eksik.</p>
+        <p className="pnl-not">Kısa süre sonra tekrar deneyin.</p>
       </div>
     );
   }
 
   return (
-    <div className="panel-kutu">
+    <div className="pnl-giris">
       <h1>Klinik girişi</h1>
-      <p>Veterito uygulamasındaki klinik hesabınızla giriş yapın.</p>
+      <p className="pnl-giris-alt">
+        Veterito uygulamasında kullandığınız klinik hesabınızla girin. Ayrı bir web hesabı
+        açmanız gerekmiyor, şifreniz aynı.
+      </p>
 
-      <form onSubmit={gonder} className="panel-form">
-        <label>
-          <span>E-posta</span>
+      <form onSubmit={gonder} className="pnl-form">
+        <div className="pnl-alan">
+          <label htmlFor="pnl-eposta">E-posta</label>
           <input
+            id="pnl-eposta"
             type="email"
             value={eposta}
             onChange={(e) => setEposta(e.target.value)}
             autoComplete="username"
             required
           />
-        </label>
-        <label>
-          <span>Parola</span>
+        </div>
+        <div className="pnl-alan">
+          <label htmlFor="pnl-parola">Parola</label>
           <input
+            id="pnl-parola"
             type="password"
             value={parola}
             onChange={(e) => setParola(e.target.value)}
             autoComplete="current-password"
             required
           />
-        </label>
+        </div>
 
-        {hata ? <p className="panel-hata" role="alert">{hata}</p> : null}
+        {hata ? <Hata mesaj={hata} kucuk /> : null}
 
-        <button type="submit" disabled={bekliyor}>
-          <LogIn size={18} /> {bekliyor ? 'Giriş yapılıyor' : 'Giriş yap'}
+        <button type="submit" className="pnl-dugme pnl-dugme-olumlu pnl-giris-dugme" disabled={bekliyor}>
+          <LogIn size={16} /> {bekliyor ? 'Giriş yapılıyor…' : 'Giriş yap'}
         </button>
       </form>
 
-      <p className="panel-not">
-        Hayvan sahipleri için web girişi henüz yok; uygulamayı kullanabilirsiniz.
+      <p className="pnl-giris-not">
+        Hayvan sahibiyseniz web girişi henüz yok; Veterito uygulamasını kullanabilirsiniz.
       </p>
     </div>
   );

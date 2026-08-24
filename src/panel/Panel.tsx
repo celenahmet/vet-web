@@ -1,12 +1,24 @@
 import { useCallback, useEffect, useState } from 'react';
-import { LogOut, Building2 } from 'lucide-react';
+import { LogOut, Building2, Menu, X } from 'lucide-react';
 import type { Session } from '@supabase/supabase-js';
 
 import SEO from '../components/SEO';
+import logoUrl from '../assets/logo.webp';
+import logoKoyuUrl from '../assets/logo-koyu.webp';
 import { istemci } from './istemci';
 import { klinikUyelikleri, seciliKlinigiOku, seciliKlinigiYaz, type KlinikUyeligi } from './oturum';
+import { BOLUMLER, type Bolum } from './bolumler';
+import { ROL } from './sozluk';
 import PanelGiris from './PanelGiris';
 import PanelPano from './PanelPano';
+import PanelRandevular from './PanelRandevular';
+import PanelMusteriler from './PanelMusteriler';
+import PanelHastalar from './PanelHastalar';
+import PanelEkip from './PanelEkip';
+import PanelRaporlar from './PanelRaporlar';
+import PanelDefter from './PanelDefter';
+import PanelWebSitesi from './PanelWebSitesi';
+import Yukleniyor from './Yukleniyor';
 import './panel.css';
 
 /**
@@ -16,16 +28,22 @@ import './panel.css';
  * icerikler falan ayni olacak ancak sadece klinikler web girisi yapabilecek
  * ilk etapta"*
  *
- * ⚠️ SIFIR BACKEND ISI GEREKTI ve bu tesadüf degil: klinik islemleri zaten
- * RPC'ler uzerinden yurutuluyor ve yetki kontrolu RPC GOVDESINDE. Olculdu
+ * ⚠️ KENDI TASARIMI VAR, SITENIN ICINE GOMULU DEGIL (Ahmet, 24.08.2026:
+ * *"web panel tasarimi ayri olmali yani bizim sitenin icerisine gomulmus gibi
+ * olmamali"*). Pazarlama menusu ve alt bilgisi bu rotada hic cizilmiyor
+ * (`App.tsx` icindeki `PazarlamaKabugu`). Panelin kendi ust cubugu, kendi yan
+ * menusu var; marka olarak Veterito ama IS ARACI gibi duruyor, tanitim sayfasi
+ * gibi degil.
+ *
+ * ⚠️ ARKA UCTA HICBIR SEY YAZILMADI. Yetki kontrolu RPC GOVDESINDE. Olculdu
  * (24.08.2026, duz HTTP ile):
- *   oturumsuz        -> 401, RPC anon'a hic acik degil
+ *   oturumsuz          -> 42501, RPC anon'a hic acik degil
  *   uye, kendi klinigi -> 200, gercek veri
  *   uye, baska klinik  -> 400 "yetkisiz: bu klinigin uyesi degilsin"
  * Yani panel yeni bir yetki yuzeyi ACMIYOR.
  *
  * ⚠️ `noindex`: panel arama sonuclarinda yeri olmayan, oturum arkasindaki bir
- * ekran. Site haritasina da girmiyor.
+ * ekran. Site haritasina da girmiyor, ayrica `X-Robots-Tag` basligi var.
  *
  * ⚠️ Bu agac `App.tsx` icinde `lazy()` ile yukleniyor; `@supabase/supabase-js`
  * yalniz buradan import edildigi icin pazarlama sayfalarinin paketine
@@ -36,6 +54,8 @@ export default function Panel() {
   const [hazir, setHazir] = useState(false);
   const [klinikler, setKlinikler] = useState<KlinikUyeligi[] | null>(null);
   const [seciliId, setSeciliId] = useState<string | null>(seciliKlinigiOku());
+  const [bolum, setBolum] = useState<Bolum>('pano');
+  const [menuAcik, setMenuAcik] = useState(false);
 
   useEffect(() => {
     istemci.auth.getSession().then(({ data }) => {
@@ -68,80 +88,199 @@ export default function Panel() {
     else setKlinikler(null);
   }, [oturum, uyelikleriYukle]);
 
-  function klinikSec(id: string) {
-    setSeciliId(id);
-    seciliKlinigiYaz(id);
+  function bolumeGit(b: Bolum) {
+    setBolum(b);
+    setMenuAcik(false);
+    /* ⚠️ Bolum degisince yukari cikiyoruz: uzun bir listeden kisa bir bolume
+       gecince kullanici sayfanin ortasinda kaliyordu ve ekran bos sanilıyordu. */
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  const govde = () => {
-    if (!hazir) return <div className="panel-yukleniyor" role="status" aria-label="Yükleniyor" />;
-    if (!oturum) return <PanelGiris girildi={() => { /* dinleyici oturumu yakaliyor */ }} />;
-    if (klinikler === null) return <div className="panel-yukleniyor" role="status" aria-label="Yükleniyor" />;
-
-    if (klinikler.length === 0) {
-      /*
-       * ⚠️ Bu ekran "yetkin yok" DEMIYOR, "klinik uyeligin yok" diyor. Ikisi
-       * farkli sey ve karistirmak kullaniciyi yanlis yere gonderir: hayvan
-       * sahibi hesabiyla giren biri hata yaptigini degil, henuz web girisi
-       * olmadigini bilmeli.
-       */
-      return (
-        <div className="panel-kutu">
-          <Building2 size={22} />
-          <h2>Bağlı bir klinik bulunamadı</h2>
-          <p>Bu hesap hiçbir kliniğe üye görünmüyor. Web paneli ilk etapta yalnızca klinikler için açık.</p>
-          <p className="panel-not">Hayvan sahibiyseniz uygulamayı kullanabilirsiniz; web girişi henüz yok.</p>
-        </div>
-      );
-    }
-
-    const secili = klinikler.find((k) => k.clinic_id === seciliId) ?? klinikler[0];
+  /* ── GIRIS YAPILMAMIS: panelin kendi giris ekrani, kabuk yok ── */
+  if (!hazir) {
     return (
-      <>
-        {klinikler.length > 1 ? (
-          <div className="panel-klinik-secim">
-            <span>Klinik</span>
-            <select value={secili.clinic_id} onChange={(e) => klinikSec(e.target.value)}>
-              {klinikler.map((k) => (
-                <option key={k.clinic_id} value={k.clinic_id}>{k.clinic_name}</option>
-              ))}
-            </select>
-          </div>
-        ) : null}
-        <PanelPano klinik={secili} />
-      </>
+      <div className="pnl-kabuk pnl-kabuk-sade">
+        <SEO title="Klinik Paneli" description="Veterito klinik yönetim paneli." noindex />
+        <Yukleniyor metin="Panel açılıyor" />
+      </div>
     );
+  }
+
+  if (!oturum) {
+    return (
+      <div className="pnl-kabuk pnl-kabuk-sade">
+        <SEO title="Klinik Girişi" description="Veterito klinik yönetim paneli." noindex />
+        <PanelGiris girildi={() => { /* dinleyici oturumu yakaliyor */ }} />
+      </div>
+    );
+  }
+
+  if (klinikler === null) {
+    return (
+      <div className="pnl-kabuk pnl-kabuk-sade">
+        <SEO title="Klinik Paneli" description="Veterito klinik yönetim paneli." noindex />
+        <Yukleniyor metin="Kliniğiniz yükleniyor" />
+      </div>
+    );
+  }
+
+  if (klinikler.length === 0) {
+    /*
+     * ⚠️ Bu ekran "yetkin yok" DEMIYOR, "klinik uyeligin yok" diyor. Ikisi
+     * farkli sey ve karistirmak kullaniciyi yanlis yere gonderir: hayvan
+     * sahibi hesabiyla giren biri hata yaptigini degil, henuz web girisi
+     * olmadigini bilmeli.
+     */
+    return (
+      <div className="pnl-kabuk pnl-kabuk-sade">
+        <SEO title="Klinik Paneli" description="Veterito klinik yönetim paneli." noindex />
+        <div className="pnl-kutu">
+          <Building2 size={24} aria-hidden="true" />
+          <h2>Bu hesap bir kliniğe bağlı değil</h2>
+          <p>Web paneline şimdilik yalnızca klinikler girebiliyor ve bu hesap hiçbir klinikte kayıtlı görünmüyor.</p>
+          <p className="pnl-not">
+            Hayvan sahibiyseniz Veterito uygulamasını kullanabilirsiniz; hayvan sahipleri için web girişi henüz yok.
+          </p>
+          <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => istemci.auth.signOut({ scope: 'local' })}>
+            <LogOut size={15} /> Çıkış yap
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const secili = klinikler.find((k) => k.clinic_id === seciliId) ?? klinikler[0];
+  const rol = ROL[secili.role];
+  const aktif = BOLUMLER.find((b) => b.anahtar === bolum);
+
+  const icerik = () => {
+    switch (bolum) {
+      case 'randevular': return <PanelRandevular klinik={secili.clinic_id} />;
+      case 'musteriler': return <PanelMusteriler klinik={secili.clinic_id} />;
+      case 'hastalar': return <PanelHastalar klinik={secili.clinic_id} />;
+      case 'defter': return <PanelDefter klinik={secili.clinic_id} />;
+      case 'ekip': return <PanelEkip klinik={secili.clinic_id} />;
+      case 'websitesi': return <PanelWebSitesi klinik={secili.clinic_id} />;
+      case 'raporlar': return <PanelRaporlar klinik={secili.clinic_id} />;
+      default: return <PanelPano klinik={secili.clinic_id} git={bolumeGit} />;
+    }
   };
 
   return (
-    <div className="panel-sayfa">
+    <div className="pnl-kabuk">
       <SEO title="Klinik Paneli" description="Veterito klinik yönetim paneli." noindex />
 
-      <header className="panel-baslik">
-        <div>
-          <h1>Klinik Paneli</h1>
-          {oturum ? <p>{oturum.user.email}</p> : null}
-        </div>
-        {/*
-          ⚠️ `scope: 'local'` ZORUNLU. `signOut()` varsayilani GLOBAL: butun
-          oturumlari iptal ediyor. Yani klinik calisani web panelinden cikinca
-          TELEFONUNDAKI uygulamadan da atilirdi. Kullanicinin bekledigi sey bu
-          degil ve "cikis yaptim, telefonum neden kapandi" sorusu guveni zedeler.
-          ⚠️ Paylasilan bilgisayarda global cikis daha guvenli gorunuyor ama
-          dogru cozum o degil; oturum suresi ve cihaz yonetimi ayri bir is.
+      <nav className={menuAcik ? 'pnl-yan pnl-yan-acik' : 'pnl-yan'} aria-label="Panel bölümleri">
+          <div className="pnl-marka">
+            {/* ⚠️ Yan menu her temada koyu; bu yuzden HER ZAMAN koyu zemin logosu. */}
+            <img src={logoKoyuUrl} alt="Veterito" width={120} height={30} className="pnl-logo" />
+            <img src={logoUrl} alt="" aria-hidden="true" width={120} height={30} className="pnl-logo pnl-logo-acik" />
+          </div>
 
-          ⚠️ Bu yorum ternary DALININ ICINDE degil DISINDA duruyor. Iceride
-          yazilinca JSX yorumu bir nesne ifadesi gibi okunuyor ve derleme
-          kiriliyor; 24.08.2026'da tam bu oldu.
-        */}
-        {oturum ? (
-          <button type="button" className="panel-cikis" onClick={() => istemci.auth.signOut({ scope: 'local' })}>
-            <LogOut size={16} /> Çıkış
+          <div className="pnl-klinik-kutu">
+            {/* ⚠️ Bas harf, logo yerine gecen kucuk bir kimlik. Klinigin kendi
+                gorseli sunucudan gelmiyor; uydurma bir ikon koymak yerine adin
+                ilk harfi kullaniliyor. */}
+            <span className="pnl-klinik-rozet" aria-hidden="true">
+              {(secili.clinic_name || 'K').trim().charAt(0).toLocaleUpperCase('tr-TR')}
+            </span>
+            <span className="pnl-klinik-metin">
+              <span className="pnl-klinik-etiket">Klinik</span>
+              {klinikler.length > 1 ? (
+                <select
+                  className="pnl-klinik-secim"
+                  value={secili.clinic_id}
+                  aria-label="Klinik seçin"
+                  onChange={(e) => { setSeciliId(e.target.value); seciliKlinigiYaz(e.target.value); }}>
+                  {klinikler.map((k) => (
+                    <option key={k.clinic_id} value={k.clinic_id}>{k.clinic_name}</option>
+                  ))}
+                </select>
+              ) : (
+                <span className="pnl-klinik-ad">{secili.clinic_name}</span>
+              )}
+            </span>
+          </div>
+
+          <ul className="pnl-menu">
+            {BOLUMLER.map((b) => {
+              const Ikon = b.ikon;
+              return (
+                <li key={b.anahtar}>
+                  <button
+                    type="button"
+                    aria-current={bolum === b.anahtar ? 'page' : undefined}
+                    className={bolum === b.anahtar ? 'pnl-menu-ogesi pnl-menu-etkin' : 'pnl-menu-ogesi'}
+                    onClick={() => bolumeGit(b.anahtar as Bolum)}>
+                    <Ikon size={17} aria-hidden="true" />
+                    <span className="pnl-menu-yazi">
+                      <span className="pnl-menu-ad">{b.ad}</span>
+                      {/* ⚠️ Aciklama sus degil: "Hastalar" ile "Musteriler" farkini
+                          klinikte calisan biri menuye bakarak anlayabilmeli. */}
+                      <span className="pnl-menu-aciklama">{b.aciklama}</span>
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
+          <p className="pnl-yan-not">
+            Reçete, duyuru ve klinik ayarları şimdilik telefondaki uygulamada. Web panele
+            sırayla ekleniyor.
+          </p>
+
+          {/*
+            ⚠️ `scope: 'local'` ZORUNLU. `signOut()` varsayilani GLOBAL: butun
+            oturumlari iptal ediyor. Yani klinik calisani web panelinden cikinca
+            TELEFONUNDAKI uygulamadan da atilirdi. Iki yonlu olculdu (24.08.2026):
+            local ile diger oturumun yenileme belirteci gecerli kaliyor, global
+            ile "Invalid Refresh Token" oluyor.
+          */}
+          <button type="button" className="pnl-cikis-yan" onClick={() => istemci.auth.signOut({ scope: 'local' })}>
+            <LogOut size={16} aria-hidden="true" /> Çıkış yap
           </button>
-        ) : null}
+      </nav>
+
+      {/*
+        ⚠️ YAN MENU EN TEPEDEN BASLIYOR (24.08.2026). Once ust cubuk butun
+        genisligi kapliyordu ve yan menu onun ALTINDAN basliyordu; logo ile
+        sayfa basligi ayni hizada olmadigi icin ekran iki parca gorunuyordu.
+        Simdi yan menu tam yukseklikte tek sutun, ust cubuk yalniz icerik
+        sutununun uzerinde duruyor. Taslakta da boyleydi.
+      */}
+      <div className="pnl-sutun">
+      <header className="pnl-ust">
+        <button
+          type="button"
+          className="pnl-menu-dugme"
+          aria-expanded={menuAcik}
+          aria-label={menuAcik ? 'Menüyü kapat' : 'Menüyü aç'}
+          onClick={() => setMenuAcik((a) => !a)}>
+          {menuAcik ? <X size={20} /> : <Menu size={20} />}
+        </button>
+
+        {/* ⚠️ ASIL BASLIK USTTE: hangi bolumde oldugu sayfa kaysa da gorunur. */}
+        <div className="pnl-ust-orta">
+          <h1 className="pnl-ust-baslik">{aktif?.ad ?? 'Genel bakış'}</h1>
+          <p className="pnl-ust-alt">{secili.clinic_name}</p>
+        </div>
+
+        <div className="pnl-ust-sag">
+          <div className="pnl-kullanici-kutu">
+            <span className="pnl-avatar-bas" aria-hidden="true">
+              {(oturum.user.email ?? 'K').trim().charAt(0).toLocaleUpperCase('tr-TR')}
+            </span>
+            <span className="pnl-kullanici">
+              <span className="pnl-kullanici-ad">{oturum.user.email}</span>
+              {rol ? <span className="pnl-kullanici-rol">{rol.ad}</span> : null}
+            </span>
+          </div>
+        </div>
       </header>
 
-      {govde()}
+          <main className="pnl-icerik">{icerik()}</main>
+      </div>
     </div>
   );
 }

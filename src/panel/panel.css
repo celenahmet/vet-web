@@ -1,129 +1,715 @@
 /*
- * KLINIK PANELI BICIMI
+ * KLINIK PANELI — KENDI TASARIMI
  *
- * ⚠️ Pazarlama sayfalarinin Tailwind sinifları kullanilmiyor; panel kendi dar
- * kapsamli CSS'ini tasiyor. Sebep: pazarlama tarafinda ikinci bir kisi
- * calisiyor ve ortak siniflara baglanmak, onun bir degisikliginin paneli
- * bozmasi demek olurdu.
+ * ⚠️ NEDEN AYRI (Ahmet, 24.08.2026): *"web panel tasarimi ayri olmali yani bizim
+ * sitenin icerisine gomulmus gibi olmamali"*. Pazarlama sitesi genis, havadar,
+ * ikna etmeye calisan bir sayfa. Panel bunun tersi olmali: yogun, hizli
+ * taranabilen, IS yapilan bir ekran. Bu yuzden burada ayri bir olcek var —
+ * daha kucuk yaricap, daha dar bosluk, daha net cizgi.
  *
- * ⚠️ Renkler `index.css` degiskenlerinden geliyor, sabit deger yazilmiyor;
- * boylece koyu kip kendiliginden calisiyor.
+ * ⚠️ TAILWIND KULLANILMIYOR. Site sinif adlarini stajyer de duzenliyor; panelin
+ * onlarla ortak sinifi olsaydi, pazarlama sayfasinda yapilan bir duzeltme
+ * paneli sessizce bozabilirdi. Butun sinif adlari `pnl-` on ekiyle ayrilmis.
+ *
+ * ⚠️ RENKLER `index.css` DEGISKENLERINDEN. Koyu tema kendiliginden calissin
+ * diye; panelin ayri bir tema anahtari yok ve olmamali, iki yerde tema tutmak
+ * ikisinin ayrisma garantisidir.
  */
-.panel-sayfa {
-  max-width: 1100px;
-  margin-inline: auto;
-  padding: calc(88px + 32px) 24px 72px;
-  color: var(--text-main, #0f172a);
-}
-@media (max-width: 760px) { .panel-sayfa { padding: calc(88px + 20px) 16px 56px; } }
 
-.panel-baslik {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  gap: 16px; margin-bottom: 28px;
-  padding-bottom: 20px; border-bottom: 1px solid var(--border-color, #e2e8f0);
+/*
+ * ⚠️ RENKLER UYGULAMANIN PALETINDEN, SITENIN DEGIL (Ahmet, 24.08.2026:
+ * *"panel tasarimi yine renkleri felan uygulamayla uyumlu olsun, webe ozel
+ * yapilandirmalar denenebilir"*).
+ *
+ * Degerler `veteriner/src/core/theme/palette.json` dosyasindan BIREBIR kopyalandi.
+ * Zumrut (#0F6B57) + sicak altin (#C6A15B) dengesi uygulamanin renk dili; panel
+ * ayni klinigin ayni araci, iki ayri marka gibi gorunmemeli.
+ *
+ * ⚠️ SITENIN `--primary-color` DEGISKENI KULLANILMIYOR. Kullanilsaydi pazarlama
+ * sayfasinda yapilan bir renk denemesi paneli de degistirirdi; panelde calisan
+ * kisi sabahtan aksama farkli renkte bir arac gormemeli.
+ *
+ * ⚠️ KOPYA OLDUGU ICIN AYRISABILIR. Uygulamada palet degisirse burasi elle
+ * guncellenir. Otomatik baglamanin yolu yok: `palette.json` ayri bir depoda ve
+ * bu site onu derleme aninda goremiyor. Ayrisma olursa gozle fark edilir, cunku
+ * ayni klinigin telefonu ile ekrani yan yana duruyor.
+ *
+ * ⚠️ WEBE OZEL OLAN: olcekler. Telefonda parmak icin buyuk hedefler gerekiyor,
+ * masaustunde fare var ve ekranda cok daha fazla satir gorunuyor. Renk ayni,
+ * yogunluk farkli.
+ */
+.pnl-kabuk {
+  /* ⚠️ Yatay duzen: yan menu solda tam yukseklik, saginda ust cubuk + icerik
+     sutunu. `pnl-govde` sarmalayicisi kaldirildi. */
+  flex-direction: row !important;
+  /* Uygulamanin acik teması */
+  --pnl-bg: #FAF8F3;
+  --pnl-yuzey: #FFFFFF;
+  --pnl-yumusak: #DDEFE8;
+  --pnl-vurgu: #0F6B57;
+  --pnl-vurgu-koyu: #073F35;
+  --pnl-altin: #C6A15B;
+  --pnl-metin: #202825;
+  --pnl-soluk: #6F7C77;
+  --pnl-cizgi: #D9E5DF;
+  --pnl-basarili: #2F8F6B;
+  --pnl-uyari: #D6A23D;
+  --pnl-tehlike: #D95C5C;
+  --pnl-vurgu-metin: #FFFFFF;
+
+  --pnl-yaricap: 10px;
+  --pnl-yuzey-ust: var(--pnl-yuzey);
+
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--pnl-bg);
+  color: var(--pnl-metin);
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
 }
-.panel-baslik h1 { font-size: 1.6rem; margin: 0 0 4px; }
-.panel-baslik p { margin: 0; font-size: 0.88rem; color: var(--text-muted, #475569); }
-.panel-cikis {
+
+/* Uygulamanin koyu teması — ayni dosyadan, ayni degerler. */
+:root[data-theme='dark'] .pnl-kabuk {
+  --pnl-bg: #0E1714;
+  --pnl-yuzey: #192823;
+  --pnl-yumusak: #20312B;
+  --pnl-vurgu: #2FAE8F;
+  --pnl-vurgu-koyu: #0F6B57;
+  --pnl-altin: #D3B06A;
+  --pnl-metin: #F4F7F5;
+  --pnl-soluk: #AAB8B2;
+  --pnl-cizgi: #2B3B35;
+  --pnl-basarili: #4DC28E;
+  --pnl-uyari: #E2B657;
+  --pnl-tehlike: #EF6B6B;
+  --pnl-vurgu-metin: #08120D;
+  --pnl-yuzey-ust: #20312B;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .pnl-kabuk {
+    --pnl-bg: #0E1714;
+    --pnl-yuzey: #192823;
+    --pnl-yumusak: #20312B;
+    --pnl-vurgu: #2FAE8F;
+    --pnl-vurgu-koyu: #0F6B57;
+    --pnl-altin: #D3B06A;
+    --pnl-metin: #F4F7F5;
+    --pnl-soluk: #AAB8B2;
+    --pnl-cizgi: #2B3B35;
+    --pnl-basarili: #4DC28E;
+    --pnl-uyari: #E2B657;
+    --pnl-tehlike: #EF6B6B;
+    --pnl-vurgu-metin: #08120D;
+    --pnl-yuzey-ust: #20312B;
+  }
+}
+
+/* Giris ve tek kutuluk durumlar: yan menu yok, ortalanmis. */
+.pnl-kabuk-sade {
+  flex-direction: column !important;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ── UST CUBUK ───────────────────────────────────────────
+ *
+ * ⚠️ MARKA YAN MENUDE, UST CUBUKTA DEGIL. Ilk halinde logo ust cubuktaydi ve
+ * altindaki menuyle hicbir hizasi yoktu. Simdi logo yan menunun tepesinde,
+ * klinik adi hemen altinda: sol sutun bastan asagi tek bir kimlik blogu.
+ */
+.pnl-ust {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 26px;
+  background: var(--pnl-bg);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.pnl-ust-orta { flex: 1; min-width: 0; }
+.pnl-ust-baslik { font-size: 22px; font-weight: 700; margin: 0; line-height: 1.2; letter-spacing: -.01em; }
+.pnl-ust-alt { font-size: 13px; color: var(--pnl-soluk); margin: 2px 0 0; }
+
+.pnl-ust-sag { display: flex; align-items: center; gap: 12px; }
+.pnl-kullanici-kutu {
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 12px 6px 8px;
+  background: var(--pnl-yuzey); border: 1px solid var(--pnl-cizgi);
+  border-radius: 999px;
+}
+.pnl-avatar-bas {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: grid; place-items: center; flex-shrink: 0;
+  background: var(--pnl-vurgu); color: var(--pnl-vurgu-metin);
+  font-size: 13px; font-weight: 700;
+}
+.pnl-kullanici { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+.pnl-kullanici-ad { font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 190px; }
+.pnl-kullanici-rol { font-size: 11.5px; color: var(--pnl-soluk); }
+
+.pnl-menu-dugme {
+  display: none; align-items: center;
+  background: var(--pnl-yuzey); border: 1px solid var(--pnl-cizgi);
+  border-radius: var(--pnl-yaricap); padding: 8px; cursor: pointer; color: inherit;
+}
+
+/* ── GOVDE: KOYU YAN MENU + ACIK ICERIK ──────────────────
+ *
+ * ⚠️ YAN MENU HER TEMADA KOYU ZUMRUT. Tema anahtarini izlemiyor ve bu KASITLI:
+ * koyu sutun panelin kimligi. Acik temada da koyu kalinca ekran "uygulama"
+ * gibi duruyor, "beyaz bir web sayfasi" gibi degil. Renk, uygulamanin
+ * `primaryDeep` (#073F35) tonu; yani ayni marka, farkli yuzey.
+ */
+/* Yan menunun sagindaki sutun: ust cubuk ve icerik alt alta. */
+.pnl-sutun { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+.pnl-yan {
+  width: 252px;
+  flex-shrink: 0;
+  padding: 20px 14px 20px 18px;
+  background: linear-gradient(180deg, #0C4438 0%, #073F35 100%);
+  color: #E8F3EF;
+  position: sticky;
+  top: 0;
+  align-self: stretch;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pnl-marka { display: flex; align-items: center; gap: 10px; padding: 4px 8px 0; }
+.pnl-logo { height: 30px; width: auto; display: block; }
+/* ⚠️ Yan menu her zaman koyu oldugu icin HER ZAMAN koyu zemin logosu kullanilir;
+   tema anahtarina bagli degil. Acik logo koyu zeminde okunmuyordu. */
+.pnl-logo-acik { display: none; }
+
+.pnl-klinik-kutu {
+  display: flex; align-items: center; gap: 9px;
+  margin: 12px 0 20px; padding: 8px 9px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 11px;
+}
+.pnl-klinik-rozet {
+  flex-shrink: 0; width: 30px; height: 30px; border-radius: 8px;
+  display: grid; place-items: center;
+  background: #2FAE8F; color: #08120D;
+  font-size: 13px; font-weight: 700;
+}
+.pnl-klinik-metin { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.pnl-klinik-etiket { font-size: 9.5px; text-transform: uppercase; letter-spacing: .08em; color: rgba(232,243,239,.6); font-weight: 700; }
+.pnl-klinik-ad { font-weight: 600; font-size: 13px; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; color: #fff; }
+.pnl-klinik-secim {
+  font: inherit; font-size: 13px; font-weight: 600;
+  background: transparent; color: #fff;
+  border: none; padding: 0; cursor: pointer; max-width: 100%;
+}
+.pnl-klinik-secim option { color: #202825; }
+
+.pnl-menu { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+.pnl-menu-ogesi {
+  width: 100%; text-align: left; cursor: pointer;
+  display: flex; align-items: center; gap: 11px;
+  padding: 10px 12px; border: none; border-radius: 10px;
+  background: transparent; color: rgba(232,243,239,.82); font: inherit;
+  transition: background .12s ease, color .12s ease;
+}
+.pnl-menu-ogesi:hover { background: rgba(255,255,255,.08); color: #fff; }
+.pnl-menu-etkin { background: #2FAE8F; color: #06231C; font-weight: 600; }
+.pnl-menu-etkin:hover { background: #2FAE8F; color: #06231C; }
+.pnl-menu-yazi { display: flex; flex-direction: column; gap: 0; min-width: 0; }
+.pnl-menu-ad { font-size: 14px; font-weight: 600; }
+.pnl-menu-aciklama { font-size: 11px; opacity: .72; line-height: 1.3; }
+.pnl-menu-etkin .pnl-menu-aciklama { opacity: .78; }
+
+.pnl-yan-not {
+  margin-top: auto; padding: 12px 13px;
+  font-size: 11.5px; line-height: 1.55; color: rgba(232,243,239,.72);
+  background: rgba(255,255,255,.06); border-radius: 11px;
+}
+
+.pnl-cikis-yan {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  margin-top: 10px; padding: 10px 12px;
+  background: transparent; border: 1px solid rgba(255,255,255,.16);
+  border-radius: 10px; color: rgba(232,243,239,.9);
+  font: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer;
+}
+.pnl-cikis-yan:hover { background: rgba(255,255,255,.08); }
+
+.pnl-icerik { flex: 1; min-width: 0; padding: 0 26px 56px; }
+
+/* ── BOLUM BASLIKLARI ────────────────────────────────────── */
+/* ⚠️ 1180px: 1440'lik ekranda sag tarafta genis bir bosluk kaliyordu ve sayfa
+   yarim gorunuyordu. Sinirsiz birakilmadi, cunku uzun satir okunmuyor. */
+.pnl-bolum { max-width: 1180px; }
+.pnl-bolum-basi { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px; }
+.pnl-bolum-basi h2 { font-size: 21px; margin: 0 0 4px; line-height: 1.25; }
+.pnl-aciklama { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--pnl-soluk); max-width: 62ch; }
+.pnl-bolum-basi > button { margin-left: auto; flex-shrink: 0; }
+.pnl-alt-baslik {
+  font-size: 15px; margin: 26px 0 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* ── DUGMELER ────────────────────────────────────────────── */
+.pnl-dugme {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 13px; font: inherit; font-size: 13.5px; font-weight: 600;
+  border-radius: var(--pnl-yaricap); border: 1px solid transparent;
+  cursor: pointer; white-space: nowrap;
+  transition: opacity .12s ease, background .12s ease;
+}
+.pnl-dugme:disabled { opacity: .5; cursor: progress; }
+.pnl-dugme-sade { background: transparent; border-color: var(--pnl-cizgi); color: inherit; }
+.pnl-dugme-sade:hover:not(:disabled) { background: color-mix(in srgb, var(--pnl-metin) 6%, transparent); }
+.pnl-dugme-olumlu { background: var(--pnl-vurgu); color: var(--pnl-vurgu-metin); }
+.pnl-dugme-olumlu:hover:not(:disabled) { filter: brightness(.94); }
+.pnl-dugme-olumsuz { background: transparent; border-color: color-mix(in srgb, var(--pnl-tehlike) 45%, transparent); color: var(--pnl-tehlike); }
+.pnl-dugme-olumsuz:hover:not(:disabled) { background: color-mix(in srgb, var(--pnl-tehlike) 10%, transparent); }
+.pnl-dugme-notr { background: transparent; border-color: var(--pnl-cizgi); color: inherit; }
+
+/* ── SEKMELER ────────────────────────────────────────────── */
+.pnl-sekmeler { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+.pnl-sekme {
   display: inline-flex; align-items: center; gap: 7px;
-  background: transparent; border: 1px solid var(--border-color, #e2e8f0);
-  color: var(--text-muted, #475569); font: inherit; font-size: 0.86rem; font-weight: 600;
-  padding: 9px 15px; border-radius: 999px; cursor: pointer;
+  padding: 7px 13px; font: inherit; font-size: 13.5px; font-weight: 600;
+  background: transparent; color: var(--pnl-soluk); cursor: pointer;
+  border: 1px solid var(--pnl-cizgi); border-radius: 999px;
 }
-.panel-cikis:hover { background: var(--bg-secondary, #f8fafc); }
-
-/* --- Giris ve bilgi kutusu --- */
-.panel-kutu {
-  max-width: 440px; margin-inline: auto;
-  border: 1px solid var(--border-color, #e2e8f0); border-radius: 20px;
-  padding: 32px; background: var(--bg-surface, #fff); text-align: center;
-}
-.panel-kutu svg { color: var(--color-vet-secondary); margin-bottom: 10px; }
-.panel-kutu h1, .panel-kutu h2 { font-size: 1.3rem; margin: 0 0 10px; }
-.panel-kutu p { margin: 0 0 8px; color: var(--text-muted, #475569); line-height: 1.6; font-size: 0.94rem; }
-.panel-kutu-hata { border-color: #f0a5a5; }
-.panel-not { font-size: 0.84rem; opacity: 0.85; }
-
-.panel-form { display: flex; flex-direction: column; gap: 14px; margin: 22px 0 16px; text-align: left; }
-.panel-form label { display: flex; flex-direction: column; gap: 6px; }
-.panel-form span { font-size: 0.84rem; font-weight: 600; }
-.panel-form input {
-  font: inherit; padding: 11px 13px; border-radius: 11px;
-  border: 1px solid var(--border-color, #e2e8f0);
-  background: var(--bg-main, #fff); color: inherit;
-}
-.panel-form input:focus-visible { outline: 2px solid var(--color-vet-secondary); outline-offset: 1px; }
-.panel-form button {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  font: inherit; font-weight: 700; padding: 12px; border: none; border-radius: 11px;
-  background: var(--color-vet-secondary); color: #fff; cursor: pointer;
-}
-.panel-form button:disabled { opacity: 0.6; cursor: default; }
-.panel-hata { color: #b3261e; font-size: 0.86rem; margin: 0; }
-
-/* --- Klinik secimi --- */
-.panel-klinik-secim { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
-.panel-klinik-secim span { font-size: 0.84rem; font-weight: 600; color: var(--text-muted, #475569); }
-.panel-klinik-secim select {
-  font: inherit; padding: 8px 12px; border-radius: 10px;
-  border: 1px solid var(--border-color, #e2e8f0);
-  background: var(--bg-surface, #fff); color: inherit;
+.pnl-sekme-etkin { color: var(--pnl-metin); border-color: color-mix(in srgb, var(--pnl-vurgu) 55%, transparent); background: color-mix(in srgb, var(--pnl-vurgu) 10%, transparent); }
+.pnl-rozet {
+  min-width: 20px; padding: 1px 6px; border-radius: 999px;
+  background: var(--pnl-vurgu); color: var(--pnl-vurgu-metin); font-size: 11.5px; text-align: center;
 }
 
-/* --- Kartlar --- */
-.panel-kartlar {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 14px; margin-bottom: 24px;
+/* ── ONCELIK KARTLARI (PANO) ─────────────────────────────── */
+.pnl-oncelik { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.pnl-oncelik-kart {
+  display: flex; align-items: center; gap: 12px; text-align: left;
+  padding: 14px 16px; background: var(--pnl-yuzey-ust);
+  border: 1px solid var(--pnl-cizgi); border-radius: var(--pnl-yaricap);
+  color: inherit; font: inherit;
 }
-.panel-kart {
-  display: flex; flex-direction: column; gap: 4px;
-  border: 1px solid var(--border-color, #e2e8f0); border-radius: 16px;
-  padding: 18px; background: var(--bg-surface, #fff);
-}
-.panel-kart svg { color: var(--color-vet-secondary); }
-.panel-kart-deger { font-size: 1.7rem; font-weight: 800; line-height: 1.1; }
-.panel-kart-ad { font-size: 0.82rem; color: var(--text-muted, #475569); }
+.pnl-oncelik-eylem { cursor: pointer; }
+.pnl-oncelik-eylem:hover { border-color: color-mix(in srgb, var(--pnl-vurgu) 50%, transparent); }
+.pnl-oncelik-kart > div { flex: 1; min-width: 0; }
+.pnl-oncelik-baslik { margin: 0; font-size: 14.5px; font-weight: 600; line-height: 1.35; }
+.pnl-oncelik-alt { margin: 2px 0 0; font-size: 12.5px; color: var(--pnl-soluk); }
 
-.panel-uyari {
-  display: flex; gap: 10px; align-items: flex-start;
-  background: var(--color-vet-accent-light); border-radius: 14px;
-  padding: 14px 16px; margin-bottom: 26px; font-size: 0.9rem;
-  color: var(--color-vet-accent);
+/* ── SAYI KARTLARI (ikon kutulu) ─────────────────────────
+ *
+ * ⚠️ IKON KUTUSU RENKLI, SAYI DEGIL. Sayiyi renklendirmek "iyi/kotu" anlami
+ * yukler; oysa 0 duyuru kotu degil, sadece 0. Renk ikonda duruyor, sayi notr.
+ *
+ * ⚠️ TREND OKU YOK ve bu bir eksiklik degil KARAR. Tasarim taslaginda
+ * "▲%9 · dun: 11" gibi karsilastirmalar vardi; sunucu gunluk gecmis tutmuyor,
+ * yani o oklar uydurma olurdu. "Karsiligi olmayan bilgi verilmez" (Ahmet,
+ * 24.08.2026) burada da gecerli.
+ */
+.pnl-kartlar { display: grid; grid-template-columns: repeat(auto-fit, minmax(212px, 1fr)); gap: 14px; }
+.pnl-kart {
+  display: flex; align-items: center; gap: 13px; text-align: left; cursor: pointer;
+  padding: 16px 17px; background: var(--pnl-yuzey);
+  border: 1px solid var(--pnl-cizgi); border-radius: 14px;
+  color: inherit; font: inherit;
+  transition: border-color .12s ease, transform .12s ease;
 }
-.panel-uyari svg { flex-shrink: 0; margin-top: 2px; }
+.pnl-kart:hover { border-color: color-mix(in srgb, var(--pnl-vurgu) 45%, transparent); transform: translateY(-1px); }
+.pnl-kart-ikon {
+  flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px;
+  display: grid; place-items: center;
+  background: color-mix(in srgb, var(--pnl-vurgu) 13%, transparent);
+  color: var(--pnl-vurgu);
+}
+.pnl-kart-ikon-altin { background: color-mix(in srgb, var(--pnl-altin) 18%, transparent); color: color-mix(in srgb, var(--pnl-altin) 82%, #000); }
+.pnl-kart-ikon-uyari { background: color-mix(in srgb, var(--pnl-uyari) 16%, transparent); color: color-mix(in srgb, var(--pnl-uyari) 80%, #000); }
+:root[data-theme='dark'] .pnl-kart-ikon-altin { color: var(--pnl-altin); }
+:root[data-theme='dark'] .pnl-kart-ikon-uyari { color: var(--pnl-uyari); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .pnl-kart-ikon-altin { color: var(--pnl-altin); }
+  :root:not([data-theme='light']) .pnl-kart-ikon-uyari { color: var(--pnl-uyari); }
+}
+.pnl-kart-govde { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.pnl-kart-ad { font-size: 13px; font-weight: 600; color: var(--pnl-soluk); }
+.pnl-kart-deger { font-size: 27px; font-weight: 700; line-height: 1.05; letter-spacing: -.02em; }
+.pnl-kart-anlam { font-size: 11.5px; color: var(--pnl-soluk); line-height: 1.35; }
 
-/* --- Tablo --- */
-.panel-bolum h2 { font-size: 1.15rem; margin: 0 0 14px; }
-.panel-bos { color: var(--text-muted, #475569); font-size: 0.92rem; }
-/* ⚠️ Dar ekranda tablo kendi icinde kayiyor; sayfayi yana kaydirmiyor. */
-.panel-tablo { width: 100%; border-collapse: collapse; font-size: 0.9rem; display: block; overflow-x: auto; }
-.panel-tablo th {
-  text-align: left; padding: 11px 13px; white-space: nowrap;
-  background: var(--bg-secondary, #f8fafc); color: var(--text-muted, #475569);
-  font-weight: 700; font-size: 0.8rem;
+/* ── BOLUM KARTLARI (widget) ─────────────────────────────
+ *
+ * ⚠️ Pano tek sutun degil IZGARA. Onceki halinde her sey alt alta diziliyordu
+ * ve 1440 piksellik ekranda sagda genis bir bosluk kaliyordu; sayfa yarim
+ * gorunuyordu. Kartlar kendi genisliklerini istiyor, izgara yerlestiriyor.
+ */
+.pnl-pano-izgara {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+  align-items: start;
 }
-.panel-tablo th:first-child { border-top-left-radius: 10px; }
-.panel-tablo th:last-child { border-top-right-radius: 10px; }
-.panel-tablo td { padding: 12px 13px; border-bottom: 1px solid var(--border-color, #e2e8f0); }
+.pnl-genis { grid-column: span 2; }
+@media (max-width: 1100px) { .pnl-genis { grid-column: span 1; } }
 
-.panel-durum {
-  display: inline-block; font-size: 0.76rem; font-weight: 700;
-  padding: 4px 10px; border-radius: 999px;
-  background: var(--bg-secondary, #f8fafc); color: var(--text-muted, #475569);
+.pnl-widget {
+  background: var(--pnl-yuzey);
+  border: 1px solid var(--pnl-cizgi);
+  border-radius: 14px;
+  overflow: hidden;
 }
-.panel-durum.durum-confirmed { background: var(--color-vet-accent-light); color: var(--color-vet-accent); }
-.panel-durum.durum-requested,
-.panel-durum.durum-proposed { background: #fff4e0; color: #8a5a00; }
-.panel-durum.durum-cancelled,
-.panel-durum.durum-declined { background: #fdeaea; color: #a03030; }
+.pnl-widget-basi {
+  display: flex; align-items: center; gap: 9px;
+  padding: 14px 17px 12px;
+}
+.pnl-widget-basi h3 { margin: 0; font-size: 15px; font-weight: 700; }
+.pnl-widget-ikon { color: var(--pnl-vurgu); display: flex; }
+.pnl-widget-eylem {
+  margin-left: auto; display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 11px; font: inherit; font-size: 12.5px; font-weight: 600;
+  background: transparent; border: 1px solid var(--pnl-cizgi); border-radius: 8px;
+  color: inherit; cursor: pointer;
+}
+.pnl-widget-eylem:hover { background: color-mix(in srgb, var(--pnl-metin) 5%, transparent); }
+.pnl-widget-govde { padding: 0 17px 15px; }
+.pnl-widget-alt {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%; padding: 11px; font: inherit; font-size: 13px; font-weight: 600;
+  background: transparent; border: none; border-top: 1px solid var(--pnl-cizgi);
+  color: var(--pnl-vurgu); cursor: pointer;
+}
+.pnl-widget-alt:hover { background: color-mix(in srgb, var(--pnl-vurgu) 7%, transparent); }
 
-/* --- Yukleniyor --- */
-.panel-yukleniyor { min-height: 40vh; display: flex; align-items: center; justify-content: center; }
-.panel-yukleniyor::after {
-  content: ''; width: 30px; height: 30px; border-radius: 50%;
-  border: 3px solid var(--color-vet-accent-light, #e0f2f1);
-  border-top-color: var(--color-vet-secondary, #0C7A77);
-  animation: panel-don 0.7s linear infinite;
+/* Widget icindeki kompakt satirlar */
+.pnl-satirlar { list-style: none; margin: 0; padding: 0; }
+.pnl-satir {
+  display: flex; align-items: center; gap: 11px;
+  padding: 10px 0; border-bottom: 1px solid color-mix(in srgb, var(--pnl-cizgi) 60%, transparent);
 }
-@keyframes panel-don { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { .panel-yukleniyor::after { animation: none; opacity: 0.5; } }
+.pnl-satir:last-child { border-bottom: none; }
+.pnl-satir-govde { flex: 1; min-width: 0; }
+.pnl-satir-ad { margin: 0; font-size: 13.5px; font-weight: 600; }
+.pnl-satir-alt { margin: 1px 0 0; font-size: 12px; color: var(--pnl-soluk); }
+.pnl-satir-sag { flex-shrink: 0; text-align: right; }
+.pnl-saat { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 46px; }
+
+.pnl-gun-rozet {
+  display: inline-block; padding: 3px 9px; border-radius: 999px;
+  font-size: 11.5px; font-weight: 600; white-space: nowrap;
+  background: color-mix(in srgb, var(--pnl-uyari) 17%, transparent);
+  color: color-mix(in srgb, var(--pnl-uyari) 82%, #000);
+}
+.pnl-gun-rozet-yakin { background: color-mix(in srgb, var(--pnl-tehlike) 15%, transparent); color: color-mix(in srgb, var(--pnl-tehlike) 82%, #000); }
+:root[data-theme='dark'] .pnl-gun-rozet { color: var(--pnl-uyari); }
+:root[data-theme='dark'] .pnl-gun-rozet-yakin { color: var(--pnl-tehlike); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .pnl-gun-rozet { color: var(--pnl-uyari); }
+  :root:not([data-theme='light']) .pnl-gun-rozet-yakin { color: var(--pnl-tehlike); }
+}
+
+.pnl-mini-izgara { display: grid; grid-template-columns: repeat(auto-fit, minmax(78px, 1fr)); gap: 10px; }
+.pnl-mini {
+  text-align: center; padding: 11px 6px;
+  border: 1px solid var(--pnl-cizgi); border-radius: 10px;
+}
+.pnl-mini-deger { display: block; font-size: 20px; font-weight: 700; line-height: 1.1; }
+.pnl-mini-ad { display: block; font-size: 11.5px; color: var(--pnl-soluk); margin-top: 2px; }
+
+/* ── RANDEVU LISTESI ─────────────────────────────────────── */
+.pnl-randevu-listesi { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.pnl-randevu {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 14px 16px; background: var(--pnl-yuzey-ust);
+  border: 1px solid var(--pnl-cizgi); border-radius: var(--pnl-yaricap);
+}
+.pnl-randevu-islemde { opacity: .55; }
+.pnl-randevu-bilgi { flex: 1; min-width: 0; }
+.pnl-randevu-ust { display: flex; align-items: center; gap: 9px; margin-bottom: 6px; flex-wrap: wrap; }
+.pnl-randevu-kim { margin: 0 0 2px; font-size: 14.5px; }
+.pnl-randevu-detay { margin: 0 0 4px; font-size: 13px; color: var(--pnl-soluk); }
+.pnl-randevu-anlam { margin: 0; font-size: 12.5px; color: var(--pnl-soluk); line-height: 1.45; }
+.pnl-randevu-not {
+  margin: 8px 0 0; padding: 8px 10px; font-size: 12.5px; line-height: 1.5;
+  background: color-mix(in srgb, var(--pnl-metin) 4%, transparent);
+  border-radius: 8px;
+}
+.pnl-randevu-not span { font-weight: 600; }
+.pnl-randevu-eylem { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; align-items: stretch; }
+.pnl-kapali-not { font-size: 12px; color: var(--pnl-soluk); max-width: 140px; text-align: right; line-height: 1.4; }
+.pnl-goreceli { font-size: 12px; color: var(--pnl-soluk); }
+.pnl-soluk { color: var(--pnl-soluk); font-weight: 400; }
+
+/* ── DURUM ROZETLERI ─────────────────────────────────────── */
+.pnl-durum {
+  display: inline-block; padding: 3px 9px; border-radius: 999px;
+  font-size: 12px; font-weight: 600; white-space: nowrap;
+  background: color-mix(in srgb, var(--pnl-metin) 8%, transparent);
+}
+.pnl-durum-requested { background: color-mix(in srgb, var(--pnl-uyari) 20%, transparent); color: color-mix(in srgb, var(--pnl-uyari) 78%, #000); }
+.pnl-durum-proposed  { background: color-mix(in srgb, var(--pnl-altin) 18%, transparent); color: color-mix(in srgb, var(--pnl-altin) 72%, #000); }
+.pnl-durum-confirmed { background: color-mix(in srgb, var(--pnl-vurgu) 20%, transparent); color: var(--pnl-vurgu-koyu); }
+.pnl-durum-done      { background: color-mix(in srgb, var(--pnl-basarili) 18%, transparent); color: color-mix(in srgb, var(--pnl-basarili) 78%, #000); }
+.pnl-durum-cancelled { background: color-mix(in srgb, var(--pnl-metin) 10%, transparent); color: var(--pnl-soluk); }
+.pnl-durum-declined  { background: color-mix(in srgb, var(--pnl-tehlike) 15%, transparent); color: color-mix(in srgb, var(--pnl-tehlike) 78%, #000); }
+:root[data-theme='dark'] .pnl-durum-requested { color: var(--pnl-uyari); }
+:root[data-theme='dark'] .pnl-durum-proposed  { color: var(--pnl-altin); }
+:root[data-theme='dark'] .pnl-durum-confirmed { color: var(--pnl-vurgu); }
+:root[data-theme='dark'] .pnl-durum-done      { color: var(--pnl-basarili); }
+:root[data-theme='dark'] .pnl-durum-declined  { color: var(--pnl-tehlike); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .pnl-durum-requested { color: var(--pnl-uyari); }
+  :root:not([data-theme='light']) .pnl-durum-proposed  { color: var(--pnl-altin); }
+  :root:not([data-theme='light']) .pnl-durum-confirmed { color: var(--pnl-vurgu); }
+  :root:not([data-theme='light']) .pnl-durum-done      { color: var(--pnl-basarili); }
+  :root:not([data-theme='light']) .pnl-durum-declined  { color: var(--pnl-tehlike); }
+}
+
+/* ── KISI LISTELERI (ekip, musteri, hasta) ───────────────── */
+.pnl-kisi-listesi { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.pnl-kisi {
+  display: flex; gap: 13px; align-items: flex-start;
+  padding: 13px 15px; background: var(--pnl-yuzey-ust);
+  border: 1px solid var(--pnl-cizgi); border-radius: var(--pnl-yaricap);
+}
+.pnl-avatar {
+  flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: color-mix(in srgb, var(--pnl-vurgu) 14%, transparent);
+  color: var(--pnl-vurgu);
+}
+.pnl-kisi-bilgi { min-width: 0; }
+.pnl-kisi-ad { margin: 0 0 1px; font-size: 14.5px; font-weight: 600; display: flex; align-items: center; gap: 7px; }
+.pnl-kisi-rol { margin: 0 0 3px; font-size: 13px; color: var(--pnl-vurgu); font-weight: 600; }
+.pnl-kisi-anlam { margin: 0; font-size: 12.5px; color: var(--pnl-soluk); line-height: 1.45; }
+.pnl-kisi-ek { margin: 3px 0 0; font-size: 12.5px; color: var(--pnl-soluk); }
+.pnl-etiket {
+  font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 999px;
+  background: color-mix(in srgb, var(--pnl-vurgu) 16%, transparent); color: var(--pnl-vurgu);
+}
+
+/* ── RAPOR ───────────────────────────────────────────────── */
+.pnl-rapor-izgara { display: grid; grid-template-columns: repeat(auto-fit, minmax(178px, 1fr)); gap: 10px; }
+.pnl-rapor-kart {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 13px 15px; background: var(--pnl-yuzey-ust);
+  border: 1px solid var(--pnl-cizgi); border-radius: var(--pnl-yaricap);
+}
+.pnl-rapor-deger { font-size: 23px; font-weight: 700; line-height: 1.1; }
+.pnl-rapor-ad { font-size: 13.5px; font-weight: 600; }
+.pnl-rapor-anlam { font-size: 12px; color: var(--pnl-soluk); line-height: 1.4; }
+.pnl-ozet {
+  margin: 12px 0 0; padding: 12px 15px; font-size: 13.5px; line-height: 1.6;
+  border: 1px solid var(--pnl-cizgi); border-radius: var(--pnl-yaricap);
+  background: var(--pnl-yuzey-ust);
+}
+.pnl-puan { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 600; color: var(--pnl-uyari); }
+
+.pnl-yorum-listesi { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.pnl-yorum {
+  padding: 12px 15px; background: var(--pnl-yuzey-ust);
+  border: 1px solid var(--pnl-cizgi); border-radius: var(--pnl-yaricap);
+}
+.pnl-yorum-ust { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; font-size: 13px; flex-wrap: wrap; }
+.pnl-yorum p { margin: 0; font-size: 13.5px; line-height: 1.55; }
+
+/* ── DURUM KUTULARI ──────────────────────────────────────── */
+.pnl-kutu {
+  max-width: 460px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 30px 26px; background: var(--pnl-yuzey-ust);
+  border: 1px solid var(--pnl-cizgi); border-radius: 14px;
+}
+.pnl-kutu h2 { margin: 0; font-size: 19px; }
+.pnl-kutu p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--pnl-soluk); }
+.pnl-not { font-size: 13px !important; }
+
+.pnl-bos {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 34px 22px; text-align: center;
+  border: 1px dashed var(--pnl-cizgi); border-radius: var(--pnl-yaricap);
+  color: var(--pnl-soluk);
+}
+.pnl-bos-baslik { margin: 4px 0 0; font-size: 14.5px; font-weight: 600; color: var(--pnl-metin); }
+.pnl-bos-aciklama { margin: 0; font-size: 13px; line-height: 1.55; max-width: 44ch; }
+
+.pnl-uyari, .pnl-hata {
+  display: flex; gap: 11px; align-items: flex-start;
+  padding: 13px 15px; margin-top: 14px;
+  border-radius: var(--pnl-yaricap); font-size: 13.5px; line-height: 1.55;
+}
+.pnl-uyari { background: color-mix(in srgb, var(--pnl-uyari) 12%, transparent); border: 1px solid color-mix(in srgb, var(--pnl-uyari) 30%, transparent); }
+.pnl-uyari-bilgi { background: color-mix(in srgb, var(--pnl-vurgu) 10%, transparent); border-color: color-mix(in srgb, var(--pnl-vurgu) 28%, transparent); }
+.pnl-uyari p { margin: 0; }
+.pnl-uyari-baslik { font-weight: 600; margin-bottom: 2px !important; }
+.pnl-uyari-alt { margin-top: 4px !important; font-size: 12.5px; color: var(--pnl-soluk); }
+
+.pnl-hata {
+  background: color-mix(in srgb, var(--pnl-tehlike) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--pnl-tehlike) 28%, transparent);
+  align-items: center;
+}
+.pnl-hata > div { flex: 1; }
+.pnl-hata p { margin: 0; }
+.pnl-hata-baslik { font-weight: 600; }
+.pnl-hata-ayrinti { font-size: 12.5px; color: var(--pnl-soluk); margin-top: 2px !important; }
+.pnl-hata-kucuk { padding: 10px 13px; font-size: 13px; }
+
+/* ── YUKLENIYOR ──────────────────────────────────────────── */
+.pnl-yukleniyor {
+  display: flex; align-items: center; justify-content: center; gap: 11px;
+  padding: 46px 20px; color: var(--pnl-soluk); font-size: 13.5px;
+}
+.pnl-halka {
+  width: 17px; height: 17px; border-radius: 50%;
+  border: 2px solid var(--pnl-cizgi); border-top-color: var(--pnl-vurgu);
+  animation: pnl-don .8s linear infinite;
+}
+@keyframes pnl-don { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .pnl-halka { animation-duration: 2.4s; }
+  .pnl-menu-ogesi, .pnl-dugme, .pnl-kart { transition: none; }
+}
+
+/* ── GIRIS EKRANI ────────────────────────────────────────── */
+.pnl-giris {
+  width: 100%; max-width: 372px;
+  padding: 30px 28px; background: var(--pnl-yuzey-ust);
+  border: 1px solid var(--pnl-cizgi); border-radius: 14px;
+}
+.pnl-giris h1 { margin: 0 0 4px; font-size: 21px; }
+.pnl-giris-alt { margin: 0 0 20px; font-size: 13.5px; line-height: 1.55; color: var(--pnl-soluk); }
+.pnl-alan { display: flex; flex-direction: column; gap: 5px; margin-bottom: 13px; }
+.pnl-alan label { font-size: 13px; font-weight: 600; }
+.pnl-alan input {
+  font: inherit; font-size: 14.5px; padding: 9px 11px;
+  border: 1px solid var(--pnl-cizgi); border-radius: var(--pnl-yaricap);
+  background: var(--pnl-bg); color: inherit;
+}
+.pnl-alan input:focus-visible { outline: 2px solid var(--pnl-vurgu); outline-offset: 1px; }
+.pnl-giris-dugme { width: 100%; justify-content: center; margin-top: 4px; }
+.pnl-giris-not { margin: 16px 0 0; font-size: 12.5px; line-height: 1.55; color: var(--pnl-soluk); text-align: center; }
+
+/* Klavyeyle gezinen icin her tiklanabilir oge gorunur olmali. */
+.pnl-kabuk button:focus-visible,
+.pnl-kabuk select:focus-visible,
+.pnl-kabuk a:focus-visible { outline: 2px solid var(--pnl-vurgu); outline-offset: 2px; border-radius: 6px; }
+
+/* ── DAR EKRAN ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .pnl-menu-dugme { display: inline-flex; }
+  .pnl-marka-etiket { display: none; }
+  .pnl-ust-orta { display: none; }
+  .pnl-marka { width: auto; border-right: none; padding-right: 0; }
+  .pnl-ust-sag { margin-left: auto; }
+  .pnl-kullanici-ad { max-width: 130px; }
+  .pnl-dugme-metin { display: none; }
+
+  /*
+   * ⚠️ Yan menu dar ekranda ACILIR PANEL. `display:none` degil, cunku menu
+   * kapaliyken de DOM'da kalmasi gerekiyor: acilir acilmaz odak ve ekran
+   * okuyucu sirasi bozulmasin.
+   */
+  .pnl-yan {
+    position: fixed; inset: 60px 0 auto 0;
+    width: 100%; min-height: 0; z-index: 15;
+    border-right: none; border-bottom: 1px solid var(--pnl-cizgi);
+    max-height: 0; padding-top: 0; padding-bottom: 0;
+    overflow: hidden; visibility: hidden;
+    transition: max-height .18s ease, visibility 0s linear .18s;
+  }
+  .pnl-yan-acik {
+    max-height: calc(100dvh - 60px); overflow-y: auto; visibility: visible;
+    padding-top: 16px; padding-bottom: 16px;
+    transition: max-height .18s ease, visibility 0s;
+  }
+  .pnl-icerik { padding: 18px 16px 48px; }
+  .pnl-randevu { flex-direction: column; gap: 12px; }
+  .pnl-randevu-eylem { flex-direction: row; width: 100%; }
+  .pnl-randevu-eylem .pnl-dugme { flex: 1; justify-content: center; }
+  .pnl-kapali-not { max-width: none; text-align: left; }
+}
+
+@media (max-width: 480px) {
+  .pnl-ust { padding: 10px 14px; gap: 10px; }
+  .pnl-kullanici { display: none; }
+  .pnl-bolum-basi { flex-direction: column; gap: 10px; }
+  .pnl-bolum-basi > button { margin-left: 0; }
+}
+
+/* ── EK BICIMLER: defter, web sitesi, dipnot ─────────────── */
+
+/* ⚠️ Tiklanamayan sayi karti: fare imleci degismesin, cunku gidecek yer yok. */
+.pnl-kart-durgun { cursor: default; }
+.pnl-kart-durgun:hover { border-color: var(--pnl-cizgi); transform: none; }
+
+.pnl-widget-bos {
+  margin: 4px 0 2px; padding: 14px 0;
+  font-size: 13px; line-height: 1.55; color: var(--pnl-soluk);
+}
+.pnl-widget-not {
+  margin: 12px 0 0; font-size: 12.5px; line-height: 1.55; color: var(--pnl-soluk);
+}
+
+.pnl-tutar { font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pnl-arti { color: var(--pnl-basarili); }
+.pnl-eksi { color: var(--pnl-tehlike); }
+
+.pnl-adres { margin: 0 0 10px; font-size: 13.5px; }
+.pnl-adres span { color: var(--pnl-soluk); }
+.pnl-adres a { color: var(--pnl-vurgu); font-weight: 600; text-decoration: none; }
+.pnl-adres a:hover { text-decoration: underline; }
+.pnl-slogan {
+  margin: 0 0 12px; padding: 10px 13px;
+  font-size: 13.5px; font-style: italic; line-height: 1.5;
+  background: color-mix(in srgb, var(--pnl-vurgu) 7%, transparent);
+  border-radius: 9px;
+}
+
+.pnl-onay { flex-shrink: 0; display: flex; }
+.pnl-onay-tamam { color: var(--pnl-basarili); }
+.pnl-onay-eksik { color: var(--pnl-soluk); }
+
+/* Widget basligindaki baglanti, dugmelerle ayni bicimde durmali. */
+a.pnl-widget-eylem { text-decoration: none; }
+
+.pnl-dipnot {
+  display: flex; align-items: flex-start; gap: 8px;
+  margin: 18px 0 0; padding: 12px 15px;
+  font-size: 12.5px; line-height: 1.55; color: var(--pnl-soluk);
+  border: 1px dashed var(--pnl-cizgi); border-radius: var(--pnl-yaricap);
+}
+.pnl-dipnot svg { flex-shrink: 0; margin-top: 2px; }
+
+.pnl-gizli-ikon { display: none; }
+
+/* Bolum ici basliklar artik ust cubukta; bolum basi yalniz aciklama tasiyor. */
+.pnl-bolum-basi h2 { font-size: 18px; }
+
+@media (max-width: 900px) {
+  .pnl-ust { padding: 14px 16px; }
+  .pnl-ust-baslik { font-size: 19px; }
+  .pnl-icerik { padding: 0 16px 48px; }
+  .pnl-kullanici-kutu { padding: 5px; }
+  .pnl-kullanici { display: none; }
+
+  /*
+   * ⚠️ Dar ekranda yan menu acilir panel. Koyu zemin korunuyor: menu acildiginda
+   * icerikten net ayrilmasi gerekiyor, yoksa iki katman ic ice gecmis gorunuyor.
+   */
+  .pnl-yan {
+    position: fixed; inset: 0 auto 0 0;
+    width: min(290px, 84vw); min-height: 100dvh; z-index: 30;
+    transform: translateX(-100%);
+    transition: transform .2s ease;
+    box-shadow: 0 0 40px rgba(0,0,0,.35);
+  }
+  .pnl-yan-acik { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pnl-yan { transition: none; }
+  .pnl-kart { transition: none; }
+}

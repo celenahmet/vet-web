@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy, useEffect, type ReactNode } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { ONCEDEN_URETILMIS } from './onizleme';
@@ -63,6 +63,26 @@ const Panel = lazy(() => import('./panel/Panel'));
  * render'i saf olmali. `useLocation().key` ilk girişte 'default' oluyor, sonraki
  * gezinmelerde degisiyor. Yan etkisiz ve kac kez render edildiginden bagimsiz.
  */
+/**
+ * PAZARLAMA KABUGU YALNIZ PAZARLAMA SAYFALARINDA
+ *
+ * ⚠️ NEDEN VAR (Ahmet, 24.08.2026): *"web panel tasarimi ayri olmali yani bizim
+ * sitenin icerisine gomulmus gibi olmamalis"*. Panel ilk halinde site menusunun
+ * ALTINDA aciliyordu: ustte "Ozellikler / Fiyatlandirma / Blog" ve "Cok Yakinda"
+ * dugmesi duruyordu. Klinik calisani icin bunlarin hicbiri anlamli degil; o
+ * ekranda satis menusu degil IS araci olmali.
+ *
+ * ⚠️ Bu bir gizleme degil AYIRMA: panelin kendi ust cubugu, kendi yan menusu ve
+ * kendi renk kurgusu var. Pazarlama menusu orada "kapatilmis" degil, hic yok.
+ */
+const PANEL_YOLU = '/panel';
+
+function PazarlamaKabugu({ children }: { children: ReactNode }) {
+  const { pathname } = useLocation();
+  if (pathname === PANEL_YOLU || pathname.startsWith(PANEL_YOLU + '/')) return null;
+  return <>{children}</>;
+}
+
 function Yedek() {
   const { key } = useLocation();
   if (key === 'default' && ONCEDEN_URETILMIS) {
@@ -75,7 +95,7 @@ function App() {
   return (
     <div className="app-container">
       <ScrollToTop />
-      <Navbar />
+      <PazarlamaKabugu><Navbar /></PazarlamaKabugu>
       {/*
         ⚠️ ALT BILGI DE ARA DURUMUN ICINDE (24.08.2026). Once <Suspense> yalniz
         <main> icindeydi ve alt bilgi disinda kaliyordu. Olculdu: ara durumda alt
@@ -148,7 +168,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-        <Footer />
+        <PazarlamaKabugu><Footer /></PazarlamaKabugu>
       </Suspense>
     </div>
   );

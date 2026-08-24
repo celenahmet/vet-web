@@ -1,0 +1,175 @@
+import { useCallback, useEffect, useState } from 'react';
+import { Check, X, CalendarCheck, Ban, RefreshCw } from 'lucide-react';
+
+import { randevulariOku, randevuDurumunuDegistir, type Randevu } from './veri';
+import { RANDEVU_DURUMU, IZINLI_GECISLER, tarihYaz, gorecelizaman } from './sozluk';
+import Bos from './Bos';
+import Yukleniyor from './Yukleniyor';
+import Hata from './Hata';
+
+/**
+ * RANDEVULAR — panelin is yapan ekrani
+ *
+ * ⚠️ NEDEN VAR (Ahmet, 24.08.2026): *"butonlari yok"*. Panelin ilk surumu
+ * randevulari LISTELIYORDU ama hicbir sey yapamiyordu. Klinik icin randevu
+ * ekrani okunacak bir tablo degil, onaylanacak bir kuyruk.
+ *
+ * ⚠️ DUGME SAYISI SUNUCUNUN KURALINDAN GELIYOR. `IZINLI_GECISLER` sunucudaki
+ * makinenin kopyasi; "Onayla" yalnizca yeni talepte, "Geldi" yalnizca onaylanmis
+ * randevuda cikiyor. Bu bir yetki katmani DEGIL: kopya eskise bile karari sunucu
+ * veriyor ve gecersiz gecisi reddettigi olculdu.
+ *
+ * ⚠️ IYIMSER GUNCELLEME YOK. Islem bitene kadar satir kilitli ve donuyor; sunucu
+ * onaylamadan ekranda "Onaylandi" yazmiyor. Sebep: randevu ikinci bir calisan
+ * tarafindan ayni anda degistirilmis olabilir. Ekranin dogru gorunmesi degil
+ * DOGRU olmasi gerekiyor.
+ */
+export default function PanelRandevular({ klinik }: { klinik: string }) {
+  const [liste, setListe] = useState<Randevu[] | null>(null);
+  const [hata, setHata] = useState<string | null>(null);
+  const [islemde, setIslemde] = useState<string | null>(null);
+  const [islemHatasi, setIslemHatasi] = useState<string | null>(null);
+  const [suzgec, setSuzgec] = useState<'bekleyen' | 'tumu'>('bekleyen');
+
+  const yukle = useCallback(() => {
+    setHata(null);
+    randevulariOku(klinik)
+      .then(setListe)
+      .catch((e: { message?: string }) => { setListe([]); setHata(e?.message ?? ''); });
+  }, [klinik]);
+
+  useEffect(() => { setListe(null); yukle(); }, [yukle]);
+
+  async function degistir(randevu: Randevu, durum: string) {
+    setIslemde(randevu.id);
+    setIslemHatasi(null);
+    try {
+      await randevuDurumunuDegistir(randevu.id, durum);
+      /*
+       * ⚠️ Tek satiri elde guncellemek yerine listeyi sunucudan tekrar okuyoruz.
+       * Durum degisince sunucu tarafinda baska sey de degisebiliyor (bildirim,
+       * sayaclar); elde guncellenen ekran bir sure sonra gercekle ayrisirdi.
+       */
+      const taze = await randevulariOku(klinik);
+      setListe(taze);
+    } catch (e) {
+      setIslemHatasi((e as { message?: string })?.message ?? '');
+    } finally {
+      setIslemde(null);
+    }
+  }
+
+  if (liste === null) return <Yukleniyor />;
+  if (hata) return <Hata mesaj={hata} tekrar={yukle} />;
+
+  const bekleyenDurumlar = new Set(['requested', 'confirmed', 'proposed']);
+  const gosterilen = suzgec === 'bekleyen' ? liste.filter((r) => bekleyenDurumlar.has(r.status)) : liste;
+  const bekleyenSayisi = liste.filter((r) => bekleyenDurumlar.has(r.status)).length;
+
+  return (
+    <section className="pnl-bolum">
+      <header className="pnl-bolum-basi">
+        <div>
+          <h2>Randevular</h2>
+          <p className="pnl-aciklama">
+            Hayvan sahiplerinin gönderdiği randevu talepleri burada. Onayladığınız randevu
+            hayvan sahibine bildirim olarak gider.
+          </p>
+        </div>
+        <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={yukle}>
+          <RefreshCw size={15} /> Yenile
+        </button>
+      </header>
+
+      <div className="pnl-sekmeler" role="tablist">
+        <button
+          type="button" role="tab" aria-selected={suzgec === 'bekleyen'}
+          className={suzgec === 'bekleyen' ? 'pnl-sekme pnl-sekme-etkin' : 'pnl-sekme'}
+          onClick={() => setSuzgec('bekleyen')}>
+          İşlem bekleyenler {bekleyenSayisi > 0 ? <span className="pnl-rozet">{bekleyenSayisi}</span> : null}
+        </button>
+        <button
+          type="button" role="tab" aria-selected={suzgec === 'tumu'}
+          className={suzgec === 'tumu' ? 'pnl-sekme pnl-sekme-etkin' : 'pnl-sekme'}
+          onClick={() => setSuzgec('tumu')}>
+          Tüm randevular ({liste.length})
+        </button>
+      </div>
+
+      {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
+
+      {gosterilen.length === 0 ? (
+        <Bos
+          baslik={suzgec === 'bekleyen' ? 'Şu an işlem bekleyen randevu yok' : 'Henüz randevu yok'}
+          aciklama={
+            suzgec === 'bekleyen'
+              ? 'Yeni bir talep geldiğinde burada görünür ve onayınızı bekler.'
+              : 'Hayvan sahipleri uygulamadan randevu istediğinde talepler buraya düşer.'
+          }
+        />
+      ) : (
+        <ul className="pnl-randevu-listesi">
+          {gosterilen.map((r) => {
+            const durum = RANDEVU_DURUMU[r.status];
+            const gecisler = IZINLI_GECISLER[r.status] ?? [];
+            const zaman = r.starts_at ?? r.proposed_at;
+            const goreceli = gorecelizaman(zaman);
+            const calisiyor = islemde === r.id;
+
+            return (
+              <li key={r.id} className={calisiyor ? 'pnl-randevu pnl-randevu-islemde' : 'pnl-randevu'}>
+                <div className="pnl-randevu-bilgi">
+                  <div className="pnl-randevu-ust">
+                    <span className={`pnl-durum pnl-durum-${r.status}`}>{durum?.ad ?? r.status}</span>
+                    {goreceli ? <span className="pnl-goreceli">{goreceli}</span> : null}
+                  </div>
+
+                  <p className="pnl-randevu-kim">
+                    <strong>{r.owner_name || 'İsim belirtilmemiş'}</strong>
+                    {r.pet_name ? <> · {r.pet_name}</> : <span className="pnl-soluk"> · hayvan bilgisi girilmemiş</span>}
+                  </p>
+
+                  <p className="pnl-randevu-detay">
+                    {r.service_name || 'Hizmet belirtilmemiş'} · {tarihYaz(zaman)}
+                  </p>
+
+                  {durum ? <p className="pnl-randevu-anlam">{durum.anlam}</p> : null}
+
+                  {r.note ? (
+                    <p className="pnl-randevu-not">
+                      <span>Hayvan sahibinin notu:</span> {r.note}
+                    </p>
+                  ) : null}
+                </div>
+
+                {gecisler.length ? (
+                  <div className="pnl-randevu-eylem">
+                    {gecisler.map((g) => (
+                      <button
+                        key={g.durum}
+                        type="button"
+                        disabled={calisiyor}
+                        className={`pnl-dugme pnl-dugme-${g.tur}`}
+                        onClick={() => degistir(r, g.durum)}>
+                        {g.durum === 'confirmed' ? <Check size={15} /> : null}
+                        {g.durum === 'done' ? <CalendarCheck size={15} /> : null}
+                        {g.durum === 'declined' ? <X size={15} /> : null}
+                        {g.durum === 'cancelled' ? <Ban size={15} /> : null}
+                        {g.etiket}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="pnl-randevu-eylem">
+                    {/* ⚠️ Bos birakilmiyor: "burada neden dugme yok" sorusunu ekran cevapliyor. */}
+                    <span className="pnl-kapali-not">Bu randevu kapandı, yapılacak işlem yok.</span>
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </section>
+  );
+}

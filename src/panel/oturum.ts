@@ -21,27 +21,62 @@ export type KlinikUyeligi = {
 /**
  * Kullanicinin uye oldugu klinikler.
  *
- * ⚠️ `clinic_members` tablosuna DOGRUDAN okuma yapiliyor ve bu guvenli: tablo
- * RLS altinda ve politika yalnizca kendi satirlarini gosteriyor. Baskasinin
- * uyeliklerini okumaya calismak bos kume donduruyor, hata degil — bu yuzden
- * bos sonucu "yetki yok" diye degil "uyelik yok" diye yorumluyoruz.
+ * ⚠️ BURADA BIR HATA VARDI VE OLCULEREK BULUNDU (Ahmet, 24.08.2026:
+ * *"niye o kadar test gozukuyor onlarin isimleri yok mu"*). Klinik seciminde
+ * ayni klinik YEDI KEZ listeleniyordu.
+ *
+ * Sebep: sorgu `clinic_members` tablosundan doniyordu ve her SATIRI bir klinik
+ * sayiyordu. Oysa donen satirlar klinikler degil, tek bir klinigin YEDI
+ * PERSONELIYDI. Olculdu:
+ *   7 satir · 1 ayri klinik · 7 ayri kullanici · bunlarin 1'i giren kisi
+ *
+ * ⚠️ ESKI YORUMUM YANLISTI, olcum yanlisladi. "Politika yalnizca kendi
+ * satirlarini gosteriyor" yazmistim; oyle degil. Politika, uye oldugunuz
+ * KLINIGIN TUM UYELERINI gosteriyor ve bu DOGRU: ekip yonetimi ekrani calisma
+ * arkadaslarinizi listeleyebilsin diye boyle. Yanlis olan politika degil,
+ * politikanin ne dondugunu olcmeden varsaymamdi.
+ *
+ * ⚠️ GUVENLIK ACIGI DEGILDI: donen yedi satirin hepsi kullanicinin KENDI
+ * kliniginden. Baska bir klinigin uyeligi hic gorunmuyor, yani kimse yabanci
+ * bir klinige "gecemiyordu"; yalnizca kendi klinigini yedi kez goruyordu.
+ *
+ * ⚠️ `.eq('user_id', ...)` SUS DEGIL ANLAM: "benim uyeliklerim" ile "gorebildigim
+ * uyelikler" farkli sorular. Ekranda sorulan birincisi.
  */
 export async function klinikUyelikleri(): Promise<KlinikUyeligi[]> {
+  const { data: kullanici, error: kullaniciHatasi } = await istemci.auth.getUser();
+  if (kullaniciHatasi) throw kullaniciHatasi;
+  const kimlik = kullanici.user?.id;
+  if (!kimlik) return [];
+
   const { data, error } = await istemci
     .from('clinic_members')
     .select('clinic_id, role, clinics(name)')
+    .eq('user_id', kimlik)
     .order('created_at', { ascending: true });
 
   if (error) throw error;
 
-  return (data ?? []).map((satir) => {
+  /*
+   * ⚠️ Tekillestirme, `user_id` suzgeci VARKEN de duruyor. Bir kullanicinin ayni
+   * klinikte birden fazla satiri olmasi bugun beklenmiyor; ama ekranda ayni ismi
+   * iki kez gostermenin bedeli, birkac satirlik korumadan yuksek. Ilk satir
+   * kaliyor: `created_at` artan siralandigi icin bu EN ESKI uyelik.
+   */
+  const gorulen = new Set<string>();
+  const liste: KlinikUyeligi[] = [];
+  for (const satir of data ?? []) {
+    const id = satir.clinic_id as string;
+    if (gorulen.has(id)) continue;
+    gorulen.add(id);
     const klinik = satir.clinics as unknown as { name?: string } | null;
-    return {
-      clinic_id: satir.clinic_id as string,
+    liste.push({
+      clinic_id: id,
       role: (satir.role as string) ?? '',
-      clinic_name: klinik?.name ?? 'Klinik',
-    };
-  });
+      clinic_name: klinik?.name ?? 'Kliniğiniz',
+    });
+  }
+  return liste;
 }
 
 /** Panelde son secilen klinik. Yalnizca kolaylik; yetkiyle ilgisi yok. */
