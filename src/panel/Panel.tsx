@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { LogOut, Building2, Menu, X, Bell, ChevronDown } from 'lucide-react';
+import { LogOut, Building2, Menu, X, ChevronDown } from 'lucide-react';
 import type { Session } from '@supabase/supabase-js';
 
 import SEO from '../components/SEO';
@@ -23,6 +23,7 @@ import {
   PanelProfil, PanelAyarlar, PanelDuyurular, PanelBildirimler, PanelDegerlendirmeler,
 } from './PanelBolumler';
 import { okunmamisBildirimSayisi } from './veri';
+import BildirimPenceresi from './BildirimPenceresi';
 import Yukleniyor from './Yukleniyor';
 import './panel.css';
 
@@ -300,19 +301,17 @@ export default function Panel() {
 
         <div className="pnl-ust-sag">
           {/*
-            ⚠️ ZIL CALISIYOR. Rozet `notifications.read_at` bos olan satirlarin
-            sayisi; uydurma degil, olculmus. Tiklayinca bildirimler bolumune
-            gidiyor, yani rozet bir yere GOTURUYOR.
+            ⚠️ ZIL YONLENDIRMIYOR, PENCERE ACIYOR (Ahmet, 25.08.2026). Once
+            tiklayinca bolum degisiyordu: kullanici randevu onaylarken zile
+            bakmak istese bulundugu ekrani kaybediyordu. Bildirim yan bilgi;
+            ona bakmak icin ise ara vermek gerekmemeli. Tam listeye gitmek yine
+            mumkun ama artik ISTEGE BAGLI.
           */}
-          <button
-            type="button"
-            className="pnl-ust-ikon"
-            onClick={() => bolumeGit('bildirimler')}
-            aria-label={okunmamis > 0 ? `Bildirimler, ${okunmamis} okunmamış` : 'Bildirimler'}
-            title="Bildirimler">
-            <Bell size={18} aria-hidden="true" />
-            {okunmamis > 0 ? <span className="pnl-zil-rozet" aria-hidden="true">{okunmamis > 99 ? '99+' : okunmamis}</span> : null}
-          </button>
+          <BildirimPenceresi
+            okunmamis={okunmamis}
+            sayiyiTazele={() => okunmamisBildirimSayisi().then(setOkunmamis).catch(() => {})}
+            tumunuGor={() => bolumeGit('bildirimler')}
+          />
 
           <div className="pnl-kullanici-kutu">
             <span className="pnl-avatar-bas" aria-hidden="true">

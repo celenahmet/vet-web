@@ -634,3 +634,24 @@ export async function duyuruOlusturVeGonder(
   if (gonderimHatasi) throw gonderimHatasi;
   return (sayi as number) ?? 0;
 }
+
+/**
+ * Bildirimleri okundu isaretler.
+ *
+ * ⚠️ SUNUCU YALNIZ `read_at` KOLONUNU ACIYOR: `grant update (read_at) on
+ * notifications` (migration 0028). Yani istemci bir bildirimin metnini ya da
+ * sahibini degistiremiyor, sadece okundu diyebiliyor. Kolon duzeyinde
+ * yetkilendirmenin ders niteliginde bir ornegi; satir politikasi da
+ * `user_id = auth.uid()` diyor.
+ *
+ * ⚠️ Yalniz OKUNMAMIS satirlar guncelleniyor. Hepsini yazmak, eski
+ * bildirimlerin okunma zamanini bugune cekerdi ve "ne zaman okudum" bilgisi
+ * bozulurdu.
+ */
+export async function bildirimleriOkunduIsaretle(): Promise<void> {
+  const { error } = await istemci
+    .from('notifications')
+    .update({ read_at: new Date().toISOString() })
+    .is('read_at', null);
+  if (error) throw error;
+}
