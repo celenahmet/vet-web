@@ -37,13 +37,6 @@ export const brandConfig = {
     { ad: 'Instagram', kullanici: 'veteritoapp', adres: 'https://www.instagram.com/veteritoapp/', altBilgide: true },
     { ad: 'X', kullanici: 'veterito', adres: 'https://x.com/veterito', altBilgide: true },
     { ad: 'TikTok', kullanici: 'veterito', adres: 'https://www.tiktok.com/@veterito', altBilgide: true },
-    /*
-     * ⚠️ KANALIN GORUNEN ADI HENUZ "Ahmet Çelen" (olculdu 24.08.2026: adres
-     * HTTP 200 donuyor ama sayfa basligi "Ahmet Çelen - YouTube"). Kullanici adi
-     * dogru, yalniz kanal adi guncellenmemis. Ziyaretci ikona basip marka adini
-     * gormezse baglantinin dogru yere gittiginden emin olamiyor.
-     * Kanal adi Veterito olunca bu not silinir.
-     */
     { ad: 'YouTube', kullanici: 'veterito', adres: 'https://www.youtube.com/@veterito', altBilgide: true },
     { ad: 'LinkedIn', kullanici: 'veterito', adres: 'https://www.linkedin.com/company/veterito/', altBilgide: true },
     /*

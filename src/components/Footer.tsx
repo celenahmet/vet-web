@@ -82,7 +82,13 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="pt-6 border-t border-slate-200 dark:border-slate-800 text-center text-sm flex flex-col md:flex-row justify-between items-center gap-4">
+        {/*
+          ⚠️ ALT SATIR ORTALANDI (Ahmet, 24.08.2026). Onceden `justify-between`
+          idi: telif metni en solda, kucuk logo en sagda ve aralarinda 1280
+          piksellik bir bosluk kaliyordu. Iki kucuk oge o genislige yayilinca
+          satir dagilmis gorunuyordu; ortada tek grup olarak daha derli toplu.
+        */}
+        <div className="pt-6 border-t border-slate-200 dark:border-slate-800 text-center text-sm flex flex-col md:flex-row justify-center items-center gap-4">
           <p>{t('footer_copyright').replace('{{year}}', year.toString()).replace('Veterito', brandConfig.name)}</p>
           <div className="flex items-center gap-2 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
             <img src={logoUrl} alt="Veterito Logo" width={567} height={144} loading="lazy" className="h-5 md:h-6 w-auto" />

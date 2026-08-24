@@ -96,10 +96,11 @@
       ⚠️ `sameAs` 24.08.2026'da dolduruldu. Google marka aramasinda bir kurumu
       resmi hesaplariyla BU ALAN uzerinden eslestiriyor; bos birakmak, hesaplar
       varken onlari gostermemek demekti.
-      ⚠️ Yalniz BURADAN DOGRULANABILEN adresler yazildi: Instagram, X, YouTube ve
-      LinkedIn HTTP 200 donuyor. ⚠️ YouTube kanalinin GORUNEN ADI su an
-      "Ahmet Çelen"; adres dogru ama kanal adi Veterito olmali, yoksa marka
-      eslestirmesi zayif kalir. TikTok ve Facebook platform bot duvarina takildi (TikTok
+      ⚠️ Yalniz DOGRULANMIS adresler yazildi. Instagram, X, YouTube ve LinkedIn
+      HTTP 200; YouTube kanal adi da "Veterito" (24.08.2026'da duzeltildi).
+      TikTok sayfasi bota kapali ama resmi oEmbed API'si dogruladi
+      (`author_name: "Veterito"`). Facebook 400 donuyor, dogrulanamadi ve
+      listede yok. TikTok ve Facebook platform bot duvarina takildi (TikTok
       200 ama 1.4 KB, Facebook 400); "yok" demek degil ama olcemedigimiz bir seyi
       semaya yazmiyoruz. Ahmet dogrularsa eklenir.
       ⚠️ Magaza adresleri de yok cunku `src/config/brand.ts` icindekiler su an
@@ -126,6 +127,7 @@
               "https://www.instagram.com/veteritoapp/",
               "https://x.com/veterito",
               "https://www.youtube.com/@veterito",
+              "https://www.tiktok.com/@veterito",
               "https://www.linkedin.com/company/veterito/"
             ]
           },
