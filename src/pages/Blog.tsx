@@ -1,6 +1,7 @@
 import {
-  ArrowRight, BarChart3, Cat, Clock, Dog, HeartPulse, Mail, Star, Users, Utensils, Building2,
+  ArrowRight, BarChart3, Cat, Clock, Dog, HeartPulse, Mail, Sparkles, Star, Users, Utensils, Building2,
 } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import SEO from '../components/SEO';
@@ -21,6 +22,9 @@ import './Blog.css';
  * ⚠️ BOLUMLER ICERIGE GORE ACILIYOR. Tek yazi varken izgara ve one cikanlar
  * gizleniyor. Sahte kartla doldurmak, olmayan bir blogu varmis gibi gosterirdi.
  */
+
+/** Kahraman kutusundaki yazinin degisme araligi. Ahmet: "15 olabilir bu degisebilir". */
+const DONME_SURESI = 15000;
 
 const KATEGORI_IKON = {
   'Kedi': Cat,
@@ -58,7 +62,42 @@ export default function Blog() {
    * birebir esit.
    */
   const suzuluyor = Boolean(secili);
-  const oneCikan = suzuluyor ? undefined : suzulmus[0];
+
+  /**
+   * DONEN KAHRAMAN KUTUSU (İSTEK: Ahmet, 24.08.2026 — "one cikan yazilar belli
+   * saniye araliklariyla 15 olabilir bu degisebilir 5 tanesi donup durur").
+   *
+   * ⚠️ Sure tek yerde: `DONME_SURESI`. Ahmet "degisebilir" dedigi icin sabit
+   * bir sayi metnin icine gomulmedi.
+   *
+   * ⚠️ SUZME ACIKKEN DONMUYOR. Kategori secilince kahraman kutusu zaten
+   * gorunmuyor (rozetteki sayi ile kart sayisi tutsun diye); orada donecek bir
+   * sey de yok.
+   *
+   * ⚠️ Hareket azaltma tercihi acikken donme DURUYOR. Kendiliginden degisen
+   * icerik, vestibuler duyarliligi olan ve ekran okuyucu kullanan kullanicilar
+   * icin rahatsiz edici; ilk yazida sabit kaliyor.
+   *
+   * ⚠️ Zamanlayici sekmede degil de arka planda da calisir; tarayici zaten
+   * arka planda araligi seyreltiyor, ayrica durdurmaya gerek yok. Ama bilesen
+   * kalkarken temizleniyor, yoksa gezinme sonrasi sizinti olur.
+   */
+  const donenler = suzulmus.slice(0, 5);
+  const [donenSira, setDonenSira] = useState(0);
+
+  useEffect(() => {
+    if (suzuluyor || donenler.length < 2) return;
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    const sayac = setInterval(
+      () => setDonenSira((o) => (o + 1) % donenler.length),
+      DONME_SURESI,
+    );
+    return () => clearInterval(sayac);
+  }, [suzuluyor, donenler.length]);
+
+  // Yazi sayisi azalirsa sira disarida kalmasin.
+  const guvenliSira = donenSira < donenler.length ? donenSira : 0;
+  const oneCikan = suzuluyor ? undefined : donenler[guvenliSira];
 
   /**
    * ⚠️ "ONE CIKAN YAZILAR" BOLUMU ARTIK ARTAN KART ICIN ACILMIYOR (Ahmet,
@@ -73,6 +112,14 @@ export default function Blog() {
    * sorun olan, tek kart icin AYRI BASLIKLI bir bolum acmakti.
    */
   const izgara = suzuluyor ? suzulmus : suzulmus.slice(1, 9);
+
+  /**
+   * Klinik bandinin ustundeki "Son eklenenler" seridi. En yeni dort yazi, ama
+   * o an kahraman kutusunda duran HARIC.
+   * ⚠️ Kaynak `YAZILAR` (tarihe gore sirali), `suzulmus` degil: bolum yalnizca
+   * suzme kapaliyken gorunuyor, orada ikisi zaten ayni.
+   */
+  const sonEklenenler = YAZILAR.filter((y) => y.slug !== oneCikan?.slug).slice(0, 4);
   const liste = suzuluyor ? [] : suzulmus.slice(9);
 
   const kategoriSayisi = new Map<string, number>();
@@ -99,17 +146,38 @@ export default function Blog() {
       ) : null}
 
       {oneCikan ? (
-        <section className="container blog-one-cikan">
-          <div className="one-cikan-metin belir">
+        <section className="container blog-one-cikan" aria-live="polite">
+          {/* `key` her degisimde bileseni yeniliyor, boylece belirme animasyonu
+              her yazida yeniden kosuyor. Olmasaydi metin sessizce degisirdi ve
+              degistigi fark edilmezdi. */}
+          <div className="one-cikan-metin belir" key={oneCikan.slug}>
             <span className="one-cikan-etiket">ÖNE ÇIKAN YAZI</span>
             <h1>{oneCikan.baslik}</h1>
             <p>{oneCikan.ozet}</p>
             <Link to={`/blog/${oneCikan.slug}`} className="one-cikan-dugme">
               Yazıyı Oku <ArrowRight size={18} />
             </Link>
+            {donenler.length > 1 ? (
+              <div className="one-cikan-noktalar" role="tablist" aria-label="Öne çıkan yazılar">
+                {donenler.map((y, i) => (
+                  <button
+                    key={y.slug}
+                    type="button"
+                    role="tab"
+                    aria-selected={i === guvenliSira}
+                    aria-label={y.baslik}
+                    className={i === guvenliSira ? 'nokta secili' : 'nokta'}
+                    onClick={() => setDonenSira(i)}
+                  />
+                ))}
+              </div>
+            ) : null}
           </div>
-          <div className="one-cikan-gorsel belir gecikmeli">
-            <BlogKapak slug={oneCikan.slug} kategori={oneCikan.kategori} alt={oneCikan.baslik} boyut={64} olcu="yazi" oncelikli />
+          <div className="one-cikan-gorsel belir gecikmeli" key={`${oneCikan.slug}-gorsel`}>
+            {/* ⚠️ Yalniz ILK yazi oncelikli. Donen butun gorselleri "oncelikli"
+                isaretlemek onceligi anlamsizlastirir ve hepsini birden
+                indirtir. */}
+            <BlogKapak slug={oneCikan.slug} kategori={oneCikan.kategori} alt={oneCikan.baslik} boyut={64} olcu="yazi" oncelikli={guvenliSira === 0} />
           </div>
         </section>
       ) : null}
@@ -172,6 +240,41 @@ export default function Blog() {
           </header>
           <div className="blog-liste">
             {liste.map((yazi) => (
+              <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-liste-kart">
+                <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.baslik} boyut={24} olcu="kucuk" />
+                <div>
+                  <h4>{yazi.baslik}</h4>
+                  <div className="blog-liste-alt">
+                    <span>{yazi.kategori}</span>
+                    <span>{okumaSuresi(yazi)} dk okuma</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {/*
+        ⚠️ BOS DURAN ALAN DOLDURULDU (Ahmet, 24.08.2026: "Blog ana sayfa cok bos
+        duruyor... klinik bandinin ustunde en yeni yazilar veya yaziya uygun
+        yazi onerileri olabilir").
+
+        Bolum SUZME ACIKKEN gizleniyor: orada zaten butun sonuclar izgarada ve
+        ayni kartlari ikinci kez gostermek sayfayi doldurmaz, tekrar eder.
+
+        ⚠️ Kahraman kutusundaki yazi HARIC tutuluyor. O yazi ekranin en ustunde
+        buyuk kutuda duruyor; hemen altinda kucuk kart olarak tekrar gostermek
+        "blog bos, ayni seyi iki kez koyduk" izlenimi verirdi.
+      */}
+      {!suzuluyor && sonEklenenler.length ? (
+        <section className="container blog-son-eklenenler">
+          <header className="blog-liste-baslik">
+            <h2><Sparkles size={20} /> Son eklenenler</h2>
+            <Link to="/blog">Tüm yazılar <ArrowRight size={16} /></Link>
+          </header>
+          <div className="blog-liste">
+            {sonEklenenler.map((yazi) => (
               <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-liste-kart">
                 <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.baslik} boyut={24} olcu="kucuk" />
                 <div>

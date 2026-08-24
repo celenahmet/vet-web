@@ -2,7 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { Suspense, lazy, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import { ONCEDEN_URETILMIS } from './main';
+import { ONCEDEN_URETILMIS } from './onizleme';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -44,11 +44,22 @@ const ClinicPage = lazy(() => import('./pages/ClinicPage'));
  * hala eski sayfanin metnini tasiyor; `ilkYukleme` bayragi bunu engelliyor,
  * yoksa kullanici B sayfasina giderken A sayfasinin metnini gorurdu.
  */
-let ilkYukleme = true;
-
+/**
+ * ⚠️ "ILK YUKLEME" BAYRAK ILE DEGIL ROTA ANAHTARI ILE ANLASILIYOR (24.08.2026).
+ *
+ * Once modul kapsaminda `let ilkYukleme = true` vardi ve `Yedek` RENDER
+ * SIRASINDA onu false yapiyordu. React eszamanli render'da ayni bileseni birden
+ * fazla kez cagirabiliyor; ikinci cagride bayrak coktan false oluyor ve
+ * onizleme yerine donen halka ciziliyordu. Olcum bunu gosterdi: blog listesinde
+ * ara durumda onceden uretilmis icerik degil halka gorunuyordu.
+ *
+ * Render sirasinda modul degiskeni degistirmek zaten yanlis; React bileseninin
+ * render'i saf olmali. `useLocation().key` ilk girişte 'default' oluyor, sonraki
+ * gezinmelerde degisiyor. Yan etkisiz ve kac kez render edildiginden bagimsiz.
+ */
 function Yedek() {
-  if (ilkYukleme && ONCEDEN_URETILMIS) {
-    ilkYukleme = false;
+  const { key } = useLocation();
+  if (key === 'default' && ONCEDEN_URETILMIS) {
     return <div dangerouslySetInnerHTML={{ __html: ONCEDEN_URETILMIS }} />;
   }
   return <div className="loading-spinner" role="status" aria-label="Sayfa yükleniyor" />;

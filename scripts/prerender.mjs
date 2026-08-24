@@ -234,12 +234,29 @@ for (const y of yazilar) {
       }]
     : [];
 
+  /*
+   * ⚠️ PRERENDER CIKTISI SITENIN KENDI SINIFLARINI TASIYOR (24.08.2026).
+   *
+   * Ahmet bildirdi: "blog sayfasi yuklenirken metin olarak tum yazilar
+   * gozukuyo, ondan sonra yukleniyo". Sebep: govde `<h1>`, `<p>`, `<ul>` gibi
+   * ciplak etiketlerle uretiliyordu ve sayfanin CSS'i bunlara hicbir sey
+   * soylemiyordu. Ilk boyamada BICIMSIZ METIN goruntusu cikiyor, React
+   * baglaninca yerini duzgun sayfa aliyordu.
+   *
+   * Cozum icerigi gizlemek DEGIL: gizlemek prerender'in varlik sebebini
+   * (JS calistirmayan tarama botuna gercek metni vermek) ortadan kaldirirdi.
+   * Cozum, ciktinin React'in urettigiyle AYNI sinif agacini tasimasi. Boylece
+   * ilk boyama zaten bitmis sayfa gibi gorunuyor ve React devraldiginda
+   * gozle gorulur bir degisim olmuyor.
+   */
   const govde = [
-    `<article>`,
-    `<p>${kac(y.kategori)}</p>`,
+    `<article class="yazi-sayfa"><div class="container yazi-duzen"><div class="yazi-ana">`,
+    `<header class="yazi-basi">`,
+    `<div class="yazi-ust-satir"><a class="yazi-geri" href="/blog">Bloga dön</a><span class="yazi-kategori">${kac(y.kategori.toLocaleUpperCase('tr-TR'))}</span></div>`,
     `<h1>${kac(y.baslik)}</h1>`,
-    `<p>${kac(y.ozet)}</p>`,
-    `<p>Veterito Editör · ${kac(tarihiYaz(y.tarih))} · ${dakika} dk okuma</p>`,
+    `<p class="yazi-ozet">${kac(y.ozet)}</p>`,
+    `<div class="yazi-kunye"><span class="yazi-yazar">Veterito Editör</span><span>${kac(tarihiYaz(y.tarih))}</span><span>${dakika} dk okuma</span></div>`,
+    `</header>`,
     /*
      * ⚠️ KAPAK GORSELI PRERENDER GOVDESINE DE KONUYOR (24.08.2026).
      *
@@ -256,16 +273,18 @@ for (const y of yazilar) {
     kapak
       ? `<div class="yazi-kapak"><img src="${kapak.asil}" srcset="${kac(kapak.srcset)}" sizes="(max-width: 700px) 100vw, (max-width: 1080px) 780px, 784px" width="1200" height="675" alt="${kac(y.baslik)}" fetchpriority="high" decoding="sync"></div>`
       : '',
+    `<div class="yazi-govde">`,
     ...y.bloklar.map(blokHtml),
+    `</div>`,
     y.kontrolListesi?.length
-      ? `<section><h2>Kontrol listesi</h2><ul>${y.kontrolListesi
-          .map((m) => `<li>${kac(m)}</li>`)
-          .join('')}</ul></section>`
+      ? `<section class="container yazi-kontrol"><div class="kontrol-panel"><header><div><h2>Kontrol listesi</h2><p>Yazıyı kapatmadan önce bunları gözden geçirin.</p></div></header><ul>${y.kontrolListesi
+          .map((m) => `<li><span class="kontrol-madde">${kac(m)}</span></li>`)
+          .join('')}</ul></div></section>`
       : '',
     y.sss?.length
-      ? `<section><h2>Sık sorulanlar</h2>${y.sss
-          .map((s) => `<h3>${kac(s.soru)}</h3><p>${kac(s.cevap)}</p>`)
-          .join('')}</section>`
+      ? `<section class="container yazi-sss"><h2>Sık sorulanlar</h2><div class="sss-izgara">${y.sss
+          .map((s, i) => `<div class="sss-kart" id="soru-${i + 1}"><span class="sss-no">${String(i + 1).padStart(2, '0')}</span><div><h3>${kac(s.soru)}</h3><p>${kac(s.cevap)}</p></div></div>`)
+          .join('')}</div></section>`
       : '',
     `</article>`,
     /*
@@ -282,7 +301,7 @@ for (const y of yazilar) {
        * iceriginde kaynak bir guvenilirlik sinyali; yalniz React tarafinda
        * cizilirse o sinyal hic verilmemis oluyor.
        */
-      ? `<section><h2>Kaynaklar</h2><ol>${y.kaynaklar
+      ? `<section class="container yazi-kaynaklar"><h2>Kaynaklar</h2><ol>${y.kaynaklar
           .map((k) => {
             const bas = k.adres
               ? `<a href="${kac(k.adres)}" rel="noopener noreferrer">${kac(k.baslik)}</a>`
@@ -307,12 +326,12 @@ for (const y of yazilar) {
      * etkiliyor.
      */
     yazilar.length > 1
-      ? `<nav aria-label="Diğer yazılar"><h2>Diğer yazılar</h2><ul>${yazilar
+      ? `<nav class="container yazi-ilgili" aria-label="Diğer yazılar"><h2>Diğer yazılar</h2><ul class="yazi-ilgili-liste">${yazilar
           .filter((d) => d.slug !== y.slug)
           .slice(0, 6)
           .map((d) => `<li><a href="/blog/${d.slug}">${kac(d.baslik)}</a></li>`)
-          .join('')}</ul></nav>`
-      : '',
+          .join('')}</ul></nav></div></div></article>`
+      : '</div></div></article>',
   ].filter(Boolean).join('\n');
 
   const html = govdeDegistir(
@@ -343,15 +362,42 @@ for (const y of yazilar) {
 }
 
 // --- Blog liste sayfasi ---
+/*
+ * ⚠️ LISTE GOVDESI DE SITENIN SINIFLARINI TASIYOR (24.08.2026).
+ *
+ * Once ciplak bir `<ul>` idi: sayfa acilirken butun yazilar BICIMSIZ BIR METIN
+ * LISTESI olarak gorunuyor, React baglaninca yerini kart izgarasi aliyordu.
+ * Ahmet'in "metin olarak tum yazilar gozukuyo, ondan sonra yukleniyo" dedigi
+ * sey buydu.
+ *
+ * Simdi cikti React'in urettigi kart izgarasinin aynisi: ayni sinif agaci, ayni
+ * kapak gorseli, ayni kunye satiri. Ilk boyama zaten bitmis sayfa gibi
+ * gorunuyor.
+ *
+ * ⚠️ Kahraman kutusu BURADA URETILMIYOR. React tarafinda o kutu 15 saniyede bir
+ * DONUYOR; prerender'a sabit bir yazi koymak, JS acilinca gorunur bir atlamaya
+ * yol acardi. Liste, ilk yaziyi da normal kart olarak veriyor.
+ */
+const listeKart = (y) => {
+  const kapak = kapakVarliklari(y.slug);
+  const gorsel = kapak
+    ? `<img src="${kapak.asil}" srcset="${kac(kapak.srcset)}" sizes="(max-width: 700px) 100vw, (max-width: 1180px) 46vw, 270px" width="1200" height="675" alt="${kac(y.baslik)}" loading="lazy" decoding="async">`
+    : '';
+  return `<a class="blog-kart" href="/blog/${y.slug}">`
+    + `<div class="blog-kart-gorsel">${gorsel}</div>`
+    + `<div class="blog-kart-govde">`
+    + `<span class="blog-kart-kategori">${kac(y.kategori.toLocaleUpperCase('tr-TR'))}</span>`
+    + `<h3>${kac(y.baslik)}</h3>`
+    + `<div class="blog-kart-alt"><span>${okumaSuresi(y)} dk okuma</span><span>${kac(tarihiYaz(y.tarih))}</span></div>`
+    + `</div></a>`;
+};
+
 const listeGovde = [
-  '<h1>Veterito Blog</h1>',
-  '<p>Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine yazılar.</p>',
-  '<ul>',
-  ...yazilar.map(
-    (y) =>
-      `<li><a href="/blog/${y.slug}">${kac(y.baslik)}</a><span> ${kac(y.kategori)} · ${okumaSuresi(y)} dk okuma · ${kac(tarihiYaz(y.tarih))}</span><p>${kac(y.ozet)}</p></li>`,
-  ),
-  '</ul>',
+  '<div class="blog-sayfa">',
+  '<section class="container"><h1>Veterito Blog</h1>',
+  '<p>Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine yazılar.</p></section>',
+  `<section class="container blog-izgara">${yazilar.map(listeKart).join('')}</section>`,
+  '</div>',
 ].join('\n');
 
 yaz(

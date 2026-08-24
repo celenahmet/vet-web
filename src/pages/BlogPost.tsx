@@ -138,11 +138,49 @@ export default function BlogPost() {
   }
 
   if (!yazi) {
+    /*
+     * ⚠️ ESKI HALI CIPLAKTI (duzeltme 24.08.2026, Ahmet bildirdi): baslik, tek
+     * cumle ve bir geri baglantisi. Okuyucu yanlis adrese dustugunde eli bos
+     * kaliyordu.
+     *
+     * ⚠️ `noindex`: bu ekran butun gecersiz sluglar icin ciziliyor, tek bir
+     * adresi temsil etmiyor. Indekslenmesine izin vermek, arama sonuclarinda
+     * "yazi bulunamadi" baslikli kayitlar demek.
+     *
+     * ⚠️ Cikmaz sokak birakilmiyor: en yeni uc yazi kart olarak veriliyor.
+     * Okuyucu buraya bir sey ARARKEN geldi; bos bir ozur sayfasi yerine
+     * okuyabilecegi seyler gostermek dogru olan.
+     */
+    const oneriler = YAZILAR.slice(0, 3);
     return (
-      <div className="container yazi-bulunamadi">
-        <h1>Yazı bulunamadı</h1>
-        <p>Aradığınız yazı kaldırılmış ya da adresi değişmiş olabilir.</p>
-        <Link to="/blog" className="yazi-geri"><ArrowLeft size={16} /> Bloga dön</Link>
+      <div className="yazi-sayfa">
+        <SEO
+          title="Yazı bulunamadı"
+          description="Aradığınız yazı kaldırılmış ya da adresi değişmiş olabilir."
+          noindex
+        />
+        <section className="container yazi-bulunamadi">
+          <span className="yazi-kategori">404</span>
+          <h1>Yazı bulunamadı</h1>
+          <p>Aradığınız yazı kaldırılmış ya da adresi değişmiş olabilir. Aşağıdaki yazılara göz atabilir ya da blogun tamamına dönebilirsiniz.</p>
+          <Link to="/blog" className="one-cikan-dugme">Bloga dön <ArrowRight size={18} /></Link>
+        </section>
+        {oneriler.length ? (
+          <section className="container yazi-ilgili">
+            <h2>Son yazılar</h2>
+            <div className="yazi-ilgili-liste">
+              {oneriler.map((y) => (
+                <Link key={y.slug} to={`/blog/${y.slug}`} className="yazi-ilgili-kart">
+                  <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.baslik} boyut={36} olcu="kart" />
+                  <div>
+                    <span>{y.kategori}</span>
+                    <h3>{y.baslik}</h3>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
       </div>
     );
   }

@@ -442,3 +442,28 @@
 .blog-liste-alt,
 .klinik-bandi-metin p,
 .bulten-metin p { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+
+/* --- Son eklenenler seridi (24.08.2026) --- */
+/*
+ * ⚠️ Kart bicimini `.blog-liste` ile PAYLASIYOR, yeni bir kart tasarimi
+ * uretilmedi: sayfada ucuncu bir kart dili acmak, doldurmak istedigimiz bosluk
+ * sorununu gorsel dagInIkliga cevirirdi.
+ */
+.blog-son-eklenenler .blog-liste-baslik h2 svg { color: var(--color-vet-secondary); }
+
+/* --- Donen kahraman kutusunun gostergeleri (24.08.2026) --- */
+/*
+ * ⚠️ Nokta yalniz bir gosterge degil DUGME: tiklanabilir olmasi, donmeyi
+ * beklemek istemeyen okuyucuya kontrol veriyor. Ekran okuyucuya `role="tab"` ve
+ * yazinin basligi `aria-label` olarak gidiyor.
+ */
+.one-cikan-noktalar { display: flex; gap: 8px; margin-top: 24px; }
+.one-cikan-noktalar .nokta {
+  width: 9px; height: 9px; padding: 0;
+  border: none; border-radius: 999px; cursor: pointer;
+  background: var(--color-border, rgba(0,0,0,0.18));
+  transition: width 0.2s ease, background 0.2s ease;
+}
+.one-cikan-noktalar .nokta:hover { background: var(--color-vet-primary); }
+.one-cikan-noktalar .nokta.secili { width: 26px; background: var(--color-vet-secondary); }
+.one-cikan-noktalar .nokta:focus-visible { outline: 2px solid var(--color-vet-secondary); outline-offset: 3px; }

@@ -54,7 +54,10 @@ export default function Home() {
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="flex flex-col items-start z-10 w-full lg:w-auto">
                 <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-indigo-200 dark:border-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-bold shadow-sm mb-6 bg-indigo-50/50 dark:bg-indigo-900/20 backdrop-blur-sm">
                   <Sparkles size={16} />
-                  Evcil hayvan sahipleri ve klinikler için ilk yıl ücretsiz
+                  {/* ⚠️ "ilk yil ucretsiz" YANLISTI (Ahmet, 24.08.2026): hayvan
+                      sahipleri icin sure sinirli bir deneme degil, TAMAMEN
+                      ucretsiz. Ucretli paketler klinik tarafinda. */}
+                  Evcil hayvan sahipleri için tamamen ücretsiz
                 </motion.div>
                 
                 <motion.h1 variants={fadeInUp} className="font-extrabold leading-[1.1] tracking-tight mb-8 text-[var(--text-main)] max-w-2xl lg:max-w-3xl">
@@ -768,11 +771,16 @@ export default function Home() {
         <section className="snap-start snap-always bg-[var(--bg-main)] py-24">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 text-center">
             <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-6">Hemen Başlayın</h2>
+            {/* ⚠️ ESKI METIN: "Ilk yil tamamen ucretsiz! ... Sonrasinda butce
+                dostu abonelik modeliyle kesintisiz hizmete devam edin."
+                Iki yerde birden yanlisti: hayvan sahipleri icin ucretsizlik
+                SURELI DEGIL, ve "sonrasinda abonelik" cumlesi kullaniciya
+                olmayan bir ucret takvimi vaat ediyordu (Ahmet, 24.08.2026). */}
             <p className="text-xl text-[var(--text-main)] font-bold mb-4">
-              İlk yıl tamamen ücretsiz!
+              Evcil hayvan sahipleri için tamamen ücretsiz
             </p>
             <p className="text-lg text-[var(--text-muted)] max-w-xl lg:max-w-2xl mx-auto mb-10 font-medium">
-              Veterito ekosistemini risk almadan deneyin. Sonrasında bütçe dostu abonelik modeliyle kesintisiz hizmete devam edin.
+              Hayvanınızın sağlık kaydını tutmak, aşı takvimini takip etmek ve klinikten randevu almak ücretsizdir. Ücretli paketler yalnızca klinik tarafındadır.
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4">
