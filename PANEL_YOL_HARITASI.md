@@ -29,8 +29,14 @@ Yeni bir ekran açmadan önce: `grep -rhoE "rpc\(\s*['\"][a-z_]+['\"]" ~/Develop
 |---|---|---|
 | Genel bakış | `clinic_dashboard` · `appointment_list` · `clinic_upcoming_records` · `clinic_analytics` · `clinic_staff_list` | ✅ |
 | Randevular | `appointment_list` · **`set_appointment_status`** · **`propose_appointment_time`** | ✅ onayla / kabul etme / tamamla / iptal / başka saat öner |
-| Müşteriler | `clinic_customer_list` · **`clinic_invite_customer`** | ✅ davet edilebiliyor |
-| Hastalar | `clinic_pet_list` | ✅ salt okuma |
+| Müşteriler | `clinic_customer_list` · `clinic_offline_customers` · **`clinic_invite_customer`** | ✅ uygulama üyesi + defter kaydı bir arada, **müşteri eklenebiliyor** |
+| Hastalar | `clinic_pet_list` · `clinic_offline_pets` | ✅ **hasta eklenebiliyor**, sağlık kaydı girilebiliyor |
+| Sağlık kayıtları | `clinic_pet_records` | ✅ kayıt eklenebiliyor (aşı, parazit, muayene, ilaç, kilo) |
+| Aşı takvimi | `clinic_upcoming_records` | ✅ girilen sonraki tarihler buraya düşüyor |
+| Duyurular | `announcements` · **`send_announcement`** | ✅ **duyuru oluşturulup gönderilebiliyor** |
+| Klinik profili · Topluluk · Sahiplendirme · Değerlendirmeler · Ayarlar | ilgili tablolar | ✅ salt okuma |
+| Bildirimler | `notifications` | ✅ zil rozeti gerçek sayı; menüde yok, zilden açılıyor |
+| Mesajlar | — | ⬜ tek gerçekten boş bölüm: gelen kutusu RPC'si yok |
 | Gelir / Gider | `clinic_ledger_summary` · `clinic_ledger_by_category` | ✅ salt okuma |
 | Ekip | `clinic_staff_list` · **`clinic_invite_staff`** · **`clinic_remove_staff`** | ✅ davet / çıkarma (onaylı) |
 | Klinik web sitesi | `clinics` (RLS) · **`update_clinic_page`** · `clinics` kolon güncellemesi | ✅ slogan, tanıtım, yayın ve arama anahtarları düzenlenebiliyor |
@@ -38,6 +44,67 @@ Yeni bir ekran açmadan önce: `grep -rhoE "rpc\(\s*['\"][a-z_]+['\"]" ~/Develop
 
 Ayrıca: kendi tasarımı (pazarlama menüsü bu rotada çizilmiyor) · uygulamanın
 paleti · merkezî sözlük (ekranda ham kod yok) · `X-Robots-Tag: noindex` · CSP.
+
+---
+
+## ⏳ SIRADAKİ BÜYÜK İŞ — CSV ile müşteri taşıma
+
+> Ahmet, 25.08.2026: *"bu panele müşteri kayıtlarını csv olarak
+> yüklediklerinde de otomatik eklenmeleri gerekiyor... müşterilerini
+> veterinerler taşıtabilmeliler bu çok ciddi bişey o yüzden şimdi girmemeni
+> tavsiye ediyorum, yapacaklarımız otursun, müşterilerini taşımayı da
+> gösterelim, akışı kurarız."*
+
+**Durum: ⛔ BAŞLANMADI, bilerek.** Akış birlikte tasarlanacak.
+
+Neden ciddi: bu bir içe aktarma değil, **veri göçü**. Bir kliniğin yıllardır
+tuttuğu müşteri listesi tek seferde giriyor; yanlış giden bir aktarımı geri
+almak, elle girilen tek bir kaydı silmeye benzemiyor.
+
+### Şimdiden bilinenler (ölçüldü)
+
+Hedef tablo `clinic_offline_customers`; sütunlar ve kısıtları:
+
+| Alan | Kısıt |
+|---|---|
+| `full_name` | **zorunlu**, 2-120 karakter |
+| `phone` | 7-30 karakter |
+| `email` | serbest |
+| `pet_name` | ≤ 80 karakter |
+| `species_code` | `species` tablosuna **yabancı anahtar** |
+| `note` | ≤ 500 karakter |
+
+Hayvanlar ayrı tabloda (`clinic_offline_pets`) ve **bir müşteriye bağlanmak
+zorunda**. Yani tek satırlık bir CSV bile iki tabloya yazıyor.
+
+### Tasarlanmadan başlanmayacak sorular
+
+1. **Eşleştirme:** CSV başlıkları hangi alana gidiyor? Sabit şablon mu,
+   kullanıcının eşleştirdiği esnek bir ekran mı? Klinikler Excel'den
+   geliyor, sütun adları hiçbir zaman aynı olmayacak.
+2. **Tekrar kaydı:** aynı kişi iki kez yüklenirse ne olacak? Telefon mu
+   e-posta mı anahtar? Yanlış birleştirme, iki müşterinin kaydını
+   birbirine karıştırır.
+3. **Geçersiz satır:** 500 satırın 12'si bozuksa hepsi mi düşecek, 488'i
+   mi girecek? İkisi de savunulabilir ama **kullanıcı hangisi olduğunu
+   önceden bilmeli**.
+4. **Ön izleme şart:** yazmadan önce "şu kadar yeni, şu kadar mevcut, şu
+   kadar hatalı" özeti gösterilmeli. Onaysız toplu yazma yapılmayacak.
+5. **Geri alma:** aktarım bir parti numarasıyla işaretlenmeli ki tamamı tek
+   hamlede geri alınabilsin. Şu an tabloda böyle bir kolon **yok** —
+   gerekirse migration gerekir.
+6. **Tür kodu:** CSV'de "kedi" yazacak, tabloda `cat` bekleniyor. Çeviri
+   tablosu ve eşleşmeyen değerlerde ne yapılacağı belirlenmeli.
+7. **Sınır:** kaç satıra kadar? Tarayıcıda tek seferde binlerce satır
+   yazmak zaman aşımına düşer; parçalı yazma gerekir.
+8. **Kişisel veri:** bu dosya doğrudan kişisel veri taşıyor. Yükleme
+   sırasında dosyanın nereye gittiği, saklanıp saklanmadığı ve aydınlatma
+   metniyle uyumu **hukuki tarafla birlikte** karara bağlanmalı.
+
+⚠️ **Yetki zaten hazır:** `clinic_offline_customers` üzerinde RLS
+`is_clinic_member(clinic_id)` ile hem `using` hem `with check` tarafında
+kurulu. Yani içe aktarma yeni bir yetki yüzeyi açmıyor; risk yetkide değil
+**veri bütünlüğünde**.
 
 ---
 
@@ -80,6 +147,67 @@ konacak, sayı uydurulmayacak:
   o zaman her rota `vercel.json`'a da eklenmeli, yoksa doğrudan açılan adres
   404 döner. `scripts/rota-kapsam-denetimi.mjs` bunu yakalıyor.
 - Palet `palette.json`'dan **elle kopyalandı**, ayrışabilir.
+
+---
+
+## ⏳ SIRADAKİ BÜYÜK İŞ — CSV ile müşteri taşıma
+
+> Ahmet, 25.08.2026: *"bu panele müşteri kayıtlarını csv olarak
+> yüklediklerinde de otomatik eklenmeleri gerekiyor... müşterilerini
+> veterinerler taşıtabilmeliler bu çok ciddi bişey o yüzden şimdi girmemeni
+> tavsiye ediyorum, yapacaklarımız otursun, müşterilerini taşımayı da
+> gösterelim, akışı kurarız."*
+
+**Durum: ⛔ BAŞLANMADI, bilerek.** Akış birlikte tasarlanacak.
+
+Neden ciddi: bu bir içe aktarma değil, **veri göçü**. Bir kliniğin yıllardır
+tuttuğu müşteri listesi tek seferde giriyor; yanlış giden bir aktarımı geri
+almak, elle girilen tek bir kaydı silmeye benzemiyor.
+
+### Şimdiden bilinenler (ölçüldü)
+
+Hedef tablo `clinic_offline_customers`; sütunlar ve kısıtları:
+
+| Alan | Kısıt |
+|---|---|
+| `full_name` | **zorunlu**, 2-120 karakter |
+| `phone` | 7-30 karakter |
+| `email` | serbest |
+| `pet_name` | ≤ 80 karakter |
+| `species_code` | `species` tablosuna **yabancı anahtar** |
+| `note` | ≤ 500 karakter |
+
+Hayvanlar ayrı tabloda (`clinic_offline_pets`) ve **bir müşteriye bağlanmak
+zorunda**. Yani tek satırlık bir CSV bile iki tabloya yazıyor.
+
+### Tasarlanmadan başlanmayacak sorular
+
+1. **Eşleştirme:** CSV başlıkları hangi alana gidiyor? Sabit şablon mu,
+   kullanıcının eşleştirdiği esnek bir ekran mı? Klinikler Excel'den
+   geliyor, sütun adları hiçbir zaman aynı olmayacak.
+2. **Tekrar kaydı:** aynı kişi iki kez yüklenirse ne olacak? Telefon mu
+   e-posta mı anahtar? Yanlış birleştirme, iki müşterinin kaydını
+   birbirine karıştırır.
+3. **Geçersiz satır:** 500 satırın 12'si bozuksa hepsi mi düşecek, 488'i
+   mi girecek? İkisi de savunulabilir ama **kullanıcı hangisi olduğunu
+   önceden bilmeli**.
+4. **Ön izleme şart:** yazmadan önce "şu kadar yeni, şu kadar mevcut, şu
+   kadar hatalı" özeti gösterilmeli. Onaysız toplu yazma yapılmayacak.
+5. **Geri alma:** aktarım bir parti numarasıyla işaretlenmeli ki tamamı tek
+   hamlede geri alınabilsin. Şu an tabloda böyle bir kolon **yok** —
+   gerekirse migration gerekir.
+6. **Tür kodu:** CSV'de "kedi" yazacak, tabloda `cat` bekleniyor. Çeviri
+   tablosu ve eşleşmeyen değerlerde ne yapılacağı belirlenmeli.
+7. **Sınır:** kaç satıra kadar? Tarayıcıda tek seferde binlerce satır
+   yazmak zaman aşımına düşer; parçalı yazma gerekir.
+8. **Kişisel veri:** bu dosya doğrudan kişisel veri taşıyor. Yükleme
+   sırasında dosyanın nereye gittiği, saklanıp saklanmadığı ve aydınlatma
+   metniyle uyumu **hukuki tarafla birlikte** karara bağlanmalı.
+
+⚠️ **Yetki zaten hazır:** `clinic_offline_customers` üzerinde RLS
+`is_clinic_member(clinic_id)` ile hem `using` hem `with check` tarafında
+kurulu. Yani içe aktarma yeni bir yetki yüzeyi açmıyor; risk yetkide değil
+**veri bütünlüğünde**.
 
 ---
 
