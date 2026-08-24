@@ -21,7 +21,7 @@ const Footer = () => {
   return (
     <footer className="snap-end relative z-10 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 py-12">
       <div className="container mx-auto px-6 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div className="flex flex-col gap-4">
             <Link to="/" className="inline-block hover:opacity-80 transition-opacity">
               <img src={logoUrl} alt="Veterito Logo" width={567} height={144} loading="lazy" className="h-10 md:h-12 w-auto" />
@@ -59,7 +59,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:col-span-2">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:col-span-3">
             <div className="flex flex-col gap-3">
               <h3 className="font-semibold text-slate-900 dark:text-white mb-2">{t('footer_explore')}</h3>
               <Link to="/features" className="text-sm hover:text-emerald-600 transition-colors">{t('nav_features')}</Link>
