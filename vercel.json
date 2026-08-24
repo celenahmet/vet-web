@@ -1,12 +1,52 @@
 {
   "rewrites": [
     {
-      "source": "/(features|pets|about|blog|clinics|pricing|contact|iletisim|legal|privacy|kvkk|consent|terms|service-agreement|cookies|account-deletion|child-safety|deletion|gizlilik|cerez|kvkk-aydinlatma|account-deletion-request|download)",
+      "source": "/(features|pets|about|blog|clinics|pricing|contact|iletisim|legal|privacy|kvkk|consent|terms|service-agreement|cookies|account-deletion|child-safety|deletion|gizlilik|cerez|kvkk-aydinlatma|account-deletion-request|download|panel)",
       "destination": "/"
     },
     {
       "source": "/@:handle",
       "destination": "/"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://dendengtebeqrypizyyk.supabase.co https://*.supabase.co; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        }
+      ]
+    },
+    {
+      "source": "/panel",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     }
   ]
 }

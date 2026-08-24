@@ -108,7 +108,18 @@ function kafaDegistir(sablon, { baslik, aciklama, adres, tip, jsonLd, onYukle, g
     gorsel ? `<meta name="twitter:image" content="${SITE}${gorsel}" />` : '',
     `<meta name="twitter:card" content="summary_large_image" />`,
     ekBaglantilar ?? '',
-    ...jsonLd.map((v) => `<script type="application/ld+json">${JSON.stringify(v)}</script>`),
+    /*
+     * ⚠️ `data-onceden` ISARETI SUS DEGIL (24.08.2026). Olculdu: yazi sayfasinin
+     * HTML'inde 3 ld+json blogu vardi ama TARAYICIDA 5 cikiyordu. Sebep: burada
+     * basilan `Article`/`FAQPage` bloklarini React (Helmet) bir kez daha
+     * ekliyordu. Helmet yalnizca KENDI bastigi etiketleri yonetiyor; prerender'in
+     * yazdiklarindan haberi yok, o yuzden degistirmiyor, USTUNE EKLIYOR.
+     *
+     * Cift yapisal veri, ayni sayfa icin birbiriyle yarisan iki beyan demek. Bu
+     * isaret sayesinde React devralinca kendi eslenigini kaldirabiliyor
+     * (`src/yapisal-veri.ts`), botun JS'siz gordugu HTML ise bozulmuyor.
+     */
+    ...jsonLd.map((v) => `<script type="application/ld+json" data-onceden="1">${JSON.stringify(v)}</script>`),
     onYukle ?? '',
   ].filter(Boolean).join('\n    ');
   return html.replace('</head>', `    ${ek}\n  </head>`);

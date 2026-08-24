@@ -28,6 +28,12 @@ const LegalDocument = lazy(() => import('./pages/LegalDocument'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Download = lazy(() => import('./pages/Download'));
 const ClinicPage = lazy(() => import('./pages/ClinicPage'));
+/**
+ * ⚠️ PANEL AYRI PARCA. `@supabase/supabase-js` yalniz bu agactan import
+ * ediliyor; `lazy()` sayesinde pazarlama sayfalarinin paketine girmiyor.
+ * Derlemeden sonra olculuyor.
+ */
+const Panel = lazy(() => import('./panel/Panel'));
 
 /**
  * ⚠️ ARA DURUM: onceden uretilmis icerik varsa ONU gosteriyoruz.
@@ -128,6 +134,10 @@ function App() {
             <Route path="/kvkk-aydinlatma" element={<LegalDocument />} />
             <Route path="/account-deletion-request" element={<LegalDocument />} />
             <Route path="/download" element={<Download />} />
+            {/* KLINIK WEB PANELI (Ahmet, 24.08.2026). Oturum arkasinda, noindex,
+                site haritasinda yok. Yetki sunucuda: klinik RPC'leri anon'a
+                kapali ve govdelerinde `is_clinic_member()` kontrolu var. */}
+            <Route path="/panel" element={<Panel />} />
             {/* Klinik vitrini: /@kullaniciadi
                 ⚠️ react-router v6 parcali parametre (":@kullanici") DESTEKLEMIYOR;
                 bu yuzden tum segment yakalanip '@' kontrolu sayfada yapiliyor.

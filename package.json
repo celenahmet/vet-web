@@ -15,6 +15,7 @@
     "kapaklar": "node scripts/kapak-boyutlari.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.112.4",
     "clsx": "^2.1.1",
     "framer-motion": "^13.1.0",
     "i18next": "^26.3.6",

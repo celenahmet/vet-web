@@ -1,0 +1,129 @@
+/*
+ * KLINIK PANELI BICIMI
+ *
+ * ⚠️ Pazarlama sayfalarinin Tailwind sinifları kullanilmiyor; panel kendi dar
+ * kapsamli CSS'ini tasiyor. Sebep: pazarlama tarafinda ikinci bir kisi
+ * calisiyor ve ortak siniflara baglanmak, onun bir degisikliginin paneli
+ * bozmasi demek olurdu.
+ *
+ * ⚠️ Renkler `index.css` degiskenlerinden geliyor, sabit deger yazilmiyor;
+ * boylece koyu kip kendiliginden calisiyor.
+ */
+.panel-sayfa {
+  max-width: 1100px;
+  margin-inline: auto;
+  padding: calc(88px + 32px) 24px 72px;
+  color: var(--text-main, #0f172a);
+}
+@media (max-width: 760px) { .panel-sayfa { padding: calc(88px + 20px) 16px 56px; } }
+
+.panel-baslik {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 16px; margin-bottom: 28px;
+  padding-bottom: 20px; border-bottom: 1px solid var(--border-color, #e2e8f0);
+}
+.panel-baslik h1 { font-size: 1.6rem; margin: 0 0 4px; }
+.panel-baslik p { margin: 0; font-size: 0.88rem; color: var(--text-muted, #475569); }
+.panel-cikis {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent; border: 1px solid var(--border-color, #e2e8f0);
+  color: var(--text-muted, #475569); font: inherit; font-size: 0.86rem; font-weight: 600;
+  padding: 9px 15px; border-radius: 999px; cursor: pointer;
+}
+.panel-cikis:hover { background: var(--bg-secondary, #f8fafc); }
+
+/* --- Giris ve bilgi kutusu --- */
+.panel-kutu {
+  max-width: 440px; margin-inline: auto;
+  border: 1px solid var(--border-color, #e2e8f0); border-radius: 20px;
+  padding: 32px; background: var(--bg-surface, #fff); text-align: center;
+}
+.panel-kutu svg { color: var(--color-vet-secondary); margin-bottom: 10px; }
+.panel-kutu h1, .panel-kutu h2 { font-size: 1.3rem; margin: 0 0 10px; }
+.panel-kutu p { margin: 0 0 8px; color: var(--text-muted, #475569); line-height: 1.6; font-size: 0.94rem; }
+.panel-kutu-hata { border-color: #f0a5a5; }
+.panel-not { font-size: 0.84rem; opacity: 0.85; }
+
+.panel-form { display: flex; flex-direction: column; gap: 14px; margin: 22px 0 16px; text-align: left; }
+.panel-form label { display: flex; flex-direction: column; gap: 6px; }
+.panel-form span { font-size: 0.84rem; font-weight: 600; }
+.panel-form input {
+  font: inherit; padding: 11px 13px; border-radius: 11px;
+  border: 1px solid var(--border-color, #e2e8f0);
+  background: var(--bg-main, #fff); color: inherit;
+}
+.panel-form input:focus-visible { outline: 2px solid var(--color-vet-secondary); outline-offset: 1px; }
+.panel-form button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font: inherit; font-weight: 700; padding: 12px; border: none; border-radius: 11px;
+  background: var(--color-vet-secondary); color: #fff; cursor: pointer;
+}
+.panel-form button:disabled { opacity: 0.6; cursor: default; }
+.panel-hata { color: #b3261e; font-size: 0.86rem; margin: 0; }
+
+/* --- Klinik secimi --- */
+.panel-klinik-secim { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+.panel-klinik-secim span { font-size: 0.84rem; font-weight: 600; color: var(--text-muted, #475569); }
+.panel-klinik-secim select {
+  font: inherit; padding: 8px 12px; border-radius: 10px;
+  border: 1px solid var(--border-color, #e2e8f0);
+  background: var(--bg-surface, #fff); color: inherit;
+}
+
+/* --- Kartlar --- */
+.panel-kartlar {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px; margin-bottom: 24px;
+}
+.panel-kart {
+  display: flex; flex-direction: column; gap: 4px;
+  border: 1px solid var(--border-color, #e2e8f0); border-radius: 16px;
+  padding: 18px; background: var(--bg-surface, #fff);
+}
+.panel-kart svg { color: var(--color-vet-secondary); }
+.panel-kart-deger { font-size: 1.7rem; font-weight: 800; line-height: 1.1; }
+.panel-kart-ad { font-size: 0.82rem; color: var(--text-muted, #475569); }
+
+.panel-uyari {
+  display: flex; gap: 10px; align-items: flex-start;
+  background: var(--color-vet-accent-light); border-radius: 14px;
+  padding: 14px 16px; margin-bottom: 26px; font-size: 0.9rem;
+  color: var(--color-vet-accent);
+}
+.panel-uyari svg { flex-shrink: 0; margin-top: 2px; }
+
+/* --- Tablo --- */
+.panel-bolum h2 { font-size: 1.15rem; margin: 0 0 14px; }
+.panel-bos { color: var(--text-muted, #475569); font-size: 0.92rem; }
+/* ⚠️ Dar ekranda tablo kendi icinde kayiyor; sayfayi yana kaydirmiyor. */
+.panel-tablo { width: 100%; border-collapse: collapse; font-size: 0.9rem; display: block; overflow-x: auto; }
+.panel-tablo th {
+  text-align: left; padding: 11px 13px; white-space: nowrap;
+  background: var(--bg-secondary, #f8fafc); color: var(--text-muted, #475569);
+  font-weight: 700; font-size: 0.8rem;
+}
+.panel-tablo th:first-child { border-top-left-radius: 10px; }
+.panel-tablo th:last-child { border-top-right-radius: 10px; }
+.panel-tablo td { padding: 12px 13px; border-bottom: 1px solid var(--border-color, #e2e8f0); }
+
+.panel-durum {
+  display: inline-block; font-size: 0.76rem; font-weight: 700;
+  padding: 4px 10px; border-radius: 999px;
+  background: var(--bg-secondary, #f8fafc); color: var(--text-muted, #475569);
+}
+.panel-durum.durum-confirmed { background: var(--color-vet-accent-light); color: var(--color-vet-accent); }
+.panel-durum.durum-requested,
+.panel-durum.durum-proposed { background: #fff4e0; color: #8a5a00; }
+.panel-durum.durum-cancelled,
+.panel-durum.durum-declined { background: #fdeaea; color: #a03030; }
+
+/* --- Yukleniyor --- */
+.panel-yukleniyor { min-height: 40vh; display: flex; align-items: center; justify-content: center; }
+.panel-yukleniyor::after {
+  content: ''; width: 30px; height: 30px; border-radius: 50%;
+  border: 3px solid var(--color-vet-accent-light, #e0f2f1);
+  border-top-color: var(--color-vet-secondary, #0C7A77);
+  animation: panel-don 0.7s linear infinite;
+}
+@keyframes panel-don { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .panel-yukleniyor::after { animation: none; opacity: 0.5; } }

@@ -1,4 +1,5 @@
 import { ArrowLeft, ArrowRight, Clock, CalendarDays, AlertTriangle, CircleAlert, CheckCircle2, Eye } from 'lucide-react';
+import { useOncedenUretilmisVeriyiDevral } from '../yapisal-veri';
 import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -209,6 +210,10 @@ export default function BlogPost() {
       acceptedAnswer: { '@type': 'Answer', text: s.cevap },
     })),
   };
+
+  // Prerender ayni Article/FAQPage bloklarini HTML'e yazmisti; Helmet asagida
+  // kendi kopyasini basiyor. Bu, HTML'dekini devralip cift beyani onluyor.
+  useOncedenUretilmisVeriyiDevral();
 
   return (
     <article className="yazi-sayfa">
