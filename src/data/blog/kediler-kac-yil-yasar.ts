@@ -137,7 +137,7 @@ export const kedilerKacYilYasar: BlogYazi = {
   ],
   sss: [
     { soru: 'En uzun yaşayan kedi kaç yaşına kadar yaşadı?', cevap: 'Kayıtlara geçen en uzun ömürlü kedi 38 yaşına kadar yaşadı. Bu bir istisna; 20 yaşını gören kedi bile nadir sayılır.' },
-    { soru: 'Sokak kedisini eve alırsam ömrü uzar mı?', cevap: 'Evet, çünkü riskin büyük kısmı ortamdan geliyor. Eve almadan önce veteriner kontrolü, parazit uygulaması ve bulaşıcı hastalık testi yaptırın; evde başka kedi varsa bu adım isteğe bağlı değil.' },
+    { soru: 'Sokak kedisini eve alırsam ömrü uzar mı?', cevap: 'Evet, çünkü riskin büyük kısmı ortamdan geliyor. Eve almadan önce veteriner kontrolü, parazit uygulaması ve bulaşıcı hastalık testi yapılması gerekiyor; evde başka kedi varsa bu adım isteğe bağlı değil.' },
     { soru: 'Erkek kediler mi dişi kediler mi daha uzun yaşar?', cevap: 'Kısırlaştırılmış dişiler istatistiklerde biraz önde ama fark küçük. Yaşam biçimi cinsiyetten çok daha belirleyici: ev içinde yaşayan bir erkek kedi, dışarı çıkan bir dişiden uzun yaşar.' },
     { soru: 'Kedimin yaşını nasıl öğrenebilirim?', cevap: 'Sokaktan alınan kedilerde yaş; diş yapısı, göz merceğinin berraklığı ve genel vücut durumuna bakılarak tahmin ediliyor. Kesin bir yöntem değil, veteriner hekim birkaç yıllık bir aralık verir.' },
     { soru: 'Kedim çok uyuyor, hasta mı?', cevap: 'Kediler günde 12-16 saat uyur, bu normaldir. Dikkat edilmesi gereken uyku süresinin kendisi değil, değişimi: eskisinden belirgin çok uyuyorsa, uyandığında oyuna ilgisizse ya da saklanmaya başladıysa kontrol gerekiyor.' },

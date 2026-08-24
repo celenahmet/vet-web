@@ -207,7 +207,13 @@ export default function BlogPost() {
           </div>
         </div>
 
-        <BlogKenarCubugu haricSlug={yazi.slug} />
+        <BlogKenarCubugu
+          haricSlug={yazi.slug}
+          sorular={yazi.sss.map((s) => s.soru)}
+          kontrolListesi={yazi.kontrolListesi}
+          isaretliler={isaretliler}
+          isaretiCevir={isaretiCevir}
+        />
       </div>
 
       {yazi.kontrolListesi?.length ? (
@@ -268,7 +274,7 @@ export default function BlogPost() {
           */}
           <div className="sss-izgara">
             {yazi.sss.map((s, i) => (
-              <div className="sss-kart" key={s.soru}>
+              <div className="sss-kart" id={`soru-${i + 1}`} key={s.soru}>
                 <span className="sss-no">{String(i + 1).padStart(2, '0')}</span>
                 <div>
                   <h3>{s.soru}</h3>

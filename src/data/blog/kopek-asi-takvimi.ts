@@ -72,7 +72,7 @@ export const kopekAsiTakvimi: BlogYazi = {
     { soru: 'Aşıları bitmeden köpeğimi dışarı çıkarabilir miyim?', cevap: 'Kontrollü biçimde evet. Sosyalleşme penceresi 16 haftada kapanıyor ve tam izolasyon davranış sorunlarına yol açıyor. Aşıları tam olan sağlıklı köpeklerle, sokak köpeklerinin yoğun olduğu alanlardan uzak durarak. Dengeyi hekiminizle konuşun.' },
     { soru: 'Leptospiroz aşısı gerçekten gerekli mi?', cevap: 'Bakteriyel bir hastalık, böbrek ve karaciğeri tutuyor ve insana da bulaşabiliyor. Özellikle su birikintisi, dere kenarı ve kemirgen bulunan ortamlara giren köpeklerde önemli.' },
     { soru: 'Sokaktan aldığım yetişkin köpeğe aşı yapılır mı?', cevap: 'Evet. Aşı geçmişi bilinmeyen köpeklerde seri yeniden kuruluyor. Önce muayene, sonra takvim.' },
-    { soru: 'Aşı tekrarını kaçırdım, ne olur?', cevap: 'Kısa gecikmelerde çoğu zaman kaldığı yerden devam ediliyor. Gecikme uzunsa hekim seriyi yenilemeyi tercih edebiliyor. Kaç gün geciktiğinizi söyleyip sorun, kendi başınıza karar vermeyin.' },
+    { soru: 'Aşı tekrarını kaçırdım, ne olur?', cevap: 'Kısa gecikmelerde çoğu zaman kaldığı yerden devam ediliyor. Gecikme uzunsa hekim seriyi yenilemeyi tercih edebiliyor. Kaç gün geciktiğini hekiminize iletmek en doğrusu; seriyi kendi başınıza yeniden kurgulamak doğru olmuyor.' },
   ],
   kaynaklar: [
     {

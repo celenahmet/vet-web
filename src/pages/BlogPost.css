@@ -607,13 +607,33 @@
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
 }
+/*
+ * ⚠️ TIKLAMA ANIMASYONU (İSTEK: Ahmet, 24.08.2026: "checkboxlarda tiklayinca ve
+ * geri cekince bi animasyon ekleyelim siteyi hafif enerji verir").
+ *
+ * Uc parca birlikte calisiyor:
+ *   1. Kutu isaretlenince kisa bir "pop" (keyframe, yalniz sinif eklenince koser)
+ *   2. Tik isareti yaylanarak giriyor ve cikiyor (gecis, IKI YONDE de calisir)
+ *   3. Madde satiri bir tik iceri kayiyor
+ *
+ * ⚠️ Geri cekmede de hareket olmasi icin `transition` kullanildi, `animation`
+ * degil: keyframe yalniz sinif EKLENINCE kosar, kaldirilinca kosmaz. Geri
+ * cekisin sessiz kalmasi, tiklamanin isledigine dair kuskuya yol acardi.
+ *
+ * ⚠️ Yaylanma egrisi (0.34, 1.56, 0.64, 1) hedefi bir tik asip geri geliyor.
+ * Sureler kisa tutuldu (0.18-0.22 sn): kontrol listesi bir oyun degil, hareket
+ * fark edilmeli ama beklenmemeli.
+ */
 .kontrol-madde::before {
   content: '';
   position: absolute; left: 12px; top: 14px;
   width: 17px; height: 17px;
   border: 2px solid var(--color-vet-secondary);
   border-radius: 5px;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 /* Tik isareti: ayri bir varlik degil, iki kenarli bir kutu dondurulerek cizildi. */
 .kontrol-madde::after {
@@ -623,7 +643,15 @@
   border: solid #fff;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg) scale(0);
-  transition: transform 0.15s ease;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+/* Basili tutarken kutu hafifce iciyor: dokunusun karsiligi hemen gorunuyor. */
+.kontrol-madde:active::before { transform: scale(0.86); }
+
+@keyframes kontrol-pop {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(1.22); }
+  100% { transform: scale(1); }
 }
 .kontrol-madde:hover { background: var(--bg-secondary, #f8fafc); }
 .kontrol-madde:focus-visible {
@@ -633,8 +661,13 @@
 .kontrol-madde.isaretli::before {
   background: var(--color-vet-secondary);
   border-color: var(--color-vet-secondary);
+  animation: kontrol-pop 0.26s ease-out;
 }
 .kontrol-madde.isaretli::after { transform: rotate(45deg) scale(1); }
+/* Isaretlenen satir bir tik iceri kayiyor; liste "ilerliyor" hissi veriyor. */
+.kontrol-madde { transition: background 0.15s ease, color 0.15s ease, padding-left 0.2s ease; }
+.kontrol-madde.isaretli { padding-left: 44px; }
+.kenar-kontrol .kontrol-madde.isaretli { padding-left: 34px; }
 /*
  * ⚠️ ISARETLI MADDE SILINMIYOR, YALNIZ SOLUYOR. Ustu cizili metin okunakliligi
  * dusuruyor ve liste bir "yapilacaklar" gibi gorunuyor; burada amac takip degil
@@ -642,8 +675,20 @@
  */
 .kontrol-madde.isaretli { color: var(--text-muted, #475569); }
 
+/*
+ * ⚠️ Hareket azaltma tercihi acikken HICBIRI kosmuyor. Bu bir suslemenin
+ * kapatilmasi degil: yaylanan ve buyuyup kuculen ogeler, vestibuler duyarliligi
+ * olan kullanicida bas donmesi yapabiliyor. Islev aynen kaliyor, yalniz hareket
+ * kalkiyor.
+ */
 @media (prefers-reduced-motion: reduce) {
-  .kontrol-madde, .kontrol-madde::before, .kontrol-madde::after { transition: none; }
+  .kontrol-madde,
+  .kontrol-madde::before,
+  .kontrol-madde::after { transition: none; }
+  .kontrol-madde.isaretli::before { animation: none; }
+  .kontrol-madde.isaretli { padding-left: 40px; }
+  .kenar-kontrol .kontrol-madde.isaretli { padding-left: 30px; }
+  .kontrol-madde:active::before { transform: none; }
 }
 
 /* --- Kaynak kunyesi --- */

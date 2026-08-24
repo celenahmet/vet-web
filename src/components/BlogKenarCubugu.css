@@ -53,3 +53,56 @@
 .kenar-yazilar h3 { font-weight: 600; }
 
 .kenar-kategori a, .kenar-yazilar span, .kenar-cta p { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+
+/* --- Sorular dizini ve kontrol listesi (24.08.2026) --- */
+/*
+ * ⚠️ NEDEN EKLENDI: Ahmet "buralar bos kalmis" dedi. Olculdu: kenar cubugu
+ * 1108 px, yazi sutunu 3868-6985 px; sag sutunun %71-84'u bostu.
+ */
+.kenar-kutu h2 { display: flex; align-items: center; gap: 8px; }
+.kenar-kutu h2 svg { color: var(--color-vet-secondary); flex-shrink: 0; }
+
+.kenar-sorular {
+  list-style: decimal outside;
+  margin: 0;
+  padding-left: 18px;
+}
+.kenar-sorular li { margin-bottom: 10px; }
+.kenar-sorular li::marker { color: var(--color-vet-secondary); font-weight: 700; font-size: 0.8rem; }
+.kenar-sorular a {
+  color: var(--text-main, #0f172a);
+  text-decoration: none;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+.kenar-sorular a:hover { color: var(--color-vet-secondary); }
+
+.kenar-kontrol { list-style: none; margin: 0; padding: 0; }
+.kenar-kontrol .kontrol-madde {
+  font-size: 0.82rem;
+  padding: 8px 6px 8px 30px;
+  line-height: 1.4;
+}
+.kenar-kontrol .kontrol-madde::before { left: 6px; top: 10px; width: 15px; height: 15px; }
+.kenar-kontrol .kontrol-madde::after { left: 10px; top: 13px; }
+
+/*
+ * ⚠️ UZUN KENAR CUBUGU ICIN IC KAYDIRMA.
+ *
+ * Cubuk `position: sticky` ve iki yeni kutuyla ekran yuksekligini asiyor. Sticky
+ * bir oge goruntu alanindan uzunsa ust kenarina yapisip kaliyor ve ALT KISMI
+ * okuyucunun hic ulasamayacagi yerde kaliyor: kaydirsan da gelmiyor.
+ *
+ * Cozum, cubugun kendi icinde kaydirmasi. Boylece sticky davranisi korunuyor
+ * (okuyucu yazinin her yerinde cubugu goruyor) ama hicbir kutu erisilemez
+ * kalmiyor.
+ */
+@media (min-width: 1081px) {
+  .yazi-duzen .blog-kenar {
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+    /* Kaydirma cubugu icerige yapismasin */
+    padding-right: 4px;
+    scrollbar-width: thin;
+  }
+}

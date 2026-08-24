@@ -61,7 +61,7 @@ export const kedimYemekYemiyor: BlogYazi = {
     ]},
     { kind: 'yanilgi', baslik: '"İnsan yemeği veririm, hiç olmazsa bir şey yesin" yanılgısı', metin: 'Soğan, sarımsak, çikolata, üzüm ve kuru üzüm kediler için zehirli. Tuzlu ve baharatlı yiyecekler de uygun değil. Bir şey yemesi iyi ama yanlış şeyi yemesi, yememesinden daha kötü sonuç verebiliyor.' },
 
-    { kind: 'baslik', metin: 'Kliniğe giderken hazırlayın' },
+    { kind: 'baslik', metin: 'Kliniğe giderken hazırlanacaklar' },
     { kind: 'liste', maddeler: [
       'Ne zamandır yemediği, saat olarak',
       'Su içip içmediği',
@@ -83,7 +83,7 @@ export const kedimYemekYemiyor: BlogYazi = {
   ],
   sss: [
     { soru: 'Kedi kaç gün aç kalabilir?', cevap: 'Sağlıklı bir yetişkin kedi teknik olarak birkaç gün dayanabilir ama bu güvenli olduğu anlamına gelmiyor. Aç kalan kedide karaciğer yağlanması gelişebiliyor ve bu, kedilerin çoğu türden farkı. Bu yüzden 24 saati aşan açlıkta beklenmiyor, kliniğe gidiliyor. Yavru ve yaşlılarda süre daha da kısa.' },
-    { soru: 'Kedim yemiyor ama su içiyor, yine de gitmeli miyim?', cevap: 'Su içmesi iyi bir işaret ama açlık süresini değiştirmiyor. 24 saati aşıyorsa kliniğe gidin.' },
+    { soru: 'Kedim yemiyor ama su içiyor, yine de gitmeli miyim?', cevap: 'Su içmesi iyi bir işaret ama açlık süresini değiştirmiyor. 24 saati aşıyorsa veteriner hekime başvurmak gerekiyor.' },
     { soru: 'Sadece mama değiştirdim, o yüzden mi yemiyor?', cevap: 'Olabilir, ama bunu varsayıp beklemek doğru değil. Eski mamaya geri dönün; bir gün içinde iştahı gelmiyorsa sebep mama değil.' },
     { soru: 'Zorla mama vermeli miyim?', cevap: 'Şırıngayla besleme veteriner hekim önerisiyle ve tekniği öğrenildikten sonra yapılır. Yanlış uygulama mamanın soluk borusuna kaçmasına yol açabiliyor.' },
     { soru: 'İştah açıcı ilaç kullanabilir miyim?', cevap: 'Kedilerde kullanılan iştah açıcılar var ama bunlar reçeteli ilaçlar ve altta yatan sebep bulunmadan verilmesi doğru değil. İştahsızlık bir belirtidir, hastalığın kendisi değildir.' },
