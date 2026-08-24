@@ -1,6 +1,26 @@
 /**
  * ROTA KAPSAM DENETCISI
  *
+ * ⚠️ `vercel.json` ACIKLAMASI BURADA DURUYOR, orada DEGIL. JSON yorum kabul
+ * etmiyor ve Vercel'in yapilandirma semasi BILINMEYEN ANAHTARI REDDEDIYOR:
+ * dosyaya "$aciklama" diye bir alan konuldu ve dagitim sessizce yapilmadi
+ * (24.08.2026; commit gitti, GitHub'a dustu, siteye cikmadi). Yani o dosyaya
+ * yalniz semanin tanidigi alanlar yazilabilir; gerekce buraya yazilir.
+ *
+ * `vercel.json` NE YAPIYOR:
+ *   Eskiden { source: '/(.*)', destination: '/' } vardi, yani HER ADRES
+ *   uygulamaya gidiyordu. Olculdu: /bu-sayfa-kesinlikle-yok, /blog/olmayan-yazi,
+ *   /a/b/c ve /@olmayanklinik adreslerinin DORDU DE "HTTP 200" donuyordu.
+ *   Arama motoru acisindan bu "yumusak 404".
+ *
+ *   Simdi yalniz TANIMLI rotalar yonlendiriliyor. Eslesmeyen adres statik dosya
+ *   aramasina dusuyor, bulunamayinca Vercel `404.html` dosyasini GERCEK 404
+ *   koduyla veriyor.
+ *
+ *   /blog/<slug> bilerek listede yok: prerender her yayimlanmis yazi icin gercek
+ *   dosya uretiyor ve statik dosya yonlendirmeden once servis ediliyor. Olmayan
+ *   slug 404 aliyor, istenen davranis bu.
+ *
  * ⚠️ NEDEN VAR: `vercel.json` artik "her adresi uygulamaya yonlendir" demiyor,
  * yalniz TANIMLI rotalari yonlendiriyor (yumusak 404'u bitirmek icin). Bunun
  * bedeli, listenin `App.tsx` ile ayrisabilmesi. Ayrisirsa sonuc sessiz degil
