@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "prerender": "node --experimental-strip-types scripts/prerender.mjs",
     "rota-denetimi": "node scripts/rota-kapsam-denetimi.mjs",
-    "kaynak-denetimi": "node --experimental-strip-types scripts/kaynak-denetimi.mjs"
+    "kaynak-denetimi": "node --experimental-strip-types scripts/kaynak-denetimi.mjs",
+    "blog-seo": "node --experimental-strip-types scripts/blog-seo-denetimi.mjs",
+    "kapaklar": "node scripts/kapak-boyutlari.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

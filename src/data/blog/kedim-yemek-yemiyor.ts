@@ -3,7 +3,7 @@ import type { BlogYazi } from './types';
 export const kedimYemekYemiyor: BlogYazi = {
   slug: 'kedim-yemek-yemiyor',
   baslik: 'Kedim Yemek Yemiyor, Ne Yapmalıyım?',
-  ozet: 'Kedilerde iştahsızlık köpeklerdeki gibi beklenebilecek bir durum değil. 24 saati aşan açlık karaciğer için gerçek bir risk taşıyor. Ne zaman beklenir, ne zaman kliniğe gidilir.',
+  ozet: 'Kedilerde iştahsızlık köpeklerdeki gibi beklenebilecek bir durum değil. 24 saati aşan açlık karaciğer için gerçek risk. Ne zaman beklenir, ne zaman gidilir.',
   kategori: 'Kedi',
   tarih: '2026-08-23',
   bloklar: [
