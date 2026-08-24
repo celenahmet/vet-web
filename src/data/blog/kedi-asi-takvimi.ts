@@ -66,6 +66,14 @@ export const kediAsiTakvimi: BlogYazi = {
       adres: 'https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-leukemia-virus',
     },
   ],
+  kontrolListesi: [
+    'Karma aşı 8-9. haftada başladı mı?',
+    'Tekrar dozu 3-4 hafta sonra mı?',
+    'Kuduz aşısı 12. haftadan sonra mı?',
+    'Aşı öncesi parazit temizliği oldu mu?',
+    'Dışarı çıkıyorsa FeLV konuşuldu mu?',
+    'Yıllık tekrar hatırlatması var mı?',
+  ],
   sss: [
     { soru: 'Yavru kediye ilk aşı kaç haftalıkken yapılır?', cevap: 'Genellikle 8-9 haftalıkken karma aşı ile başlanıyor. Öncesinde iç parazit uygulaması yapılıyor. Kesin zamanı, yavrunun sağlık durumuna bakarak veteriner hekim belirliyor.' },
     { soru: 'Kedi aşısı kaç doz yapılır?', cevap: 'Yavrulukta karma aşı genellikle 2-3 doz, 3-4 hafta arayla uygulanıyor. Kuduz 12. haftadan sonra tek doz yapılıp yıllık tekrarlanıyor.' },

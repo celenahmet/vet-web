@@ -73,6 +73,14 @@ export const kedimYemekYemiyor: BlogYazi = {
     ]},
     { kind: 'paragraf', metin: 'Bu bilgiler muayene süresini kısaltıyor ve gereksiz tetkiki azaltıyor. Aşı ve kilo geçmişini bir yerde tutuyorsanız işiniz kolay; tutmuyorsanız çoğu soru "sanırım" ile cevaplanıyor.' },
   ],
+  kontrolListesi: [
+    'Kaç saattir yemediği not edildi mi?',
+    'Su içiyor mu, takip ediliyor mu?',
+    'Kusma, ishal veya kabızlık var mı?',
+    'Mama ya da kum yakında değişti mi?',
+    'Kilo kaybı fark ettiniz mi?',
+    '24 saati geçtiyse randevu var mı?',
+  ],
   sss: [
     { soru: 'Kedi kaç gün aç kalabilir?', cevap: 'Sağlıklı bir yetişkin kedi teknik olarak birkaç gün dayanabilir ama bu güvenli olduğu anlamına gelmiyor. 24 saati aşan açlıkta karaciğer yağlanması riski başlıyor, 48 saatte ciddi hâle geliyor. Yavru ve yaşlılarda süre çok daha kısa.' },
     { soru: 'Kedim yemiyor ama su içiyor, yine de gitmeli miyim?', cevap: 'Su içmesi iyi bir işaret ama açlık süresini değiştirmiyor. 24 saati aşıyorsa kliniğe gidin.' },

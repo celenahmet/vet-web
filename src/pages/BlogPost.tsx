@@ -102,6 +102,29 @@ export default function BlogPost() {
     return () => { iptal = true; };
   }, [slug]);
 
+  /**
+   * KONTROL LISTESI ISARETLERI — bilerek GECICI.
+   *
+   * Yalniz bu bilesenin belleginde duruyor: sunucuya gitmiyor, `localStorage`'a
+   * yazilmiyor, sayfa yenilenince siniyor (İSTEK: Ahmet, 24.08.2026 —
+   * "hicbir yerde verileri tutulmasin reaksiyon amac").
+   *
+   * ⚠️ Slug degisince sifirlaniyor. Ayni bilesen baska bir yaziya gecerken
+   * yeniden olusturulmayabilir; sifirlamasaydik onceki yazinin isaretleri yeni
+   * yazinin maddelerinde gorunurdu.
+   */
+  const [isaretliler, setIsaretliler] = useState<Set<number>>(() => new Set());
+  useEffect(() => { setIsaretliler(new Set()); }, [slug]);
+
+  function isaretiCevir(sira: number) {
+    setIsaretliler((onceki) => {
+      const sonraki = new Set(onceki);
+      if (sonraki.has(sira)) sonraki.delete(sira);
+      else sonraki.add(sira);
+      return sonraki;
+    });
+  }
+
   if (!yazi) {
     return (
       <div className="container yazi-bulunamadi">
@@ -197,8 +220,35 @@ export default function BlogPost() {
                 <p>Yazıyı kapatmadan önce bunları gözden geçirin.</p>
               </div>
             </header>
+            {/*
+              ⚠️ TIKLANABILIR AMA HICBIR YERE YAZILMIYOR (İSTEK: Ahmet,
+              24.08.2026 — "bunlari tikleme yapilabilsin geciciiTABI hicbir yerde
+              verileri tutulmasin reaksiyon amac").
+
+              Durum yalniz bu bilesenin belleginde. Sunucuya gitmiyor,
+              `localStorage`'a da yazilmiyor: sayfa yenilenince siniyor. Bu bir
+              eksiklik degil, karar. Kontrol listesi bir gorev yoneticisi degil,
+              okurken "bunu yaptim" diyebilmek icin bir tepki.
+
+              ⚠️ Veri minimizasyonu acisindan da dogru olan bu: tutulmayan veri
+              icin cerez metni, saklama suresi ve silme yolu gerekmiyor.
+
+              ⚠️ `<li>` degil `<button>`: tiklanabilir bir sey klavyeyle de
+              erisilebilir olmali. `aria-pressed` ekran okuyucuya durumu soyluyor.
+            */}
             <ul>
-              {yazi.kontrolListesi.map((m) => <li key={m}>{m}</li>)}
+              {yazi.kontrolListesi.map((m, i) => (
+                <li key={m}>
+                  <button
+                    type="button"
+                    className={isaretliler.has(i) ? 'kontrol-madde isaretli' : 'kontrol-madde'}
+                    aria-pressed={isaretliler.has(i)}
+                    onClick={() => isaretiCevir(i)}
+                  >
+                    {m}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
         </section>

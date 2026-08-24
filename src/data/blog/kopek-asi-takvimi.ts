@@ -58,6 +58,14 @@ export const kopekAsiTakvimi: BlogYazi = {
     ]},
     { kind: 'paragraf', metin: 'Aşı takviminde en çok sorun çıkaran şey ilk dozun yapılmaması değil, ara dozların unutulması. Tarihleri bir yerde tutmak, kartı kaybetseniz bile takvimin bozulmamasını sağlıyor. Veterito bu takvimi köpeğiniz için tutuyor ve tekrar tarihi yaklaşınca hatırlatıyor; uygulama ücretsiz.' },
   ],
+  kontrolListesi: [
+    'Karma aşı 6-8. haftada başladı mı?',
+    'Seri 16. haftaya kadar planlı mı?',
+    'Dozlar 3-4 hafta arayla mı?',
+    'Kuduz aşısı 12. haftadan sonra mı?',
+    'Aşı öncesi parazit temizliği oldu mu?',
+    'Yıllık tekrar hatırlatması var mı?',
+  ],
   sss: [
     { soru: 'Yavru köpeğe ilk aşı kaç haftalıkken yapılır?', cevap: 'Genellikle 6-8 haftalıkken karma aşı ile başlanıyor. Öncesinde iç parazit uygulaması yapılıyor. Kesin zamanı veteriner hekim belirliyor.' },
     { soru: 'Köpek aşı serisi kaç haftada biter?', cevap: 'Genellikle 16. haftada. Serinin bu kadar uzun sürmesinin sebebi, anneden gelen bağışıklığın bazı yavrularda 16. haftaya kadar aşının etkisini engelleyebilmesi.' },

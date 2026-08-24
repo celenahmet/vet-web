@@ -265,6 +265,57 @@
 .yazi-sayfa .yazi-sss,
 .yazi-sayfa .yazi-kaynaklar { margin-top: 52px; }
 
+/*
+ * ⚠️ OKUMA BOLUMLERI YAZI SUTUNUNUN GENISLIGINDE KALIYOR (24.08.2026).
+ *
+ * Ahmet: "sikca sorulan sorular mobilde guzel gorunuyor da webde cok guzel
+ * gorunmuyor, blogtan ayri bi yermis gibi gozukuyo."
+ *
+ * Sebep olculdu: bu bolumler izgaranin DISINDA oldugu icin sol kenarlari yaziyla
+ * ayni ama SAG kenarlari kenar cubugunun da otesine, tam genislige uzaniyordu.
+ * Goz, genislik degisimini "yeni bir sayfa bolumu" diye okuyor. Mobilde sorun
+ * yok cunku orada tek sutun var ve genislik zaten degismiyor.
+ *
+ * Cozum, bolumleri izgaranin icine ALMAK DEGIL: oraya konduklarinda kenar
+ * cubugu erken bitip altinda bos serit birakiyordu (yukaridaki not). Bunun
+ * yerine ayni OLCUYU aliyorlar. Boylece sayfanin tek bir sol, tek bir sag
+ * kenari oluyor.
+ *
+ * 368px = kenar cubugu (320) + izgara boslugu (48). Iki yerde ayri sayi yazmamak
+ * icin degisken; izgara degisirse tek yerden guncellenir.
+ *
+ * ⚠️ AYRIM BILINCLI: kontrol listesi ve SSS OKUMA icerigi, yazinin devami.
+ * Ilgili yazilar ve uygulama bandi ise SAYFADAN CIKIS yollari; onlar tam
+ * genislikte kaliyor cunku okuma olcusune bagli degiller.
+ */
+.yazi-sayfa { --yazi-kenar-sutunu: 368px; }
+
+.yazi-sayfa .yazi-kontrol > *,
+.yazi-sayfa .yazi-sss > *,
+.yazi-sayfa .yazi-kaynaklar > * {
+  max-width: calc(100% - var(--yazi-kenar-sutunu));
+}
+
+@media (max-width: 1080px) {
+  /* Kenar cubugu alta indi, artik daraltacak bir sey yok. */
+  .yazi-sayfa .yazi-kontrol > *,
+  .yazi-sayfa .yazi-sss > *,
+  .yazi-sayfa .yazi-kaynaklar > * { max-width: none; }
+}
+
+/*
+ * ⚠️ ILGILI YAZILAR SIKISIKTI (Ahmet, 24.08.2026: "ilgili yazilar kismi da cok
+ * sikisik kalmis"). Uc sey birden dardi: bolumun ustundeki bosluk SSS'in son
+ * kartina yapisiyordu, kartlar arasi 18px idi ve kart icindeki metin alaninin
+ * dolgusu 14px ile basliyordu, yani iki satirlik baslik kutunun altina
+ * degiyordu. Ucu de acildi; kart sayisi ve duzeni degismedi.
+ */
+.yazi-sayfa .yazi-ilgili { margin-top: 72px; }
+.yazi-sayfa .yazi-ilgili h2 { margin-bottom: 24px; }
+.yazi-sayfa .yazi-ilgili-liste { gap: 28px; }
+.yazi-sayfa .yazi-ilgili-kart > div { padding: 18px 20px 22px; }
+.yazi-sayfa .yazi-ilgili-kart h3 { margin: 10px 0 0; line-height: 1.45; }
+
 /* --- Kontrol listesi: tek panel --- */
 /*
  * ⚠️ Once ayri ayri kartlardi ve dagInIk duruyordu (Ahmet: "tasarimlari iyi degil").
@@ -479,6 +530,16 @@
 }
 @media (max-width: 760px) {
   .kontrol-panel ul { grid-template-columns: 1fr; padding: 8px 10px; }
+  /*
+   * ⚠️ MADDELER TELEFONDA DA TEK SATIR KALSIN (Ahmet, 24.08.2026: "5-6 tane tek
+   * satira sigacak sekilde"). Olculdu: 390 px'te varsayilan olculerle iki madde
+   * iki satira dusuyordu (48 px yerine 71 px). Punto ve sol bosluk bir tik
+   * daraltilinca satir basina ~6 karakter daha sigiyor; kalan tasmalar maddenin
+   * kendisi kisaltilarak cozuldu, punto daha fazla kucultulmedi.
+   */
+  .kontrol-madde { font-size: 0.88rem; padding: 11px 8px 11px 34px; }
+  .kontrol-madde::before { left: 8px; top: 13px; }
+  .kontrol-madde::after { left: 13px; top: 16px; }
   .kontrol-panel > header { padding: 18px 20px; }
   .kontrol-panel > header h2 { font-size: 1.1rem; }
   .yazi-sss > h2, .yazi-kaynaklar h2 { font-size: 1.25rem; }
@@ -513,3 +574,74 @@
 
 /* Inter'in x-yuksekligi Outfit'ten buyuk; satir araligi bir tik acilmali. */
 .yazi-govde { line-height: 1.8; }
+
+/* --- Kontrol listesi maddeleri: tiklanabilir, ama hicbir yere yazilmiyor --- */
+/*
+ * ⚠️ DURUM SAKLANMIYOR (İSTEK: Ahmet, 24.08.2026 — "bunlari tikleme
+ * yapilabilsin gecici tabi hicbir yerde verileri tutulmasin reaksiyon amac").
+ * Isaret yalniz bilesenin belleginde; sayfa yenilenince siniyor. Kutucuk
+ * gorunumu bu yuzden "kaydedildi" hissi vermiyor, yalniz okurken "bunu yaptim"
+ * demeyi sagliyor.
+ *
+ * ⚠️ Kutucuk artik `li::before` degil dugmenin kendi `::before`'u: tiklanabilir
+ * alanin kutucugu da kapsamasi gerekiyor, yoksa kullanici kutucuga basiyor ve
+ * hicbir sey olmuyor.
+ */
+.kontrol-panel li::before { content: none; }
+
+.kontrol-panel li { padding: 0; }
+
+.kontrol-madde {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 12px 12px 40px;
+  font: inherit;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: inherit;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.kontrol-madde::before {
+  content: '';
+  position: absolute; left: 12px; top: 14px;
+  width: 17px; height: 17px;
+  border: 2px solid var(--color-vet-secondary);
+  border-radius: 5px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+/* Tik isareti: ayri bir varlik degil, iki kenarli bir kutu dondurulerek cizildi. */
+.kontrol-madde::after {
+  content: '';
+  position: absolute; left: 17px; top: 17px;
+  width: 5px; height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform 0.15s ease;
+}
+.kontrol-madde:hover { background: var(--bg-secondary, #f8fafc); }
+.kontrol-madde:focus-visible {
+  outline: 2px solid var(--color-vet-secondary);
+  outline-offset: 2px;
+}
+.kontrol-madde.isaretli::before {
+  background: var(--color-vet-secondary);
+  border-color: var(--color-vet-secondary);
+}
+.kontrol-madde.isaretli::after { transform: rotate(45deg) scale(1); }
+/*
+ * ⚠️ ISARETLI MADDE SILINMIYOR, YALNIZ SOLUYOR. Ustu cizili metin okunakliligi
+ * dusuruyor ve liste bir "yapilacaklar" gibi gorunuyor; burada amac takip degil
+ * tepki. Metin yerinde kaliyor, geri tiklanabiliyor.
+ */
+.kontrol-madde.isaretli { color: var(--text-muted, #475569); }
+
+@media (prefers-reduced-motion: reduce) {
+  .kontrol-madde, .kontrol-madde::before, .kontrol-madde::after { transition: none; }
+}

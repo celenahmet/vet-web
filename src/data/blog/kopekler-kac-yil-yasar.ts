@@ -94,6 +94,14 @@ export const kopeklerKacYilYasar: BlogYazi = {
     ]},
     { kind: 'paragraf', metin: 'Listedeki maddelerin hiçbiri zor değil; zor olan yıllarca aksatmadan sürdürmek. Aşı ve kontrol tarihlerini takip eden bir yer tutmak, en çok unutulan maddeyi en kolayı hâline getiriyor.' },
   ],
+  kontrolListesi: [
+    'İdeal kilo aralığı biliniyor mu?',
+    'Kaburgalar elle hissediliyor mu?',
+    'Diş bakımı haftalık alışkanlık mı?',
+    'Aşı ve parazit tekrarı kayıtlı mı?',
+    'Kısırlaştırma zamanı ırka göre mi?',
+    'Yaşlılık sanılan belirti soruldu mu?',
+  ],
   sss: [
     { soru: 'En uzun yaşayan köpek kaç yaşına kadar yaşadı?', cevap: 'Kayıtlara geçen en uzun ömürlü köpekler 22-29 yaş aralığında bildirildi. Bunlar istisna; 16 yaşını gören köpek bile uzun ömürlü sayılır.' },
     { soru: 'Melez köpekler saf ırklardan uzun mu yaşar?', cevap: 'Genellikle evet, aynı boy sınıfında karşılaştırıldığında. Sebebi genetik çeşitlilik: kalıtsal hastalıkların aynı hayvanda birikme ihtimali daha düşük.' },

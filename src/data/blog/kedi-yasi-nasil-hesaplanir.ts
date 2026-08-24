@@ -58,6 +58,14 @@ export const kediYasiNasilHesaplanir: BlogYazi = {
     { kind: 'paragraf', metin: 'Sahiplendiğiniz kedinin doğum tarihi belli değilse, veteriner hekimin verdiği aralığın ortasını alıp bir tarih belirleyin ve kayıtlarınızda hep onu kullanın. Kesin olmaması sorun değildir; tutarlı olması aşı tekrarlarını ve yaşa bağlı kontrolleri takip etmeyi mümkün kılıyor.' },
     { kind: 'paragraf', metin: 'Kaydı tutmadığınızda olan şey şu: "geçen sene mi yapmıştık, önceki sene mi" sorusu, aşı tekrarının atlanmasıyla bitiyor.' },
   ],
+  kontrolListesi: [
+    'Kedinizin doğum tarihi kayıtlı mı?',
+    'Bilinmiyorsa tahmini tarih girildi mi?',
+    'Mama yaş grubuna uygun mu?',
+    'Kontrol sıklığı yaşa göre mi?',
+    'Diş durumuna yaş için bakıldı mı?',
+    'Yaşlılıkta kontroller sıklaştı mı?',
+  ],
   sss: [
     { soru: '1 yaşındaki kedi kaç yaşında sayılır?', cevap: '15 insan yaşına denk sayılıyor. Bu, çocukluk değil genç yetişkinlik dönemidir; kedi bu yaşta üreyebilir ve yetişkin boyutuna ulaşmıştır.' },
     { soru: 'Kedi kaç yaşında yaşlı sayılır?', cevap: '7-10 yaş olgun, 11-14 yaş yaşlı, 15 yaş ve üzeri ileri yaş kabul ediliyor. 7 yaşından sonra yıllık kontrole kan tahlili eklenmesi öneriliyor.' },
