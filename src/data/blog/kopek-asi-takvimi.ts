@@ -74,4 +74,21 @@ export const kopekAsiTakvimi: BlogYazi = {
     { soru: 'Sokaktan aldığım yetişkin köpeğe aşı yapılır mı?', cevap: 'Evet. Aşı geçmişi bilinmeyen köpeklerde seri yeniden kuruluyor. Önce muayene, sonra takvim.' },
     { soru: 'Aşı tekrarını kaçırdım, ne olur?', cevap: 'Kısa gecikmelerde çoğu zaman kaldığı yerden devam ediliyor. Gecikme uzunsa hekim seriyi yenilemeyi tercih edebiliyor. Kaç gün geciktiğinizi söyleyip sorun, kendi başınıza karar vermeyin.' },
   ],
+  kaynaklar: [
+    {
+      kurum: 'World Small Animal Veterinary Association (WSAVA) Vaccination Guidelines Group',
+      yazarlar: 'Squires RA, Crawford C, Marcondes M, Whitley N',
+      baslik: '2024 guidelines for the vaccination of dogs and cats',
+      dergi: 'Journal of Small Animal Practice',
+      yil: 2024,
+      kunye: '65(5):277-316',
+      doi: '10.1111/jsap.13718',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/38568777/',
+    },
+    {
+      kurum: 'Cornell University College of Veterinary Medicine — Richard P. Riney Canine Health Center',
+      baslik: 'Canine distemper virus',
+      adres: 'https://www.vet.cornell.edu/departments/riney-canine-health-center/canine-health-information/canine-distemper-virus',
+    },
+  ],
 };

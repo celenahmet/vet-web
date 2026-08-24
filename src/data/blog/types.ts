@@ -25,6 +25,38 @@ export type BlogBlock =
 
 export type BlogSSS = { soru: string; cevap: string };
 
+/**
+ * KAYNAK KUNYESI
+ *
+ * ⚠️ Once yalnizca `{ etiket, adres }` vardi, yani "bir yerde bir sayfa". Ahmet
+ * 24.08.2026'da olcuyu yukseltti: *"kaynakta universite felan tercihi ya kimin
+ * arastirmayi yurutugunu felan detayli kaynak guzel olur hangi dergi hangi
+ * makale hangi sayi vs vs"*. Kunye artik parcali tutuluyor; boylece hem ekranda
+ * duzgun bicimlenebiliyor hem de eksik alan gozle degil DENETIMLE yakalanabiliyor
+ * (`scripts/kaynak-denetimi.mjs`).
+ *
+ * ⚠️ HICBIR ALAN HATIRLAYARAK DOLDURULMAZ. Kunye, PubMed E-utilities gibi resmi
+ * bir kaynaktan okunur ve oradan kopyalanir. Uydurulmus bir cilt/sayi, kaynaksiz
+ * yazmaktan KOTUDUR: dogrulanabilir gorunur ama yanlistir.
+ */
+export type BlogKaynak = {
+  /** Kurum ya da yayin sahibi. Hakemli calismada da yazilir. */
+  kurum: string;
+  /** Makale ya da sayfa basligi, BIREBIR. */
+  baslik: string;
+  /** 'Kraus C, Pavard S, Promislow DE' bicimi. Hakemli calismada zorunlu. */
+  yazarlar?: string;
+  /** Dergi adi. Hakemli calismada zorunlu. */
+  dergi?: string;
+  /** Yayin yili. */
+  yil?: number;
+  /** Cilt(sayi):sayfa — ornek '181(4):492-505'. */
+  kunye?: string;
+  /** Kalici tanimlayici. Adres degisse de kaynak bulunabilsin diye. */
+  doi?: string;
+  adres?: string;
+};
+
 export type BlogKategori =
   | 'Kedi'
   | 'Köpek'
@@ -53,8 +85,13 @@ export type BlogYazi = {
    * kontrol listesi EYLEM soyluyor.
    */
   kontrolListesi?: string[];
-  /** Opsiyonel. Yalniz DOGRULANMIS kaynak yazilir, uydurma bagi konmaz. */
-  kaynaklar?: { etiket: string; adres?: string }[];
+  /**
+   * ⚠️ HER YAZIDA EN AZ BIR KAYNAK ZORUNLU (Ahmet, 24.08.2026: "her yazida en az
+   * bi kaynak sart ya en az 1 ozellikle universite kaynagi daha hos oluyor").
+   * Alan tipte opsiyonel kaldi cunku eski yazilar once tasinacak; ama
+   * `scripts/kaynak-denetimi.mjs` bos birakilan yaziyi derlemede yakaliyor.
+   */
+  kaynaklar?: BlogKaynak[];
 };
 
 /** 200 kelime/dk uzerinden okuma suresi. Elle girilmiyor, metinden olculuyor. */

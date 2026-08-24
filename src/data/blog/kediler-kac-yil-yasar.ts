@@ -107,11 +107,23 @@ export const kedilerKacYilYasar: BlogYazi = {
   ],
   kaynaklar: [
     {
-      etiket: 'Cornell University College of Veterinary Medicine — Feline Leukemia Virus',
+      kurum: 'Royal Veterinary College — VetCompass',
+      yazarlar: 'O\'Neill DG, Church DB, McGreevy PD, Thomson PC ve ark.',
+      baslik: 'Longevity and mortality of cats attending primary care veterinary practices in England',
+      dergi: 'Journal of Feline Medicine and Surgery',
+      yil: 2015,
+      kunye: '17(2):125-133',
+      doi: '10.1177/1098612X14536176',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/24925771/',
+    },
+    {
+      kurum: 'Cornell University College of Veterinary Medicine — Cornell Feline Health Center',
+      baslik: 'Feline Leukemia Virus',
       adres: 'https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-leukemia-virus',
     },
     {
-      etiket: 'Cornell University College of Veterinary Medicine — Loving Care for Older Cats',
+      kurum: 'Cornell University College of Veterinary Medicine — Cornell Feline Health Center',
+      baslik: 'Loving Care for Older Cats',
       adres: 'https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/loving-care-older-cats',
     },
   ],

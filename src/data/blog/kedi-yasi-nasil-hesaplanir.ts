@@ -73,4 +73,26 @@ export const kediYasiNasilHesaplanir: BlogYazi = {
     { soru: 'Kedi yaşı hesaplama formülü nedir?', cevap: 'İlk yıl 15, ikinci yıl 9 ekleniyor; sonraki her yıl için yaklaşık 4 ekleniyor. Örnek: 6 yaşındaki kedi 15 + 9 + (4 x 4) = 40 insan yaşına denk geliyor.' },
     { soru: 'Kedimin yaşını yanlış biliyorsam sorun olur mu?', cevap: 'Bir iki yıllık sapma bakım açısından büyük fark yaratmıyor. Önemli olan tutarlı bir tarih kullanmak, çünkü aşı tekrarları ve yaşa bağlı kontroller o tarihe göre planlanıyor.' },
   ],
+  kaynaklar: [
+    {
+      kurum: 'American Animal Hospital Association · American Association of Feline Practitioners',
+      yazarlar: 'Quimby J, Gowland S, Carney HC, DePorter T ve ark.',
+      baslik: '2021 AAHA/AAFP Feline Life Stage Guidelines',
+      dergi: 'Journal of Feline Medicine and Surgery',
+      yil: 2021,
+      kunye: '23(3):211-233',
+      doi: '10.1177/1098612X21993657',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/33627003/',
+    },
+    {
+      kurum: 'Royal Veterinary College — VetCompass',
+      yazarlar: 'O\'Neill DG, Church DB, McGreevy PD, Thomson PC ve ark.',
+      baslik: 'Longevity and mortality of cats attending primary care veterinary practices in England',
+      dergi: 'Journal of Feline Medicine and Surgery',
+      yil: 2015,
+      kunye: '17(2):125-133',
+      doi: '10.1177/1098612X14536176',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/24925771/',
+    },
+  ],
 };

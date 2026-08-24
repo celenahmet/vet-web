@@ -283,13 +283,31 @@ export default function BlogPost() {
       {yazi.kaynaklar?.length ? (
         <section className="container yazi-kaynaklar">
           <h2>Kaynaklar</h2>
-          <ul>
+          {/*
+            ⚠️ KUNYE PARCALI GOSTERILIYOR (Ahmet, 24.08.2026: "hangi dergi hangi
+            makale hangi sayi vs vs"). Once yalniz bir baglanti etiketi vardi ve
+            okuyucu kaynagin hakemli bir calisma mi yoksa bir kurum sayfasi mi
+            oldugunu ayirt edemiyordu.
+
+            Sira bilincli: once YAZAR (arastirmayi kim yurutmus), sonra baslik,
+            sonra dergi/kurum ve kunye. Saglik iceriginde guvenilirlik sinyali
+            once kimin soyledigi.
+          */}
+          <ol>
             {yazi.kaynaklar.map((k) => (
-              <li key={k.etiket}>
-                {k.adres ? <a href={k.adres} target="_blank" rel="noopener noreferrer">{k.etiket}</a> : k.etiket}
+              <li key={k.doi ?? k.adres ?? k.baslik}>
+                {k.yazarlar ? <span className="kaynak-yazar">{k.yazarlar}. </span> : null}
+                {k.adres
+                  ? <a href={k.adres} target="_blank" rel="noopener noreferrer">{k.baslik}</a>
+                  : <span>{k.baslik}</span>}
+                {k.dergi ? <span className="kaynak-dergi">. {k.dergi}</span> : null}
+                {k.yil ? <span>, {k.yil}</span> : null}
+                {k.kunye ? <span>;{k.kunye}</span> : null}
+                <span className="kaynak-kurum">{k.kurum}</span>
+                {k.doi ? <span className="kaynak-doi">doi: {k.doi}</span> : null}
               </li>
             ))}
-          </ul>
+          </ol>
         </section>
       ) : null}
 

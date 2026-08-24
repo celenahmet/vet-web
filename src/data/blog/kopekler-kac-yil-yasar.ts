@@ -110,4 +110,21 @@ export const kopeklerKacYilYasar: BlogYazi = {
     { soru: 'Köpeğimin yaşını nasıl öğrenebilirim?', cevap: 'Sahiplenilen köpeklerde yaş; diş aşınması, tüy rengindeki ağarma ve genel vücut durumuna bakılarak tahmin ediliyor. Kesin değil, veteriner hekim bir aralık verir.' },
     { soru: 'Yaşlı köpek maması gerçekten gerekli mi?', cevap: 'Çoğu köpekte faydalı, çünkü kalori yoğunluğu ve eklem destekleri farklı ayarlanıyor. Ancak böbrek ya da kalp sorunu varsa mama seçimi paket üzerindeki yaş grubuna göre değil, tahlil sonucuna göre yapılmalı.' },
   ],
+  kaynaklar: [
+    {
+      kurum: 'University of Göttingen · University of Washington',
+      yazarlar: 'Kraus C, Pavard S, Promislow DE',
+      baslik: 'The size-life span trade-off decomposed: why large dogs die young',
+      dergi: 'The American Naturalist',
+      yil: 2013,
+      kunye: '181(4):492-505',
+      doi: '10.1086/669665',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/23535614/',
+    },
+    {
+      kurum: 'Cornell University College of Veterinary Medicine — Richard P. Riney Canine Health Center',
+      baslik: 'Canine distemper virus',
+      adres: 'https://www.vet.cornell.edu/departments/riney-canine-health-center/canine-health-information/canine-distemper-virus',
+    },
+  ],
 };

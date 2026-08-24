@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run rota-denetimi && tsc -b && vite build && npm run prerender",
+    "build": "npm run rota-denetimi && npm run kaynak-denetimi && tsc -b && vite build && npm run prerender",
     "lint": "oxlint",
     "preview": "vite preview",
     "prerender": "node --experimental-strip-types scripts/prerender.mjs",
-    "rota-denetimi": "node scripts/rota-kapsam-denetimi.mjs"
+    "rota-denetimi": "node scripts/rota-kapsam-denetimi.mjs",
+    "kaynak-denetimi": "node --experimental-strip-types scripts/kaynak-denetimi.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

@@ -645,3 +645,34 @@
 @media (prefers-reduced-motion: reduce) {
   .kontrol-madde, .kontrol-madde::before, .kontrol-madde::after { transition: none; }
 }
+
+/* --- Kaynak kunyesi --- */
+/*
+ * ⚠️ PARCALI KUNYE (Ahmet, 24.08.2026: "hangi dergi hangi makale hangi sayi").
+ * Once tek satirlik bir baglanti etiketiydi ve okuyucu hakemli bir calisma ile
+ * bir kurum sayfasini ayirt edemiyordu. Simdi yazar one aliniyor, kurum ve DOI
+ * alt satirda kunye gibi duruyor.
+ */
+.yazi-kaynaklar ol {
+  margin: 0;
+  padding-left: 22px;
+  list-style: decimal outside;
+}
+.yazi-kaynaklar li {
+  margin-bottom: 14px;
+  line-height: 1.6;
+  font-size: 0.94rem;
+}
+.yazi-kaynaklar li::marker { color: var(--color-vet-secondary); font-weight: 700; }
+.yazi-kaynaklar a { color: var(--color-vet-secondary); text-decoration: none; }
+.yazi-kaynaklar a:hover { text-decoration: underline; }
+.kaynak-yazar { font-weight: 600; }
+.kaynak-dergi { font-style: italic; }
+/* Kurum ve DOI alt satirda: kunyenin govdesini kalabaliklastirmasinlar. */
+.kaynak-kurum,
+.kaynak-doi {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted, #475569);
+}
+.kaynak-doi { font-variant-numeric: tabular-nums; }

@@ -82,11 +82,28 @@ export const kedimYemekYemiyor: BlogYazi = {
     '24 saati geçtiyse randevu var mı?',
   ],
   sss: [
-    { soru: 'Kedi kaç gün aç kalabilir?', cevap: 'Sağlıklı bir yetişkin kedi teknik olarak birkaç gün dayanabilir ama bu güvenli olduğu anlamına gelmiyor. 24 saati aşan açlıkta karaciğer yağlanması riski başlıyor, 48 saatte ciddi hâle geliyor. Yavru ve yaşlılarda süre çok daha kısa.' },
+    { soru: 'Kedi kaç gün aç kalabilir?', cevap: 'Sağlıklı bir yetişkin kedi teknik olarak birkaç gün dayanabilir ama bu güvenli olduğu anlamına gelmiyor. Aç kalan kedide karaciğer yağlanması gelişebiliyor ve bu, kedilerin çoğu türden farkı. Bu yüzden 24 saati aşan açlıkta beklenmiyor, kliniğe gidiliyor. Yavru ve yaşlılarda süre daha da kısa.' },
     { soru: 'Kedim yemiyor ama su içiyor, yine de gitmeli miyim?', cevap: 'Su içmesi iyi bir işaret ama açlık süresini değiştirmiyor. 24 saati aşıyorsa kliniğe gidin.' },
     { soru: 'Sadece mama değiştirdim, o yüzden mi yemiyor?', cevap: 'Olabilir, ama bunu varsayıp beklemek doğru değil. Eski mamaya geri dönün; bir gün içinde iştahı gelmiyorsa sebep mama değil.' },
     { soru: 'Zorla mama vermeli miyim?', cevap: 'Şırıngayla besleme veteriner hekim önerisiyle ve tekniği öğrenildikten sonra yapılır. Yanlış uygulama mamanın soluk borusuna kaçmasına yol açabiliyor.' },
     { soru: 'İştah açıcı ilaç kullanabilir miyim?', cevap: 'Kedilerde kullanılan iştah açıcılar var ama bunlar reçeteli ilaçlar ve altta yatan sebep bulunmadan verilmesi doğru değil. İştahsızlık bir belirtidir, hastalığın kendisi değildir.' },
     { soru: 'Yaşlı kedim eskisinden az yiyor, normal mi?', cevap: 'Yaşlılıkta enerji ihtiyacı bir miktar düşebilir ama belirgin azalma ve kilo kaybı normal değil. Böbrek, tiroid ve diş sorunları bu yaşta sık görülüyor, kontrol gerekiyor.' },
+  ],
+  kaynaklar: [
+    {
+      kurum: 'Colorado State University College of Veterinary Medicine',
+      yazarlar: 'Webb CB',
+      baslik: 'Hepatic lipidosis: clinical review drawn from collective effort',
+      dergi: 'Journal of Feline Medicine and Surgery',
+      yil: 2018,
+      kunye: '20(3):217-227',
+      doi: '10.1177/1098612X18758591',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/29478399/',
+    },
+    {
+      kurum: 'Cornell University College of Veterinary Medicine — Cornell Feline Health Center',
+      baslik: 'Hepatic Lipidosis',
+      adres: 'https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/hepatic-lipidosis',
+    },
   ],
 };

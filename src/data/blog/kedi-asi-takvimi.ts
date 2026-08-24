@@ -62,7 +62,18 @@ export const kediAsiTakvimi: BlogYazi = {
   ],
   kaynaklar: [
     {
-      etiket: 'Cornell University College of Veterinary Medicine — Feline Leukemia Virus',
+      kurum: 'American Animal Hospital Association · American Association of Feline Practitioners',
+      yazarlar: 'Stone AE, Brummet GO, Carozza EM, Kass PH ve ark.',
+      baslik: '2020 AAHA/AAFP Feline Vaccination Guidelines',
+      dergi: 'Journal of Feline Medicine and Surgery',
+      yil: 2020,
+      kunye: '22(9):813-830',
+      doi: '10.1177/1098612X20941784',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/32845224/',
+    },
+    {
+      kurum: 'Cornell University College of Veterinary Medicine — Cornell Feline Health Center',
+      baslik: 'Feline Leukemia Virus',
       adres: 'https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-leukemia-virus',
     },
   ],

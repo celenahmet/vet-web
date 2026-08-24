@@ -192,11 +192,30 @@ for (const y of yazilar) {
      * guvenilirlik sinyali.
      */
     y.kaynaklar?.length
-      ? `<section><h2>Kaynaklar</h2><ul>${y.kaynaklar
-          .map((k) => (k.adres
-            ? `<li><a href="${kac(k.adres)}" rel="noopener noreferrer">${kac(k.etiket)}</a></li>`
-            : `<li>${kac(k.etiket)}</li>`))
-          .join('')}</ul></section>`
+      /*
+       * ⚠️ KUNYE TAM HALIYLE PRERENDER CIKTISINA GIRIYOR (24.08.2026). Yazar,
+       * dergi, yil, cilt/sayi ve DOI tarama botunun ve yapay zeka
+       * tarayicisinin JS calistirmadan okudugu yerde duruyor. Saglik
+       * iceriginde kaynak bir guvenilirlik sinyali; yalniz React tarafinda
+       * cizilirse o sinyal hic verilmemis oluyor.
+       */
+      ? `<section><h2>Kaynaklar</h2><ol>${y.kaynaklar
+          .map((k) => {
+            const bas = k.adres
+              ? `<a href="${kac(k.adres)}" rel="noopener noreferrer">${kac(k.baslik)}</a>`
+              : kac(k.baslik);
+            const parcalar = [
+              k.yazarlar ? `${kac(k.yazarlar)}. ` : '',
+              bas,
+              k.dergi ? `. ${kac(k.dergi)}` : '',
+              k.yil ? `, ${k.yil}` : '',
+              k.kunye ? `;${kac(k.kunye)}` : '',
+              `. ${kac(k.kurum)}`,
+              k.doi ? `. doi: ${kac(k.doi)}` : '',
+            ];
+            return `<li>${parcalar.join('')}</li>`;
+          })
+          .join('')}</ol></section>`
       : '',
     /*
      * ⚠️ IC BAGLANTILAR PRERENDER CIKTISINA DA KONUYOR. React acilinca yerini kenar
