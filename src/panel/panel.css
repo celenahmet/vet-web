@@ -17,32 +17,30 @@
  */
 
 /*
- * ⚠️ RENKLER UYGULAMANIN PALETINDEN, SITENIN DEGIL (Ahmet, 24.08.2026:
- * *"panel tasarimi yine renkleri felan uygulamayla uyumlu olsun, webe ozel
- * yapilandirmalar denenebilir"*).
+ * ⚠️ PANEL SABIT ACIK TEMA. Cihaz temasini IZLEMIYOR (Ahmet, 24.08.2026:
+ * *"sağ taraf beyaz tema sol taraf yeşili de tam tutmamış"*).
  *
- * Degerler `veteriner/src/core/theme/palette.json` dosyasindan BIREBIR kopyalandi.
- * Zumrut (#0F6B57) + sicak altin (#C6A15B) dengesi uygulamanin renk dili; panel
- * ayni klinigin ayni araci, iki ayri marka gibi gorunmemeli.
+ * NEDEN: panelin ilk halinde icerik alani `prefers-color-scheme` izliyordu.
+ * Koyu tema kullanan bir bilgisayarda ekranin TAMAMI koyu aciliyordu; hedefteki
+ * tasarim ise koyu yesil menu + ACIK icerik. Yani panel, kullanicinin isletim
+ * sistemi ayarina gore bambaska bir urun gibi gorunuyordu.
  *
- * ⚠️ SITENIN `--primary-color` DEGISKENI KULLANILMIYOR. Kullanilsaydi pazarlama
- * sayfasinda yapilan bir renk denemesi paneli de degistirirdi; panelde calisan
- * kisi sabahtan aksama farkli renkte bir arac gormemeli.
+ * ⚠️ Bu bir eksiklik degil KARAR. Panel bir is araci: gun boyu acik duruyor,
+ * ekran goruntusu paylasiliyor, iki calisan yan yana bakiyor. Ayni ekranin iki
+ * kiside iki farkli renkte olmasi, "sende neden oyle gorunuyor" sorusunu
+ * ureten bir sey. Koyu tema istenirse ayri bir karar olarak, panelin KENDI
+ * anahtariyla eklenir; cihaz ayarina birakilmaz.
  *
- * ⚠️ KOPYA OLDUGU ICIN AYRISABILIR. Uygulamada palet degisirse burasi elle
- * guncellenir. Otomatik baglamanin yolu yok: `palette.json` ayri bir depoda ve
- * bu site onu derleme aninda goremiyor. Ayrisma olursa gozle fark edilir, cunku
- * ayni klinigin telefonu ile ekrani yan yana duruyor.
+ * ⚠️ Renkler uygulamanin paletinden: `veteriner/src/core/theme/palette.json`
+ * acik tema degerleri. Zumrut + sicak altin. Kopya oldugu icin ayrisabilir;
+ * uygulamada palet degisirse burasi elle guncellenir.
  *
- * ⚠️ WEBE OZEL OLAN: olcekler. Telefonda parmak icin buyuk hedefler gerekiyor,
- * masaustunde fare var ve ekranda cok daha fazla satir gorunuyor. Renk ayni,
- * yogunluk farkli.
+ * ⚠️ WEBE OZEL OLAN: olcekler ve yogunluk. Telefonda parmak icin buyuk hedefler
+ * gerekiyor, masaustunde fare var ve ekranda cok daha fazla satir gorunuyor.
+ * Renk ayni, yogunluk farkli.
  */
 .pnl-kabuk {
-  /* ⚠️ Yatay duzen: yan menu solda tam yukseklik, saginda ust cubuk + icerik
-     sutunu. `pnl-govde` sarmalayicisi kaldirildi. */
-  flex-direction: row !important;
-  /* Uygulamanin acik teması */
+  /* ── Icerik alani: uygulamanin ACIK teması ── */
   --pnl-bg: #FAF8F3;
   --pnl-yuzey: #FFFFFF;
   --pnl-yumusak: #DDEFE8;
@@ -51,58 +49,43 @@
   --pnl-altin: #C6A15B;
   --pnl-metin: #202825;
   --pnl-soluk: #6F7C77;
-  --pnl-cizgi: #D9E5DF;
+  --pnl-cizgi: #E4EDE8;
   --pnl-basarili: #2F8F6B;
   --pnl-uyari: #D6A23D;
   --pnl-tehlike: #D95C5C;
   --pnl-vurgu-metin: #FFFFFF;
 
-  --pnl-yaricap: 10px;
+  /* ── Yan menu: kendi koyu yesili ──
+   * ⚠️ Ton hedef tasarimdan alindi. Onceki deger (#073F35) fazla koyu ve
+   * fazla gri kaliyordu; hedefteki menu daha canli bir orman yesili ve DUZ,
+   * gecisli degil. Gecis, ekranin uzun kenarinda bant gibi gorunuyordu.
+   */
+  --pnl-yan-bg: #10473A;
+  --pnl-yan-metin: #FFFFFF;
+  --pnl-yan-soluk: #B7CFC7;
+  --pnl-yan-etkin: #1B5B4B;
+  --pnl-yan-cizgi: rgba(255, 255, 255, .12);
+  --pnl-yan-kutu: rgba(255, 255, 255, .07);
+
+  --pnl-yaricap: 12px;
   --pnl-yuzey-ust: var(--pnl-yuzey);
+
+  /* ⚠️ Yatay duzen: yan menu solda tam yukseklik, saginda ust cubuk + icerik. */
+  flex-direction: row !important;
 
   min-height: 100vh;
   min-height: 100dvh;
   background: var(--pnl-bg);
   color: var(--pnl-metin);
   display: flex;
-  flex-direction: column;
   font-size: 15px;
-}
 
-/* Uygulamanin koyu teması — ayni dosyadan, ayni degerler. */
-:root[data-theme='dark'] .pnl-kabuk {
-  --pnl-bg: #0E1714;
-  --pnl-yuzey: #192823;
-  --pnl-yumusak: #20312B;
-  --pnl-vurgu: #2FAE8F;
-  --pnl-vurgu-koyu: #0F6B57;
-  --pnl-altin: #D3B06A;
-  --pnl-metin: #F4F7F5;
-  --pnl-soluk: #AAB8B2;
-  --pnl-cizgi: #2B3B35;
-  --pnl-basarili: #4DC28E;
-  --pnl-uyari: #E2B657;
-  --pnl-tehlike: #EF6B6B;
-  --pnl-vurgu-metin: #08120D;
-  --pnl-yuzey-ust: #20312B;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .pnl-kabuk {
-    --pnl-bg: #0E1714;
-    --pnl-yuzey: #192823;
-    --pnl-yumusak: #20312B;
-    --pnl-vurgu: #2FAE8F;
-    --pnl-vurgu-koyu: #0F6B57;
-    --pnl-altin: #D3B06A;
-    --pnl-metin: #F4F7F5;
-    --pnl-soluk: #AAB8B2;
-    --pnl-cizgi: #2B3B35;
-    --pnl-basarili: #4DC28E;
-    --pnl-uyari: #E2B657;
-    --pnl-tehlike: #EF6B6B;
-    --pnl-vurgu-metin: #08120D;
-    --pnl-yuzey-ust: #20312B;
-  }
+  /*
+   * ⚠️ `color-scheme: light` SART. Bunsuz tarayici, koyu tema ayarli bir
+   * cihazda form ogelerini (input, select, kaydirma cubugu) kendi koyu
+   * bicimiyle ciziyor; beyaz kartin ustunde siyah bir metin kutusu cikiyordu.
+   */
+  color-scheme: light;
 }
 
 /* Giris ve tek kutuluk durumlar: yan menu yok, ortalanmis. */
@@ -161,7 +144,7 @@
  * ⚠️ YAN MENU HER TEMADA KOYU ZUMRUT. Tema anahtarini izlemiyor ve bu KASITLI:
  * koyu sutun panelin kimligi. Acik temada da koyu kalinca ekran "uygulama"
  * gibi duruyor, "beyaz bir web sayfasi" gibi degil. Renk, uygulamanin
- * `primaryDeep` (#073F35) tonu; yani ayni marka, farkli yuzey.
+ * uygulamanin koyu zumrut tonu; yani ayni marka, farkli yuzey.
  */
 /* Yan menunun sagindaki sutun: ust cubuk ve icerik alt alta. */
 .pnl-sutun { flex: 1; min-width: 0; display: flex; flex-direction: column; }
@@ -170,8 +153,8 @@
   width: 252px;
   flex-shrink: 0;
   padding: 20px 14px 20px 18px;
-  background: linear-gradient(180deg, #0C4438 0%, #073F35 100%);
-  color: #E8F3EF;
+  background: var(--pnl-yan-bg);
+  color: var(--pnl-yan-soluk);
   position: sticky;
   top: 0;
   align-self: stretch;
@@ -189,57 +172,65 @@
 
 .pnl-klinik-kutu {
   display: flex; align-items: center; gap: 9px;
-  margin: 12px 0 20px; padding: 8px 9px;
-  background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.1);
+  margin: 14px 0 20px; padding: 9px 10px;
+  background: var(--pnl-yan-kutu);
+  border: 1px solid var(--pnl-yan-cizgi);
   border-radius: 11px;
 }
 .pnl-klinik-rozet {
   flex-shrink: 0; width: 30px; height: 30px; border-radius: 8px;
   display: grid; place-items: center;
-  background: #2FAE8F; color: #08120D;
+  background: #2FAE8F; color: #06231C;
   font-size: 13px; font-weight: 700;
 }
 .pnl-klinik-metin { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
-.pnl-klinik-etiket { font-size: 9.5px; text-transform: uppercase; letter-spacing: .08em; color: rgba(232,243,239,.6); font-weight: 700; }
-.pnl-klinik-ad { font-weight: 600; font-size: 13px; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; color: #fff; }
+.pnl-klinik-etiket { font-size: 9.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--pnl-yan-soluk); font-weight: 700; }
+.pnl-klinik-ad { font-weight: 600; font-size: 13px; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; color: var(--pnl-yan-metin); }
 .pnl-klinik-secim {
   font: inherit; font-size: 13px; font-weight: 600;
-  background: transparent; color: #fff;
+  background: transparent; color: var(--pnl-yan-metin);
   border: none; padding: 0; cursor: pointer; max-width: 100%;
 }
-.pnl-klinik-secim option { color: #202825; }
+/* ⚠️ Acilir listenin ogeleri isletim sisteminin penceresinde ciziliyor, koyu
+   menunun icinde degil; rengi ayrica verilmezse koyu zeminde koyu metin cikar. */
+.pnl-klinik-secim option { color: var(--pnl-metin); background: var(--pnl-yuzey); }
 
 .pnl-menu { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
 .pnl-menu-ogesi {
   width: 100%; text-align: left; cursor: pointer;
   display: flex; align-items: center; gap: 11px;
   padding: 10px 12px; border: none; border-radius: 10px;
-  background: transparent; color: rgba(232,243,239,.82); font: inherit;
+  background: transparent; color: var(--pnl-yan-soluk); font: inherit;
   transition: background .12s ease, color .12s ease;
 }
-.pnl-menu-ogesi:hover { background: rgba(255,255,255,.08); color: #fff; }
-.pnl-menu-etkin { background: #2FAE8F; color: #06231C; font-weight: 600; }
-.pnl-menu-etkin:hover { background: #2FAE8F; color: #06231C; }
+.pnl-menu-ogesi:hover { background: rgba(255,255,255,.07); color: var(--pnl-yan-metin); }
+/*
+ * ⚠️ ETKIN OGE KOYU YESIL, PARLAK MINT DEGIL. Ilk halinde etkin satir #2FAE8F
+ * (parlak mint) zeminli ve koyu metinliydi; menudeki en parlak sey oydu ve goz
+ * once oraya gidiyordu. Hedef tasarimda etkin satir menuden yalnizca BIR TON
+ * acik ve metni beyaz: "buradasin" diyor, bagirmiyor.
+ */
+.pnl-menu-etkin { background: var(--pnl-yan-etkin); color: var(--pnl-yan-metin); font-weight: 600; }
+.pnl-menu-etkin:hover { background: var(--pnl-yan-etkin); color: var(--pnl-yan-metin); }
 .pnl-menu-yazi { display: flex; flex-direction: column; gap: 0; min-width: 0; }
 .pnl-menu-ad { font-size: 14px; font-weight: 600; }
 .pnl-menu-aciklama { font-size: 11px; opacity: .72; line-height: 1.3; }
-.pnl-menu-etkin .pnl-menu-aciklama { opacity: .78; }
+.pnl-menu-etkin .pnl-menu-aciklama { opacity: .8; }
 
 .pnl-yan-not {
   margin-top: auto; padding: 12px 13px;
-  font-size: 11.5px; line-height: 1.55; color: rgba(232,243,239,.72);
-  background: rgba(255,255,255,.06); border-radius: 11px;
+  font-size: 11.5px; line-height: 1.55; color: var(--pnl-yan-soluk);
+  background: var(--pnl-yan-kutu); border-radius: 11px;
 }
 
 .pnl-cikis-yan {
   display: flex; align-items: center; gap: 10px; width: 100%;
   margin-top: 10px; padding: 10px 12px;
-  background: transparent; border: 1px solid rgba(255,255,255,.16);
-  border-radius: 10px; color: rgba(232,243,239,.9);
+  background: transparent; border: 1px solid var(--pnl-yan-cizgi);
+  border-radius: 10px; color: var(--pnl-yan-soluk);
   font: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer;
 }
-.pnl-cikis-yan:hover { background: rgba(255,255,255,.08); }
+.pnl-cikis-yan:hover { background: rgba(255,255,255,.07); color: var(--pnl-yan-metin); }
 
 .pnl-icerik { flex: 1; min-width: 0; padding: 0 26px 56px; }
 
@@ -328,12 +319,7 @@
 }
 .pnl-kart-ikon-altin { background: color-mix(in srgb, var(--pnl-altin) 18%, transparent); color: color-mix(in srgb, var(--pnl-altin) 82%, #000); }
 .pnl-kart-ikon-uyari { background: color-mix(in srgb, var(--pnl-uyari) 16%, transparent); color: color-mix(in srgb, var(--pnl-uyari) 80%, #000); }
-:root[data-theme='dark'] .pnl-kart-ikon-altin { color: var(--pnl-altin); }
-:root[data-theme='dark'] .pnl-kart-ikon-uyari { color: var(--pnl-uyari); }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .pnl-kart-ikon-altin { color: var(--pnl-altin); }
-  :root:not([data-theme='light']) .pnl-kart-ikon-uyari { color: var(--pnl-uyari); }
-}
+/* ⚠️ Koyu tema kurallari KALDIRILDI: panel sabit acik tema. */
 .pnl-kart-govde { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
 .pnl-kart-ad { font-size: 13px; font-weight: 600; color: var(--pnl-soluk); }
 .pnl-kart-deger { font-size: 27px; font-weight: 700; line-height: 1.05; letter-spacing: -.02em; }
@@ -403,12 +389,7 @@
   color: color-mix(in srgb, var(--pnl-uyari) 82%, #000);
 }
 .pnl-gun-rozet-yakin { background: color-mix(in srgb, var(--pnl-tehlike) 15%, transparent); color: color-mix(in srgb, var(--pnl-tehlike) 82%, #000); }
-:root[data-theme='dark'] .pnl-gun-rozet { color: var(--pnl-uyari); }
-:root[data-theme='dark'] .pnl-gun-rozet-yakin { color: var(--pnl-tehlike); }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .pnl-gun-rozet { color: var(--pnl-uyari); }
-  :root:not([data-theme='light']) .pnl-gun-rozet-yakin { color: var(--pnl-tehlike); }
-}
+/* ⚠️ Koyu tema kurallari KALDIRILDI: panel sabit acik tema. */
 
 .pnl-mini-izgara { display: grid; grid-template-columns: repeat(auto-fit, minmax(78px, 1fr)); gap: 10px; }
 .pnl-mini {
@@ -454,18 +435,7 @@
 .pnl-durum-done      { background: color-mix(in srgb, var(--pnl-basarili) 18%, transparent); color: color-mix(in srgb, var(--pnl-basarili) 78%, #000); }
 .pnl-durum-cancelled { background: color-mix(in srgb, var(--pnl-metin) 10%, transparent); color: var(--pnl-soluk); }
 .pnl-durum-declined  { background: color-mix(in srgb, var(--pnl-tehlike) 15%, transparent); color: color-mix(in srgb, var(--pnl-tehlike) 78%, #000); }
-:root[data-theme='dark'] .pnl-durum-requested { color: var(--pnl-uyari); }
-:root[data-theme='dark'] .pnl-durum-proposed  { color: var(--pnl-altin); }
-:root[data-theme='dark'] .pnl-durum-confirmed { color: var(--pnl-vurgu); }
-:root[data-theme='dark'] .pnl-durum-done      { color: var(--pnl-basarili); }
-:root[data-theme='dark'] .pnl-durum-declined  { color: var(--pnl-tehlike); }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .pnl-durum-requested { color: var(--pnl-uyari); }
-  :root:not([data-theme='light']) .pnl-durum-proposed  { color: var(--pnl-altin); }
-  :root:not([data-theme='light']) .pnl-durum-confirmed { color: var(--pnl-vurgu); }
-  :root:not([data-theme='light']) .pnl-durum-done      { color: var(--pnl-basarili); }
-  :root:not([data-theme='light']) .pnl-durum-declined  { color: var(--pnl-tehlike); }
-}
+/* ⚠️ Koyu tema kurallari KALDIRILDI: panel sabit acik tema. */
 
 /* ── KISI LISTELERI (ekip, musteri, hasta) ───────────────── */
 .pnl-kisi-listesi { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
