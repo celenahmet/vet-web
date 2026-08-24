@@ -742,3 +742,78 @@
 .yazi-bulunamadi .yazi-kategori { margin-bottom: 18px; }
 .yazi-bulunamadi h1 { font-size: 2rem; margin: 0 0 14px; }
 .yazi-bulunamadi p { color: var(--text-muted, #475569); line-height: 1.7; margin: 0 0 26px; }
+
+/*
+ * ══════════════════════════════════════════════════════════════════════════
+ * DAR EKRANDA YAZI BUTUNLUGU (Ahmet, 24.08.2026: *"tablette yazı kaynakları
+ * sıkça sorulan soruların arasına farklı şeyler girmiş yazı bütünlüğü
+ * bozulmuş"*)
+ * ══════════════════════════════════════════════════════════════════════════
+ *
+ * OLCULDU (1024, 834 ve 390 piksel):
+ *   yazi govdesi biter      ~4800 px
+ *   KENAR CUBUGU            4822 px  <- Kategoriler, Populer yazilar, Son
+ *                                       yazilar, Dostunuzun saglik defteri
+ *                                       (yaklasik 2100 piksel)
+ *   Kontrol listesi         6939 px
+ *   Sikca sorulan sorular   7292 px
+ *   Kaynaklar               7931 px
+ *   Ilgili yazilar          8195 px
+ *
+ * Yani okuyucu yaziyi bitiriyor, arkasindan iki bin piksellik kategori ve
+ * populer yazi listesi geliyor, SONRA o yazinin kendi kontrol listesi, sorulari
+ * ve kaynaklari cikiyor. Yazinin sonu ile kaynaklari birbirinden koparilmis
+ * oluyor. Ustelik kenar cubugu da "Kontrol listesi" basligi tasidigi icin ayni
+ * baslik iki kez, arka arkaya gorunuyor.
+ *
+ * SEBEP YAPISAL: kenar cubugu `.yazi-duzen` izgarasinin ICINDE, kapanis
+ * bolumleri (kontrol, sss, kaynaklar, ilgili) ise DISINDA. Genis ekranda izgara
+ * iki sutun oldugu icin cubuk saga gidiyor ve sorun gorunmuyor. 1080 pikselin
+ * altinda izgara tek sutuna dusunce cubuk, dogal olarak govdenin hemen ardina
+ * yerlesiyor — yani kapanis bolumlerinin ONUNE.
+ *
+ * COZUM: dar ekranda `.yazi-duzen` kutusu kaldiriliyor (`display: contents`) ve
+ * cocuklari dogrudan sayfanin esnek cocuklari oluyor. Boylece `order` ile kenar
+ * cubugu EN SONA aliniyor. Yazi ve kapanis bolumleri kesintisiz akiyor.
+ *
+ * ⚠️ `display: contents` KUTUYU YOK EDER: `.yazi-duzen` uzerindeki `container`
+ * genisligi ve dolgusu da gider. O yuzden ayni olculer cocuklara ELDEN
+ * veriliyor. Olculdu: max-width 820px, dolgu 24px (390 pikselde 16px).
+ *
+ * ⚠️ Genis ekran HIC DEGISMIYOR: butun kurallar 1080 alti medya sorgusunda.
+ * Masaustunde kenar cubugu yine sagda ve yapisik.
+ */
+@media (max-width: 1080px) {
+  .yazi-sayfa { display: flex; flex-direction: column; }
+
+  /* Izgara kutusu kalkiyor; cocuklari sayfanin dogrudan cocugu oluyor. */
+  .yazi-sayfa > .yazi-duzen { display: contents; }
+
+  /* `container` olculeri elden veriliyor, cunku kutu artik yok. */
+  .yazi-sayfa > .yazi-duzen > .yazi-ana,
+  .yazi-sayfa > .yazi-duzen > .blog-kenar {
+    width: 100%;
+    max-width: 820px;
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+
+  /* Okuma sirasi: yazi -> kendi kapanis bolumleri -> kenar cubugu */
+  .yazi-sayfa > .yazi-duzen > .yazi-ana { order: 1; }
+  .yazi-sayfa > .yazi-kontrol  { order: 2; }
+  .yazi-sayfa > .yazi-sss      { order: 3; }
+  .yazi-sayfa > .yazi-kaynaklar{ order: 4; }
+  .yazi-sayfa > .yazi-ilgili   { order: 5; }
+
+  /*
+   * ⚠️ Uygulama bandi ve adi konmamis diger bolumler ortada kalmasin diye
+   * varsayilan sira 6; kenar cubugu her hâlükârda onlardan da sonra.
+   */
+  .yazi-sayfa > section { order: 6; }
+  .yazi-sayfa > .yazi-duzen > .blog-kenar { order: 90; margin-top: 8px; }
+}
+
+@media (max-width: 640px) {
+  .yazi-sayfa > .yazi-duzen > .yazi-ana,
+  .yazi-sayfa > .yazi-duzen > .blog-kenar { padding-inline: 16px; }
+}

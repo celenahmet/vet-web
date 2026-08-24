@@ -145,6 +145,37 @@ for (const d of dosyalar) {
     if (deger && typeof deger === 'object' && 'slug' in deger && 'bloklar' in deger) yazilar.push(deger);
   }
 }
+/**
+ * KAPAKSIZ YAZI YAYINLANMAZ (İSTEK: Ahmet, 24.08.2026 — *"kapak fotoğrafı
+ * olmayan yazıları yayınlamayalım"*).
+ *
+ * ⚠️ AYNI KURAL IKI YERDE UYGULANIYOR ve olmak zorunda: `src/data/blog/index.ts`
+ * tarayicida calisan listeyi suzuyor, burasi ONCEDEN URETILEN HTML'i ve site
+ * haritasini. Yalniz birini yapmak, "listede yok ama adresi acik" ya da tersi
+ * bir durum uretirdi; ikisi de yarim.
+ *
+ * ⚠️ OLCUM SUREKLI: kapak, kaynak klasorunde `<slug>.webp` olarak araniyor —
+ * `gorsel.ts` hangi dosyalari topluyorsa aynisi. Uretilen `dist/assets` degil
+ * KAYNAK bakiliyor; dist'e bakmak, gorseli olan ama derlemede elenen bir yaziyi
+ * yanlislikla yayindan cikarirdi.
+ */
+const KAPAK_KLASORU = join(KOK, 'src/assets/blog');
+const kapakliMi = (slug) => existsSync(join(KAPAK_KLASORU, `${slug}.webp`));
+
+const kapaksizlar = yazilar.filter((y) => !kapakliMi(y.slug));
+const yayindakiler = yazilar.filter((y) => kapakliMi(y.slug));
+
+if (kapaksizlar.length) {
+  /*
+   * ⚠️ SESSIZ ELEME YOK. Yazi yayindan cikiyorsa bunun ekranda gorunmesi sart;
+   * yoksa yazan kisi yazisinin yayimlandigini saniyor.
+   */
+  console.log(`prerender: KAPAGI OLMAYAN ${kapaksizlar.length} yazi YAYINLANMADI -> ${kapaksizlar.map((y) => y.slug).join(', ')}`);
+  console.log('           Kapak eklemek icin: src/assets/blog/<slug>.webp koyup "npm run kapaklar" calistirin.');
+}
+
+yazilar.length = 0;
+yazilar.push(...yayindakiler);
 yazilar.sort((a, b) => b.tarih.localeCompare(a.tarih));
 
 const sablonYolu = join(KOK, 'dist/index.html');
