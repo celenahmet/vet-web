@@ -713,3 +713,20 @@ a.pnl-widget-eylem { text-decoration: none; }
   .pnl-yan { transition: none; }
   .pnl-kart { transition: none; }
 }
+
+/* ── YER TUTUCU KUTULAR ──────────────────────────────────
+ * ⚠️ Solgun ve kesikli cerceve: gozun bunlari "henuz yok" diye ayirmasi
+ * gerekiyor. Dolu kutularla ayni gorunselerdi, tire bir hata sanilirdi.
+ */
+.pnl-widget-yakinda { border-style: dashed; background: transparent; }
+.pnl-yakinda-etiket {
+  margin-left: auto; padding: 3px 9px; border-radius: 999px;
+  font-size: 11px; font-weight: 700; letter-spacing: .03em;
+  background: color-mix(in srgb, var(--pnl-metin) 7%, transparent);
+  color: var(--pnl-soluk);
+}
+.pnl-yakinda-tire {
+  margin: 6px 0 2px; font-size: 30px; font-weight: 700;
+  line-height: 1; color: color-mix(in srgb, var(--pnl-metin) 22%, transparent);
+}
+.pnl-kart-trend { font-size: 11px; color: color-mix(in srgb, var(--pnl-metin) 38%, transparent); margin-top: 3px; }

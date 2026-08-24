@@ -11,6 +11,7 @@ import {
 import { EKSIK_ALAN, RANDEVU_DURUMU, KAYIT_TURU, ROL, tarihYaz, saatYaz } from './sozluk';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
+import Yakinda from './Yakinda';
 import type { Bolum } from './bolumler';
 
 /**
@@ -111,6 +112,13 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
               <span className="pnl-kart-ad">{ad}</span>
               <span className="pnl-kart-deger">{deger}</span>
               <span className="pnl-kart-anlam">{anlam}</span>
+              {/*
+                ⚠️ "Gecen doneme gore —". Taslakta burada "▲%9 · dun: 11" gibi
+                degisim vardi. Sunucu GUNLUK GECMIS tutmuyor, yani o oran
+                hesaplanamaz. Tire, hesaplanamadigi icin bos; sifir DEGIL.
+                Sifir yazmak "degisim olmadi" demek olurdu ve yanlis olurdu.
+              */}
+              <span className="pnl-kart-trend">Geçen döneme göre —</span>
             </span>
           </button>
         ))}
@@ -275,6 +283,22 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
             )}
           </div>
         </section>
+
+        {/*
+          ⚠️ YER TUTUCULAR. Tasarim taslaginda bu kutular vardi; arkalarinda
+          veri yok. Sayi uydurmak yerine tire konuyor ve neden bos oldugu
+          yaziyor. Kaynak geldiginde yerlerinde doldurulacaklar; tasarim
+          yeniden dizilmeyecek.
+        */}
+        <Yakinda
+          baslik="Mesajlar"
+          aciklama="Hayvan sahiplerinden gelen mesajlar burada listelenecek. Şimdilik mesajlaşma yalnızca telefondaki uygulamada."
+        />
+
+        <Yakinda
+          baslik="Randevu doluluk oranı"
+          aciklama="Haftalık doluluk grafiği için günlük geçmiş tutulması gerekiyor; şu an yalnızca güncel durum kaydediliyor."
+        />
 
         {/* ── VITRIN ── */}
         <section className="pnl-widget">
