@@ -43,11 +43,28 @@ if (yazilar.length === 0) {
 
 const bulgular = [];
 
+/**
+ * Kaynak zorunlulugu SAGLIK ICERIGI icin.
+ *
+ * ⚠️ Brief'in kurali birebir soyle: "Saglik icerikli her yazida en az bir
+ * dogrulanmis kaynak bulunur." Klinik yonetimi yazilari tibbi iddia tasimiyor;
+ * onlar icin hakemli kaynak aramak, kaynagi zorlama getiriyor ve zorlanan
+ * kaynak yanlis kaynaktir.
+ *
+ * ⚠️ MUAFIYET DEGIL, KAPSAM. Klinik yonetimi yazisinda tibbi bir cumle gecerse
+ * kural yine isler: o cumle kaynaksiz yazilamaz. Denetim kategoriye bakiyor,
+ * cumleye bakamaz; bunu uygulayan insandir.
+ */
+const SAGLIK_KATEGORILERI = new Set(['Kedi', 'Köpek', 'Beslenme', 'Sağlık']);
+
 for (const y of yazilar) {
   const kaynaklar = y.kaynaklar ?? [];
+  const saglikIcerigi = SAGLIK_KATEGORILERI.has(y.kategori);
 
   if (kaynaklar.length === 0) {
-    bulgular.push(`${y.slug}: HIC KAYNAK YOK. Saglik icerikli her yazida en az bir doğrulanmış kaynak zorunlu.`);
+    if (saglikIcerigi) {
+      bulgular.push(`${y.slug}: HIC KAYNAK YOK. Saglik icerikli her yazida en az bir doğrulanmış kaynak zorunlu.`);
+    }
     continue;
   }
 

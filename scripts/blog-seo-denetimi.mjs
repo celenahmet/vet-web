@@ -51,6 +51,14 @@ const ESIK = {
   icBaglantiEnAz: 1,
 };
 
+/**
+ * Kaynak zorunlulugu SAGLIK ICERIGI icin (brief §8: "Saglik icerikli her yazida
+ * en az bir dogrulanmis kaynak bulunur"). Klinik yonetimi ve benzeri yazilar
+ * tibbi iddia tasimiyor; onlara hakemli kaynak aratmak, zorlanan kaynak uretir
+ * ve zorlanan kaynak yanlis kaynaktir. `kaynak-denetimi.mjs` ile ayni kume.
+ */
+const SAGLIK_KATEGORILERI = new Set(['Kedi', 'Köpek', 'Beslenme', 'Sağlık']);
+
 const yazilar = [];
 for (const d of readdirSync(KLASOR).filter((f) => f.endsWith('.ts') && !HARIC.has(f))) {
   const mod = await import(pathToFileURL(join(KLASOR, d)).href);
@@ -160,7 +168,9 @@ for (const y of yazilar) {
 
   // --- Kaynak ---
   const kaynaklar = y.kaynaklar ?? [];
-  if (kaynaklar.length < ESIK.kaynakEnAz) hata(`hic kaynak yok. Saglik iceriginde en az bir dogrulanmis kaynak zorunlu.`);
+  if (kaynaklar.length < ESIK.kaynakEnAz && SAGLIK_KATEGORILERI.has(y.kategori)) {
+    hata(`hic kaynak yok. Saglik iceriginde en az bir dogrulanmis kaynak zorunlu.`);
+  }
   const kurumlar = new Set(kaynaklar.map((k) => k.kurum));
   if (kaynaklar.length > 1 && kurumlar.size === 1) {
     uyari(`butun kaynaklar tek kurumdan (${[...kurumlar][0].slice(0, 40)}). Tek kaynaga bagli kalinmiyor.`);
@@ -179,8 +189,20 @@ for (const y of yazilar) {
   }
 
   // --- Kapak ---
+  /*
+   * ⚠️ KAPAK EKSIKLIGI ENGEL DEGIL, ICERIK NOTU (duzeltme 24.08.2026).
+   *
+   * Ilk halinde derlemeyi durduruyordu. Ama urunun KENDI karari kapaksiz yaziyi
+   * destekliyor: `BlogKapak` kapak yoksa notr bir marka blogu ciziyor ve bunun
+   * gerekcesi dosyasinda yazili — "kapagi olmayan yaziya BASKA bir yazinin
+   * afisini koymak, okuyucuya yanlis basligi gosterir".
+   *
+   * Yani kapaksiz yayin bilincli olarak mumkun. Denetimin urun kararini
+   * gecersiz kilmasi yanlis olurdu; eksiklik raporlaniyor ama yayini
+   * durdurmuyor.
+   */
   if (!existsSync(join(KOK, 'src/assets/blog', `${y.slug}.webp`))) {
-    hata(`kapak gorseli yok: src/assets/blog/${y.slug}.webp. Paylasimda ve kartta bos gorunuyor.`);
+    icerik(`kapak gorseli yok: src/assets/blog/${y.slug}.webp. Kartta ve paylasimda notr blok gorunuyor.`);
   } else {
     for (const en of [400, 800]) {
       if (!existsSync(join(KOK, 'src/assets/blog', `${y.slug}-${en}.webp`))) {

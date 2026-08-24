@@ -15,8 +15,12 @@ import { kediYasiNasilHesaplanir } from './kedi-yasi-nasil-hesaplanir';
 import { kedimYemekYemiyor } from './kedim-yemek-yemiyor';
 import { kediAsiTakvimi } from './kedi-asi-takvimi';
 import { kopekAsiTakvimi } from './kopek-asi-takvimi';
+import { kopegimFazlaKiloluMu } from './kopegim-fazla-kilolu-mu';
+import { kedilerdeIcVeDisParazit } from './kedilerde-ic-ve-dis-parazit';
+import { veterinerKliniginNasilSecilir } from './veteriner-klinigi-nasil-secilir';
+import { klinikteRandevuYonetimi } from './klinikte-randevu-yonetimi';
 
-export const YAZILAR: BlogYazi[] = [kedilerKacYilYasar, kopeklerKacYilYasar, kediYasiNasilHesaplanir, kedimYemekYemiyor, kediAsiTakvimi, kopekAsiTakvimi].sort((a, b) =>
+export const YAZILAR: BlogYazi[] = [kedilerKacYilYasar, kopeklerKacYilYasar, kediYasiNasilHesaplanir, kedimYemekYemiyor, kediAsiTakvimi, kopekAsiTakvimi, kopegimFazlaKiloluMu, kedilerdeIcVeDisParazit, veterinerKliniginNasilSecilir, klinikteRandevuYonetimi].sort((a, b) =>
   b.tarih.localeCompare(a.tarih),
 );
 
