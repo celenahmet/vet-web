@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Star } from 'lucide-react';
+import { Star, CalendarCheck, PawPrint, Eye, TrendingUp } from 'lucide-react';
 
 import { analizOku, raporOku, degerlendirmeleriOku, type Analiz, type Rapor, type Degerlendirme } from './veri';
 import { tarihYaz } from './sozluk';
+import { Halka, Cubuklar, OranHalkasi } from './Grafik';
 import Bos from './Bos';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
@@ -10,13 +11,17 @@ import Hata from './Hata';
 /**
  * RAPORLAR
  *
- * ⚠️ HER SAYININ YANINDA NE OLDUGU YAZIYOR. Rakam tek basina yoruma acik:
- * "Tamamlanma %75" iyi mi kotu mu, neyin yuzdesi? Klinikte calisan biri bunu
- * tahmin etmek zorunda kalmamali.
+ * ⚠️ GRAFIKLER EKLENDI (Ahmet, 25.08.2026: *"raporlara grafikler interaktif
+ * infografik tarzı eklemeler yapabiliriz bu hali raporlar için web
+ * gösteriminde sade olmuş"*). Veri degismedi, GOSTERIMI degisti: ayni sayilar
+ * artik oran olarak da okunuyor.
  *
- * ⚠️ Sunucu iki ayri fonksiyon veriyor: `clinic_analytics` randevu ve hasta
- * hareketi, `clinic_report` vitrin ve etkilesim. Ikisi tek ekranda ama AYRI
- * baslikta; kaynaklari farkli oldugu icin donemleri de farkli olabiliyor.
+ * ⚠️ ZAMAN SERISI GRAFIGI YOK ve olamaz. Cizgi grafik icin "gun gun" veri
+ * gerekiyor; sunucu yalnizca GUNCEL toplamlari tutuyor. Cizgi cizmek, olmayan
+ * bir gecmisi uydurmak olurdu. Cizilen her sey elde olan sayilarin baska bir
+ * gosterimi.
+ *
+ * ⚠️ Her grafigin yaninda SAYILI gosterge var: renk tek basina anlatmiyor.
  */
 export default function PanelRaporlar({ klinik }: { klinik: string }) {
   const [analiz, setAnaliz] = useState<Analiz | null>(null);
@@ -41,22 +46,35 @@ export default function PanelRaporlar({ klinik }: { klinik: string }) {
   if (yukleniyor) return <Yukleniyor />;
   if (hata) return <Hata mesaj={hata} />;
 
-  const randevuSatirlari = [
-    { ad: 'Toplam randevu', deger: analiz?.appt_total ?? 0, anlam: 'Bugüne kadar açılan tüm randevular.' },
-    { ad: 'Onay bekleyen', deger: analiz?.appt_pending ?? 0, anlam: 'Sizin cevabınızı bekleyen talepler.' },
-    { ad: 'Onaylanan', deger: analiz?.appt_confirmed ?? 0, anlam: 'Kesinleşmiş, günü gelmemiş randevular.' },
-    { ad: 'Tamamlanan', deger: analiz?.appt_done ?? 0, anlam: 'Hayvanın gelip muayene olduğu randevular.' },
-    { ad: 'İptal edilen', deger: analiz?.appt_cancelled ?? 0, anlam: 'Sonradan iptal edilenler.' },
-    { ad: 'Kabul edilmeyen', deger: analiz?.appt_declined ?? 0, anlam: 'Geri çevirdiğiniz talepler.' },
+  const randevuDilimleri = [
+    { ad: 'Tamamlandı', deger: analiz?.appt_done ?? 0, renk: '#2F8F6B' },
+    { ad: 'Onaylandı', deger: analiz?.appt_confirmed ?? 0, renk: '#0F6B57' },
+    { ad: 'Bekliyor', deger: analiz?.appt_pending ?? 0, renk: '#D6A23D' },
+    { ad: 'İptal', deger: analiz?.appt_cancelled ?? 0, renk: '#AAB7B1' },
+    { ad: 'Kabul edilmedi', deger: analiz?.appt_declined ?? 0, renk: '#D95C5C' },
   ];
 
-  const vitrinSatirlari = [
-    { ad: 'Sayfa görüntülenme', deger: rapor?.views_total ?? 0, anlam: 'Klinik sayfanızın toplam açılma sayısı.' },
-    { ad: 'Takipçi', deger: rapor?.followers_total ?? 0, anlam: 'Kliniğinizi uygulamadan takip edenler.' },
-    { ad: 'Müşteri', deger: rapor?.customers_total ?? 0, anlam: 'Kliniğinize bağlı hayvan sahipleri.' },
-    { ad: 'Paylaşım', deger: rapor?.posts_total ?? 0, anlam: 'Uygulamada paylaştığınız gönderiler.' },
-    { ad: 'Beğeni', deger: rapor?.likes_total ?? 0, anlam: 'Paylaşımlarınıza gelen beğeniler.' },
-    { ad: 'Yorum', deger: rapor?.comments_total ?? 0, anlam: 'Paylaşımlarınıza gelen yorumlar.' },
+  /*
+   * ⚠️ `completion_rate` sunucudan ORAN olarak geliyor (0-1 arasi) ama bazi
+   * kurulumlarda yuzde gelebiliyor. 1'den buyukse zaten yuzdedir; kucukse
+   * yuze cevriliyor. Tahmin degil, iki durumu da dogru okuyan bir kontrol.
+   */
+  const ham = analiz?.completion_rate ?? 0;
+  const tamamlanma = ham > 1 ? ham : ham * 100;
+
+  /* Puan dagilimi: 5'ten 1'e. */
+  const puanlar = [5, 4, 3, 2, 1].map((p) => ({
+    ad: `${p} yıldız`,
+    deger: yorumlar.filter((y) => Math.round(y.rating) === p).length,
+    renk: p >= 4 ? '#2F8F6B' : p === 3 ? '#D6A23D' : '#D95C5C',
+  }));
+
+  const etkilesim = [
+    { ad: 'Sayfa görüntülenme', deger: rapor?.views_total ?? 0 },
+    { ad: 'Gönderi görüntülenme', deger: rapor?.post_views_total ?? 0 },
+    { ad: 'Beğeni', deger: rapor?.likes_total ?? 0 },
+    { ad: 'Yorum', deger: rapor?.comments_total ?? 0 },
+    { ad: 'Takipçi', deger: rapor?.followers_total ?? 0 },
   ];
 
   return (
@@ -65,52 +83,95 @@ export default function PanelRaporlar({ klinik }: { klinik: string }) {
         <div>
           <h2>Raporlar</h2>
           <p className="pnl-aciklama">
-            Kliniğinizin randevu hareketi ve uygulamadaki görünürlüğü. Sayılar canlı,
-            her sayfa açılışında yeniden hesaplanır.
+            Kliniğinizin randevu hareketi ve uygulamadaki görünürlüğü. Sayılar canlı; her sayfa
+            açılışında yeniden hesaplanıyor.
           </p>
         </div>
       </header>
 
-      <h3 className="pnl-alt-baslik">Randevular</h3>
-      <div className="pnl-rapor-izgara">
-        {randevuSatirlari.map((s) => (
-          <div key={s.ad} className="pnl-rapor-kart">
-            <span className="pnl-rapor-deger">{s.deger}</span>
-            <span className="pnl-rapor-ad">{s.ad}</span>
-            <span className="pnl-rapor-anlam">{s.anlam}</span>
+      <div className="pnl-kartlar">
+        {[
+          { ikon: CalendarCheck, ad: 'Toplam randevu', deger: analiz?.appt_total ?? 0, anlam: 'Bugüne kadar açılan', sinif: '' },
+          { ikon: PawPrint, ad: 'Kayıtlı hasta', deger: analiz?.patients_total ?? 0, anlam: `${analiz?.patients_new ?? 0} tanesi yeni`, sinif: '' },
+          { ikon: Eye, ad: 'Sayfa görüntülenme', deger: rapor?.views_total ?? 0, anlam: 'Klinik sayfanız kaç kez açıldı', sinif: 'pnl-kart-ikon-altin' },
+          { ikon: Star, ad: 'Değerlendirme', deger: rapor?.reviews_total ?? 0, anlam: rapor?.rating_avg ? `Ortalama ${rapor.rating_avg.toFixed(1)}` : 'Henüz puan yok', sinif: 'pnl-kart-ikon-uyari' },
+        ].map(({ ikon: Ikon, ad, deger, anlam, sinif }) => (
+          <div key={ad} className="pnl-kart pnl-kart-durgun">
+            <span className={`pnl-kart-ikon ${sinif}`} aria-hidden="true"><Ikon size={22} /></span>
+            <span className="pnl-kart-govde">
+              <span className="pnl-kart-ad">{ad}</span>
+              <span className="pnl-kart-deger">{deger}</span>
+              <span className="pnl-kart-anlam">{anlam}</span>
+            </span>
           </div>
         ))}
       </div>
 
-      {analiz && analiz.appt_total > 0 ? (
-        <p className="pnl-ozet">
-          Açılan her 100 randevunun <strong>{Math.round((analiz.completion_rate ?? 0) * 100) / 1}</strong> tanesi
-          tamamlanmış. En çok verdiğiniz hizmet:{' '}
-          <strong>{analiz.top_service || 'henüz belirgin değil'}</strong>
-          {analiz.top_service_count ? ` (${analiz.top_service_count} randevu)` : ''}.
-        </p>
-      ) : null}
-
-      <h3 className="pnl-alt-baslik">Klinik sayfanız</h3>
-      <div className="pnl-rapor-izgara">
-        {vitrinSatirlari.map((s) => (
-          <div key={s.ad} className="pnl-rapor-kart">
-            <span className="pnl-rapor-deger">{s.deger}</span>
-            <span className="pnl-rapor-ad">{s.ad}</span>
-            <span className="pnl-rapor-anlam">{s.anlam}</span>
+      <div className="pnl-izgara-ust">
+        <section className="pnl-widget">
+          <header className="pnl-widget-basi">
+            <span className="pnl-widget-ikon" aria-hidden="true"><CalendarCheck size={17} /></span>
+            <h3>Randevuların dağılımı</h3>
+          </header>
+          <div className="pnl-widget-govde">
+            <Halka dilimler={randevuDilimleri} toplamEtiket="randevu" />
           </div>
-        ))}
+        </section>
+
+        <section className="pnl-widget">
+          <header className="pnl-widget-basi">
+            <span className="pnl-widget-ikon" aria-hidden="true"><TrendingUp size={17} /></span>
+            <h3>Tamamlanma</h3>
+          </header>
+          <div className="pnl-widget-govde">
+            <OranHalkasi
+              oran={tamamlanma}
+              etiket="tamamlandı"
+              alt={
+                (analiz?.appt_total ?? 0) > 0
+                  ? `Açılan ${analiz?.appt_total} randevunun ${analiz?.appt_done} tanesi tamamlandı.`
+                  : 'Randevu biriktikçe oran anlamlı olur.'
+              }
+            />
+          </div>
+        </section>
       </div>
 
-      <h3 className="pnl-alt-baslik">
-        Değerlendirmeler
-        {rapor?.rating_avg ? <span className="pnl-puan"><Star size={14} /> {rapor.rating_avg.toFixed(1)}</span> : null}
-      </h3>
+      <div className="pnl-izgara-ikili">
+        <section className="pnl-widget">
+          <header className="pnl-widget-basi">
+            <span className="pnl-widget-ikon" aria-hidden="true"><Eye size={17} /></span>
+            <h3>Görünürlük ve etkileşim</h3>
+          </header>
+          <div className="pnl-widget-govde">
+            <Cubuklar satirlar={etkilesim} />
+            {analiz?.top_service ? (
+              <p className="pnl-widget-not">
+                En çok verdiğiniz hizmet: <strong>{analiz.top_service}</strong>
+                {analiz.top_service_count ? ` (${analiz.top_service_count} randevu)` : ''}.
+              </p>
+            ) : null}
+          </div>
+        </section>
+
+        <section className="pnl-widget">
+          <header className="pnl-widget-basi">
+            <span className="pnl-widget-ikon" aria-hidden="true"><Star size={17} /></span>
+            <h3>Puan dağılımı</h3>
+            {rapor?.rating_avg ? <span className="pnl-puan"><Star size={13} /> {rapor.rating_avg.toFixed(1)}</span> : null}
+          </header>
+          <div className="pnl-widget-govde">
+            <Cubuklar satirlar={puanlar} />
+          </div>
+        </section>
+      </div>
+
+      <h3 className="pnl-alt-baslik">Son yorumlar</h3>
       {yorumlar.length === 0 ? (
         <Bos baslik="Henüz değerlendirme yok" aciklama="Müşterileriniz uygulamadan puan verdiğinde yorumlar burada görünür." />
       ) : (
         <ul className="pnl-yorum-listesi">
-          {yorumlar.map((y) => (
+          {yorumlar.slice(0, 5).map((y) => (
             <li key={y.id} className="pnl-yorum">
               <div className="pnl-yorum-ust">
                 <strong>{y.display_name || 'İsim girilmemiş'}</strong>

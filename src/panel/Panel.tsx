@@ -24,6 +24,7 @@ import {
 } from './PanelBolumler';
 import { okunmamisBildirimSayisi } from './veri';
 import BildirimPenceresi from './BildirimPenceresi';
+import OturumKilidi from './OturumKilidi';
 import Yukleniyor from './Yukleniyor';
 import './panel.css';
 
@@ -196,6 +197,8 @@ export default function Panel() {
 
   return (
     <div className="pnl-kabuk">
+      {/* ⚠️ Yalniz oturum ACIKKEN kuruluyor; giris ekraninda sayac calismasin. */}
+      <OturumKilidi />
       <SEO title="Klinik Paneli" description="Veterito klinik yönetim paneli." noindex />
 
       <nav className={menuAcik ? 'pnl-yan pnl-yan-acik' : 'pnl-yan'} aria-label="Panel bölümleri">

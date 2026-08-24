@@ -1032,3 +1032,72 @@ a.pnl-widget-eylem { text-decoration: none; }
 @media (max-width: 480px) {
   .pnl-zil-pencere { right: -8px; width: calc(100vw - 24px); }
 }
+
+/* ── OTURUM KILIDI UYARISI ───────────────────────────────
+ * ⚠️ Geri sayim BUYUK: uyarinin tek isi kalan sureyi anlatmak.
+ */
+.pnl-kilit {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px; margin-bottom: 4px;
+  background: color-mix(in srgb, var(--pnl-uyari) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--pnl-uyari) 30%, transparent);
+  border-radius: var(--pnl-yaricap);
+}
+.pnl-kilit-ikon {
+  flex-shrink: 0; width: 42px; height: 42px; border-radius: 11px;
+  display: grid; place-items: center;
+  background: color-mix(in srgb, var(--pnl-uyari) 20%, transparent);
+  color: color-mix(in srgb, var(--pnl-uyari) 78%, #000);
+}
+.pnl-kilit-sayac { margin: 0; font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.pnl-kilit-alt { margin: 2px 0 0; font-size: 12.5px; line-height: 1.5; color: var(--pnl-soluk); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * GRAFIKLER
+ * ⚠️ Renk tek basina anlatmiyor: her grafigin yaninda sayili gosterge var.
+ * ══════════════════════════════════════════════════════════════════════════ */
+.pnl-grafik { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.pnl-halka { width: 140px; height: 140px; flex-shrink: 0; }
+.pnl-dilim {
+  cursor: default; transition: opacity .12s ease, transform .12s ease;
+  transform-origin: 70px 70px;
+}
+.pnl-dilim:hover, .pnl-dilim-etkin { opacity: .85; transform: scale(1.035); }
+.pnl-halka-sayi { font-size: 22px; font-weight: 700; fill: var(--pnl-metin); }
+.pnl-halka-etiket { font-size: 9.5px; fill: var(--pnl-soluk); }
+
+.pnl-gosterge { list-style: none; margin: 0; padding: 0; flex: 1; min-width: 168px; display: flex; flex-direction: column; gap: 2px; }
+.pnl-gosterge-oge {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  padding: 5px 7px; border-radius: 7px; font-size: 12.5px;
+  background: transparent; border: none; color: inherit; font-family: inherit;
+  cursor: pointer; text-align: left;
+}
+.pnl-gosterge-oge:hover { background: color-mix(in srgb, var(--pnl-metin) 5%, transparent); }
+.pnl-gosterge-etkin { background: color-mix(in srgb, var(--pnl-metin) 5%, transparent); }
+.pnl-gosterge-renk { width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0; }
+.pnl-gosterge-ad { flex: 1; min-width: 0; }
+.pnl-gosterge-deger { font-weight: 700; font-variant-numeric: tabular-nums; }
+.pnl-gosterge-yuzde { color: var(--pnl-soluk); font-size: 11.5px; min-width: 34px; text-align: right; }
+
+.pnl-cubuklar { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.pnl-cubuk-satir { display: flex; align-items: center; gap: 10px; font-size: 12.5px; }
+.pnl-cubuk-ad { width: 118px; flex-shrink: 0; color: var(--pnl-soluk); }
+.pnl-cubuk-yol { flex: 1; height: 9px; border-radius: 999px; background: color-mix(in srgb, var(--pnl-metin) 7%, transparent); overflow: hidden; }
+.pnl-cubuk-dolgu { display: block; height: 100%; border-radius: 999px; transition: width .35s ease; }
+.pnl-cubuk-deger { font-weight: 700; font-variant-numeric: tabular-nums; min-width: 32px; text-align: right; }
+
+.pnl-oran { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.pnl-oran-svg { width: 130px; height: 130px; }
+.pnl-oran-zemin { fill: none; stroke: color-mix(in srgb, var(--pnl-metin) 8%, transparent); stroke-width: 11; }
+.pnl-oran-dolgu { fill: none; stroke: var(--pnl-vurgu); stroke-width: 11; stroke-linecap: round; transition: stroke-dasharray .5s ease; }
+.pnl-oran-sayi { font-size: 24px; font-weight: 700; fill: var(--pnl-metin); }
+.pnl-oran-etiket { font-size: 9.5px; fill: var(--pnl-soluk); }
+.pnl-oran-alt { margin: 0; font-size: 12.5px; line-height: 1.5; color: var(--pnl-soluk); text-align: center; max-width: 34ch; }
+
+.pnl-grafik-bos { margin: 0; padding: 22px 0; font-size: 13px; color: var(--pnl-soluk); text-align: center; }
+.pnl-gizli { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pnl-dilim, .pnl-cubuk-dolgu, .pnl-oran-dolgu { transition: none; }
+}
