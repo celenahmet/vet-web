@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Mail } from 'lucide-react';
-import { Instagram, X, TikTok, LinkedIn, Facebook } from './SosyalIkonlar';
+import { Instagram, X, TikTok, YouTube, LinkedIn, Facebook } from './SosyalIkonlar';
 import { useTranslation } from 'react-i18next';
 import { brandConfig } from '../config/brand';
 import logoUrl from '../assets/logo.webp';
@@ -11,7 +11,7 @@ import logoUrl from '../assets/logo.webp';
  * kalirsa asagidaki `Ikon` tanimsiz olur ve alt bilgi cizilemez.
  */
 const SOSYAL_IKON: Record<string, (p: { boyut?: number }) => React.JSX.Element> = {
-  Instagram, X, TikTok, LinkedIn, Facebook,
+  Instagram, X, TikTok, YouTube, LinkedIn, Facebook,
 };
 
 const Footer = () => {
