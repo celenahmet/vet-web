@@ -780,7 +780,7 @@ export default function Home() {
               Evcil hayvan sahipleri için tamamen ücretsiz
             </p>
             <p className="text-lg text-[var(--text-muted)] max-w-xl lg:max-w-2xl mx-auto mb-10 font-medium">
-              Hayvanınızın sağlık kaydını tutmak, aşı takvimini takip etmek ve klinikten randevu almak ücretsizdir. Ücretli paketler yalnızca klinik tarafındadır.
+              Hayvanınızın sağlık kaydını tutmak, aşı takvimini takip etmek ve klinikten randevu almak ücretsizdir. Klinik paketleri de şu anda ücretsiz; kredi kartı istenmiyor.
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4">
