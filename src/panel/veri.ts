@@ -206,3 +206,111 @@ export async function klinikSayfasiniOku(klinik: string): Promise<KlinikSayfasi 
   if (error) throw error;
   return (data as KlinikSayfasi | null) ?? null;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+ * YAZMA ISLEMLERI (Ahmet, 24.08.2026: *"listeleniyor bazı şeyler mobildeki
+ * gibi yönetilemiyor eksikler çok fazla var"*)
+ *
+ * ⚠️ HEPSININ YETKISI SUNUCUDA. Olculdu (24.08.2026):
+ *   oturumsuz            -> 42501 permission denied for function
+ *   uye, kendi klinigi   -> 204
+ *   uye, YABANCI klinik  -> 45030 "Bunu yalnız klinik sahibi yapabilir."
+ * Panelde ayrica bir kontrol YAPILMIYOR; yapilsaydi guvenlik sanilan ama
+ * olmayan bir katman eklenmis olurdu.
+ *
+ * ⚠️ SAHIP / CALISAN AYRIMI DA SUNUCUDA. Klinik sahibi olmayan bir calisan bu
+ * cagrilari yaptiginda sunucu reddediyor; panel hatayi gizlemiyor, insan diline
+ * cevirip gosteriyor ("Bazı işlemleri yalnızca klinik sahibi yapabilir").
+ * ═══════════════════════════════════════════════════════════════════════════ */
+
+async function calistir(ad: string, parametre: Record<string, unknown>): Promise<void> {
+  const { error } = await istemci.rpc(ad, parametre);
+  if (error) throw error;
+}
+
+/**
+ * Randevuya BASKA SAAT onerir.
+ *
+ * ⚠️ Onaylamanin alternatifi. Klinik "olmaz" demek zorunda kalmasin diye var:
+ * saat uymuyorsa randevu reddedilmek yerine karsi teklif aliyor. Hayvan sahibi
+ * kabul ya da ret veriyor; durum `proposed` oluyor.
+ */
+export const baskaSaatOner = (randevu: string, yeniZaman: string, not?: string) =>
+  calistir('propose_appointment_time', { p_appointment: randevu, p_new_time: yeniZaman, ...(not ? { p_note: not } : {}) });
+
+/**
+ * Klinik sayfasinin yayin ayarlari.
+ *
+ * ⚠️ `p_published` ve `p_indexable` AYRI SEYLER: biri sayfanin acik olup
+ * olmadigi, digeri arama motorlarina gorunup gorunmedigi. Tek anahtara
+ * indirgemek, "sayfam kapali sanıyordum ama Google'da cikiyor" durumunu
+ * uretirdi.
+ */
+export const klinikSayfasiniGuncelle = (
+  klinik: string,
+  alanlar: { yayinda?: boolean; aramayaAcik?: boolean; slogan?: string; yolTarifi?: string; websitesi?: string },
+) =>
+  calistir('update_clinic_page', {
+    p_clinic: klinik,
+    ...(alanlar.yayinda !== undefined ? { p_published: alanlar.yayinda } : {}),
+    ...(alanlar.aramayaAcik !== undefined ? { p_indexable: alanlar.aramayaAcik } : {}),
+    ...(alanlar.slogan !== undefined ? { p_tagline: alanlar.slogan } : {}),
+    ...(alanlar.yolTarifi !== undefined ? { p_directions: alanlar.yolTarifi } : {}),
+    ...(alanlar.websitesi !== undefined ? { p_website: alanlar.websitesi } : {}),
+  });
+
+/**
+ * Klinigin temel bilgileri.
+ *
+ * ⚠️ RPC DEGIL, DOGRUDAN TABLO GUNCELLEMESI — ve bu guvenli: migration 0022
+ * `clinics` uzerindeki UPDATE yetkisini KOLON KOLON veriyor. `is_verified`
+ * bilerek disarida: klinik sahibi kendi kendine dogrulanmis rozeti verebilseydi
+ * rozet hicbir sey ifade etmezdi.
+ *
+ * ⚠️ Satir kontrolu de var: `clinics_owner_write` politikasi yalniz klinik
+ * sahibine izin veriyor. Calisan denerse guncelleme sessizce sifir satir
+ * etkiliyor; o yuzden `return=representation` ile donen satir sayisi
+ * kontrol ediliyor ve bos donerse hata firlatiliyor.
+ */
+export async function klinikBilgileriniGuncelle(
+  klinik: string,
+  alanlar: Partial<{ name: string; about: string; address: string; city: string; district: string; phone: string; email: string }>,
+): Promise<void> {
+  const { data, error } = await istemci
+    .from('clinics')
+    .update(alanlar)
+    .eq('id', klinik)
+    .select('id');
+  if (error) throw error;
+  if (!data || data.length === 0) {
+    /*
+     * ⚠️ SESSIZ BASARISIZLIK ENGELLENIYOR. RLS bir satiri gizlediginde PostgREST
+     * hata degil BOS SONUC doner. Bunu basari saymak, "kaydettim" deyip hicbir
+     * sey kaydetmemek olurdu — en kotu turden hata.
+     */
+    throw new Error('permission denied');
+  }
+}
+
+/** Ekibe yeni kisi daveti. Yalniz klinik sahibi. */
+export const personelDavetEt = (klinik: string, eposta: string) =>
+  calistir('clinic_invite_staff', { p_clinic: klinik, p_email: eposta.trim() });
+
+/** Ekipten cikarma. Yalniz klinik sahibi. */
+export const personeliCikar = (klinik: string, kullanici: string) =>
+  calistir('clinic_remove_staff', { p_clinic: klinik, p_user: kullanici });
+
+/**
+ * Musteri daveti.
+ *
+ * ⚠️ CIFT ONAYLI: davet tek basina baglanti kurmuyor, hayvan sahibi
+ * uygulamadan kabul etmek zorunda. Klinik kimseyi kendi listesine tek tarafli
+ * ekleyemiyor; bu bir kisitlama degil, urun karari.
+ */
+export const musteriDavetEt = (klinik: string, alanlar: { eposta?: string; telefon?: string; not?: string }) =>
+  calistir('clinic_invite_customer', {
+    p_clinic: klinik,
+    ...(alanlar.eposta ? { p_email: alanlar.eposta.trim() } : {}),
+    ...(alanlar.telefon ? { p_phone: alanlar.telefon.trim() } : {}),
+    ...(alanlar.not ? { p_note: alanlar.not } : {}),
+  });

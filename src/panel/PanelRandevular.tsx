@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Check, X, CalendarCheck, Ban, RefreshCw } from 'lucide-react';
+import { Check, X, CalendarCheck, Ban, RefreshCw, CalendarClock } from 'lucide-react';
 
-import { randevulariOku, randevuDurumunuDegistir, type Randevu } from './veri';
+import { randevulariOku, randevuDurumunuDegistir, baskaSaatOner, type Randevu } from './veri';
 import { RANDEVU_DURUMU, IZINLI_GECISLER, tarihYaz, gorecelizaman } from './sozluk';
 import Bos from './Bos';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
+import Diyalog from './Diyalog';
 
 /**
  * RANDEVULAR — panelin is yapan ekrani
@@ -30,6 +31,11 @@ export default function PanelRandevular({ klinik }: { klinik: string }) {
   const [islemde, setIslemde] = useState<string | null>(null);
   const [islemHatasi, setIslemHatasi] = useState<string | null>(null);
   const [suzgec, setSuzgec] = useState<'bekleyen' | 'tumu'>('bekleyen');
+  /* Baska saat onerme diyalogu: hangi randevu, hangi saat, hangi not. */
+  const [oneri, setOneri] = useState<Randevu | null>(null);
+  const [oneriZaman, setOneriZaman] = useState('');
+  const [oneriNot, setOneriNot] = useState('');
+  const [oneriBekliyor, setOneriBekliyor] = useState(false);
 
   const yukle = useCallback(() => {
     setHata(null);
@@ -56,6 +62,29 @@ export default function PanelRandevular({ klinik }: { klinik: string }) {
       setIslemHatasi((e as { message?: string })?.message ?? '');
     } finally {
       setIslemde(null);
+    }
+  }
+
+  async function saatOner(e: React.FormEvent) {
+    e.preventDefault();
+    if (!oneri || oneriBekliyor) return;
+    setOneriBekliyor(true);
+    setIslemHatasi(null);
+    try {
+      /*
+       * ⚠️ `datetime-local` YEREL saat veriyor, bolge bilgisi TASIMIYOR.
+       * `new Date(...)` tarayicinin bolgesinde yorumluyor ve `toISOString()`
+       * UTC'ye ceviriyor. Bu dogru davranis: klinik kendi saatini yaziyor,
+       * sunucu evrensel saati sakliyor. Ham dizeyi gondermek, sunucunun onu
+       * UTC sanmasina ve randevunun saatler kaymasina yol acardi.
+       */
+      await baskaSaatOner(oneri.id, new Date(oneriZaman).toISOString(), oneriNot.trim() || undefined);
+      setOneri(null); setOneriZaman(''); setOneriNot('');
+      setListe(await randevulariOku(klinik));
+    } catch (err) {
+      setIslemHatasi((err as { message?: string })?.message ?? '');
+    } finally {
+      setOneriBekliyor(false);
     }
   }
 
@@ -144,6 +173,25 @@ export default function PanelRandevular({ klinik }: { klinik: string }) {
 
                 {gecisler.length ? (
                   <div className="pnl-randevu-eylem">
+                    {/*
+                      ⚠️ "Baska saat oner" YALNIZ yeni talepte. Onaylanmis bir
+                      randevuya karsi teklif vermek, karsi tarafin planini
+                      bozmak demek; sunucu da `requested` disinda bu cagriyi
+                      anlamli bulmuyor.
+                    */}
+                    {r.status === 'requested' ? (
+                      <button
+                        type="button"
+                        disabled={calisiyor}
+                        className="pnl-dugme pnl-dugme-notr"
+                        onClick={() => {
+                          setOneri(r);
+                          setOneriZaman('');
+                          setOneriNot('');
+                        }}>
+                        <CalendarClock size={15} /> Başka saat öner
+                      </button>
+                    ) : null}
                     {gecisler.map((g) => (
                       <button
                         key={g.durum}
@@ -170,6 +218,45 @@ export default function PanelRandevular({ klinik }: { klinik: string }) {
           })}
         </ul>
       )}
+      <Diyalog
+        acik={oneri !== null}
+        kapat={() => setOneri(null)}
+        baslik="Başka bir saat önerin"
+        aciklama={
+          oneri
+            ? `${oneri.owner_name || 'Hayvan sahibi'} için önerdiğiniz saat bildirim olarak gider. Kabul ederse randevu o saate geçer.`
+            : undefined
+        }>
+        <form onSubmit={saatOner}>
+          <div className="pnl-alan">
+            <label htmlFor="pnl-oneri-zaman">Yeni saat</label>
+            <input
+              id="pnl-oneri-zaman"
+              type="datetime-local"
+              required
+              value={oneriZaman}
+              onChange={(e) => setOneriZaman(e.target.value)}
+            />
+            <span className="pnl-alan-ipucu">Kliniğinizin saatiyle yazın.</span>
+          </div>
+          <div className="pnl-alan">
+            <label htmlFor="pnl-oneri-not">Not (isteğe bağlı)</label>
+            <textarea
+              id="pnl-oneri-not"
+              value={oneriNot}
+              maxLength={300}
+              onChange={(e) => setOneriNot(e.target.value)}
+              placeholder="Örnek: O saatte doktorumuz müsait değil, bir saat sonrası uygun."
+            />
+          </div>
+          <div className="pnl-diyalog-eylem">
+            <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setOneri(null)}>Vazgeç</button>
+            <button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={oneriBekliyor || !oneriZaman}>
+              {oneriBekliyor ? 'Gönderiliyor…' : 'Öneriyi gönder'}
+            </button>
+          </div>
+        </form>
+      </Diyalog>
     </section>
   );
 }

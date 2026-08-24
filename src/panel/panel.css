@@ -803,3 +803,59 @@ a.pnl-widget-eylem { text-decoration: none; }
 .pnl-izgara-dort .pnl-widget-basi { padding: 13px 15px 10px; }
 .pnl-izgara-dort .pnl-widget-govde { padding: 0 15px 14px; }
 .pnl-izgara-dort .pnl-widget-basi h3 { font-size: 14px; }
+
+/* ── DIYALOG ─────────────────────────────────────────────
+ * ⚠️ `::backdrop` tarayicinin kendi katmani; kendi yaptigim bir div degil.
+ * Bu sayede diyalog acikken arka plan klavyeyle de erisilemez oluyor.
+ */
+.pnl-diyalog {
+  border: none; border-radius: 16px; padding: 26px 26px 24px;
+  width: min(460px, calc(100vw - 32px));
+  background: var(--pnl-yuzey); color: var(--pnl-metin);
+  box-shadow: 0 24px 60px rgba(7, 63, 53, .22);
+  color-scheme: light;
+}
+.pnl-diyalog::backdrop { background: rgba(16, 71, 58, .45); }
+.pnl-diyalog-kapat-sarmal { position: absolute; top: 14px; right: 14px; margin: 0; }
+.pnl-diyalog-kapat {
+  display: grid; place-items: center; width: 30px; height: 30px;
+  border: none; border-radius: 8px; background: transparent;
+  color: var(--pnl-soluk); cursor: pointer;
+}
+.pnl-diyalog-kapat:hover { background: color-mix(in srgb, var(--pnl-metin) 7%, transparent); }
+.pnl-diyalog-baslik { margin: 0 0 4px; font-size: 18px; font-weight: 700; padding-right: 34px; }
+.pnl-diyalog-aciklama { margin: 0 0 16px; font-size: 13px; line-height: 1.55; color: var(--pnl-soluk); }
+.pnl-diyalog-eylem { display: flex; gap: 8px; justify-content: flex-end; margin-top: 18px; }
+.pnl-diyalog form:not(.pnl-diyalog-kapat-sarmal) { margin: 0; }
+
+.pnl-alan textarea {
+  font: inherit; font-size: 14px; padding: 9px 11px; resize: vertical; min-height: 78px;
+  border: 1px solid var(--pnl-cizgi); border-radius: var(--pnl-yaricap);
+  background: var(--pnl-bg); color: inherit;
+}
+.pnl-alan-ipucu { font-size: 11.5px; color: var(--pnl-soluk); line-height: 1.45; }
+.pnl-anahtar {
+  display: flex; align-items: flex-start; gap: 10px; cursor: pointer;
+  padding: 11px 12px; border: 1px solid var(--pnl-cizgi); border-radius: var(--pnl-yaricap);
+  margin-bottom: 10px;
+}
+.pnl-anahtar input { margin-top: 2px; flex-shrink: 0; accent-color: var(--pnl-vurgu); width: 16px; height: 16px; }
+.pnl-anahtar-yazi { display: flex; flex-direction: column; gap: 2px; }
+.pnl-anahtar-ad { font-size: 13.5px; font-weight: 600; }
+.pnl-anahtar-alt { font-size: 12px; color: var(--pnl-soluk); line-height: 1.45; }
+
+/* ── ISLEM SONUCU BILDIRIMI ──────────────────────────────
+ * ⚠️ Basari da SOYLENIYOR. Yalniz hatayi gostermek, islem sessizce bitince
+ * "oldu mu olmadi mi" belirsizligi biraktigi icin kullanicinin ayni islemi
+ * tekrar yapmasina yol aciyor.
+ */
+.pnl-bilgi {
+  margin: 0 0 14px; padding: 11px 14px;
+  font-size: 13.5px; line-height: 1.5;
+  background: color-mix(in srgb, var(--pnl-basarili) 11%, transparent);
+  border: 1px solid color-mix(in srgb, var(--pnl-basarili) 30%, transparent);
+  border-radius: var(--pnl-yaricap);
+  color: color-mix(in srgb, var(--pnl-basarili) 80%, #000);
+}
+.pnl-kisi-eylem { flex-shrink: 0; align-self: center; margin-left: auto; }
+.pnl-kisi { align-items: center; }
