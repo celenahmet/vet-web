@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { LogOut, Building2, Menu, X } from 'lucide-react';
+import { LogOut, Building2, Menu, X, Bell, HelpCircle, ChevronDown } from 'lucide-react';
 import type { Session } from '@supabase/supabase-js';
 
 import SEO from '../components/SEO';
@@ -267,6 +267,20 @@ export default function Panel() {
         </div>
 
         <div className="pnl-ust-sag">
+          {/*
+            ⚠️ ZIL VE YARDIM YER TUTUCU. Referans yerlesimde ust cubugun saginda
+            bildirim zili (rozetli) ve yardim dugmesi var. Zilin sayisini verecek
+            bir kaynak YOK; rozet konmuyor, uydurma sayi gosterilmiyor.
+            `disabled` ve `title` ile durum acikca soyleniyor: tiklanabilir ama
+            bos bir dugme, en can sikici turden yarim ozelliktir.
+          */}
+          <button type="button" className="pnl-ust-ikon" disabled title="Bildirimler yakında eklenecek" aria-label="Bildirimler, yakında">
+            <Bell size={18} aria-hidden="true" />
+          </button>
+          <button type="button" className="pnl-ust-ikon" disabled title="Yardım yakında eklenecek" aria-label="Yardım, yakında">
+            <HelpCircle size={18} aria-hidden="true" />
+          </button>
+
           <div className="pnl-kullanici-kutu">
             <span className="pnl-avatar-bas" aria-hidden="true">
               {(oturum.user.email ?? 'K').trim().charAt(0).toLocaleUpperCase('tr-TR')}
@@ -275,6 +289,7 @@ export default function Panel() {
               <span className="pnl-kullanici-ad">{oturum.user.email}</span>
               {rol ? <span className="pnl-kullanici-rol">{rol.ad}</span> : null}
             </span>
+            <ChevronDown size={15} className="pnl-kullanici-ok" aria-hidden="true" />
           </div>
         </div>
       </header>

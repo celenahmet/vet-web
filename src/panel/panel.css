@@ -338,8 +338,9 @@
   margin-top: 14px;
   align-items: start;
 }
-.pnl-genis { grid-column: span 2; }
-@media (max-width: 1100px) { .pnl-genis { grid-column: span 1; } }
+/* ⚠️ `pnl-genis` KALDIRILDI. Izgara oranini artik `pnl-izgara-ust` (2fr 1fr)
+   veriyor; ikisi birlikte calisinca randevu tablosu iki sutunu da kapliyor ve
+   ajanda alt satira dusuyordu. Oran tek yerden yonetiliyor. */
 
 .pnl-widget {
   background: var(--pnl-yuzey);
@@ -700,3 +701,105 @@ a.pnl-widget-eylem { text-decoration: none; }
   line-height: 1; color: color-mix(in srgb, var(--pnl-metin) 22%, transparent);
 }
 .pnl-kart-trend { font-size: 11px; color: color-mix(in srgb, var(--pnl-metin) 38%, transparent); margin-top: 3px; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * REFERANS YERLESIM (Ahmet, 24.08.2026: *"yerleşim olarak da referans görseli
+ * daha iyi incelemeni tavsiye ederim"*)
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Ust cubuktaki ikon dugmeleri ── */
+.pnl-ust-ikon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--pnl-yuzey); border: 1px solid var(--pnl-cizgi);
+  color: var(--pnl-soluk); cursor: pointer;
+}
+/* ⚠️ Yer tutucu dugme: tiklanamaz oldugu GORUNMELI, yoksa bozuk sanilir. */
+.pnl-ust-ikon:disabled { opacity: .5; cursor: not-allowed; }
+.pnl-kullanici-ok { color: var(--pnl-soluk); flex-shrink: 0; }
+
+/* ── Istatistik karti: uc parcali ──
+ * ikon | etiket + sayi + aciklama | karsilastirma
+ */
+.pnl-kart { align-items: center; gap: 14px; padding: 17px 18px; }
+.pnl-kart-govde { flex: 1; }
+.pnl-kart-kiyas {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 1px;
+  flex-shrink: 0; text-align: right;
+}
+.pnl-kart-kiyas-deger { font-size: 15px; font-weight: 700; color: color-mix(in srgb, var(--pnl-metin) 30%, transparent); }
+.pnl-kart-kiyas-ad { font-size: 10.5px; color: var(--pnl-soluk); line-height: 1.25; max-width: 62px; }
+
+/* ── Izgara ritmi ── */
+.pnl-izgara-ust {
+  display: grid; grid-template-columns: 2fr 1fr; gap: 14px;
+  margin-top: 14px; align-items: start;
+}
+.pnl-izgara-dort {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  margin-top: 14px; align-items: start;
+}
+.pnl-izgara-ikili {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+  margin-top: 14px; align-items: start;
+}
+@media (max-width: 1400px) { .pnl-izgara-dort { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 1080px) {
+  .pnl-izgara-ust { grid-template-columns: 1fr; }
+  .pnl-izgara-dort, .pnl-izgara-ikili { grid-template-columns: 1fr; }
+}
+
+/* ── Randevu tablosu ──
+ * ⚠️ Basliklar bir kez okunuyor, satirlar taraniyor. Basliksiz listede okuyucu
+ * her satirda "bu isim sahip mi hayvan mi" diye yeniden karar veriyordu.
+ */
+.pnl-widget-govde-tablo { padding-inline: 0; }
+.pnl-tablo { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.pnl-tablo th {
+  text-align: left; font-size: 11.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .04em; color: var(--pnl-soluk);
+  padding: 8px 10px; border-bottom: 1px solid var(--pnl-cizgi);
+  white-space: nowrap;
+}
+.pnl-tablo th:first-child, .pnl-tablo td:first-child { padding-left: 18px; }
+.pnl-tablo th:last-child,  .pnl-tablo td:last-child  { padding-right: 18px; }
+.pnl-tablo td {
+  padding: 11px 10px; vertical-align: middle;
+  border-bottom: 1px solid color-mix(in srgb, var(--pnl-cizgi) 55%, transparent);
+}
+.pnl-tablo tbody tr:last-child td { border-bottom: none; }
+.pnl-tablo tbody tr:hover { background: color-mix(in srgb, var(--pnl-vurgu) 4%, transparent); }
+.pnl-td-saat { white-space: nowrap; }
+.pnl-td-saat .pnl-saat { display: block; }
+.pnl-td-tarih { display: block; font-size: 11.5px; color: var(--pnl-soluk); }
+.pnl-td-ad { font-weight: 600; }
+
+/* ── Ajanda: noktali zaman cizelgesi ── */
+.pnl-ajanda { list-style: none; margin: 0; padding: 0; position: relative; }
+.pnl-ajanda-satir {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 0; position: relative;
+}
+.pnl-ajanda-saat {
+  font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums;
+  color: var(--pnl-soluk); min-width: 42px; flex-shrink: 0;
+}
+.pnl-ajanda-nokta {
+  width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+  background: var(--pnl-vurgu); position: relative;
+}
+/*
+ * ⚠️ Noktalari birlestiren cizgi, SON noktada durmali. Devam etseydi listenin
+ * bittigi yerde havada asili bir cizgi kalirdi.
+ */
+.pnl-ajanda-satir:not(:last-child) .pnl-ajanda-nokta::after {
+  content: ''; position: absolute; left: 50%; top: 100%;
+  width: 1px; height: 30px; transform: translateX(-50%);
+  background: color-mix(in srgb, var(--pnl-vurgu) 30%, transparent);
+}
+.pnl-avatar-kucuk { width: 30px; height: 30px; }
+
+/* Dort sutunlu satirda kartlar dar; ic bosluk biraz kisiliyor. */
+.pnl-izgara-dort .pnl-widget-basi { padding: 13px 15px 10px; }
+.pnl-izgara-dort .pnl-widget-govde { padding: 0 15px 14px; }
+.pnl-izgara-dort .pnl-widget-basi h3 { font-size: 14px; }

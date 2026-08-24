@@ -5,10 +5,10 @@ import {
 } from 'lucide-react';
 
 import {
-  panoOku, randevulariOku, hatirlatmalariOku, analizOku, personeliOku,
-  type Pano, type Randevu, type Hatirlatma, type Analiz, type Personel,
+  panoOku, randevulariOku, hatirlatmalariOku, analizOku, personeliOku, hastalariOku,
+  type Pano, type Randevu, type Hatirlatma, type Analiz, type Personel, type Hasta,
 } from './veri';
-import { EKSIK_ALAN, RANDEVU_DURUMU, KAYIT_TURU, ROL, tarihYaz, saatYaz } from './sozluk';
+import { EKSIK_ALAN, RANDEVU_DURUMU, KAYIT_TURU, TUR, ROL, tarihYaz, saatYaz } from './sozluk';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
 import Yakinda from './Yakinda';
@@ -39,6 +39,7 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
   const [hatirlatmalar, setHatirlatmalar] = useState<Hatirlatma[]>([]);
   const [analiz, setAnaliz] = useState<Analiz | null>(null);
   const [ekip, setEkip] = useState<Personel[]>([]);
+  const [hastalar, setHastalar] = useState<Hasta[]>([]);
   const [hata, setHata] = useState<string | null>(null);
   const [yukleniyor, setYukleniyor] = useState(true);
 
@@ -48,12 +49,12 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
 
     Promise.all([
       panoOku(klinik), randevulariOku(klinik), hatirlatmalariOku(klinik),
-      analizOku(klinik), personeliOku(klinik),
+      analizOku(klinik), personeliOku(klinik), hastalariOku(klinik),
     ])
-      .then(([p, r, h, a, e]) => {
+      .then(([p, r, h, a, e, hs]) => {
         if (iptal) return;
         setPano(p[0] ?? null); setRandevular(r); setHatirlatmalar(h);
-        setAnaliz(a[0] ?? null); setEkip(e);
+        setAnaliz(a[0] ?? null); setEkip(e); setHastalar(hs);
       })
       .catch((e: { message?: string }) => { if (!iptal) setHata(e?.message ?? ''); })
       .finally(() => { if (!iptal) setYukleniyor(false); });
@@ -107,18 +108,25 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
       <div className="pnl-kartlar">
         {kartlar.map(({ ikon: Ikon, sinif, ad, deger, anlam, hedef }) => (
           <button key={ad} type="button" className="pnl-kart" onClick={() => git(hedef)}>
-            <span className={`pnl-kart-ikon ${sinif}`} aria-hidden="true"><Ikon size={21} /></span>
+            <span className={`pnl-kart-ikon ${sinif}`} aria-hidden="true"><Ikon size={22} /></span>
             <span className="pnl-kart-govde">
               <span className="pnl-kart-ad">{ad}</span>
               <span className="pnl-kart-deger">{deger}</span>
               <span className="pnl-kart-anlam">{anlam}</span>
-              {/*
-                ⚠️ "Gecen doneme gore —". Taslakta burada "▲%9 · dun: 11" gibi
-                degisim vardi. Sunucu GUNLUK GECMIS tutmuyor, yani o oran
-                hesaplanamaz. Tire, hesaplanamadigi icin bos; sifir DEGIL.
-                Sifir yazmak "degisim olmadi" demek olurdu ve yanlis olurdu.
-              */}
-              <span className="pnl-kart-trend">Geçen döneme göre —</span>
+            </span>
+            {/*
+              ⚠️ KARSILASTIRMA SUTUNU SAGDA — referans yerlesimde de oyle. Ic
+              duzen uc parcali: ikon | etiket+sayi | karsilastirma. Karsilastirma
+              alt alta yazilsaydi kartin yuksekligi buyur, dort kart bir satira
+              sigmazdi.
+
+              ⚠️ Degeri "—". Taslakta "▲%9 · dun: 11" gibi degisim vardi; sunucu
+              GUNLUK GECMIS tutmuyor, yani o oran hesaplanamaz. Tire hesaplanamadigi
+              icin duruyor, sifir DEGIL: sifir "degisim olmadi" demek olurdu.
+            */}
+            <span className="pnl-kart-kiyas">
+              <span className="pnl-kart-kiyas-deger">—</span>
+              <span className="pnl-kart-kiyas-ad">geçen döneme göre</span>
             </span>
           </button>
         ))}
@@ -138,9 +146,15 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
         </div>
       ) : null}
 
-      <div className="pnl-pano-izgara">
+      {/*
+        ⚠️ IKI AYRI IZGARA, TEK IZGARA DEGIL — referans yerlesimin ritmi bu.
+        Ust satir: genis randevu tablosu + dar ajanda (2:1). Alt satir: dort
+        esit kart. Tek `auto-fit` izgarasina birakilsaydi kartlar genislige gore
+        rastgele dizilir, ekran her boyutta baska bir duzen gosterirdi.
+      */}
+      <div className="pnl-izgara-ust">
         {/* ── YAKLASAN RANDEVULAR ── */}
-        <section className="pnl-widget pnl-genis">
+        <section className="pnl-widget">
           <header className="pnl-widget-basi">
             <span className="pnl-widget-ikon" aria-hidden="true"><CalendarClock size={17} /></span>
             <h3>Yaklaşan randevular</h3>
@@ -148,34 +162,55 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
               Tüm randevular <ArrowRight size={13} />
             </button>
           </header>
-          <div className="pnl-widget-govde">
+          <div className="pnl-widget-govde pnl-widget-govde-tablo">
             {yaklasan.length === 0 ? (
               <p className="pnl-widget-bos">Planlanmış randevu yok. Yeni talepler geldiğinde burada görünür.</p>
             ) : (
-              <ul className="pnl-satirlar">
-                {yaklasan.slice(0, 5).map(({ r, t }) => (
-                  <li key={r.id} className="pnl-satir">
-                    <span className="pnl-saat">{saatYaz(r.starts_at ?? r.proposed_at)}</span>
-                    <div className="pnl-satir-govde">
-                      <p className="pnl-satir-ad">
-                        {r.owner_name || 'İsim belirtilmemiş'}
-                        {r.pet_name ? <span className="pnl-soluk"> · {r.pet_name}</span> : null}
-                      </p>
-                      <p className="pnl-satir-alt">
-                        {r.service_name || 'Hizmet belirtilmemiş'} · {tarihYaz(new Date(t).toISOString(), false)}
-                      </p>
-                    </div>
-                    <span className={`pnl-durum pnl-durum-${r.status}`}>
-                      {RANDEVU_DURUMU[r.status]?.ad ?? r.status}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              /*
+               * ⚠️ TABLO, LISTE DEGIL — referans yerlesimdeki gibi. Sutun basligi
+               * olmayan bir listede okuyucu her satirda "bu isim sahip mi hayvan mi"
+               * diye yeniden karar veriyor. Basliklar bir kez okunuyor, satirlar
+               * taraniyor.
+               *
+               * ⚠️ Referanstaki "Veteriner" sutunu YOK: `appointment_list` randevuya
+               * atanmis hekimi dondurmuyor. Bos bir sutun koymak, doldurulacakmis
+               * izlenimi verirdi.
+               */
+              <table className="pnl-tablo">
+                <thead>
+                  <tr>
+                    <th scope="col">Saat</th>
+                    <th scope="col">Hasta</th>
+                    <th scope="col">Sahip</th>
+                    <th scope="col">Hizmet</th>
+                    <th scope="col">Durum</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {yaklasan.slice(0, 5).map(({ r, t }) => (
+                    <tr key={r.id}>
+                      <td className="pnl-td-saat">
+                        <span className="pnl-saat">{saatYaz(r.starts_at ?? r.proposed_at)}</span>
+                        <span className="pnl-td-tarih">{tarihYaz(new Date(t).toISOString(), false)}</span>
+                      </td>
+                      <td>{r.pet_name || <span className="pnl-soluk">girilmemiş</span>}</td>
+                      <td className="pnl-td-ad">{r.owner_name || 'İsim belirtilmemiş'}</td>
+                      <td>{r.service_name || <span className="pnl-soluk">belirtilmemiş</span>}</td>
+                      <td>
+                        <span className={`pnl-durum pnl-durum-${r.status}`}>
+                          {RANDEVU_DURUMU[r.status]?.ad ?? r.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             )}
           </div>
-          {yaklasan.length > 5 ? (
+          {yaklasan.length > 0 ? (
             <button type="button" className="pnl-widget-alt" onClick={() => git('randevular')}>
-              {yaklasan.length - 5} randevu daha var, tümünü gör <ArrowRight size={13} />
+              {yaklasan.length > 5 ? `${yaklasan.length - 5} randevu daha var, tümünü gör` : 'Tümünü görüntüle'}
+              <ArrowRight size={13} />
             </button>
           ) : null}
         </section>
@@ -190,10 +225,16 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
             {bugunkuler.length === 0 ? (
               <p className="pnl-widget-bos">Bugün için planlanmış randevu yok.</p>
             ) : (
-              <ul className="pnl-satirlar">
+              /*
+               * ⚠️ ZAMAN CIZELGESI: saat solda, yaninda nokta, noktalar dikey bir
+               * cizgiyle bagli. Referans yerlesimdeki gibi. Duz liste, gunun
+               * SIRASINI gostermiyordu; cizgi "once bu, sonra su" diyor.
+               */
+              <ul className="pnl-ajanda">
                 {bugunkuler.map(({ r }) => (
-                  <li key={r.id} className="pnl-satir">
-                    <span className="pnl-saat">{saatYaz(r.starts_at ?? r.proposed_at)}</span>
+                  <li key={r.id} className="pnl-ajanda-satir">
+                    <span className="pnl-ajanda-saat">{saatYaz(r.starts_at ?? r.proposed_at)}</span>
+                    <span className="pnl-ajanda-nokta" aria-hidden="true" />
                     <div className="pnl-satir-govde">
                       <p className="pnl-satir-ad">{r.owner_name || 'İsim belirtilmemiş'}</p>
                       <p className="pnl-satir-alt">{r.service_name || 'Hizmet belirtilmemiş'}</p>
@@ -201,6 +242,47 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
                     <span className={`pnl-durum pnl-durum-${r.status}`}>
                       {RANDEVU_DURUMU[r.status]?.ad ?? r.status}
                     </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </section>
+
+      </div>
+
+      <div className="pnl-izgara-dort">
+        {/* ── SON HASTALAR ── */}
+        <section className="pnl-widget">
+          <header className="pnl-widget-basi">
+            <span className="pnl-widget-ikon" aria-hidden="true"><PawPrint size={17} /></span>
+            <h3>Son hastalar</h3>
+            <button type="button" className="pnl-widget-eylem" onClick={() => git('hastalar')}>
+              Tüm hastalar <ArrowRight size={13} />
+            </button>
+          </header>
+          <div className="pnl-widget-govde">
+            {hastalar.length === 0 ? (
+              <p className="pnl-widget-bos">
+                Kayıtlı hasta yok. Müşterileriniz uygulamada hayvanlarını kaydettiğinde burada görünür.
+              </p>
+            ) : (
+              <ul className="pnl-satirlar">
+                {hastalar.slice(0, 4).map((h) => (
+                  <li key={h.pet_id} className="pnl-satir">
+                    <span className="pnl-avatar pnl-avatar-kucuk" aria-hidden="true"><PawPrint size={15} /></span>
+                    <div className="pnl-satir-govde">
+                      <p className="pnl-satir-ad">{h.pet_name || 'İsim girilmemiş'}</p>
+                      {/*
+                        ⚠️ Referansta burada cins, yas ve KILO yaziyordu. Cins ve yas
+                        hayvan basina ayri bir cagri (`pet_profile`) istiyor, kilo ise
+                        hicbir yerde tutulmuyor. Elde olan tur ve sahip yaziliyor.
+                      */}
+                      <p className="pnl-satir-alt">
+                        {h.species_code ? (TUR[h.species_code] ?? h.species_code) : 'Türü girilmemiş'}
+                        {h.owner_name ? ` · ${h.owner_name}` : ''}
+                      </p>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -295,6 +377,9 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
           aciklama="Hayvan sahiplerinden gelen mesajlar burada listelenecek. Şimdilik mesajlaşma yalnızca telefondaki uygulamada."
         />
 
+      </div>
+
+      <div className="pnl-izgara-ikili">
         <Yakinda
           baslik="Randevu doluluk oranı"
           aciklama="Haftalık doluluk grafiği için günlük geçmiş tutulması gerekiyor; şu an yalnızca güncel durum kaydediliyor."
