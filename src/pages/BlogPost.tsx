@@ -24,13 +24,25 @@ import './BlogPost.css';
  * icin bu bolum sussuz degil, isin kendisi.
  */
 
+/**
+ * Metin icindeki `**kalin**` ve `[[slug|baglanti]]` isaretlerini cozer.
+ *
+ * ⚠️ Tek gecişte iki desen birden ayristiriliyor. Once kalin sonra baglanti diye
+ * iki asamada yapilsaydi, birinin urettigi React ogesinin icinde otekinin
+ * isareti metin olarak kalirdi.
+ */
 function KalinMetin({ metin }: { metin: string }) {
-  const parcalar = metin.split(/(\*\*[^*]+\*\*)/g);
+  const parcalar = metin.split(/(\*\*[^*]+\*\*|\[\[[^\]]+\]\])/g);
   return (
     <>
-      {parcalar.map((p, i) =>
-        p.startsWith('**') && p.endsWith('**') ? <strong key={i}>{p.slice(2, -2)}</strong> : <span key={i}>{p}</span>,
-      )}
+      {parcalar.map((p, i) => {
+        if (p.startsWith('**') && p.endsWith('**')) return <strong key={i}>{p.slice(2, -2)}</strong>;
+        if (p.startsWith('[[') && p.endsWith(']]')) {
+          const [slug, etiket] = p.slice(2, -2).split('|');
+          return <Link key={i} to={`/blog/${slug}`} className="yazi-ic-baglanti">{etiket ?? slug}</Link>;
+        }
+        return <span key={i}>{p}</span>;
+      })}
     </>
   );
 }

@@ -4,6 +4,7 @@ import { Instagram, X, TikTok, YouTube, LinkedIn, Facebook } from './SosyalIkonl
 import { useTranslation } from 'react-i18next';
 import { brandConfig } from '../config/brand';
 import logoUrl from '../assets/logo.webp';
+import logoKoyuUrl from '../assets/logo-koyu.webp';
 
 /**
  * Hesap adi -> ikon eslesmesi. `brand.ts` yalniz veri tutuyor, cizim burada.
@@ -24,7 +25,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div className="flex flex-col gap-4">
             <Link to="/" className="inline-block hover:opacity-80 transition-opacity">
-              <img src={logoUrl} alt="Veterito Logo" width={567} height={144} loading="lazy" className="h-10 md:h-12 w-auto" />
+              {/*
+              ⚠️ KOYU TEMADA AYRI LOGO (24.08.2026). Tek logo kullaniliyordu ve
+              murekkebi KOYU; koyu zeminde neredeyse gorunmuyordu.
+              Olculdu: `veterito-yatay-acik.png` ortalama parlaklik 64/255 (koyu
+              murekkep, acik zemin icin), `veterito-yatay-koyu.png` 221/255 (acik
+              murekkep, koyu zemin icin). Dosya adlari yanaltici, olcum karar verdi.
+              ⚠️ Iki oran birbirinden farkli (acik 3.94, koyu 4.46), o yuzden
+              yukseklik sabit tutulup genislik serbest birakildi.
+            */}
+              <img src={logoUrl} alt="Veterito" width={567} height={144} loading="lazy" className="h-10 md:h-12 w-auto dark:hidden" />
+              <img src={logoKoyuUrl} alt="Veterito" width={567} height={127} loading="lazy" className="h-10 md:h-12 w-auto hidden dark:block" />
             </Link>
             <p className="max-w-xs text-sm mt-2">
               {t('footer_desc')}
@@ -88,10 +99,21 @@ const Footer = () => {
           piksellik bir bosluk kaliyordu. Iki kucuk oge o genislige yayilinca
           satir dagilmis gorunuyordu; ortada tek grup olarak daha derli toplu.
         */}
-        <div className="pt-6 border-t border-slate-200 dark:border-slate-800 text-center text-sm flex flex-col md:flex-row justify-center items-center gap-4">
+        <div className="relative pt-6 border-t border-slate-200 dark:border-slate-800 text-center text-sm flex flex-col md:flex-row justify-center items-center gap-4">
           <p>{t('footer_copyright').replace('{{year}}', year.toString()).replace('Veterito', brandConfig.name)}</p>
-          <div className="flex items-center gap-2 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
-            <img src={logoUrl} alt="Veterito Logo" width={567} height={144} loading="lazy" className="h-5 md:h-6 w-auto" />
+          {/*
+            ⚠️ KUCUK LOGO MUTLAK KONUMLU, EN SAGDA (Ahmet, 24.08.2026).
+            Once `justify-between` idi ve telif metni de sola yapisiyordu; sonra
+            ikisi birlikte ortalandi ama Ahmet logonun sagda durmasini istedi.
+            Ucuncu hal: metin ORTADA, logo SAGDA. Bunu tek satirda `justify`
+            ile yapmak mumkun degil (iki oge, uc konum), o yuzden logo akistan
+            cikarilip mutlak konumlandi.
+            ⚠️ Telefonda mutlak konum kalkiyor: orada satirlar alt alta diziliyor
+            ve logo metnin ustune binerdi.
+          */}
+          <div className="flex items-center gap-2 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all md:absolute md:right-0">
+            <img src={logoUrl} alt="Veterito" width={567} height={144} loading="lazy" className="h-5 md:h-6 w-auto dark:hidden" />
+            <img src={logoKoyuUrl} alt="Veterito" width={567} height={127} loading="lazy" className="h-5 md:h-6 w-auto hidden dark:block" />
           </div>
         </div>
       </div>

@@ -45,9 +45,18 @@ const HARIC = new Set(['index.ts', 'types.ts', 'gorsel.ts']);
 const kac = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-/** **kalin** -> <strong> */
+/**
+ * `**kalin**` -> <strong>, `[[slug|etiket]]` -> <a href="/blog/slug">
+ *
+ * ⚠️ Ic baglanti prerender ciktisina da GIRIYOR. Yalniz React tarafinda
+ * cizilseydi tarama botu JS calistirmadan yazilar arasi gecisi goremezdi ve
+ * baglanti agi sifir islev gorurdu.
+ */
 const kalin = (s) =>
-  kac(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  kac(s)
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '<a href="/blog/$1">$2</a>')
+    .replace(/\[\[([^\]|]+)\]\]/g, '<a href="/blog/$1">$1</a>');
 
 function blokHtml(b) {
   switch (b.kind) {

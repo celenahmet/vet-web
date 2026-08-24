@@ -7,6 +7,23 @@
  * cevirmeyi mumkun kiliyor (SEO icin sart, site tamamen tarayicida uretiliyor).
  */
 
+/**
+ * IC BAGLANTI ISARETLEMESI
+ *
+ * ⚠️ NEDEN VAR (24.08.2026): blok tiplerinde baglanti YOKTU. Yazi govdesinden
+ * baska bir yaziya atif yapmanin hicbir yolu yoktu; SEO denetimi de "hicbir
+ * yazida ic baglanti yok" diyordu ve bu bir eksiklik degil, IMKANSIZLIKTI.
+ *
+ * Kullanim: paragraf ve liste metinlerinde `[[slug|görünen metin]]`.
+ *   'Yaşı bilinmiyorsa [[kedi-yasi-nasil-hesaplanir|kedi yaşı hesaplama]] yazısı...'
+ *
+ * ⚠️ Slug DOGRU YAZILMALI. Olmayan bir slug 404'e giden bir baglanti uretir;
+ * `blog-seo-denetimi.mjs` bunu yakalayip derlemeyi durduruyor.
+ *
+ * ⚠️ Ic baglanti sus degil: tek tek yazilarin degil BLOGUN BUTUNUNUN siralanmasini
+ * etkiliyor ve okuyucuyu sitede tutuyor. Ayrica prerender ciktisina da giriyor,
+ * yani tarama botu JS calistirmadan da izleyebiliyor.
+ */
 export type BlogBlock =
   | { kind: 'paragraf'; metin: string }
   | { kind: 'baslik'; metin: string }

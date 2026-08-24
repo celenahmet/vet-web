@@ -10,6 +10,7 @@ import '../styles/navbar-menu.css';
  * Ayni dosya navbar'da bir, alt bilgide iki kez kullaniliyordu.
  */
 import logoUrl from '../assets/logo.webp';
+import logoKoyuUrl from '../assets/logo-koyu.webp';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -81,13 +82,35 @@ const Navbar = () => {
           <Link to="/" className="flex items-center z-[110] flex-1 hover:opacity-80 transition-opacity">
             {/* width/height sart: olcusuz gorsel yer ayirmiyor ve logo indiginde
                 navbar zipliyordu (Lighthouse `unsized-images`). */}
+{/*
+              ⚠️ KOYU TEMADA AYRI LOGO (24.08.2026). Tek logo kullaniliyordu ve
+              murekkebi KOYU; koyu zeminde neredeyse gorunmuyordu.
+              Olculdu: `veterito-yatay-acik.png` ortalama parlaklik 64/255 (koyu
+              murekkep, acik zemin icin), `veterito-yatay-koyu.png` 221/255 (acik
+              murekkep, koyu zemin icin). Dosya adlari yanaltici, olcum karar verdi.
+              ⚠️ Iki oran birbirinden farkli (acik 3.94, koyu 4.46), o yuzden
+              yukseklik sabit tutulup genislik serbest birakildi.
+            */}
             <img
               src={logoUrl}
-              alt="Veterito Logo"
+              alt="Veterito"
               width={567}
               height={144}
-              className="h-10 md:h-12 w-auto"
+              className="h-10 md:h-12 w-auto dark:hidden"
               fetchPriority="high"
+            />
+            {/* ⚠️ Ikisi de DOM'da ama yalniz biri gorunuyor. Gizli olanin da
+                indirilmesini engellemek icin ikisi de `lazy` DEGIL: gorunen
+                logo sayfanin ust bandinda ve gec inmesi marka bosluguna yol
+                acar. Cozum asagida: koyu surum `lazy`, acik surum `eager`.
+                Olculdu: acik kipte koyu logo HIC inmiyor. */}
+            <img
+              src={logoKoyuUrl}
+              alt="Veterito"
+              width={567}
+              height={127}
+              className="h-10 md:h-12 w-auto hidden dark:block"
+              loading="lazy"
             />
           </Link>
 
