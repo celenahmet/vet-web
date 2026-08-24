@@ -42,9 +42,38 @@ export default function Blog() {
   const secili = parametreler.get('kategori');
 
   const suzulmus = secili ? YAZILAR.filter((y) => y.kategori === secili) : YAZILAR;
-  const oneCikan = suzulmus[0];
-  const izgara = suzulmus.slice(1, 5);
-  const liste = suzulmus.slice(5, 9);
+
+  /**
+   * ⚠️ SUZME ACIKKEN KAHRAMAN KUTUSU YOK (duzeltme 24.08.2026, Ahmet bildirdi:
+   * "kedilerde 4 sayi var diyor ama 3 yazi gorunuyor").
+   *
+   * Sayac dogruydu, gosterim yaniltiyordu. Kategori secilince ilk sonuc en uste
+   * "ÖNE ÇIKAN YAZI" etiketiyle buyuk kutuya aliniyor, ızgarada N-1 kart
+   * kaliyordu. Kedi'de rozet 4 diyor, goz 3 sayiyor. Terfi eden yazi bir SONUC
+   * ama sonuc gibi durmuyor, ustelik etiketi de yanlis: suzulmus listenin en
+   * yenisi "one cikan" degil.
+   *
+   * Kural: kahraman kutusu yalniz SUZULMEMIS listede. Kategori secildiginde
+   * butun sonuclar ayni izgarada, rozetteki sayi ile ekrandaki kart sayisi
+   * birebir esit.
+   */
+  const suzuluyor = Boolean(secili);
+  const oneCikan = suzuluyor ? undefined : suzulmus[0];
+
+  /**
+   * ⚠️ "ONE CIKAN YAZILAR" BOLUMU ARTIK ARTAN KART ICIN ACILMIYOR (Ahmet,
+   * 24.08.2026: "one cikan yazilar kucuk kalmis").
+   *
+   * Eskiden izgara 4 kartla siniriydi ve 5. yazidan itibarasi ayri baslikli bir
+   * bolume dusuyordu. Alti yazi varken bu bolum TEK kart iceriyordu: dort
+   * sutunluk satirda tek basina duran kucuk bir kart ve yaninda ucte uc bosluk.
+   *
+   * Simdi izgara arta kalanin tamamini aliyor (iki tam satira kadar). Ikinci
+   * satirin eksik kalmasi sorun degil, kart izgaralarinda beklenen davranis bu;
+   * sorun olan, tek kart icin AYRI BASLIKLI bir bolum acmakti.
+   */
+  const izgara = suzuluyor ? suzulmus : suzulmus.slice(1, 9);
+  const liste = suzuluyor ? [] : suzulmus.slice(9);
 
   const kategoriSayisi = new Map<string, number>();
   for (const y of YAZILAR) kategoriSayisi.set(y.kategori, (kategoriSayisi.get(y.kategori) ?? 0) + 1);
