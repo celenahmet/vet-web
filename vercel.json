@@ -1,7 +1,34 @@
 {
+  "$aciklama": [
+    "YONLENDIRME KURALLARI — 24.08.2026'da yeniden yazildi.",
+    "",
+    "ESKI HALI: { source: '/(.*)', destination: '/' } — YANI HER ADRES.",
+    "Sonucu olculdu: /bu-sayfa-kesinlikle-yok, /blog/olmayan-yazi, /a/b/c ve",
+    "/@olmayanklinik adreslerinin DORDU DE 'HTTP 200' donuyordu. Arama motoru",
+    "acisindan bu 'yumusak 404': var olmayan sayfa 'var' diye cevap veriyor,",
+    "tarama butcesi bos adreslere harcaniyor ve cop adresler indekslenebiliyor.",
+    "",
+    "YENI HALI: yalniz GERCEKTEN TANIMLI rotalar uygulamaya yonlendiriliyor.",
+    "Eslesmeyen adres statik dosya aramasina dusuyor, o da bulunamayinca Vercel",
+    "'404.html' dosyasini GERCEK 404 durum koduyla veriyor.",
+    "",
+    "⚠️ /blog/<slug> BILEREK LISTEDE YOK. Yayimlanmis her yazi icin prerender",
+    "gercek bir dosya uretiyor (dist/blog/<slug>/index.html) ve statik dosya",
+    "yonlendirmeden ONCE servis ediliyor. Olmayan bir slug ise dosya bulamayip",
+    "404 aliyor — istenen davranis tam bu.",
+    "",
+    "⚠️ Buradaki liste App.tsx icindeki <Route> tanimlarindan turuyor ve elle",
+    "senkronize edilmiyor: 'npm run build' once scripts/rota-kapsam-denetimi.mjs",
+    "calistiriyor, iki taraf ayrisirsa derleme DURUYOR. Bir rota eklenip buraya",
+    "yazilmazsa sonucu canli sitede 404'tur; sessiz kalmasina izin verilmiyor."
+  ],
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/(features|pets|about|blog|clinics|pricing|contact|iletisim|legal|privacy|kvkk|consent|terms|service-agreement|cookies|account-deletion|child-safety|deletion|gizlilik|cerez|kvkk-aydinlatma|account-deletion-request|download)",
+      "destination": "/"
+    },
+    {
+      "source": "/@:handle",
       "destination": "/"
     }
   ]

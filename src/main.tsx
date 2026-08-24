@@ -6,6 +6,7 @@ import App from './App.tsx';
 import './i18n';
 import './index.css';
 import './styles/degisken-uyumlulugu.css';
+import './styles/yuklenme.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

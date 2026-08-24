@@ -1,13 +1,17 @@
 /*
- * ⚠️ INTER YUKLENIYOR (Ahmet, 24.08.2026: "yazi fontunu uniconnectlydeki gibi
- * kullanalim"). Olculdu: uniconnectly.com iki font kullaniyor, govde metni Inter,
- * basliklar Outfit. Veterito her yerde Outfit kullaniyordu; uzun paragraflarda
- * Outfit'in genis harf yapisi okumayi yoruyor.
+ * ⚠️ INTER IMPORT'U BURADAN KALDIRILDI (24.08.2026), silinmedi: `index.html`
+ * icindeki tek <link>'e tasindi ve Outfit ile birlestirildi.
  *
- * Yalniz gereken agirliklar isteniyor (400/500/600/700). Tam aile cekmek bosuna
- * yuk; blogun yuklenme suresi zaten bir kez sorun oldu.
+ * Karar duruyor (Ahmet, 24.08.2026: "yazi fontunu uniconnectlydeki gibi
+ * kullanalim"): govde metni Inter, basliklar Outfit. Olculdu, uniconnectly.com
+ * ikisini boyle kullaniyor; uzun paragraflarda Outfit'in genis harf yapisi
+ * okumayi yoruyor.
+ *
+ * Tasima sebebi: CSS icinden `@import` seri bir indirme zinciri kuruyor ve iki
+ * ayri dosyadan iki ayri istek cikiyordu. Ustelik `index.css` tarafindaki Outfit
+ * import'u at-kural sirasi yuzunden sessizce dusuyordu; ayni tuzaga bir daha
+ * dusmemek icin ikisi de tek yere alindi.
  */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /**
  * DEGISKEN UYUMLULUK KATMANI

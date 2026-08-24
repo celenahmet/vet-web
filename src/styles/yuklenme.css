@@ -1,0 +1,56 @@
+/*
+ * YUKLENME ARA DURUMU
+ *
+ * ⚠️ NEDEN AYRI DOSYA: `App.css` Vite sablonundan kalma olu kurallar tasiyor
+ * (`.counter`, `#next-steps`, `.vite`) ve hicbir yerden import edilmiyor.
+ * Oraya yazmak, olu bir dosyayi canlandirmak olurdu.
+ *
+ * ⚠️ NE DUZELTIYOR (olculdu 24.08.2026, 3G kisitiyla kare kare cekildi):
+ * `App.tsx` butun rotalari `lazy()` ile yukluyor ve `Suspense` yedegi
+ * `<div className="loading-spinner">Loading...</div>` idi. Bu sinifin CSS'te
+ * HICBIR karsiligi yoktu. Olcum zinciri:
+ *
+ *   1904 ms  onceden uretilmis yazi ekranda, okunabiliyor
+ *   2346 ms  React baglaniyor, icerigi SILIYOR. Ekranda kalan: sol ust kosede
+ *            bicimsiz "Loading..." yazisi, altinda navbar, hemen altinda da
+ *            ALT BILGI. Sayfanin govdesi yuksekligi sifir oldugu icin alt bilgi
+ *            yukari tirmaniyor ve iki logo (navbar + alt bilgi) ust uste
+ *            gorunuyor.
+ *   2760 ms  gercek sayfa geliyor, alt bilgi asagi iniyor
+ *
+ * Yani hem Ingilizce bir yazi, hem de bir "sicrama". Iki ayri sorun degil, tek
+ * eksigin iki yuzu: ara durumun yer kaplamamasi.
+ *
+ * Cozum tasarim degil olcu: ara durum ekran yuksekliginin bir kismini AYIRIYOR,
+ * boylece alt bilgi yerinden oynamiyor. Ekranda marka renginde kucuk bir donen
+ * halka var; metin yalniz ekran okuyucuya veriliyor (gorunur Ingilizce yazi
+ * kaldirildi, yerine gorunur Turkce yazi da konmadi: bir saniyeligine gorunup
+ * kaybolan yazi okunmuyor, yalniz gurultu yapiyor).
+ */
+
+.loading-spinner {
+  /* Navbar 88px, alt bilginin yukari tirmanmasini bu engelliyor. */
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner::after {
+  content: '';
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid var(--color-vet-accent-light, #e0f2f1);
+  border-top-color: var(--color-vet-secondary, #0C7A77);
+  animation: yuklenme-don 0.7s linear infinite;
+}
+
+@keyframes yuklenme-don {
+  to { transform: rotate(360deg); }
+}
+
+/* Hareket azaltma tercihi acikken donmuyor, yalniz soluk bir halka kaliyor. */
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner::after { animation: none; opacity: 0.5; }
+}

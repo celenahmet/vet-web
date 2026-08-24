@@ -333,5 +333,9 @@
   "contact_topic_child": "Çocuk güvenliği",
   "contact_topic_clinic": "Klinik ve kurumsal",
   "contact_read_more": "Ayrıntılı bilgi",
-  "contact_operator": "Platform işletmecisi"
+  "contact_operator": "Platform işletmecisi",
+  "nf_title": "Sayfa bulunamadı",
+  "nf_subtitle": "Aradığınız sayfa taşınmış ya da hiç var olmamış olabilir. Adresi kontrol edip tekrar deneyebilirsiniz.",
+  "nf_home": "Ana sayfaya dön",
+  "nf_seo_desc": "Aradığınız sayfa taşınmış ya da hiç var olmamış olabilir."
 }

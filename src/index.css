@@ -1,7 +1,42 @@
 @import "tailwindcss";
 @custom-variant dark (&:is(.dark *));
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/*
+ * ⚠️ YAZI TIPLERI ARTIK BURADAN GELMIYOR (duzeltme 24.08.2026).
+ *
+ * Burada `@import url(...Outfit...)` vardi ve **HIC CALISMIYORDU**. CSS'te
+ * `@import` butun kurallardan once gelmek zorunda; araya giren
+ * `@custom-variant` satiri yuzunden import gecersiz sayilip **dusuruluyordu**.
+ *
+ * Olculdu (24.08.2026, canli site): derlenmis CSS'te yalniz Inter import'u
+ * kalmis, Outfit hic yok; `document.fonts` yalniz Inter listeliyor. Buna karsin
+ * `font-family: 'Outfit'` kurallari duruyordu. Yani butun site Outfit istiyor,
+ * Outfit hic inmiyor ve basliklar jenerik `sans-serif`e dusuyordu: Mac'te
+ * Helvetica, Windows'ta Arial. "Iki isletim sisteminde farkli gorunuyor"
+ * sikayetinin kaynagi buydu.
+ *
+ * Iki aile artik `index.html` icinde TEK bir <link> ile ve preconnect'le
+ * geliyor. Sebebi yalniz bu hatayi tekrarlamamak degil: CSS icinden `@import`
+ * seri bir zincir kuruyor (once CSS insin, sonra font CSS'i kesfedilsin, sonra
+ * font dosyalari). Lighthouse bu zinciri ~1980 ms render engeli olarak olcuyordu.
+ */
 :root {
+  /*
+   * ⚠️ TARAYICI ARAYUZU DE TEMAYI IZLESIN (24.08.2026).
+   *
+   * `color-scheme` yoktu. Sonucu: koyu kipte sayfa koyu ama KAYDIRMA CUBUGU,
+   * metin secim rengi ve form denetimleri isletim sisteminin varsayilanini
+   * kullaniyordu. macOS'ta bindirmeli kaydirma cubugu gorunmedigi icin fark
+   * edilmiyor; Windows'ta cubuk her zaman gorunur ve koyu sayfanin kenarinda
+   * BEYAZ bir serit kaliyor. "Windows'ta ve Mac'te ayri gozukuyor" sikayetinin
+   * olculebilir parcalarindan biri bu.
+   *
+   * `light dark` degil, tek deger yaziliyor: tema secimimiz sinif tabanli
+   * (`.dark`), isletim sisteminin tercihine bagli degil. `light dark` demek
+   * kontrolu yeniden isletim sistemine birakmak olurdu.
+   */
+  color-scheme: light;
+
   --bg-main: #FFFFFF; /* Pure White */
   --bg-surface: #FFFFFF;
   --bg-secondary: #F8FAFC; /* slate-50 */
@@ -17,6 +52,8 @@
 }
 
 .dark {
+  color-scheme: dark;
+
   --bg-main: #041416; /* Almost black Navy Teal */
   --bg-surface: #071F22; 
   --bg-secondary: #0B2A2E;

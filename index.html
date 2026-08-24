@@ -12,10 +12,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0F6B57" />
     <meta name="description" content="Veterito, hayvanseverlerin sosyal platformu. Dostunuzun sağlık geçmişini tutun, klinikten randevu alın, hayvanseverlerle buluşun." />
-    <link rel="preconnect" href="https://images.unsplash.com" />
+
+    <!--
+      YAZI TIPLERI (24.08.2026). Onceden iki ayri CSS dosyasindan `@import` ile
+      geliyorlardi ve Outfit HIC INMIYORDU: `index.css` icinde import'tan once
+      `@custom-variant` satiri vardi, CSS kurali geregi o import gecersiz sayilip
+      dusuyordu. Basliklar jenerik `sans-serif`e dusuyor, Mac'te Helvetica
+      Windows'ta Arial gorunuyordu.
+
+      Simdi iki aile tek istekte ve preconnect'li geliyor. CSS icinden `@import`
+      seri bir zincir kuruyordu (once CSS, sonra font CSS'i, sonra font dosyalari);
+      Lighthouse bunu ~1980 ms render engeli olarak olcmustu.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    />
+
+    <!--
+      TEMA ILK BOYAMADAN ONCE (24.08.2026). Tema React tarafinda `useEffect`
+      icinde uygulaniyordu, yani sayfa once AYDINLIK boyanip sonra koyuya
+      donuyordu. Bu betik senkron calisiyor ve <body> cizilmeden once karari
+      veriyor, boylece yanlis tema flasi olmuyor.
+
+      ⚠️ Iki isaret birden yaziliyor: bazi kurallar `.dark` sinifini, bazilari
+      `:root[data-theme='dark']` secicisini okuyor. Ikisi ayrilirsa sayfanin
+      yarisi koyu yarisi aydinlik kalir. Navbar da ikisini birlikte yaziyor.
+
+      ⚠️ Try/catch sart: gizli sekmede ve depolamayi kapatan tarayicilarda
+      `localStorage` erisimi ISTISNA FIRLATIYOR. Betik patlarsa <head> icindeki
+      senkron hata sayfayi bos birakirdi.
+    -->
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.setAttribute('data-theme', 'dark');
+          }
+        } catch (e) { /* depolama yok: aydinlik temada kal */ }
+      })();
+    </script>
+
     <title>Veterito</title>
   </head>
-  <body class="bg-white dark:bg-[#090D11]">
+  <!--
+    ⚠️ ZEMIN RENGI SINIFTAN DEGIL DEGISKENDEN (24.08.2026). Burada
+    `class="bg-white dark:bg-[#090D11]"` yaziyordu ama `index.css` icindeki
+    `body` kurali `var(--bg-main)` diyor ve koyu kipteki degeri `#041416`.
+    Iki farkli koyu zemin catisiyordu. Tek kaynak degisken; sinif kaldirildi.
+  -->
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

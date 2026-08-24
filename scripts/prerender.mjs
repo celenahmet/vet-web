@@ -247,6 +247,48 @@ yaz(
   ),
 );
 
+// --- 404 sayfasi ---
+/*
+ * ⚠️ NEDEN URETILIYOR (24.08.2026): `vercel.json` eskiden her adresi uygulamaya
+ * yonlendiriyordu ve olmayan sayfalar bile "HTTP 200" doneuyordu (olculdu: dort
+ * ayri cop adresin dordu de 200). Yonlendirme daralttiktan sonra eslesmeyen
+ * adres statik dosya aramasina dusuyor; Vercel bu dosyayi bulunca GERCEK 404
+ * durum koduyla veriyor.
+ *
+ * ⚠️ `noindex` ZORUNLU. Bu dosya tek bir adrese ait degil, butun bulunamayan
+ * adresler icin servis ediliyor. Indekslenmesine izin vermek, arama sonuclarinda
+ * "bulunamadi" baslikli bir sayfa cikmasi demek.
+ *
+ * ⚠️ Govdeye gercek metin konuyor. JS calismadan once de sayfanin ne oldugu
+ * anlasilmali; bos bir kabuk, tarayiciya ve kullaniciya ayni sey demiyor.
+ */
+const bulunamadiGovde = [
+  '<h1>Sayfa bulunamadı</h1>',
+  '<p>Aradığınız sayfa taşınmış ya da hiç var olmamış olabilir.</p>',
+  '<p><a href="/">Ana sayfaya dön</a></p>',
+  '<nav aria-label="Sık kullanılan sayfalar"><ul>',
+  '<li><a href="/blog">Blog</a></li>',
+  '<li><a href="/clinics">Klinikler İçin</a></li>',
+  '<li><a href="/contact">İletişim</a></li>',
+  '</ul></nav>',
+].join('\n');
+
+let bulunamadiHtml = kafaDegistir(sablon, {
+  baslik: 'Sayfa bulunamadı | Veterito',
+  aciklama: 'Aradığınız sayfa taşınmış ya da hiç var olmamış olabilir.',
+  adres: `${SITE}/404`,
+  tip: 'website',
+  jsonLd: [],
+  onYukle: onYuklemeler(['NotFound-']),
+});
+// Canonical KALDIRILIYOR: bu dosya tek bir adresi temsil etmiyor, kendine
+// isaret eden bir canonical yanlis bilgi olurdu.
+bulunamadiHtml = bulunamadiHtml
+  .replace(/\s*<link rel="canonical"[^>]*>/, '')
+  .replace('</head>', '    <meta name="robots" content="noindex, follow" />\n  </head>');
+
+yaz(join(KOK, 'dist/404.html'), govdeDegistir(bulunamadiHtml, bulunamadiGovde));
+
 // --- Sitemap ---
 const sitemapYolu = join(KOK, 'dist/sitemap.xml');
 if (existsSync(sitemapYolu)) {

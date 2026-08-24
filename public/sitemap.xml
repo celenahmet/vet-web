@@ -41,11 +41,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://veterito.com/deletion</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://veterito.com/legal</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
@@ -84,5 +79,15 @@
     <loc>https://veterito.com/contact</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://veterito.com/pricing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://veterito.com/download</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

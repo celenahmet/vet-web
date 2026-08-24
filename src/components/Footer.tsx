@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Globe, MessageCircle, Mail } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { brandConfig } from '../config/brand';
-import logoUrl from '../assets/logo.png';
+import logoUrl from '../assets/logo.webp';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           <div className="flex flex-col gap-4">
             <Link to="/" className="inline-block hover:opacity-80 transition-opacity">
-              <img src={logoUrl} alt="Veterito Logo" className="h-10 md:h-12 w-auto" />
+              <img src={logoUrl} alt="Veterito Logo" width={567} height={144} loading="lazy" className="h-10 md:h-12 w-auto" />
             </Link>
             <p className="max-w-xs text-sm mt-2">
               {t('footer_desc')}
@@ -52,7 +52,7 @@ const Footer = () => {
         <div className="pt-6 border-t border-slate-200 dark:border-slate-800 text-center text-sm flex flex-col md:flex-row justify-between items-center gap-4">
           <p>{t('footer_copyright').replace('{{year}}', year.toString()).replace('Veterito', brandConfig.name)}</p>
           <div className="flex items-center gap-2 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
-            <img src={logoUrl} alt="Veterito Logo" className="h-5 md:h-6 w-auto" />
+            <img src={logoUrl} alt="Veterito Logo" width={567} height={144} loading="lazy" className="h-5 md:h-6 w-auto" />
           </div>
         </div>
       </div>

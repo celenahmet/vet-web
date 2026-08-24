@@ -34,7 +34,18 @@ function App() {
       <ScrollToTop />
       <Navbar />
       <main className="main-content">
-        <Suspense fallback={<div className="loading-spinner">Loading...</div>}>
+        {/*
+            ⚠️ GORUNUR "Loading..." YAZISI KALDIRILDI (24.08.2026). Site yalniz
+            Turkce ve yazi bicimsizdi: sol ust kosede, sayfanin disinda duruyordu.
+            Yerine `styles/yuklenme.css` icinde olculu bir ara durum var; metin
+            ekran okuyucuya `aria-label` ile veriliyor.
+
+            ⚠️ Ara durumun yer kaplamasi sus degil: yer kaplamadigi icin alt bilgi
+            yukari tirmaniyor ve navbar logosuyla alt bilgi logosu ust uste
+            gorunuyordu. */}
+        <Suspense
+          fallback={<div className="loading-spinner" role="status" aria-label="Sayfa yükleniyor" />}
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/features" element={<Features />} />

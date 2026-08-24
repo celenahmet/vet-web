@@ -333,5 +333,9 @@
   "contact_topic_child": "Child safety",
   "contact_topic_clinic": "Clinics and business",
   "contact_read_more": "Read more",
-  "contact_operator": "Platform operator"
+  "contact_operator": "Platform operator",
+  "nf_title": "Page not found",
+  "nf_subtitle": "The page you are looking for may have moved or never existed. Check the address and try again.",
+  "nf_home": "Return home",
+  "nf_seo_desc": "The page you are looking for may have moved or never existed."
 }

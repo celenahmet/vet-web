@@ -3,7 +3,13 @@ import { Menu, X, Globe, Sun, Moon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoUrl from '../assets/logo.png';
+/*
+ * ⚠️ WEBP, PNG DEGIL (24.08.2026). Kaynak PNG 1024x260 ve 135 KB idi; logo
+ * ekranda en fazla 48 px yuksekliginde ciziliyor. 3x retina icin 567x144 yeter.
+ * Olculdu: 134.828 -> 18.568 bayt, gorunum birebir ayni, alfa korunuyor.
+ * Ayni dosya navbar'da bir, alt bilgide iki kez kullaniliyordu.
+ */
+import logoUrl from '../assets/logo.webp';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,7 +66,16 @@ const Navbar = () => {
           
           {/* Logo */}
           <Link to="/" className="flex items-center z-[110] flex-1 hover:opacity-80 transition-opacity">
-            <img src={logoUrl} alt="Veterito Logo" className="h-10 md:h-12 w-auto" />
+            {/* width/height sart: olcusuz gorsel yer ayirmiyor ve logo indiginde
+                navbar zipliyordu (Lighthouse `unsized-images`). */}
+            <img
+              src={logoUrl}
+              alt="Veterito Logo"
+              width={567}
+              height={144}
+              className="h-10 md:h-12 w-auto"
+              fetchPriority="high"
+            />
           </Link>
 
           {/* Desktop Nav */}
