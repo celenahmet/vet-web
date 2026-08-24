@@ -1,8 +1,18 @@
 import { Link } from 'react-router-dom';
-import { Globe, MessageCircle, Mail } from 'lucide-react';
+import { Mail } from 'lucide-react';
+import { Instagram, X, TikTok, LinkedIn, Facebook } from './SosyalIkonlar';
 import { useTranslation } from 'react-i18next';
 import { brandConfig } from '../config/brand';
 import logoUrl from '../assets/logo.webp';
+
+/**
+ * Hesap adi -> ikon eslesmesi. `brand.ts` yalniz veri tutuyor, cizim burada.
+ * ⚠️ Yeni hesap eklenirse hem `brand.ts` listesine hem buraya girmeli; eksik
+ * kalirsa asagidaki `Ikon` tanimsiz olur ve alt bilgi cizilemez.
+ */
+const SOSYAL_IKON: Record<string, (p: { boyut?: number }) => React.JSX.Element> = {
+  Instagram, X, TikTok, LinkedIn, Facebook,
+};
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -19,10 +29,33 @@ const Footer = () => {
             <p className="max-w-xs text-sm mt-2">
               {t('footer_desc')}
             </p>
+            {/*
+              ⚠️ ONCEKI UC IKONUN IKISI YANLISTI (duzeltme 24.08.2026):
+                · Dunya ikonu `veterito.com` adresine gidiyordu — sitenin alt
+                  bilgisinden yine ayni siteye baglanti.
+                · Sohbet ikonu "Community" diye etiketlenmisti ama `/legal`
+                  sayfasina, yani sozlesmelere gidiyordu. Etiketiyle gittigi yer
+                  farkli olan baglanti, calismayan baglantidan kotudur.
+              Yerlerini gercek hesaplar aldi. Liste `config/brand.ts` icinde,
+              burada tekrar yazilmiyor.
+            */}
             <div className="flex gap-4 mt-4">
-              <a href={brandConfig.social.website} aria-label="Website" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-600 transition-colors"><Globe size={20} /></a>
-              <a href={brandConfig.social.community} aria-label="Community" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-600 transition-colors"><MessageCircle size={20} /></a>
-              <a href={`mailto:${brandConfig.social.contactEmail}`} aria-label="Contact" className="hover:text-emerald-600 transition-colors"><Mail size={20} /></a>
+              {brandConfig.sosyal.filter((h) => h.altBilgide).map((hesap) => {
+                const Ikon = SOSYAL_IKON[hesap.ad];
+                return (
+                  <a
+                    key={hesap.ad}
+                    href={hesap.adres}
+                    aria-label={`Veterito ${hesap.ad}`}
+                    target="_blank"
+                    rel="noopener noreferrer me"
+                    className="hover:text-emerald-600 transition-colors"
+                  >
+                    <Ikon boyut={20} />
+                  </a>
+                );
+              })}
+              <a href={`mailto:${brandConfig.social.contactEmail}`} aria-label="E-posta gönder" className="hover:text-emerald-600 transition-colors"><Mail size={20} /></a>
             </div>
           </div>
 

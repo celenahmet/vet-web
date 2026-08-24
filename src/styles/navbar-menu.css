@@ -1,0 +1,32 @@
+/*
+ * MOBIL MENU ACILIS/KAPANIS
+ *
+ * ⚠️ AYRI DOSYA, `Navbar.css` DEGIL: o dosya olu. Icinde `.navbar`,
+ * `.nav-link`, `.logo-text` gibi 183 satir eski kural var ve bilesen coktan
+ * Tailwind'e gecmis; hicbir yerden import da edilmiyordu. Oraya yazmak, olu
+ * bir dosyayi canlandirip yaninda 183 satir olu kurali da pakete sokmak olurdu.
+ */
+/*
+ * ⚠️ framer-motion'in yerini aliyor. Ayni hareket: 20 px yukaridan gelip
+ * solarak aciliyor, ayni yoldan kapaniyor. Sure 200 ms ve Navbar.tsx icindeki
+ * `menuKapat` zamanlayicisiyla AYNI olmak zorunda; ayrisirsa menu ya erken
+ * kaybolur ya da kapandiktan sonra tiklamalari yakalamaya devam eder.
+ */
+@keyframes mobil-menu-ac {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes mobil-menu-kapat {
+  from { opacity: 1; transform: none; }
+  to   { opacity: 0; transform: translateY(-20px); }
+}
+.mobil-menu { animation: mobil-menu-ac 0.2s ease-out both; }
+.mobil-menu.kapaniyor {
+  animation: mobil-menu-kapat 0.2s ease-in both;
+  /* Kapanirken tiklamalari yakalamasin. */
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobil-menu, .mobil-menu.kapaniyor { animation-duration: 0.01s; }
+}

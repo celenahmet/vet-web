@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { QrCode, Apple } from 'lucide-react';
 import SEO from '../components/SEO';
+import { brandConfig } from '../config/brand';
 import { useTranslation } from 'react-i18next';
 
 export default function Download() {
@@ -56,7 +57,12 @@ export default function Download() {
           transition={{ delay: 0.3 }}
           className="flex flex-col sm:flex-row gap-4"
         >
-          <a href="#" className="bg-black text-white px-6 py-3 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform shadow-lg group">
+          {/* ⚠️ `href="#"` IDI: tiklanınca hicbir sey olmuyordu. Calismayan bir
+              dugme, olmayan bir ozellikten kotudur; kullanici bozuk sanir.
+              Adres artik `config/brand.ts` icinden geliyor — TEK KAYNAK.
+              ⚠️ Oradaki degerler su an YER TUTUCU (magaza ana sayfasi). Uygulama
+              yayina girince yalniz brand.ts guncellenecek, bu dosya degil. */}
+          <a href={brandConfig.appStoreUrl} target="_blank" rel="noopener noreferrer" className="bg-black text-white px-6 py-3 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform shadow-lg group">
             <Apple size={32} className="fill-white" />
             <div className="text-left">
               <div className="text-[10px] opacity-80 font-medium">Download on the</div>
@@ -64,7 +70,7 @@ export default function Download() {
             </div>
           </a>
           
-          <a href="#" className="bg-black text-white px-6 py-3 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform shadow-lg group">
+          <a href={brandConfig.playStoreUrl} target="_blank" rel="noopener noreferrer" className="bg-black text-white px-6 py-3 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform shadow-lg group">
             <svg viewBox="0 0 512 512" width="32" height="32" className="mr-1">
               <path fill="#4285F4" d="M37.3 22.4L337.8 194.2c20.5 11.7 34.2 33.3 34.2 57.8s-13.8 46.1-34.2 57.8L37.3 481.6C13.8 495.3 0 473.4 0 445V59c0-28.4 13.8-50.3 37.3-36.6z"></path>
               <path fill="#34A853" d="M37.3 22.4C13.8 8.7 0 30.6 0 59v386l225-225L37.3 22.4z"></path>

@@ -93,8 +93,13 @@
       ⚠️ Ana sayfada HICBIR yapilandirilmis veri yoktu (olculdu 24.08.2026).
       Marka aramasinda Google'in kullandigi kaynak bu: ad, logo, alan adi ve
       resmi hesaplar buradan okunuyor.
-      ⚠️ `sameAs` BILEREK BOS BIRAKILMADI, HIC YAZILMADI: dogrulanmis resmi
-      hesabimiz yok. Olmayan hesabi listelemek, semanin isini bozar.
+      ⚠️ `sameAs` 24.08.2026'da dolduruldu. Google marka aramasinda bir kurumu
+      resmi hesaplariyla BU ALAN uzerinden eslestiriyor; bos birakmak, hesaplar
+      varken onlari gostermemek demekti.
+      ⚠️ Yalniz BURADAN DOGRULANABILEN adresler yazildi: Instagram, X ve LinkedIn
+      HTTP 200 donuyor. TikTok ve Facebook platform bot duvarina takildi (TikTok
+      200 ama 1.4 KB, Facebook 400); "yok" demek degil ama olcemedigimiz bir seyi
+      semaya yazmiyoruz. Ahmet dogrularsa eklenir.
       ⚠️ Magaza adresleri de yok cunku `src/config/brand.ts` icindekiler su an
       yer tutucu. Uygulama yayina girince buraya `sameAs` olarak eklenecek.
     -->
@@ -114,7 +119,12 @@
               "height": 512
             },
             "email": "info@veterito.com",
-            "description": "Evcil hayvan sağlık kaydı, aşı takvimi ve veteriner randevusu için mobil uygulama."
+            "description": "Evcil hayvan sağlık kaydı, aşı takvimi ve veteriner randevusu için mobil uygulama.",
+            "sameAs": [
+              "https://www.instagram.com/veteritoapp/",
+              "https://x.com/veterito",
+              "https://www.linkedin.com/company/veterito/"
+            ]
           },
           {
             "@type": "WebSite",

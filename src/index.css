@@ -73,6 +73,18 @@ html {
 }
 
 body {
+  /*
+   * ⚠️ YATAY TASMA KIRPILIYOR (24.08.2026). Olculdu: ana sayfa 390 px'te
+   * 15 px tasiyordu ve sayfa yana kayiyordu. Sebep icerik degil ANIMASYON:
+   * kahraman kartlari `initial={{ x: -30 }}` ile ekranin disindan geliyor ve
+   * animasyon baslamadan once belgeyi genisletiyor.
+   *
+   * ⚠️ `clip` kullaniliyor, `hidden` DEGIL. `overflow: hidden` yeni bir kaydirma
+   * baglami acar ve icerideki `position: sticky` ogeleri calismaz hale gelir;
+   * blog yazisinin kenar cubugu sticky. `clip` kaydirma baglami acmadan kirpiyor.
+   */
+  overflow-x: clip;
+
   background-color: var(--bg-main);
   color: var(--text-main);
   font-family: 'Outfit', sans-serif;
