@@ -20,6 +20,14 @@ import { kopegimFazlaKiloluMu } from './kopegim-fazla-kilolu-mu';
 import { kedilerdeIcVeDisParazit } from './kedilerde-ic-ve-dis-parazit';
 import { veterinerKliniginNasilSecilir } from './veteriner-klinigi-nasil-secilir';
 import { klinikteRandevuYonetimi } from './klinikte-randevu-yonetimi';
+import { kopeklerdeKulakEnfeksiyonu } from './kopeklerde-kulak-enfeksiyonu';
+import { kopeklerdeAyrilikKaygisi } from './kopeklerde-ayrilik-kaygisi';
+import { kedilerdeKabizlik } from './kedilerde-kabizlik';
+import { kedilerNeZamanKisirlastirilmali } from './kediler-ne-zaman-kisirlastirilmali';
+import { kopeklereZararliYiyecekler } from './kopeklere-zararli-yiyecekler';
+import { kedilerdePireNasilAnlasilir } from './kedilerde-pire-nasil-anlasilir';
+import { mikrocipNedir } from './mikrocip-nedir';
+import { kliniklerdeAsiHatirlatma } from './kliniklerde-asi-hatirlatma';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -31,6 +39,9 @@ const TUM_YAZILAR: BlogYazi[] = [
   kedilerKacYilYasar, kopeklerKacYilYasar, kediYasiNasilHesaplanir, kedimYemekYemiyor,
   kediAsiTakvimi, kopekAsiTakvimi, kopegimFazlaKiloluMu, kedilerdeIcVeDisParazit,
   veterinerKliniginNasilSecilir, klinikteRandevuYonetimi,
+  kopeklerdeKulakEnfeksiyonu, kopeklerdeAyrilikKaygisi, kedilerdeKabizlik,
+  kedilerNeZamanKisirlastirilmali, kopeklereZararliYiyecekler,
+  kedilerdePireNasilAnlasilir, mikrocipNedir, kliniklerdeAsiHatirlatma,
 ];
 
 /**
