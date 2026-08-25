@@ -36,6 +36,7 @@ export const kopeklereZararliYiyecekler: BlogYazi = {
     { kind: 'baslik', metin: 'Neden bu yazıda miktar yok' },
     { kind: 'paragraf', metin: 'İnternette bu konuda çok sayıda “şu kadar gram şu kadar kiloya zararlı” tablosu dolaşıyor. Bu yazıda böyle bir tablo bilerek yok, çünkü dayandığımız derleme miktar eşiği vermiyor. Kaynağın söylemediği bir sayıyı yazmak, okuyucuya doğrulanabilir görünen ama doğrulanamayan bir bilgi vermek olurdu.' },
     { kind: 'paragraf', metin: 'Pratikte de miktar hesabı yanlış bir güven veriyor: köpeğin tam olarak ne kadar yediği çoğu zaman bilinmiyor. Paketin ne kadarının kaldığına bakmak, ne kadarının yendiğini söylemiyor.' },
+    { kind: 'paragraf', metin: 'Konuyu ele alan ikinci bir derleme de aynı listeyi farklı bir açıdan doğruluyor: evcil hayvanlar için zehirli olabilen gıdalar, insan mutfağının olağan parçaları ve zehirlenmeler çoğunlukla bu ürünlerin evde serbestçe bulunmasından kaynaklanıyor. İki bağımsız derlemenin aynı ürün grubunu sayması, listenin tek bir çalışmanın çerçevesine dayanmadığını gösteriyor.' },
 
     { kind: 'baslik', metin: 'Yediyse ne yapılır' },
     { kind: 'paragraf', metin: 'Belirti beklemek doğru bir strateji değil; bazı ürünlerde belirtiler saatler sonra çıkıyor ve o zamana kadar emilim tamamlanmış oluyor.' },
@@ -96,6 +97,16 @@ export const kopeklereZararliYiyecekler: BlogYazi = {
     { soru: 'Bayramlarda neden risk artıyor?', cevap: 'Evde daha fazla yiyecek ortada duruyor, misafir sayısı artıyor ve kimin ne verdiği takip edilemiyor. Çöp kovası daha sık doluyor ve daha çok karıştırılıyor. Bu yüzden "bir şey vermeyin" kuralını misafire baştan söylemek, sonradan fark etmekten güvenli.' },
   ],
   kaynaklar: [
+    {
+      kurum: 'University of Veterinary Medicine and Pharmacy in Košice — Department of Pharmacology and Toxicology',
+      yazarlar: 'Kovalkovičová N, Sutiaková I, Pistl J, Sutiak V',
+      baslik: 'Some food toxic for pets',
+      dergi: 'Interdisciplinary Toxicology',
+      yil: 2009,
+      kunye: '2(3):169-176',
+      doi: '10.2478/v10102-009-0012-4',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/21217849/',
+    },
     {
       kurum: 'Università degli Studi di Milano — Department of Health, Animal Science and Food Safety',
       yazarlar: 'Cortinovis C, Caloni F',

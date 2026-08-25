@@ -24,12 +24,15 @@ export const mikrocipNedir: BlogYazi = {
       ['Kayıt', 'Numara bir veritabanına işlenmiş olmalı', 'Takıldı ama kaydedilmedi'],
       ['İletişim', 'Kayıttaki telefon güncel olmalı', 'Numara değişmiş, kayıt eski'],
     ] },
-    { kind: 'paragraf', metin: 'Uygulamada en sık kopan halka üçüncüsü. Çip takılıyor, kayıt yapılıyor, sonra telefon değişiyor ve kimse kaydı güncellemiyor. Hayvan bulunuyor, çip okunuyor, aranan numara kapalı çıkıyor.' },
+    { kind: 'paragraf', metin: 'Uygulamada en sık kopan halka üçüncüsü ve bu bir tahmin değil. Ohio State Üniversitesi’nin yürüttüğü bir çalışmada, **53 barınağa giren 7.704 çipli hayvan** incelenmiş. Sahibine ulaşılamayan hayvanlarda en sık sebep **yanlış ya da kapalı telefon numarası (%35,4)** olmuş; ikinci sırada sahibin aramalara ve mektuba dönmemesi (%24,3), üçüncü sırada hayvanın başka bir kuruma kayıtlı olması (%17,2) geliyor.' },
+    { kind: 'paragraf', metin: 'Daha çarpıcı olan başka bir bulgu: barınakların çip kayıt sistemine başvurduğu **1.943 hayvanın yalnız 1.129’u (%58,1)** o veritabanında kayıtlıymış. Yani çipi olan her hayvanın kaydı yok.' },
+    { kind: 'paragraf', metin: 'Çalışmanın sonucu iki cümleyle özetleniyor: çipli hayvanların sahibine dönüş oranının yüksek olması, mikroçipi değerli bir kalıcı kimliklendirme yöntemi olarak destekliyor; **ama kayıtla ilgili sorunlar bu potansiyeli baltalıyor.** Önerilen çözümler arasında çip takma ile kaydın birlikte yapılması, kaydın takıldığı anda girilmesi ve düzenli güncelleme hatırlatmaları sayılıyor.' },
 
     { kind: 'yanilgi', baslik: '"Çipi var, kaybolursa bulurum" yanılgısı', metin: 'Çip konum bilgisi vermiyor. Kaybolan hayvanı bulan şey çip değil, onu bulan kişi. Çipin yaptığı, o kişi hayvanı bir kliniğe ya da barınağa götürdüğünde sahibine ulaşılmasını sağlamak. Yani çip arama aracı değil, geri dönüş aracı.' },
 
     { kind: 'baslik', metin: 'Takılması nasıl bir işlem' },
     { kind: 'paragraf', metin: 'Çip, genellikle boyun bölgesinde deri altına özel bir enjektörle yerleştiriliyor. İşlem aşı yaptırmaya benziyor ve genel anestezi gerektirmiyor. Kısırlaştırma gibi bir işlem planlanıyorsa aynı seansta yapılabiliyor.' },
+    { kind: 'paragraf', metin: 'İşlemin veteriner hekim tarafından yapılması bir formalite değil. Japonya’dan bildirilen bir olgu raporunda, uygun olmayan biçimde çip takılan **iki yavru köpekte omurilik yaralanması** görülmüş. Rapor bu tür yan etkilerin **nadir** olduğunu belirtiyor ama özellikle küçük ve düşük kilolu hayvanlarda yeterli eğitim ve ek dikkat gerektiğini vurguluyor.' },
     { kind: 'paragraf', metin: 'İşlemden sonra iki şey isteyin:' },
     { kind: 'liste', maddeler: [
       'Çip numarasının yazılı olarak verilmesi',
@@ -78,6 +81,28 @@ export const mikrocipNedir: BlogYazi = {
     'Künyeyi çipe ek olarak kullanın',
     'Sahiplendirmede kaydı devredin',
   ],
+  kaynaklar: [
+    {
+      kurum: 'The Ohio State University College of Veterinary Medicine',
+      yazarlar: 'Lord LK, Ingwersen W, Gray JL, Wintz DJ',
+      baslik: 'Characterization of animals with microchips entering animal shelters',
+      dergi: 'Journal of the American Veterinary Medical Association',
+      yil: 2009,
+      kunye: '235(2):160-167',
+      doi: '10.2460/javma.235.2.160',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/19601734/',
+    },
+    {
+      kurum: 'Tokyo University of Agriculture and Technology',
+      yazarlar: 'Hamabe L, Shimada K, Hirose M, Yoshida T, Takeuchi A, Uehara K, Tanaka R',
+      baslik: 'Preliminary report of spinal cord injuries resulting from inappropriate microchip implantation in two puppies',
+      dergi: 'The Journal of Veterinary Medical Science',
+      yil: 2023,
+      kunye: '85(1):14-18',
+      doi: '10.1292/jvms.22-0344',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/36351593/',
+    },
+  ],
   sss: [
     { soru: 'Mikroçip hayvanın yerini gösterir mi?', cevap: 'Hayır. Çip pasif bir cihaz: içinde pil yok, konum göndermiyor, telefondan izlenmiyor. Yaptığı tek şey, bir okuyucu yaklaştırıldığında taşıdığı numarayı vermek. Kaybolan hayvanı bulan çip değil, onu bulan kişi; çip o kişi hayvanı kliniğe götürdüğünde devreye giriyor.' },
     { soru: 'Çip takmak acı verir mi?', cevap: 'İşlem aşı yaptırmaya benziyor: özel bir enjektörle deri altına yerleştiriliyor ve genel anestezi gerektirmiyor. Kısırlaştırma gibi bir işlem zaten planlanıyorsa aynı seansta yapılabiliyor, böylece hayvan ikinci bir işlem stresi yaşamıyor.' },
@@ -85,6 +110,8 @@ export const mikrocipNedir: BlogYazi = {
     { soru: 'Çip kaydı nasıl güncellenir?', cevap: 'Kaydın yapıldığı sistem üzerinden güncelleniyor. Bu yüzden çip takıldığı gün hangi sisteme kaydedildiğini öğrenmek önemli. Uygulamada en sık kopan halka bu: telefon değişiyor, kayıt eski kalıyor ve çip okunduğunda ulaşılamıyor.' },
     { soru: 'Künye yerine geçer mi?', cevap: 'Geçmiyor, ikisi birbirini tamamlıyor. Künye hızlı çünkü bulan kişi anında arayabiliyor, ama tasma çıkabiliyor ve yazı aşınabiliyor. Çip kalıcı ama okuyucu gerektiriyor. İkisi birlikte kullanıldığında biri diğerinin açığını kapatıyor.' },
     { soru: 'Yurt dışına çıkarken yeterli mi?', cevap: 'Kimliklendirme genellikle isteniyor ve çip numarasının sağlık belgelerindeki numarayla harfi harfine aynı olması gerekiyor. Ancak şartlar ülkeye göre değişiyor ve zamanla güncelleniyor; bu yazı mevzuat bilgisi vermiyor, güncel kuralları hekiminizden ve resmî kaynaktan teyit edin.' },
+    { soru: 'Çipi var ama kaydı yoksa ne olur?', cevap: 'Çip işe yaramıyor. 53 barınakta yapılan bir çalışmada, kayıt sistemine başvurulan 1.943 hayvanın yalnız %58,1’i o veritabanında kayıtlıymış. Sahibine ulaşılamayan hayvanlarda en sık sebep ise yanlış ya da kapalı telefon numarası olmuş: %35,4.' },
+    { soru: 'Çipi kim takmalı?', cevap: 'Veteriner hekim. Yan etkiler nadir olsa da uygun olmayan uygulamaya bağlı ciddi komplikasyon bildirilmiş: Japonya’dan gelen bir raporda iki yavru köpekte omurilik yaralanması görülmüş. Rapor, özellikle küçük ve düşük kilolu hayvanlarda ek dikkat gerektiğini vurguluyor.' },
     { soru: 'Çip yer değiştirir mi?', cevap: 'Nadir ama mümkün. Bu yüzden okuma yapılırken yalnız boyun bölgesine değil gövdenin geneline bakılıyor. Rutin muayenelerde çipin okutulmasını istemek, hem kaymayı hem de okunamaz hâle gelmiş bir çipi erken fark etmenizi sağlıyor.' },
   ],
 };

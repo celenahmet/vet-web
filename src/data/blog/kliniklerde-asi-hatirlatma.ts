@@ -51,6 +51,8 @@ export const kliniklerdeAsiHatirlatma: BlogYazi = {
       'Randevu için ne yapılacağı, tek cümleyle',
     ] },
     { kind: 'paragraf', metin: 'İçinde olmaması gerekenler de var: tıbbi ayrıntı, uzun açıklama ve baskı kuran ifadeler. Hatırlatma bir bilgi, bir satış mesajı değil.' },
+    { kind: 'paragraf', metin: 'Basit yazmanın bir dayanağı da var. Veteriner hekimlerin hasta sahiplerine verdiği bilgilendirme metinlerinin okunabilirliğini inceleyen bir çalışma, Amerikan Ulusal Sağlık Enstitüleri ve Amerikan Tabipler Birliği’nin sağlık bilgisi metinleri için **dördüncü ile altıncı sınıf düzeyinde** okunabilirlik önerdiğini aktarıyor. Aynı çalışma, hedef kitlenin anlamadığı bilgilendirme metinlerinin istenmeyen sonuçlar doğurabileceğini belirtiyor.' },
+    { kind: 'paragraf', metin: 'Kısacası mesajı sadeleştirmek üslup tercihi değil, ulaşma meselesi. Anlaşılmayan bir hatırlatma, gönderilmemiş bir hatırlatmayla aynı sonucu veriyor.' },
 
     { kind: 'yanilgi', baslik: '"Ne kadar çok mesaj, o kadar çok randevu" yanılgısı', metin: 'Sık gönderim kısa vadede birkaç randevu getirse de, sahiplerin bildirimleri kapatmasına ve numarayı engellemesine yol açıyor. Kapatılan bir kanal geri açılmıyor; yani kısa vadeli kazanç, uzun vadeli erişimi tüketiyor.' },
 
@@ -83,6 +85,8 @@ export const kliniklerdeAsiHatirlatma: BlogYazi = {
     { kind: 'paragraf', metin: 'Randevu tarafının nasıl kurulduğu için [[klinikte-randevu-yonetimi|klinikte randevu yönetimi]] yazısına bakabilirsiniz; hatırlatma ile randevu aynı zincirin iki ucu. Hatırlatma randevuya dönüşmüyorsa sorun mesajda değil, randevu vermenin ne kadar kolay olduğunda olabiliyor.' },
     { kind: 'paragraf', metin: 'Veterito bu zinciri klinik tarafında tutuyor: aşı kaydına sonraki tarih giriliyor, zamanı gelenler listeleniyor. Uygulamayı kullanmayan müşteriler için de klinik kendi defterine kayıt açabiliyor.' },
     { kind: 'paragraf', metin: 'Son olarak bir beklenti ayarı: hatırlatma sistemi kurmak, gelmeyen müşteriyi getirmiyor. Yaptığı şey, gelmek isteyen ama unutan müşterinin unutmasını engellemek. Bu ikisi karıştırıldığında sistem başarısız sanılıyor; oysa ölçülmesi gereken şey unutmaya bağlı kaybın azalıp azalmadığı.' },
+    { kind: 'paragraf', metin: 'Bir de şu var: hatırlatmanın konusu dönüş oranını etkiliyor. Kanada’da bir klinik yönetim yazılımının hatırlatma kayıtlarını inceleyen çalışma, müşterilerin **aşı hatırlatmalarına, diğer hatırlatmaların tamamına göre yaklaşık üç kat daha az** yanıt verdiğini bulmuş. Diğer hatırlatmalar arasında diş işlemleri, laboratuvar testleri, kontrol muayeneleri ve kısırlaştırma sayılıyor.' },
+    { kind: 'paragraf', metin: 'Çalışmanın buradan çıkardığı sonuç, kliniklerin yalnız yıllık aşı hatırlatmasına dayanmak yerine koruyucu hekimlik hizmetlerini bütün olarak öne çıkarması yönünde. Yani hatırlatma sisteminin işi aşıyla sınırlı tutulduğunda, sistemin kendisi az kullanılmış oluyor.' },
   ],
   kontrolListesi: [
     'Sonraki tarihi aynı anda girin',
@@ -92,6 +96,27 @@ export const kliniklerdeAsiHatirlatma: BlogYazi = {
     'Vefat eden kaydı kapatın',
     'Dönüş oranını kendiniz ölçün',
   ],
+  kaynaklar: [
+    {
+      kurum: 'University of Saskatchewan — Western College of Veterinary Medicine',
+      yazarlar: 'Adams VJ, Waldner CL, Campbell JR',
+      baslik: 'Analysis of a practice management computer software program for owner compliance with recall reminders',
+      dergi: 'The Canadian Veterinary Journal',
+      yil: 2006,
+      kunye: '47(3):234-240',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/16604979/',
+    },
+    {
+      kurum: 'North Carolina State University College of Veterinary Medicine',
+      yazarlar: 'Royal KD, Sheats MK, Kedrowicz AA',
+      baslik: 'Readability Evaluations of Veterinary Client Handouts and Implications for Patient Care',
+      dergi: 'Topics in Companion Animal Medicine',
+      yil: 2018,
+      kunye: '33(2):58-61',
+      doi: '10.1053/j.tcam.2018.03.005',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/30236410/',
+    },
+  ],
   sss: [
     { soru: 'Hatırlatma için yazılım şart mı?', cevap: 'Şart değil. Zincirin kritik halkası, aşı yapılırken sonraki tarihin kaydedilmesi; bu düzgün yapılıyorsa kâğıt defterle de çalışıyor. Yazılım yalnız gönderim adımını kolaylaştırıyor. Girilmeyen bir tarihi hiçbir program hatırlatamıyor.' },
     { soru: 'Kaç gün önce hatırlatılmalı?', cevap: 'Tek bir doğru yok; klinik kendi randevu doluluğuna ve müşteri alışkanlığına göre belirliyor. Önemli olan aralığın tutarlı olması: her seferinde farklı bir zamanlama, hem müşteride hem klinikte belirsizlik yaratıyor.' },
@@ -99,6 +124,7 @@ export const kliniklerdeAsiHatirlatma: BlogYazi = {
     { soru: 'Kaç kez hatırlatılmalı?', cevap: 'Tek hatırlatma çoğu zaman yetmiyor, ikiden fazlası rahatsız ediyor. Cevap verene aynı hatırlatma bir daha gönderilmiyor ve aynı hayvan için aynı hafta içinde tekrar mesaj çıkmıyor. Bu kurallar listede değil, gönderim adımında uygulanıyor.' },
     { soru: 'Eski numaralarla ne yapılmalı?', cevap: 'Ulaşmayan mesajlar tespit edilip o kayıtlar temizleniyor. Temizlenmeyen liste zamanla gerçek durumu göstermeyen bir listeye dönüşüyor ve gönderim sayısı arttıkça dönüş oranı düşüyor gibi görünüyor; oysa sorun oranda değil listede.' },
     { soru: 'Dönüş oranı ne olmalı?', cevap: 'İnternette dolaşan hazır rakamlar kendi kliniğiniz için geçerli değil; hasta profili, bölge ve hizmet karması farklı. Kendi sayınızı ölçüp onu iyileştirmek daha anlamlı. Başkasının oranını hedef almak, yanlış bir başarı ya da başarısızlık hissi üretiyor.' },
+    { soru: 'Neden aşı hatırlatmasına dönüş düşük?', cevap: 'Kanada’da bir klinik yönetim yazılımının kayıtlarını inceleyen çalışmada müşteriler, aşı hatırlatmalarına diğer hatırlatmaların tamamına göre yaklaşık üç kat daha az yanıt vermiş. Çalışma, kliniklerin yalnız yıllık aşıya dayanmak yerine koruyucu hekimlik hizmetlerini bütün olarak öne çıkarmasını öneriyor.' },
     { soru: 'Vefat eden hayvanın kaydı ne olmalı?', cevap: 'Kapatılıyor ve gönderim listesinden çıkarılıyor. Vefat etmiş bir hayvan için aşı hatırlatması göndermek, o aileyle ilişkiyi bitiren bir hata ve tamamen kayıt hijyeniyle önlenebiliyor. Bu, sistemin en çok özen isteyen tarafı.' },
   ],
 };

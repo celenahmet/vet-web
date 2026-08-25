@@ -161,3 +161,14 @@
 @media (prefers-reduced-motion: reduce) {
   .reklam-dugme { transition: none; }
 }
+
+/* ⚠️ Logo, ikon kutusunun yerini aliyor; genislik sinirli, yukseklik oranli.
+   `width`/`height` yazili: olcusuz gorsel yer ayirmiyor ve indiginde satiri
+   asagi itiyor. */
+.reklam-logo {
+  width: 160px;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  margin-bottom: 2px;
+}

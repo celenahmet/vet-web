@@ -8,7 +8,10 @@
  * yedinci yazida yine unutulur. Bu betik onu derlemede yakaliyor.
  *
  * Neyi denetliyor:
- *   1. Her yazida EN AZ BIR kaynak var mi
+ *   1. Her yazida EN AZ IKI kaynak var mi (Ahmet, 25.08.2026: *"her yazida
+ *      minimum 2 kaynak olacakti"*). Tek kaynak, o kaynagin cercevesini
+ *      yazinin tamamina yaymak demek; ikinci kaynak hem dogrulama hem denge
+ *      getiriyor.
  *   2. Hakemli bir calisma gosteriliyorsa kunyesi TAM mi (yazar, dergi, yil,
  *      cilt/sayi). Yarim kunye, kaynak vermemekten kotudur: dogrulanabilir
  *      gorunur ama dogrulanamaz.
@@ -61,12 +64,20 @@ for (const y of yazilar) {
   const kaynaklar = y.kaynaklar ?? [];
   const saglikIcerigi = SAGLIK_KATEGORILERI.has(y.kategori);
 
-  if (kaynaklar.length === 0) {
-    if (saglikIcerigi) {
-      bulgular.push(`${y.slug}: HIC KAYNAK YOK. Saglik icerikli her yazida en az bir doğrulanmış kaynak zorunlu.`);
-    }
-    continue;
+  /*
+   * ⚠️ ESIK IKI (25.08.2026, daha once birdi). Saglik icerigi disindaki
+   * yazilarda da kaynak varsa kunye tam olmali; ama ZORUNLULUK saglik
+   * kategorilerinde. Klinik yonetimi yazisina hakemli kaynak zorlamak,
+   * zorlanan ve dolayisiyla yanlis kaynak uretiyor.
+   */
+  const EN_AZ = 2;
+  if (saglikIcerigi && kaynaklar.length < EN_AZ) {
+    bulgular.push(
+      `${y.slug}: ${kaynaklar.length} kaynak var, en az ${EN_AZ} gerekiyor. ` +
+      `Tek kaynak, o kaynagin cercevesini yazinin tamamina yayiyor.`,
+    );
   }
+  if (kaynaklar.length === 0) continue;
 
   kaynaklar.forEach((k, i) => {
     const yer = `${y.slug} · kaynak ${i + 1}`;

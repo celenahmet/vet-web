@@ -69,6 +69,9 @@ export const kedilerdeKabizlik: BlogYazi = {
       'Yaş mama seçeneklerini hekimle konuşmak',
     ] },
     { kind: 'paragraf', metin: 'Dördüncü madde sık atlanıyor. Dar ve derin kaplarda kedinin bıyıkları kenara değiyor ve bu rahatsızlık su içme süresini kısaltıyor. Geniş bir kap, aynı kediye daha fazla su içirebiliyor.' },
+    { kind: 'paragraf', metin: 'Suyun yanında lif de konuşulan bir başlık. 2024 tarihli kontrollü bir çalışmada sağlıklı yetişkin kedilere **%6 psyllium** içeren kuru mama verilmiş ve kontrol mamasıyla karşılaştırılmış. Psyllium içeren mamayla günlük **dışkılama sayısı belirgin biçimde artmış**, dışkının nem oranı ve toplam ağırlığı da yükselmiş.' },
+    { kind: 'paragraf', metin: 'Çalışmanın kendi sonucu şöyle: bulgular, kabız kedilerde daha önce yapılmış kontrolsüz bir klinik denemeyle uyumlu ve ikisi birlikte, kabızlık yönetiminde diyet psylliumunun kullanımını destekliyor.' },
+    { kind: 'paragraf', metin: 'İki not: çalışma **sağlıklı** kedilerde yapılmış, kabız kedilerde değil; ve yazarlar bir mama üreticisinin çalışanları. Bu, sonucu geçersiz kılmıyor ama akılda tutulması gereken bir bağ. Lif ekleme kararı yine de hekime ait, çünkü tıkanma varsa bağırsağı hareketlendirmeye çalışmak durumu ağırlaştırabiliyor.' },
 
     { kind: 'baslik', metin: 'Kum kabı düzeni sanılandan önemli' },
     { kind: 'paragraf', metin: 'Kabızlık her zaman bağırsakta başlamıyor; bazen kum kabında başlıyor. Kedi tuvaletini ertelediğinde dışkı bağırsakta daha uzun kalıyor ve su çekilmesiyle sertleşiyor. Erteleme sebepleri çoğu zaman basit ve düzeltilebilir.' },
@@ -101,9 +104,20 @@ export const kedilerdeKabizlik: BlogYazi = {
     { soru: 'Kabızlık kendiliğinden geçer mi?', cevap: 'Tek seferlik tablolar geçebiliyor. Ancak tekrarlayan ve tedaviye dirençli hâle gelen kabızlık, kalın bağırsakta kalıcı genişleme ve hareket kaybına ilerleyebiliyor. Bu yüzden "tekrarlıyor ama geçiyor" cümlesi rahatlatıcı değil, aksine bir uyarı sayılıyor.' },
     { soru: 'Su tüketimini nasıl artırırım?', cevap: 'Evin farklı noktalarında birden fazla su kabı, mama kabından ayrı konum, geniş ve sığ kap kullanımı ve suyun günde birkaç kez tazelenmesi sık kullanılan yöntemler. Yaş mama seçeneği ve miktar kararı hekimle birlikte veriliyor.' },
     { soru: 'Yaşlı kedide daha mı sık görülüyor?', cevap: 'Eklem ağrısı ve azalan hareket kabızlığı kolaylaştırabiliyor. Ayrıca yüksek kenarlı bir kum kabına tırmanmak zorlaştığında kedi tuvaletini erteliyor ve dışkı bağırsakta daha uzun kalarak sertleşiyor. Alçak kenarlı bir kap bu döngüyü kırabiliyor.' },
+    { soru: 'Lif eklemek işe yarar mı?', cevap: 'Sağlıklı kedilerde yapılan kontrollü bir çalışmada %6 psyllium içeren mama, günlük dışkılama sayısını ve dışkı nemini belirgin biçimde artırmış. Çalışma kabız kedilerde değil sağlıklı kedilerde yapılmış ve yazarlar bir mama üreticisinin çalışanları; karar yine de tıkanma olasılığı değerlendirildikten sonra hekimle veriliyor.' },
     { soru: 'Kaç kum kabı olmalı?', cevap: 'Birden fazla kedi olan evlerde kap sayısının yetersiz kalması sık görülüyor ve bu, kedilerin tuvaletlerini ertelemesine yol açabiliyor. Kapların temiz, kolay ulaşılır ve sakin bir konumda olması, sayı kadar önemli.' },
   ],
   kaynaklar: [
+    {
+      kurum: 'Royal Canin Research (yazarlar mama ureticisinin calisanlari — cikar bagi metinde belirtildi)',
+      yazarlar: 'Keller E, Laxalde J, Tranier N, Belmar von Kretschmann P, Jackson A, van Hoek I',
+      baslik: 'Psyllium husk powder increases defecation frequency and faecal score, bulk and moisture in healthy cats',
+      dergi: 'Journal of Feline Medicine and Surgery',
+      yil: 2024,
+      kunye: '26(4):1098612X241234151',
+      doi: '10.1177/1098612X241234151',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/38635357/',
+    },
     {
       kurum: 'University of New England (Avustralya) ve University of Florida College of Veterinary Medicine',
       yazarlar: 'Munif MR, Williams RW, Mumu TT',

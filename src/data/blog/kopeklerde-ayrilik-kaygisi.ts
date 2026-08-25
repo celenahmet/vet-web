@@ -60,6 +60,8 @@ export const kopeklerdeAyrilikKaygisi: BlogYazi = {
     { kind: 'paragraf', metin: 'Davranış çalışmasının çekirdeği şu: köpeğin **sıkıntı yaşamadan** kalabildiği süreyi bulmak ve o süreyi çok küçük adımlarla uzatmak. Buradaki anahtar kelime "sıkıntı yaşamadan". Köpek panikleyene kadar bekleyip sonra dönmek, öğrenmeyi tersine çeviriyor.' },
     { kind: 'paragraf', metin: 'Pratikte şöyle işliyor: önce kapıya gidip dönmek, sonra kapıyı açıp kapatmak, sonra birkaç saniye dışarıda kalmak. Her adım köpek sakin kaldığı sürece bir sonrakine geçiyor; huzursuzluk başlarsa bir önceki adıma dönülüyor.' },
     { kind: 'paragraf', metin: 'Bu süreç haftalar sürebiliyor ve düz bir çizgi izlemiyor. İyi giden bir haftanın ardından geriye düşüş olabiliyor; bu, çalışmanın işe yaramadığı anlamına gelmiyor.' },
+    { kind: 'paragraf', metin: 'Peki gerçekten işe yarıyor mu? Bristol Üniversitesi’nde yapılan kontrollü bir denemede, ayrılıkla ilgili davranış sorunları olan köpeklere genel bir davranış değişikliği programı uygulanmış. **12 hafta sonunda** sahiplerin **%56’sı** köpeğinin davranışında belirgin iyileşme, **%25’i** ise hafif iyileşme bildirmiş.' },
+    { kind: 'paragraf', metin: 'Aynı çalışmada sahiplerin bildirdikleri, köpekler yalnız bırakıldığında alınan **video kayıtlarıyla da genel olarak desteklenmiş**. Tedavi almayan köpeklerin çoğunda ise 12 hafta boyunca davranış aynı düzeyde sürmüş. Yani iyileşme kendiliğinden gelmiyor, çalışmayla geliyor.' },
 
     { kind: 'baslik', metin: 'Önce tıbbi sebepler eleniyor' },
     { kind: 'paragraf', metin: 'Yalnızken tuvalet kazası, huzursuzluk ve aşırı soluma davranışsal olmayabilir. Ağrı, idrar yolu sorunları, yaşlı köpeklerde bilişsel değişiklikler benzer tabloyu üretebiliyor. Bu yüzden davranış çalışmasına başlamadan önce genel bir muayene isteniyor.' },
@@ -83,9 +85,20 @@ export const kopeklerdeAyrilikKaygisi: BlogYazi = {
     { soru: 'Ceza işe yarar mı?', cevap: 'Yaramıyor ve zarar veriyor. Davranışın kaynağı korku olduğu için ceza kaygıyı artırıyor ve tabloyu ağırlaştırabiliyor. Ayrıca köpek cezayı siz döndüğünüzde yaşadığı için, dönüşünüzü de kaygı verici bir olayla ilişkilendirmeye başlıyor.' },
     { soru: 'İkinci bir köpek çözüm olur mu?', cevap: 'Her zaman değil. Ayrılık kaygısı çoğu zaman genel bir yalnızlık meselesi değil, belirli bir kişiye bağlı bir kaygı. İkinci hayvan bazı köpeklerde hiçbir şey değiştirmiyor, bazılarında ise iki hayvanın birden etkilendiği bir tabloya dönüşebiliyor.' },
     { soru: 'Ne kadar sürede düzeliyor?', cevap: 'Değişiyor ve buraya bir süre yazmak doğru olmaz. İlerleme kademeli ölçülüyor: köpeğin sıkıntı yaşamadan yalnız kalabildiği sürenin uzayıp uzamadığına bakılıyor. Süreç haftalar alabiliyor ve düz bir çizgi izlemiyor; iyi giden bir haftanın ardından geriye düşüş olabiliyor.' },
+    { soru: 'Davranış çalışması gerçekten işe yarıyor mu?', cevap: 'Kontrollü bir denemede 12 hafta sonunda sahiplerin %56’sı belirgin, %25’i hafif iyileşme bildirmiş ve bu bildirimler yalnız bırakılan köpeklerin video kayıtlarıyla genel olarak desteklenmiş. Tedavi almayan köpeklerin çoğunda ise davranış 12 hafta boyunca aynı düzeyde sürmüş.' },
     { soru: 'Çıkarken vedalaşmak zararlı mı?', cevap: 'Uzun veda ve coşkulu karşılama, ayrılığı köpeğin gözünde büyük bir olay hâline getiriyor. Önerilen yaklaşım çıkış ve dönüşü sıradanlaştırmak: kapıda tören yapmadan çıkmak, dönünce köpek sakinleştikten sonra ilgi göstermek. Evdeki herkesin aynı şeyi yapması gerekiyor.' },
   ],
   kaynaklar: [
+    {
+      kurum: 'University of Bristol — Anthrozoology Institute',
+      yazarlar: 'Blackwell E, Casey RA, Bradshaw JW',
+      baslik: 'Controlled trial of behavioural therapy for separation-related disorders in dogs',
+      dergi: 'The Veterinary Record',
+      yil: 2006,
+      kunye: '158(16):551-554',
+      doi: '10.1136/vr.158.16.551',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/16632528/',
+    },
     {
       kurum: 'University of Illinois College of Veterinary Medicine — Veterinary Clinical Medicine',
       yazarlar: 'Ballantyne KC',

@@ -47,6 +47,11 @@ export const kedilerdePireNasilAnlasilir: BlogYazi = {
     ] },
     { kind: 'paragraf', metin: 'Son madde ev sahiplerini sık şaşırtıyor: pire kediyi tercih ediyor ama uygun konak yoksa insanı da ısırabiliyor. Evde bu tabloyu görmek, kedide bakılması gerektiğini söylüyor.' },
 
+    { kind: 'baslik', metin: 'Bazı kedilerde tablo alerjiye dönüyor' },
+    { kind: 'paragraf', metin: 'Pire yalnız kaşındırmıyor; bazı kedilerde bağışıklık sistemi pire tükürüğüne aşırı tepki veriyor ve **pire alerjik dermatiti** gelişiyor. Bu tabloda az sayıda pire bile belirgin deri sorunu yapabiliyor, yani "az pire var, önemli değil" çıkarımı geçerli olmuyor.' },
+    { kind: 'paragraf', metin: 'Louisiana Eyalet Üniversitesi’nde yapılan bir çalışmada, daha önce hiç pireyle karşılaşmamış 10 kedi pire teması alacak şekilde izlenmiş. **10 kedinin 8’inde üç ay içinde** pire alerjik dermatiti belirtileri gelişmiş; bu sekiz kedinin **beşinde** ayrıca dudak ülseri görülmüş.' },
+    { kind: 'paragraf', metin: 'Aynı çalışmanın bir başka bulgusu tanı açısından önemli: belirtilerin varlığı ile deri testi ve laboratuvar testi sonuçları arasında bir ilişki bulunamamış. Yani test negatif çıktı diye pire alerjisi elenmiyor; klinik tablo ve pire mücadelesine verilen yanıt daha belirleyici oluyor.' },
+
     { kind: 'yanilgi', baslik: '"Pire gördüm, kediyi yıkadım, bitti" yanılgısı', metin: 'Yetişkin pireler bulaşın küçük bir kısmını oluşturuyor; yumurta ve larvalar ortamda, halıda, yatakta ve zemin aralıklarında kalıyor. Yalnız hayvanı tedavi etmek, ortamdan gelen yeni dalgayı engellemiyor. Mücadele hem hayvanı hem ortamı kapsıyor.' },
 
     { kind: 'uyari', metin: 'Bu içerik genel bilgidir, tıbbi tavsiye değildir. Pire ürünü seçimi veteriner hekime aittir. Köpekler için üretilmiş bazı dış parazit ürünleri kedilerde ciddi zehirlenmeye yol açabiliyor; ürün paylaşımı yapılmaz.' },
@@ -89,9 +94,20 @@ export const kedilerdePireNasilAnlasilir: BlogYazi = {
     { soru: 'Ev kedisine pire ürünü gerekli mi?', cevap: 'Dışarı çıkmayan kedide risk düşük ama sıfır değil. Pire ayakkabı tabanıyla, kıyafetle, apartman ortak alanlarından ya da misafirin hayvanından eve girebiliyor. Program mevsime değil riske göre kuruluyor ve aralığı hekim belirliyor.' },
     { soru: 'Sadece kediyi tedavi etmek yeter mi?', cevap: 'Yetmiyor. Görünen yetişkin pireler bulaşın küçük bir kısmı; yumurta, larva ve kozalar yatakta, halı dibinde, parke aralıklarında ve koltuk altlarında kalıyor. Mücadele hem hayvanı hem ortamı kapsıyor ve birkaç haftaya yayılıyor.' },
     { soru: 'Pire ile şerit arasında ilişki var mı?', cevap: 'Var ve doğrudan. Tımarlanırken pire yutan kedi şerit kapabiliyor; yani dış parazit ihmali iç parazite dönüşebiliyor. Bu yüzden iç ve dış parazit programı ayrı ayrı değil birlikte kuruluyor.' },
+    { soru: 'Az pire varsa sorun olmaz değil mi?', cevap: 'Olabiliyor. Bazı kedilerde bağışıklık sistemi pire tükürüğüne aşırı tepki veriyor ve az sayıda pire bile belirgin deri sorunu yapabiliyor. Daha önce pireyle karşılaşmamış 10 kedinin izlendiği bir çalışmada 8’inde üç ay içinde pire alerjik dermatiti gelişmiş.' },
     { soru: 'Kışın da pire ürünü gerekli mi?', cevap: 'Isıtılan evlerde ortam koşulları kış boyunca da uygun kalabiliyor; dışarıda azalan pire evin içinde döngüsünü sürdürebiliyor. Bu yüzden program mevsime göre değil, kedinin yaşam biçimine ve evdeki duruma göre belirleniyor.' },
   ],
   kaynaklar: [
+    {
+      kurum: 'Louisiana State University School of Veterinary Medicine',
+      yazarlar: 'Colombini S, Hodgin EC, Foil CS, Hosgood G, Foil LD',
+      baslik: 'Induction of feline flea allergy dermatitis and the incidence and histopathological characteristics of concurrent indolent lip ulcers',
+      dergi: 'Veterinary Dermatology',
+      yil: 2001,
+      kunye: '12(3):155-161',
+      doi: '10.1046/j.1365-3164.2001.00243.x',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/11420931/',
+    },
     {
       kurum: 'North Carolina State University — Intracellular Pathogens Research Laboratory ve The University of Sydney',
       yazarlar: 'Moore CO, André MR, Šlapeta J, Breitschwerdt EB',

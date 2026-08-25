@@ -82,6 +82,11 @@ export const veterinerKliniginNasilSecilir: BlogYazi = {
     { kind: 'uyari', metin: 'Bu içerik genel bilgidir, tıbbi tavsiye değildir. Hayvanınızın tedavi planını ve kontrol sıklığını onu gören veteriner hekim belirler.' },
 
     { kind: 'paragraf', metin: 'Kliniğinizle birlikte takip edeceğiniz iki konu için [[kedi-asi-takvimi|kedi aşı takvimi]] ve [[kedilerde-ic-ve-dis-parazit|iç ve dış parazit programı]] yazılarına bakabilirsiniz.' },
+
+    { kind: 'baslik', metin: 'Uzaktan görüşme sunuyor mu' },
+    { kind: 'paragraf', metin: 'Klinik seçerken az sorulan ama giderek önem kazanan bir başlık: kontrol görüşmeleri için uzaktan bir yol var mı. 2.117 köpek ve kedi sahibiyle yapılan bir anket çalışması, sahiplerin uzaktan görüşmede **özellikle kontrol randevuları ve uzmana erişim** açısından yüksek potansiyel gördüğünü aktarıyor.' },
+    { kind: 'paragraf', metin: 'Buna karşılık fiilen kullanım düşük: köpek sahiplerinin **%12’si**, kedi sahiplerinin **%6’sı** daha önce kullanmış. Hiç kullanmamış olanların yaklaşık dörtte biri gelecekte kullanmaya istekli. Aynı çalışma, sahiplerin çoğunun bir şeyin gözden kaçma riskinin de farkında olduğunu belirtiyor.' },
+    { kind: 'paragraf', metin: 'Yani uzaktan görüşme muayenenin yerini almıyor; kontrol ve takip aşamasında yol kısaltıyor. Klinik seçerken bunu sormak, özellikle uzun süreli takip gerektiren bir durum varsa fark yaratabiliyor.' },
   ],
   kontrolListesi: [
     'Acilde ulaşım süresi biliniyor mu?',
@@ -100,6 +105,16 @@ export const veterinerKliniginNasilSecilir: BlogYazi = {
     { soru: 'Hangi durumda klinik değiştirmeyi düşünmeliyim?', cevap: 'Sorularınıza cevap verilmemesi, yapılan işlemin açıklanmaması, geçmiş kaydın paylaşılmaması ve acil durumda ulaşılamayıp alternatif söylenmemesi dikkat çekmesi gereken işaretler. Hiçbiri tek başına hekimlik hatası değil ama uzun sürecek bir ilişkide iletişim belirleyici.' },
   ],
   kaynaklar: [
+    {
+      kurum: 'University of Veterinary Medicine Vienna, University of Copenhagen ve University of Glasgow',
+      yazarlar: 'Springer S, Lund TB, Corr SA, Sandøe P',
+      baslik: 'Seeing the benefits, but not taking advantage of them: Dog and cat owners\' beliefs about veterinary telemedicine',
+      dergi: 'Veterinary Record',
+      yil: 2024,
+      kunye: '194(5):e3312',
+      doi: '10.1002/vetr.3312',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/37733831/',
+    },
     {
       kurum: 'American Animal Hospital Association',
       yazarlar: 'Creevy KE, Grady J, Little SE, Moore GE ve ark.',

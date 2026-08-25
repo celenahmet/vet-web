@@ -1,5 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Megaphone, ArrowUpRight, GraduationCap } from 'lucide-react';
+import { Megaphone, ArrowUpRight } from 'lucide-react';
+
+/*
+ * ⚠️ ACIK ZEMIN SURUMU. UniConnectly deposunda iki logo var: `dark-logo`
+ * (koyu zemin icin, "Uni" beyaz) ve `light-logo` (acik zemin icin, "Uni"
+ * lacivert). Reklam kutusu acik zeminde durdugu icin ikincisi kullaniliyor;
+ * digeri secilseydi kelimenin yarisi gorunmezdi.
+ */
+import uniconnectlyLogo from '../assets/uniconnectly.webp';
 
 /**
  * KENAR CUBUGU REKLAM ALANI (İSTEK: Ahmet, 25.08.2026)
@@ -60,8 +68,16 @@ export default function ReklamKutusu() {
         </div>
       ) : (
         <div className="reklam-kart">
-          <span className="reklam-ikon reklam-ikon-mor" aria-hidden="true"><GraduationCap size={18} /></span>
-          <p className="reklam-baslik">UniConnectly</p>
+          {/* ⚠️ Logo METNIN YERINE GECIYOR, yanina eklenmiyor: marka adi zaten
+              logonun icinde yaziyor, ikisini birlikte koymak ismi iki kez
+              gostermek olurdu. `alt` metni ad taşıyor, ekran okuyucu okuyor. */}
+          <img
+            src={uniconnectlyLogo}
+            alt="UniConnectly"
+            width={160}
+            height={57}
+            className="reklam-logo"
+          />
           <p className="reklam-metin">
             Üniversite toplulukları, etkinlikler ve şirketler tek uygulamada. App Store ve
             Google Play’de.

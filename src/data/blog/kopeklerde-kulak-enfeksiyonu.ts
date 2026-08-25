@@ -55,8 +55,11 @@ export const kopeklerdeKulakEnfeksiyonu: BlogYazi = {
     { kind: 'paragraf', metin: 'Uygulama tarafında bu kaydı tutmak için Veterito’yu kullanabilirsiniz; hatırlamak yerine bakmak, tekrarlayan bir tabloda fark yaratıyor.' },
 
     { kind: 'baslik', metin: 'Kulak yapısı bazı ırklarda riski artırıyor' },
-    { kind: 'paragraf', metin: 'Kulak kanalının biçimi ve havalanması, sorunun ne sıklıkta tekrarladığında rol oynuyor. Sarkık kulaklı ırklarda kanal daha kapalı kalıyor ve nem daha uzun süre tutunuyor. Kanalda tüy yoğunluğu fazla olan ırklarda ise hava akışı azalıyor.' },
-    { kind: 'paragraf', metin: 'Bu bir kader değil, bir bakım planı meselesi. Riskli yapıdaki bir köpekte kulak, sorun çıkmasını beklemeden düzenli aralıklarla kontrol ediliyor; kontrol etmek temizlemek anlamına gelmiyor, bakmak anlamına geliyor.' },
+    { kind: 'paragraf', metin: 'Kulak kanalının biçimi ve havalanması, sorunun ne sıklıkta tekrarladığında rol oynuyor. Bu artık tahmin değil, ölçülmüş bir şey: Royal Veterinary College’ın VetCompass programı kapsamında Birleşik Krallık’ta birinci basamak veteriner bakımı alan **22.333 köpeklik** rastgele bir örneklem incelenmiş.' },
+    { kind: 'paragraf', metin: 'Çalışmada kulak iltihabının bir yıllık görülme sıklığı **%7,30** çıkmış. Yani her yüz köpekten yedisinden fazlası tek bir yıl içinde bu tanıyı almış. En yüksek iki risk etkeni ise **ırk ve kulak duruşu** olarak bulunmuş.' },
+    { kind: 'paragraf', metin: 'Dik kulaklı ırklarla karşılaştırıldığında **sarkık kulaklı ırklarda 1,76 kat**, V biçiminde düşük kulaklı ırklarda **1,84 kat** daha yüksek olasılık bildirilmiş. Irk düzeyinde ise Basset Hound 5,87 kat, Chinese Shar Pei 3,44 kat, Labradoodle 2,95 kat, Beagle 2,54 kat ve Golden Retriever 2,23 kat daha yüksek olasılık göstermiş; Chihuahua, Border Collie, Yorkshire Terrier ve Jack Russell Terrier ise daha düşük olasılık göstermiş.' },
+    { kind: 'paragraf', metin: 'Kanalda tüy yoğunluğu fazla olan köpeklerde hava akışının azalması da aynı yönde işliyor.' },
+    { kind: 'paragraf', metin: 'Bu bir kader değil, bir bakım planı meselesi. Çalışmanın kendi sonucu da bu yönde: yatkın ırkların bilinmesi, hekimlerin koruyucu bakım önerilerini **temkinli ve az zarar veren** bir çerçevede vermesini kolaylaştırıyor. Riskli yapıdaki bir köpekte kulak, sorun çıkmasını beklemeden düzenli aralıklarla kontrol ediliyor; kontrol etmek temizlemek anlamına gelmiyor, bakmak anlamına geliyor.' },
     { kind: 'liste', maddeler: [
       'Sarkık kulakta kanal daha kapalı, nem daha uzun kalıyor',
       'Kanalda yoğun tüy hava akışını azaltıyor',
@@ -96,9 +99,20 @@ export const kopeklerdeKulakEnfeksiyonu: BlogYazi = {
     { soru: 'Geçen seferki ilacı kullanabilir miyim?', cevap: 'Kullanılmıyor. Kulak iltihabının etkeni her seferinde aynı olmuyor; geçen sefer maya varsa ve bu sefer bakteri ürediyse aynı ürün hiçbir şey yapmıyor. Ayrıca yarım kalmış kutular eksik doz demek ve eksik doz, direnç gelişimi için en elverişli ortamı hazırlıyor.' },
     { soru: 'Sudan sonra kulak neden risk oluyor?', cevap: 'Kulak kanalında kalan nem, etkenlerin üremesi için uygun bir ortam hazırlıyor. Bu yüzden yüzme ve banyo sonrası kulağın kuruması önemli. Sarkık kulaklı ırklarda kanal daha kapalı olduğu için nem daha uzun süre tutunuyor ve risk artıyor.' },
     { soru: 'Tekrarlıyorsa ne yapılmalı?', cevap: 'Her seferinde aynı tedaviyi denemek yerine altta yatan zemin araştırılıyor: alerji, kulak yapısı, sudan kalan nem, kanaldaki tüy yoğunluğu ve dış parazitler. Bu araştırma için tarih ve ürün kaydı gerekiyor; hafızaya dayanan anlatım güvenilir olmuyor.' },
+    { soru: 'Bazı ırklarda daha mı sık görülüyor?', cevap: 'Evet. Birleşik Krallık’ta 22.333 köpeklik bir örneklemde ırk ve kulak duruşu en yüksek iki risk etkeni çıkmış. Sarkık kulaklı ırklarda dik kulaklılara göre 1,76 kat, V biçiminde düşük kulaklılarda 1,84 kat daha yüksek olasılık bildirilmiş. Basset Hound, Shar Pei ve Labradoodle en yatkın ırklar arasında.' },
     { soru: 'Belirtiler geçince ilacı kesebilir miyim?', cevap: 'Kesilmiyor. Belirtiler tedavinin ilk günlerinde hızla azalıyor ama etken tamamen temizlenmemiş olabiliyor. Erken kesilen tedavide azalmış etken kısa sürede yeniden çoğalıyor; bu, tekrarlayan kulak iltihaplarının en sık sebeplerinden biri.' },
   ],
   kaynaklar: [
+    {
+      kurum: 'Royal Veterinary College — VetCompass Programme',
+      yazarlar: 'O\'Neill DG, Volk AV, Soares T, Church DB, Brodbelt DC, Pegram C',
+      baslik: 'Frequency and predisposing factors for canine otitis externa in the UK — a primary veterinary care epidemiological view',
+      dergi: 'Canine Medicine and Genetics',
+      yil: 2021,
+      kunye: '8(1):7',
+      doi: '10.1186/s40575-021-00106-1',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/34488894/',
+    },
     {
       kurum: 'University of Novi Sad, Faculty of Agriculture — Department of Veterinary Medicine',
       yazarlar: 'Tesin N, Stojanovic D, Stancic I, Kladar N, Ružić Z, Spasojevic J, Tomanic D, Kovacevic Z',
