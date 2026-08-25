@@ -100,8 +100,14 @@ export default function PanelMusteriler({ klinik }: { klinik: string }) {
   return (
     <section className="pnl-bolum">
       <header className="pnl-bolum-basi">
+        {/*
+          ⚠️ BOLUM BASLIGI BURADA YOK, UST CUBUKTA. Once ikisi de yaziyordu ve
+          ekranda ayni kelime iki kez goruluyordu ("Raporlar / Raporlar").
+          Ust cubuk yapiskan, yani sayfa kaydiginca da gorunur duruyor; burada
+          tekrarlamak hem yer yiyor hem ekran okuyucuya ayni basligi iki kez
+          okutuyordu. Burada yalniz ACIKLAMA ve eylem dugmeleri kaliyor.
+        */}
         <div>
-          <h2>Müşteriler</h2>
           <p className="pnl-aciklama">
             Uygulamayı kullanan müşterileriniz ve kendi defterinize yazdıklarınız bir arada.
             Her satırda hangisi olduğu yazıyor.

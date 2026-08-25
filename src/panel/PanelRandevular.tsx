@@ -121,8 +121,14 @@ export default function PanelRandevular({ klinik }: { klinik: string }) {
   return (
     <section className="pnl-bolum">
       <header className="pnl-bolum-basi">
+        {/*
+          ⚠️ BOLUM BASLIGI BURADA YOK, UST CUBUKTA. Once ikisi de yaziyordu ve
+          ekranda ayni kelime iki kez goruluyordu ("Raporlar / Raporlar").
+          Ust cubuk yapiskan, yani sayfa kaydiginca da gorunur duruyor; burada
+          tekrarlamak hem yer yiyor hem ekran okuyucuya ayni basligi iki kez
+          okutuyordu. Burada yalniz ACIKLAMA ve eylem dugmeleri kaliyor.
+        */}
         <div>
-          <h2>Randevular</h2>
           <p className="pnl-aciklama">
             Hayvan sahiplerinin gönderdiği randevu talepleri burada. Onayladığınız randevu
             hayvan sahibine bildirim olarak gider.

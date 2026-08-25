@@ -321,8 +321,14 @@ export function PanelMesajlar({ klinik }: { klinik: string }) {
   return (
     <section className="pnl-bolum">
       <header className="pnl-bolum-basi">
+        {/*
+          ⚠️ BOLUM BASLIGI BURADA YOK, UST CUBUKTA. Once ikisi de yaziyordu ve
+          ekranda ayni kelime iki kez goruluyordu ("Raporlar / Raporlar").
+          Ust cubuk yapiskan, yani sayfa kaydiginca da gorunur duruyor; burada
+          tekrarlamak hem yer yiyor hem ekran okuyucuya ayni basligi iki kez
+          okutuyordu. Burada yalniz ACIKLAMA ve eylem dugmeleri kaliyor.
+        */}
         <div>
-          <h2>Mesajlar</h2>
           <p className="pnl-aciklama">
             Müşterilerinize ve takipçilerinize mesaj yazabilirsiniz. Gelen cevapları şimdilik
             telefondaki uygulamadan görüyorsunuz.
@@ -436,8 +442,14 @@ export function PanelProfil({ klinik }: { klinik: string }) {
   return (
     <section className="pnl-bolum">
       <header className="pnl-bolum-basi">
+        {/*
+          ⚠️ BOLUM BASLIGI BURADA YOK, UST CUBUKTA. Once ikisi de yaziyordu ve
+          ekranda ayni kelime iki kez goruluyordu ("Raporlar / Raporlar").
+          Ust cubuk yapiskan, yani sayfa kaydiginca da gorunur duruyor; burada
+          tekrarlamak hem yer yiyor hem ekran okuyucuya ayni basligi iki kez
+          okutuyordu. Burada yalniz ACIKLAMA ve eylem dugmeleri kaliyor.
+        */}
         <div>
-          <h2>Klinik profili</h2>
           <p className="pnl-aciklama">
             Verdiğiniz hizmetler ve çalışma saatleriniz. Bu bilgiler klinik sayfanızda ve
             uygulamadaki aramalarda görünür.
@@ -721,8 +733,14 @@ export function PanelAyarlar() {
   return (
     <section className="pnl-bolum">
       <header className="pnl-bolum-basi">
+        {/*
+          ⚠️ BOLUM BASLIGI BURADA YOK, UST CUBUKTA. Once ikisi de yaziyordu ve
+          ekranda ayni kelime iki kez goruluyordu ("Raporlar / Raporlar").
+          Ust cubuk yapiskan, yani sayfa kaydiginca da gorunur duruyor; burada
+          tekrarlamak hem yer yiyor hem ekran okuyucuya ayni basligi iki kez
+          okutuyordu. Burada yalniz ACIKLAMA ve eylem dugmeleri kaliyor.
+        */}
         <div>
-          <h2>Ayarlar</h2>
           <p className="pnl-aciklama">Hesabınız ve bu tarayıcıdaki oturumunuz.</p>
         </div>
       </header>

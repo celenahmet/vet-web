@@ -6,7 +6,7 @@
 export default function Yukleniyor({ metin = 'Bilgiler yükleniyor' }: { metin?: string }) {
   return (
     <div className="pnl-yukleniyor" role="status">
-      <span className="pnl-halka" aria-hidden="true" />
+      <span className="pnl-donen" aria-hidden="true" />
       <span>{metin}…</span>
     </div>
   );

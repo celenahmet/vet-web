@@ -5,14 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run rota-denetimi && npm run kaynak-denetimi && tsc -b && vite build && npm run prerender",
+    "build": "npm run rota-denetimi && npm run kaynak-denetimi && npm run panel-denetimi && tsc -b && vite build && npm run prerender",
     "lint": "oxlint",
     "preview": "vite preview",
     "prerender": "node --experimental-strip-types scripts/prerender.mjs",
     "rota-denetimi": "node scripts/rota-kapsam-denetimi.mjs",
     "kaynak-denetimi": "node --experimental-strip-types scripts/kaynak-denetimi.mjs",
     "blog-seo": "node --experimental-strip-types scripts/blog-seo-denetimi.mjs",
-    "kapaklar": "node scripts/kapak-boyutlari.mjs"
+    "kapaklar": "node scripts/kapak-boyutlari.mjs",
+    "panel-denetimi": "node scripts/panel-sinif-denetimi.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.4",

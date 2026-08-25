@@ -47,10 +47,18 @@ export default function PanelListe<T>({
   const AltIkon = altNot?.ikon;
 
   return (
-    <section className="pnl-bolum">
+    /* ⚠️ `aria-label`: gorunur baslik ust cubuga tasindi, bolumun kendisi
+       isimsiz kalmasin diye ad burada duruyor. */
+    <section className="pnl-bolum" aria-label={baslik}>
       <header className="pnl-bolum-basi">
+        {/*
+          ⚠️ BOLUM BASLIGI BURADA YOK, UST CUBUKTA. Once ikisi de yaziyordu ve
+          ekranda ayni kelime iki kez goruluyordu ("Raporlar / Raporlar").
+          Ust cubuk yapiskan, yani sayfa kaydiginca da gorunur duruyor; burada
+          tekrarlamak hem yer yiyor hem ekran okuyucuya ayni basligi iki kez
+          okutuyordu. Burada yalniz ACIKLAMA ve eylem dugmeleri kaliyor.
+        */}
         <div>
-          <h2>{baslik}</h2>
           <p className="pnl-aciklama">{aciklama}</p>
         </div>
         {eylem}
