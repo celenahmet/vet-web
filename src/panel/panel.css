@@ -1118,3 +1118,8 @@ a.pnl-widget-eylem { text-decoration: none; }
   color: var(--pnl-soluk); cursor: pointer;
 }
 .pnl-not-dugme:hover { color: var(--pnl-vurgu); border-color: color-mix(in srgb, var(--pnl-vurgu) 45%, transparent); }
+
+/* Defter satirlarinda gelir/gider ikonu renkle de ayriliyor; tutarin isareti
+   (+/−) metinle ayni bilgiyi tekrar veriyor, renk tek basina anlatmasin diye. */
+.pnl-avatar-gelir { background: color-mix(in srgb, var(--pnl-basarili) 15%, transparent); color: color-mix(in srgb, var(--pnl-basarili) 80%, #000); }
+.pnl-avatar-gider { background: color-mix(in srgb, var(--pnl-tehlike) 13%, transparent); color: color-mix(in srgb, var(--pnl-tehlike) 80%, #000); }

@@ -766,3 +766,61 @@ export async function randevuNotuYaz(randevu: string, not: string): Promise<void
      saymak "kaydettim" deyip hicbir sey kaydetmemek olurdu. */
   if (!data || data.length === 0) throw new Error('permission denied');
 }
+
+/* ── DEFTER YONETIMI (Ahmet, 25.08.2026: *"gelir gider yönetim eksik oluştur
+ * sil felan yok"*) ────────────────────────────────────────────────────────── */
+
+export type DefterKaydi = {
+  id: string;
+  kind: string;
+  amount: number;
+  category: string;
+  note: string | null;
+  occurred_on: string;
+};
+
+/** Tek tek kayitlar. Ozet kategoriye gore; silmek icin satirin kendisi gerekiyor. */
+export const defterKayitlariniOku = (klinik: string) =>
+  tablo<DefterKaydi>('clinic_transactions', 'id, kind, amount, category, note, occurred_on', klinik, 'occurred_on');
+
+/**
+ * Deftere kayit ekler.
+ *
+ * ⚠️ TUTAR KURUSA CEVRILIYOR ve bu cevrim TEK YERDE. Sunucu `bigint` kurus
+ * tutuyor: kayan noktali para toplaminda 0.1 + 0.2 = 0.30000000000000004 olur
+ * ve gun sonu raporu tutmaz. Ekranda lira yaziliyor, veride kurus duruyor.
+ *
+ * ⚠️ `Math.round` sart: `19.99 * 100` JavaScript'te 1998.9999999999998 veriyor.
+ * Yuvarlanmazsa `bigint` kolonu reddeder ya da bir kurus kaybolur.
+ */
+export async function defterKaydiEkle(
+  klinik: string,
+  alanlar: { tur: 'income' | 'expense'; tutarTL: string; kategori: string; tarih: string; not?: string },
+): Promise<void> {
+  const kurus = Math.round(Number(String(alanlar.tutarTL).replace(',', '.')) * 100);
+  if (!Number.isFinite(kurus) || kurus <= 0) throw new Error('Tutar geçersiz.');
+
+  const { data: kullanici } = await istemci.auth.getUser();
+  const { error } = await istemci.from('clinic_transactions').insert({
+    clinic_id: klinik,
+    kind: alanlar.tur,
+    amount: kurus,
+    category: alanlar.kategori.trim(),
+    note: alanlar.not?.trim() || null,
+    occurred_on: alanlar.tarih,
+    created_by: kullanici.user?.id ?? null,
+  });
+  if (error) throw error;
+}
+
+/**
+ * Defterden kayit siler.
+ *
+ * ⚠️ SILME BILEREK VAR (migration 0096): bu tibbi kayit degil muhasebe
+ * taslagi, yanlis girilen tutar duzeltilebilmeli. Recete tam tersi — orada
+ * silme yok, iptal var.
+ */
+export async function defterKaydiSil(kayit: string): Promise<void> {
+  const { error } = await istemci.from('clinic_transactions').delete().eq('id', kayit);
+  if (error) throw error;
+}
