@@ -1,3 +1,4 @@
+import { GIZLI_ISARET, GUVENLI_ISARET } from './hata-isaretleri';
 /**
  * PANEL SOZLUGU — sunucunun dilinden insanin diline
  *
@@ -164,7 +165,23 @@ export function hatayiAnlat(mesaj: string | undefined | null): { baslik: string;
       ayrinti: 'Bağlantınızı kontrol edip tekrar deneyin.',
     };
   }
-  return { baslik: 'İşlem tamamlanamadı.', ayrinti: m };
+  /* ⚠️ HAM METIN ARTIK BASILMIYOR. Eskiden burada `ayrinti: m` vardi ve
+     `permission denied for table pet_photos` gibi cumleler dogrudan ekrana
+     dusuyordu. `cagir()` bilinmeyen hatayi zaten opak bir referansa cevirdi;
+     burada yalniz o referans gosteriliyor. */
+  const ref = m.startsWith(GIZLI_ISARET) ? m.slice(GIZLI_ISARET.length) : null;
+  if (ref) {
+    return {
+      baslik: 'İşlem tamamlanamadı.',
+      ayrinti: `Sorun sürerse bu numarayı bize iletin: ${ref}`,
+    };
+  }
+  /* Bizim yazdigimiz hata: metin kullanici icin yazilmis, oldugu gibi gosterilir. */
+  if (m.startsWith(GUVENLI_ISARET)) return { baslik: m.slice(GUVENLI_ISARET.length), ayrinti: null };
+
+  /* Isaretsiz: `cagir()` disindan geldi (auth, depolama, tarayici). Yukaridaki
+     bilinen kaliplara uymadigina gore ne oldugunu BILMIYORUZ; gostermiyoruz. */
+  return { baslik: 'İşlem tamamlanamadı. Sayfayı yenileyip tekrar deneyin.', ayrinti: null };
 }
 
 /** '12 Aralık 2026, 15:00' — saatsiz tarih istenirse saat kapatilir. */

@@ -15,10 +15,13 @@
  * da AYNI 404'u dondurup testi anlamsiz kilmisti.
  */
 import { istemci } from './istemci';
+import { guvenliHata } from './guvenli-hata';
 
 async function cagir<T>(ad: string, parametre: Record<string, unknown>): Promise<T[]> {
   const { data, error } = await istemci.rpc(ad, parametre);
-  if (error) throw error;
+  /* Ham sunucu hatasi BURADAN OTEYE GECMIYOR. Tek bogaz oldugu icin yirmi bes
+     ayri `catch` blogunu duzeltmek gerekmedi; hepsi kendiliginden guvenli. */
+  if (error) throw guvenliHata(error, ad);
   return (data as T[] | null) ?? [];
 }
 
@@ -111,6 +114,8 @@ export type Rapor = {
 
 export type DefterOzeti = { income: number; expense: number; balance: number; tx_count: number };
 export type DefterKalemi = { kind: string; category: string; total: number; tx_count: number };
+/** Bir yilin tek ayi. Bos aylar da gelir; `ay` 1-12. Tutarlar KURUS. */
+export type DefterAyi = { ay: number; income: number; expense: number; balance: number; tx_count: number };
 
 /** Klinik web sayfasinin ayarlari. `clinics` tablosundan, RLS altinda. */
 export type KlinikSayfasi = {
@@ -189,6 +194,14 @@ export async function randevuDurumunuDegistir(randevu: string, durum: string, no
  */
 export const defterOzetiOku = (klinik: string) => cagir<DefterOzeti>('clinic_ledger_summary', { p_clinic: klinik });
 export const defterKalemleriOku = (klinik: string) => cagir<DefterKalemi>('clinic_ledger_by_category', { p_clinic: klinik });
+
+/**
+ * Yilin on iki ayi. Toplama SUNUCUDA (migration 0139): on iki ayri cagri
+ * yerine tek gidis donus, ve bos aylar da doluyor -- boylece "mart yok" ile
+ * "martta hareket yok" ayirt ediliyor.
+ */
+export const defterAylariOku = (klinik: string, yil?: number) =>
+  cagir<DefterAyi>('clinic_ledger_monthly', { p_clinic: klinik, p_year: yil ?? null });
 
 /**
  * Klinigin web sayfasi ayarlari.
