@@ -1,4 +1,5 @@
 import { ArrowRight, Clock, Eye, Flame, HelpCircle, ListChecks } from 'lucide-react';
+import ReklamKutusu from './ReklamKutusu';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -114,6 +115,11 @@ export default function BlogKenarCubugu({
           })}
         </ul>
       </section>
+
+      {/* ⚠️ Reklam, kategorilerin ve populer yazilarin ARASINDA degil ALTINDA:
+          okuyucunun aradigi seyle (kategori, yazi) reklami ic ice koymak,
+          ikisini de degersizlestirir. */}
+      <ReklamKutusu />
 
       {populerYazilar.length ? (
         <section className="kenar-kutu">

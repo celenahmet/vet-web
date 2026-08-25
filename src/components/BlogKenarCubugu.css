@@ -106,3 +106,58 @@
     scrollbar-width: thin;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * REKLAM ALANI (Ahmet, 25.08.2026)
+ * ⚠️ Icerik kutulariyla AYNI gorunmuyor: kesikli cerceve ve "Reklam" etiketi
+ * onu ayiriyor. Reklami icerik gibi gostermek okuyucuya karsi durustluk
+ * sorunu, arama motoru tarafinda da ayri bir sorun.
+ * ══════════════════════════════════════════════════════════════════════════ */
+.kenar-reklam {
+  border-style: dashed;
+  /* ⚠️ Sabit yukseklik: iki kart farkli uzunlukta ve her 20 saniyede kutu
+     buyuyup kucululseydi, altindaki liste zipplardi. Yer ayrilmis duruyor. */
+  min-height: 218px;
+  display: flex;
+  flex-direction: column;
+}
+
+.reklam-etiket {
+  margin: 0 0 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, currentColor 45%, transparent);
+}
+
+.reklam-kart { display: flex; flex-direction: column; gap: 7px; flex: 1; }
+
+.reklam-ikon {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: grid; place-items: center;
+  background: color-mix(in srgb, var(--primary-color, #0F6B57) 12%, transparent);
+  color: var(--primary-color, #0F6B57);
+}
+.reklam-ikon-mor {
+  background: color-mix(in srgb, #6366F1 13%, transparent);
+  color: #4F46E5;
+}
+
+.reklam-baslik { margin: 2px 0 0; font-size: 15px; font-weight: 700; line-height: 1.3; }
+.reklam-metin { margin: 0; font-size: 13px; line-height: 1.55; opacity: .78; }
+
+.reklam-dugme {
+  margin-top: auto;
+  display: inline-flex; align-items: center; gap: 5px; align-self: flex-start;
+  padding: 7px 13px; border-radius: 8px;
+  font-size: 13px; font-weight: 600; text-decoration: none;
+  background: color-mix(in srgb, currentColor 7%, transparent);
+  color: inherit;
+  transition: background .12s ease;
+}
+.reklam-dugme:hover { background: color-mix(in srgb, currentColor 13%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reklam-dugme { transition: none; }
+}
