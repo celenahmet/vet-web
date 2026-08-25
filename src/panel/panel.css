@@ -1101,3 +1101,20 @@ a.pnl-widget-eylem { text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   .pnl-dilim, .pnl-cubuk-dolgu, .pnl-oran-dolgu { transition: none; }
 }
+
+/* ── RANDEVU KLINIK NOTU ─────────────────────────────────
+ * ⚠️ Kendi notu, hayvan sahibinin notundan RENKLE ve ETIKETLE ayriliyor:
+ * ikisi karisirsa klinik, musteriye yazmadigi bir seyi yazdi sanabilir.
+ */
+.pnl-randevu-klinik-not { margin-top: 8px; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.pnl-randevu-not-klinik {
+  background: color-mix(in srgb, var(--pnl-vurgu) 8%, transparent);
+  border-left: 3px solid color-mix(in srgb, var(--pnl-vurgu) 45%, transparent);
+}
+.pnl-not-dugme {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 9px; font: inherit; font-size: 12px; font-weight: 600;
+  background: transparent; border: 1px dashed var(--pnl-cizgi); border-radius: 7px;
+  color: var(--pnl-soluk); cursor: pointer;
+}
+.pnl-not-dugme:hover { color: var(--pnl-vurgu); border-color: color-mix(in srgb, var(--pnl-vurgu) 45%, transparent); }

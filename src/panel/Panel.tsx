@@ -180,8 +180,8 @@ export default function Panel() {
       case 'kayitlar': return <PanelKayitlar klinik={secili.clinic_id} />;
       case 'asi': return <PanelAsi klinik={secili.clinic_id} />;
       case 'profil': return <PanelProfil klinik={secili.clinic_id} />;
-      case 'topluluk': return <PanelTopluluk />;
-      case 'mesajlar': return <PanelMesajlar />;
+      case 'topluluk': return <PanelTopluluk klinik={secili.clinic_id} />;
+      case 'mesajlar': return <PanelMesajlar klinik={secili.clinic_id} />;
       case 'sahiplendirme': return <PanelSahiplendirme />;
       case 'duyurular': return <PanelDuyurular klinik={secili.clinic_id} />;
       case 'bildirimler': return <PanelBildirimler />;

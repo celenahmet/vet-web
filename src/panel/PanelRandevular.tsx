@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Check, X, CalendarCheck, Ban, RefreshCw, CalendarClock } from 'lucide-react';
+import { Check, X, CalendarCheck, Ban, RefreshCw, CalendarClock, StickyNote } from 'lucide-react';
 
-import { randevulariOku, randevuDurumunuDegistir, baskaSaatOner, type Randevu } from './veri';
+import { randevulariOku, randevuDurumunuDegistir, baskaSaatOner, randevuNotuYaz, type Randevu } from './veri';
 import { RANDEVU_DURUMU, IZINLI_GECISLER, tarihYaz, gorecelizaman } from './sozluk';
 import Bos from './Bos';
 import Yukleniyor from './Yukleniyor';
@@ -36,6 +36,10 @@ export default function PanelRandevular({ klinik }: { klinik: string }) {
   const [oneriZaman, setOneriZaman] = useState('');
   const [oneriNot, setOneriNot] = useState('');
   const [oneriBekliyor, setOneriBekliyor] = useState(false);
+  /* Klinik notu: yazma, duzeltme ve silme ayni yerden. */
+  const [notlu, setNotlu] = useState<Randevu | null>(null);
+  const [notMetin, setNotMetin] = useState('');
+  const [notBekliyor, setNotBekliyor] = useState(false);
 
   const yukle = useCallback(() => {
     setHata(null);
@@ -86,6 +90,25 @@ export default function PanelRandevular({ klinik }: { klinik: string }) {
     } finally {
       setOneriBekliyor(false);
     }
+  }
+
+  /**
+   * ⚠️ DEGER PARAMETRE OLARAK GECIYOR, state'ten OKUNMUYOR.
+   * Ilk yazimda silme dugmesi `setNotMetin('')` cagirip hemen ardindan kaydeti
+   * calistiriyordu; state guncellemesi eszamansiz oldugu icin kaydet ESKI metni
+   * okuyor ve not silinmiyordu. Olculdu: "not silindi mi: hayir, duruyor".
+   * Kaydedilecek deger cagiranin elinde, o yuzden acikca gonderiliyor.
+   */
+  async function notKaydet(deger: string) {
+    if (!notlu || notBekliyor) return;
+    setNotBekliyor(true); setIslemHatasi(null);
+    try {
+      await randevuNotuYaz(notlu.id, deger);
+      setNotlu(null); setNotMetin('');
+      setListe(await randevulariOku(klinik));
+    } catch (err) {
+      setIslemHatasi((err as { message?: string })?.message ?? '');
+    } finally { setNotBekliyor(false); }
   }
 
   if (liste === null) return <Yukleniyor />;
@@ -169,6 +192,26 @@ export default function PanelRandevular({ klinik }: { klinik: string }) {
                       <span>Hayvan sahibinin notu:</span> {r.note}
                     </p>
                   ) : null}
+
+                  {/*
+                    ⚠️ KLINIK NOTU HER DURUMDA duzenlenebiliyor, kapanmis
+                    randevuda bile. Randevu bittikten sonra "gelmedi", "iki hafta
+                    sonra kontrol" gibi notlar tam da o an yaziliyor; duruma
+                    baglamak, notu en cok gerektigi anda kilitlemek olurdu.
+                  */}
+                  <div className="pnl-randevu-klinik-not">
+                    {r.clinic_note ? (
+                      <p className="pnl-randevu-not pnl-randevu-not-klinik">
+                        <span>Kendi notunuz:</span> {r.clinic_note}
+                      </p>
+                    ) : null}
+                    <button
+                      type="button"
+                      className="pnl-not-dugme"
+                      onClick={() => { setNotlu(r); setNotMetin(r.clinic_note ?? ''); setIslemHatasi(null); }}>
+                      <StickyNote size={13} /> {r.clinic_note ? 'Notu düzenle' : 'Not ekle'}
+                    </button>
+                  </div>
                 </div>
 
                 {gecisler.length ? (
@@ -218,6 +261,50 @@ export default function PanelRandevular({ klinik }: { klinik: string }) {
           })}
         </ul>
       )}
+      <Diyalog
+        acik={notlu !== null}
+        kapat={() => setNotlu(null)}
+        baslik={notlu?.clinic_note ? 'Notu düzenleyin' : 'Randevuya not ekleyin'}
+        aciklama={
+          notlu
+            ? `${notlu.owner_name || 'Bu randevu'} için kendi notunuz. Hayvan sahibi bu notu görmez.`
+            : undefined
+        }>
+        <form onSubmit={(e) => { e.preventDefault(); void notKaydet(notMetin); }}>
+          <div className="pnl-alan">
+            <label htmlFor="pnl-not-metin">Not</label>
+            <textarea
+              id="pnl-not-metin"
+              value={notMetin}
+              maxLength={500}
+              onChange={(e) => setNotMetin(e.target.value)}
+              placeholder="Örnek: Gelmedi, telefonla arandı. İki hafta sonra kontrol istendi."
+            />
+            <span className="pnl-alan-ipucu">{notMetin.length} / 500 karakter</span>
+          </div>
+          <div className="pnl-diyalog-eylem">
+            {/*
+              ⚠️ SILME AYRI BIR DUGME, bos kaydetmek degil. Metni silip
+              kaydetmek de calisiyor ama niyeti acikca soyleyen bir dugme,
+              "sildim mi kaydettim mi" belirsizligini ortadan kaldiriyor.
+            */}
+            {notlu?.clinic_note ? (
+              <button
+                type="button"
+                className="pnl-dugme pnl-dugme-olumsuz"
+                disabled={notBekliyor}
+                onClick={() => void notKaydet('')}>
+                Notu sil
+              </button>
+            ) : null}
+            <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setNotlu(null)}>Vazgeç</button>
+            <button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={notBekliyor}>
+              {notBekliyor ? 'Kaydediliyor…' : 'Kaydet'}
+            </button>
+          </div>
+        </form>
+      </Diyalog>
+
       <Diyalog
         acik={oneri !== null}
         kapat={() => setOneri(null)}

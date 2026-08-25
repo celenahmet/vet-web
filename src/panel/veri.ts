@@ -655,3 +655,114 @@ export async function bildirimleriOkunduIsaretle(): Promise<void> {
     .is('read_at', null);
   if (error) throw error;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+ * ILAN, GONDERI, MESAJ (Ahmet, 25.08.2026)
+ * ═══════════════════════════════════════════════════════════════════════════ */
+
+export type UlasilabilirKisi = { user_id: string; display_name: string; avatar_url: string | null; relation: string };
+
+/**
+ * Klinigin MESAJ ATABILECEGI kisiler.
+ *
+ * ⚠️ HERKESE MESAJ ATILAMIYOR ve bu bir kisitlama degil koruma: yalniz klinigin
+ * TAKIPCISI ya da MUSTERISI olanlar listeleniyor. Rastgele kullanici aramak,
+ * istenmeyen mesajin en kolay yolu olurdu; uygulamada da ayni sebeple kullanici
+ * aramasi yok.
+ */
+export const ulasilabilirKisileriOku = (klinik: string) =>
+  cagir<UlasilabilirKisi>('clinic_reachable_users', { p_clinic: klinik });
+
+/**
+ * Konusma acar ve ilk mesaji yazar.
+ *
+ * ⚠️ IKI ADIM: `open_direct_conversation` konusmayi aciyor (varsa mevcudu
+ * donduruyor), sonra mesaj satiri ekleniyor. RPC'nin kendisi mesaj yazmiyor;
+ * ayni kisiye ikinci kez yazarken yeni konusma acilmasin diye boyle.
+ */
+export async function mesajGonder(kisi: string, metin: string): Promise<void> {
+  const { data, error } = await istemci.rpc('open_direct_conversation', { p_other: kisi });
+  if (error) throw error;
+  const konusma = data as string;
+
+  const { data: kullanici } = await istemci.auth.getUser();
+  const { error: mesajHatasi } = await istemci.from('messages').insert({
+    conversation_id: konusma,
+    sender_id: kullanici.user?.id,
+    body: metin.trim(),
+  });
+  if (mesajHatasi) throw mesajHatasi;
+}
+
+/**
+ * Gonderi olusturur ve yayimlar.
+ *
+ * ⚠️ `status` ISTEMCIDEN AYARLANMIYOR: kolon `draft` varsayilaniyla aciliyor,
+ * yayimlama yalniz `publish_post` RPC'siyle oluyor. Istemci `status`i
+ * kendisi yazabilseydi moderasyon adimini atlayabilirdi.
+ *
+ * ⚠️ `clinic_id` yaziliyor (migration 0043): gonderi klinik adina cikiyor,
+ * kisisel hesap adina degil.
+ */
+export async function gonderiPaylas(klinik: string, metin: string, herkeseAcik: boolean): Promise<void> {
+  const { data: kullanici } = await istemci.auth.getUser();
+  const { data, error } = await istemci
+    .from('posts')
+    .insert({
+      author_id: kullanici.user?.id,
+      clinic_id: klinik,
+      body: metin.trim(),
+      visibility: herkeseAcik ? 'public' : 'followers',
+    })
+    .select('id')
+    .single();
+  if (error) throw error;
+
+  const { error: yayinHatasi } = await istemci.rpc('publish_post', { p_post: (data as { id: string }).id });
+  if (yayinHatasi) throw yayinHatasi;
+}
+
+/**
+ * Sahiplendirme ilani acar.
+ *
+ * ⚠️ `status` YAZILMIYOR: varsayilan `pending` ve moderasyondan geciyor. Ilan
+ * aninda yayina girseydi, hicbir denetimden gecmemis bir ilan herkese acik
+ * olurdu.
+ */
+export async function ilanOlustur(alanlar: {
+  baslik: string; aciklama: string; tur: string; cinsiyet: string; kosullar?: string;
+}): Promise<void> {
+  const { data: kullanici } = await istemci.auth.getUser();
+  const { error } = await istemci.from('adoption_listings').insert({
+    created_by: kullanici.user?.id,
+    title: alanlar.baslik.trim(),
+    description: alanlar.aciklama.trim(),
+    species_code: alanlar.tur,
+    sex: alanlar.cinsiyet || 'unknown',
+    conditions: alanlar.kosullar?.trim() || null,
+  });
+  if (error) throw error;
+}
+
+/**
+ * Randevuya klinik notu yazar / gunceller.
+ *
+ * ⚠️ DURUM DEGISTIRMEDEN not yazmanin yolu: `set_appointment_status` durumu
+ * OLDUGU GIBI gonderiyor. Ayni duruma gecis makinede tanimli olmadigi icin
+ * dogrudan cagrilamiyor; bu yuzden not `appointments` tablosuna yaziliyor.
+ * Kolon yetkisi migration 0082'de veriliyor.
+ *
+ * ⚠️ Yalniz `clinic_note` yaziliyor. Randevunun saatini ya da sahibini
+ * degistirmek ayri islerdir ve baska yollari var.
+ */
+export async function randevuNotuYaz(randevu: string, not: string): Promise<void> {
+  const { data, error } = await istemci
+    .from('appointments')
+    .update({ clinic_note: not.trim() || null })
+    .eq('id', randevu)
+    .select('id');
+  if (error) throw error;
+  /* ⚠️ RLS satiri gizlerse PostgREST hata degil BOS SONUC doner; bunu basari
+     saymak "kaydettim" deyip hicbir sey kaydetmemek olurdu. */
+  if (!data || data.length === 0) throw new Error('permission denied');
+}

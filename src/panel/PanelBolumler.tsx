@@ -1,11 +1,13 @@
-import { FileText, Syringe, MessagesSquare, Heart, Settings, Clock, Megaphone, Stethoscope, Bell, Star } from 'lucide-react';
+import { FileText, Syringe, MessagesSquare, Heart, Settings, Clock, Megaphone, Stethoscope, Bell, Star, Plus, Send } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import {
   saglikKayitlariniOku, hatirlatmalariOku, gonderileriOku, ilanlariOku,
   duyurulariOku, hizmetleriOku, saatleriOku, hizmetAdlariniOku,
   bildirimleriOku, degerlendirmeleriOku,
-  duyuruOlusturVeGonder,
+  duyuruOlusturVeGonder, ilanOlustur, gonderiPaylas, mesajGonder,
+  ulasilabilirKisileriOku, turleriOku,
+  type UlasilabilirKisi, type Tur,
   type Hizmet, type CalismaSaati, type Duyuru, type HizmetAdi,
 } from './veri';
 import { KAYIT_TURU, TUR, tarihYaz } from './sozluk';
@@ -86,16 +88,47 @@ export function PanelAsi({ klinik }: { klinik: string }) {
   );
 }
 
-export function PanelTopluluk() {
+export function PanelTopluluk({ klinik }: { klinik: string }) {
+  const [acik, setAcik] = useState(false);
+  const [metin, setMetin] = useState('');
+  const [herkese, setHerkese] = useState(true);
+  const [bekliyor, setBekliyor] = useState(false);
+  const [islemHatasi, setIslemHatasi] = useState<string | null>(null);
+  const [bilgi, setBilgi] = useState<string | null>(null);
+  const [tazele, setTazele] = useState(0);
+
+  async function paylas(e: React.FormEvent) {
+    e.preventDefault();
+    if (bekliyor) return;
+    setBekliyor(true); setIslemHatasi(null); setBilgi(null);
+    try {
+      await gonderiPaylas(klinik, metin, herkese);
+      setAcik(false); setMetin('');
+      setBilgi('Paylaşımınız yayımlandı.');
+      setTazele((n) => n + 1);
+    } catch (err) {
+      setIslemHatasi((err as { message?: string })?.message ?? '');
+    } finally { setBekliyor(false); }
+  }
+
   return (
-    <PanelListe
+    <>
+      {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
+      {bilgi ? <p className="pnl-bilgi" role="status">{bilgi}</p> : null}
+
+      <PanelListe
+      key={tazele}
       baslik="Topluluk"
-      aciklama="Uygulamada yaptığınız paylaşımlar ve aldıkları etkileşim."
+      aciklama="Kliniğiniz adına yaptığınız paylaşımlar ve aldıkları etkileşim."
       yukle={gonderileriOku}
       bosBaslik="Henüz paylaşımınız yok"
-      bosAciklama="Uygulamadan bir paylaşım yaptığınızda, aldığı beğeni ve yorumlarla birlikte burada listelenir."
+      bosAciklama="Kliniğiniz adına bir paylaşım yaptığınızda, aldığı beğeni ve yorumlarla birlikte burada listelenir."
       anahtar={(g) => g.id}
-      altNot={{ ikon: MessagesSquare, metin: 'Yeni paylaşım yapma şimdilik telefondaki uygulamada.' }}
+      eylem={
+        <button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => { setAcik(true); setIslemHatasi(null); }}>
+          <Plus size={15} /> Paylaşım yap
+        </button>
+      }
       satir={(g) => (
         <>
           <span className="pnl-avatar" aria-hidden="true"><MessagesSquare size={17} /></span>
@@ -106,19 +139,83 @@ export function PanelTopluluk() {
           </div>
         </>
       )}
-    />
+      />
+
+      <Diyalog acik={acik} kapat={() => setAcik(false)} baslik="Paylaşım yap"
+        aciklama="Paylaşımınız kliniğiniz adına çıkar ve uygulamadaki akışta görünür.">
+        <form onSubmit={paylas}>
+          <div className="pnl-alan">
+            <label htmlFor="pnl-post-metin">Ne paylaşmak istiyorsunuz?</label>
+            <textarea id="pnl-post-metin" required maxLength={2000} value={metin}
+              onChange={(e) => setMetin(e.target.value)}
+              placeholder="Örnek: Kış aylarında kedilerde su tüketimi azalır. Su kabını sık sık tazelemek böbrek sağlığını koruyor." />
+            <span className="pnl-alan-ipucu">{metin.length} / 2000 karakter</span>
+          </div>
+          <div className="pnl-alan">
+            <label htmlFor="pnl-post-gorunur">Kimler görebilsin</label>
+            <select id="pnl-post-gorunur" value={herkese ? 'public' : 'followers'}
+              onChange={(e) => setHerkese(e.target.value === 'public')}>
+              <option value="public">Herkes</option>
+              <option value="followers">Yalnızca takipçilerim</option>
+            </select>
+          </div>
+          <div className="pnl-diyalog-eylem">
+            <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setAcik(false)}>Vazgeç</button>
+            <button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor || metin.trim().length < 3}>
+              {bekliyor ? 'Paylaşılıyor…' : 'Paylaş'}
+            </button>
+          </div>
+        </form>
+      </Diyalog>
+    </>
   );
 }
 
 export function PanelSahiplendirme() {
+  const [acik, setAcik] = useState(false);
+  const [turler, setTurler] = useState<Tur[]>([]);
+  const [form, setForm] = useState({ baslik: '', aciklama: '', tur: 'cat', cinsiyet: 'unknown', kosullar: '' });
+  const [bekliyor, setBekliyor] = useState(false);
+  const [islemHatasi, setIslemHatasi] = useState<string | null>(null);
+  const [bilgi, setBilgi] = useState<string | null>(null);
+  const [tazele, setTazele] = useState(0);
+
+  useEffect(() => { turleriOku().then(setTurler).catch(() => setTurler([])); }, []);
+
+  async function olustur(e: React.FormEvent) {
+    e.preventDefault();
+    if (bekliyor) return;
+    setBekliyor(true); setIslemHatasi(null); setBilgi(null);
+    try {
+      await ilanOlustur(form);
+      setAcik(false); setForm({ baslik: '', aciklama: '', tur: 'cat', cinsiyet: 'unknown', kosullar: '' });
+      /* ⚠️ "Yayimlandi" DEMIYORUZ: ilan `pending` aciliyor ve moderasyondan
+         geciyor. Yayimlandi demek, olmayan bir seyi soylemek olurdu. */
+      setBilgi('İlanınız oluşturuldu. Yayımlanmadan önce incelemeden geçiyor.');
+      setTazele((n) => n + 1);
+    } catch (err) {
+      setIslemHatasi((err as { message?: string })?.message ?? '');
+    } finally { setBekliyor(false); }
+  }
+
   return (
-    <PanelListe
+    <>
+      {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
+      {bilgi ? <p className="pnl-bilgi" role="status">{bilgi}</p> : null}
+
+      <PanelListe
+      key={tazele}
       baslik="Sahiplendirme"
-      aciklama="Uygulamadaki sahiplendirme ilanları. Kliniğinizin ilan açması gerekmiyor; buradan takip edebilirsiniz."
+      aciklama="Sahiplendirme ilanları. Kliniğinize bırakılan bir hayvan için ilan açabilirsiniz."
       yukle={ilanlariOku}
       bosBaslik="Görünen ilan yok"
       bosAciklama="Sahiplendirme ilanları açıldıkça burada listelenir."
       anahtar={(i) => i.id}
+      eylem={
+        <button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => { setAcik(true); setIslemHatasi(null); }}>
+          <Plus size={15} /> İlan oluştur
+        </button>
+      }
       satir={(i) => (
         <>
           <span className="pnl-avatar" aria-hidden="true"><Heart size={17} /></span>
@@ -129,29 +226,182 @@ export function PanelSahiplendirme() {
           </div>
         </>
       )}
-    />
+      />
+
+      <Diyalog acik={acik} kapat={() => setAcik(false)} baslik="Sahiplendirme ilanı oluştur"
+        aciklama="İlanınız incelemeden geçtikten sonra uygulamada yayımlanır.">
+        <form onSubmit={olustur}>
+          <div className="pnl-alan">
+            <label htmlFor="pnl-i-baslik">Başlık</label>
+            <input id="pnl-i-baslik" required minLength={3} maxLength={120} value={form.baslik}
+              onChange={(e) => setForm((f) => ({ ...f, baslik: e.target.value }))}
+              placeholder="Örnek: Üç aylık tekir yavru yuva arıyor" />
+          </div>
+          <div className="pnl-alan">
+            <label htmlFor="pnl-i-tur">Tür</label>
+            <select id="pnl-i-tur" value={form.tur} onChange={(e) => setForm((f) => ({ ...f, tur: e.target.value }))}>
+              {turler.map((t) => <option key={t.code} value={t.code}>{t.name_tr}</option>)}
+            </select>
+          </div>
+          <div className="pnl-alan">
+            <label htmlFor="pnl-i-cins">Cinsiyet</label>
+            <select id="pnl-i-cins" value={form.cinsiyet} onChange={(e) => setForm((f) => ({ ...f, cinsiyet: e.target.value }))}>
+              <option value="unknown">Bilinmiyor</option>
+              <option value="male">Erkek</option>
+              <option value="female">Dişi</option>
+            </select>
+          </div>
+          <div className="pnl-alan">
+            <label htmlFor="pnl-i-aciklama">Açıklama</label>
+            <textarea id="pnl-i-aciklama" required minLength={10} maxLength={2000} value={form.aciklama}
+              onChange={(e) => setForm((f) => ({ ...f, aciklama: e.target.value }))}
+              placeholder="Yaşı, karakteri, sağlık durumu, aşıları…" />
+            <span className="pnl-alan-ipucu">{form.aciklama.length} / 2000 karakter · en az 10</span>
+          </div>
+          <div className="pnl-alan">
+            <label htmlFor="pnl-i-kosul">Sahiplendirme koşulları</label>
+            <textarea id="pnl-i-kosul" maxLength={1000} value={form.kosullar}
+              onChange={(e) => setForm((f) => ({ ...f, kosullar: e.target.value }))}
+              placeholder="Örnek: Balkon güvenliği olan ev, kısırlaştırma sözü." />
+          </div>
+          <div className="pnl-diyalog-eylem">
+            <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setAcik(false)}>Vazgeç</button>
+            <button type="submit" className="pnl-dugme pnl-dugme-olumlu"
+              disabled={bekliyor || form.baslik.trim().length < 3 || form.aciklama.trim().length < 10}>
+              {bekliyor ? 'Oluşturuluyor…' : 'İlanı oluştur'}
+            </button>
+          </div>
+        </form>
+      </Diyalog>
+    </>
   );
 }
 
-export function PanelMesajlar() {
+/**
+ * MESAJLAR
+ *
+ * ⚠️ GELEN KUTUSU YOK, YENI MESAJ VAR. Sunucuda klinigin konusma listesini
+ * donduren bir cagri bulunmuyor; ama konusma ACMAK ve mesaj YAZMAK mumkun
+ * (`open_direct_conversation` + `messages`). Yani ekran yarim: yazabiliyor,
+ * gelen cevabi burada okuyamiyor. Bu acikca yaziliyor, gizlenmiyor.
+ *
+ * ⚠️ HERKESE YAZILAMIYOR: yalniz klinigin TAKIPCISI ya da MUSTERISI olanlar
+ * listeleniyor (`clinic_reachable_users`). Rastgele kullanici aramak istenmeyen
+ * mesajin en kolay yolu olurdu.
+ */
+export function PanelMesajlar({ klinik }: { klinik: string }) {
+  const [kisiler, setKisiler] = useState<UlasilabilirKisi[] | null>(null);
+  const [acik, setAcik] = useState(false);
+  const [kisi, setKisi] = useState('');
+  const [metin, setMetin] = useState('');
+  const [bekliyor, setBekliyor] = useState(false);
+  const [islemHatasi, setIslemHatasi] = useState<string | null>(null);
+  const [bilgi, setBilgi] = useState<string | null>(null);
+
+  useEffect(() => {
+    setKisiler(null);
+    ulasilabilirKisileriOku(klinik).then(setKisiler).catch(() => setKisiler([]));
+  }, [klinik]);
+
+  async function gonder(e: React.FormEvent) {
+    e.preventDefault();
+    if (bekliyor) return;
+    setBekliyor(true); setIslemHatasi(null); setBilgi(null);
+    try {
+      await mesajGonder(kisi, metin);
+      setAcik(false); setMetin('');
+      setBilgi('Mesajınız gönderildi. Gelen cevapları şimdilik telefondaki uygulamadan görebilirsiniz.');
+    } catch (err) {
+      setIslemHatasi((err as { message?: string })?.message ?? '');
+    } finally { setBekliyor(false); }
+  }
+
+  const iliski = (r: string) => (r === 'customer' ? 'müşteriniz' : r === 'follower' ? 'takipçiniz' : r);
+
   return (
     <section className="pnl-bolum">
       <header className="pnl-bolum-basi">
         <div>
           <h2>Mesajlar</h2>
-          <p className="pnl-aciklama">Hayvan sahipleriyle yazışma. Şimdilik yalnızca telefondaki uygulamada.</p>
+          <p className="pnl-aciklama">
+            Müşterilerinize ve takipçilerinize mesaj yazabilirsiniz. Gelen cevapları şimdilik
+            telefondaki uygulamadan görüyorsunuz.
+          </p>
         </div>
+        <button
+          type="button"
+          className="pnl-dugme pnl-dugme-olumlu"
+          disabled={!kisiler || kisiler.length === 0}
+          title={kisiler && kisiler.length === 0 ? 'Mesaj yazabileceğiniz kişi yok' : undefined}
+          onClick={() => { setKisi(kisiler?.[0]?.user_id ?? ''); setMetin(''); setAcik(true); setIslemHatasi(null); }}>
+          <Send size={15} /> Yeni mesaj
+        </button>
       </header>
-      {/*
-        ⚠️ TEK GERCEKTEN BOS BOLUM ve sebebi yaziliyor. Sunucuda klinigin gelen
-        kutusunu donduren bir cagri yok; konusma acma ve karsi taraf bilgisi var
-        ama LISTE yok. Uydurma bir liste gostermek yerine eksigin kendisi
-        soyleniyor.
-      */}
-      <Bos
-        baslik="Mesajlar web panelinde henüz yok"
-        aciklama="Sunucu tarafında kliniğin gelen kutusunu veren bir yol henüz hazır değil. Hazır olduğunda bu ekran doldurulacak; o zamana kadar mesajlarınızı telefondaki uygulamadan görebilirsiniz."
-      />
+
+      {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
+      {bilgi ? <p className="pnl-bilgi" role="status">{bilgi}</p> : null}
+
+      {kisiler === null ? (
+        <Yukleniyor />
+      ) : kisiler.length === 0 ? (
+        <Bos
+          baslik="Mesaj yazabileceğiniz kimse yok"
+          aciklama="Yalnızca kliniğinizin müşterilerine ve takipçilerine mesaj yazılabiliyor. Müşteri davet ettiğinizde ya da biri sizi takip ettiğinde burada görünür."
+        />
+      ) : (
+        <ul className="pnl-kisi-listesi">
+          {kisiler.map((k) => (
+            <li key={k.user_id} className="pnl-kisi">
+              <span className="pnl-avatar" aria-hidden="true"><MessagesSquare size={17} /></span>
+              <div className="pnl-kisi-bilgi">
+                <p className="pnl-kisi-ad">{k.display_name || 'İsim girilmemiş'}</p>
+                <p className="pnl-kisi-rol">{iliski(k.relation)}</p>
+              </div>
+              <button
+                type="button"
+                className="pnl-dugme pnl-dugme-sade pnl-kisi-eylem"
+                onClick={() => { setKisi(k.user_id); setMetin(''); setAcik(true); setIslemHatasi(null); }}>
+                <Send size={14} /> Mesaj yaz
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <p className="pnl-dipnot">
+        <MessagesSquare size={14} aria-hidden="true" />
+        Gelen mesajları web panelinde okumak henüz mümkün değil: sunucu tarafında kliniğin gelen
+        kutusunu veren bir yol yok. Hazır olduğunda bu ekran tamamlanacak.
+      </p>
+
+      <Diyalog acik={acik} kapat={() => setAcik(false)} baslik="Mesaj yaz"
+        aciklama="Mesajınız kişiye bildirim olarak gider.">
+        <form onSubmit={gonder}>
+          <div className="pnl-alan">
+            <label htmlFor="pnl-msj-kisi">Kime</label>
+            <select id="pnl-msj-kisi" required value={kisi} onChange={(e) => setKisi(e.target.value)}>
+              {(kisiler ?? []).map((k) => (
+                <option key={k.user_id} value={k.user_id}>
+                  {k.display_name || 'İsim girilmemiş'} — {iliski(k.relation)}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="pnl-alan">
+            <label htmlFor="pnl-msj-metin">Mesaj</label>
+            <textarea id="pnl-msj-metin" required maxLength={1000} value={metin}
+              onChange={(e) => setMetin(e.target.value)}
+              placeholder="Örnek: Pati'nin aşı zamanı geldi, uygun olduğunuz bir gün için randevu oluşturabiliriz." />
+            <span className="pnl-alan-ipucu">{metin.length} / 1000 karakter</span>
+          </div>
+          <div className="pnl-diyalog-eylem">
+            <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setAcik(false)}>Vazgeç</button>
+            <button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor || !kisi || metin.trim().length < 2}>
+              {bekliyor ? 'Gönderiliyor…' : 'Gönder'}
+            </button>
+          </div>
+        </form>
+      </Diyalog>
     </section>
   );
 }
