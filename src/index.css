@@ -34,8 +34,12 @@
    * `light dark` degil, tek deger yaziliyor: tema secimimiz sinif tabanli
    * (`.dark`), isletim sisteminin tercihine bagli degil. `light dark` demek
    * kontrolu yeniden isletim sistemine birakmak olurdu.
+   *
+   * ⚠️ GÜNCELLEME: `light` yerine `only light` yapıldı. Chrome ve Android 
+   * cihazların "Auto Dark Mode" (zorunlu karanlık tema) algoritmasını durdurur,
+   * böylece cihaz karanlık moddayken sitemizin açık temasını griye bulandırmaz.
    */
-  color-scheme: light;
+  color-scheme: only light;
 
   --bg-main: #FFFFFF; /* Pure White */
   --bg-surface: #FFFFFF;

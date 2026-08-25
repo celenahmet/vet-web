@@ -1,0 +1,1143 @@
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import {
+  Heart, Activity, QrCode, ArrowRight,
+  Users, Stethoscope, CheckCircle2,
+  PawPrint, Calendar, ShieldCheck,
+  Check, Bell, MessageCircle, Share2, MoreHorizontal, Sparkles
+} from 'lucide-react';
+import { useEffect } from 'react';
+import SEO from '../components/SEO';
+
+export default function Home() {
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
+  useEffect(() => {
+    // Enable snap scrolling for Home page
+    document.documentElement.classList.add('snap-y', 'snap-mandatory', 'scroll-smooth');
+    return () => {
+      document.documentElement.classList.remove('snap-y', 'snap-mandatory', 'scroll-smooth');
+    };
+  }, []);
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  return (
+    <>
+      <SEO 
+        title="Veterito - Evcil Hayvanınız İçin En İyi Bakım"
+        description="Evcil hayvanınızın tüm sağlık bilgilerini güvenle saklayın, aşılarını takip edin ve sosyalleşin."
+      />
+      
+      {/* 
+        Klasik çok sayfalı yapı: Sayfa aşağı doğru normal şekilde kayar,
+        her bölüm ana mesajları verir ve detaylar için menüdeki sayfalara (Link) yönlendirir.
+      */}
+      <div className="w-full relative bg-[var(--bg-main)]">
+        
+        {/* =========================================
+            1. HERO SECTION
+            ========================================= */}
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] w-full snap-start snap-always relative flex items-center justify-center pt-20 border-b border-[var(--border-color)] bg-[var(--bg-main)] overflow-hidden">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
+            <div className="flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-12 lg:gap-8 lg:gap-12 lg:gap-24 w-full">
+              
+              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="flex flex-col items-start z-10 w-full lg:w-auto">
+                <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-indigo-200 dark:border-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-bold shadow-sm mb-6 bg-indigo-50/50 dark:bg-indigo-900/20 backdrop-blur-sm">
+                  <Sparkles size={16} />
+                  {/* ⚠️ "ilk yil ucretsiz" YANLISTI (Ahmet, 24.08.2026): hayvan
+                      sahipleri icin sure sinirli bir deneme degil, TAMAMEN
+                      ucretsiz. Ucretli paketler klinik tarafinda. */}
+                  Evcil hayvan sahipleri için tamamen ücretsiz
+                </motion.div>
+                
+                <motion.h1 variants={fadeInUp} className="font-extrabold leading-[1.1] tracking-tight mb-8 text-[var(--text-main)] max-w-2xl lg:max-w-3xl">
+                  <span className="text-5xl lg:text-[4.5rem] bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-vet-primary)] to-[var(--color-vet-accent)]">Veterito</span> 
+                  <span className="text-4xl lg:text-5xl leading-tight"> ile <br/>
+                  Hayvanseverler ve Klinikler <span className="whitespace-nowrap">Tek Çatıda.</span></span>
+                </motion.h1>
+                
+                <motion.p variants={fadeInUp} className="text-lg md:text-xl text-[var(--text-muted)] mb-14 max-w-xl lg:max-w-lg xl:max-w-xl leading-relaxed font-medium">
+                  Evcil hayvanınızın tüm sağlık geçmişini, aşı takvimini ve veteriner randevularını tek bir güvenli dijital kimlik altında toplayın. Karma, kuduz ve iç-dış parazit gibi uygulamaları otomatik olarak planlayıp akıllı bildirimler alın ve binlerce hayvan severin yer aldığı pati topluluğuyla etkileşime geçin.
+                </motion.p>
+                
+                <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-2">
+                  <Link to="/features" className="group flex items-center justify-center gap-3 px-8 py-4 rounded-3xl font-bold text-white bg-slate-900 dark:bg-white dark:text-slate-900 hover:scale-105 transition-transform shadow-xl">
+                    Evcil Hayvan Sahibiyim <PawPrint size={20} className="group-hover:rotate-12 transition-transform" />
+                  </Link>
+                  <Link to="/clinics" className="group flex items-center justify-center gap-3 px-8 py-4 rounded-3xl font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 hover:scale-105 transition-transform shadow-sm">
+                    Klinik Yönetiyorum <Stethoscope size={20} className="group-hover:rotate-12 transition-transform" />
+                  </Link>
+                </motion.div>
+              </motion.div>
+
+              {/* ABSTRACT UI: Composite Mockup */}
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }} 
+                whileInView={{ opacity: 1, x: 0 }} 
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="relative flex justify-center items-center w-full lg:w-auto h-[600px] lg:h-[700px] lg:-translate-x-16 mt-16 lg:mt-0"
+              >
+                
+                {/* 1) Central Phone Frame (Dashboard) */}
+                <div className="relative z-20 w-[300px] h-[620px] bg-[var(--bg-secondary)] border-[10px] border-[var(--border-color)] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col">
+                  {/* Top Bar */}
+                  <div className="flex justify-between items-center px-5 pt-8 pb-4">
+                    <div>
+                      <h2 className="text-xl font-serif font-bold text-[var(--text-main)] flex items-center gap-2">
+                        Günaydın <span className="text-[var(--color-vet-accent)]">✦</span>
+                      </h2>
+                      <p className="text-[10px] text-[var(--text-muted)]">Bugün harika bir gün <br/> Senorita için.</p>
+                    </div>
+                    <div className="w-8 h-8 rounded-full border border-[var(--border-color)] flex items-center justify-center bg-[var(--bg-surface)]">
+                      <Bell size={14} className="text-[var(--text-main)]" />
+                    </div>
+                  </div>
+                  {/* Scrollable Content Area */}
+                  <div className="px-4 flex-1 flex flex-col gap-3 overflow-hidden">
+                    {/* Pet Profile Minimal Card */}
+                    <div className="bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-2xl p-3 flex gap-3 items-center shadow-sm">
+                      <div className="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-500">
+                        <PawPrint size={24} />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-bold text-[var(--text-main)] text-sm">Senorita 👑</h3>
+                        <p className="text-[10px] text-[var(--text-muted)]">7 yaşında • Dişi</p>
+                      </div>
+                    </div>
+                    {/* Upcoming */}
+                    <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/50 rounded-2xl p-3 flex items-center gap-3 relative overflow-hidden">
+                      <div className="w-10 h-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-indigo-500 z-10 shadow-sm">
+                        <ShieldCheck size={18} />
+                      </div>
+                      <div className="flex-1 z-10">
+                        <h5 className="font-bold text-indigo-900 dark:text-indigo-200 text-xs">Aşı Hatırlatması</h5>
+                        <p className="text-[9px] text-indigo-700 dark:text-indigo-300/70">Karma Aşı (FVRCP)</p>
+                      </div>
+                      <div className="z-10 bg-indigo-500 text-white font-bold text-[10px] px-2 py-1 rounded-full whitespace-nowrap shadow-sm">
+                        3 gün kaldı
+                      </div>
+                      <div className="absolute -right-4 -bottom-4 opacity-10">
+                         <Calendar size={60} />
+                      </div>
+                    </div>
+                    {/* Vitals summary */}
+                    <div className="bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-2xl p-3 mt-1 shadow-sm">
+                      <div className="flex justify-between items-center mb-2">
+                         <h4 className="font-bold text-[var(--text-main)] text-[11px]">Sağlık Özeti</h4>
+                         <Activity size={12} className="text-emerald-500" />
+                      </div>
+                      <div className="grid grid-cols-3 gap-1 text-center divide-x divide-[var(--border-color)]">
+                        <div>
+                          <div className="text-[9px] text-[var(--text-muted)] mb-0.5">Kilo</div>
+                          <div className="font-bold text-[var(--text-main)] text-xs">7.2 kg</div>
+                        </div>
+                        <div>
+                          <div className="text-[9px] text-[var(--text-muted)] mb-0.5">Durum</div>
+                          <div className="font-bold text-emerald-500 text-xs">İyi</div>
+                        </div>
+                        <div>
+                          <div className="text-[9px] text-[var(--text-muted)] mb-0.5">Aktivite</div>
+                          <div className="font-bold text-[var(--text-main)] text-xs">Aktif</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Bottom Navigation */}
+                  <div className="h-14 bg-[var(--bg-surface)] border-t border-[var(--border-color)] flex justify-around items-center px-4 mt-auto">
+                    <div className="flex flex-col items-center text-[var(--color-vet-primary)]"><PawPrint size={16}/></div>
+                    <div className="flex flex-col items-center text-[var(--text-muted)]"><Activity size={16}/></div>
+                    <div className="w-10 h-10 bg-[var(--color-vet-primary)] rounded-full flex items-center justify-center text-white -mt-4 border-4 border-[var(--bg-secondary)] shadow-lg"><Check size={16}/></div>
+                    <div className="flex flex-col items-center text-[var(--text-muted)]"><Calendar size={16}/></div>
+                    <div className="flex flex-col items-center text-[var(--text-muted)]"><Users size={16}/></div>
+                  </div>
+                </div>
+
+                {/* 2) Left Floating Widget (Digital ID) */}
+                <motion.div 
+                  initial={{ opacity: 0, x: 0, y: 0, rotate: 0 }} 
+                  whileInView={{ opacity: 1, x: -165, y: 10, rotate: -12 }} 
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="absolute z-10 hidden md:flex flex-col w-[260px] bg-gradient-to-bl from-teal-500 via-emerald-600 to-teal-800 rounded-[2rem] p-1 shadow-[0_20px_40px_rgba(0,0,0,0.2)] text-white left-0 top-[45%]"
+                >
+                  <div className="bg-white/10 backdrop-blur-md rounded-[1.75rem] p-4 h-full flex flex-col border border-white/20 relative overflow-hidden">
+                     {/* Decorative background paw */}
+                     <div className="absolute -bottom-8 -right-8 opacity-10 pointer-events-none">
+                        <PawPrint size={100} />
+                     </div>
+                     
+                     <div className="flex justify-between items-start mb-4 relative z-10">
+                        <div>
+                          <div className="flex items-center gap-1 bg-emerald-900/40 border border-emerald-400/30 px-2 py-0.5 rounded-full mb-2 w-fit">
+                             <ShieldCheck size={10} className="text-emerald-300" />
+                             <span className="text-[8px] font-bold text-emerald-100 tracking-wide">DOĞRULANMIŞ KİMLİK</span>
+                          </div>
+                          <h3 className="text-xl font-extrabold mb-0.5">Senorita</h3>
+                          <p className="text-teal-100 font-medium text-[10px]">Kedi • Maine Coon</p>
+                        </div>
+                        <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center border border-white/30 backdrop-blur-md shrink-0 shadow-sm">
+                           <QrCode size={20} className="text-white" />
+                        </div>
+                     </div>
+                     
+                     <div className="grid grid-cols-2 gap-2 mb-4 relative z-10">
+                        <div className="bg-black/10 rounded-xl p-2.5 border border-white/10">
+                           <div className="text-[7px] text-teal-200 uppercase font-bold tracking-wider mb-1">Yaş</div>
+                           <div className="text-[11px] font-extrabold">7 Yaşında</div>
+                           <div className="text-[7px] text-teal-100 opacity-80 mt-0.5">12 Mayıs 2017</div>
+                        </div>
+                        <div className="bg-black/10 rounded-xl p-2.5 border border-white/10">
+                           <div className="text-[7px] text-teal-200 uppercase font-bold tracking-wider mb-1">Kilo</div>
+                           <div className="text-[11px] font-extrabold">7.2 kg</div>
+                           <div className="text-[7px] text-teal-100 opacity-80 mt-0.5">Son ölçüm: Dün</div>
+                        </div>
+                        <div className="bg-black/10 rounded-xl p-2.5 border border-white/10">
+                           <div className="text-[7px] text-teal-200 uppercase font-bold tracking-wider mb-1">Kısırlaştırma</div>
+                           <div className="text-[11px] font-extrabold text-emerald-300 flex items-center gap-1"><CheckCircle2 size={10}/> Kısır</div>
+                        </div>
+                        <div className="bg-black/10 rounded-xl p-2.5 border border-white/10">
+                           <div className="text-[7px] text-teal-200 uppercase font-bold tracking-wider mb-1">Mikroçip</div>
+                           <div className="text-[10px] font-mono font-bold tracking-wider mt-1">9002•1500</div>
+                        </div>
+                     </div>
+                     
+                     <div className="mt-auto bg-black/10 rounded-xl p-3 border border-white/10 flex items-center gap-3 relative z-10">
+                        <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                           <Stethoscope size={14} className="text-white" />
+                        </div>
+                        <div>
+                           <div className="text-[10px] font-bold text-white leading-tight">Patili Dostlar Kliniği</div>
+                           <div className="text-[8px] text-teal-100 mt-0.5">Dr. Ece Yılmaz</div>
+                        </div>
+                     </div>
+                  </div>
+                </motion.div>
+
+                {/* 3) Right Floating Widget (Social/Community) */}
+                <motion.div 
+                  initial={{ opacity: 0, x: 0, y: 0, rotate: 0 }} 
+                  whileInView={{ opacity: 1, x: 120, y: 15, rotate: 12 }} 
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="absolute z-30 hidden md:flex flex-col w-[240px] bg-white/90 dark:bg-slate-800/90 rounded-[2rem] p-4 shadow-[0_20px_40px_rgba(0,0,0,0.15)] border border-[var(--border-color)] backdrop-blur-xl right-0 top-[50%]"
+                >
+                   <div className="flex items-center gap-2 mb-3">
+                     <div className="w-8 h-8 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 p-[2px]">
+                        <div className="w-full h-full bg-white dark:bg-slate-900 rounded-full flex items-center justify-center">
+                           <Users size={12} className="text-amber-500" />
+                        </div>
+                     </div>
+                     <div>
+                       <div className="text-xs font-bold text-[var(--text-main)]">Pati Dostları 🐾</div>
+                       <div className="text-[9px] text-[var(--text-muted)]">Az önce paylaştı</div>
+                     </div>
+                   </div>
+                   
+                   {/* Fake Image Area */}
+                   <div className="w-full h-24 rounded-xl bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/40 mb-3 relative overflow-hidden flex items-center justify-center">
+                      <Heart size={24} className="text-white opacity-80 drop-shadow-md" />
+                      {/* Overlapping small avatars */}
+                      <div className="absolute bottom-2 right-2 flex -space-x-2">
+                         <div className="w-5 h-5 rounded-full border border-white dark:border-slate-800 bg-sky-200"></div>
+                         <div className="w-5 h-5 rounded-full border border-white dark:border-slate-800 bg-rose-200"></div>
+                         <div className="w-5 h-5 rounded-full border border-white dark:border-slate-800 bg-emerald-200 flex items-center justify-center text-[7px] font-bold text-slate-700">+5</div>
+                      </div>
+                   </div>
+                   
+                   <p className="text-[10px] text-[var(--text-main)] font-medium leading-relaxed">
+                     Hafta sonu gezmesinden kareler! 🌳 Havalar güzelleşiyor... 
+                   </p>
+                   
+                   <div className="flex items-center gap-3 mt-3 pt-2 border-t border-[var(--border-color)]">
+                      <div className="flex items-center gap-1 text-rose-500">
+                         <Heart size={14} className="fill-current" /> <span className="text-[10px] font-bold">128</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-[var(--text-muted)]">
+                         <MessageCircle size={14} /> <span className="text-[10px] font-bold">24</span>
+                      </div>
+                   </div>
+                </motion.div>
+
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+
+        {/* =========================================
+            1. AKILLI AŞI VE SAĞLIK TAKVİMİ
+            ========================================= */}
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 snap-always flex items-center border-b border-[var(--border-color)] bg-[var(--bg-main)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
+              
+              <div className="flex-1 space-y-6 text-left">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-sm font-bold border border-purple-200 dark:border-purple-800/50 backdrop-blur-sm"><Bell size={16} /> Hiçbir Dozu Kaçırmayın</div>
+                <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)]">Akıllı Takvim ve Hatırlatıcılar</h2>
+                <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+                  Karma, kuduz ve iç-dış parazit aşılarını türe ve yaşa göre otomatik planlıyor, yaklaşan uygulamaları akıllı bildirimlerle hatırlatıyor. Tüm takvim cihazınızla eşzamanlı çalışır.
+                </p>
+                <div className="space-y-6 mt-8">
+                  <div className="flex gap-4 items-start">
+                    <div className="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 text-amber-600 flex items-center justify-center shrink-0 shadow-sm border border-amber-200 dark:border-amber-800/50">
+                      <Calendar size={24} />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-[var(--text-main)] mb-1">Otomatik Planlama</h4>
+                      <p className="text-[var(--text-muted)] font-medium">Zorunlu aşı takvimini saniyeler içinde oluşturun.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4 items-start">
+                    <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 flex items-center justify-center shrink-0 shadow-sm border border-indigo-200 dark:border-indigo-800/50">
+                      <Bell size={24} />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-[var(--text-main)] mb-1">Akıllı Bildirimler</h4>
+                      <p className="text-[var(--text-muted)] font-medium">Uygulamalar yaklaşırken önceden uyarı alın ve cihaz takviminize ekleyin.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Abstract UI: Timeline */}
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, type: "spring" }}
+                className="flex-1 w-full flex justify-center perspective-1000"
+              >
+                <div className="w-full max-w-[360px] transform hover:scale-[1.02] transition-transform duration-700 relative group">
+                  <div className="absolute -inset-4 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-[3rem] blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
+                  
+                  <div className="w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl border border-[var(--border-color)] rounded-[2.5rem] p-6 shadow-xl relative overflow-hidden">
+                  <h3 className="font-serif font-bold text-xl text-[var(--text-main)] mb-6 text-center relative z-10 border-b border-[var(--border-color)] pb-4">Aşı Takvimi</h3>
+                  <div className="relative pl-8 space-y-8 before:absolute before:inset-0 before:ml-[1.4rem] before:w-0.5 before:bg-gradient-to-b before:from-[var(--border-color)] before:via-slate-300 dark:before:via-slate-600 before:to-transparent z-10">
+                     
+                     {/* Timeline Item 1 */}
+                     <div className="relative">
+                        <div className="absolute -left-[2.85rem] w-8 h-8 rounded-full bg-emerald-500 border-[6px] border-white dark:border-slate-900 flex items-center justify-center z-10 shadow-sm">
+                           <Check size={14} className="text-white" />
+                        </div>
+                        <div className="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+                           <span className="text-[10px] font-bold text-emerald-500 mb-1 block uppercase tracking-wider">Geçmiş: 12 Mayıs</span>
+                           <h4 className="font-bold text-[var(--text-main)] text-sm">Karma Aşı 1. Doz</h4>
+                           <p className="text-xs text-[var(--text-muted)] mt-1">Uygulandı: Dr. Ece Y.</p>
+                        </div>
+                     </div>
+
+                     {/* Timeline Item 2 (Current) */}
+                     <div className="relative transform hover:scale-105 transition-transform duration-300">
+                        <div className="absolute -left-[2.85rem] w-8 h-8 rounded-full bg-amber-500 border-[6px] border-white dark:border-slate-900 flex items-center justify-center z-10 shadow-lg">
+                           <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                        </div>
+                        <div className="bg-gradient-to-r from-amber-50 to-white dark:from-amber-900/20 dark:to-slate-800 p-4 rounded-2xl border-2 border-amber-400 shadow-lg relative overflow-hidden">
+                           <div className="absolute top-0 right-0 w-16 h-16 bg-amber-400/10 rounded-full blur-xl -z-10"></div>
+                           <div className="flex justify-between items-start mb-1">
+                             <span className="text-[10px] font-bold text-amber-600 block uppercase tracking-wider">Gelecek: 24 Mayıs</span>
+                             <span className="bg-amber-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm animate-bounce">3 GÜN KALDI</span>
+                           </div>
+                           <h4 className="font-bold text-[var(--text-main)] text-sm">İç Dış Parazit</h4>
+                           <p className="text-xs text-[var(--text-muted)] mt-1">Hatırlatıcı: Cihaz Takvimine Eklendi</p>
+                        </div>
+                     </div>
+
+                     {/* Timeline Item 3 (Future) */}
+                     <div className="relative">
+                        <div className="absolute -left-[2.85rem] w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 border-[6px] border-white dark:border-slate-900 z-10 shadow-sm"></div>
+                        <div className="bg-slate-50/50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 opacity-70 border-dashed">
+                           <span className="text-[10px] font-bold text-[var(--text-muted)] mb-1 block uppercase tracking-wider">Planlanan: 15 Haziran</span>
+                           <h4 className="font-bold text-[var(--text-main)] text-sm">Kuduz Aşısı</h4>
+                           <p className="text-xs text-[var(--text-muted)] mt-1">Yıllık Tekrar</p>
+                        </div>
+                     </div>
+                  </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================
+            2. DOSTUNUZUN HİKAYESİ (Sağlık Geçmişi)
+            ========================================= */}
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 snap-always flex items-center bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="flex flex-col-reverse lg:flex-row gap-16 items-center">
+              
+              {/* Abstract UI: Health Log */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9, rotateY: 10 }}
+                whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, type: "spring" }}
+                className="flex-1 w-full flex justify-center perspective-1000"
+              >
+                <div className="w-full max-w-[380px] transform hover:scale-105 transition-transform duration-700 relative group">
+                  <div className="absolute -inset-4 bg-gradient-to-tl from-teal-400 to-emerald-500 rounded-[3rem] blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
+                  
+                  <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[2.5rem] p-6 shadow-[0_30px_60px_-15px_rgba(20,184,166,0.3)] border border-white/40 dark:border-white/10 overflow-hidden">
+                    <div className="flex justify-between items-center mb-6 relative z-10">
+                       <div className="flex items-center gap-3">
+                         <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 rounded-2xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-inner border border-emerald-200 dark:border-emerald-800">
+                           <Activity size={24} />
+                         </div>
+                         <div>
+                           <h4 className="font-bold text-lg text-[var(--text-main)]">Sağlık Geçmişi</h4>
+                           <p className="text-xs text-[var(--text-muted)] font-medium">Zeus'un Gelişimi</p>
+                         </div>
+                       </div>
+                    </div>
+
+                    {/* Chart Abstract */}
+                    <div className="h-32 w-full bg-slate-50 dark:bg-slate-800/50 rounded-2xl mb-6 relative overflow-hidden border border-slate-100 dark:border-slate-700/50 flex items-end px-4 py-2 gap-2">
+                       <div className="absolute inset-0 bg-gradient-to-t from-emerald-500/10 to-transparent"></div>
+                       {/* Bars */}
+                       {[30, 45, 60, 50, 75, 90, 85].map((h, i) => (
+                         <motion.div 
+                           key={i} 
+                           initial={{ height: 0 }}
+                           whileInView={{ height: `${h}%` }}
+                           transition={{ duration: 1, delay: i * 0.1 }}
+                           className={`flex-1 rounded-t-md ${i === 5 ? 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]' : 'bg-emerald-200 dark:bg-emerald-800'}`}
+                         ></motion.div>
+                       ))}
+                       <div className="absolute top-2 left-4 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">KİLO (KG)</div>
+                    </div>
+
+                    {/* Log Items */}
+                    <div className="space-y-3 relative z-10">
+                      <div className="bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm flex items-center justify-between">
+                         <div className="flex items-center gap-3">
+                           <div className="w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-500"><Stethoscope size={14}/></div>
+                           <div>
+                             <div className="text-sm font-bold text-[var(--text-main)]">Genel Muayene</div>
+                             <div className="text-[10px] text-[var(--text-muted)]">24 Nisan • Her şey normal</div>
+                           </div>
+                         </div>
+                      </div>
+                      <div className="bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm flex items-center justify-between">
+                         <div className="flex items-center gap-3">
+                           <div className="w-8 h-8 rounded-full bg-orange-50 dark:bg-orange-900/30 flex items-center justify-center text-orange-500"><PawPrint size={14}/></div>
+                           <div>
+                             <div className="text-sm font-bold text-[var(--text-main)]">Tırnak Kesimi</div>
+                             <div className="text-[10px] text-[var(--text-muted)]">10 Nisan • Kuaför</div>
+                           </div>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <div className="flex-1 space-y-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-sm font-bold border border-emerald-200 dark:border-emerald-800/50 backdrop-blur-sm"><Activity size={16} /> Veri Analizi</div>
+                <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)]">Dostunuzun Hikayesi</h2>
+                <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+                  İlk günden bugüne kilo değişimleri, boy ölçümleri, veteriner notları ve ziyaret geçmişi düzenli olarak saklanır. Veterito, dostunuzun tıbbi hikayesini anlaşılır görsel grafiklerle size sunar.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-emerald-500 flex-shrink-0" />
+                    <span className="text-[var(--text-main)] font-medium">Kilo grafiklerini inceleyerek obezite riskini erken fark edin.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-emerald-500 flex-shrink-0" />
+                    <span className="text-[var(--text-main)] font-medium">Veteriner hekiminizin girdiği tüm notlar anında cebinizde.</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================
+            3. RANDEVU YÖNETİMİ
+            ========================================= */}
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 snap-always flex items-center bg-[var(--bg-main)] border-b border-[var(--border-color)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="flex flex-col lg:flex-row gap-16 items-center">
+              
+              <div className="flex-1 space-y-6 text-left">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-sm font-bold border border-indigo-200 dark:border-indigo-800/50 backdrop-blur-sm"><Calendar size={16} /> Kolay Planlama</div>
+                <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)]">Veteriner Randevusunu <br/> Kolayca Planlayın</h2>
+                <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+                  Kliniğinizi bulun, uygun saatleri listeleyin ve tek tıkla talep gönderin. İptal, erteleme ve geçmiş randevuları aynı ekrandan pratik bir şekilde takip edin.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-indigo-500 flex-shrink-0" />
+                    <span className="text-[var(--text-main)] font-medium">Hekiminizin uygun saatlerini anında görüntüleyin.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-indigo-500 flex-shrink-0" />
+                    <span className="text-[var(--text-main)] font-medium">Sıra beklemeden randevu talebinizi iletin.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Abstract UI: Appointment Card */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9, rotateY: -10 }}
+                whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, type: "spring" }}
+                className="flex-1 w-full flex justify-center perspective-1000"
+              >
+                <div className="w-full max-w-[380px] transform hover:scale-105 transition-transform duration-700 relative group">
+                  {/* Glowing background blob */}
+                  <div className="absolute -inset-4 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-[3rem] blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
+                  
+                  <motion.svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 10 }}>
+                    <motion.rect
+                      x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="38"
+                      fill="none" stroke="url(#paint0_linear_appt)" strokeWidth="2" className="drop-shadow-[0_0_12px_rgba(99,102,241,0.8)]"
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: 1 }}
+                      viewport={{ once: false, margin: "-100px" }}
+                      transition={{ duration: 2, ease: "easeInOut" }}
+                    />
+                    <defs>
+                      <linearGradient id="paint0_linear_appt" x1="0" y1="0" x2="100%" y2="100%" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#6366f1" />
+                        <stop offset="1" stopColor="#a855f7" />
+                      </linearGradient>
+                    </defs>
+                  </motion.svg>
+                  
+                  {/* Appointment Card */}
+                  <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[2.5rem] p-6 shadow-[0_30px_60px_-15px_rgba(99,102,241,0.3)] border border-white/40 dark:border-white/10 overflow-hidden">
+                    <div className="flex justify-between items-center mb-6 relative z-10">
+                       <div className="flex items-center gap-3">
+                         <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/50 rounded-2xl flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                           <Calendar size={24} />
+                         </div>
+                         <div>
+                           <h4 className="font-bold text-lg text-[var(--text-main)]">Randevu Seçimi</h4>
+                           <p className="text-xs text-[var(--text-muted)] font-medium">Patili Dostlar Kliniği</p>
+                         </div>
+                       </div>
+                       <MoreHorizontal size={20} className="text-[var(--text-muted)]"/>
+                    </div>
+
+                    {/* Date Picker Abstract UI */}
+                    <div className="flex gap-2 mb-6 relative z-10">
+                      {[12,13,14,15].map((day, i) => (
+                        <div key={day} className={`flex-1 rounded-2xl p-2 text-center border cursor-pointer transition-colors ${i === 1 ? 'bg-indigo-600 border-indigo-500 shadow-lg text-white' : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-[var(--text-muted)] hover:bg-slate-100 dark:hover:bg-slate-700'}`}>
+                          <div className="text-[10px] font-bold uppercase mb-1">{['Sal', 'Çar', 'Per', 'Cum'][i]}</div>
+                          <div className={`text-xl font-extrabold ${i === 1 ? 'text-white' : 'text-[var(--text-main)]'}`}>{day}</div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Time Slots */}
+                    <div className="grid grid-cols-2 gap-3 mb-6 relative z-10">
+                      {['13:00', '14:00', '15:30', '16:00'].map((time, i) => (
+                        <div key={time} className={`py-3 rounded-xl text-center text-sm font-bold border transition-colors ${i === 1 ? 'bg-indigo-50 dark:bg-indigo-900/30 border-indigo-200 dark:border-indigo-700 text-indigo-700 dark:text-indigo-300' : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-[var(--text-main)] hover:border-indigo-300'}`}>
+                          {time}
+                        </div>
+                      ))}
+                    </div>
+
+                    <button className="w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transition-shadow relative z-10 overflow-hidden group">
+                      <span className="relative z-10 flex items-center justify-center gap-2">Talep Gönder <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/></span>
+                      <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                    </button>
+                    
+                    {/* Decorative Background */}
+                    <div className="absolute -bottom-16 -right-16 text-indigo-500/5 dark:text-indigo-400/5">
+                      <Stethoscope size={200} />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================
+            4. ACİL DURUM KARTI
+            ========================================= */}
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 snap-always flex items-center bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="flex flex-col-reverse lg:flex-row gap-16 items-center">
+              
+              {/* Abstract UI: Emergency Card */}
+              <motion.div 
+                initial={{ opacity: 0, x: -30, rotateZ: -5 }}
+                whileInView={{ opacity: 1, x: 0, rotateZ: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, type: "spring" }}
+                className="flex-1 w-full flex justify-center perspective-1000"
+              >
+                <div className="w-full max-w-[360px] transform hover:scale-105 hover:rotate-2 transition-transform duration-700 relative group">
+                  <div className="absolute -inset-4 bg-gradient-to-bl from-rose-500 to-red-600 rounded-[3rem] blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
+                  
+                  <div className="relative bg-gradient-to-br from-rose-500 via-red-600 to-rose-800 rounded-[2.5rem] p-1 shadow-[0_30px_60px_-15px_rgba(225,29,72,0.5)] overflow-hidden text-white">
+                    {/* Inner Content */}
+                    <div className="bg-black/20 backdrop-blur-xl rounded-[2.25rem] p-6 h-full flex flex-col border border-white/20 relative z-10">
+                       <div className="flex justify-between items-start mb-6">
+                          <div>
+                            <div className="flex items-center gap-1.5 bg-red-900/60 border border-red-400/50 px-3 py-1 rounded-full mb-3 w-fit shadow-inner">
+                               <Activity size={14} className="text-rose-300 animate-pulse" />
+                               <span className="text-[10px] font-bold text-rose-100 tracking-wider">ACİL DURUM KARTI</span>
+                            </div>
+                            <h3 className="text-3xl font-extrabold mb-1 drop-shadow-md">Zeus</h3>
+                            <p className="text-rose-200 font-medium text-sm">Köpek • Golden Retriever</p>
+                          </div>
+                       </div>
+                       
+                       <div className="grid grid-cols-2 gap-3 mb-6 relative z-10">
+                          <div className="bg-white/10 rounded-2xl p-3 border border-white/20 backdrop-blur-md hover:bg-white/20 transition-colors">
+                             <div className="text-[9px] text-rose-200 uppercase font-bold tracking-wider mb-1">Kan Grubu</div>
+                             <div className="text-xl font-extrabold text-white">DEA 1.1+</div>
+                          </div>
+                          <div className="bg-white/10 rounded-2xl p-3 border border-white/20 backdrop-blur-md hover:bg-white/20 transition-colors">
+                             <div className="text-[9px] text-rose-200 uppercase font-bold tracking-wider mb-1">Kronik Hastalık</div>
+                             <div className="text-sm font-extrabold text-white">Kalp Yetmezliği</div>
+                          </div>
+                       </div>
+
+                       <div className="bg-white/10 rounded-2xl p-4 border border-white/20 backdrop-blur-md mb-2">
+                          <div className="text-[9px] text-rose-200 uppercase font-bold tracking-wider mb-2">Düzenli Kullanılan İlaçlar</div>
+                          <div className="flex items-center gap-3">
+                             <div className="w-8 h-8 rounded-full bg-rose-500/50 flex items-center justify-center">💊</div>
+                             <div>
+                               <div className="text-sm font-bold text-white">Cardisure 2.5mg</div>
+                               <div className="text-[10px] text-rose-200">Günde 2 kez, sabah ve akşam</div>
+                             </div>
+                          </div>
+                       </div>
+                       
+                       {/* Background decoration */}
+                       <div className="absolute -top-10 -right-10 opacity-10 rotate-12">
+                          <Heart size={180} />
+                       </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <div className="flex-1 space-y-6 text-left">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 text-sm font-bold border border-rose-200 dark:border-rose-800/50"><Heart size={16} /> Hayati Önem Taşıyan Detaylar</div>
+                <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)]">Acil Durum Kartı</h2>
+                <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+                  Acil bir durumda saniyeler bile önemlidir. Dostunuzun kronik hastalıkları, kan grubu, yaşı, kilosu ve düzenli kullandığı ilaçları tek bir kırmızı kartta elinizin altında.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-rose-500 flex-shrink-0" />
+                    <span className="text-[var(--text-main)] font-medium">Bilinçsiz müdahaleleri önlemek için alerji bilgilerini kaydedin.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-rose-500 flex-shrink-0" />
+                    <span className="text-[var(--text-main)] font-medium">Farklı bir klinikte saniyeler içinde doğru teşhis için bilgileri gösterin.</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================
+            5. TOPLULUK VE GÜVENLİ İLETİŞİM
+            ========================================= */}
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 snap-always flex items-center bg-[var(--bg-main)] border-b border-[var(--border-color)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="flex flex-col lg:flex-row gap-16 items-center">
+              
+              <div className="flex-1 space-y-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-sm font-bold border border-amber-200 dark:border-amber-800/50"><MessageCircle size={16} /> Sosyal Ağ & Eşleşme</div>
+                <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)]">Topluluk ve <br/> Güvenli İletişim</h2>
+                <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+                  Şehrinizdeki hayvanseverleri keşfedin, yürüyüş arkadaşları bulun veya anılarınızı paylaşın. Üstelik spam korumalı mesaj istekleri sayesinde yalnızca onayladığınız kişilerle iletişim kurarsınız.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-amber-500 flex-shrink-0" />
+                    <span className="text-[var(--text-main)] font-medium">İl ve ilçe bazlı akıllı eşleşme ile çevrenizdeki dostları görün.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-amber-500 flex-shrink-0" />
+                    <span className="text-[var(--text-main)] font-medium">Fotoğraf paylaşın ve "Takip Ettiklerim" akışı ile güncel kalın.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Abstract UI: Messaging & Social Feed */}
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, type: "spring" }}
+                className="flex-1 w-full flex justify-center perspective-1000"
+              >
+                <div className="w-full max-w-[380px] transform hover:scale-105 transition-transform duration-700 relative group">
+                  <div className="absolute -inset-4 bg-gradient-to-tr from-amber-400 to-orange-500 rounded-[3rem] blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
+                  
+                  <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_30px_60px_-15px_rgba(245,158,11,0.3)] border border-white/40 dark:border-white/10 overflow-hidden flex flex-col h-[480px]">
+                    
+                    {/* Header */}
+                    <div className="px-6 py-4 border-b border-[var(--border-color)] flex justify-between items-center bg-white/50 dark:bg-slate-900/50 backdrop-blur-md relative z-10">
+                      <div className="flex items-center gap-3">
+                         <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-400 to-rose-400 p-[2px]">
+                           <div className="w-full h-full bg-white dark:bg-slate-900 rounded-full flex items-center justify-center font-bold text-amber-500">M</div>
+                         </div>
+                         <div>
+                           <h4 className="font-bold text-[var(--text-main)] text-sm">Mia & Can</h4>
+                           <p className="text-[10px] text-emerald-500 font-bold flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div> Çevrimiçi</p>
+                         </div>
+                      </div>
+                      <MoreHorizontal size={20} className="text-[var(--text-muted)]"/>
+                    </div>
+
+                    {/* Chat Area */}
+                    <div className="flex-1 p-6 space-y-4 relative z-10 flex flex-col">
+                       {/* Date separator */}
+                       <div className="text-center text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">Bugün, 14:30</div>
+                       
+                       {/* Message Bubbles */}
+                       <div className="self-start max-w-[80%] bg-slate-100 dark:bg-slate-800 rounded-2xl rounded-tl-sm p-3 text-sm text-[var(--text-main)] shadow-sm">
+                         Merhaba! Moda sahilindeki köpek parkında mısınız şu an? 🐕
+                       </div>
+                       
+                       <div className="self-end max-w-[80%] bg-amber-500 text-white rounded-2xl rounded-tr-sm p-3 text-sm shadow-md">
+                         Evet buradayız! Mia diğer köpekle oynuyor, siz de gelin. 😊
+                       </div>
+                       
+                       {/* Secure Badge */}
+                       <div className="mt-auto self-center bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800 rounded-xl px-4 py-2 flex items-center gap-2 shadow-sm">
+                          <ShieldCheck size={16} className="text-emerald-500"/>
+                          <span className="text-[10px] font-bold text-emerald-700 dark:text-emerald-300">Spam Korumalı Mesaj</span>
+                       </div>
+                    </div>
+                    
+                    {/* Input Area */}
+                    <div className="px-4 py-4 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md border-t border-[var(--border-color)]">
+                       <div className="bg-slate-100 dark:bg-slate-800 rounded-full px-4 py-2 flex justify-between items-center text-[var(--text-muted)] text-sm border border-slate-200 dark:border-slate-700">
+                          Mesaj yaz...
+                          <div className="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center shrink-0 shadow-sm">
+                             <ArrowRight size={16}/>
+                          </div>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================
+            6. SAHİPLENDİRME
+            ========================================= */}
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 snap-always flex items-center bg-[#fffbeb] dark:bg-amber-950/20 border-b border-[var(--border-color)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="flex flex-col-reverse lg:flex-row gap-16 items-center">
+              
+              {/* Abstract UI: Adoption Card */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, type: "spring" }}
+                className="flex-1 w-full flex justify-center perspective-1000"
+              >
+                <div className="w-full max-w-[380px] transform hover:scale-105 transition-transform duration-700 relative group">
+                  <div className="absolute -inset-4 bg-gradient-to-tr from-orange-400 to-rose-400 rounded-[3rem] blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
+                  
+                  <div className="relative bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl rounded-[2.5rem] p-4 shadow-[0_30px_60px_-15px_rgba(249,115,22,0.4)] border border-white/50 dark:border-white/10 overflow-hidden text-center">
+                    
+                    <div className="absolute top-0 right-8 bg-rose-500 text-white text-[10px] font-bold px-3 py-1 rounded-b-lg shadow-md z-20 flex items-center gap-1">
+                      <Heart size={12} fill="white" /> YUVA ARIYOR
+                    </div>
+
+                    <div className="w-full h-48 bg-gradient-to-br from-orange-200 to-rose-200 dark:from-orange-900/50 dark:to-rose-900/50 rounded-2xl mb-4 relative overflow-hidden flex items-center justify-center">
+                       <PawPrint size={64} className="text-white/80 drop-shadow-lg" />
+                       <div className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center border border-white/40">
+                         <Share2 size={14} className="text-white" />
+                       </div>
+                    </div>
+                    
+                    <h3 className="text-2xl font-extrabold text-[var(--text-main)] mb-1">Moka</h3>
+                    <p className="text-xs text-[var(--text-muted)] font-medium mb-4">Kedi • British Shorthair • 3 Aylık</p>
+                    
+                    <div className="grid grid-cols-2 gap-3 mb-6">
+                       <div className="bg-orange-50 dark:bg-orange-900/30 rounded-xl p-2 border border-orange-100 dark:border-orange-800/50">
+                          <span className="block text-[10px] text-orange-500 font-bold uppercase">Konum</span>
+                          <span className="font-bold text-[var(--text-main)] text-sm">İzmir, Bornova</span>
+                       </div>
+                       <div className="bg-orange-50 dark:bg-orange-900/30 rounded-xl p-2 border border-orange-100 dark:border-orange-800/50">
+                          <span className="block text-[10px] text-orange-500 font-bold uppercase">Durum</span>
+                          <span className="font-bold text-emerald-600 dark:text-emerald-400 text-sm">Ücretsiz</span>
+                       </div>
+                    </div>
+
+                    <div className="bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 rounded-xl p-3 text-xs font-bold flex items-center justify-center gap-2 border border-rose-200 dark:border-rose-800/50">
+                      <ShieldCheck size={16} /> Satış Kesinlikle Yasaktır
+                    </div>
+                    
+                  </div>
+                </div>
+              </motion.div>
+
+              <div className="flex-1 space-y-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 text-sm font-bold border border-rose-200 dark:border-rose-800/50 backdrop-blur-sm"><Heart size={16} /> Sevgi Dolu Yuvalar</div>
+                <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)]">Güvenli ve Ücretsiz Sahiplendirme</h2>
+                <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+                  Veterito platformunda can dostlarımızın para karşılığı satışı kesinlikle yasaktır. İlanlar yalnızca ücretsiz sahiplendirme amacıyla verilebilir.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-rose-500 flex-shrink-0" />
+                    <span className="text-[var(--text-main)] font-medium">Satın alma, sahiplen. Yeni bir hayata kapılarını aç.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-rose-500 flex-shrink-0" />
+                    <span className="text-[var(--text-main)] font-medium">Uygulama içi güvenli mesajlaşma ile sahiplenecek kişiyle iletişim kurun.</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================
+            7. 1100+ IRK REHBERİ
+            ========================================= */}
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 snap-always flex items-center bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="flex flex-col lg:flex-row gap-16 items-center">
+              
+              <div className="flex-1 space-y-6 text-left">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 text-sm font-bold border border-cyan-200 dark:border-cyan-800/50"><PawPrint size={16} /> Ansiklopedi Veritabanı</div>
+                <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)]">1.100+ Irk Rehberi</h2>
+                <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+                  Sadece kedi ve köpek değil; binden fazla ırkın tüm genetik yatkınlıkları, beklenen yaşam süresi, özel beslenme ihtiyaçları ve enerji seviyeleri uzmanlarca hazırlanmış devasa veritabanımızda.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-cyan-500 flex-shrink-0" />
+                    <span className="text-[var(--text-main)] font-medium">Sahiplenmeden önce ırkın yaşam tarzınıza uygunluğunu kontrol edin.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-cyan-500 flex-shrink-0" />
+                    <span className="text-[var(--text-main)] font-medium">Genetik hastalıklara karşı önlem alın.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Abstract UI: Breed Guide Hologram */}
+              <motion.div 
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, type: "spring" }}
+                className="flex-1 w-full flex justify-center perspective-1000"
+              >
+                <div className="w-full max-w-[400px] transform hover:scale-105 transition-transform duration-700 relative group">
+                  <div className="absolute -inset-4 bg-gradient-to-tr from-cyan-400 to-blue-500 rounded-[3rem] blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
+                  
+                  <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[2.5rem] p-6 shadow-[0_30px_60px_-15px_rgba(6,182,212,0.3)] border border-white/40 dark:border-white/10 overflow-hidden">
+                    
+                    {/* Search Bar */}
+                    <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full px-4 py-3 flex items-center text-[var(--text-muted)] text-sm mb-6 border border-slate-200 dark:border-slate-700 shadow-inner">
+                       Golden Retriever
+                       <div className="ml-auto w-6 h-6 rounded-full bg-cyan-500 text-white flex items-center justify-center shrink-0">
+                          <Check size={12}/>
+                       </div>
+                    </div>
+
+                    <div className="flex gap-4 items-center mb-6">
+                       <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-100 to-blue-200 dark:from-cyan-900/50 dark:to-blue-900/50 flex items-center justify-center border border-cyan-200 dark:border-cyan-800 shadow-sm">
+                          <PawPrint size={32} className="text-cyan-600 dark:text-cyan-400" />
+                       </div>
+                       <div>
+                          <h4 className="text-2xl font-extrabold text-[var(--text-main)]">Golden Retriever</h4>
+                          <p className="text-sm text-[var(--text-muted)]">Sporcu Köpekler Grubu</p>
+                       </div>
+                    </div>
+
+                    <div className="space-y-4 relative z-10">
+                       {/* Stat Bar 1 */}
+                       <div>
+                         <div className="flex justify-between text-xs font-bold text-[var(--text-main)] mb-1">
+                           <span>Enerji Seviyesi</span><span>Yüksek</span>
+                         </div>
+                         <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                           <motion.div initial={{ width: 0 }} whileInView={{ width: '85%' }} transition={{ duration: 1, delay: 0.2 }} className="h-full bg-cyan-500"></motion.div>
+                         </div>
+                       </div>
+                       {/* Stat Bar 2 */}
+                       <div>
+                         <div className="flex justify-between text-xs font-bold text-[var(--text-main)] mb-1">
+                           <span>Çocuklarla İletişim</span><span>Mükemmel</span>
+                         </div>
+                         <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                           <motion.div initial={{ width: 0 }} whileInView={{ width: '100%' }} transition={{ duration: 1, delay: 0.4 }} className="h-full bg-blue-500"></motion.div>
+                         </div>
+                       </div>
+                       {/* Stat Bar 3 */}
+                       <div>
+                         <div className="flex justify-between text-xs font-bold text-[var(--text-main)] mb-1">
+                           <span>Tüy Dökme</span><span>Yüksek</span>
+                         </div>
+                         <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                           <motion.div initial={{ width: 0 }} whileInView={{ width: '90%' }} transition={{ duration: 1, delay: 0.6 }} className="h-full bg-teal-500"></motion.div>
+                         </div>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================
+            8. ÖDÜNSÜZ GİZLİLİK MERKEZİ
+            ========================================= */}
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 snap-always flex items-center bg-[#022c22] border-b border-emerald-900/50 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-20 pointer-events-none">
+             {/* Matrix style grid background */}
+             <div className="w-full h-full" style={{ backgroundImage: 'linear-gradient(rgba(16, 185, 129, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(16, 185, 129, 0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+          </div>
+          
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
+            <div className="flex flex-col-reverse lg:flex-row gap-16 items-center">
+              
+              {/* Abstract UI: Privacy Shield */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, type: "spring" }}
+                className="flex-1 w-full flex justify-center perspective-1000"
+              >
+                <div className="w-64 h-64 lg:w-80 lg:h-80 relative flex items-center justify-center">
+                   {/* Glowing rings */}
+                   <motion.div animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute inset-0 rounded-full border border-emerald-500/30 border-t-emerald-400"></motion.div>
+                   <motion.div animate={{ rotate: -360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute inset-4 rounded-full border border-emerald-500/20 border-b-emerald-300"></motion.div>
+                   
+                   <div className="absolute inset-0 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
+                   
+                   <div className="w-32 h-32 lg:w-40 lg:h-40 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-2xl rotate-45 flex items-center justify-center shadow-[0_0_50px_rgba(16,185,129,0.5)] border border-emerald-200/50 relative z-10 overflow-hidden">
+                      <div className="absolute inset-0 bg-white/20 backdrop-blur-sm"></div>
+                      <ShieldCheck size={64} className="text-white -rotate-45 drop-shadow-lg relative z-20" />
+                   </div>
+                   
+                   {/* Floating locks */}
+                   <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 3, repeat: Infinity }} className="absolute top-0 right-10 w-10 h-10 bg-black/50 backdrop-blur-md rounded-lg border border-emerald-500/50 flex items-center justify-center text-emerald-400 shadow-lg"><Check size={20}/></motion.div>
+                   <motion.div animate={{ y: [0, 15, 0] }} transition={{ duration: 4, repeat: Infinity }} className="absolute bottom-10 left-0 w-12 h-12 bg-black/50 backdrop-blur-md rounded-lg border border-emerald-500/50 flex items-center justify-center text-emerald-400 shadow-lg"><Check size={24}/></motion.div>
+                </div>
+              </motion.div>
+
+              <div className="flex-1 space-y-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-900/50 text-emerald-300 text-sm font-bold border border-emerald-700/50"><ShieldCheck size={16} /> Verileriniz Size Aittir</div>
+                <h2 className="text-4xl lg:text-5xl font-extrabold text-white">Ödünsüz Gizlilik Merkezi</h2>
+                <p className="text-lg text-emerald-100/80 font-medium leading-relaxed">
+                  Platformumuzda rahatsız edici reklamlar yok. Konumunuz asla izlenmez ve verileriniz üçüncü partilere kesinlikle satılmaz. Tüm kontrol sizin elinizde.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-emerald-400 flex-shrink-0" />
+                    <span className="text-emerald-50 font-medium">İstediğiniz zaman profilinizi tamamen gizleyebilirsiniz.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-emerald-400 flex-shrink-0" />
+                    <span className="text-emerald-50 font-medium">Sağlık kayıtlarınız kişiseldir; yalnızca izin verdiğiniz kliniklerle paylaşılır.</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </section>
+        {/* =========================================
+            5. TRUST DISCLAIMER
+            ========================================= */}
+        <section className="py-20 bg-gradient-to-r from-emerald-900 to-teal-900 border-b border-[var(--border-color)] relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10 pointer-events-none"><Sparkles size={400} className="absolute -left-20 -top-20 text-emerald-100" /></div>
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-emerald-100 text-xs font-bold border border-white/20 backdrop-blur-sm mb-6 uppercase tracking-wider">Tıbbi Sorumluluk Beyanı</div>
+              <h2 className="text-3xl lg:text-5xl font-extrabold text-white mb-6">İnternet değil, veteriner hekiminiz.</h2>
+              <p className="text-emerald-100 text-lg font-medium max-w-2xl leading-relaxed">Veterito tıbbi tavsiye vermez, sadece sağlık takibini kolaylaştırır ve kayıtlarınızı düzenli tutmanızı sağlar. Dostunuzun sağlığıyla ilgili teşhis ve tedavi kararlarını mutlaka uzman veteriner hekiminizle alın.</p>
+            </div>
+            <div className="flex gap-4 shrink-0">
+              <div className="w-20 h-20 rounded-3xl bg-white/10 flex items-center justify-center text-emerald-300 border border-white/20 shadow-lg backdrop-blur-md"><Stethoscope size={40}/></div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================
+            5. CLINICS B2B
+            ========================================= */}
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 snap-always flex items-center bg-[var(--bg-surface)] border-b border-[var(--border-color)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
+              
+              <div className="flex-1 space-y-6 text-left">
+                <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)]">Klinikler İçin Veterito</h2>
+                <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+                  Klinikler için tasarlanmış panel sayesinde iş akışınızı hızlandırın: Randevu yönetimi, müşteriyle iletişim, kliniği ve doktorları tanıtma.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-[var(--color-vet-accent)] flex-shrink-0" />
+                    <span className="text-[var(--text-main)] font-medium">Randevu ve aşı takiplerini tek ekranda yönetin.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="text-[var(--color-vet-accent)] flex-shrink-0" />
+                    <span className="text-[var(--text-main)] font-medium">Hastalarınıza otomatik sms/bildirimler gönderin.</span>
+                  </li>
+                </ul>
+                <div className="pt-6">
+                  <Link to="/clinics" className="btn-primary text-lg px-8 py-4 rounded-2xl inline-flex shadow-sm">
+                    Klinik Çözümlerini İncele
+                  </Link>
+                </div>
+              </div>
+
+              {/* Abstract UI: Clinic Dashboard */}
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex-1 w-full flex justify-center perspective-1000"
+              >
+                <div className="w-full max-w-[420px] bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-[2.5rem] shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-500 relative group">
+                  <motion.svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 20 }}>
+                    <motion.rect
+                      x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="38"
+                      fill="none" stroke="var(--color-vet-primary)" strokeWidth="2" className="drop-shadow-[0_0_8px_rgba(20,184,166,0.6)]"
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: 1 }}
+                      viewport={{ once: false, margin: "-100px" }}
+                      transition={{ duration: 1.5, ease: "easeInOut" }}
+                    />
+                  </motion.svg>
+                   {/* Header */}
+                   <div className="bg-[var(--bg-surface)] px-5 py-4 border-b border-[var(--border-color)] flex justify-between items-center shadow-sm relative z-10">
+                      <div className="flex items-center gap-2">
+                         <div className="w-8 h-8 rounded-lg bg-[var(--color-vet-primary)] text-white flex items-center justify-center">
+                            <Stethoscope size={16} />
+                         </div>
+                         <div>
+                            <div className="font-bold text-sm text-[var(--text-main)]">Klinik Paneli</div>
+                            <div className="text-[9px] text-[var(--text-muted)]">Patili Dostlar Vet</div>
+                         </div>
+                      </div>
+                      <div className="flex gap-1.5">
+                         <div className="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+                         <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+                         <div className="w-2.5 h-2.5 rounded-full bg-rose-400"></div>
+                      </div>
+                   </div>
+
+                   {/* Body */}
+                   <div className="p-5 flex flex-col gap-4 relative">
+                      {/* Decorative Background gradient */}
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl"></div>
+                      
+                      {/* Stats Grid */}
+                      <div className="grid grid-cols-2 gap-3 relative z-10">
+                         <div className="bg-indigo-50/50 dark:bg-indigo-900/10 p-3 rounded-xl border border-indigo-100 dark:border-indigo-800/30">
+                            <div className="text-[10px] text-indigo-600 dark:text-indigo-300 font-bold uppercase tracking-wider mb-1">Bugünkü Randevular</div>
+                            <div className="text-2xl font-extrabold text-indigo-700 dark:text-indigo-200">14</div>
+                         </div>
+                         <div className="bg-amber-50/50 dark:bg-amber-900/10 p-3 rounded-xl border border-amber-100 dark:border-amber-800/30">
+                            <div className="text-[10px] text-amber-600 dark:text-amber-300 font-bold uppercase tracking-wider mb-1">Bekleyen Aşılar</div>
+                            <div className="text-2xl font-extrabold text-amber-600 dark:text-amber-400">8</div>
+                         </div>
+                      </div>
+
+                      {/* List */}
+                      <div className="bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-xl overflow-hidden shadow-sm relative z-10">
+                         <div className="bg-slate-50 dark:bg-slate-800/50 px-4 py-2 border-b border-[var(--border-color)] text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider">
+                            Sıradaki Hastalar
+                         </div>
+                         <div className="divide-y divide-[var(--border-color)]">
+                            <div className="px-4 py-3 flex justify-between items-center hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors cursor-pointer group">
+                               <div className="flex items-center gap-3">
+                                  <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                     <PawPrint size={14} />
+                                  </div>
+                                  <div>
+                                     <div className="font-bold text-xs text-[var(--text-main)]">Senorita</div>
+                                     <div className="text-[10px] text-[var(--text-muted)]">Karma Aşı • 14:30</div>
+                                  </div>
+                               </div>
+                               <button className="bg-[var(--color-vet-primary)] text-white px-3 py-1 rounded-full text-[10px] font-bold shadow-sm hover:shadow-md transition-shadow">Onayla</button>
+                            </div>
+                            <div className="px-4 py-3 flex justify-between items-center hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors cursor-pointer group">
+                               <div className="flex items-center gap-3">
+                                  <div className="w-8 h-8 rounded-full bg-sky-100 dark:bg-sky-900/30 text-sky-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                     <PawPrint size={14} />
+                                  </div>
+                                  <div>
+                                     <div className="font-bold text-xs text-[var(--text-main)]">Zeus</div>
+                                     <div className="text-[10px] text-[var(--text-muted)]">Genel Muayene • 15:00</div>
+                                  </div>
+                               </div>
+                               <button className="bg-slate-200 dark:bg-slate-700 text-[var(--text-main)] px-3 py-1 rounded-full text-[10px] font-bold">Bekliyor</button>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================
+            6. PRICING & FOOTER
+            ========================================= */}
+        <section className="snap-start snap-always bg-[var(--bg-main)] py-24">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 text-center">
+            <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-6">Hemen Başlayın</h2>
+            {/* ⚠️ ESKI METIN: "Ilk yil tamamen ucretsiz! ... Sonrasinda butce
+                dostu abonelik modeliyle kesintisiz hizmete devam edin."
+                Iki yerde birden yanlisti: hayvan sahipleri icin ucretsizlik
+                SURELI DEGIL, ve "sonrasinda abonelik" cumlesi kullaniciya
+                olmayan bir ucret takvimi vaat ediyordu (Ahmet, 24.08.2026). */}
+            <p className="text-xl text-[var(--text-main)] font-bold mb-4">
+              Evcil hayvan sahipleri için tamamen ücretsiz
+            </p>
+            <p className="text-lg text-[var(--text-muted)] max-w-xl lg:max-w-2xl mx-auto mb-10 font-medium">
+              Hayvanınızın sağlık kaydını tutmak, aşı takvimini takip etmek ve klinikten randevu almak ücretsizdir. Klinik paketleri de şu anda ücretsiz; kredi kartı istenmiyor.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link to="/pricing" className="btn-primary text-lg px-8 py-4 rounded-2xl shadow-sm">
+                {/* ⚠️ UYGULAMA HENUZ MAGAZADA YAYINDA DEGIL (Ahmet, 24.08.2026: "uygulama cikmadi ya, google play ve app store cok yakinda diyelim"). App Store incelemede, Google Play kapali testte. "Indir" demek, tiklayana indiremeyecegi bir sey vaat etmek. */}
+                App Store ve Google Play’de Çok Yakında
+              </Link>
+              <Link to="/clinics" className="group flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-bold text-[var(--text-main)] bg-[var(--bg-secondary)] hover:bg-[var(--border-color)] border border-[var(--border-color)] transition-colors">
+                Kliniğini Kaydet
+              </Link>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </>
+  );
+}
