@@ -35,12 +35,12 @@ export function PanelKayitlar({ klinik }: { klinik: string }) {
   return (
     <PanelListe
       baslik="Sağlık kayıtları"
-      aciklama="Kliniğinizde girilen muayene, tedavi, aşı ve parazit kayıtları. Kayıtlar şimdilik telefondaki uygulamadan giriliyor."
+      aciklama="Kliniğinizde girilen muayene, tedavi, aşı ve parazit kayıtları. Yeni kayıt, Hastalar bölümünden hastanın kartı açılarak giriliyor."
       yukle={() => saglikKayitlariniOku(klinik)}
       bosBaslik="Henüz sağlık kaydı yok"
       bosAciklama="Bir hastaya muayene, aşı ya da tedavi kaydı girdiğinizde burada listelenir."
       anahtar={(k) => k.id}
-      altNot={{ ikon: Stethoscope, metin: 'Yeni kayıt ve reçete yazma şimdilik telefondaki uygulamada.' }}
+      altNot={{ ikon: Stethoscope, metin: 'Yeni kayıt Hastalar bölümünden giriliyor. Reçete yazma şimdilik telefonda.' }}
       satir={(k) => (
         <>
           <span className="pnl-avatar" aria-hidden="true"><FileText size={17} /></span>

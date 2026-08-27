@@ -262,8 +262,15 @@ export default function Panel() {
           </ul>
           </div>
 
+          {/* ⚠️ 27.08.2026'DA DUZELTILDI. Once "Recete VE DUYURU simdilik
+              telefonda" yaziyordu; olculdu, duyuru panelde CALISIYOR
+              (duyuruOlusturVeGonder -> PanelDuyurular) ve saglik kaydi da
+              panelde yaziliyor (saglikKaydiEkle -> PanelHastalar).
+              Yapabildigi isi yapamiyorum diye anlatan urun, calismayan
+              dugmenin tersi ama ayni sinifta bir hata: veterineri gereksiz
+              yere telefona gonderiyordu. Kalan tek gercek eksik recete. */}
           <p className="pnl-yan-not">
-            Reçete ve duyuru şimdilik telefonda. Web panele sırayla ekleniyor.
+            Reçete yazma şimdilik telefonda. Web panele ekleniyor.
           </p>
 
           {/*
