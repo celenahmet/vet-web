@@ -17,6 +17,7 @@ import PanelHastalar from './PanelHastalar';
 import PanelEkip from './PanelEkip';
 import PanelRaporlar from './PanelRaporlar';
 import PanelDefter from './PanelDefter';
+import PanelReceteler from './PanelReceteler';
 import PanelWebSitesi from './PanelWebSitesi';
 import {
   PanelKayitlar, PanelAsi, PanelTopluluk, PanelSahiplendirme, PanelMesajlar,
@@ -179,6 +180,7 @@ export default function Panel() {
       case 'hastalar': return <PanelHastalar klinik={secili.clinic_id} />;
       case 'kayitlar': return <PanelKayitlar klinik={secili.clinic_id} />;
       case 'asi': return <PanelAsi klinik={secili.clinic_id} />;
+      case 'receteler': return <PanelReceteler klinik={secili.clinic_id} />;
       case 'profil': return <PanelProfil klinik={secili.clinic_id} />;
       case 'topluluk': return <PanelTopluluk klinik={secili.clinic_id} />;
       case 'mesajlar': return <PanelMesajlar klinik={secili.clinic_id} />;
@@ -270,7 +272,7 @@ export default function Panel() {
               dugmenin tersi ama ayni sinifta bir hata: veterineri gereksiz
               yere telefona gonderiyordu. Kalan tek gercek eksik recete. */}
           <p className="pnl-yan-not">
-            Reçete yazma şimdilik telefonda. Web panele ekleniyor.
+            Reçete PDF'i ve fiyat girişi şimdilik telefonda.
           </p>
 
           {/*

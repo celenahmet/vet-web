@@ -390,6 +390,88 @@ export async function calismaSaatiYaz(input: {
   if (!data || data.length === 0) throw new Error('permission denied');
 }
 
+/**
+ * RECETE (mig 0095, panele 27.08.2026'da eklendi).
+ *
+ * ⚠️ RECETEYI VETERINER YAZAR, PLATFORM YAZMAZ. Burada ilac listesi, doz
+ * onerisi ya da otomatik tamamlama YOK ve olmayacak; oneri sunmak tibbi karar
+ * vermek demektir. Mobil taraftaki ayni kural (`prescriptions-api.ts`) burada
+ * da geceli.
+ *
+ * ⚠️ SILME YOK, IPTAL VAR. Yanlis recete silinmiyor, iptal isaretleniyor;
+ * duzeltme yeni surum olarak yaziliyor (`p_replaces`). Sunucu da silmeye izin
+ * vermiyor, DELETE yetkisi hic verilmemis. Defter kaydiyla farki tam burada:
+ * defter duzeltilebilir, recete duzeltilmez -- cunku recete disariya verilmis
+ * bir belgedir ve gecmisi degistirmek, verilmemis bir belgeyi verilmis
+ * gostermek olur.
+ *
+ * ⚠️ TEK RPC, AYRI INSERT DEGIL. Recete ve kalemleri tek islemde yaziliyor;
+ * ikisi ayri gitseydi ve kalemler duserse hastanin gecmisinde ILACSIZ bir
+ * recete kalirdi.
+ */
+export type ReceteKalemi = {
+  drug_name: string;
+  dosage?: string | null;
+  frequency?: string | null;
+  duration?: string | null;
+  note?: string | null;
+};
+
+export type Recete = {
+  id: string;
+  pet_id: string;
+  issued_at: string;
+  diagnosis: string | null;
+  notes: string | null;
+  voided_at: string | null;
+  void_reason: string | null;
+  replaces_id: string | null;
+  superseded_by: string | null;
+  prescription_items: (ReceteKalemi & { id: string; sort_order: number })[];
+};
+
+export async function receteleriOku(klinik: string): Promise<Recete[]> {
+  const { data, error } = await istemci
+    .from('prescriptions')
+    .select(
+      'id, pet_id, issued_at, diagnosis, notes, voided_at, void_reason, replaces_id, superseded_by,'
+      + ' prescription_items(id, drug_name, dosage, frequency, duration, note, sort_order)',
+    )
+    .eq('clinic_id', klinik)
+    .order('issued_at', { ascending: false });
+  if (error) throw error;
+  return (data as unknown as Recete[] | null) ?? [];
+}
+
+/** Yeni recete. `degistirilen` verilirse eski recetenin yerine yazilir. */
+export async function receteYaz(input: {
+  klinik: string;
+  hasta: string;
+  kalemler: ReceteKalemi[];
+  tani?: string | null;
+  notlar?: string | null;
+  degistirilen?: string | null;
+}): Promise<void> {
+  await calistir('write_prescription', {
+    p_clinic: input.klinik,
+    p_pet: input.hasta,
+    p_items: input.kalemler,
+    p_diagnosis: input.tani ?? null,
+    p_notes: input.notlar ?? null,
+    p_replaces: input.degistirilen ?? null,
+  });
+}
+
+/**
+ * Receteyi iptal eder.
+ *
+ * ⚠️ SEBEP ZORUNLU ve bos gecilemiyor. Sebepsiz iptal, gecmise bakan bir
+ * hekimin "neden iptal edilmis" sorusunu cevapsiz birakir; belge kaydinda en
+ * cok ihtiyac duyulan sey tam da budur.
+ */
+export const receteIptalEt = (id: string, sebep: string) =>
+  calistir('void_prescription', { p_id: id, p_reason: sebep.trim() });
+
 /** Ekibe yeni kisi daveti. Yalniz klinik sahibi. */
 export const personelDavetEt = (klinik: string, eposta: string) =>
   calistir('clinic_invite_staff', { p_clinic: klinik, p_email: eposta.trim() });

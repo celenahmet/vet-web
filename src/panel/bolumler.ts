@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, CalendarClock, Users, PawPrint, FileText, Syringe, Building2,
   MessagesSquare, MessageCircle, Heart, UsersRound, Wallet, Globe, BarChart3, Settings,
-  Megaphone, Star,
+  Megaphone, Star, Pill,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -39,7 +39,7 @@ import {
  */
 export type Bolum =
   | 'pano' | 'randevular' | 'musteriler' | 'hastalar' | 'kayitlar' | 'asi'
-  | 'profil' | 'topluluk' | 'mesajlar' | 'sahiplendirme' | 'ekip'
+  | 'receteler' | 'profil' | 'topluluk' | 'mesajlar' | 'sahiplendirme' | 'ekip'
   | 'duyurular' | 'bildirimler' | 'degerlendirmeler'
   | 'defter' | 'websitesi' | 'raporlar' | 'ayarlar';
 
@@ -54,6 +54,7 @@ export const BOLUMLER: {
   { anahtar: 'hastalar',      ad: 'Hastalar',          aciklama: 'Kayıtlı hayvanlar',             ikon: PawPrint },
   { anahtar: 'kayitlar',      ad: 'Sağlık kayıtları',  aciklama: 'Muayene, tedavi ve reçeteler',  ikon: FileText },
   { anahtar: 'asi',           ad: 'Aşı takvimi',       aciklama: 'Zamanı yaklaşan aşı ve parazit',ikon: Syringe },
+  { anahtar: 'receteler',     ad: 'Reçeteler',         aciklama: 'Yazılan reçeteler ve iptaller', ikon: Pill, ekleme: true },
   { anahtar: 'profil',        ad: 'Klinik profili',    aciklama: 'Bilgiler, hizmetler, saatler',  ikon: Building2 },
   { anahtar: 'topluluk',      ad: 'Topluluk',          aciklama: 'Paylaşımlarınız',               ikon: MessagesSquare },
   { anahtar: 'mesajlar',      ad: 'Mesajlar',          aciklama: 'Hayvan sahipleriyle yazışma',   ikon: MessageCircle },

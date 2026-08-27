@@ -42,7 +42,7 @@ export function PanelKayitlar({ klinik }: { klinik: string }) {
       bosBaslik="Henüz sağlık kaydı yok"
       bosAciklama="Bir hastaya muayene, aşı ya da tedavi kaydı girdiğinizde burada listelenir."
       anahtar={(k) => k.id}
-      altNot={{ ikon: Stethoscope, metin: 'Yeni kayıt Hastalar bölümünden giriliyor. Reçete yazma şimdilik telefonda.' }}
+      altNot={{ ikon: Stethoscope, metin: 'Yeni kayıt Hastalar bölümünden, reçete Reçeteler bölümünden giriliyor.' }}
       satir={(k) => (
         <>
           <span className="pnl-avatar" aria-hidden="true"><FileText size={17} /></span>
