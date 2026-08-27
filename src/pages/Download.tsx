@@ -1,8 +1,62 @@
 import { motion } from 'framer-motion';
-import { QrCode, Apple } from 'lucide-react';
+import { QrCode, Apple, Store } from 'lucide-react';
 import SEO from '../components/SEO';
 import { brandConfig } from '../config/brand';
 import { useTranslation } from 'react-i18next';
+
+/**
+ * MAGAZA ROZETI — durum ADRESTEN turetiliyor.
+ *
+ * `url` varsa gercek baglanti, yoksa TIKLANAMAZ "Cok yakinda" rozeti. Ayri bir
+ * "yayinda mi" bayragi bilerek yok: iki kaynak olsaydi biri guncellenip oteki
+ * unutulurdu ve sayfa "yayinda" deyip bos adrese baglanirdi.
+ *
+ * ⚠️ Yayinda olmayan rozet `<a>` DEGIL `<div>`: eskiden `<a href>` idi ve
+ * tiklaninca kullaniciyi magazanin ANA SAYFASINA goturuyordu. Ustunde "Cok
+ * yakinda" yazdigi icin yalan degildi ama hicbir yere goturmeyen dugme,
+ * olmayan dugmeden kotudur. `aria-disabled` ile ekran okuyucuya da soyleniyor.
+ */
+function MagazaRozeti({
+  ad,
+  url,
+  ikon,
+}: {
+  ad: string;
+  url: string | null;
+  ikon: React.ReactNode;
+}) {
+  const ortak =
+    'bg-black text-white px-6 py-3 rounded-2xl flex items-center gap-3 shadow-lg';
+  const icerik = (
+    <>
+      {ikon}
+      <div className="text-left">
+        <div className="text-[10px] opacity-80 font-medium uppercase tracking-wider">
+          {url ? 'Indir' : 'Cok yakinda'}
+        </div>
+        <div className="text-xl font-bold leading-tight">{ad}</div>
+      </div>
+    </>
+  );
+
+  if (!url) {
+    return (
+      <div className={`${ortak} opacity-50 cursor-default select-none`} aria-disabled="true">
+        {icerik}
+      </div>
+    );
+  }
+
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${ortak} hover:scale-105 transition-transform group`}>
+      {icerik}
+    </a>
+  );
+}
 
 export default function Download() {
   const { t } = useTranslation();
@@ -57,31 +111,33 @@ export default function Download() {
           transition={{ delay: 0.3 }}
           className="flex flex-col sm:flex-row gap-4"
         >
-          {/* ⚠️ `href="#"` IDI: tiklanınca hicbir sey olmuyordu. Calismayan bir
-              dugme, olmayan bir ozellikten kotudur; kullanici bozuk sanir.
-              Adres artik `config/brand.ts` icinden geliyor — TEK KAYNAK.
-              ⚠️ Oradaki degerler su an YER TUTUCU (magaza ana sayfasi). Uygulama
-              yayina girince yalniz brand.ts guncellenecek, bu dosya degil. */}
-          <a href={brandConfig.appStoreUrl} target="_blank" rel="noopener noreferrer" className="bg-black text-white px-6 py-3 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform shadow-lg group">
-            <Apple size={32} className="fill-white" />
-            <div className="text-left">
-              <div className="text-[10px] opacity-80 font-medium">Çok yakında</div>
-              <div className="text-xl font-bold leading-tight">App Store</div>
-            </div>
-          </a>
-          
-          <a href={brandConfig.playStoreUrl} target="_blank" rel="noopener noreferrer" className="bg-black text-white px-6 py-3 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform shadow-lg group">
-            <svg viewBox="0 0 512 512" width="32" height="32" className="mr-1">
-              <path fill="#4285F4" d="M37.3 22.4L337.8 194.2c20.5 11.7 34.2 33.3 34.2 57.8s-13.8 46.1-34.2 57.8L37.3 481.6C13.8 495.3 0 473.4 0 445V59c0-28.4 13.8-50.3 37.3-36.6z"></path>
-              <path fill="#34A853" d="M37.3 22.4C13.8 8.7 0 30.6 0 59v386l225-225L37.3 22.4z"></path>
-              <path fill="#FBBC04" d="M37.3 481.6L225 294 337.8 406.8c11.7 6.7 21 16 27.6 27-18.7 20.3-46.7 32-77.4 32-41.5 0-77.8-21.7-98-54l-152.7-87.5z"></path>
-              <path fill="#EA4335" d="M225 294l112.8-112.8c-6.6 11-15.9 20.3-27.6 27L37.3 481.6l152.7-87.5z"></path>
-            </svg>
-            <div className="text-left">
-              <div className="text-[10px] opacity-80 font-medium uppercase tracking-wider">Çok yakında</div>
-              <div className="text-xl font-bold leading-tight">Google Play</div>
-            </div>
-          </a>
+          {/* ⚠️ SIRA BILINCLI: gercekten indirilebilen magaza ONDE.
+              27.08.2026 itibariyla yayinda olan tek magaza AppGallery
+              (26.08'de onaylandi); App Store hala incelemede, Play kapali
+              testte. Yayinda olmayani one koymak, kullaniciyi calismayan
+              dugmeye goturmek olurdu. */}
+          <MagazaRozeti
+            ad="AppGallery"
+            url={brandConfig.appGalleryUrl}
+            ikon={<Store size={32} />}
+          />
+          <MagazaRozeti
+            ad="App Store"
+            url={brandConfig.appStoreUrl}
+            ikon={<Apple size={32} className="fill-white" />}
+          />
+          <MagazaRozeti
+            ad="Google Play"
+            url={brandConfig.playStoreUrl}
+            ikon={
+              <svg viewBox="0 0 512 512" width="32" height="32" className="mr-1">
+                <path fill="#4285F4" d="M37.3 22.4L337.8 194.2c20.5 11.7 34.2 33.3 34.2 57.8s-13.8 46.1-34.2 57.8L37.3 481.6C13.8 495.3 0 473.4 0 445V59c0-28.4 13.8-50.3 37.3-36.6z"></path>
+                <path fill="#34A853" d="M37.3 22.4C13.8 8.7 0 30.6 0 59v386l225-225L37.3 22.4z"></path>
+                <path fill="#FBBC04" d="M37.3 481.6L225 294 337.8 406.8c11.7 6.7 21 16 27.6 27-18.7 20.3-46.7 32-77.4 32-41.5 0-77.8-21.7-98-54l-152.7-87.5z"></path>
+                <path fill="#EA4335" d="M225 294l112.8-112.8c-6.6 11-15.9 20.3-27.6 27L37.3 481.6l152.7-87.5z"></path>
+              </svg>
+            }
+          />
         </motion.div>
 
       </div>
