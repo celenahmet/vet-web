@@ -85,6 +85,33 @@ for (const k of kapsanan) {
   if (!rotalar.includes(k)) fazla.push(k);
 }
 
+// ── YONLENDIRME HEDEFLERI ────────────────────────────────────────────────
+// 27.08.2026: uc Turkce es adres (/gizlilik, /cerez, /kvkk-aydinlatma) kalici
+// yonlendirmeye cevrildi (Ahmet: "ayni seyi neden iki defa aciyoruz").
+//
+// ⚠️ YONLENDIRMENIN KENDI TEHLIKESI VAR. Hedef adres yoksa kullanici yine
+// 404 gorur ve bu, eski adrese hic dokunmamaktan KOTUDUR: eskiden calisan bir
+// bagalanti simdi kiriktir. Bu yuzden her hedef App.tsx'te gercek bir rota
+// olmak zorunda.
+//
+// ⚠️ KAYNAK AYNI ZAMANDA ROTA OLAMAZ. Vercel yonlendirmeyi rewrite'tan ONCE
+// isliyor; ikisi de tanimliysa sayfa asla acilmaz, sessizce erisilmez olur.
+const yonlendirmeler = vercel.redirects ?? [];
+const kirikHedef = yonlendirmeler.filter((y) => !rotalar.includes(y.destination));
+const golgeliKaynak = yonlendirmeler.filter((y) => rotalar.includes(y.source));
+
+if (kirikHedef.length || golgeliKaynak.length) {
+  console.error('\n!!! YONLENDIRME BOZUK — DERLEME DURDURULDU !!!\n');
+  for (const y of kirikHedef) {
+    console.error(`  ${y.source} -> ${y.destination}  (hedef App.tsx'te yok, 404 verir)`);
+  }
+  for (const y of golgeliKaynak) {
+    console.error(`  ${y.source}  (hem rota hem yonlendirme kaynagi; sayfa erisilmez)`);
+  }
+  console.error('');
+  process.exit(1);
+}
+
 // KONTROL SATIRI: denetci gercekten calisiyor mu? Kesinlikle kapsanmasi gereken
 // bir rota secilip elle dogrulaniyor. Bu satir duserse denetim bozuktur.
 if (!kapsanan.has('/blog')) {
@@ -111,4 +138,16 @@ if (eksik.length || fazla.length) {
   process.exit(1);
 }
 
-console.log(`rota denetimi: ${rotalar.length} rota, ${kapsanan.size} yonlendirme, ayrisma yok.`);
+// KONTROL SATIRI (yonlendirme): olmayan bir hedef GERCEKTEN yakalaniyor mu?
+// Yukaridaki kontrol sessizce hep bos donebilirdi; burada bilerek kirik bir
+// ornek verilip yakalandigi dogrulaniyor.
+const ornek = { source: '/bu-kaynak-yok', destination: '/bu-hedef-asla-var-olmayacak' };
+if (rotalar.includes(ornek.destination)) {
+  console.error('rota denetimi: KONTROL SATIRI DUSTU — ornek hedef gercekten var.');
+  process.exit(1);
+}
+
+console.log(
+  `rota denetimi: ${rotalar.length} rota, ${kapsanan.size} yonlendirme, ` +
+    `${yonlendirmeler.length} kalici yonlendirme, ayrisma yok.`,
+);

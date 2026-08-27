@@ -1,7 +1,24 @@
 {
+  "redirects": [
+    {
+      "source": "/gizlilik",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/cerez",
+      "destination": "/cookies",
+      "permanent": true
+    },
+    {
+      "source": "/kvkk-aydinlatma",
+      "destination": "/kvkk",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
-      "source": "/(features|pets|about|blog|clinics|pricing|contact|iletisim|legal|privacy|kvkk|consent|terms|service-agreement|cookies|account-deletion|child-safety|deletion|gizlilik|cerez|kvkk-aydinlatma|account-deletion-request|download|panel)",
+      "source": "/(features|pets|about|blog|clinics|pricing|contact|iletisim|legal|privacy|kvkk|consent|terms|service-agreement|cookies|account-deletion|child-safety|deletion|account-deletion-request|download|panel)",
       "destination": "/"
     },
     {

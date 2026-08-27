@@ -149,9 +149,6 @@ function App() {
             <Route path="/account-deletion" element={<LegalDocument />} />
             <Route path="/child-safety" element={<LegalDocument />} />
             <Route path="/deletion" element={<LegalDocument />} />
-            <Route path="/gizlilik" element={<LegalDocument />} />
-            <Route path="/cerez" element={<LegalDocument />} />
-            <Route path="/kvkk-aydinlatma" element={<LegalDocument />} />
             <Route path="/account-deletion-request" element={<LegalDocument />} />
             <Route path="/download" element={<Download />} />
             {/* KLINIK WEB PANELI (Ahmet, 24.08.2026). Oturum arkasinda, noindex,

@@ -37,16 +37,26 @@ export const getLegalDocument = (id: LegalDocumentId, locale: LegalLocale): Lega
 /**
  * Adres yolundan belge bulur.
  *
- * ⚠️ ESKİ ADRESLER KORUNUYOR. `/deletion` mağaza formlarına verilmiş olabilir;
- * çalışmayı bırakırsa Google Play'in hesap silme bağlantısı kırılır ve bu doğrudan
- * bir red sebebidir. Yeni adres `/account-deletion`, eskisi ona eş.
+ * ⚠️ BURADA YALNIZ **MAĞAZAYA BEYAN EDİLMİŞ** ESKİ ADRESLER DURUYOR.
+ * `/deletion` Google Play veri güvenliği formunda hesap silme bağlantısı olarak
+ * yazılı (`docs/MAGAZA_BEYAN_DEFTERI.md` §20). Çalışmayı bırakırsa o bağlantı
+ * kırılır ve bu doğrudan bir red sebebidir. Yeni adres `/account-deletion`,
+ * eskisi ona eş.
+ *
+ * ⚠️ TÜRKÇE EŞ ADRESLER 27.08.2026'DA KALDIRILDI (İSTEK: Ahmet — *"/gizlilik
+ * diye niye açtık, her yerde privacy diye paylaştık"*). Ölçüldü: `/gizlilik`,
+ * `/cerez` ve `/kvkk-aydinlatma` hiçbir mağaza formunda, hiçbir belgede ve
+ * uygulamanın hiçbir yerinde geçmiyordu; yalnız aynı metni ikinci bir adresten
+ * daha sunuyorlardı.
+ *
+ * ⚠️ SİLİNMEDİ, **YÖNLENDİRİLDİ**. `vercel.json` içinde 301 kuralı var. Bir
+ * adresi 404'e düşürmek, biri onu bir yere yapıştırmışsa geri alınamaz; kalıcı
+ * yönlendirme hem tek sayfa bırakıyor hem de eski bağlantıyı yaşatıyor.
+ * Yönlendirmelerin hedefi `npm run rota-denetimi` tarafından doğrulanıyor.
  */
 const ESKI_ADRESLER: Record<string, LegalDocumentId> = {
   '/deletion': 'account-deletion',
   '/account-deletion-request': 'account-deletion',
-  '/kvkk-aydinlatma': 'kvkk',
-  '/gizlilik': 'privacy',
-  '/cerez': 'cookies',
 };
 
 export const findLegalDocumentByPath = (

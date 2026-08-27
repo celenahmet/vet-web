@@ -529,9 +529,11 @@ yaz(join(KOK, 'dist/404.html'), govdeDegistir(bulunamadiHtml, bulunamadiGovde));
  * ⚠️ TURKCE BASILIYOR: `i18n` varsayilani `tr` ve JS'siz gelen ziyaretci dil
  * secemiyor. React devralinca kullanicinin diline gecis zaten yapiliyor.
  *
- * ⚠️ ESKI ADRESLER DE URETILIYOR (`/gizlilik`, `/kvkk-aydinlatma` gibi): mağaza
- * beyanlarinda ve eski baglantilarda geciyorlar, biri bos kabuk kalirsa denetim
- * tam da oraya bakabilir.
+ * ⚠️ MAGAZAYA BEYAN EDILMIS ESKI ADRESLER DE URETILIYOR (`/deletion`): Google
+ * Play veri guvenligi formunda hesap silme baglantisi olarak yazili, biri bos
+ * kabuk kalirsa denetim tam da oraya bakabilir. Turkce es adresler (`/gizlilik`,
+ * `/cerez`, `/kvkk-aydinlatma`) 27.08.2026'da kalici yonlendirmeye cevrildi ve
+ * artik burada uretilmiyor; kaynagi `src/data/legal/index.ts` icinde yazili.
  */
 const hukuki = await import(pathToFileURL(join(KOK, 'src/data/legal/index.ts')).href);
 
@@ -576,7 +578,7 @@ for (const yol of hukuki.ALL_LEGAL_PATHS) {
 
   /*
    * ⚠️ CANONICAL HER ZAMAN BELGENIN KENDI SLUG'I, uretilen adres degil. Eski
-   * adresler (`/gizlilik`) ayni belgeyi gosteriyor; canonical'i eski adrese
+   * adres (`/deletion`) ayni belgeyi gosteriyor; canonical'i eski adrese
    * yazsaydik arama motoruna iki ayri sayfa varmis gibi gorunurdu.
    */
   const html = kafaDegistir(sablon, {
