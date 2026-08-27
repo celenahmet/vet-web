@@ -305,6 +305,91 @@ export async function klinikBilgileriniGuncelle(
   }
 }
 
+/**
+ * KLINIK PROFILI YAZMA YOLLARI (27.08.2026, esitleme denetimi 2. madde).
+ *
+ * Panel bu iki seyi OKUYABILIYOR ama DEGISTIREMIYORDU: hizmet listesi ve
+ * calisma saatleri. Klinik bilgisini duzeltmek icin telefona gitmek gerekiyordu
+ * ve bu, "web paneli" fikrini bosa cikariyordu.
+ *
+ * ⚠️ MOBILLE AYNI YUZEY. Ikisi de `clinic_capabilities` ve `clinic_hours`
+ * tablolarina yaziyor; ayri bir RPC ya da ayri bir tablo ACILMADI. Ikinci bir
+ * yol acmak, iki tarafin zamanla ayrisması demekti.
+ *
+ * ⚠️ YETKI SUNUCUDA. Bu fonksiyonlar hicbir rol kontrolu yapmiyor; "web panele
+ * girebilen zaten kliniktir" varsayimi YOK. Tablolarin RLS politikalari
+ * karar veriyor, buradaki tek is basarisizligi GORUNUR kilmak.
+ */
+
+/**
+ * Bir hizmeti acar ya da kapatir.
+ *
+ * ⚠️ ACMA ile KAPATMA farkli dogrulaniyor ve bu bilincli. Acmada bos sonuc
+ * kesin olarak RLS demektir. Kapatmada bos sonuc iki anlama gelebilir: ya RLS
+ * engelledi ya da satir zaten yoktu (baska sekmede kapatilmis olabilir).
+ * Ikisini ayirt etmek icin satirin HALA DURUP DURMADIGI okunuyor; duruyorsa
+ * silinememis demektir. Bos sonucu kosulsuz hata saymak, mesru bir tekrari
+ * hata gibi gosterirdi.
+ */
+export async function hizmetiAcKapat(klinik: string, kod: string, acik: boolean): Promise<void> {
+  if (acik) {
+    const { data, error } = await istemci
+      .from('clinic_capabilities')
+      .upsert({ clinic_id: klinik, service_code: kod }, { onConflict: 'clinic_id,service_code' })
+      .select('service_code');
+    if (error) throw error;
+    if (!data || data.length === 0) throw new Error('permission denied');
+    return;
+  }
+
+  const { error } = await istemci
+    .from('clinic_capabilities')
+    .delete()
+    .eq('clinic_id', klinik)
+    .eq('service_code', kod);
+  if (error) throw error;
+
+  const { data: kalan, error: okumaHatasi } = await istemci
+    .from('clinic_capabilities')
+    .select('service_code')
+    .eq('clinic_id', klinik)
+    .eq('service_code', kod);
+  if (okumaHatasi) throw okumaHatasi;
+  if (kalan && kalan.length > 0) throw new Error('permission denied');
+}
+
+/**
+ * Bir gunun calisma saatini yazar.
+ *
+ * ⚠️ KAPALI GUNDE SAAT NULL'A CEKILIYOR, mobildeki `setHours` ile birebir ayni.
+ * Kapali bir gunde eski saatleri birakmak, ekranda "kapali" yazip veride
+ * "09:00-18:00" tutmak olurdu; iki kaynak ayrisirsa hangisinin dogru oldugunu
+ * kimse bilemez.
+ */
+export async function calismaSaatiYaz(input: {
+  klinik: string;
+  gun: number;
+  kapali: boolean;
+  acilis: string | null;
+  kapanis: string | null;
+}): Promise<void> {
+  const { data, error } = await istemci
+    .from('clinic_hours')
+    .upsert(
+      {
+        clinic_id: input.klinik,
+        weekday: input.gun,
+        is_closed: input.kapali,
+        opens_at: input.kapali ? null : (input.acilis || null),
+        closes_at: input.kapali ? null : (input.kapanis || null),
+      },
+      { onConflict: 'clinic_id,weekday' },
+    )
+    .select('weekday');
+  if (error) throw error;
+  if (!data || data.length === 0) throw new Error('permission denied');
+}
+
 /** Ekibe yeni kisi daveti. Yalniz klinik sahibi. */
 export const personelDavetEt = (klinik: string, eposta: string) =>
   calistir('clinic_invite_staff', { p_clinic: klinik, p_email: eposta.trim() });

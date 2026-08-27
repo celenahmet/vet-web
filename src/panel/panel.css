@@ -1129,3 +1129,23 @@ a.pnl-widget-eylem { text-decoration: none; }
    (+/−) metinle ayni bilgiyi tekrar veriyor, renk tek basina anlatmasin diye. */
 .pnl-avatar-gelir { background: color-mix(in srgb, var(--pnl-basarili) 15%, transparent); color: color-mix(in srgb, var(--pnl-basarili) 80%, #000); }
 .pnl-avatar-gider { background: color-mix(in srgb, var(--pnl-tehlike) 13%, transparent); color: color-mix(in srgb, var(--pnl-tehlike) 80%, #000); }
+
+/* Calisma saati satirindaki iki zaman alani (27.08.2026, profil duzenlenebilir
+   oldugunda eklendi). Ayri sinif gerekti cunku `pnl-satir-sag` tek bir metin
+   icin yazilmisti ve iki girdi yan yana sigmiyordu. */
+.pnl-saat-ikili {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.pnl-saat-alan {
+  width: 92px;
+  padding: 4px 6px;
+  border: 1px solid var(--pnl-kenar, #d8dbe3);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 13px;
+  color: inherit;
+  background: transparent;
+}

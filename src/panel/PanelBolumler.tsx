@@ -9,6 +9,8 @@ import {
   ulasilabilirKisileriOku, turleriOku,
   type UlasilabilirKisi, type Tur,
   type Hizmet, type CalismaSaati, type Duyuru, type HizmetAdi,
+  hizmetiAcKapat,
+  calismaSaatiYaz,
 } from './veri';
 import { KAYIT_TURU, TUR, tarihYaz } from './sozluk';
 import PanelListe from './PanelListe';
@@ -416,17 +418,20 @@ export function PanelMesajlar({ klinik }: { klinik: string }) {
 export function PanelProfil({ klinik }: { klinik: string }) {
   const [hizmetler, setHizmetler] = useState<Hizmet[] | null>(null);
   const [saatler, setSaatler] = useState<CalismaSaati[]>([]);
-  const [adlar, setAdlar] = useState<Record<string, string>>({});
+  const [katalog, setKatalog] = useState<HizmetAdi[]>([]);
   const [hata, setHata] = useState<string | null>(null);
+  const [isleyen, setIsleyen] = useState<string | null>(null);
+  const [saatHatasi, setSaatHatasi] = useState<string | null>(null);
+  const [saatKaydediliyor, setSaatKaydediliyor] = useState(false);
+  const [saatMesaji, setSaatMesaji] = useState<string | null>(null);
 
   useEffect(() => {
     let iptal = false;
     setHizmetler(null); setHata(null);
     Promise.all([hizmetleriOku(klinik), saatleriOku(klinik), hizmetAdlariniOku()])
-      .then(([h, s, a]) => {
+      .then(([h, sa, k]) => {
         if (iptal) return;
-        setHizmetler(h); setSaatler(s);
-        setAdlar(Object.fromEntries((a as HizmetAdi[]).map((x) => [x.code, x.name_tr])));
+        setHizmetler(h); setSaatler(sa); setKatalog(k as HizmetAdi[]);
       })
       .catch((e: { message?: string }) => { if (!iptal) { setHizmetler([]); setHata(e?.message ?? ''); } });
     return () => { iptal = true; };
@@ -435,20 +440,78 @@ export function PanelProfil({ klinik }: { klinik: string }) {
   if (hizmetler === null) return <Yukleniyor />;
   if (hata) return <Hata mesaj={hata} />;
 
-  /* ⚠️ Gunler sunucudan sirasiz gelebiliyor; pazartesiden basliyoruz cunku
-     calisma haftasi oyle okunuyor. 0 (pazar) sona atiliyor. */
-  const sirali = [...saatler].sort((a, b) => ((a.weekday + 6) % 7) - ((b.weekday + 6) % 7));
+  const acikKodlar = new Set(hizmetler.map((h) => h.service_code));
+  const secili = (kod: string) => hizmetler.find((h) => h.service_code === kod);
+
+  /**
+   * ⚠️ IYIMSER GUNCELLEME, AMA GERI SARILIYOR. Anahtar aninda donuyor cunku
+   * sunucuyu beklemek dokunma hissini olduruyor; istek duserse eski hale
+   * DONULUYOR ve sebep yaziliyor. Iyimser gosterip hatayi yutmak, "kaydettim"
+   * deyip kaydetmemekle ayni sey olurdu.
+   */
+  async function hizmetDegistir(kod: string, acik: boolean) {
+    setIsleyen(kod); setHata(null);
+    const oncekiler = hizmetler as Hizmet[];
+    setHizmetler(acik
+      ? [...oncekiler, { service_code: kod, note: null, price_min: null, price_max: null } as Hizmet]
+      : oncekiler.filter((h) => h.service_code !== kod));
+    try {
+      await hizmetiAcKapat(klinik, kod, acik);
+    } catch (e) {
+      setHizmetler(oncekiler);
+      setHata((e as { message?: string })?.message ?? 'Hizmet güncellenemedi.');
+    } finally {
+      setIsleyen(null);
+    }
+  }
+
+  /* Yedi gunun hepsi gosteriliyor: veritabaninda satiri olmayan gun de
+     duzenlenebilmeli, yoksa hic girilmemis bir gun sonsuza kadar bos kalirdi.
+     Pazartesiden basliyor, pazar sona atiliyor. */
+  const gunSirasi = [1, 2, 3, 4, 5, 6, 0];
+  const gunler = gunSirasi.map((g) =>
+    saatler.find((s2) => s2.weekday === g)
+      ?? ({ weekday: g, is_closed: true, opens_at: null, closes_at: null } as CalismaSaati));
+
+  function gunuDegistir(gun: number, degisiklik: Partial<CalismaSaati>) {
+    setSaatMesaji(null);
+    setSaatler((onceki) => {
+      const varMi = onceki.some((s2) => s2.weekday === gun);
+      const temel = onceki.find((s2) => s2.weekday === gun)
+        ?? ({ weekday: gun, is_closed: true, opens_at: null, closes_at: null } as CalismaSaati);
+      const yeni = { ...temel, ...degisiklik };
+      return varMi ? onceki.map((s2) => (s2.weekday === gun ? yeni : s2)) : [...onceki, yeni];
+    });
+  }
+
+  /**
+   * ⚠️ YEDI GUN DE YAZILIYOR, yalniz degisenler degil. Hangi gunun degistigini
+   * izlemek bir defter daha tutmak demekti ve o defterin eskimesi sessiz bir
+   * hata dogururdu. Upsert idempotent; ayni degeri tekrar yazmanin zarari yok.
+   */
+  async function saatleriKaydet() {
+    setSaatKaydediliyor(true); setSaatHatasi(null); setSaatMesaji(null);
+    try {
+      for (const g of gunler) {
+        await calismaSaatiYaz({
+          klinik,
+          gun: g.weekday,
+          kapali: g.is_closed,
+          acilis: g.opens_at,
+          kapanis: g.closes_at,
+        });
+      }
+      setSaatMesaji('Çalışma saatleri kaydedildi.');
+    } catch (e) {
+      setSaatHatasi((e as { message?: string })?.message ?? 'Saatler kaydedilemedi.');
+    } finally {
+      setSaatKaydediliyor(false);
+    }
+  }
 
   return (
     <section className="pnl-bolum">
       <header className="pnl-bolum-basi">
-        {/*
-          ⚠️ BOLUM BASLIGI BURADA YOK, UST CUBUKTA. Once ikisi de yaziyordu ve
-          ekranda ayni kelime iki kez goruluyordu ("Raporlar / Raporlar").
-          Ust cubuk yapiskan, yani sayfa kaydiginca da gorunur duruyor; burada
-          tekrarlamak hem yer yiyor hem ekran okuyucuya ayni basligi iki kez
-          okutuyordu. Burada yalniz ACIKLAMA ve eylem dugmeleri kaliyor.
-        */}
         <div>
           <p className="pnl-aciklama">
             Verdiğiniz hizmetler ve çalışma saatleriniz. Bu bilgiler klinik sayfanızda ve
@@ -464,30 +527,47 @@ export function PanelProfil({ klinik }: { klinik: string }) {
             <h3>Hizmetler</h3>
           </header>
           <div className="pnl-widget-govde">
-            {hizmetler.length === 0 ? (
-              <p className="pnl-widget-bos">
-                Hizmet seçilmemiş. Hangi hizmetleri verdiğinizi girmediğiniz sürece kliniğiniz
-                aramalarda daha az görünür.
-              </p>
+            {katalog.length === 0 ? (
+              <p className="pnl-widget-bos">Hizmet listesi yüklenemedi.</p>
             ) : (
               <ul className="pnl-satirlar">
-                {hizmetler.map((h) => (
-                  <li key={h.service_code} className="pnl-satir">
-                    <div className="pnl-satir-govde">
-                      <p className="pnl-satir-ad">{adlar[h.service_code] ?? h.service_code}</p>
-                      {h.note ? <p className="pnl-satir-alt">{h.note}</p> : null}
-                    </div>
-                    {/* ⚠️ Fiyat varsa gosteriliyor, yoksa satir bos birakilmiyor:
-                        "fiyat girilmemis" demek, sifir TL yazmaktan dogru. */}
-                    <span className="pnl-satir-sag pnl-soluk">
-                      {h.price_min || h.price_max
-                        ? `${((h.price_min ?? h.price_max ?? 0) / 100).toLocaleString('tr-TR')} ₺`
-                        : 'fiyat girilmemiş'}
-                    </span>
-                  </li>
-                ))}
+                {katalog.map((k) => {
+                  const acik = acikKodlar.has(k.code);
+                  const kayit = secili(k.code);
+                  return (
+                    <li key={k.code} className="pnl-satir">
+                      <label className={acik ? 'pnl-anahtar' : 'pnl-anahtar pnl-anahtar-kapali'}>
+                        <input
+                          type="checkbox"
+                          checked={acik}
+                          disabled={isleyen !== null}
+                          onChange={(e) => void hizmetDegistir(k.code, e.target.checked)}
+                        />
+                        <span className="pnl-anahtar-yazi">
+                          <span className="pnl-anahtar-ad">{k.name_tr}</span>
+                          {kayit?.note ? <span className="pnl-anahtar-alt">{kayit.note}</span> : null}
+                        </span>
+                      </label>
+                      {/* ⚠️ Fiyat varsa gosteriliyor, yoksa satir bos birakilmiyor:
+                          "fiyat girilmemis" demek, sifir TL yazmaktan dogru. */}
+                      {acik ? (
+                        <span className="pnl-satir-sag pnl-soluk">
+                          {kayit && (kayit.price_min || kayit.price_max)
+                            ? `${((kayit.price_min ?? kayit.price_max ?? 0) / 100).toLocaleString('tr-TR')} ₺`
+                            : 'fiyat girilmemiş'}
+                        </span>
+                      ) : null}
+                    </li>
+                  );
+                })}
               </ul>
             )}
+            {/* ⚠️ Fiyat ve not burada DUZENLENMIYOR ve bu acikca yaziliyor.
+                Duzenlenebilir gibi gosterip calismamasindansa, nerede
+                yapilacagini soylemek dogru. */}
+            <p className="pnl-widget-not">
+              Fiyat ve açıklama girişi şimdilik telefondaki uygulamada.
+            </p>
           </div>
         </section>
 
@@ -497,30 +577,61 @@ export function PanelProfil({ klinik }: { klinik: string }) {
             <h3>Çalışma saatleri</h3>
           </header>
           <div className="pnl-widget-govde">
-            {sirali.length === 0 ? (
-              <p className="pnl-widget-bos">Çalışma saatleri girilmemiş.</p>
-            ) : (
-              <ul className="pnl-satirlar">
-                {sirali.map((g) => (
-                  <li key={g.weekday} className="pnl-satir">
-                    <div className="pnl-satir-govde">
-                      <p className="pnl-satir-ad">{GUNLER[g.weekday] ?? `Gün ${g.weekday}`}</p>
-                    </div>
-                    <span className={g.is_closed ? 'pnl-satir-sag pnl-soluk' : 'pnl-satir-sag'}>
-                      {g.is_closed ? 'Kapalı' : `${saatKirp(g.opens_at)} – ${saatKirp(g.closes_at)}`}
+            <ul className="pnl-satirlar">
+              {gunler.map((g) => (
+                <li key={g.weekday} className="pnl-satir">
+                  <label className={g.is_closed ? 'pnl-anahtar pnl-anahtar-kapali' : 'pnl-anahtar'}>
+                    <input
+                      type="checkbox"
+                      checked={!g.is_closed}
+                      onChange={(e) => gunuDegistir(g.weekday, { is_closed: !e.target.checked })}
+                    />
+                    <span className="pnl-anahtar-yazi">
+                      <span className="pnl-anahtar-ad">{GUNLER[g.weekday] ?? `Gün ${g.weekday}`}</span>
                     </span>
-                  </li>
-                ))}
-              </ul>
-            )}
+                  </label>
+                  <span className="pnl-saat-ikili">
+                    {g.is_closed ? (
+                      <span className="pnl-soluk">Kapalı</span>
+                    ) : (
+                      <>
+                        <input
+                          className="pnl-saat-alan"
+                          type="time"
+                          value={saatKirp(g.opens_at)}
+                          aria-label={`${GUNLER[g.weekday] ?? ''} açılış saati`}
+                          onChange={(e) => gunuDegistir(g.weekday, { opens_at: e.target.value || null })}
+                        />
+                        <span aria-hidden="true">–</span>
+                        <input
+                          className="pnl-saat-alan"
+                          type="time"
+                          value={saatKirp(g.closes_at)}
+                          aria-label={`${GUNLER[g.weekday] ?? ''} kapanış saati`}
+                          onChange={(e) => gunuDegistir(g.weekday, { closes_at: e.target.value || null })}
+                        />
+                      </>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="pnl-widget-eylem">
+              <button
+                type="button"
+                className="pnl-dugme pnl-dugme-olumlu"
+                disabled={saatKaydediliyor}
+                onClick={() => void saatleriKaydet()}
+              >
+                {saatKaydediliyor ? 'Kaydediliyor...' : 'Saatleri kaydet'}
+              </button>
+              {saatMesaji ? <span className="pnl-soluk">{saatMesaji}</span> : null}
+            </div>
+            {saatHatasi ? <p className="pnl-hata-kucuk">{saatHatasi}</p> : null}
           </div>
         </section>
       </div>
-
-      <p className="pnl-dipnot">
-        <Settings size={14} aria-hidden="true" />
-        Hizmet ve saat düzenleme şimdilik telefondaki uygulamada.
-      </p>
     </section>
   );
 }
