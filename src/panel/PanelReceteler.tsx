@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Pill, Plus, Ban } from 'lucide-react';
+import { Pill, Plus, Ban, Printer } from 'lucide-react';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
 import Bos from './Bos';
@@ -13,6 +13,7 @@ import {
   type ReceteKalemi,
   type Hasta,
 } from './veri';
+import { receteyiYazdir } from './recete-yazdir';
 
 /**
  * RECETELER (esitleme denetimi 3. madde, 27.08.2026).
@@ -30,9 +31,10 @@ import {
  * vermiyor (DELETE yetkisi hic verilmemis), yani bu yalniz arayuz nezaketi
  * degil, iki katmanda birden kural.
  *
- * ⚠️ PDF BU EKRANDA YOK ve bu ACIKCA yaziliyor. Mobilde `prescription-pdf.ts`
- * var; web tarafi icin ayri bir uretim gerekiyor. Olmayan bir dugme
- * koymaktansa nerede oldugunu soylemek dogru.
+ * ⚠️ CIKTI VAR (27.08.2026). Bu yorum once "PDF bu ekranda YOK" diyordu; ayni
+ * turda eklendi ve yorum da guncellendi. `recete-yazdir.ts` mobildekiyle BIREBIR
+ * ayni sablonu uretip tarayicinin yazdirma penceresine veriyor; kullanici
+ * oradan "PDF olarak kaydet" diyebiliyor. Ayri bir PDF kutuphanesi eklenmedi.
  */
 
 const bosKalem = (): ReceteKalemi => ({ drug_name: '', dosage: '', frequency: '', duration: '', note: '' });
@@ -45,7 +47,7 @@ function tarih(s: string): string {
   }
 }
 
-export default function PanelReceteler({ klinik }: { klinik: string }) {
+export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; klinikAdi: string }) {
   const [receteler, setReceteler] = useState<Recete[] | null>(null);
   const [hastalar, setHastalar] = useState<Hasta[]>([]);
   const [hata, setHata] = useState<string | null>(null);
@@ -188,6 +190,17 @@ export default function PanelReceteler({ klinik }: { klinik: string }) {
                 ) : null}
               </div>
               <span className="pnl-satir-sag">
+                {/* ⚠️ IPTAL EDILMIS RECETE DE YAZDIRILABILIYOR. Ciktinin
+                    uzerinde "Iptal edildi" ve sebebi yaziyor; gecmisteki bir
+                    belgenin kopyasini alamamak, arsivi eksik birakirdi. */}
+                <button
+                  type="button"
+                  className="pnl-dugme pnl-dugme-sade"
+                  onClick={() => receteyiYazdir(r, klinikAdi, hastaAdi(r.pet_id))}
+                >
+                  <Printer size={15} aria-hidden="true" />
+                  Yazdır
+                </button>
                 {r.voided_at ? (
                   <span className="pnl-etiket">İptal</span>
                 ) : (
@@ -206,8 +219,11 @@ export default function PanelReceteler({ klinik }: { klinik: string }) {
         </ul>
       )}
 
+      {/* ⚠️ "PDF simdilik telefonda" notu KALDIRILDI cunku artik dogru degil.
+          Yazdirma penceresinden "PDF olarak kaydet" secilebiliyor. */}
       <p className="pnl-dipnot">
-        Reçete PDF'i şimdilik telefondaki uygulamada.
+        Yazdır düğmesi tarayıcının yazdırma penceresini açar; oradan PDF olarak da
+        kaydedebilirsiniz.
       </p>
 
       <Diyalog
