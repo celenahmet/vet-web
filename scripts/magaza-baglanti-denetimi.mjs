@@ -19,6 +19,18 @@
  *
  * Kural: adres ya `null` olacak ya da magazanin uygulama sayfasi bicimine
  * uyacak. Arasi yok — cunku "arasi" tam olarak bu hatanin kendisiydi.
+ *
+ * ⚠️ BICIM DENETLENIYOR, KIMLIK DENETLENMIYOR — ve denetlenemiyor da.
+ * 27.08.2026'da AppGallery adresi girilirken olculdu:
+ *   · `curl` sahte bir uygulama kimligine (C999999999) de **HTTP 200** donuyor
+ *   · sayfada sunucu tarafi meta yok (`<title>` bos), her sey istemcide ciziliyor
+ *   · web istemcisinin veri ucu imza istiyor (`rtnCode 1002`, HTTP 403)
+ * Yani "adres aciliyor mu" diye bakmak HICBIR SEY kanitlamaz. Bir sonraki
+ * oturum `curl` ile 200 gorup "dogrulandi" DEMESIN. Kimligin dogrulugunun tek
+ * kaynagi magaza konsolu, yani Ahmet.
+ *
+ * Ayni tuzak Apple ve Play icin yok: onlarin uygulama sayfalari olmayan bir
+ * kimlikte 404 donuyor. Yani oradaki adres GERCEKTEN olculebilir.
  */
 import { readFileSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';

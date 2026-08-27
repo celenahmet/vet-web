@@ -35,7 +35,7 @@ export const brandConfig = {
    */
   appStoreUrl: null as string | null,
   playStoreUrl: null as string | null,
-  appGalleryUrl: null as string | null,
+  appGalleryUrl: "https://appgallery.huawei.com/#/app/C118760085" as string | null,
   social: {
     website: "https://veterito.com",
     community: "https://veterito.com/legal",
