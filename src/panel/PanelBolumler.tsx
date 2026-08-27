@@ -2,16 +2,33 @@ import { FileText, Syringe, MessagesSquare, Heart, Settings, Clock, Megaphone, S
 import { useEffect, useState } from 'react';
 
 import {
-  saglikKayitlariniOku, hatirlatmalariOku, gonderileriOku, ilanlariOku,
-  duyurulariOku, hizmetleriOku, saatleriOku, hizmetAdlariniOku,
-  bildirimleriOku, degerlendirmeleriOku,
-  duyuruOlusturVeGonder, ilanOlustur, gonderiPaylas, mesajGonder,
-  ulasilabilirKisileriOku, turleriOku,
-  type UlasilabilirKisi, type Tur,
-  type Hizmet, type CalismaSaati, type Duyuru, type HizmetAdi,
+  saglikKayitlariniOku,
+  hatirlatmalariOku,
+  gonderileriOku,
+  ilanlariOku,
+  duyurulariOku,
+  hizmetleriOku,
+  saatleriOku,
+  hizmetAdlariniOku,
+  bildirimleriOku,
+  degerlendirmeleriOku,
+  duyuruOlusturVeGonder,
+  ilanOlustur,
+  gonderiPaylas,
+  mesajGonder,
+  ulasilabilirKisileriOku,
+  turleriOku,
+  type UlasilabilirKisi,
+  type Tur,
+  type Hizmet,
+  type CalismaSaati,
+  type Duyuru,
+  type HizmetAdi,
   hizmetiAcKapat,
   calismaSaatiYaz,
   saglikKaydiSil,
+  klinikTurleriniOku,
+  turAcKapat,
 } from './veri';
 import { KAYIT_TURU, TUR, tarihYaz } from './sozluk';
 import PanelListe from './PanelListe';
@@ -454,6 +471,9 @@ export function PanelProfil({ klinik }: { klinik: string }) {
   const [hizmetler, setHizmetler] = useState<Hizmet[] | null>(null);
   const [saatler, setSaatler] = useState<CalismaSaati[]>([]);
   const [katalog, setKatalog] = useState<HizmetAdi[]>([]);
+  const [turKatalog, setTurKatalog] = useState<Tur[]>([]);
+  const [acikTurler, setAcikTurler] = useState<string[]>([]);
+  const [turIsleyen, setTurIsleyen] = useState<string | null>(null);
   const [hata, setHata] = useState<string | null>(null);
   const [isleyen, setIsleyen] = useState<string | null>(null);
   const [saatHatasi, setSaatHatasi] = useState<string | null>(null);
@@ -463,10 +483,14 @@ export function PanelProfil({ klinik }: { klinik: string }) {
   useEffect(() => {
     let iptal = false;
     setHizmetler(null); setHata(null);
-    Promise.all([hizmetleriOku(klinik), saatleriOku(klinik), hizmetAdlariniOku()])
-      .then(([h, sa, k]) => {
+    Promise.all([
+      hizmetleriOku(klinik), saatleriOku(klinik), hizmetAdlariniOku(),
+      turleriOku(), klinikTurleriniOku(klinik),
+    ])
+      .then(([h, sa, k, tk, at]) => {
         if (iptal) return;
         setHizmetler(h); setSaatler(sa); setKatalog(k as HizmetAdi[]);
+        setTurKatalog(tk as Tur[]); setAcikTurler(at as string[]);
       })
       .catch((e: { message?: string }) => { if (!iptal) { setHizmetler([]); setHata(e?.message ?? ''); } });
     return () => { iptal = true; };
@@ -497,6 +521,21 @@ export function PanelProfil({ klinik }: { klinik: string }) {
       setHata((e as { message?: string })?.message ?? 'Hizmet güncellenemedi.');
     } finally {
       setIsleyen(null);
+    }
+  }
+
+  /** Hizmet anahtariyla ayni desen: iyimser cevir, duserse geri sar. */
+  async function turDegistir(kod: string, acik: boolean) {
+    setTurIsleyen(kod); setHata(null);
+    const oncekiler = acikTurler;
+    setAcikTurler(acik ? [...oncekiler, kod] : oncekiler.filter((t) => t !== kod));
+    try {
+      await turAcKapat(klinik, kod, acik);
+    } catch (e) {
+      setAcikTurler(oncekiler);
+      setHata((e as { message?: string })?.message ?? 'Tür güncellenemedi.');
+    } finally {
+      setTurIsleyen(null);
     }
   }
 
@@ -585,11 +624,17 @@ export function PanelProfil({ klinik }: { klinik: string }) {
                       </label>
                       {/* ⚠️ Fiyat varsa gosteriliyor, yoksa satir bos birakilmiyor:
                           "fiyat girilmemis" demek, sifir TL yazmaktan dogru. */}
-                      {acik ? (
+                      {/* ⚠️ FIYAT VARSA GOSTERILIYOR, YOKSA SATIR BOS KALIYOR.
+                          Once "fiyat girilmemis" yaziyordu; olculdu, fiyati
+                          girecek bir ekran HICBIR YERDE yok (mobilde
+                          `useSetCapabilityPrice` hicbir ekrandan cagrilmiyor).
+                          Yani o etiket her satirda sonsuza kadar duracakti ve
+                          kullaniciya girmesi gereken bir sey varmis gibi
+                          gosterecekti. Alan sunucuda duruyor, girisi gelince
+                          burasi kendiliginden dolar. */}
+                      {acik && kayit && (kayit.price_min || kayit.price_max) ? (
                         <span className="pnl-satir-sag pnl-soluk">
-                          {kayit && (kayit.price_min || kayit.price_max)
-                            ? `${((kayit.price_min ?? kayit.price_max ?? 0) / 100).toLocaleString('tr-TR')} ₺`
-                            : 'fiyat girilmemiş'}
+                          {`${((kayit.price_min ?? kayit.price_max ?? 0) / 100).toLocaleString('tr-TR')} ₺`}
                         </span>
                       ) : null}
                     </li>
@@ -597,12 +642,10 @@ export function PanelProfil({ klinik }: { klinik: string }) {
                 })}
               </ul>
             )}
-            {/* ⚠️ Fiyat ve not burada DUZENLENMIYOR ve bu acikca yaziliyor.
-                Duzenlenebilir gibi gosterip calismamasindansa, nerede
-                yapilacagini soylemek dogru. */}
-            <p className="pnl-widget-not">
-              Fiyat ve açıklama girişi şimdilik telefondaki uygulamada.
-            </p>
+            {/* ⚠️ ONCE "fiyat girisi simdilik telefonda" yaziyordu ve BU YANLISTI:
+                olculdu, fiyat girisi telefonda da YOK. Sunucuda alan duruyor ama
+                onu yazan tek bir ekran bile yok. Olmayan bir yeri isaret etmek,
+                kullaniciyi bos yere aramaya gonderir. */}
           </div>
         </section>
 
@@ -667,6 +710,48 @@ export function PanelProfil({ klinik }: { klinik: string }) {
           </div>
         </section>
       </div>
+
+      {/* ⚠️ TURLER AYRI BIR KUTUDA, ustteki ikili izgaranin icinde degil:
+          liste 14 satir ve iki sutunlu izgarada yaniyla hizalanmiyordu. */}
+      <section className="pnl-widget">
+        <header className="pnl-widget-basi">
+          <span className="pnl-widget-ikon" aria-hidden="true"><Stethoscope size={17} /></span>
+          <h3>Baktığınız türler</h3>
+        </header>
+        <div className="pnl-widget-govde">
+          {/* ⚠️ Bos birakmanin bedeli yaziliyor. Tur secmeyen klinik,
+              bakabilecegi hastaya aramada GORUNMUYOR; bunu soylemeden
+              "istege bagli" bir liste gibi gostermek yaniltici olurdu. */}
+          <p className="pnl-widget-not">
+            Hangi hayvanlara baktığınızı seçin. Seçmediğiniz sürece o türün sahibi
+            kliniğinizi aramalarda göremez.
+          </p>
+          {turKatalog.length === 0 ? (
+            <p className="pnl-widget-bos">Tür listesi yüklenemedi.</p>
+          ) : (
+            <ul className="pnl-satirlar">
+              {turKatalog.map((t) => {
+                const acik = acikTurler.includes(t.code);
+                return (
+                  <li key={t.code} className="pnl-satir">
+                    <label className={acik ? 'pnl-anahtar' : 'pnl-anahtar pnl-anahtar-kapali'}>
+                      <input
+                        type="checkbox"
+                        checked={acik}
+                        disabled={turIsleyen !== null}
+                        onChange={(e) => void turDegistir(t.code, e.target.checked)}
+                      />
+                      <span className="pnl-anahtar-yazi">
+                        <span className="pnl-anahtar-ad">{t.name_tr}</span>
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+      </section>
     </section>
   );
 }

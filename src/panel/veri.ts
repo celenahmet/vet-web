@@ -539,6 +539,59 @@ export async function saglikKaydiSil(kayit: string): Promise<void> {
   if (kalan && kalan.length > 0) throw new Error('permission denied');
 }
 
+/**
+ * KLINIGIN BAKTIGI TURLER (esitleme, 27.08.2026).
+ *
+ * Mobilde `clinic/capabilities.tsx` bunu yonetiyordu, panelde yoktu.
+ * Tur secimi kliniğin aramalarda hangi hayvan sahibine gorunecegini belirliyor;
+ * bos birakan klinik, bakabilecegi hastaya gorunmuyor.
+ */
+/* ⚠️ `Tur` tipi ve tur listesi okuyucusu ZATEN VARDI (`turleriOku`, asagida).
+   Ilk yazimda ikinci bir kopya acilmisti; ayni tabloyu iki ayri isimle okumak,
+   birinin degisip otekinin geride kalmasi demekti. Kopya kaldirildi. */
+
+export async function klinikTurleriniOku(klinik: string): Promise<string[]> {
+  const { data, error } = await istemci
+    .from('clinic_species')
+    .select('species_code')
+    .eq('clinic_id', klinik);
+  if (error) throw error;
+  return ((data as { species_code: string }[] | null) ?? []).map((x) => x.species_code);
+}
+
+/**
+ * Turu acar ya da kapatir.
+ *
+ * ⚠️ Hizmet acip kapatmakla ayni desen: acmada bos sonuc kesin RLS, kapatmada
+ * satirin hala durup durmadigi okunuyor. Ayni gerekce, ayni kalip.
+ */
+export async function turAcKapat(klinik: string, kod: string, acik: boolean): Promise<void> {
+  if (acik) {
+    const { data, error } = await istemci
+      .from('clinic_species')
+      .upsert({ clinic_id: klinik, species_code: kod }, { onConflict: 'clinic_id,species_code' })
+      .select('species_code');
+    if (error) throw error;
+    if (!data || data.length === 0) throw new Error('permission denied');
+    return;
+  }
+
+  const { error } = await istemci
+    .from('clinic_species')
+    .delete()
+    .eq('clinic_id', klinik)
+    .eq('species_code', kod);
+  if (error) throw error;
+
+  const { data: kalan, error: okumaHatasi } = await istemci
+    .from('clinic_species')
+    .select('species_code')
+    .eq('clinic_id', klinik)
+    .eq('species_code', kod);
+  if (okumaHatasi) throw okumaHatasi;
+  if (kalan && kalan.length > 0) throw new Error('permission denied');
+}
+
 /** Ekibe yeni kisi daveti. Yalniz klinik sahibi. */
 export const personelDavetEt = (klinik: string, eposta: string) =>
   calistir('clinic_invite_staff', { p_clinic: klinik, p_email: eposta.trim() });
