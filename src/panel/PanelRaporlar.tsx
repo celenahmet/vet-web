@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Star, CalendarCheck, PawPrint, Eye, TrendingUp } from 'lucide-react';
+import { Star, CalendarCheck, PawPrint, Eye, TrendingUp, Syringe} from 'lucide-react';
 
 import { analizOku, raporOku, degerlendirmeleriOku, type Analiz, type Rapor, type Degerlendirme } from './veri';
 import { tarihYaz } from './sozluk';
@@ -99,6 +99,10 @@ export default function PanelRaporlar({ klinik }: { klinik: string }) {
         {[
           { ikon: CalendarCheck, ad: 'Toplam randevu', deger: analiz?.appt_total ?? 0, anlam: 'Bugüne kadar açılan', sinif: '' },
           { ikon: PawPrint, ad: 'Kayıtlı hasta', deger: analiz?.patients_total ?? 0, anlam: `${analiz?.patients_new ?? 0} tanesi yeni`, sinif: '' },
+          /* ⚠️ `upcoming_due` esitleme denetiminde cikan TEK eksikti: mobil
+             rapor ekrani bunu gosteriyordu, panel gostermiyordu. Ayni kaynaktan
+             (`clinic_analytics`) geliyor, yeni sunucu isi yok. */
+          { ikon: Syringe, ad: 'Yaklaşan aşı ve parazit', deger: analiz?.upcoming_due ?? 0, anlam: 'Zamanı gelmek üzere olan kayıt', sinif: 'pnl-kart-ikon-uyari' },
           { ikon: Eye, ad: 'Sayfa görüntülenme', deger: rapor?.views_total ?? 0, anlam: 'Klinik sayfanız kaç kez açıldı', sinif: 'pnl-kart-ikon-altin' },
           { ikon: Star, ad: 'Değerlendirme', deger: rapor?.reviews_total ?? 0, anlam: rapor?.rating_avg ? `Ortalama ${rapor.rating_avg.toFixed(1)}` : 'Henüz puan yok', sinif: 'pnl-kart-ikon-uyari' },
         ].map(({ ikon: Ikon, ad, deger, anlam, sinif }) => (
