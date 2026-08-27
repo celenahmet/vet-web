@@ -43,7 +43,7 @@ export const legalDocumentsEN: Record<LegalDocumentId, LegalDocument> = {
       {
         number: '2', title: 'What we collect',
         blocks: [
-          { kind: 'text', value: 'In short: what you provide when you create an account, what you enter for your animal, and the records created as you use the platform. The itemised list is in **Data Protection Notice §2**.' },
+          { kind: 'text', value: 'In short: what you provide when you create an account, what you enter for your animal, and the records created as you use the platform. The itemised list is in the **Personal data we process** section of the **Data Protection Notice**.' },
           { kind: 'text', value: 'Health information you enter belongs to your **animal**, not to you as a person. We protect it with the same care regardless.' },
         ],
       },
@@ -75,7 +75,7 @@ export const legalDocumentsEN: Record<LegalDocumentId, LegalDocument> = {
       },
       {
         number: '5', title: 'Who we share data with',
-        blocks: [{ kind: 'text', value: 'Only with the infrastructure providers that run the service, under contract and for limited purposes. The full list and their locations are in **Data Protection Notice §4**. We do not sell or share data with advertising networks.' }],
+        blocks: [{ kind: 'text', value: 'Only with the infrastructure providers that run the service, under contract and for limited purposes. The full list and their locations are in the **Transfers** section of the **Data Protection Notice**. We do not sell or share data with advertising networks.' }],
       },
       {
         number: '6', title: 'Security',
@@ -94,7 +94,7 @@ export const legalDocumentsEN: Record<LegalDocumentId, LegalDocument> = {
       },
       {
         number: '9', title: 'Your rights and contact',
-        blocks: [{ kind: 'text', value: 'You may exercise your rights of access, rectification, erasure, portability and objection from inside the app or by writing to `info@veterito.com`. Legal basis and timeframes are in **Data Protection Notice §7**.' }],
+        blocks: [{ kind: 'text', value: 'You may exercise your rights of access, rectification, erasure, portability and objection from inside the app or by writing to `info@veterito.com`. Legal bases and retention periods are in the **Purposes and legal bases** and **Retention periods** sections of the **Data Protection Notice**.' }],
       },
       {
         number: '10', title: 'Changes',
@@ -283,7 +283,7 @@ export const legalDocumentsEN: Record<LegalDocumentId, LegalDocument> = {
         ]}],
       },
     ],
-    closing: [{ kind: 'text', value: 'For questions about consent, write to `info@veterito.com`. The legal basis for each type of processing is set out in **Data Protection Notice §5**.' }],
+    closing: [{ kind: 'text', value: 'For questions about consent, write to `info@veterito.com`. The legal basis for each type of processing is set out in the **Purposes and legal bases** section of the **Data Protection Notice**.' }],
   },
 
   terms: {

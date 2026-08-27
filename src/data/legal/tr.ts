@@ -61,7 +61,7 @@ export const legalDocumentsTR: Record<LegalDocumentId, LegalDocument> = {
           {
             kind: 'text',
             value:
-              'Kısaca: hesabınızı açarken verdikleriniz, hayvanınız için girdikleriniz ve platformu kullanırken oluşan kayıtlar. Kalem kalem listesi **Aydınlatma Metni §2**’dedir.',
+              'Kısaca: hesabınızı açarken verdikleriniz, hayvanınız için girdikleriniz ve platformu kullanırken oluşan kayıtlar. Kalem kalem listesi **Aydınlatma Metni**’nin **İşlediğimiz kişisel veriler** bölümündedir.',
           },
           {
             kind: 'text',
@@ -120,7 +120,7 @@ export const legalDocumentsTR: Record<LegalDocumentId, LegalDocument> = {
           {
             kind: 'text',
             value:
-              'Yalnızca hizmeti çalıştıran altyapı sağlayıcılarıyla, sözleşmeli ve sınırlı amaçla. Tam liste ve konumları **Aydınlatma Metni §4**’tedir. Reklam ağlarına veri satışı ya da paylaşımı yapmayız.',
+              'Yalnızca hizmeti çalıştıran altyapı sağlayıcılarıyla, sözleşmeli ve sınırlı amaçla. Tam liste ve konumları **Aydınlatma Metni**’nin **Verilerin aktarılması** bölümündedir. Reklam ağlarına veri satışı ya da paylaşımı yapmayız.',
           },
         ],
       },
@@ -169,7 +169,7 @@ export const legalDocumentsTR: Record<LegalDocumentId, LegalDocument> = {
           {
             kind: 'text',
             value:
-              'Erişim, düzeltme, silme, veri indirme ve itiraz haklarınızı uygulama içinden ya da `info@veterito.com` üzerinden kullanabilirsiniz. Hukuki dayanak ve süreler **Aydınlatma Metni §6**’dadır.',
+              'Erişim, düzeltme, silme, veri indirme ve itiraz haklarınızı uygulama içinden ya da `info@veterito.com` üzerinden kullanabilirsiniz. Hukuki dayanak ve süreler **Aydınlatma Metni**’nin **İşleme amaçları ve hukuki sebepler** ve **Saklama süreleri** bölümlerindedir.',
           },
         ],
       },
@@ -515,7 +515,7 @@ export const legalDocumentsTR: Record<LegalDocumentId, LegalDocument> = {
       {
         kind: 'text',
         value:
-          'Rızanızla ilgili sorularınız için `info@veterito.com`. Hangi verinin hangi hukuki sebeple işlendiğini **Aydınlatma Metni §5**’te bulabilirsiniz.',
+          'Rızanızla ilgili sorularınız için `info@veterito.com`. Hangi verinin hangi hukuki sebeple işlendiğini **Aydınlatma Metni**’nin **İşleme amaçları ve hukuki sebepler** bölümünde bulabilirsiniz.',
       },
     ],
   },
