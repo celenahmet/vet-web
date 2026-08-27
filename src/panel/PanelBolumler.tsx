@@ -11,6 +11,7 @@ import {
   type Hizmet, type CalismaSaati, type Duyuru, type HizmetAdi,
   hizmetiAcKapat,
   calismaSaatiYaz,
+  saglikKaydiSil,
 } from './veri';
 import { KAYIT_TURU, TUR, tarihYaz } from './sozluk';
 import PanelListe from './PanelListe';
@@ -34,8 +35,32 @@ const GUNLER = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma'
 const saatKirp = (s: string | null) => (s ? s.slice(0, 5) : '--:--');
 
 export function PanelKayitlar({ klinik }: { klinik: string }) {
+  /* Silinen satirdan sonra liste sunucudan YENIDEN okunuyor (tetik). Satiri
+     yerel olarak gizlemek daha ucuzdu ama silme sunucuda duserse ekran
+     olmayan bir basariyi gostermeye devam ederdi. */
+  const [tetik, setTetik] = useState(0);
+  const [silmeHatasi, setSilmeHatasi] = useState<string | null>(null);
+
+  /**
+   * ⚠️ RECETEDEN FARKLI. Recete disariya verilmis bir belgedir, silinmez iptal
+   * edilir. Saglik kaydi klinigin kendi defterindeki bir satir; yanlis girilen
+   * bir muayeneyi duzeltmenin yolu silip yeniden yazmak. Mobil taraf da tam
+   * boyle davraniyor (`removePetRecord`).
+   */
+  async function sil(id: string, ad: string) {
+    if (!window.confirm(`"${ad}" kaydı silinsin mi? Bu işlem geri alınamaz.`)) return;
+    setSilmeHatasi(null);
+    try {
+      await saglikKaydiSil(id);
+      setTetik((t) => t + 1);
+    } catch (e) {
+      setSilmeHatasi((e as { message?: string })?.message ?? 'Kayıt silinemedi.');
+    }
+  }
+
   return (
     <PanelListe
+      tetik={tetik}
       baslik="Sağlık kayıtları"
       aciklama="Kliniğinizde girilen muayene, tedavi, aşı ve parazit kayıtları. Yeni kayıt, Hastalar bölümünden hastanın kartı açılarak giriliyor."
       yukle={() => saglikKayitlariniOku(klinik)}
@@ -55,7 +80,17 @@ export function PanelKayitlar({ klinik }: { klinik: string }) {
               {k.weight_kg ? ` · ${k.weight_kg} kg` : ''}
               {k.next_due_at ? ` · Sonraki: ${tarihYaz(k.next_due_at, false)}` : ''}
             </p>
+            {silmeHatasi ? <p className="pnl-hata-kucuk">{silmeHatasi}</p> : null}
           </div>
+          <span className="pnl-kisi-eylem">
+            <button
+              type="button"
+              className="pnl-dugme pnl-dugme-olumsuz"
+              onClick={() => void sil(k.id, k.title || (k.kind ? (KAYIT_TURU[k.kind] ?? k.kind) : 'Kayıt'))}
+            >
+              Sil
+            </button>
+          </span>
         </>
       )}
     />

@@ -4,6 +4,8 @@ import { User, UserPlus, Plus, Smartphone, NotebookPen } from 'lucide-react';
 import {
   musterileriOku, musteriDavetEt, cevrimdisiMusterileriOku, defterMusterisiEkle,
   type Musteri, type CevrimdisiMusteri,
+  musteriNotuYaz,
+  musteriyiCikar,
 } from './veri';
 import { tarihYaz } from './sozluk';
 import Bos from './Bos';
@@ -33,6 +35,13 @@ import Diyalog from './Diyalog';
  */
 export default function PanelMusteriler({ klinik }: { klinik: string }) {
   const [platform, setPlatform] = useState<Musteri[] | null>(null);
+  /* Not duzenleme ve cikarma (esitleme 7. madde). Ayni anda tek satir
+     duzenleniyor: birden fazla acik kutu, hangisinin kaydedildigini
+     belirsizlestirirdi. */
+  const [notYazilan, setNotYazilan] = useState<string | null>(null);
+  const [notMetni, setNotMetni] = useState('');
+  const [satirBekliyor, setSatirBekliyor] = useState<string | null>(null);
+  const [satirHatasi, setSatirHatasi] = useState<string | null>(null);
   const [defter, setDefter] = useState<CevrimdisiMusteri[]>([]);
   const [hata, setHata] = useState<string | null>(null);
   const [islemHatasi, setIslemHatasi] = useState<string | null>(null);
@@ -92,6 +101,33 @@ export default function PanelMusteriler({ klinik }: { klinik: string }) {
     } finally { setBekliyor(false); }
   }
 
+
+  async function notKaydet(kullanici: string) {
+    setSatirBekliyor(kullanici); setSatirHatasi(null);
+    try {
+      await musteriNotuYaz(klinik, kullanici, notMetni);
+      setPlatform((o) => (o ?? []).map((x) => (x.user_id === kullanici ? { ...x, note: notMetni.trim() || null } : x)));
+      setNotYazilan(null);
+    } catch (e) {
+      setSatirHatasi((e as { message?: string })?.message ?? 'Not kaydedilemedi.');
+    } finally {
+      setSatirBekliyor(null);
+    }
+  }
+
+  async function musteriCikar(kullanici: string, ad: string | null) {
+    if (!window.confirm(`${ad || 'Bu müşteri'} klinikten çıkarılsın mı? Sağlık kayıtları silinmez.`)) return;
+    setSatirBekliyor(kullanici); setSatirHatasi(null);
+    try {
+      await musteriyiCikar(klinik, kullanici);
+      setPlatform((o) => (o ?? []).filter((x) => x.user_id !== kullanici));
+    } catch (e) {
+      setSatirHatasi((e as { message?: string })?.message ?? 'Müşteri çıkarılamadı.');
+    } finally {
+      setSatirBekliyor(null);
+    }
+  }
+
   if (platform === null) return <Yukleniyor />;
   if (hata) return <Hata mesaj={hata} tekrar={yukle} />;
 
@@ -142,9 +178,68 @@ export default function PanelMusteriler({ klinik }: { klinik: string }) {
                   <span className="pnl-etiket pnl-etiket-mavi"><Smartphone size={11} /> uygulama üyesi</span>
                 </p>
                 <p className="pnl-kisi-rol">{m.pet_count > 0 ? `${m.pet_count} hayvanı kayıtlı` : 'Kayıtlı hayvanı yok'}</p>
-                {m.note ? <p className="pnl-kisi-ek">Not: {m.note}</p> : null}
+                {notYazilan === m.user_id ? (
+                  <div className="pnl-alan">
+                    <label htmlFor={`pnl-not-${m.user_id}`}>Klinik içi not</label>
+                    <input
+                      id={`pnl-not-${m.user_id}`}
+                      type="text"
+                      value={notMetni}
+                      onChange={(e) => setNotMetni(e.target.value)}
+                      placeholder="Bu not yalnızca sizin görürsünüz"
+                    />
+                    <span className="pnl-alan-ipucu">Not müşteriye gösterilmez.</span>
+                  </div>
+                ) : m.note ? (
+                  <p className="pnl-kisi-ek">Not: {m.note}</p>
+                ) : null}
                 <p className="pnl-kisi-ek pnl-soluk">Müşteri oldu: {tarihYaz(m.created_at, false)}</p>
+                {satirHatasi && satirBekliyor === null && notYazilan === m.user_id ? (
+                  <p className="pnl-hata-kucuk">{satirHatasi}</p>
+                ) : null}
               </div>
+              <span className="pnl-kisi-eylem">
+                {notYazilan === m.user_id ? (
+                  <>
+                    <button
+                      type="button"
+                      className="pnl-dugme pnl-dugme-sade"
+                      onClick={() => { setNotYazilan(null); setSatirHatasi(null); }}
+                    >
+                      Vazgeç
+                    </button>
+                    <button
+                      type="button"
+                      className="pnl-dugme pnl-dugme-olumlu"
+                      disabled={satirBekliyor !== null}
+                      onClick={() => void notKaydet(m.user_id)}
+                    >
+                      {satirBekliyor === m.user_id ? 'Kaydediliyor...' : 'Kaydet'}
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      className="pnl-dugme pnl-dugme-sade"
+                      onClick={() => { setNotYazilan(m.user_id); setNotMetni(m.note ?? ''); setSatirHatasi(null); }}
+                    >
+                      Not
+                    </button>
+                    {/* ⚠️ CIKARMA yalniz BAGLANTIYI kaldiriyor; hastanin saglik
+                        kayitlari duruyor. Onay soruluyor cunku geri alma yolu
+                        musteriyi yeniden davet etmekten geciyor. */}
+                    <button
+                      type="button"
+                      className="pnl-dugme pnl-dugme-olumsuz"
+                      disabled={satirBekliyor !== null}
+                      onClick={() => void musteriCikar(m.user_id, m.display_name)}
+                    >
+                      Çıkar
+                    </button>
+                  </>
+                )}
+              </span>
             </li>
           ))}
           {defter.map((m) => (

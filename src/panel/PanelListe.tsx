@@ -17,7 +17,7 @@ import Hata from './Hata';
  * her bolum onu kullanir ve okuyucu neden bos oldugunu ogrenemezdi.
  */
 export default function PanelListe<T>({
-  baslik, aciklama, yukle, bosBaslik, bosAciklama, satir, anahtar, eylem, altNot,
+  baslik, aciklama, yukle, bosBaslik, bosAciklama, satir, anahtar, eylem, altNot, tetik,
 }: {
   baslik: string;
   aciklama: string;
@@ -28,6 +28,16 @@ export default function PanelListe<T>({
   anahtar: (kayit: T) => string;
   eylem?: ReactNode;
   altNot?: { ikon: LucideIcon; metin: string };
+  /**
+   * Listeyi yeniden yukletmek icin sayac.
+   *
+   * ⚠️ 27.08.2026'da eklendi: bir satir silinebilir olunca listenin kendini
+   * tazelemesi gerekti. Cagiran tarafta yerel olarak satiri gizlemek daha
+   * ucuzdu ama YANLIS olurdu: silme sunucuda duserse ekran, olmayan bir
+   * basariyi gostermeye devam ederdi. Sayaci artirmak listeyi sunucudan
+   * yeniden okutuyor, yani ekranda hep GERCEK duruyor.
+   */
+  tetik?: number;
 }) {
   const [liste, setListe] = useState<T[] | null>(null);
   const [hata, setHata] = useState<string | null>(null);
@@ -41,8 +51,9 @@ export default function PanelListe<T>({
     return () => { iptal = true; };
     // yukle her render'da yeni bir islev olabilir; bagimliliga koymak sonsuz
     // donguye yol acar. Bolum degisimi zaten bileseni yeniden olusturuyor.
+    // `tetik` ise bilerek bagimlilikta: cagiran taraf artirdiginda yeniden okunur.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [tetik]);
 
   const AltIkon = altNot?.ikon;
 

@@ -472,6 +472,73 @@ export async function receteYaz(input: {
 export const receteIptalEt = (id: string, sebep: string) =>
   calistir('void_prescription', { p_id: id, p_reason: sebep.trim() });
 
+/**
+ * MUSTERI NOTU VE CIKARMA (esitleme 7. madde, 27.08.2026).
+ *
+ * ⚠️ NOT KLINIK ICIDIR, musteriye gosterilmiyor. Mobil taraftaki ayni kural
+ * (`customers-api.ts`) burada da geceli; notu musteriye acmak, klinigin kendi
+ * defterini disariya vermek olurdu.
+ */
+export async function musteriNotuYaz(klinik: string, kullanici: string, not: string): Promise<void> {
+  const { data, error } = await istemci
+    .from('clinic_customers')
+    .update({ note: not.trim() || null })
+    .eq('clinic_id', klinik)
+    .eq('user_id', kullanici)
+    .select('user_id');
+  if (error) throw error;
+  if (!data || data.length === 0) throw new Error('permission denied');
+}
+
+/**
+ * Musteriyi klinikten cikarir.
+ *
+ * ⚠️ SATIRIN GERCEKTEN GITTIGI OKUNARAK dogrulaniyor. Silmede bos sonuc iki
+ * anlama gelir: RLS engelledi ya da satir zaten yoktu. Ikisini ayirt etmeden
+ * "silindi" demek, yetkisiz bir denemeyi basari gibi gostermek olurdu.
+ *
+ * ⚠️ HASTA KAYITLARI SILINMIYOR. Bu islem yalniz klinik ile musteri
+ * baglantisini kaldiriyor; gecmis saglik kayitlari hastanin gecmisidir ve
+ * baglantiyla birlikte yok olmasi kabul edilemez.
+ */
+export async function musteriyiCikar(klinik: string, kullanici: string): Promise<void> {
+  const { error } = await istemci
+    .from('clinic_customers')
+    .delete()
+    .eq('clinic_id', klinik)
+    .eq('user_id', kullanici);
+  if (error) throw error;
+
+  const { data: kalan, error: okumaHatasi } = await istemci
+    .from('clinic_customers')
+    .select('user_id')
+    .eq('clinic_id', klinik)
+    .eq('user_id', kullanici);
+  if (okumaHatasi) throw okumaHatasi;
+  if (kalan && kalan.length > 0) throw new Error('permission denied');
+}
+
+/**
+ * Saglik kaydini siler (esitleme 8. madde).
+ *
+ * ⚠️ RECETEDEN FARKLI ve fark bilincli. Recete disariya verilmis bir belgedir,
+ * silinmez iptal edilir. Saglik kaydi ise klinigin kendi defterindeki bir
+ * satir; yanlis girilen bir muayene tarihini duzeltmenin yolu onu silip
+ * yeniden yazmak. Mobil taraf da tam olarak boyle davraniyor
+ * (`removePetRecord`).
+ */
+export async function saglikKaydiSil(kayit: string): Promise<void> {
+  const { error } = await istemci.from('clinic_pet_records').delete().eq('id', kayit);
+  if (error) throw error;
+
+  const { data: kalan, error: okumaHatasi } = await istemci
+    .from('clinic_pet_records')
+    .select('id')
+    .eq('id', kayit);
+  if (okumaHatasi) throw okumaHatasi;
+  if (kalan && kalan.length > 0) throw new Error('permission denied');
+}
+
 /** Ekibe yeni kisi daveti. Yalniz klinik sahibi. */
 export const personelDavetEt = (klinik: string, eposta: string) =>
   calistir('clinic_invite_staff', { p_clinic: klinik, p_email: eposta.trim() });
