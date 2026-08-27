@@ -512,6 +512,86 @@ bulunamadiHtml = bulunamadiHtml
 
 yaz(join(KOK, 'dist/404.html'), govdeDegistir(bulunamadiHtml, bulunamadiGovde));
 
+// --- HUKUKI BELGELER ---
+/**
+ * ⚠️ NEDEN EKLENDI (27.08.2026, olculdu). Hukuki sayfalar on-cizilmiyordu:
+ *   /blog     -> 21697 bayt, gercek icerik
+ *   /privacy  -> 8814 bayt   (SPA kabugu)
+ *   /kvkk     -> 8814 bayt   (ayni kabuk)
+ * Yani sayfayi PROGRAMLA ceken bir sistem (duzenleyici, magaza tarayicisi,
+ * arsivleyici) bos kabuk goruyordu. Insanda calisiyordu ve AppGallery de bu
+ * adresle onayladi, yani bloker degildi; ama urun 199 ulkede halka acildiktan
+ * ve AB borcu acikken bunlarin makine tarafindan okunabilir olmasi onem kazandi.
+ *
+ * ⚠️ METNE DOKUNULMUYOR. Belgeler urunun kendisi; bu gecis yalnizca var olan
+ * blogu HTML'e ceviriyor, tek bir kelimesini degistirmiyor.
+ *
+ * ⚠️ TURKCE BASILIYOR: `i18n` varsayilani `tr` ve JS'siz gelen ziyaretci dil
+ * secemiyor. React devralinca kullanicinin diline gecis zaten yapiliyor.
+ *
+ * ⚠️ ESKI ADRESLER DE URETILIYOR (`/gizlilik`, `/kvkk-aydinlatma` gibi): mağaza
+ * beyanlarinda ve eski baglantilarda geciyorlar, biri bos kabuk kalirsa denetim
+ * tam da oraya bakabilir.
+ */
+const hukuki = await import(pathToFileURL(join(KOK, 'src/data/legal/index.ts')).href);
+
+/** `**kalin**` ve `` `kod` `` disinda hicbir isaret tanınmiyor; gerisi duz metin. */
+const hukukiMetin = (v) => kalin(v).replace(/`([^`]+)`/g, '<code>$1</code>');
+
+function hukukiBlok(b) {
+  switch (b.kind) {
+    case 'text': return `<p>${hukukiMetin(b.value)}</p>`;
+    case 'callout': return `<aside>${hukukiMetin(b.value)}</aside>`;
+    case 'list': return `<ul>${b.items.map((i) => `<li>${hukukiMetin(i)}</li>`).join('')}</ul>`;
+    case 'steps': return `<ol>${b.items.map((i) => `<li>${hukukiMetin(i)}</li>`).join('')}</ol>`;
+    case 'table':
+      return `<table><thead><tr>${b.columns.map((h) => `<th>${kac(h)}</th>`).join('')}</tr></thead><tbody>${b.rows
+        .map((r) => `<tr>${r.map((h) => `<td>${kac(h)}</td>`).join('')}</tr>`)
+        .join('')}</tbody></table>`;
+    default: return '';
+  }
+}
+
+const HUKUKI_ON_YUKLEME = onYuklemeler(['LegalDocument-']);
+let hukukiSayi = 0;
+
+for (const yol of hukuki.ALL_LEGAL_PATHS) {
+  const belge = hukuki.findLegalDocumentByPath(yol, 'tr');
+  if (!belge) continue;
+
+  const govde = [
+    `<article>`,
+    `<h1>${kac(belge.title)}</h1>`,
+    `<p><strong>Yürürlük:</strong> ${kac(belge.effectiveDate)}</p>`,
+    ...(belge.intro ?? []).map(hukukiBlok),
+    ...(belge.sections ?? []).map(
+      (b) =>
+        `<section><h2>${kac([b.number, b.title].filter(Boolean).join('. '))}</h2>${(b.blocks ?? [])
+          .map(hukukiBlok)
+          .join('')}</section>`,
+    ),
+    ...(belge.closing ?? []).map(hukukiBlok),
+    `</article>`,
+  ].join('\n');
+
+  /*
+   * ⚠️ CANONICAL HER ZAMAN BELGENIN KENDI SLUG'I, uretilen adres degil. Eski
+   * adresler (`/gizlilik`) ayni belgeyi gosteriyor; canonical'i eski adrese
+   * yazsaydik arama motoruna iki ayri sayfa varmis gibi gorunurdu.
+   */
+  const html = kafaDegistir(sablon, {
+    baslik: `${belge.title} | Veterito`,
+    aciklama: belge.summary,
+    adres: `${SITE}${belge.slug}`,
+    tip: 'website',
+    jsonLd: [],
+    onYukle: HUKUKI_ON_YUKLEME,
+  });
+
+  yaz(join(KOK, 'dist', yol.replace(/^\//, ''), 'index.html'), govdeDegistir(html, govde));
+  hukukiSayi += 1;
+}
+
 // --- Sitemap ---
 const sitemapYolu = join(KOK, 'dist/sitemap.xml');
 if (existsSync(sitemapYolu)) {
@@ -524,4 +604,6 @@ if (existsSync(sitemapYolu)) {
   }
 }
 
-console.log(`prerender: ${yazilar.length} yazi + liste sayfasi uretildi`);
+console.log(
+  `prerender: ${yazilar.length} yazi + liste sayfasi + ${hukukiSayi} hukuki sayfa uretildi`,
+);

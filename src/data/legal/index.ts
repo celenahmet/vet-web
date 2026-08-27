@@ -1,9 +1,16 @@
-import { legalDocumentsEN } from './en';
-import { legalDocumentsTR } from './tr';
+/**
+ * ⚠️ UZANTILAR ACIKCA YAZILI (27.08.2026). Bu modul artik yalniz tarayicida
+ * degil, `scripts/prerender.mjs` icinde NODE tarafindan da yukleniyor (hukuki
+ * sayfalarin on-cizimi icin). Node'un ESM cozumleyicisi uzantisiz goreli
+ * import'u cozmuyor ve bu iki satir DEGER import'u, yani tip soymayla silinmiyor.
+ * `allowImportingTsExtensions` iki tsconfig'de de acik, Vite de bunu kaldiriyor.
+ */
+import { legalDocumentsEN } from './en.ts';
+import { legalDocumentsTR } from './tr.ts';
 import type { LegalDocument, LegalDocumentId, LegalDocumentSet } from './types';
 
 export type { LegalBlock, LegalDocument, LegalDocumentId, LegalSection } from './types';
-export { LEGAL_CONTACT_EMAIL, LEGAL_DOCUMENT_ORDER, LEGAL_PRODUCT_NAME } from './types';
+export { LEGAL_CONTACT_EMAIL, LEGAL_DOCUMENT_ORDER, LEGAL_PRODUCT_NAME } from './types.ts';
 
 export type LegalLocale = 'tr' | 'en';
 
