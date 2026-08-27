@@ -7,7 +7,15 @@
  * içinde yalnız iki işaret tanınıyor (`**kalın**` ve `` `kod` ``), gerisi düz metin.
  *
  * ⚠️ BELGELER ÜRÜNÜN KENDİSİ, dokümantasyon değil. Uygulamada ve mağaza listelemesinde
- * bu adreslere bağlantı veriliyor; metin değişirse yürürlük tarihi de değişir.
+ * bu adreslere bağlantı veriliyor.
+ *
+ * ⚠️ YÜRÜRLÜK TARİHİ **ESASA** BAĞLI, her düzenlemeye değil (Ahmet, 27.08.2026).
+ * Toplanan veri, haklar, süreler, aktarım ya da hukuki sebep değiştiyse tarih de
+ * değişir. Yazım düzeltmesi, biçim değişikliği ya da yanlış bir bölüm atfının
+ * onarılması tarihi oynatmaz: bunlar var olan şartı DAHA DOĞRU anlatıyor, yeni
+ * bir şart getirmiyor. Her dokunuşta tarihi ileri almak, "şartlar değişti,
+ * yeniden oku" uyarısını anlamsızlaştırır ve gerçekten değiştiği günü görünmez
+ * kılar. Emin değilsen ESASA bağlı say ve tarihi değiştir.
  */
 
 export type LegalDocumentId =
