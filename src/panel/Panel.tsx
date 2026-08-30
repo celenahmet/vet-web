@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { LogOut, Building2, Menu, X, ChevronDown } from 'lucide-react';
 import type { Session } from '@supabase/supabase-js';
 
@@ -28,6 +28,12 @@ import BildirimPenceresi from './BildirimPenceresi';
 import OturumKilidi from './OturumKilidi';
 import Yukleniyor from './Yukleniyor';
 import './panel.css';
+
+// Ağır operasyon araçları yalnız ilgili bölüm açıldığında indirilir. QR/barkod
+// üreticisi ve tarayıcı OCR motoru genel panel paketine yük bindirmez.
+const PanelStok = lazy(() => import('./PanelStok'));
+const PanelLaboratuvar = lazy(() => import('./PanelLaboratuvar'));
+const PanelEntegrasyonlar = lazy(() => import('./PanelEntegrasyonlar'));
 
 /**
  * KLINIK WEB PANELI (İSTEK: Ahmet, 24.08.2026)
@@ -181,6 +187,8 @@ export default function Panel() {
       case 'kayitlar': return <PanelKayitlar klinik={secili.clinic_id} />;
       case 'asi': return <PanelAsi klinik={secili.clinic_id} />;
       case 'receteler': return <PanelReceteler klinik={secili.clinic_id} klinikAdi={secili.clinic_name} />;
+      case 'stok': return <PanelStok klinik={secili.clinic_id} />;
+      case 'laboratuvar': return <PanelLaboratuvar klinik={secili.clinic_id} />;
       case 'profil': return <PanelProfil klinik={secili.clinic_id} />;
       case 'topluluk': return <PanelTopluluk klinik={secili.clinic_id} />;
       case 'mesajlar': return <PanelMesajlar klinik={secili.clinic_id} />;
@@ -190,6 +198,7 @@ export default function Panel() {
       case 'degerlendirmeler': return <PanelDegerlendirmeler klinik={secili.clinic_id} />;
       case 'defter': return <PanelDefter klinik={secili.clinic_id} />;
       case 'ekip': return <PanelEkip klinik={secili.clinic_id} />;
+      case 'entegrasyonlar': return <PanelEntegrasyonlar klinik={secili.clinic_id} sahip={secili.role === 'owner'} />;
       case 'websitesi': return <PanelWebSitesi klinik={secili.clinic_id} />;
       case 'ayarlar': return <PanelAyarlar />;
       case 'raporlar': return <PanelRaporlar klinik={secili.clinic_id} />;
@@ -272,7 +281,7 @@ export default function Panel() {
               dugmenin tersi ama ayni sinifta bir hata: veterineri gereksiz
               yere telefona gonderiyordu. Kalan tek gercek eksik recete. */}
           <p className="pnl-yan-not">
-            Reçete PDF'i ve fiyat girişi şimdilik telefonda.
+            Mobil ve web aynı klinik verisiyle çalışır; yetki ve doğrulama sunucuda uygulanır.
           </p>
 
           {/*
@@ -338,7 +347,7 @@ export default function Panel() {
         </div>
       </header>
 
-          <main className="pnl-icerik">{icerik()}</main>
+          <main className="pnl-icerik"><Suspense fallback={<Yukleniyor metin="Operasyon araçları hazırlanıyor" />}>{icerik()}</Suspense></main>
       </div>
     </div>
   );

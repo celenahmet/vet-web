@@ -1,7 +1,18 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Globe, Eye, Star, ExternalLink, CheckCircle2, XCircle, Pencil } from 'lucide-react';
+import {
+  AtSign, CheckCircle2, ExternalLink, Eye, Globe, MapPin,
+  MessageCircle, Pencil, Share2, Star, XCircle,
+} from 'lucide-react';
 
-import { klinikSayfasiniOku, klinikSayfasiniGuncelle, klinikBilgileriniGuncelle, type KlinikSayfasi } from './veri';
+import {
+  klinikBilgileriniGuncelle,
+  klinikIletisiminiGuncelle,
+  klinikKullaniciAdiSorunu,
+  klinikKullaniciAdiniYaz,
+  klinikSayfasiniGuncelle,
+  klinikSayfasiniOku,
+  type KlinikSayfasi,
+} from './veri';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
 import Diyalog from './Diyalog';
@@ -21,10 +32,31 @@ import Diyalog from './Diyalog';
  * biri sayfanin acik olup olmadigi, digeri Google'a gorunup gorunmedigi. Ekran
  * ikisini de kendi cumlesiyle acikliyor.
  *
- * ⚠️ DUZENLEME YOK, GOSTERIM VAR. `update_clinic_page` sunucuda hazir ama
- * kullanici adi degistirmek eski adresi kiriyor; web tarafinda once uyari akisi
- * tasarlanmali.
+ * ⚠️ MOBILLE AYNI YOLLAR: adres `set_clinic_username`, yayin ve yol tarifi
+ * `update_clinic_page`, sosyal hesaplar `update_clinic_contact`. Webe ozel
+ * ikinci bir veri kaynagi acilmiyor.
  */
+
+const BOS_ILETISIM = {
+  whatsapp: '', instagram: '', facebook: '', x: '', tiktok: '', youtube: '', linkedin: '',
+};
+
+const SOSYAL_ALANLAR = [
+  ['instagram', 'Instagram'],
+  ['facebook', 'Facebook'],
+  ['x', 'X'],
+  ['tiktok', 'TikTok'],
+  ['youtube', 'YouTube'],
+  ['linkedin', 'LinkedIn'],
+] as const;
+
+const KULLANICI_ADI_HATALARI: Record<string, string> = {
+  too_short: 'En az 3 karakter yazın.',
+  too_long: 'En fazla 30 karakter yazın.',
+  invalid_chars: 'Yalnız küçük harf, rakam ve alt çizgi kullanın.',
+  bad_start: 'Kullanıcı adı harfle başlamalı.',
+};
+
 export default function PanelWebSitesi({ klinik }: { klinik: string }) {
   const [sayfa, setSayfa] = useState<KlinikSayfasi | null>(null);
   const [yukleniyor, setYukleniyor] = useState(true);
@@ -32,8 +64,12 @@ export default function PanelWebSitesi({ klinik }: { klinik: string }) {
   const [islemHatasi, setIslemHatasi] = useState<string | null>(null);
   const [bilgi, setBilgi] = useState<string | null>(null);
   const [duzenle, setDuzenle] = useState(false);
+  const [adresDuzenle, setAdresDuzenle] = useState(false);
+  const [iletisimDuzenle, setIletisimDuzenle] = useState(false);
   const [bekliyor, setBekliyor] = useState(false);
-  const [form, setForm] = useState({ slogan: '', tanitim: '', yayinda: false, aramayaAcik: false });
+  const [form, setForm] = useState({ slogan: '', tanitim: '', yolTarifi: '', yayinda: false, aramayaAcik: false });
+  const [kullaniciAdi, setKullaniciAdi] = useState('');
+  const [iletisim, setIletisim] = useState(BOS_ILETISIM);
 
   const yukle = useCallback(() => {
     setYukleniyor(true); setHata(null);
@@ -49,6 +85,7 @@ export default function PanelWebSitesi({ klinik }: { klinik: string }) {
     setForm({
       slogan: sayfa?.page_tagline ?? '',
       tanitim: sayfa?.about ?? '',
+      yolTarifi: sayfa?.directions ?? '',
       yayinda: Boolean(sayfa?.is_published),
       aramayaAcik: Boolean(sayfa?.is_indexable),
     });
@@ -56,9 +93,35 @@ export default function PanelWebSitesi({ klinik }: { klinik: string }) {
     setDuzenle(true);
   }
 
+  function adresDuzenlemeyiAc() {
+    setKullaniciAdi(sayfa?.username ?? '');
+    setIslemHatasi(null);
+    setAdresDuzenle(true);
+  }
+
+  function iletisimDuzenlemeyiAc() {
+    setIletisim({
+      whatsapp: sayfa?.whatsapp ?? '',
+      instagram: sayfa?.instagram ?? '',
+      facebook: sayfa?.facebook ?? '',
+      x: sayfa?.x_handle ?? '',
+      tiktok: sayfa?.tiktok ?? '',
+      youtube: sayfa?.youtube ?? '',
+      linkedin: sayfa?.linkedin ?? '',
+    });
+    setIslemHatasi(null);
+    setIletisimDuzenle(true);
+  }
+
   async function kaydet(e: React.FormEvent) {
     e.preventDefault();
     if (bekliyor) return;
+    /* `update_clinic_page` bos metni mevcut degeri koru diye yorumluyor. Bosaltip
+       kaydedildi sanilan bir form gostermek yerine sunucu sinirini acik soyluyoruz. */
+    if ((sayfa?.page_tagline && !form.slogan.trim()) || (sayfa?.directions && !form.yolTarifi.trim())) {
+      setIslemHatasi('Mevcut slogan veya yol tarifini boş değerle kaldırma henüz desteklenmiyor. Alanı güncelleyin ya da eski değeriyle bırakın.');
+      return;
+    }
     setBekliyor(true); setIslemHatasi(null); setBilgi(null);
     try {
       /*
@@ -75,6 +138,7 @@ export default function PanelWebSitesi({ klinik }: { klinik: string }) {
         yayinda: form.yayinda,
         aramayaAcik: form.aramayaAcik,
         slogan: form.slogan.trim(),
+        yolTarifi: form.yolTarifi.trim(),
       });
       if ((form.tanitim ?? '') !== (sayfa?.about ?? '')) {
         await klinikBilgileriniGuncelle(klinik, { about: form.tanitim.trim() });
@@ -87,10 +151,65 @@ export default function PanelWebSitesi({ klinik }: { klinik: string }) {
     } finally { setBekliyor(false); }
   }
 
+  async function adresiKaydet(e: React.FormEvent) {
+    e.preventDefault();
+    if (bekliyor) return;
+    const sorun = klinikKullaniciAdiSorunu(kullaniciAdi);
+    if (sorun) {
+      setIslemHatasi(KULLANICI_ADI_HATALARI[sorun] ?? 'Kullanıcı adı geçersiz.');
+      return;
+    }
+    setBekliyor(true); setIslemHatasi(null); setBilgi(null);
+    try {
+      await klinikKullaniciAdiniYaz(klinik, kullaniciAdi);
+      setAdresDuzenle(false);
+      setBilgi('Web adresiniz güncellendi.');
+      yukle();
+    } catch (err) {
+      setIslemHatasi((err as { message?: string })?.message ?? '');
+    } finally { setBekliyor(false); }
+  }
+
+  async function iletisimiKaydet(e: React.FormEvent) {
+    e.preventDefault();
+    if (bekliyor) return;
+
+    /*
+     * ⚠️ 0106 RPC'si bos degeri "mevcut degeri koru" diye yorumluyor. Ekranda
+     * bosaltip kaydetti sanmak yerine bunu acikca reddediyoruz; mobildeki ayni
+     * sunucu siniri sessiz bir sahte basariya donusmesin.
+     */
+    const mevcut = {
+      whatsapp: sayfa?.whatsapp, instagram: sayfa?.instagram, facebook: sayfa?.facebook,
+      x: sayfa?.x_handle, tiktok: sayfa?.tiktok, youtube: sayfa?.youtube, linkedin: sayfa?.linkedin,
+    };
+    const kaldirilmayaCalisilan = (Object.keys(iletisim) as (keyof typeof iletisim)[])
+      .find((anahtar) => mevcut[anahtar] && !iletisim[anahtar].trim());
+    if (kaldirilmayaCalisilan) {
+      setIslemHatasi('Mevcut bir iletişim hesabını boş değerle kaldırma henüz desteklenmiyor. Alanı eski değeriyle bırakın.');
+      return;
+    }
+
+    setBekliyor(true); setIslemHatasi(null); setBilgi(null);
+    try {
+      await klinikIletisiminiGuncelle(klinik, iletisim);
+      setIletisimDuzenle(false);
+      setBilgi('İletişim ve sosyal medya hesaplarınız güncellendi.');
+      yukle();
+    } catch (err) {
+      setIslemHatasi((err as { message?: string })?.message ?? '');
+    } finally { setBekliyor(false); }
+  }
+
   if (yukleniyor) return <Yukleniyor />;
   if (hata) return <Hata mesaj={hata} />;
 
   const adres = sayfa?.username ? `https://veterito.com/@${sayfa.username}` : null;
+  const kullaniciAdiSorunu = kullaniciAdi.trim() ? klinikKullaniciAdiSorunu(kullaniciAdi) : 'too_short';
+  const sosyalSayisi = [
+    sayfa?.instagram, sayfa?.facebook, sayfa?.x_handle,
+    sayfa?.tiktok, sayfa?.youtube, sayfa?.linkedin,
+  ].filter(Boolean).length;
 
   const durumlar = [
     {
@@ -216,9 +335,71 @@ export default function PanelWebSitesi({ klinik }: { klinik: string }) {
         </section>
       </div>
 
+      <div className="pnl-pano-izgara pnl-izgara-ikili">
+        <section className="pnl-widget">
+          <header className="pnl-widget-basi">
+            <span className="pnl-widget-ikon" aria-hidden="true"><AtSign size={17} /></span>
+            <h3>Web adresi</h3>
+            <button type="button" className="pnl-widget-eylem" onClick={adresDuzenlemeyiAc}>
+              <Pencil size={13} /> Düzenle
+            </button>
+          </header>
+          <div className="pnl-widget-govde">
+            {adres ? (
+              <>
+                <p className="pnl-adres">
+                  <a href={adres} target="_blank" rel="noopener noreferrer">veterito.com/@{sayfa?.username}</a>
+                </p>
+                <p className="pnl-widget-not">
+                  Bu adres kartvizit, sosyal medya ve arama sonuçlarında kliniğinize açılan kalıcı bağlantıdır.
+                </p>
+              </>
+            ) : (
+              <p className="pnl-widget-bos">Henüz bir web adresiniz yok. Kliniğiniz için kısa ve hatırlanabilir bir kullanıcı adı seçin.</p>
+            )}
+          </div>
+        </section>
+
+        <section className="pnl-widget">
+          <header className="pnl-widget-basi">
+            <span className="pnl-widget-ikon" aria-hidden="true"><Share2 size={17} /></span>
+            <h3>İletişim ve sosyal medya</h3>
+            <button type="button" className="pnl-widget-eylem" onClick={iletisimDuzenlemeyiAc}>
+              <Pencil size={13} /> Düzenle
+            </button>
+          </header>
+          <div className="pnl-widget-govde">
+            <ul className="pnl-satirlar">
+              <li className="pnl-satir">
+                <span className="pnl-onay pnl-onay-tamam" aria-hidden="true"><MessageCircle size={16} /></span>
+                <div className="pnl-satir-govde">
+                  <p className="pnl-satir-ad">WhatsApp</p>
+                  <p className="pnl-satir-alt">{sayfa?.whatsapp || 'Numara eklenmemiş'}</p>
+                </div>
+              </li>
+              <li className="pnl-satir">
+                <span className="pnl-onay" aria-hidden="true"><Share2 size={16} /></span>
+                <div className="pnl-satir-govde">
+                  <p className="pnl-satir-ad">Sosyal hesaplar</p>
+                  <p className="pnl-satir-alt">{sosyalSayisi ? `${sosyalSayisi} hesap bağlı` : 'Henüz hesap eklenmemiş'}</p>
+                </div>
+              </li>
+              <li className="pnl-satir">
+                <span className="pnl-onay" aria-hidden="true"><MapPin size={16} /></span>
+                <div className="pnl-satir-govde">
+                  <p className="pnl-satir-ad">Telefon ve e-posta</p>
+                  <p className="pnl-satir-alt">{sayfa?.phone || '—'} · {sayfa?.email || '—'}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
       <p className="pnl-dipnot">
         <Globe size={14} aria-hidden="true" />
-        Kapak ve logo yükleme ile adres bilgileri şimdilik telefondaki uygulamada.
+        Logo ve kapak görseli yükleme şimdilik telefondaki uygulamada. Web adresi,
+        sayfa içeriği ve iletişim kanalları bu panelden yönetilebilir.
       </p>
 
       <Diyalog
@@ -226,6 +407,7 @@ export default function PanelWebSitesi({ klinik }: { klinik: string }) {
         kapat={() => setDuzenle(false)}
         baslik="Klinik sayfanızı düzenleyin"
         aciklama="Bu bilgiler kliniğinizin genel sayfasında herkese görünür.">
+        {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
         <form onSubmit={kaydet}>
           <div className="pnl-alan">
             <label htmlFor="pnl-slogan">Kısa tanıtım cümlesi</label>
@@ -250,6 +432,18 @@ export default function PanelWebSitesi({ klinik }: { klinik: string }) {
               placeholder="Hangi hizmetleri veriyorsunuz, ne zamandır buradasınız, ekibinizde kimler var?"
             />
             <span className="pnl-alan-ipucu">{form.tanitim.length} / 1200 karakter</span>
+          </div>
+
+          <div className="pnl-alan">
+            <label htmlFor="pnl-yol-tarifi">Yol tarifi ve ulaşım notu</label>
+            <textarea
+              id="pnl-yol-tarifi"
+              value={form.yolTarifi}
+              maxLength={600}
+              onChange={(e) => setForm((f) => ({ ...f, yolTarifi: e.target.value }))}
+              placeholder="Örnek: Metro çıkışının karşısında, otopark girişi arka sokaktadır."
+            />
+            <span className="pnl-alan-ipucu">{form.yolTarifi.length} / 600 karakter · Web sitenizde adresin yanında görünür.</span>
           </div>
 
           {/*
@@ -285,6 +479,113 @@ export default function PanelWebSitesi({ klinik }: { klinik: string }) {
             <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setDuzenle(false)}>Vazgeç</button>
             <button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor}>
               {bekliyor ? 'Kaydediliyor…' : 'Kaydet'}
+            </button>
+          </div>
+        </form>
+      </Diyalog>
+
+      <Diyalog
+        acik={adresDuzenle}
+        kapat={() => setAdresDuzenle(false)}
+        baslik="Kliniğinizin web adresi"
+        aciklama="Kısa, hatırlanabilir ve kliniğinizle özdeşleşen bir kullanıcı adı seçin.">
+        {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
+        <form onSubmit={adresiKaydet}>
+          <div className="pnl-alan">
+            <label htmlFor="pnl-kullanici-adi">Kullanıcı adı</label>
+            <input
+              id="pnl-kullanici-adi"
+              type="text"
+              minLength={3}
+              maxLength={30}
+              autoCapitalize="none"
+              spellCheck={false}
+              value={kullaniciAdi}
+              onChange={(e) => {
+                setKullaniciAdi(e.target.value);
+                setIslemHatasi(null);
+              }}
+              placeholder="patilidostlar"
+            />
+            <span className="pnl-adres-onizleme">
+              veterito.com/@{kullaniciAdi.trim().toLocaleLowerCase('en') || '…'}
+            </span>
+            {kullaniciAdiSorunu ? (
+              <span className="pnl-alan-hata">{KULLANICI_ADI_HATALARI[kullaniciAdiSorunu]}</span>
+            ) : (
+              <span className="pnl-alan-ipucu">Yalnız küçük harf, rakam ve alt çizgi; harfle başlamalı.</span>
+            )}
+          </div>
+
+          {sayfa?.username && sayfa.username !== kullaniciAdi.trim().toLocaleLowerCase('en') ? (
+            <div className="pnl-uyari">
+              <div>
+                <p className="pnl-uyari-baslik">Eski bağlantı çalışmayı durdurur</p>
+                <p>Kartvizit, sosyal medya ve paylaşımlardaki eski adresi de güncellemeniz gerekir.</p>
+              </div>
+            </div>
+          ) : null}
+
+          <div className="pnl-diyalog-eylem">
+            <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setAdresDuzenle(false)}>Vazgeç</button>
+            <button
+              type="submit"
+              className="pnl-dugme pnl-dugme-olumlu"
+              disabled={bekliyor || Boolean(kullaniciAdiSorunu) || sayfa?.username === kullaniciAdi.trim().toLocaleLowerCase('en')}>
+              {bekliyor ? 'Kaydediliyor…' : 'Adresi kaydet'}
+            </button>
+          </div>
+        </form>
+      </Diyalog>
+
+      <Diyalog
+        acik={iletisimDuzenle}
+        kapat={() => setIletisimDuzenle(false)}
+        baslik="İletişim ve sosyal medya"
+        aciklama="Bu hesaplar web sitenizde tıklanabilir bağlantı olarak görünür.">
+        {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
+        <form onSubmit={iletisimiKaydet}>
+          <div className="pnl-uyari pnl-uyari-bilgi">
+            <div>
+              <p className="pnl-uyari-baslik">Telefon ve e-posta tek kaynaktan gelir</p>
+              <p>{sayfa?.phone || 'Telefon yok'} · {sayfa?.email || 'E-posta yok'} — bunları Klinik profili bölümünden güncelleyebilirsiniz.</p>
+            </div>
+          </div>
+
+          <div className="pnl-alan pnl-alan-ilk">
+            <label htmlFor="pnl-whatsapp">WhatsApp numarası</label>
+            <input
+              id="pnl-whatsapp"
+              type="tel"
+              value={iletisim.whatsapp}
+              onChange={(e) => setIletisim((f) => ({ ...f, whatsapp: e.target.value }))}
+              placeholder="0532 111 22 33"
+            />
+            <span className="pnl-alan-ipucu">Boşluklu yazabilirsiniz; sunucu numarayı ülke koduyla düzenler.</span>
+          </div>
+
+          <div className="pnl-form-ikili">
+            {SOSYAL_ALANLAR.map(([anahtar, etiket]) => (
+              <div className="pnl-alan" key={anahtar}>
+                <label htmlFor={`pnl-${anahtar}`}>{etiket}</label>
+                <input
+                  id={`pnl-${anahtar}`}
+                  type="text"
+                  autoCapitalize="none"
+                  spellCheck={false}
+                  value={iletisim[anahtar]}
+                  onChange={(e) => setIletisim((f) => ({ ...f, [anahtar]: e.target.value }))}
+                  placeholder="@kullaniciadi"
+                />
+              </div>
+            ))}
+          </div>
+          <span className="pnl-alan-ipucu">Hesap adı veya tam profil adresi yapıştırabilirsiniz; adres sunucuda temizlenir.</span>
+
+          <div className="pnl-diyalog-eylem">
+            <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setIletisimDuzenle(false)}>Vazgeç</button>
+            <button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor}>
+              {bekliyor ? 'Kaydediliyor…' : 'Hesapları kaydet'}
             </button>
           </div>
         </form>

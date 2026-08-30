@@ -39,8 +39,11 @@ Yeni bir ekran açmadan önce: `grep -rhoE "rpc\(\s*['\"][a-z_]+['\"]" ~/Develop
 | Mesajlar | — | ⬜ tek gerçekten boş bölüm: gelen kutusu RPC'si yok |
 | Gelir / Gider | `clinic_ledger_summary` · `clinic_ledger_by_category` | ✅ salt okuma |
 | Ekip | `clinic_staff_list` · **`clinic_invite_staff`** · **`clinic_remove_staff`** | ✅ davet / çıkarma (onaylı) |
-| Klinik web sitesi | `clinics` (RLS) · **`update_clinic_page`** · `clinics` kolon güncellemesi | ✅ slogan, tanıtım, yayın ve arama anahtarları düzenlenebiliyor |
+| Klinik web sitesi | `clinics` (RLS) · **`update_clinic_page`** · **`set_clinic_username`** · **`update_clinic_contact`** · `clinics` kolon güncellemesi | ✅ adres, slogan, tanıtım, yol tarifi, yayın, arama, WhatsApp ve sosyal hesaplar düzenlenebiliyor |
 | Raporlar | `clinic_analytics` · `clinic_report` · `clinic_review_list` | ✅ salt okuma |
+| Ürün ve stok | `clinic_inventory_list_v2` · `upsert_clinic_product_v2` · `record_inventory_movement` · barkod/QR ve sayım RPC'leri | ✅ arama, ilaç/lot/SKT, kamera/USB okuma, eşleme ve taslak sayım canlı kabulden geçti |
+| Laboratuvar | istem, kalite, sürüm, analit, karar desteği ve `save_lab_result_revision_v3` | 🟨 fotoğrafsız saklama + tarayıcı OCR + merge; canlı 0190 geçişi bekliyor |
+| Entegrasyon ayarları | sağlayıcı kataloğu · Vault Edge Function · ileti izin/kuyruk RPC'leri | ✅ owner-only sır yönetimi, SMS/WhatsApp izin, doğrulama, kota ve spam kapıları canlı kabulden geçti |
 
 Ayrıca: kendi tasarımı (pazarlama menüsü bu rotada çizilmiyor) · uygulamanın
 paleti · merkezî sözlük (ekranda ham kod yok) · `X-Robots-Tag: noindex` · CSP.
@@ -110,6 +113,25 @@ kurulu. Yani içe aktarma yeni bir yetki yüzeyi açmıyor; risk yetkide değil
 
 ## Sırada — panel
 
+### Mobil → web eşitleme devamı (29.08.2026)
+
+> Ahmet: *"Mobilde olan her şeyin webde de mevcut tasarıma uygun şekilde
+> çalışmasını istiyorum. Değişiklikleri sadece web reposunda yapalım."*
+
+- [x] Klinik web sitesi bölümüne mobilde bulunan kullanıcı adı yönetimini,
+      adres kırılma uyarısı ve sunucuyla aynı anlık doğrulama kurallarıyla bağla.
+      — ✅ Canlı adres önizlemesi ve mobildeki kurallarla anlık doğrulama var;
+      son karar mevcut `set_clinic_username` RPC'sinde.
+- [x] Yol tarifi, WhatsApp ve Instagram/Facebook/X/TikTok/YouTube/LinkedIn
+      hesaplarını mobildeki mevcut veri kaynakları ve RPC üzerinden düzenlenebilir yap.
+      — ✅ İkinci tablo/RPC açılmadı; mobilin `update_clinic_page` ve
+      `update_clinic_contact` yolları kullanılıyor.
+- [ ] Mevcut panel tasarımını ve sabit açık tema kuralını koru; masaüstü/dar ekran,
+      TypeScript, panel denetimi ve production build ile ölçüp ayrı commit oluştur.
+      — 🟨 TypeScript, değişen dosya lint'i, 251 sınıflı panel denetimi ve tam
+      production build geçti. Yerel tarayıcıda klinik oturumu olmadığı için panel
+      içi masaüstü/dar ekran görsel kabulü oturumlu kontrolde tamamlanacak.
+
 ### 1. Taslaktaki boş kutular (Ahmet: *"olmayanlara - koyarız sonra oturturuz"*)
 Tasarım taslağındaki bu kutuların arkasında **veri yok**; yer tutucu olarak
 konacak, sayı uydurulmayacak:
@@ -130,8 +152,6 @@ konacak, sayı uydurulmayacak:
 |---|---|---|
 | Duyuru gönderme | `send_announcement` | ⚠️ **DÖRT tanımı var**, en sonuncusu alınacak. Önce duyuru satırı oluşturulmalı |
 | Reçete yazma / iptal | `write_prescription` · `void_prescription` | tıbbi kayıt, onay akışı şart |
-| Sosyal hesaplar | `update_clinic_contact` | whatsapp, instagram, facebook, x, tiktok, youtube, linkedin |
-| Kullanıcı adı | `set_clinic_username` | ⚠️ değişirse eski adres kırılır, uyarı akışı gerekiyor |
 | Hizmet / kabiliyet düzenleme | `capabilities-api` | yalnız klinik sahibi |
 | Gelir / gider kaydı | `clinic_transactions` | para girişi, geri alma zor |
 | Adres ve konum | — | ⚠️ `latitude`/`longitude` kolon yetkisinde YOK (migration 0022). Panodaki "haritadaki konum eksik" uyarısı bu yüzden panelden kapatılamıyor; ayrı bir yol gerekiyor |

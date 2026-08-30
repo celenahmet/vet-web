@@ -124,7 +124,18 @@ export type KlinikSayfasi = {
   is_indexable: boolean;
   is_verified: boolean;
   page_tagline: string | null;
+  directions: string | null;
   about: string | null;
+  phone: string | null;
+  whatsapp: string | null;
+  email: string | null;
+  website: string | null;
+  instagram: string | null;
+  facebook: string | null;
+  x_handle: string | null;
+  tiktok: string | null;
+  youtube: string | null;
+  linkedin: string | null;
   logo_key: string | null;
   cover_key: string | null;
   view_count: number;
@@ -213,7 +224,7 @@ export const defterAylariOku = (klinik: string, yil?: number) =>
 export async function klinikSayfasiniOku(klinik: string): Promise<KlinikSayfasi | null> {
   const { data, error } = await istemci
     .from('clinics')
-    .select('username, is_published, is_indexable, is_verified, page_tagline, about, logo_key, cover_key, view_count, rating_avg, rating_count')
+    .select('username, is_published, is_indexable, is_verified, page_tagline, directions, about, phone, whatsapp, email, website, instagram, facebook, x_handle, tiktok, youtube, linkedin, logo_key, cover_key, view_count, rating_avg, rating_count')
     .eq('id', klinik)
     .maybeSingle();
   if (error) throw error;
@@ -270,6 +281,54 @@ export const klinikSayfasiniGuncelle = (
     ...(alanlar.slogan !== undefined ? { p_tagline: alanlar.slogan } : {}),
     ...(alanlar.yolTarifi !== undefined ? { p_directions: alanlar.yolTarifi } : {}),
     ...(alanlar.websitesi !== undefined ? { p_website: alanlar.websitesi } : {}),
+  });
+
+/**
+ * Kullanici adi kurallari mobildeki `usernameProblem` ile birebir ayni.
+ * Ekrandaki kontrol yalniz anlik geri bildirim; son karari yine
+ * `set_clinic_username` verir ve profil kullanici adlariyla cakismayi da denetler.
+ */
+export function klinikKullaniciAdiSorunu(ad: string): string | null {
+  const deger = ad.trim().toLocaleLowerCase('en');
+  if (deger.length < 3) return 'too_short';
+  if (deger.length > 30) return 'too_long';
+  if (!/^[a-z0-9_]+$/.test(deger)) return 'invalid_chars';
+  if (/^[0-9_]/.test(deger)) return 'bad_start';
+  return null;
+}
+
+export const klinikKullaniciAdiniYaz = (klinik: string, ad: string) =>
+  calistir('set_clinic_username', {
+    p_clinic: klinik,
+    p_name: ad.trim().toLocaleLowerCase('en'),
+  });
+
+/**
+ * WhatsApp ve sosyal hesaplar mobildeki `updateClinicContact` ile ayni RPC'ye
+ * gider. Tam profil adresi yapistirilsa bile temizligi sunucu yapar; webde ikinci
+ * bir normalizasyon kurali yazilmiyor.
+ */
+export const klinikIletisiminiGuncelle = (
+  klinik: string,
+  alanlar: {
+    whatsapp?: string | null;
+    instagram?: string | null;
+    facebook?: string | null;
+    x?: string | null;
+    tiktok?: string | null;
+    youtube?: string | null;
+    linkedin?: string | null;
+  },
+) =>
+  calistir('update_clinic_contact', {
+    p_clinic: klinik,
+    p_whatsapp: alanlar.whatsapp ?? null,
+    p_instagram: alanlar.instagram ?? null,
+    p_facebook: alanlar.facebook ?? null,
+    p_x: alanlar.x ?? null,
+    p_tiktok: alanlar.tiktok ?? null,
+    p_youtube: alanlar.youtube ?? null,
+    p_linkedin: alanlar.linkedin ?? null,
   });
 
 /**
