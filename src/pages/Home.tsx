@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import {    QrCode, Stethoscope, PawPrint, Calendar, MessageCircle, Sparkles , LayoutGrid, CheckCircle , Heart, Search , User, ArrowRight } from 'lucide-react';
+import {    Stethoscope, PawPrint, Sparkles , LayoutGrid, CheckCircle , Heart, Search , User, ArrowRight } from 'lucide-react';
 import { useEffect } from 'react';
 import { MockupGallery } from '../components/ui/MockupGallery';
 import { brandConfig } from '../config/brand';
@@ -240,7 +240,7 @@ export default function Home() {
               </a>
 
               {/* Google Play */}
-              <a href={brandConfig.playStoreUrl} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-6 py-2.5 rounded-2xl hover:scale-105 transition-all shadow-xl flex items-center sm:w-auto min-w-[210px]">
+              <a href={brandConfig.playStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-6 py-2.5 rounded-2xl hover:scale-105 transition-all shadow-xl flex items-center sm:w-auto min-w-[210px]">
                 <div className="flex items-center justify-center gap-3 w-full">
                   <img src="/google-play-logo.png" alt="Play Store" className="w-10 h-10 object-contain shrink-0 scale-[1.15]" />
                   <div className="flex flex-col items-start leading-none pt-0.5 text-white">

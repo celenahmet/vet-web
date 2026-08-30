@@ -1829,7 +1829,7 @@ export default function Features() {
                 
                 {/* Bottom Row: Play Store & AppGallery */}
                 <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full">
-                  <a href={brandConfig.playStoreUrl} target="_blank" rel="noopener noreferrer" className="group bg-transparent border-[1.5px] border-white/80 hover:bg-white hover:border-white px-6 py-2.5 rounded-2xl hover:scale-105 transition-all shadow-xl flex items-center sm:w-auto min-w-[210px]">
+                  <a href={brandConfig.playStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="group bg-transparent border-[1.5px] border-white/80 hover:bg-white hover:border-white px-6 py-2.5 rounded-2xl hover:scale-105 transition-all shadow-xl flex items-center sm:w-auto min-w-[210px]">
                     <div className="flex items-center justify-center gap-3 w-full">
                       <img src="/google-play-logo.png" alt="Play Store" className="w-10 h-10 object-contain shrink-0 scale-[1.15] transition-transform duration-300 group-hover:scale-110" />
                       <div className="flex flex-col items-start leading-none pt-0.5">

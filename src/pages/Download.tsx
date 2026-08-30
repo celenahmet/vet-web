@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
-import { QrCode, ShoppingBag, ArrowRight } from 'lucide-react';
+import type { Variants } from 'framer-motion';
+import { QrCode, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 import { brandConfig } from '../config/brand';
-import { useTranslation } from 'react-i18next';
-
 /**
  * MAGAZA ROZETI — durum ADRESTEN turetiliyor.
  *
@@ -16,52 +15,9 @@ import { useTranslation } from 'react-i18next';
  * yakinda" yazdigi icin yalan degildi ama hicbir yere goturmeyen dugme,
  * olmayan dugmeden kotudur. `aria-disabled` ile ekran okuyucuya da soyleniyor.
  */
-function MagazaRozeti({
-  ad,
-  url,
-  ikon,
-}: {
-  ad: string;
-  url: string | null;
-  ikon: React.ReactNode;
-}) {
-  const ortak =
-    'bg-black text-white px-6 py-3 rounded-2xl flex items-center gap-3 shadow-lg';
-  const icerik = (
-    <>
-      {ikon}
-      <div className="text-left">
-        <div className="text-[10px] opacity-80 font-medium uppercase tracking-wider">
-          {url ? 'Indir' : 'Cok yakinda'}
-        </div>
-        <div className="text-xl font-bold leading-tight">{ad}</div>
-      </div>
-    </>
-  );
-
-  if (!url) {
-    return (
-      <div className={`${ortak} opacity-50 cursor-default select-none`} aria-disabled="true">
-        {icerik}
-      </div>
-    );
-  }
-
-  return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`${ortak} hover:scale-105 transition-transform group`}>
-      {icerik}
-    </a>
-  );
-}
-
 export default function Download() {
-  const { t } = useTranslation();
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -71,12 +27,12 @@ export default function Download() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { type: "spring", stiffness: 300, damping: 24 }
+      transition: { type: "spring" as const, stiffness: 300, damping: 24 }
     }
   };
 
@@ -128,7 +84,7 @@ export default function Download() {
             
             {/* QR Card */}
             <div className="glass-card p-8 sm:p-10 rounded-[2.5rem] shadow-xl flex flex-col items-center justify-center border border-slate-100 dark:border-slate-800">
-              <a href={brandConfig.appGalleryUrl} target="_blank" rel="noopener noreferrer" className="bg-white/50 dark:bg-slate-900/50 p-6 rounded-3xl mb-6 relative group cursor-pointer shadow-sm hover:shadow-md transition-all">
+              <a href={brandConfig.appGalleryUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-white/50 dark:bg-slate-900/50 p-6 rounded-3xl mb-6 relative group cursor-pointer shadow-sm hover:shadow-md transition-all">
                 <QrCode size={100} strokeWidth={1.5} className="text-[var(--color-vet-primary)] dark:text-[var(--color-vet-primary-glow)] group-hover:scale-105 transition-transform" />
               </a>
               <h3 className="font-bold text-lg text-[var(--text-main)] mb-2">Hızlı ve Kolay İndirme</h3>
@@ -143,7 +99,7 @@ export default function Download() {
               <h3 className="font-bold text-lg text-[var(--text-main)] mb-2 text-left">Mağazalar</h3>
               
               {/* App Store (Active) */}
-              <a href={brandConfig.appStoreUrl} target="_blank" rel="noopener noreferrer" className="relative group overflow-hidden bg-[#007AFF] text-white rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex items-center justify-between gap-4 block w-full">
+              <a href={brandConfig.appStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="relative group overflow-hidden bg-[#007AFF] text-white rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex items-center justify-between gap-4 block w-full">
                 <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                 <div className="flex items-center gap-4 relative z-10">
                   <div className="w-14 h-14 bg-white dark:bg-slate-900 rounded-2xl flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-2">
@@ -158,7 +114,7 @@ export default function Download() {
               </a>
 
               {/* Google Play (Active) */}
-              <a href={brandConfig.playStoreUrl} target="_blank" rel="noopener noreferrer" className="relative group overflow-hidden bg-emerald-50/80 dark:bg-emerald-900/20 hover:bg-[#0f9d58] rounded-2xl p-4 border border-emerald-100 dark:border-emerald-800/50 hover:border-[#0f9d58] transition-all duration-300 hover:-translate-y-1 flex items-center justify-between gap-4 block w-full">
+              <a href={brandConfig.playStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="relative group overflow-hidden bg-emerald-50/80 dark:bg-emerald-900/20 hover:bg-[#0f9d58] rounded-2xl p-4 border border-emerald-100 dark:border-emerald-800/50 hover:border-[#0f9d58] transition-all duration-300 hover:-translate-y-1 flex items-center justify-between gap-4 block w-full">
                 <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform group-hover:duration-700 duration-0"></div>
                 <div className="flex items-center gap-4 relative z-10">
                   <div className="w-14 h-14 bg-white dark:bg-slate-900 rounded-2xl flex items-center justify-center shrink-0 shadow-sm p-1.5 transition-transform duration-300">
@@ -173,7 +129,7 @@ export default function Download() {
               </a>
 
               {/* AppGallery (Active, Secondary) */}
-              <a href={brandConfig.appGalleryUrl} target="_blank" rel="noopener noreferrer" className="relative group overflow-hidden bg-red-50/80 dark:bg-red-900/20 hover:bg-[#ef4050] rounded-2xl p-4 border border-red-100 dark:border-red-800/50 hover:border-[#ef4050] transition-all duration-300 hover:-translate-y-1 flex items-center justify-between gap-4 block w-full">
+              <a href={brandConfig.appGalleryUrl || undefined} target="_blank" rel="noopener noreferrer" className="relative group overflow-hidden bg-red-50/80 dark:bg-red-900/20 hover:bg-[#ef4050] rounded-2xl p-4 border border-red-100 dark:border-red-800/50 hover:border-[#ef4050] transition-all duration-300 hover:-translate-y-1 flex items-center justify-between gap-4 block w-full">
                 <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform group-hover:duration-700 duration-0"></div>
                 <div className="flex items-center gap-4 relative z-10">
                   <div className="w-14 h-14 bg-white dark:bg-slate-900 rounded-2xl flex items-center justify-center shrink-0 shadow-sm p-1.5 transition-transform duration-300">

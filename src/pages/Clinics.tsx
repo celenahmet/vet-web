@@ -2,10 +2,10 @@
 import { motion } from 'framer-motion';
 import { 
   Building2, Calendar, Archive, Megaphone, Stethoscope, MapPin, 
-  Award, ArrowRight, Grid, Heart, FileText, Activity, 
-  CheckCircle, Bell, LayoutGrid, 
-  Phone, Search, MessageCircle, ChevronRight, ChevronLeft,
-  Send, Users, User, Plus, Edit3, CheckCircle2, Home,
+  Award, ArrowRight, Grid, FileText, Activity, 
+  CheckCircle, Bell, 
+  Phone, ChevronRight, ChevronLeft,
+  Users, Edit3, CheckCircle2,
   PieChart, Wallet, Globe, Star, StarHalf, Clock,
   List, Hourglass, ArrowRightLeft
 } from 'lucide-react';
