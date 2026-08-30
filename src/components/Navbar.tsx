@@ -145,7 +145,7 @@ const Navbar = () => {
               {i18n.language.toUpperCase()}
             </button>
             
-            <Link to="/pricing" className="hidden lg:flex bg-[var(--color-vet-secondary)] text-white hover:bg-[var(--color-vet-accent)] rounded-full font-semibold transition-all duration-300 px-5 py-2.5 text-sm shadow-sm hover:scale-105 whitespace-nowrap">
+            <Link to="/download" className="hidden lg:flex bg-[#038d91] text-white hover:bg-[#027376] rounded-full font-semibold transition-all duration-300 px-5 py-2.5 text-sm shadow-sm hover:scale-105 whitespace-nowrap">
               {t('nav_explore')}
             </Link>
           </div>
@@ -200,7 +200,7 @@ const Navbar = () => {
                 {t(link.label)}
               </Link>
             ))}
-            <Link to="/pricing" onClick={menuKapat} className="flex items-center bg-[var(--color-vet-secondary)] text-white hover:bg-[var(--color-vet-accent)] rounded-full font-semibold transition-all duration-300 w-full justify-center text-lg py-4 mt-4 shadow-sm">
+            <Link to="/download" onClick={menuKapat} className="flex items-center bg-[#038d91] text-white hover:bg-[#027376] rounded-full font-semibold transition-all duration-300 w-full justify-center text-lg py-4 mt-4 shadow-sm">
               {t('nav_explore')}
             </Link>
             <div className="flex items-center justify-between mt-4">

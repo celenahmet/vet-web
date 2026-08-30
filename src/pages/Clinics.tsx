@@ -4,7 +4,10 @@ import {
   Building2, Calendar, Archive, Megaphone, Stethoscope, MapPin, 
   Award, ArrowRight, Grid, Heart, FileText, Activity, 
   CheckCircle, Bell, LayoutGrid, 
-  Phone, Search, MessageCircle, ChevronRight
+  Phone, Search, MessageCircle, ChevronRight, ChevronLeft,
+  Send, Users, User, Plus, Edit3, CheckCircle2, Home,
+  PieChart, Wallet, Globe, Star, StarHalf, Clock,
+  List, Hourglass, ArrowRightLeft
 } from 'lucide-react';
 import SEO from '../components/SEO';
 
@@ -42,7 +45,7 @@ export default function Clinics() {
         
         {/* Section 1: Hero */}
         <section className="min-h-screen h-auto lg:h-screen snap-always snap-start py-24 lg:py-0 flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 pt-16">
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{once:true}} className="flex-1 space-y-8">
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{once:true}} className="w-full lg:w-[45%] space-y-8">
             <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-600 px-4 py-2 rounded-full font-bold text-sm border border-indigo-100">
               <Building2 size={16} />
               Veteriner Klinikleri Özel
@@ -74,73 +77,140 @@ export default function Clinics() {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{once:true}} className="flex-1 w-full relative">
-            <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-6 flex flex-col relative h-auto lg:h-auto lg:min-h-[450px]">
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{once:true}} className="w-full lg:w-[55%] relative">
+            <div className="bg-white dark:bg-slate-900 rounded-[2rem] shadow-2xl border border-slate-100 dark:border-slate-800 p-8 lg:p-10 flex flex-col relative h-auto lg:h-auto lg:min-h-[450px]">
               <AnimatedBorder color="#8B5CF6" />
-              {/* Header */}
-              <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
-                    <div className="w-3 h-3 bg-white rounded-full"></div>
+              
+              {/* Header (Profile Card style) */}
+              <div className="flex items-center justify-between mb-8 pb-6 border-b border-slate-100 dark:border-slate-800">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-teal-800 rounded-xl shrink-0 shadow-inner flex items-center justify-center">
+                    <Building2 size={24} className="text-teal-100" />
                   </div>
-                  <span className="font-bold text-slate-900">Veterito.</span>
+                  <div>
+                    <div className="font-bold text-slate-900 dark:text-white text-lg flex items-center gap-1.5">
+                      Yıldızlar Veteriner Kliniği
+                      <CheckCircle2 size={16} className="text-teal-600" />
+                    </div>
+                    <div className="text-sm text-slate-500 dark:text-slate-400 font-medium">Kadıköy, İstanbul</div>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3 lg:p-4 bg-slate-50 px-4 py-2 rounded-full border border-slate-100 flex-1 mx-2 lg:mx-8">
-                  <Search size={16} className="text-slate-400" />
-                  <span className="text-slate-400 text-sm hidden sm:inline">Hasta veya no ara...</span>
-                </div>
-                <div className="flex items-center gap-3 lg:p-4">
-                  <Bell size={20} className="text-slate-600" />
-                  <div className="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold text-xs">DP</div>
+                <div className="flex items-center gap-3">
+                  <div className="relative cursor-pointer w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center border border-slate-100 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                    <Bell size={24} className="text-slate-600 dark:text-slate-300" />
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-[10px] text-white flex items-center justify-center font-bold border-2 border-white dark:border-slate-900">10</span>
+                  </div>
                 </div>
               </div>
               
-              <div className="flex flex-col lg:flex-row gap-8 flex-1">
+              <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 flex-1">
                 {/* Sidebar */}
-                <div className="w-full lg:w-48 space-y-2 lg:space-y-4">
-                  <div className="flex items-center gap-3 bg-teal-50 text-teal-700 px-4 py-3 rounded-xl font-medium text-sm">
-                    <LayoutGrid size={18} /> Panonuz
-                  </div>
-                  <div className="flex items-center gap-3 text-slate-600 px-4 py-3 rounded-xl font-medium text-sm">
-                    <Calendar size={18} /> Randevular
-                  </div>
-                  <div className="flex items-center gap-3 text-slate-600 px-4 py-3 rounded-xl font-medium text-sm">
-                    <Heart size={18} /> Hastalar
+                <div className="w-full lg:w-48 flex flex-col gap-6 shrink-0">
+
+                  {/* Sidebar Menu */}
+                  <div className="space-y-2">
+                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 px-2">Hızlı İşlemler</div>
+                    
+                    <div className="flex items-center gap-3 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 px-3 py-2.5 rounded-xl font-semibold text-sm cursor-pointer border border-teal-100/50 dark:border-teal-800/30">
+                      <div className="w-8 h-8 rounded-lg bg-teal-100 dark:bg-teal-800/50 flex items-center justify-center shrink-0">
+                        <Calendar size={16} className="text-teal-600 dark:text-teal-400" />
+                      </div>
+                      Randevular
+                    </div>
+                    
+                    <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 px-3 py-2.5 rounded-xl font-medium text-sm cursor-pointer transition-colors border border-transparent group">
+                      <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-900/20 group-hover:bg-blue-100 dark:group-hover:bg-blue-800/40 flex items-center justify-center shrink-0 transition-colors">
+                        <Users size={16} className="text-blue-500 dark:text-blue-400" />
+                      </div>
+                      Müşteriler
+                    </div>
+                    
+                    <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 px-3 py-2.5 rounded-xl font-medium text-sm cursor-pointer transition-colors border border-transparent group">
+                      <div className="w-8 h-8 rounded-lg bg-amber-50 dark:bg-amber-900/20 group-hover:bg-amber-100 dark:group-hover:bg-amber-800/40 flex items-center justify-center shrink-0 transition-colors">
+                        <Megaphone size={16} className="text-amber-500 dark:text-amber-400" />
+                      </div>
+                      Duyuru Gönder
+                    </div>
+                    
+                    <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 px-3 py-2.5 rounded-xl font-medium text-sm cursor-pointer transition-colors border border-transparent group">
+                      <div className="w-8 h-8 rounded-lg bg-purple-50 dark:bg-purple-900/20 group-hover:bg-purple-100 dark:group-hover:bg-purple-800/40 flex items-center justify-center shrink-0 transition-colors">
+                        <Edit3 size={16} className="text-purple-500 dark:text-purple-400" />
+                      </div>
+                      Gönderi Paylaş
+                    </div>
+                    
+                    <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 px-3 py-2.5 rounded-xl font-medium text-sm cursor-pointer transition-colors border border-transparent group">
+                      <div className="w-8 h-8 rounded-lg bg-rose-50 dark:bg-rose-900/20 group-hover:bg-rose-100 dark:group-hover:bg-rose-800/40 flex items-center justify-center shrink-0 transition-colors">
+                        <PieChart size={16} className="text-rose-500 dark:text-rose-400" />
+                      </div>
+                      Raporlar
+                    </div>
+                    
+                    <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 px-3 py-2.5 rounded-xl font-medium text-sm cursor-pointer transition-colors border border-transparent group">
+                      <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-800/40 flex items-center justify-center shrink-0 transition-colors">
+                        <Wallet size={16} className="text-emerald-500 dark:text-emerald-400" />
+                      </div>
+                      Gelir / Gider
+                    </div>
+                    
+                    <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 px-3 py-2.5 rounded-xl font-medium text-sm cursor-pointer transition-colors border border-transparent group">
+                      <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-800/40 flex items-center justify-center shrink-0 transition-colors">
+                        <Globe size={16} className="text-indigo-500 dark:text-indigo-400" />
+                      </div>
+                      Web Sayfam
+                    </div>
                   </div>
                 </div>
                 
                 {/* Content */}
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-slate-900 mb-4">Bugünkü Özet</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 lg:gap-3 lg:p-4 mb-6">
-                    <div className="border border-slate-200 rounded-xl p-3 lg:p-4">
-                      <div className="text-sm text-slate-500 font-medium mb-2">Toplam Randevu</div>
-                      <div className="text-3xl font-bold text-slate-900">12</div>
+                <div className="flex-1 space-y-8">
+                  {/* Klinik Nabzı */}
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Klinik Nabzı</h3>
+                    <div className="grid grid-cols-4 divide-x divide-slate-100 dark:divide-slate-800 border border-slate-100 dark:border-slate-800 rounded-2xl py-5 bg-gradient-to-br from-white via-teal-50/30 to-slate-50 dark:from-slate-800/50 dark:via-teal-900/10 dark:to-slate-800/50 shadow-sm">
+                      <div className="flex flex-col items-center justify-center">
+                        <div className="text-2xl font-black text-slate-900 dark:text-white">0</div>
+                        <div className="text-[10px] text-slate-500 font-semibold mt-0.5">BUGÜN</div>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <div className="text-2xl font-black text-slate-900 dark:text-white">0</div>
+                        <div className="text-[10px] text-slate-500 font-semibold mt-0.5">BEKLEYEN</div>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <div className="text-2xl font-black text-slate-900 dark:text-white">50</div>
+                        <div className="text-[10px] text-slate-500 font-semibold mt-0.5">MÜŞTERİ</div>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <div className="text-2xl font-black text-slate-900 dark:text-white">200</div>
+                        <div className="text-[10px] text-slate-500 font-semibold mt-0.5">TAKİPÇİ</div>
+                      </div>
                     </div>
-                    <div className="border border-slate-200 rounded-xl p-3 lg:p-4">
-                      <div className="text-sm text-slate-500 font-medium mb-2">Yeni Hasta</div>
-                      <div className="text-3xl font-bold text-teal-500">3</div>
-                    </div>
-                    <div className="border border-slate-200 rounded-xl p-3 lg:p-4">
-                      <div className="text-sm text-slate-500 font-medium mb-2">Aşı Bekleyen</div>
-                      <div className="text-3xl font-bold text-amber-500">8</div>
+                    <div className="flex items-center gap-4 mt-3 px-2 text-xs font-semibold text-slate-400">
+                      <span>20 gönderi</span>
+                      <span className="w-1 h-1 bg-slate-300 dark:bg-slate-600 rounded-full"></span>
+                      <span>10 duyuru</span>
                     </div>
                   </div>
                   
-                  <div className="border border-slate-200 rounded-xl p-3 lg:p-4">
+                  {/* Bugünün Akışı */}
+                  <div>
                     <div className="flex justify-between items-center mb-4">
-                      <h4 className="font-bold text-slate-900">Yaklaşan Randevular</h4>
-                      <span className="text-teal-600 text-sm font-medium">Tümünü Gör</span>
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white">Bugünün Akışı</h3>
+                      <span className="text-teal-600 dark:text-teal-400 text-sm font-semibold cursor-pointer hover:underline">Takvimi Gör</span>
                     </div>
-                    <div className="flex items-center justify-between py-2 border-b border-slate-100">
-                      <div className="flex items-center gap-3 lg:p-4">
-                        <div className="bg-slate-100 text-slate-700 px-3 py-1 rounded-lg text-sm font-bold">14:00</div>
-                        <div>
-                          <div className="font-bold text-slate-900 text-sm">Tarçın (Golden Retr.)</div>
-                          <div className="text-slate-500 text-xs">Karma Aşı</div>
+                    <div className="border border-teal-100 dark:border-teal-900/50 border-l-4 border-l-teal-500 rounded-2xl p-5 flex items-center justify-between bg-gradient-to-r from-teal-50/30 to-white dark:from-teal-900/10 dark:to-slate-800/50 shadow-sm">
+                      <div className="flex flex-col">
+                        <div className="font-bold text-slate-900 dark:text-white text-base mb-1 flex items-center gap-2.5">
+                          <div className="w-7 h-7 rounded bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 flex items-center justify-center">
+                            <Calendar size={14} />
+                          </div>
+                          Bugün planlanmış randevu yok.
                         </div>
+                        <div className="text-slate-500 dark:text-slate-400 text-sm pl-[38px]">Takvimi açarak yaklaşan talepleri ve randevuları görebilirsin.</div>
                       </div>
-                      <ChevronRight size={18} className="text-slate-400" />
+                      <div className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                        <ChevronRight size={16} className="text-teal-600 dark:text-teal-400" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -152,28 +222,38 @@ export default function Clinics() {
         {/* Section 2: Dijital Klinik Profili */}
         <section className="min-h-screen h-auto lg:h-screen snap-always snap-start py-24 lg:py-0 flex flex-col-reverse lg:flex-row items-center justify-center gap-16">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{once:true}} className="flex-1 w-full relative">
-            <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-8 relative h-auto lg:h-auto lg:min-h-[450px]">
+            <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-7 lg:p-8 relative w-full xl:min-w-[550px] mx-auto min-h-[480px]">
               <AnimatedBorder color="#F59E0B" />
-              <div className="flex gap-3 lg:p-4 mb-8">
-                <div className="flex-1 border border-slate-200 rounded-xl p-3 lg:p-4 flex items-center gap-3">
-                  <Phone size={20} className="text-teal-500" />
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+                <div className="border border-slate-200 dark:border-slate-700 rounded-xl p-3 flex items-center gap-3 bg-white dark:bg-slate-800">
+                  <Phone size={20} className="text-slate-500 dark:text-slate-400" />
                   <div>
                     <div className="text-[10px] font-bold text-slate-400 uppercase">TELEFON</div>
-                    <div className="text-sm font-bold text-slate-800">0216 111 22 33</div>
+                    <div className="text-xs font-bold text-slate-800 dark:text-white">0216 111 22 33</div>
                   </div>
                 </div>
-                <div className="flex-1 border border-slate-200 rounded-xl p-3 lg:p-4 flex items-center gap-3">
-                  <MessageCircle size={20} className="text-green-500" />
+                
+                <div className="border border-[#25D366]/20 bg-[#25D366]/5 dark:bg-[#25D366]/10 rounded-xl p-3 flex items-center gap-3">
+                  <img src="/whatsapp.png" alt="WhatsApp" className="w-6 h-6 object-contain" />
                   <div>
-                    <div className="text-[10px] font-bold text-slate-400 uppercase">WHATSAPP</div>
-                    <div className="text-sm font-bold text-slate-800">+90 532 111</div>
+                    <div className="text-[10px] font-bold text-slate-500 uppercase">WHATSAPP</div>
+                    <div className="text-xs font-bold text-slate-800 dark:text-white">+90 532 111 2233</div>
                   </div>
                 </div>
-                <div className="flex-1 border border-slate-200 rounded-xl p-3 lg:p-4 flex items-center gap-3">
-                  <MapPin size={20} className="text-emerald-500" />
+
+                <div className="border border-teal-200 bg-teal-50 dark:bg-teal-900/20 rounded-xl p-3 flex items-center gap-3 cursor-pointer hover:bg-teal-100 dark:hover:bg-teal-900/40 transition-colors">
+                  <Calendar size={20} className="text-teal-600 dark:text-teal-400" />
+                  <div>
+                    <div className="text-[10px] font-bold text-teal-600/70 dark:text-teal-400/70 uppercase">ONLİNE</div>
+                    <div className="text-xs font-bold text-teal-700 dark:text-teal-300">Randevu İste</div>
+                  </div>
+                </div>
+
+                <div className="border border-slate-200 dark:border-slate-700 rounded-xl p-3 flex items-center gap-3 bg-white dark:bg-slate-800 cursor-pointer">
+                  <MapPin size={20} className="text-rose-500" />
                   <div>
                     <div className="text-[10px] font-bold text-slate-400 uppercase">YOL TARİFİ</div>
-                    <div className="text-sm font-bold text-slate-800">Haritada aç</div>
+                    <div className="text-xs font-bold text-slate-800 dark:text-white">Haritada Aç</div>
                   </div>
                 </div>
               </div>
@@ -181,45 +261,102 @@ export default function Clinics() {
               <div className="flex flex-col lg:flex-row gap-8 h-full">
                 <div className="flex-1 space-y-6">
                   <div>
-                    <h3 className="font-bold text-slate-900 mb-2">Adres ve ulaşım</h3>
-                    <p className="text-sm font-bold text-slate-800">Test Mahallesi, Test Caddesi No:1</p>
-                    <p className="text-xs text-slate-500 mb-2">Kadıköy / İstanbul</p>
-                    <p className="text-xs text-slate-600 mb-4 leading-relaxed">Metro çıkışına 5 dakika yürüme mesafesinde. Klinik önünde ücretsiz otopark mevcut.</p>
-                    <button className="w-full bg-teal-500 text-white rounded-lg py-2 text-sm font-bold flex items-center justify-center gap-2">
+                    <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-1.5">Puan & Değerlendirme</h3>
+                    <div className="flex items-center gap-3">
+                      <div className="text-2xl font-black text-slate-900 dark:text-white">4.8</div>
+                      <div>
+                        <div className="flex text-amber-400 gap-0.5">
+                          <Star size={16} fill="currentColor" />
+                          <Star size={16} fill="currentColor" />
+                          <Star size={16} fill="currentColor" />
+                          <Star size={16} fill="currentColor" />
+                          <StarHalf size={16} fill="currentColor" />
+                        </div>
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium mt-0.5">120 değerlendirme, 45 yorum</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-1.5">Mesai Saatleri</h3>
+                    <div className="flex flex-col gap-1.5">
+                      <div className="flex items-center gap-1.5 text-[13px] font-medium text-slate-700 dark:text-slate-300">
+                        <Clock size={16} className="text-teal-500" /> Hafta içi: 09:00 - 19:00
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[13px] font-medium text-slate-500 dark:text-slate-400">
+                        <Clock size={16} className="text-slate-400" /> Hafta sonu: Kapalı
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-1.5">Adres ve ulaşım</h3>
+                    <p className="text-[13px] font-bold text-slate-800 dark:text-slate-200 mb-0.5">Test Mahallesi, Test Caddesi No:1</p>
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mb-1.5">Kadıköy / İstanbul</p>
+                    <p className="text-[11px] text-slate-600 dark:text-slate-400 mb-3 leading-relaxed">Metro çıkışına 5 dakika yürüme mesafesinde. Klinik önünde ücretsiz otopark mevcut.</p>
+                    <button className="w-full bg-teal-500 hover:bg-teal-600 transition-colors text-white rounded-lg py-1.5 text-[13px] font-bold flex items-center justify-center gap-2">
                       <MapPin size={16} /> Görüntüle
                     </button>
                   </div>
+                  
                   <div>
-                    <h3 className="font-bold text-slate-900 mb-2">Hakkımızda</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">
+                    <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-1.5">Hakkımızda</h3>
+                    <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">
                       Kadıköy'de 2015'ten beri hizmet veren tam donanımlı kliniğiyiz. Dahiliye, cerrahi ve laboratuvar ile yanınızdayız.
                     </p>
                   </div>
                 </div>
                 
-                <div className="flex-1">
-                  <div className="flex gap-3 lg:p-4 border-b border-slate-200 mb-4 pb-2">
-                    <div className="font-bold text-teal-600 text-sm border-b-2 border-teal-600 pb-2 -mb-[10px]">Çalışanlar <span className="bg-teal-100 text-teal-700 px-2 py-0.5 rounded-full text-xs ml-1">3</span></div>
-                    <div className="font-bold text-slate-400 text-sm">Fotoğraflar <span className="bg-slate-100 px-2 py-0.5 rounded-full text-xs ml-1">6</span></div>
-                  </div>
-                  <div className="flex gap-3 lg:p-4">
-                    <div className="w-full rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col">
-                      <div className="h-20 bg-teal-800 flex items-center justify-center">
-                        <div className="w-12 h-12 bg-teal-200 rounded-full mt-8 border-4 border-white"></div>
+                <div className="flex-1 lg:pl-6 border-t lg:border-t-0 lg:border-l border-slate-100 dark:border-slate-800 pt-6 lg:pt-0">
+                  <h3 className="font-bold text-slate-900 dark:text-white text-lg mb-6">Ekibimiz</h3>
+                  <div className="grid grid-cols-3 gap-y-6 gap-x-2">
+                    {/* Person 1 */}
+                    <div className="flex flex-col items-center text-center group cursor-pointer">
+                      <div className="w-[72px] h-[72px] rounded-full mb-3 overflow-hidden border-2 border-transparent group-hover:border-teal-500 transition-colors shadow-sm">
+                        <img src="/team-1.jpg" alt="Aylin Demir" className="w-full h-full object-cover" />
                       </div>
-                      <div className="p-3 pt-6 text-center flex-1">
-                        <div className="text-[10px] font-bold text-amber-500 mb-1 uppercase">KURUCU HEKİM</div>
-                        <div className="font-bold text-slate-900 text-sm">Aylin Demir</div>
-                      </div>
+                      <div className="font-medium text-slate-900 dark:text-white text-[13px] leading-tight mb-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">Aylin Demir</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400 leading-snug">Uzm. Vet. Hek.<br/>Klinik Kurucusu</div>
                     </div>
-                    <div className="w-full rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col">
-                      <div className="h-20 bg-teal-800 flex items-center justify-center">
-                        <div className="w-12 h-12 bg-orange-200 rounded-full mt-8 border-4 border-white"></div>
+                    {/* Person 2 */}
+                    <div className="flex flex-col items-center text-center group cursor-pointer">
+                      <div className="w-[72px] h-[72px] rounded-full mb-3 overflow-hidden border-2 border-transparent group-hover:border-teal-500 transition-colors shadow-sm">
+                        <img src="/team-2.jpg" alt="Mert Yılmaz" className="w-full h-full object-cover" />
                       </div>
-                      <div className="p-3 pt-6 text-center flex-1">
-                        <div className="text-[10px] font-bold text-amber-500 mb-1 uppercase">DAHİLİYE UZMANI</div>
-                        <div className="font-bold text-slate-900 text-sm">Mert Yılmaz</div>
+                      <div className="font-medium text-slate-900 dark:text-white text-[13px] leading-tight mb-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">Mert Yılmaz</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400 leading-snug">Vet. Hek.<br/>Dahiliye Uzmanı</div>
+                    </div>
+                    {/* Person 3 */}
+                    <div className="flex flex-col items-center text-center group cursor-pointer">
+                      <div className="w-[72px] h-[72px] rounded-full mb-3 overflow-hidden border-2 border-transparent group-hover:border-teal-500 transition-colors shadow-sm">
+                        <img src="/team-3.jpg" alt="Ece Kaya" className="w-full h-full object-cover" />
                       </div>
+                      <div className="font-medium text-slate-900 dark:text-white text-[13px] leading-tight mb-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">Ece Kaya</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400 leading-snug">Vet. Hek.<br/>Görüntüleme Uzm.</div>
+                    </div>
+                    {/* Person 4 */}
+                    <div className="flex flex-col items-center text-center group cursor-pointer">
+                      <div className="w-[72px] h-[72px] rounded-full mb-3 overflow-hidden border-2 border-transparent group-hover:border-teal-500 transition-colors shadow-sm">
+                        <img src="/team-4.jpg" alt="Can Yücel" className="w-full h-full object-cover object-[70%_center]" />
+                      </div>
+                      <div className="font-medium text-slate-900 dark:text-white text-[13px] leading-tight mb-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">Can Yücel</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400 leading-snug">Vet. Hek.<br/>Cerrahi Uzmanı</div>
+                    </div>
+                    {/* Person 5 */}
+                    <div className="flex flex-col items-center text-center group cursor-pointer">
+                      <div className="w-[72px] h-[72px] rounded-full mb-3 overflow-hidden border-2 border-transparent group-hover:border-teal-500 transition-colors shadow-sm">
+                        <img src="/team-5.jpg" alt="Zeynep Şen" className="w-full h-full object-cover" />
+                      </div>
+                      <div className="font-medium text-slate-900 dark:text-white text-[13px] leading-tight mb-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">Zeynep Şen</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400 leading-snug">Vet. Hek.<br/>Laboratuvar Uzm.</div>
+                    </div>
+                    {/* Person 6 */}
+                    <div className="flex flex-col items-center text-center group cursor-pointer">
+                      <div className="w-[72px] h-[72px] rounded-full mb-3 overflow-hidden border-2 border-transparent group-hover:border-teal-500 transition-colors shadow-sm">
+                        <img src="/team-6.jpg" alt="Ali Kaan" className="w-full h-full object-cover" />
+                      </div>
+                      <div className="font-medium text-slate-900 dark:text-white text-[13px] leading-tight mb-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">Ali Kaan</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400 leading-snug">Vet. Hek.<br/>Nöroloji Uzmanı</div>
                     </div>
                   </div>
                 </div>
@@ -277,67 +414,134 @@ export default function Clinics() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{once:true}} className="flex-1 w-full relative">
-            <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-6 relative h-auto lg:h-auto lg:min-h-[450px]">
+            <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-8 relative xl:min-w-[550px] mx-auto min-h-[480px]">
               <AnimatedBorder color="#10B981" />
+              
+              {/* Header */}
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-xl font-bold text-slate-900">Ekim 2024</h3>
-                <div className="flex bg-slate-100 rounded-lg p-1">
-                  <div className="bg-teal-500 text-white px-4 py-1.5 rounded text-sm font-bold shadow-sm">Hafta</div>
-                  <div className="text-slate-500 px-4 py-1.5 rounded text-sm font-bold">Gün</div>
+                 <div>
+                   <h3 className="text-xl font-extrabold text-slate-900">Randevular</h3>
+                   <p className="text-xs text-slate-500 font-medium">Kliniğinin talep, öneri ve kesin randevu akışı</p>
+                 </div>
+                 <div className="text-teal-600 cursor-pointer p-2 hover:bg-teal-50 rounded-full transition-colors"><List size={20} /></div>
+              </div>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-4 gap-3 mb-6">
+                <div className="border border-slate-100 rounded-xl p-3 flex flex-col items-center justify-center text-center shadow-sm">
+                  <Calendar size={18} className="text-teal-600 mb-1" />
+                  <div className="font-bold text-slate-900 text-lg">24</div>
+                  <div className="text-[10px] text-slate-500 font-medium">Bugün</div>
+                </div>
+                <div className="border border-slate-100 rounded-xl p-3 flex flex-col items-center justify-center text-center shadow-sm">
+                  <Hourglass size={18} className="text-teal-600 mb-1" />
+                  <div className="font-bold text-slate-900 text-lg">8</div>
+                  <div className="text-[10px] text-slate-500 font-medium">Talep</div>
+                </div>
+                <div className="border border-slate-100 rounded-xl p-3 flex flex-col items-center justify-center text-center shadow-sm">
+                  <ArrowRightLeft size={18} className="text-teal-600 mb-1" />
+                  <div className="font-bold text-slate-900 text-lg">3</div>
+                  <div className="text-[10px] text-slate-500 font-medium leading-tight">Yanıt<br/>bekliyor</div>
+                </div>
+                <div className="border border-slate-100 rounded-xl p-3 flex flex-col items-center justify-center text-center shadow-sm">
+                  <CheckCircle2 size={18} className="text-teal-600 mb-1" />
+                  <div className="font-bold text-slate-900 text-lg">45</div>
+                  <div className="text-[10px] text-slate-500 font-medium">Kesin</div>
                 </div>
               </div>
-              
-              {/* Calendar Grid */}
-              <div className="border border-slate-200 rounded-xl overflow-hidden flex flex-col h-[320px] overflow-x-auto"><div className="min-w-[500px] lg:min-w-0 flex flex-col h-full">
-                <div className="flex border-b border-slate-200 bg-slate-50">
-                  <div className="w-16 border-r border-slate-200"></div>
-                  <div className="flex-1 border-r border-slate-200 p-2 text-center">
-                    <div className="text-[10px] font-bold text-slate-500 uppercase">PZT</div>
-                    <div className="font-bold text-slate-900">14</div>
-                  </div>
-                  <div className="flex-1 border-r border-slate-200 p-2 text-center">
-                    <div className="text-[10px] font-bold text-slate-500 uppercase">SAL</div>
-                    <div className="font-bold text-slate-900">15</div>
-                  </div>
-                  <div className="flex-1 p-2 text-center">
-                    <div className="text-[10px] font-bold text-slate-500 uppercase">ÇAR</div>
-                    <div className="font-bold text-slate-900">16</div>
-                  </div>
-                </div>
+
+              {/* Tabs */}
+              <div className="flex gap-2 mb-6 bg-slate-50 p-1.5 rounded-xl">
+                <button className="flex-1 bg-teal-600 text-white rounded-lg py-1.5 text-xs font-bold shadow-sm">Aktif</button>
+                <button className="flex-1 text-slate-500 hover:text-slate-700 py-1.5 text-xs font-bold transition-colors">Talepler</button>
+                <button className="flex-1 text-slate-500 hover:text-slate-700 py-1.5 text-xs font-bold transition-colors">Yaklaşan</button>
+                <button className="flex-1 text-slate-500 hover:text-slate-700 py-1.5 text-xs font-bold transition-colors">Geçmiş</button>
+              </div>
+
+              {/* Main Content: Calendar + Appointment Card */}
+              <div className="flex flex-col lg:flex-row gap-6">
                 
-                <div className="flex-1 flex flex-col lg:flex-row overflow-hidden relative">
-                  <div className="w-16 border-r border-slate-200 flex flex-col">
-                    <div className="flex-1 border-b border-slate-100 p-2 text-xs text-slate-400 font-medium text-right">09:00</div>
-                    <div className="flex-1 border-b border-slate-100 p-2 text-xs text-slate-400 font-medium text-right">10:00</div>
-                    <div className="flex-1 border-b border-slate-100 p-2 text-xs text-slate-400 font-medium text-right">11:00</div>
-                    <div className="flex-1 p-2 text-xs text-slate-400 font-medium text-right">12:00</div>
+                {/* Calendar */}
+                <div className="flex-1">
+                  <div className="flex justify-between items-center mb-4">
+                    <ChevronLeft size={18} className="text-slate-600 cursor-pointer" />
+                    <span className="font-bold text-slate-900 text-sm">Eylül 2026</span>
+                    <ChevronRight size={18} className="text-slate-600 cursor-pointer" />
                   </div>
-                  <div className="flex-1 flex">
-                    <div className="flex-1 border-r border-slate-100 relative">
-                       {/* Event 1 */}
-                       <div className="absolute top-[25%] left-2 right-2 bg-indigo-50 border-l-4 border-indigo-500 rounded p-2 h-[20%]">
-                         <div className="text-[10px] font-bold text-indigo-800">09:30 - Muayene</div>
-                         <div className="text-xs font-bold text-indigo-900">Max (Terrier)</div>
-                       </div>
-                    </div>
-                    <div className="flex-1 border-r border-slate-100 relative">
-                       {/* Event 2 */}
-                       <div className="absolute top-[50%] left-2 right-2 bg-rose-50 border-l-4 border-rose-500 rounded p-2 h-[25%]">
-                         <div className="text-[10px] font-bold text-rose-800">10:15 - Operasyon</div>
-                         <div className="text-xs font-bold text-rose-900">Luna (Kedi)</div>
-                         <div className="text-[10px] text-rose-600 mt-1">Dt. Aylin D.</div>
-                       </div>
-                    </div>
-                    <div className="flex-1 relative">
-                       {/* Event 3 */}
-                       <div className="absolute top-[25%] left-2 right-2 bg-emerald-50 border-l-4 border-emerald-500 rounded p-2 h-[20%]">
-                         <div className="text-[10px] font-bold text-emerald-800">09:30 - Aşı (Karma)</div>
-                         <div className="text-xs font-bold text-emerald-900">Paşa (Köpek)</div>
-                       </div>
-                    </div>
+                  
+                  {/* Days of week */}
+                  <div className="grid grid-cols-7 gap-1 text-center mb-2">
+                    {['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'].map(day => (
+                      <div key={day} className="text-[10px] font-bold text-slate-400">{day}</div>
+                    ))}
+                  </div>
+                  
+                  {/* Calendar Grid */}
+                  <div className="grid grid-cols-7 gap-y-2 gap-x-1 text-center text-sm font-medium">
+                    <div className="text-slate-300"></div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">1</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">2</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">3</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">4</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">5</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">6</div>
+                    
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">7</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">8</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">9</div>
+                    <div className="bg-teal-700 text-white py-1 rounded-full shadow-md font-bold">10</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">11</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">12</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">13</div>
+                    
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">14</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">15</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">16</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">17</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">18</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">19</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">20</div>
+
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">21</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">22</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">23</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">24</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">25</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">26</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">27</div>
+                    
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">28</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">29</div>
+                    <div className="text-slate-700 py-1 cursor-pointer hover:bg-slate-100 rounded-full transition-colors">30</div>
+                  </div>
+                  
+                  <div className="mt-4 text-center">
+                    <span className="text-[11px] font-bold text-teal-600 cursor-pointer hover:underline">Gün filtresini kaldır</span>
                   </div>
                 </div>
-              </div></div>
+
+                {/* Vertical Divider */}
+                <div className="hidden lg:block w-px bg-slate-100 mx-1"></div>
+
+                {/* Appointment Card */}
+                <div className="flex-1 flex flex-col justify-center">
+                  <div className="border border-slate-100 rounded-2xl p-4 shadow-sm relative bg-white">
+                    <div className="absolute top-4 right-4 bg-teal-50 text-teal-700 px-2 py-0.5 rounded-full text-[10px] font-bold">Onaylandı</div>
+                    
+                    <h4 className="font-bold text-slate-900 text-sm mb-0.5">Genel muayene</h4>
+                    <p className="text-[11px] text-slate-500 mb-4 font-medium">Procyon • Zeynep Yılmaz</p>
+                    
+                    <div className="bg-teal-50 rounded-lg p-2.5 flex items-center gap-2 mb-4">
+                      <Clock size={14} className="text-teal-600" />
+                      <span className="text-xs font-bold text-slate-700">10 Eyl 2026 15:00 • 30 dk</span>
+                    </div>
+                    
+                    <button className="bg-teal-50 hover:bg-teal-100 transition-colors text-teal-700 text-xs font-bold py-2 px-4 rounded-xl w-fit">
+                      Tamamlandı işaretle
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         </section>
@@ -349,24 +553,32 @@ export default function Clinics() {
               <AnimatedBorder color="#3B82F6" />
               {/* Sidebar */}
               <div className="w-full lg:w-1/3 bg-slate-50 border-r border-slate-200 p-6 flex flex-col items-center">
-                <div className="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center border-4 border-white shadow-sm mb-4">
-                   <div className="text-amber-500"><Activity size={32} /></div>
+                <div className="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center border-4 border-white shadow-sm mb-4 overflow-hidden">
+                   <img src="/leo-dog.jpg" alt="Leo" className="w-full h-full object-cover" />
                 </div>
                 <h3 className="font-bold text-xl text-slate-900">Leo</h3>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-8 text-center">BRITISH SHORTHAIR</p>
+                <p className="text-xs font-medium text-slate-500 mb-8 text-center">Sahibi: Semih Yıldırım</p>
                 
                 <div className="w-full space-y-4 text-sm">
-                  <div className="flex justify-between border-b border-slate-200 pb-2">
-                    <span className="text-slate-500">Yaş</span>
-                    <span className="font-bold text-slate-900">3 Yaş (2021)</span>
+                  <div className="flex justify-between items-center border-b border-slate-200 pb-2 gap-2">
+                    <span className="text-slate-500 whitespace-nowrap">Irk / Cins</span>
+                    <span className="font-bold text-slate-900 text-right leading-tight">Golden Retriever</span>
                   </div>
-                  <div className="flex justify-between border-b border-slate-200 pb-2">
-                    <span className="text-slate-500">Kilo</span>
-                    <span className="font-bold text-slate-900">4.5 kg</span>
+                  <div className="flex justify-between items-center border-b border-slate-200 pb-2 gap-2">
+                    <span className="text-slate-500 whitespace-nowrap">Cinsiyet</span>
+                    <span className="font-bold text-slate-900 text-right">Dişi</span>
                   </div>
-                  <div className="flex justify-between border-b border-slate-200 pb-2">
-                    <span className="text-slate-500">Çip No</span>
-                    <span className="font-bold text-slate-900 truncate ml-2">900213000...</span>
+                  <div className="flex justify-between items-center border-b border-slate-200 pb-2 gap-2">
+                    <span className="text-slate-500 whitespace-nowrap">Yaş</span>
+                    <span className="font-bold text-slate-900 text-right">3 Yaş (2021)</span>
+                  </div>
+                  <div className="flex justify-between items-center border-b border-slate-200 pb-2 gap-2">
+                    <span className="text-slate-500 whitespace-nowrap">Kilo</span>
+                    <span className="font-bold text-slate-900 text-right">28.5 kg</span>
+                  </div>
+                  <div className="flex justify-between items-center border-b border-slate-200 pb-2 gap-2">
+                    <span className="text-slate-500 whitespace-nowrap">Çip No</span>
+                    <span className="font-bold text-slate-900 text-right text-[11px] xl:text-xs">900213000142981</span>
                   </div>
                 </div>
               </div>
@@ -393,7 +605,7 @@ export default function Clinics() {
                     <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white"></div>
                     <div className="text-[10px] font-bold text-slate-400 mb-2 uppercase">15 Haziran 2024</div>
                     <div className="border border-slate-200 rounded-xl p-3 lg:p-4 bg-white shadow-sm">
-                      <h4 className="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2"><Activity size={16} className="text-indigo-500" /> Karma Aşı (Feline)</h4>
+                      <h4 className="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2"><Activity size={16} className="text-indigo-500" /> Karma Aşı (Canine)</h4>
                       <p className="text-xs text-slate-500 leading-relaxed">Uygulandı: Nobivac Tricat Trio. Barkod e-karneye okutuldu.</p>
                     </div>
                   </div>
@@ -426,72 +638,7 @@ export default function Clinics() {
           </motion.div>
         </section>
 
-        {/* Section 5: Neden Veterito'ya Katılmalısınız? */}
-        <section className="min-h-screen h-auto lg:h-screen snap-always snap-start py-24 lg:py-0 flex flex-col justify-center py-24">
-          <div className="text-center max-w-2xl lg:max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6">Neden Veterito'ya Katılmalısınız?</h2>
-            <p className="text-lg text-slate-600">Sadece bir yönetim paneli değil, aynı zamanda hasta sadakatini artıran ve iş akışınızı hızlandıran uçtan uca bir çözüm sunuyoruz.</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{once:true}} className="bg-white border-2 border-indigo-100 rounded-3xl p-8 shadow-xl relative overflow-hidden group hover:border-indigo-300 transition-colors">
-              <div className="w-12 h-12 bg-indigo-50 text-indigo-500 rounded-xl flex items-center justify-center mb-6">
-                <LayoutGrid size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-6">Tek Ekran Kolaylığı</h3>
-              <ul className="space-y-4">
-                <li className="flex items-center gap-3 text-slate-600 font-medium">
-                  <CheckCircle className="text-indigo-500 shrink-0" size={18} /> Karmaşık yazılımlara son
-                </li>
-                <li className="flex items-center gap-3 text-slate-600 font-medium">
-                  <CheckCircle className="text-indigo-500 shrink-0" size={18} /> Modern, hızlı tepki veren arayüz
-                </li>
-                <li className="flex items-center gap-3 text-slate-600 font-medium">
-                  <CheckCircle className="text-indigo-500 shrink-0" size={18} /> Yoğunluğu saniyeler içinde yönetin
-                </li>
-              </ul>
-              <LayoutGrid size={120} className="absolute -bottom-10 -right-10 text-indigo-50 opacity-50 group-hover:scale-110 transition-transform" />
-            </motion.div>
-            
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{once:true}} transition={{delay: 0.1}} className="bg-white border-2 border-rose-100 rounded-3xl p-8 shadow-xl relative overflow-hidden group hover:border-rose-300 transition-colors">
-              <div className="w-12 h-12 bg-rose-50 text-rose-500 rounded-xl flex items-center justify-center mb-6">
-                <Heart size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-6">Müşteri Sadakati</h3>
-              <ul className="space-y-4">
-                <li className="flex items-center gap-3 text-slate-600 font-medium">
-                  <CheckCircle className="text-rose-500 shrink-0" size={18} /> Otomatik aşı bildirimleri
-                </li>
-                <li className="flex items-center gap-3 text-slate-600 font-medium">
-                  <CheckCircle className="text-rose-500 shrink-0" size={18} /> Kritik operasyon hatırlatmaları
-                </li>
-                <li className="flex items-center gap-3 text-slate-600 font-medium">
-                  <CheckCircle className="text-rose-500 shrink-0" size={18} /> Güçlü güven bağı inşası
-                </li>
-              </ul>
-              <Heart size={120} className="absolute -bottom-10 -right-10 text-rose-50 opacity-50 group-hover:scale-110 transition-transform" />
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{once:true}} transition={{delay: 0.2}} className="bg-white border-2 border-sky-100 rounded-3xl p-8 shadow-xl relative overflow-hidden group hover:border-sky-300 transition-colors">
-              <div className="w-12 h-12 bg-sky-50 text-sky-500 rounded-xl flex items-center justify-center mb-6">
-                <Search size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-6">Güvenilir Altyapı</h3>
-              <ul className="space-y-4">
-                <li className="flex items-center gap-3 text-slate-600 font-medium">
-                  <CheckCircle className="text-sky-500 shrink-0" size={18} /> Tamamen bulut tabanlı sunucular
-                </li>
-                <li className="flex items-center gap-3 text-slate-600 font-medium">
-                  <CheckCircle className="text-sky-500 shrink-0" size={18} /> Veri kaybı ve çökme riski yok
-                </li>
-                <li className="flex items-center gap-3 text-slate-600 font-medium">
-                  <CheckCircle className="text-sky-500 shrink-0" size={18} /> Tüm cihazlardan 7/24 erişim
-                </li>
-              </ul>
-              <div className="absolute -bottom-10 -right-10 w-32 h-32 rounded-full border-[20px] border-sky-50 opacity-50 group-hover:scale-110 transition-transform"></div>
-            </motion.div>
-          </div>
-        </section>
+        
 
       </div>
 

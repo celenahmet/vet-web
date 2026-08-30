@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import {Calendar, Stethoscope, Users, CheckCircle2, ShieldCheck, Activity, QrCode, PhoneCall, PawPrint, Bell, FileText, Share2, Heart, MessageCircle, MoreHorizontal, ArrowLeft, Syringe, Bookmark, Plus, ArrowRight, Image as ImageIcon, Menu, MapPin, Globe, Building2, AlertTriangle, Eye, Search, User, BookOpen, Bone, Smile} from 'lucide-react';
+import {Calendar, Stethoscope, Users, CheckCircle2, ShieldCheck, Activity, QrCode, PhoneCall, PawPrint, Bell, FileText, Share2, Heart, MessageCircle, MoreHorizontal, ArrowLeft, Syringe, Bookmark, Plus, ArrowRight, Image as ImageIcon, Menu, MapPin, Globe, Building2, AlertTriangle, Eye, Search, User, BookOpen, Bone, Smile, Send, LayoutDashboard, LogOut, MessageSquare} from 'lucide-react';
 
 import SEO from '../components/SEO';
+import { brandConfig } from '../config/brand';
 
 export default function Features() {
   const [activeTab, setActiveTab] = useState('owners');
@@ -61,7 +63,7 @@ export default function Features() {
               
               <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight text-[var(--text-main)]">
                 Hayatı Kolaylaştıran <br/>
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-vet-primary)] to-[var(--color-vet-accent)]">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-vet-secondary)] to-[var(--color-vet-primary)]">
                   Dijital Sağlık Ağı
                 </span>
               </motion.h1>
@@ -75,11 +77,11 @@ export default function Features() {
       </section>
 
       {/* 2. INTERACTIVE APP SHOWCASE (Snap Section 2) */}
-      <section className="min-h-[100dvh] h-auto lg:h-[100dvh] w-full snap-start snap-always relative z-10 bg-[var(--bg-surface)] flex flex-col justify-center pt-24 pb-8 shadow-[0_-20px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_-20px_40px_rgba(0,0,0,0.3)]">
+      <section className="h-[100dvh] w-full snap-start snap-always relative z-10 bg-[var(--bg-surface)] flex flex-col justify-center pt-[100px] pb-2 overflow-hidden shadow-[0_-20px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_-20px_40px_rgba(0,0,0,0.3)]">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 flex flex-col justify-center h-full">
-          <div className="text-center mb-2 transform translate-y-4 lg:translate-y-8 relative z-20">
-            <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-6 py-1 leading-tight">
-              Herkes İçin <br/>
+          <div className="text-center mb-2 relative z-20 transform translate-y-6">
+            <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-2 leading-tight">
+              Herkes İçin <br className="lg:hidden"/>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-700 to-teal-500 dark:from-teal-400 dark:to-teal-300">Tek Bir Uygulama</span>
             </h2>
             
@@ -111,10 +113,11 @@ export default function Features() {
               
               {/* TAB 1: OWNERS */}
               {activeTab === 'owners' && (
-                <motion.div key="owners" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} transition={{duration:0.2}} className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-20 w-full max-w-6xl mx-auto lg:pl-8 mt-6 lg:mt-8">
+                <motion.div key="owners" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} transition={{duration:0.2}} className="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-16 w-full max-w-6xl mx-auto lg:pl-8 mt-4 lg:mt-4">
                   
                   {/* Column 1: Title, Description & Modern Features */}
                   <div className="w-full lg:w-[50%] flex flex-col space-y-4 text-center lg:text-left">
+                    <div className="flex flex-col space-y-4 transform -translate-y-4 lg:-translate-y-8">
                     <div>
                       <h2 className="text-sm font-bold tracking-widest text-amber-600 dark:text-amber-400 uppercase mb-2">EVCİL HAYVAN SAHİPLERİ İÇİN</h2>
                       <h3 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-2 leading-tight">Sıfır Stres, <br/>Kesintisiz Takip.</h3>
@@ -123,6 +126,7 @@ export default function Features() {
                       Fiziksel aşı karnesini kaybetme veya rutin uygulamaları unutma derdine son verin. Veterito, patili dostunuzun yaşına ve türüne göre yapılması gerekenleri hesaplar ve tam zamanında size hatırlatır.
                     </p>
                     
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
                       <div className="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 transition-transform">
                         <Bell size={24} className="text-amber-500 mb-2" />
@@ -145,13 +149,13 @@ export default function Features() {
                   </div>
 
                   {/* Column 2: Center UI */}
-                  <div className="w-full lg:w-[40%] flex justify-center lg:justify-end h-[520px] relative perspective-1000 mt-4 lg:mt-0">
-                      <div className="w-[320px] h-[640px] transform scale-[0.85] origin-top lg:origin-top-right bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl overflow-hidden relative flex flex-col z-10 border border-slate-100 dark:border-slate-800">
+                  <div className="w-full lg:w-[40%] flex justify-center lg:justify-end h-[640px] relative perspective-1000 mt-4 lg:mt-0">
+                      <div className="w-[320px] h-[640px] transform scale-[0.85] lg:scale-[0.92] origin-top lg:origin-top-right bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl overflow-hidden relative flex flex-col z-10 border border-slate-100 dark:border-slate-800">
 
                       <div className="flex justify-between items-center px-6 pt-10 pb-2">
                         <div>
                           <div className="text-[var(--text-muted)] mb-1"><Menu size={20} className="text-emerald-900 dark:text-emerald-100" /></div>
-                          <h2 className="text-2xl font-serif font-bold text-emerald-900 dark:text-emerald-100 flex items-center gap-2 mt-4">
+                          <h2 className="text-2xl font-bold text-emerald-900 dark:text-emerald-100 flex items-center gap-2 mt-4">
                             Günaydın <span className="text-amber-500">✦</span>
                           </h2>
                           <p className="text-xs text-emerald-800/70 dark:text-emerald-200/70">Bugün harika bir gün <br/> Senorita için.</p>
@@ -160,11 +164,10 @@ export default function Features() {
                           <Bell size={20} className="text-emerald-900 dark:text-emerald-100" />
                         </div>
                       </div>
-                      <div className="px-4 flex-1 flex flex-col gap-4 overflow-y-auto pb-20 no-scrollbar">
+                      <div className="px-4 flex-1 flex flex-col gap-4 overflow-y-auto pb-24 [&::-webkit-scrollbar]:w-[6px] [&::-webkit-scrollbar]:block [&::-webkit-scrollbar-track]:bg-slate-200 dark:[&::-webkit-scrollbar-track]:bg-slate-800/50 [&::-webkit-scrollbar-thumb]:bg-slate-500/90 dark:[&::-webkit-scrollbar-thumb]:bg-slate-400/90 [&::-webkit-scrollbar-thumb]:rounded-full">
                         <div className="bg-white dark:bg-[#233120] rounded-[24px] p-4 flex gap-4 items-center shadow-sm relative">
                           <div className="w-24 h-24 rounded-2xl bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-400 overflow-hidden relative">
-                            <div className="absolute inset-0 bg-gradient-to-br from-amber-200 to-orange-300 opacity-60"></div>
-                            <ImageIcon size={32} className="relative z-10 opacity-50" />
+                            <img src="/pet1.jpg" alt="Senorita" className="w-full h-full object-cover" />
                           </div>
                           <div className="flex-1">
                             <h3 className="font-bold text-slate-900 dark:text-slate-100 text-lg mb-1">Senorita 👑</h3>
@@ -247,10 +250,11 @@ export default function Features() {
 
               {/* TAB 2: PETS */}
               {activeTab === 'pets' && (
-                <motion.div key="pets" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} transition={{duration:0.2}} className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-20 w-full max-w-6xl mx-auto lg:pl-8 mt-6 lg:mt-8">
+                <motion.div key="pets" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} transition={{duration:0.2}} className="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-16 w-full max-w-6xl mx-auto lg:pl-8 mt-4 lg:mt-4">
                   
                   {/* Column 1: Title, Description & Modern Features */}
                   <div className="w-full lg:w-[50%] flex flex-col space-y-4 text-center lg:text-left">
+                    <div className="flex flex-col space-y-4 transform -translate-y-4 lg:-translate-y-8">
                     <div>
                       <h2 className="text-sm font-bold tracking-widest text-teal-600 dark:text-teal-400 uppercase mb-2">PATİLİ DOSTLAR İÇİN</h2>
                       <h3 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-2 leading-tight">Hayat Kurtaran <br/>Dijital Kimlik.</h3>
@@ -259,6 +263,7 @@ export default function Features() {
                       Acil durumlarda veya farklı bir veteriner kliniğine gidildiğinde saniyeler önemlidir. Yanlış tedavi riskini sıfıra indirmek için tüm tıbbi geçmiş tek bir dijital kimlik altında tutulur.
                     </p>
                     
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
                       <div className="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 transition-transform">
                         <Activity size={24} className="text-amber-500 mb-2" />
@@ -281,19 +286,18 @@ export default function Features() {
                   </div>
 
                   {/* Column 2: Center UI */}
-                  <div className="w-full lg:w-[40%] flex justify-center lg:justify-end h-[520px] relative perspective-1000 mt-4 lg:mt-0">
-                      <div className="w-[320px] h-[640px] transform scale-[0.85] origin-top lg:origin-top-right bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl overflow-hidden relative flex flex-col z-10 border border-slate-100 dark:border-slate-800">
+                  <div className="w-full lg:w-[40%] flex justify-center lg:justify-end h-[640px] relative perspective-1000 mt-4 lg:mt-0">
+                      <div className="w-[320px] h-[640px] transform scale-[0.85] lg:scale-[0.92] origin-top lg:origin-top-right bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl overflow-hidden relative flex flex-col z-10 border border-slate-100 dark:border-slate-800">
 
                       <div className="flex justify-between items-center px-4 pt-10 pb-2">
                         <ArrowLeft size={24} className="text-slate-800 dark:text-slate-200" />
-                        <h3 className="font-serif font-bold text-lg text-slate-800 dark:text-slate-200">Senorita</h3>
+                        <h3 className="font-bold text-lg text-slate-800 dark:text-slate-200">Senorita</h3>
                         <MoreHorizontal size={24} className="text-slate-800 dark:text-slate-200" />
                       </div>
-                      <div className="flex-1 overflow-y-auto px-4 pb-20 no-scrollbar">
+                      <div className="flex-1 overflow-y-auto px-4 pb-20 [&::-webkit-scrollbar]:w-[6px] [&::-webkit-scrollbar]:block [&::-webkit-scrollbar-track]:bg-slate-200 dark:[&::-webkit-scrollbar-track]:bg-slate-800/50 [&::-webkit-scrollbar-thumb]:bg-slate-500/90 dark:[&::-webkit-scrollbar-thumb]:bg-slate-400/90 [&::-webkit-scrollbar-thumb]:rounded-full">
                         <div className="flex justify-center mt-4 mb-6 relative">
                           <div className="w-32 h-32 rounded-full border-4 border-amber-300 dark:border-amber-600 bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden relative shadow-md">
-                            <div className="absolute inset-0 bg-gradient-to-br from-amber-200 to-orange-300 opacity-60"></div>
-                            <ImageIcon size={40} className="relative z-10 opacity-50 text-slate-600" />
+                            <img src="/pet1.jpg" alt="Senorita" className="w-full h-full object-cover" />
                           </div>
                           <div className="absolute bottom-0 right-1/2 translate-x-12 w-8 h-8 bg-amber-500 rounded-full border-2 border-white flex items-center justify-center text-white shadow-sm">
                             <PawPrint size={14} />
@@ -319,7 +323,7 @@ export default function Features() {
                         </div>
                         <div className="bg-white dark:bg-[#233120] rounded-3xl p-5 shadow-sm mb-4">
                           <div className="flex justify-between items-center mb-6">
-                            <h4 className="text-lg font-serif font-bold text-emerald-900 dark:text-emerald-100">Dijital Sağlık Kartı</h4>
+                            <h4 className="text-lg font-bold text-emerald-900 dark:text-emerald-100">Dijital Sağlık Kartı</h4>
                             <ShieldCheck size={24} className="text-emerald-800 dark:text-emerald-400" />
                           </div>
                           <div className="space-y-4">
@@ -367,7 +371,7 @@ export default function Features() {
                         </div>
                         <div className="bg-white dark:bg-[#233120] rounded-3xl p-5 shadow-sm">
                           <div className="flex justify-between items-center mb-4">
-                            <h4 className="text-sm font-serif font-bold text-emerald-900 dark:text-emerald-100">Veteriner Bilgileri</h4>
+                            <h4 className="text-sm font-bold text-emerald-900 dark:text-emerald-100">Veteriner Bilgileri</h4>
                             <div className="text-amber-500"><Users size={18}/></div>
                           </div>
                           <div className="flex justify-between items-center">
@@ -402,10 +406,11 @@ export default function Features() {
               )}
               {/* TAB 3: COMMUNITY */}
               {activeTab === 'community' && (
-                <motion.div key="community" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} transition={{duration:0.2}} className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-20 w-full max-w-6xl mx-auto lg:pl-8 mt-6 lg:mt-8">
+                <motion.div key="community" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} transition={{duration:0.2}} className="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-16 w-full max-w-6xl mx-auto lg:pl-8 mt-4 lg:mt-4">
                   
                   {/* Column 1: Title, Description & Modern Features */}
                   <div className="w-full lg:w-[50%] flex flex-col space-y-4 text-center lg:text-left">
+                    <div className="flex flex-col space-y-4 transform -translate-y-4 lg:-translate-y-8">
                     <div>
                       <h2 className="text-sm font-bold tracking-widest text-rose-500 uppercase mb-2">PATİ TOPLULUĞU</h2>
                       <h3 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-2 leading-tight">Yalnız Değilsiniz. <br/>Deneyimleri Paylaşın.</h3>
@@ -414,6 +419,7 @@ export default function Features() {
                       Sadece bir tıbbi aracı değiliz; aynı zamanda kocaman bir hayvanseverler ağıyız. Kendi şehrinizdeki evcil hayvan sahipleriyle tanışın, bilgi alın ve eğlenceli anları paylaşın.
                     </p>
                     
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
                       <div className="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 transition-transform">
                         <ImageIcon size={24} className="text-fuchsia-500 mb-2" />
@@ -436,12 +442,12 @@ export default function Features() {
                   </div>
 
                   {/* Column 2: Center UI */}
-                  <div className="w-full lg:w-[40%] flex justify-center lg:justify-end h-[520px] relative perspective-1000 mt-4 lg:mt-0">
-                      <div className="w-[320px] h-[640px] transform scale-[0.85] origin-top lg:origin-top-right bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl overflow-hidden relative flex flex-col z-10 border border-slate-100 dark:border-slate-800">
+                  <div className="w-full lg:w-[40%] flex justify-center lg:justify-end h-[640px] relative perspective-1000 mt-4 lg:mt-0">
+                      <div className="w-[320px] h-[640px] transform scale-[0.85] lg:scale-[0.92] origin-top lg:origin-top-right bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl overflow-hidden relative flex flex-col z-10 border border-slate-100 dark:border-slate-800">
 
                       <div className="flex justify-between items-center px-6 pt-10 pb-2">
                         <div className="w-6"></div>
-                        <h3 className="font-serif font-bold text-xl text-emerald-900 dark:text-emerald-100">Topluluk</h3>
+                        <h3 className="font-bold text-xl text-emerald-900 dark:text-emerald-100">Topluluk</h3>
                         <div className="w-8 h-8 rounded-full border border-emerald-900 dark:border-emerald-100 flex items-center justify-center">
                           <Plus size={16} className="text-emerald-900 dark:text-emerald-100" />
                         </div>
@@ -454,11 +460,11 @@ export default function Features() {
                           <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Takip Ettiklerim</span>
                         </div>
                       </div>
-                      <div className="flex-1 overflow-y-auto px-4 pt-4 pb-24 space-y-4 no-scrollbar">
+                      <div className="flex-1 overflow-y-auto px-4 pt-4 pb-24 space-y-4 [&::-webkit-scrollbar]:w-[6px] [&::-webkit-scrollbar]:block [&::-webkit-scrollbar-track]:bg-slate-200 dark:[&::-webkit-scrollbar-track]:bg-slate-800/50 [&::-webkit-scrollbar-thumb]:bg-slate-500/90 dark:[&::-webkit-scrollbar-thumb]:bg-slate-400/90 [&::-webkit-scrollbar-thumb]:rounded-full">
                         <div className="bg-white dark:bg-[#233120] rounded-[24px] p-4 shadow-sm">
                           <div className="flex justify-between items-start mb-3">
                             <div className="flex items-center gap-2">
-                              <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden flex items-center justify-center"><ImageIcon size={16} className="text-slate-400" /></div>
+                              <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden flex items-center justify-center"><img src="/pet2.jpg" alt="Profile" className="w-full h-full object-cover" /></div>
                               <div>
                                 <div className="font-bold text-sm text-slate-900 dark:text-slate-100">Defne & Misket</div>
                                 <div className="text-[10px] text-slate-500">2 saat önce</div>
@@ -467,8 +473,8 @@ export default function Features() {
                             <MoreHorizontal size={20} className="text-slate-800 dark:text-slate-200" />
                           </div>
                           <p className="text-xs text-slate-800 dark:text-slate-200 mb-3">Gün batımında sahil yürüyüşü. 🌅 En sevdiğimiz anlardan biri! ✨</p>
-                          <div className="w-full h-40 bg-gradient-to-r from-amber-100 to-orange-200 dark:from-amber-900/30 dark:to-orange-800/30 rounded-xl mb-3 flex items-center justify-center">
-                            <ImageIcon size={40} className="text-amber-600/30" />
+                          <div className="w-full h-40 bg-slate-200 dark:bg-slate-700 rounded-xl mb-3 flex items-center justify-center overflow-hidden">
+                            <img src="/pet2.jpg" alt="Post" className="w-full h-full object-cover" />
                           </div>
                           <div className="flex justify-between items-center mb-3">
                             <div className="flex gap-4">
@@ -482,7 +488,7 @@ export default function Features() {
                         <div className="bg-white dark:bg-[#233120] rounded-[24px] p-4 shadow-sm">
                           <div className="flex justify-between items-start mb-3">
                             <div className="flex items-center gap-2">
-                              <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden flex items-center justify-center"><ImageIcon size={16} className="text-slate-400" /></div>
+                              <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden flex items-center justify-center"><img src="/pet1.jpg" alt="Profile" className="w-full h-full object-cover" /></div>
                               <div>
                                 <div className="font-bold text-sm text-slate-900 dark:text-slate-100">Can & Pati</div>
                                 <div className="text-[10px] text-slate-500">5 saat önce</div>
@@ -502,7 +508,7 @@ export default function Features() {
                         <div className="bg-white dark:bg-[#233120] rounded-[24px] p-4 shadow-sm">
                           <div className="flex justify-between items-start mb-3">
                             <div className="flex items-center gap-2">
-                              <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden flex items-center justify-center"><ImageIcon size={16} className="text-slate-400" /></div>
+                              <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden flex items-center justify-center"><img src="/duman.jpg" alt="Profile" className="w-full h-full object-cover" /></div>
                               <div>
                                 <div className="font-bold text-sm text-slate-900 dark:text-slate-100">Selin & Leo</div>
                                 <div className="text-[10px] text-slate-500">1 gün önce</div>
@@ -511,7 +517,7 @@ export default function Features() {
                             <MoreHorizontal size={20} className="text-slate-800 dark:text-slate-200" />
                           </div>
                           <p className="text-xs text-slate-800 dark:text-slate-200 mb-2">Leo'nun yeni oyuncağına bayıldı! 😻</p>
-                          <div className="w-full h-12 bg-slate-100 dark:bg-slate-800 rounded-xl rounded-b-none"></div>
+                          <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden mb-3"><img src="/pet3.jpg" alt="Post" className="w-full h-full object-cover" /></div>
                         </div>
                       </div>
                       <div className="absolute bottom-0 left-0 w-full h-20 bg-white dark:bg-[#1a2317] border-t border-slate-100 dark:border-slate-800 flex justify-around items-center px-4 pb-2 z-10">
@@ -539,81 +545,7 @@ export default function Features() {
         </div>
       </section>
 
-      {/* 3. SMART HEALTH ASSISTANT (Bento Box) */}
-      <section className="min-h-[100dvh] h-auto lg:h-[100dvh] w-full snap-start snap-always relative z-20 bg-[var(--bg-main)] flex flex-col justify-center pt-16 pb-8 shadow-[0_-20px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_-20px_40px_rgba(0,0,0,0.3)] border-t border-[var(--border-color)]">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 flex flex-col justify-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
-            <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-6">Sadece Bir Karne Değil, <br/><span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-orange-500">Akıllı Yaşam Koçu</span></h2>
-            <p className="text-lg text-[var(--text-muted)] font-medium max-w-xl lg:max-w-2xl mx-auto">Verileri analiz eden sistemimiz, dostunuzun ırkına ve yaşına özel proaktif tavsiyeler sunar. İhtiyaç duyduğunuz tüm bilgiler tek bakışta karşınızda.</p>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[220px]">
-            {/* Bento Item 1: Weight Tracker */}
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="md:col-span-2 bg-white dark:bg-slate-800 rounded-3xl p-6 border-2 border-rose-200 dark:border-rose-900 shadow-lg relative overflow-hidden group">
-               <div className="relative z-10 w-2/3">
-                 <Activity className="text-rose-500 mb-2" size={28} />
-                 <h3 className="text-2xl font-bold text-[var(--text-main)] mb-2">Gelişim Analizi</h3>
-                 <p className="text-sm text-[var(--text-muted)] leading-relaxed">"Leo'nun kilosu ideal aralığın %5 üzerinde. Porsiyonlarını hafifçe azaltmayı düşünebilirsiniz." Sistem, periyodik olarak verileri okur ve anlamlı çıkarımlar yapar.</p>
-               </div>
-               <div className="absolute right-0 bottom-0 w-[45%] h-[80%] bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-tl-2xl border-t border-l border-white/60 dark:border-slate-700/60 p-4 translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500 flex flex-col justify-end">
-                  <div className="flex items-end gap-2 h-[80%] w-full">
-                     <div className="w-1/4 bg-rose-200 dark:bg-rose-900/40 rounded-t h-[40%]"></div>
-                     <div className="w-1/4 bg-rose-300 dark:bg-rose-900/60 rounded-t h-[55%]"></div>
-                     <div className="w-1/4 bg-rose-400 dark:bg-rose-900/80 rounded-t h-[75%]"></div>
-                     <div className="w-1/4 bg-rose-500 dark:bg-rose-600 rounded-t h-[95%] relative"><div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-rose-600 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/50 px-2 py-0.5 rounded-full shadow-sm">Trend</div></div>
-                  </div>
-               </div>
-            </motion.div>
-            
-            {/* Bento Item 2: Reminders */}
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="bg-white dark:bg-slate-800 rounded-3xl p-6 border-2 border-indigo-200 dark:border-indigo-900 shadow-lg flex flex-col justify-between group">
-               <div>
-                 <Bell className="text-indigo-500 mb-2" size={28} />
-                 <h3 className="text-xl font-bold text-[var(--text-main)] mb-2">Sıfır Unutkanlık</h3>
-                 <p className="text-sm text-[var(--text-muted)]">Aşılar, iç-dış parazit ve rutin kontroller... Sizin yerinize biz takip ediyor, tam vaktinde hatırlatıyoruz.</p>
-               </div>
-               <div className="mt-4 bg-white/70 dark:bg-slate-800/70 p-4 rounded-2xl backdrop-blur-sm border border-white/60 dark:border-slate-700/60 flex items-center justify-between group-hover:-translate-y-1 transition-transform duration-300 shadow-sm">
-                 <span className="text-sm font-bold text-[var(--text-main)]">Parazit Damlası</span>
-                 <span className="text-xs font-bold bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 px-3 py-1 rounded-full">Yarın</span>
-               </div>
-            </motion.div>
-            
-            {/* Bento Item 3: Digital ID */}
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="bg-white dark:bg-slate-800 rounded-3xl p-6 border-2 border-emerald-200 dark:border-emerald-900 shadow-lg flex flex-col justify-center group text-center relative overflow-hidden">
-               <QrCode className="text-emerald-500 mb-2 mx-auto group-hover:scale-110 transition-transform duration-300" size={32} />
-               <h3 className="text-xl font-bold text-[var(--text-main)] mb-2">QR Küpe ile Tam Güvenlik</h3>
-               <p className="text-sm text-[var(--text-muted)]">Fiziksel akıllı tasmanızla dijital profilinizi eşleştirin. Bulan kişi anında iletişime geçsin.</p>
-            </motion.div>
-
-            {/* Bento Item 4: Emergency Radar */}
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }} className="md:col-span-2 bg-slate-900 rounded-3xl p-6 border border-slate-700 shadow-xl flex items-center justify-between overflow-hidden group relative">
-               <div className="z-10 w-3/5 lg:w-1/2">
-                 <MapPin className="text-sky-400 mb-2" size={28} />
-                 <h3 className="text-2xl font-bold text-white mb-2">Acil Durum Radarı</h3>
-                 <p className="text-sm text-slate-300 leading-relaxed">Kötü bir sürpriz mi yaşadınız? Tek tuşla 5km çevredeki tüm hastalara, hayvanseverlere ve veteriner kliniklerine anında acil durum bildirimi (push) göndererek saniyeler içinde organize olun.</p>
-               </div>
-               <div className="absolute right-0 top-0 bottom-0 w-1/2 flex items-center justify-center pointer-events-none">
-                  <div className="relative w-48 h-48 flex items-center justify-center translate-x-12">
-                    <div className="absolute w-20 h-20 bg-sky-500/20 rounded-full animate-ping"></div>
-                    <div className="absolute w-32 h-32 border border-sky-500/30 rounded-full"></div>
-                    <div className="absolute w-48 h-48 border border-sky-500/10 rounded-full"></div>
-                    <div className="w-14 h-14 bg-sky-500 text-white rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(14,165,233,0.5)] z-10 relative">
-                       <Globe size={24} />
-                       <div className="absolute -top-1 -right-1 w-4 h-4 bg-rose-500 rounded-full border-2 border-slate-900 animate-pulse"></div>
-                    </div>
-                  </div>
-               </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      
-      {/* =========================================================
-          ANA SAYFADAN TAŞINAN BÖLÜMLER AŞAĞIDADIR
-          ========================================================= */}
-
-        {/* =========================================
+      {/* =========================================
             2. SAĞLIK GEÇMİŞİ (Bento Grid)
             ========================================= */}
         <section className="min-h-[100dvh] h-auto lg:min-h-[100dvh] lg:h-auto snap-start pt-24 pb-8 flex items-center bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
@@ -706,7 +638,7 @@ export default function Features() {
                          <div className="text-left flex-1">
                             <div className="flex justify-between items-center">
                                <div className="font-black text-[15px] text-[var(--text-main)] leading-tight">{visit.type}</div>
-                               <div className="text-[11px] font-bold text-slate-400 dark:text-slate-500">{visit.date}</div>
+                               <div className="text-[11px] font-medium text-slate-400 dark:text-slate-500">{visit.date}</div>
                             </div>
                             <div className="text-[11px] text-[var(--text-muted)] font-medium mt-1">{visit.note}</div>
                          </div>
@@ -740,6 +672,112 @@ export default function Features() {
         </section>
 
         {/* =========================================
+            1. AKILLI AŞI TAKVİMİ (Sol Metin, Sağ Grid)
+            ========================================= */}
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start snap-always py-20 lg:py-0 flex items-center bg-[var(--bg-main)] border-b border-[var(--border-color)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="flex flex-col lg:flex-row gap-16 items-center">
+              {/* Left: Text */}
+              <div className="flex-1 space-y-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-bold border border-indigo-200 dark:border-indigo-800">
+                  <Bell size={16} /> Hiçbir Dozu Kaçırmayın
+                </div>
+                <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] leading-tight">Akıllı Takvim ve Hatırlatıcılar</h2>
+                <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+                  Karma, kuduz ve parazit aşılarını türe göre otomatik planlar ve yaklaşan uygulamaları akıllı bildirimlerle hatırlatır. Tüm aşı takvimi cihazınızla eşzamanlı çalışarak, dostunuzun hiçbir sağlık detayının atlanmamasını sağlar.
+                </p>
+                <div className="flex gap-4 pt-4">
+                  <div className="flex items-center gap-2 text-[var(--text-main)] font-bold bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-xl">
+                    <CheckCircle2 size={18} className="text-indigo-500" /> Otomatik Planlama
+                  </div>
+                  <div className="flex items-center gap-2 text-[var(--text-main)] font-bold bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-xl">
+                    <CheckCircle2 size={18} className="text-indigo-500" /> Cihaz Senkronizasyonu
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Dynamic Dashboard Visual */}
+              {/* Right: Dynamic Dashboard Visual */}
+              {/* Right: Dynamic Dashboard Visual */}
+              {/* Right: Dynamic Dashboard Visual */}
+              {/* Right: Dynamic Dashboard Visual */}
+              <motion.div 
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="flex-1 w-full flex justify-center lg:justify-end"
+              >
+                <div className="w-full max-w-md bg-white dark:bg-slate-900 rounded-[3rem] p-8 shadow-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden">
+                   
+                   {/* Health Summary Box */}
+                   <div className="bg-slate-50 dark:bg-slate-800/80 rounded-3xl p-6 border border-slate-100 dark:border-slate-700 mb-8 relative z-10 shadow-sm">
+                      <div className="text-sm font-black text-indigo-900 dark:text-indigo-200 mb-6 flex items-center gap-2">
+                         <Activity size={16} className="text-indigo-500" /> Sağlık Özeti
+                      </div>
+                      <div className="flex justify-between items-center mb-6">
+                         <div className="text-center w-full">
+                            <div className="w-12 h-12 mx-auto bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 rounded-2xl shadow-sm border border-emerald-200/50 dark:border-emerald-700/50 flex items-center justify-center mb-3 hover:scale-110 transition-transform"><Activity size={20}/></div>
+                            <div className="font-black text-[var(--text-main)] text-lg">1 kg</div>
+                            <div className="text-[11px] font-medium text-slate-500 mt-1 uppercase tracking-wider">Kilo</div>
+                         </div>
+                         <div className="w-px h-12 bg-slate-200 dark:bg-slate-700/50"></div>
+                         <div className="text-center w-full">
+                            <div className="w-12 h-12 mx-auto bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-2xl shadow-sm border border-blue-200/50 dark:border-blue-700/50 flex items-center justify-center mb-3 hover:scale-110 transition-transform"><CheckCircle2 size={20}/></div>
+                            <div className="font-black text-[var(--text-main)] text-lg">0</div>
+                            <div className="text-[11px] font-medium text-slate-500 mt-1 uppercase tracking-wider">Geciken</div>
+                         </div>
+                         <div className="w-px h-12 bg-slate-200 dark:bg-slate-700/50"></div>
+                         <div className="text-center w-full">
+                            <div className="w-12 h-12 mx-auto bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 rounded-2xl shadow-sm border border-purple-200/50 dark:border-purple-700/50 flex items-center justify-center mb-3 hover:scale-110 transition-transform"><Calendar size={20}/></div>
+                            <div className="font-black text-[var(--text-main)] text-lg">07.09</div>
+                            <div className="text-[11px] font-medium text-slate-500 mt-1 uppercase tracking-wider">Sonraki</div>
+                         </div>
+                      </div>
+                      <div className="bg-emerald-500 text-white p-4 rounded-2xl flex items-center justify-between shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                         <div className="flex items-center gap-3 font-bold text-sm">
+                            <ShieldCheck size={20} className="text-white"/> Aşıları güncel
+                         </div>
+                         <ArrowRight size={16} className="text-emerald-100"/>
+                      </div>
+                   </div>
+
+                   {/* Upcoming List */}
+                   <div className="relative z-10">
+                      <div className="flex justify-between items-center mb-5">
+                         <div className="font-black text-[var(--text-main)] text-xl">Yaklaşanlar</div>
+                         <div className="text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 cursor-pointer transition-colors">Tümünü Gör</div>
+                      </div>
+                      <div className="space-y-4">
+                         <div className="bg-gradient-to-r from-emerald-500 to-teal-400 p-4 rounded-2xl flex items-center justify-between shadow-lg shadow-teal-500/20 hover:scale-[1.02] transition-transform cursor-pointer text-white">
+                            <div className="flex items-center gap-4">
+                               <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-sm border border-white/20"><Stethoscope size={20}/></div>
+                               <div>
+                                  <div className="font-black text-white text-md mb-1">Genel Muayene</div>
+                                  <div className="text-xs text-teal-50 font-bold flex items-center gap-1"><Calendar size={12}/> 26.08.2026</div>
+                               </div>
+                            </div>
+                            <div className="bg-white/20 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-black tracking-wide border border-white/20">2 GÜN</div>
+                         </div>
+                         
+                         <div className="bg-gradient-to-r from-purple-500 to-indigo-400 p-4 rounded-2xl flex items-center justify-between shadow-lg shadow-indigo-500/20 hover:scale-[1.02] transition-transform cursor-pointer text-white">
+                            <div className="flex items-center gap-4">
+                               <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-sm border border-white/20"><ShieldCheck size={20}/></div>
+                               <div>
+                                  <div className="font-black text-white text-md mb-1">Karma Aşı</div>
+                                  <div className="text-xs text-indigo-100 font-bold flex items-center gap-1"><Calendar size={12}/> 07.09.2026</div>
+                               </div>
+                            </div>
+                            <div className="bg-white/20 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-black tracking-wide border border-white/20">14 GÜN</div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+{/* =========================================
             3. RANDEVU YÖNETİMİ (Sol Görsel, Sağ Metin)
             ========================================= */}
         <section className="min-h-[100dvh] h-auto lg:min-h-[100dvh] lg:h-auto snap-start py-20 snap-always flex items-center bg-[var(--bg-main)] border-b border-[var(--border-color)]">
@@ -856,6 +894,80 @@ export default function Features() {
             </div>
           </div>
         </section>
+
+        {/* 3. SMART HEALTH ASSISTANT (Bento Box) */}
+      <section className="min-h-[100dvh] h-auto lg:h-[100dvh] w-full snap-start snap-always relative z-20 bg-[var(--bg-main)] flex flex-col justify-center pt-16 pb-8 shadow-[0_-20px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_-20px_40px_rgba(0,0,0,0.3)] border-t border-[var(--border-color)]">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 flex flex-col justify-center">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
+            <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-6">Sadece Bir Karne Değil, <br/><span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-orange-500">Akıllı Yaşam Koçu</span></h2>
+            <p className="text-lg text-[var(--text-muted)] font-medium max-w-xl lg:max-w-2xl mx-auto">Verileri analiz eden sistemimiz, dostunuzun ırkına ve yaşına özel proaktif tavsiyeler sunar. İhtiyaç duyduğunuz tüm bilgiler tek bakışta karşınızda.</p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[220px]">
+            {/* Bento Item 1: Weight Tracker */}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="md:col-span-2 bg-white dark:bg-slate-800 rounded-3xl p-6 border-2 border-rose-200 dark:border-rose-900 shadow-lg relative overflow-hidden group">
+               <div className="relative z-10 w-2/3">
+                 <Activity className="text-rose-500 mb-2" size={28} />
+                 <h3 className="text-2xl font-bold text-[var(--text-main)] mb-2">Gelişim Analizi</h3>
+                 <p className="text-sm text-[var(--text-muted)] leading-relaxed">"Leo'nun kilosu ideal aralığın %5 üzerinde. Porsiyonlarını hafifçe azaltmayı düşünebilirsiniz." Sistem, periyodik olarak verileri okur ve anlamlı çıkarımlar yapar.</p>
+               </div>
+               <div className="absolute right-0 bottom-0 w-[45%] h-[80%] bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-tl-2xl border-t border-l border-white/60 dark:border-slate-700/60 p-4 translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500 flex flex-col justify-end">
+                  <div className="flex items-end gap-2 h-[80%] w-full">
+                     <div className="w-1/4 bg-rose-200 dark:bg-rose-900/40 rounded-t h-[40%]"></div>
+                     <div className="w-1/4 bg-rose-300 dark:bg-rose-900/60 rounded-t h-[55%]"></div>
+                     <div className="w-1/4 bg-rose-400 dark:bg-rose-900/80 rounded-t h-[75%]"></div>
+                     <div className="w-1/4 bg-rose-500 dark:bg-rose-600 rounded-t h-[95%] relative"><div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-rose-600 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/50 px-2 py-0.5 rounded-full shadow-sm">Trend</div></div>
+                  </div>
+               </div>
+            </motion.div>
+            
+            {/* Bento Item 2: Reminders */}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="bg-white dark:bg-slate-800 rounded-3xl p-6 border-2 border-indigo-200 dark:border-indigo-900 shadow-lg flex flex-col justify-between group">
+               <div>
+                 <Bell className="text-indigo-500 mb-2" size={28} />
+                 <h3 className="text-xl font-bold text-[var(--text-main)] mb-2">Sıfır Unutkanlık</h3>
+                 <p className="text-sm text-[var(--text-muted)]">Aşılar, iç-dış parazit ve rutin kontroller... Sizin yerinize biz takip ediyor, tam vaktinde hatırlatıyoruz.</p>
+               </div>
+               <div className="mt-4 bg-white/70 dark:bg-slate-800/70 p-4 rounded-2xl backdrop-blur-sm border border-white/60 dark:border-slate-700/60 flex items-center justify-between group-hover:-translate-y-1 transition-transform duration-300 shadow-sm">
+                 <span className="text-sm font-bold text-[var(--text-main)]">Parazit Damlası</span>
+                 <span className="text-xs font-bold bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 px-3 py-1 rounded-full">Yarın</span>
+               </div>
+            </motion.div>
+            
+            {/* Bento Item 3: Digital ID */}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="bg-white dark:bg-slate-800 rounded-3xl p-6 border-2 border-emerald-200 dark:border-emerald-900 shadow-lg flex flex-col justify-center group text-center relative overflow-hidden">
+               <QrCode className="text-emerald-500 mb-2 mx-auto group-hover:scale-110 transition-transform duration-300" size={32} />
+               <h3 className="text-xl font-bold text-[var(--text-main)] mb-2">QR Küpe ile Tam Güvenlik</h3>
+               <p className="text-sm text-[var(--text-muted)]">Fiziksel akıllı tasmanızla dijital profilinizi eşleştirin. Bulan kişi anında iletişime geçsin.</p>
+            </motion.div>
+
+            {/* Bento Item 4: Emergency Radar */}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }} className="md:col-span-2 bg-slate-900 rounded-3xl p-6 border border-slate-700 shadow-xl flex items-center justify-between overflow-hidden group relative">
+               <div className="z-10 w-3/5 lg:w-1/2">
+                 <MapPin className="text-sky-400 mb-2" size={28} />
+                 <h3 className="text-2xl font-bold text-white mb-2">Acil Durum Radarı</h3>
+                 <p className="text-sm text-slate-300 leading-relaxed">Kötü bir sürpriz mi yaşadınız? Tek tuşla 5km çevredeki tüm hastalara, hayvanseverlere ve veteriner kliniklerine anında acil durum bildirimi (push) göndererek saniyeler içinde organize olun.</p>
+               </div>
+               <div className="absolute right-0 top-0 bottom-0 w-1/2 flex items-center justify-center pointer-events-none">
+                  <div className="relative w-48 h-48 flex items-center justify-center translate-x-12">
+                    <div className="absolute w-20 h-20 bg-sky-500/20 rounded-full animate-ping"></div>
+                    <div className="absolute w-32 h-32 border border-sky-500/30 rounded-full"></div>
+                    <div className="absolute w-48 h-48 border border-sky-500/10 rounded-full"></div>
+                    <div className="w-14 h-14 bg-sky-500 text-white rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(14,165,233,0.5)] z-10 relative">
+                       <Globe size={24} />
+                       <div className="absolute -top-1 -right-1 w-4 h-4 bg-rose-500 rounded-full border-2 border-slate-900 animate-pulse"></div>
+                    </div>
+                  </div>
+               </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      
+      {/* =========================================================
+          ANA SAYFADAN TAŞINAN BÖLÜMLER AŞAĞIDADIR
+          ========================================================= */}
 
         {/* =========================================
             4. ACİL DURUM KARTI
@@ -1178,6 +1290,405 @@ export default function Features() {
         </section>
 
 
+        {/* =========================================
+            6. SAHİPLENDİRME (3'lü Kart Standard Grid)
+            ========================================= */}
+        <section className="min-h-[100dvh] h-auto snap-start py-20 lg:py-24 snap-always flex flex-col justify-center bg-[#fffbeb] dark:bg-amber-950/20 border-b border-[var(--border-color)] overflow-hidden">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            
+            <div className="text-center max-w-3xl mx-auto mb-8">
+               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 text-sm font-bold border border-teal-200 dark:border-teal-800/50 mb-3">
+                  <Heart size={16} /> Yeni bir yuva, yeni bir başlangıç.
+               </div>
+               <h2 className="text-3xl lg:text-4xl font-extrabold text-[var(--text-main)] mb-3">Sahiplendirme</h2>
+               <p className="text-[14px] sm:text-[15px] lg:text-base text-[var(--text-muted)] font-medium mb-5 leading-relaxed">
+                  Evcil hayvan sahiplenmek, sadece yeni bir dost edinmek değil, bir cana ömürlük umut olmaktır. <span className="whitespace-nowrap">Veterito olarak;</span> barınaklardan veya geçici yuvalardan gelen can dostlarımızı, onlara sıcak bir aile olacak hayvanseverlerle güvenle buluşturuyoruz. 
+                  İlan verme ve başvuru süreçlerindeki denetim mekanizmamız sayesinde hem dostlarımızın güvenliğini sağlıyor hem de yeni ailenin uygunluğunu teyit ediyoruz. <span className="whitespace-nowrap">Şeffaf, güvenilir</span> ve tamamen ücretsiz bu ekosistemde siz de bir hayata dokunabilirsiniz.
+                  <br className="hidden sm:block" />
+                  <span className="inline-flex items-center gap-2 mt-4 px-3 py-1.5 bg-rose-50 text-rose-600 rounded-lg font-bold border border-rose-100 dark:bg-rose-950/30 dark:border-rose-900/50 shadow-sm"><PawPrint size={14}/> Para karşılığı hayvan satışı kesinlikle yasaktır.</span>
+               </p>
+
+               {/* Feature Badges */}
+               <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+                   <div className="flex flex-col items-center gap-2">
+                      <div className="w-12 h-12 bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 rounded-full flex items-center justify-center border border-teal-100 dark:border-teal-800/50 shadow-sm"><FileText size={20}/></div>
+                      <span className="text-xs font-bold text-[var(--text-main)]">İlan Ver</span>
+                   </div>
+                   <div className="flex flex-col items-center gap-2">
+                      <div className="w-12 h-12 bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 rounded-full flex items-center justify-center border border-teal-100 dark:border-teal-800/50 shadow-sm"><Heart size={20}/></div>
+                      <span className="text-xs font-bold text-[var(--text-main)]">Başvur</span>
+                   </div>
+                   <div className="flex flex-col items-center gap-2">
+                      <div className="w-12 h-12 bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 rounded-full flex items-center justify-center border border-teal-100 dark:border-teal-800/50 shadow-sm"><ShieldCheck size={20}/></div>
+                      <span className="text-xs font-bold text-[var(--text-main)]">Güvenli Akış</span>
+                   </div>
+                   <div className="flex flex-col items-center gap-2">
+                      <div className="w-12 h-12 bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 rounded-full flex items-center justify-center border border-teal-100 dark:border-teal-800/50 shadow-sm"><Users size={20}/></div>
+                      <span className="text-xs font-bold text-[var(--text-main)]">Topluluk</span>
+                   </div>
+               </div>
+               
+               <p className="mt-5 text-teal-600 dark:text-teal-400 font-bold flex items-center justify-center gap-2 text-sm">
+                  Sevgiyle yeni başlangıçlar. <Heart size={14} className="fill-teal-600 dark:fill-teal-400"/>
+               </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+               {/* Adoption Card 1 */}
+               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="bg-white dark:bg-slate-900 rounded-[1.5rem] p-5 shadow-sm border border-slate-100 dark:border-slate-800 hover:-translate-y-1 transition-transform">
+                  <div className="h-40 bg-orange-100 dark:bg-orange-900/30 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden">
+                     <img src="/pet3.jpg" alt="British Shorthair" className="w-full h-full object-cover object-[50%_40%]" />
+                     <div className="absolute top-3 right-3 bg-white/80 dark:bg-black/50 backdrop-blur text-rose-600 text-[9px] font-black px-2.5 py-1 rounded-full flex items-center gap-1"><Heart size={10}/> YUVA ARIYOR</div>
+                  </div>
+                  <h4 className="text-xl font-black text-[var(--text-main)] mb-1">Moka</h4>
+                  <p className="text-xs font-bold text-[var(--text-muted)] mb-3">Kedi • British Shorthair • Dişi • 3 Aylık</p>
+                  <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-2.5 text-[11px] font-bold text-slate-500 text-center flex items-center justify-center gap-1.5">
+                     <ShieldCheck size={14}/> Satış Yasaktır
+                  </div>
+               </motion.div>
+
+               {/* Adoption Card 2 */}
+               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="bg-white dark:bg-slate-900 rounded-[1.5rem] p-5 shadow-sm border border-slate-100 dark:border-slate-800 hover:-translate-y-1 transition-transform">
+                  <div className="h-40 bg-blue-100 dark:bg-blue-900/30 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden">
+                     <img src="/pet2.jpg" alt="Golden Retriever" className="w-full h-full object-cover object-[50%_40%]" />
+                     <div className="absolute top-3 right-3 bg-white/80 dark:bg-black/50 backdrop-blur text-rose-600 text-[9px] font-black px-2.5 py-1 rounded-full flex items-center gap-1"><Heart size={10}/> YUVA ARIYOR</div>
+                  </div>
+                  <h4 className="text-xl font-black text-[var(--text-main)] mb-1">Max</h4>
+                  <p className="text-xs font-bold text-[var(--text-muted)] mb-3">Köpek • Golden Retriever • Dişi • 2 Yaşında</p>
+                  <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-2.5 text-[11px] font-bold text-slate-500 text-center flex items-center justify-center gap-1.5">
+                     <ShieldCheck size={14}/> Satış Yasaktır
+                  </div>
+               </motion.div>
+               
+               {/* Adoption Card 3 */}
+               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="bg-white dark:bg-slate-900 rounded-[1.5rem] p-5 shadow-sm border border-slate-100 dark:border-slate-800 hover:-translate-y-1 transition-transform hidden md:block">
+                  <div className="h-40 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden">
+                     <img src="/pet1.jpg" alt="Tekir" className="w-full h-full object-cover" />
+                     <div className="absolute top-3 right-3 bg-white/80 dark:bg-black/50 backdrop-blur text-rose-600 text-[9px] font-black px-2.5 py-1 rounded-full flex items-center gap-1"><Heart size={10}/> YUVA ARIYOR</div>
+                  </div>
+                  <h4 className="text-xl font-black text-[var(--text-main)] mb-1">Luna</h4>
+                  <p className="text-xs font-bold text-[var(--text-muted)] mb-3">Kedi • Tekir • Erkek • 6 Aylık</p>
+                  <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-2.5 text-[11px] font-bold text-slate-500 text-center flex items-center justify-center gap-1.5">
+                     <ShieldCheck size={14}/> Satış Yasaktır
+                  </div>
+               </motion.div>
+            </div>
+
+          </div>
+        </section>
+
+        
+      {/* =========================================
+            5. TOPLULUK (Sol Görsel, Sağ Metin)
+            ========================================= */}
+        <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 snap-always flex items-center justify-center bg-[var(--bg-main)] border-b border-[var(--border-color)] overflow-hidden">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
+              
+              {/* Left Column: Abstract Community & Messaging Card */}
+              <motion.div 
+                 initial={{ opacity: 0, x: -30 }}
+                 whileInView={{ opacity: 1, x: 0 }}
+                 viewport={{ once: true }}
+                 transition={{ duration: 0.7 }}
+                 className="flex-1 w-full max-w-[36rem] shrink-0 relative mt-8 lg:mt-0"
+              >
+                 {/* Main Community Feed Card (Tall Rectangular) */}
+                 <div className="bg-[#fcfbfa] dark:bg-zinc-950 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-2xl border border-slate-100 dark:border-zinc-800 relative z-10 overflow-hidden flex flex-col h-[660px]">
+                    
+                    {/* Top Header */}
+                    <div className="px-6 pt-7 pb-4 flex items-center justify-between bg-white dark:bg-zinc-900 shrink-0">
+                       <h3 className="text-3xl font-black text-slate-800 dark:text-white">Topluluk</h3>
+                       <div className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                          <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-zinc-800 flex items-center justify-center cursor-pointer hover:bg-slate-200 dark:hover:bg-zinc-700 transition-colors"><Search size={20} /></div>
+                          <div className="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-400 flex items-center justify-center font-bold text-2xl leading-none pb-1 cursor-pointer hover:bg-teal-200 dark:hover:bg-teal-900/70 transition-colors">+</div>
+                       </div>
+                    </div>
+                    
+                    {/* Tabs */}
+                    <div className="flex items-center justify-between px-6 py-2.5 border-b border-slate-200 dark:border-zinc-800 text-[13px] font-bold bg-white dark:bg-zinc-900 shrink-0 shadow-sm">
+                       <div className="pb-1.5 border-b-[3px] border-slate-800 dark:border-white text-slate-800 dark:text-white cursor-pointer">Keşfet</div>
+                       <div className="pb-1.5 text-slate-400 cursor-pointer hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Takip</div>
+                       <div className="pb-1.5 text-slate-400 cursor-pointer hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Klinikler</div>
+                       <div className="pb-1.5 text-slate-400 cursor-pointer hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Rehber</div>
+                    </div>
+
+                    {/* Feed Container */}
+                    <div className="flex-1 overflow-hidden px-4 py-5 space-y-5 relative">
+                       {/* Fade out gradient at bottom */}
+                       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#fcfbfa] dark:from-zinc-950 to-transparent z-10 pointer-events-none"></div>
+
+                       {/* Post 1 */}
+                       <div className="bg-white dark:bg-zinc-900 rounded-[1.5rem] p-5 shadow-sm border border-slate-100 dark:border-zinc-800">
+                          <div className="flex items-center justify-between mb-4">
+                             <div className="flex items-center gap-3">
+                                <div className="w-11 h-11 rounded-full overflow-hidden shrink-0 border border-slate-100 dark:border-zinc-700">
+                                   <img src="/duman.jpg" alt="Can" className="w-full h-full object-cover object-[75%_35%] scale-[1.5]" />
+                                </div>
+                                <div>
+                                   <div className="font-bold text-[14px] text-slate-800 dark:text-white leading-tight">Can Kılıç & Mia</div>
+                                   <div className="text-[12px] text-slate-400 font-medium">az önce</div>
+                                </div>
+                             </div>
+                             <MoreHorizontal size={20} className="text-slate-400 cursor-pointer" />
+                          </div>
+                          
+                          <p className="text-[14px] text-slate-700 dark:text-slate-300 mb-4 leading-relaxed font-medium">
+                            Veteriner kontrolü sonrası Moda parkında keyif ✨🐾
+                          </p>
+                          
+                          <div className="rounded-2xl overflow-hidden mb-4 h-64 sm:h-72 bg-slate-100 dark:bg-zinc-800">
+                             <img src="/moda-kedi.jpg" alt="Cat in park" className="w-full h-full object-cover object-bottom" />
+                          </div>
+                          
+                          <div className="flex items-center justify-between text-slate-400">
+                             <div className="flex items-center gap-5">
+                                <div className="flex items-center gap-1.5 cursor-pointer text-rose-500 transition-colors"><Heart size={18} className="fill-rose-500" /> <span className="text-sm font-bold">35</span></div>
+                                <div className="flex items-center gap-1.5 cursor-pointer hover:text-teal-600 transition-colors"><MessageCircle size={18} /> <span className="text-sm font-medium">10</span></div>
+                             </div>
+                             <div className="flex items-center gap-4">
+                                <Send size={18} className="cursor-pointer hover:text-teal-600 transition-colors" />
+                                <Bookmark size={18} className="text-teal-600 fill-teal-600 dark:text-teal-500 dark:fill-teal-500 cursor-pointer" />
+                             </div>
+                          </div>
+                       </div>
+                       
+                       {/* Post 2 Snippet */}
+                       <div className="bg-white dark:bg-zinc-900 rounded-t-[1.5rem] p-5 shadow-sm border border-slate-100 dark:border-zinc-800 h-28 overflow-hidden relative opacity-70">
+                          <div className="flex items-center gap-3 mb-2">
+                             <div className="w-11 h-11 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 border border-slate-100"><PawPrint size={18}/></div>
+                             <div>
+                                <div className="font-bold text-[14px] text-slate-800 dark:text-white leading-tight">Defne Aydın & Misket</div>
+                                <div className="text-[12px] text-slate-400 font-medium">1 hafta önce</div>
+                             </div>
+                          </div>
+                          <p className="text-[14px] text-slate-700 dark:text-slate-300 font-medium">Senorita bugün çok keyifli 🐾</p>
+                       </div>
+                    </div>
+                 </div>
+
+                 {/* Messaging Floating Card */}
+                 <div className="absolute -bottom-6 sm:-bottom-10 -right-2 sm:-right-12 w-[95%] sm:w-[340px] bg-white dark:bg-slate-900 rounded-[1.5rem] p-5 shadow-[0_30px_60px_rgba(0,0,0,0.2)] dark:shadow-2xl border border-slate-100 dark:border-slate-800 z-20 transform rotate-[-3deg] hover:rotate-0 transition-transform duration-300">
+                    <div className="flex items-center justify-between mb-3 border-b border-slate-50 dark:border-slate-800/50 pb-2.5">
+                       <div className="flex items-center gap-2.5">
+                         <div className="w-8 h-8 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center font-bold text-sm shrink-0">M</div>
+                         <div>
+                            <div className="font-bold text-[13px] text-slate-800 dark:text-white">Can Kılıç & Mia</div>
+                            <div className="text-[10px] text-emerald-500 font-bold flex items-center gap-1 mt-0.5"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div> Çevrimiçi</div>
+                         </div>
+                       </div>
+                       <ShieldCheck size={18} className="text-emerald-500 opacity-80" />
+                    </div>
+                    <div className="space-y-2">
+                       <div className="bg-gradient-to-r from-emerald-500 to-teal-500 p-2.5 rounded-xl rounded-tl-sm sm:rounded-tl-2xl sm:rounded-tr-sm text-[12px] sm:text-[13px] leading-snug text-white shadow-sm max-w-[90%] ml-auto">
+                         Moda parkında mısınız şu an? 🐈
+                       </div>
+                       <div className="bg-slate-100 dark:bg-slate-800 p-2.5 rounded-xl rounded-tr-sm sm:rounded-tr-2xl sm:rounded-tl-sm text-[12px] sm:text-[13px] leading-snug text-slate-800 dark:text-white shadow-sm max-w-[85%]">
+                         Evet buradayız! Mia diğer kediyle oynuyor, siz de gelin. 😊
+                       </div>
+                    </div>
+                 </div>
+
+                 {/* Decorative Background Element */}
+                 <div className="absolute -top-6 -left-6 w-32 h-32 bg-amber-200/50 dark:bg-amber-900/20 rounded-full blur-3xl -z-10"></div>
+                 <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-teal-200/50 dark:bg-teal-900/20 rounded-full blur-3xl -z-10"></div>
+              </motion.div>
+
+              {/* Right Column: Text */}
+              <div className="flex-1 flex flex-col gap-8 max-w-[500px]">
+                <motion.div 
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7 }}
+                  className="space-y-6"
+                >
+                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 text-sm font-bold border border-amber-200 dark:border-amber-800">
+                      <MessageCircle size={16} /> Sosyal Ağ & Eşleşme
+                   </div>
+                   <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] leading-tight">Topluluk ve Güvenli İletişim</h2>
+                   <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+                     Şehrinizdeki hayvanseverleri keşfedin, yürüyüş arkadaşları bulun veya anılarınızı paylaşın. Üstelik spam korumalı mesaj istekleri sayesinde yalnızca onayladığınız kişilerle iletişim kurarsınız.
+                   </p>
+                   <div className="flex items-center gap-3 bg-emerald-50 dark:bg-emerald-900/20 px-5 py-4 rounded-2xl border border-emerald-100 dark:border-emerald-800/50 w-max mt-4">
+                      <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-800/50 rounded-full flex items-center justify-center shrink-0">
+                         <ShieldCheck size={20} className="text-emerald-600 dark:text-emerald-400" />
+                      </div>
+                      <div>
+                         <div className="font-bold text-[15px] text-emerald-800 dark:text-emerald-300">Spam Korumalı Mesajlaşma</div>
+                         <div className="text-[12px] text-emerald-600/80 dark:text-emerald-400/80 font-medium mt-0.5">Yalnızca onayladığınız kişilerden mesaj alırsınız.</div>
+                      </div>
+                   </div>
+                </motion.div>
+              </div>
+
+            </div>
+            
+          </div>
+        </section>
+
+        {/* =========================================
+            8. B2B KLİNİKLER İÇİN
+            ========================================= */}
+        <section className="min-h-[100dvh] h-auto snap-start py-12 lg:py-16 snap-always flex flex-col justify-center bg-[var(--bg-main)] border-b border-[var(--border-color)]">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 flex flex-col items-center">
+            
+            <div className="max-w-3xl mx-auto mb-8 text-center space-y-4">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-sm font-bold border border-blue-200 dark:border-blue-800/50">
+                  <Stethoscope size={16} /> B2B Portal
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-extrabold text-[var(--text-main)] leading-tight">Klinikler İçin Veterito</h2>
+              <p className="text-[14px] lg:text-[15px] text-[var(--text-muted)] font-medium leading-relaxed">
+                Klinik sayfanızı oluşturun; hizmetlerinizi, baktığınız türleri ve çalışma saatlerinizi belirtin. Ekibinizi davet edin, müşteri kayıtlarını ve randevuları tek bir modern panelden yönetin.
+              </p>
+            </div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="w-full max-w-5xl bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-200 dark:border-slate-800 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] dark:shadow-none flex flex-col md:flex-row overflow-hidden"
+            >
+               {/* Sidebar (Dark Green matching the reference) */}
+               <div className="w-full md:w-[240px] bg-[#0E3E37] text-white p-5 flex flex-col shrink-0">
+                  <div className="flex items-center gap-2 mb-6">
+                     <Heart size={24} className="fill-emerald-400 text-emerald-400"/>
+                     <span className="text-xl font-black tracking-tight">Veterito</span>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 mb-6 bg-black/10 p-2.5 rounded-xl border border-white/5">
+                     <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center font-bold text-sm">T</div>
+                     <div>
+                        <div className="text-[8px] text-emerald-200 uppercase font-black tracking-widest mb-0.5">Klinik</div>
+                        <div className="text-xs font-bold leading-tight">Test Veteriner...</div>
+                     </div>
+                  </div>
+
+                  <div className="space-y-0.5">
+                     <div className="flex items-center gap-3 px-3 py-2 rounded-xl bg-white/10 font-bold text-xs text-white">
+                        <LayoutDashboard size={16}/> Genel bakış
+                     </div>
+                     <div className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5 font-medium text-xs text-emerald-100/70 transition-colors cursor-pointer">
+                        <Calendar size={16}/> Randevular
+                     </div>
+                     <div className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5 font-medium text-xs text-emerald-100/70 transition-colors cursor-pointer">
+                        <Users size={16}/> Müşteriler
+                     </div>
+                     <div className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5 font-medium text-xs text-emerald-100/70 transition-colors cursor-pointer">
+                        <PawPrint size={16}/> Hastalar
+                     </div>
+                     <div className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5 font-medium text-xs text-emerald-100/70 transition-colors cursor-pointer">
+                        <FileText size={16}/> Sağlık kayıtları
+                     </div>
+                     <div className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5 font-medium text-xs text-emerald-100/70 transition-colors cursor-pointer">
+                        <Activity size={16}/> Aşı takvimi
+                     </div>
+                     <div className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5 font-medium text-xs text-emerald-100/70 transition-colors cursor-pointer">
+                        <User size={16}/> Klinik profili
+                     </div>
+                     <div className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5 font-medium text-xs text-emerald-100/70 transition-colors cursor-pointer">
+                        <MessageCircle size={16}/> Mesajlar
+                     </div>
+                     
+                     <div className="mt-2 pt-2 border-t border-white/10">
+                        <div className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-rose-500/10 font-medium text-xs text-emerald-100/50 hover:text-rose-400 transition-colors cursor-pointer">
+                           <LogOut size={16}/> Çıkış yap
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               
+               {/* Main Content Area */}
+               <div className="flex-1 bg-slate-50 dark:bg-slate-900 p-5 md:p-6 flex flex-col h-full min-h-[400px]">
+                  {/* Top Bar */}
+                  <div className="flex justify-between items-center mb-6">
+                     <div>
+                        <h3 className="text-xl font-black text-slate-800 dark:text-slate-100 mb-0.5">Genel bakış</h3>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Test Veteriner Kliniği</p>
+                     </div>
+                     <div className="hidden sm:flex items-center gap-3">
+                        <div className="relative p-1.5 cursor-pointer">
+                           <Bell size={18} className="text-slate-400"/>
+                           <div className="absolute top-1 right-1 w-3.5 h-3.5 bg-rose-500 rounded-full border-2 border-slate-50 dark:border-slate-900 text-[8px] text-white flex items-center justify-center font-bold">3</div>
+                        </div>
+                        <div className="flex items-center gap-2 bg-white dark:bg-slate-800 px-2 py-1 rounded-full border border-slate-200 dark:border-slate-700 shadow-sm cursor-pointer">
+                           <div className="w-6 h-6 bg-[#0E3E37] rounded-full text-white flex items-center justify-center text-[10px] font-bold">V</div>
+                           <div className="text-[10px] font-bold text-slate-700 dark:text-slate-300 pr-2">vet@veterito.com</div>
+                        </div>
+                     </div>
+                  </div>
+
+                  {/* Stats Cards */}
+                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+                     <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex items-start gap-3">
+                        <div className="text-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 p-2 rounded-lg"><Calendar size={20}/></div>
+                        <div>
+                           <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-0.5">Yaklaşan randevu</div>
+                           <div className="text-xl font-black text-slate-800 dark:text-slate-100">3</div>
+                        </div>
+                     </div>
+                     <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex items-start gap-3">
+                        <div className="text-amber-500 bg-amber-50 dark:bg-amber-900/30 p-2 rounded-lg"><MessageSquare size={20}/></div>
+                        <div>
+                           <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-0.5">Bekleyen talep</div>
+                           <div className="text-xl font-black text-slate-800 dark:text-slate-100">0</div>
+                        </div>
+                     </div>
+                     <div className="hidden lg:flex bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm items-start gap-3">
+                        <div className="text-teal-500 bg-teal-50 dark:bg-teal-900/30 p-2 rounded-lg"><PawPrint size={20}/></div>
+                        <div>
+                           <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-0.5">Kayıtlı hasta</div>
+                           <div className="text-xl font-black text-slate-800 dark:text-slate-100">0</div>
+                        </div>
+                     </div>
+                  </div>
+
+                  {/* Table Area Mock */}
+                  <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex-1 flex flex-col overflow-hidden">
+                     <div className="px-4 py-3 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+                        <h4 className="text-sm font-bold text-slate-800 dark:text-slate-100 flex items-center gap-1.5"><Calendar size={14} className="text-[#0E3E37] dark:text-emerald-500"/> Yaklaşan randevular</h4>
+                        <span className="text-[10px] font-bold text-slate-500 border border-slate-200 dark:border-slate-600 rounded-full px-2 py-0.5 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Tüm randevular →</span>
+                     </div>
+                     
+                     <div className="p-2 flex-1">
+                        <div className="grid grid-cols-4 gap-3 text-[9px] font-black text-slate-400 uppercase tracking-wider mb-1 px-3 py-1.5">
+                           <div>Saat</div>
+                           <div>Hasta</div>
+                           <div>Hizmet</div>
+                           <div>Durum</div>
+                        </div>
+                        
+                        <div className="space-y-0.5">
+                           <div className="grid grid-cols-4 gap-3 text-xs items-center px-3 py-2 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-lg transition-colors">
+                              <div className="font-bold text-slate-700 dark:text-slate-200">02:00<br/><span className="text-[9px] font-normal text-slate-400">27 Ağustos 2026</span></div>
+                              <div className="font-medium text-slate-600 dark:text-slate-300">girilmemiş <br/><span className="text-[9px] text-slate-400">Test Kullanıcı</span></div>
+                              <div className="font-medium text-slate-600 dark:text-slate-300 text-[11px]">Genel muayene</div>
+                              <div><span className="px-2 py-0.5 bg-[#0E3E37]/10 dark:bg-emerald-500/20 text-[#0E3E37] dark:text-emerald-400 rounded-md text-[10px] font-bold">Onaylandı</span></div>
+                           </div>
+                           
+                           <div className="grid grid-cols-4 gap-3 text-xs items-center px-3 py-2 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-lg transition-colors">
+                              <div className="font-bold text-slate-700 dark:text-slate-200">11:00<br/><span className="text-[9px] font-normal text-slate-400">10 Aralık 2026</span></div>
+                              <div className="font-medium text-slate-600 dark:text-slate-300">girilmemiş <br/><span className="text-[9px] text-slate-400">Test Kullanıcı</span></div>
+                              <div className="font-medium text-slate-600 dark:text-slate-300 text-[11px]">Genel muayene</div>
+                              <div><span className="px-2 py-0.5 bg-[#0E3E37]/10 dark:bg-emerald-500/20 text-[#0E3E37] dark:text-emerald-400 rounded-md text-[10px] font-bold">Onaylandı</span></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  
+                  {/* Action Button */}
+                  <div className="mt-4 flex justify-end">
+                     <Link to="/clinic" className="bg-[#0E3E37] hover:bg-[#0b2f29] text-white px-5 py-2.5 rounded-lg font-bold flex items-center gap-1.5 transition-colors shadow-sm text-xs">
+                        Ücretsiz Klinik Kaydı Başlat <ArrowRight size={14}/>
+                     </Link>
+                  </div>
+               </div>
+            </motion.div>
+          </div>
+        </section>
+
         {/* =========================================================
           ANA SAYFADAN TAŞINAN BÖLÜMLER BİTTİ
           ========================================================= */}
@@ -1292,7 +1803,7 @@ export default function Features() {
       {/* 5. CALL TO ACTION */}
       <section className="min-h-[60dvh] w-full snap-start snap-always relative z-20 bg-[var(--bg-main)] flex flex-col justify-center py-24">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-          <div className="relative bg-[var(--color-vet-primary)] rounded-[3rem] shadow-[0_30px_60px_-15px_rgba(20,184,166,0.4)] border border-teal-400/30 p-12 lg:p-20 text-white overflow-hidden flex flex-col items-center justify-center text-center">
+          <div className="relative bg-[var(--color-vet-primary)] rounded-[3rem] shadow-[0_30px_60px_-15px_rgba(20,184,166,0.4)] border border-teal-400/30 px-12 py-8 lg:px-20 lg:py-12 text-white overflow-hidden flex flex-col items-center justify-center text-center">
             {/* Abstract Background pattern */}
             <div className="absolute inset-0 opacity-10 pointer-events-none">
               <div className="absolute -top-20 -left-20 w-[30rem] h-[30rem] border-[40px] border-white rounded-full"></div>
@@ -1300,19 +1811,44 @@ export default function Features() {
             </div>
             
             <div className="relative z-10 w-full flex flex-col items-center">
-              <PawPrint size={48} className="mx-auto mb-6 opacity-90" />
+              <PawPrint size={48} className="mx-auto mb-4 opacity-90" />
               <h2 className="text-3xl lg:text-5xl font-extrabold mb-4 leading-tight">Dostunuzun Tüm İhtiyaçları <br/>Tek Bir Yerde.</h2>
-              <p className="text-lg opacity-90 mb-10 max-w-xl lg:max-w-2xl mx-auto font-medium">Veterito'yu hemen indirin, hem dostunuzun sağlığını güvence altına alın hem de binlerce hayvanseverin arasına katılın.</p>
+              <p className="text-lg opacity-90 mb-8 max-w-xl lg:max-w-2xl mx-auto font-medium">Veterito'yu hemen indirin, hem dostunuzun sağlığını güvence altına alın<br className="hidden md:block"/> hem de binlerce hayvanseverin arasına katılın.</p>
               
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full sm:w-auto">
-                <button className="bg-white text-[var(--color-vet-primary)] font-bold text-base px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-xl flex items-center justify-center gap-3 w-full sm:w-auto">
-                   <img src="/apple-logo.png" alt="App Store" className="w-9 h-9 object-contain" />
-                   App Store’da Çok Yakında
-                </button>
-                <button className="bg-transparent border-2 border-white/80 text-white font-bold text-base px-8 py-4 rounded-full hover:bg-white/10 transition-colors shadow-xl flex items-center justify-center gap-3 w-full sm:w-auto">
-                   <img src="/google-play-logo.png" alt="Google Play" className="w-9 h-9 object-contain scale-[2.8]" />
-                   Google Play’de Çok Yakında
-                </button>
+              <div className="flex flex-col items-center gap-4 w-full mt-6">
+                {/* Top Row: App Store */}
+                <a href={brandConfig.appStoreUrl} target="_blank" rel="noopener noreferrer" className="bg-white text-slate-900 px-6 py-2.5 rounded-2xl hover:scale-105 transition-all shadow-xl flex items-center sm:w-auto min-w-[210px]">
+                  <div className="flex items-center justify-center gap-3 w-full">
+                    <img src="/apple-logo.png" alt="App Store" className="w-10 h-10 object-contain shrink-0" />
+                    <div className="flex flex-col items-start leading-none pt-0.5">
+                      <div className="text-[11px] font-medium tracking-[0.08em] -mb-1">Download on the</div>
+                      <div className="text-2xl font-semibold tracking-tight">App Store</div>
+                    </div>
+                  </div>
+                </a>
+                
+                {/* Bottom Row: Play Store & AppGallery */}
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full">
+                  <a href={brandConfig.playStoreUrl} target="_blank" rel="noopener noreferrer" className="group bg-transparent border-[1.5px] border-white/80 hover:bg-white hover:border-white px-6 py-2.5 rounded-2xl hover:scale-105 transition-all shadow-xl flex items-center sm:w-auto min-w-[210px]">
+                    <div className="flex items-center justify-center gap-3 w-full">
+                      <img src="/google-play-logo.png" alt="Play Store" className="w-10 h-10 object-contain shrink-0 scale-[1.15] transition-transform duration-300 group-hover:scale-110" />
+                      <div className="flex flex-col items-start leading-none pt-0.5">
+                        <div className="text-[11px] font-medium tracking-wide text-white group-hover:text-[#0f9d58] transition-all duration-300 group-hover:duration-0">GET IT ON</div>
+                        <div className="text-[22px] font-semibold tracking-tight text-white group-hover:text-[#0f9d58] transition-colors duration-300 group-hover:duration-0">Google Play</div>
+                      </div>
+                    </div>
+                  </a>
+
+                  <a href={brandConfig.appGalleryUrl} target="_blank" rel="noopener noreferrer" className="group bg-transparent border-[1.5px] border-white/80 hover:bg-white hover:border-white px-6 py-2.5 rounded-2xl hover:scale-105 transition-all shadow-xl flex items-center sm:w-auto min-w-[210px]">
+                    <div className="flex items-center justify-center gap-3 w-full">
+                      <img src="/appgallery-logo.png" alt="AppGallery" className="w-10 h-10 object-contain shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                      <div className="flex flex-col items-start leading-none pt-0.5">
+                        <div className="text-[11px] font-medium tracking-wide text-white group-hover:text-[#ef4050] transition-all duration-300 group-hover:duration-0">EXPLORE IT ON</div>
+                        <div className="text-[22px] font-semibold tracking-tight text-white group-hover:text-[#ef4050] transition-colors duration-300 group-hover:duration-0">AppGallery</div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

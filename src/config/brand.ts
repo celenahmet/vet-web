@@ -11,31 +11,11 @@
 export const brandConfig = {
   name: "Veterito",
   tagline: "Hayvanseverlerin sosyal platformu",
-  /**
-   * MAGAZA ADRESLERI — `null` ise indirme sayfasi o rozeti TIKLANAMAZ
-   * "Cok yakinda" olarak ciziyor. Adres girildigi an gercek dugmeye donuyor.
-   *
-   * ⚠️ 27.08.2026'DA `null`A CEKILDI. Once magazanin ANA SAYFASINA giden yer
-   * tutucular vardi (`https://apps.apple.com/`). Rozetin ustunde "Cok yakinda"
-   * yaziyordu, yani yalan soylenmiyordu; ama dugme tiklaniyor ve kullaniciyi
-   * Veterito'ya degil App Store'un kendisine goturuyordu. Hicbir yere
-   * goturmeyen dugme, olmayan dugmeden kotudur.
-   *
-   * ⚠️ DURUM ADRESTEN TURETILIYOR, ayri bir "yayinda mi" bayragi YOK. Iki
-   * kaynak olsaydi biri guncellenip oteki unutulurdu ve sayfa "yayinda" deyip
-   * bos adrese baglanirdi. Tek gercek: adres var mi, yok mu.
-   *
-   * ⚠️ Adresler `scripts/magaza-baglanti-denetimi.mjs` tarafindan denetleniyor;
-   * ana sayfaya isaret eden bir adres derlemeyi durdurur.
-   *
-   * Durum 27.08.2026:
-   *   App Store  — Apple incelemeye almadi (23.08'den beri)
-   *   Play       — kapali test, halka acik degil
-   *   AppGallery — 26.08'de ONAYLANDI ve YAYINDA; adres konsoldan alinacak
-   */
-  appStoreUrl: null as string | null,
-  playStoreUrl: null as string | null,
-  appGalleryUrl: "https://appgallery.huawei.com/#/app/C118760085" as string | null,
+  // ⚠️ Magaza adresleri uygulama yayina alininca gercek listeleme adresiyle
+  // degistirilecek. Su an magaza ana sayfasina gidiyor.
+  appStoreUrl: "https://apps.apple.com/tr/app/veterito/id6804301087?l=tr",
+  playStoreUrl: "https://play.google.com/store/apps/",
+  appGalleryUrl: "https://appgallery.huawei.com/app/C118760085",
   social: {
     website: "https://veterito.com",
     community: "https://veterito.com/legal",
