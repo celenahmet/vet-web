@@ -406,7 +406,7 @@ export default function PanelStok({ klinik }: { klinik: string }) {
     </section>
 
     {filtreli.length === 0 ? <Bos baslik="Eşleşen ürün yok" aciklama="Arama veya filtreyi değiştirin; yeni ürünse ürün kartını oluşturun." /> :
-      <div className="pnl-operasyon-kartlari">{filtreli.map((urun) => {
+      <div className="pnl-operasyon-kartlari pnl-stok-kartlari">{filtreli.map((urun) => {
         const dusuk = urun.current_stock <= urun.minimum_stock;
         const urunLotlari = lotlar[urun.product_id];
         return <article className="pnl-widget pnl-urun-karti" key={urun.product_id}>

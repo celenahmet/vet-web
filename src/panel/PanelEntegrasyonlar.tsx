@@ -148,8 +148,11 @@ export default function PanelEntegrasyonlar({ klinik, sahip, gorunum = 'technica
 
   function saglayiciyiSec(tur: TeknikTur, kod: string) {
     const mevcut = entegrasyon(tur); const ayni = mevcut?.provider_code === kod;
+    const secili = saglayici(tur, kod);
     taslagiYama(tur, {
       saglayici: kod,
+      ortam: ayni ? mevcut?.environment ?? 'sandbox' : secili?.environments[0] ?? 'sandbox',
+      temelAdres: ayni ? mevcut?.base_url ?? '' : '',
       ayarlar: ayni ? Object.fromEntries(Object.entries(mevcut?.public_config ?? {}).map(([a, d]) => [a, String(d)])) : {},
       sirlar: {},
     });

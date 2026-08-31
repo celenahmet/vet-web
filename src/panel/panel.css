@@ -1284,6 +1284,8 @@ a.pnl-widget-eylem { text-decoration: none; }
 .pnl-segment .pnl-segment-etkin { background: var(--pnl-yuzey); color: var(--pnl-vurgu); box-shadow: 0 1px 4px rgba(7,63,53,.1); }
 .pnl-sonuc-sayisi { margin-left: auto; color: var(--pnl-soluk); font-size: 12px; }
 .pnl-operasyon-kartlari, .pnl-lab-listesi, .pnl-entegrasyon-listesi { display: grid; gap: 12px; margin-top: 14px; }
+.pnl-stok-kartlari { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+.pnl-yeni-modul-operasyon > .pnl-widget { margin-top: 14px; }
 .pnl-urun-karti { padding: 17px; }
 .pnl-urun-basi { display: flex; align-items: flex-start; gap: 10px; }
 .pnl-urun-basi > div { flex: 1; min-width: 0; }
@@ -1376,7 +1378,7 @@ a.pnl-widget-eylem { text-decoration: none; }
 .pnl-kaynaklar strong { color: var(--pnl-vurgu); font-size: 11.5px; }
 .pnl-kaynaklar span { font-size: 12px; }
 .pnl-kaynaklar small { color: var(--pnl-soluk); }
-.pnl-analit-formu { display: grid; gap: 9px; max-height: 50vh; overflow-y: auto; margin-bottom: 10px; }
+.pnl-analit-formu { display: grid; gap: 9px; margin-bottom: 10px; }
 .pnl-analit-formu fieldset { border: 1px solid var(--pnl-cizgi); border-radius: 9px; padding: 10px; }
 .pnl-analit-formu legend { padding: 0 5px; color: var(--pnl-soluk); font-size: 11px; font-weight: 700; }
 .pnl-metin-dugme { border: 0; background: transparent; color: var(--pnl-vurgu); font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
@@ -1391,7 +1393,7 @@ a.pnl-widget-eylem { text-decoration: none; }
 .pnl-gizlilik-notu svg { flex-shrink: 0; }
 .pnl-ocr-ozet, .pnl-ocr-politika { margin: 8px 0; font-size: 12px; line-height: 1.5; }
 .pnl-ocr-politika { color: color-mix(in srgb, var(--pnl-uyari) 82%, #000); }
-.pnl-ocr-satirlar { display: grid; gap: 6px; max-height: 46vh; overflow-y: auto; }
+.pnl-ocr-satirlar { display: grid; gap: 6px; }
 .pnl-ocr-satir { padding: 9px 10px; border: 1px solid var(--pnl-cizgi); border-radius: 9px; }
 .pnl-ocr-satir > header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .pnl-ocr-satir > header span { color: var(--pnl-soluk); font-size: 11px; }
@@ -1606,6 +1608,7 @@ a.pnl-widget-eylem { text-decoration: none; }
 .pnl-cihaz-formlari { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 16px; }
 .pnl-cihaz-formlari form { padding: 16px; border: 1px solid var(--pnl-kenar, #d8dbe3); border-radius: 18px; background: var(--pnl-arka-ikincil, #f7f8f8); }
 .pnl-cihaz-formlari h4 { display: flex; align-items: center; gap: 7px; margin: 0 0 12px; }
+.pnl-form-eylem { display: flex; justify-content: flex-end; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--pnl-kenar, #d8dbe3); }
 .pnl-etki-ozeti { display: grid; gap: 14px; }
 .pnl-etki-ozeti > p { margin: 0; color: var(--pnl-soluk); }
 .pnl-etki-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
@@ -1619,9 +1622,14 @@ a.pnl-widget-eylem { text-decoration: none; }
 .pnl-topluluk-yorum > div { display: flex; justify-content: space-between; gap: 12px; }
 .pnl-topluluk-yorum small { color: var(--pnl-soluk); }
 .pnl-topluluk-yorum p { margin: 7px 0; white-space: pre-wrap; }
+@media (max-width: 1180px) {
+  .pnl-stok-kartlari, .pnl-cihaz-formlari { grid-template-columns: 1fr; }
+}
 @media (max-width: 860px) {
-  .pnl-cihaz-formlari { grid-template-columns: 1fr; }
   .pnl-cihaz-karti { align-items: flex-start; flex-wrap: wrap; }
   .pnl-etki-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pnl-topluluk-yorum-yanit { margin-left: 12px; }
+}
+@media (max-width: 560px) {
+  .pnl-form-eylem .pnl-dugme { width: 100%; justify-content: center; }
 }

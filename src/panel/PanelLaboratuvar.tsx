@@ -173,8 +173,10 @@ export default function PanelLaboratuvar({ klinik, sahip }: { klinik: string; sa
     if (!sonucIstemi || bekliyor) return;
     const gecerli = sonucAnalitleri.filter((satir) => satir.code.trim() && satir.name.trim()
       && (satir.value != null || String(satir.text_value ?? '').trim()));
-    if (gecerli.length === 0 || gecerli.some((satir) => satir.reference_low != null && satir.reference_high != null && satir.reference_low > satir.reference_high)) {
-      return setHata('Her analit için kod, ad ve sayısal veya metinsel sonuç girin; referans aralığını kontrol edin.');
+    const sayisalHata = gecerli.some((satir) => [satir.value, satir.reference_low, satir.reference_high]
+      .some((deger) => deger != null && !Number.isFinite(deger)));
+    if (gecerli.length === 0 || sayisalHata || gecerli.some((satir) => satir.reference_low != null && satir.reference_high != null && satir.reference_low > satir.reference_high)) {
+      return setHata('Her analit için kod, ad ve sayısal veya metinsel sonuç girin; sayısal alanları ve referans aralığını kontrol edin.');
     }
     setBekliyor(true); setHata(null); setBilgi(null);
     try {
@@ -279,8 +281,8 @@ export default function PanelLaboratuvar({ klinik, sahip }: { klinik: string; sa
     <div className="pnl-kartlar"><div className="pnl-kart pnl-kart-durgun"><span className="pnl-kart-ikon"><FlaskConical size={21} /></span><span className="pnl-kart-govde"><span className="pnl-kart-ad">İstem</span><span className="pnl-kart-deger">{istemler.length}</span><span className="pnl-kart-anlam">Toplam laboratuvar istemi</span></span></div><div className="pnl-kart pnl-kart-durgun"><span className="pnl-kart-ikon"><Beaker size={21} /></span><span className="pnl-kart-govde"><span className="pnl-kart-ad">Açık akış</span><span className="pnl-kart-deger">{acikIstemler.length}</span><span className="pnl-kart-anlam">İşlem bekleyen</span></span></div><div className="pnl-kart pnl-kart-durgun"><span className="pnl-kart-ikon pnl-kart-ikon-altin"><FileCheck2 size={21} /></span><span className="pnl-kart-govde"><span className="pnl-kart-ad">Sonuç hazır</span><span className="pnl-kart-deger">{sonucHazir}</span><span className="pnl-kart-anlam">Hekim incelemesi bekliyor</span></span></div><div className="pnl-kart pnl-kart-durgun"><span className="pnl-kart-ikon pnl-kart-ikon-uyari"><CircleAlert size={21} /></span><span className="pnl-kart-govde"><span className="pnl-kart-ad">Teknik eksik</span><span className="pnl-kart-deger">{teknikEksik}</span><span className="pnl-kart-anlam">Eşleme veya metadata sorunu</span></span></div></div>
 
     <LabCihazlari klinik={klinik} sahip={sahip} cihazlar={cihazlar} eslemeler={cihazEslemeleri} yenile={yukle} />
-    <section className="pnl-widget"><div className="pnl-widget-govde"><div className="pnl-alan">
-      <label htmlFor="lab-calisma-cihazi">İstem ve OCR için çalışma cihazı</label>
+    <section className="pnl-widget pnl-lab-calisma-cihazi"><header className="pnl-widget-basi"><span className="pnl-widget-ikon"><Beaker size={17} /></span><h3>Aktif çalışma cihazı</h3></header><div className="pnl-widget-govde"><div className="pnl-alan">
+      <label htmlFor="lab-calisma-cihazi">İstem ve OCR için seçili cihaz</label>
       <select id="lab-calisma-cihazi" value={ocrCihazi} onChange={(e) => {
         const cihaz = e.target.value; const profil = cihazlar.find((satir) => satir.id === cihaz);
         setOcrCihazi(cihaz); setYeni((onceki) => ({ ...onceki, cihaz,

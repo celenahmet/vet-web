@@ -180,7 +180,14 @@ assert.match(medya, /guvenliGorselleriTemizle/, 'Sahipsiz medya nesnesi için te
 assert.match(medya, /action: 'delete'/, 'R2 sağlayıcısında telafi silme imzalı DELETE kullanmalı.');
 assert.match(stok, /mobil uygulamanın kamerasını öneriyoruz/, 'Web kamerası desteklenmediğinde mobil alternatif önerilmeli.');
 assert.match(stok, /pnl-yeni-modul pnl-yeni-modul-operasyon/, 'Stok ekranı yeni modül dizüstü kırılımlarını kullanmalı.');
+assert.match(stok, /pnl-operasyon-kartlari pnl-stok-kartlari/, 'Stok ürünleri geniş ekranda alanı dengeli kullanan özel kart ızgarasına bağlanmalı.');
+assert.match(panelCss, /\.pnl-stok-kartlari\s*\{[^}]*repeat\(2,[^}]*\}[\s\S]*@media \(max-width: 1180px\)[\s\S]*\.pnl-stok-kartlari, \.pnl-cihaz-formlari\s*\{[^}]*grid-template-columns: 1fr;/,
+  'Stok kartları ve cihaz formları geniş ekranda dengeli, dizüstünde sıkışmadan tek sütun olmalı.');
 assert.match(laboratuvar, /pnl-yeni-modul pnl-yeni-modul-operasyon/, 'Laboratuvar ekranı yeni modül dizüstü kırılımlarını kullanmalı.');
+assert.match(laboratuvar, /sayisalHata[\s\S]*Number\.isFinite/, 'Laboratuvar sonucu NaN veya sonsuz sayısal değeri kayda göndermemeli.');
+assert.match(laboratuvar, /pnl-lab-calisma-cihazi[\s\S]*Aktif çalışma cihazı/, 'OCR ve istem kaynağı ayrı başlıklı çalışma cihazı alanında görünmeli.');
+assert.doesNotMatch(panelCss, /\.pnl-(?:analit-formu|ocr-satirlar)\s*\{[^}]*overflow-y:\s*auto/,
+  'Uzun laboratuvar pencerelerinde diyalog dışında ikinci bir dikey kaydırma alanı oluşmamalı.');
 assert.match(laboratuvar, /aria-expanded=\{acik\}[\s\S]*aria-controls=\{`laboratuvar-\$\{istem\.id\}-ayrinti`\}/,
   'Laboratuvar sonuç kartı açık durumunu ve ayrıntı ilişkisini yardımcı teknolojilere bildirmeli.');
 assert.match(stok, /async function tumSayimiSifirla[\s\S]*async function sayimiIptal/, 'Sayım sıfırlama ve iptal işlemleri hata kontrollü işlevlere bağlı kalmalı.');
@@ -190,6 +197,11 @@ assert.match(laboratuvar, /cihazAdaylariniNormallestir/, 'Cihaza özgü ham anal
 assert.match(labVeri, /create_lab_request_v3/, 'Laboratuvar istemi cihaz kimliğini kabul eden kapıyı kullanmalı.');
 assert.match(labVeri, /save_lab_result_revision_v5/, 'Sonuç revizyonu kaynak cihazı atomik kaydetmeli.');
 assert.match(labCihazlari, /labCihazEslemesiniKaydet/, 'Owner cihaz bazlı analit eşlemesini yönetebilmeli.');
+assert.match(labCihazlari, /cihazlar\.length === 0[\s\S]*Henüz cihaz profili yok/, 'Cihaz listesi boşken kullanıcıya sonraki adım açıklanmalı.');
+assert.equal((labCihazlari.match(/className="pnl-form-eylem"/g) ?? []).length, 2,
+  'Cihaz ve analit eşleme formunun ana eylemleri aynı hizalı alt alanda kalmalı.');
+assert.match(entegrasyon, /function saglayiciyiSec[\s\S]*temelAdres: ayni \? mevcut\?\.base_url \?\? '' : ''/,
+  'Sağlayıcı değişince eski sağlayıcının API adresi yeni yapılandırmaya taşınmamalı.');
 assert.match(musteriler, /defterArsivEtkisiniOku/, 'Müşteri arşivlenmeden önce bağlı kayıt etkisi okunmalı.');
 assert.match(hastalar, /defterArsivEtkisiniOku/, 'Hasta arşivlenmeden önce bağlı kayıt etkisi okunmalı.');
 assert.match(panelVeri, /archive_clinic_offline_record/, 'Web defter kaydı güvenli arşiv RPC kapısını kullanmalı.');
