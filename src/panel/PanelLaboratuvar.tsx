@@ -322,7 +322,7 @@ export default function PanelLaboratuvar({ klinik, sahip }: { klinik: string; sa
 
   if (istemler === null) return <Yukleniyor metin="Laboratuvar akışı yükleniyor" />;
 
-  return <section className="pnl-bolum pnl-yeni-modul pnl-yeni-modul-operasyon">
+  return <section className="pnl-bolum pnl-yeni-modul pnl-yeni-modul-operasyon pnl-laboratuvar">
     <header className="pnl-bolum-basi pnl-yeni-modul-basi"><div><p className="pnl-aciklama">İstem, cihaz sonucu, teknik kalite, sürüm geçmişi ve kaynaklı klinik karar desteğini tek izlenebilir akışta yönetin.</p></div><div className="pnl-basi-dugmeler"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={ocrPenceresiniAc}><Camera size={15} /> Cihaz ekranını oku</button><button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => setYeniAcik(true)}><Plus size={15} /> İstem oluştur</button></div></header>
     {uyariAcik ? <div className="pnl-klinik-uyari"><ShieldCheck size={20} /><div><strong>Veteriner doğrulaması zorunludur</strong><p>OCR ve açıklanabilir kurallar eksik veya hatalı olabilir; tanı ve tedavi önerisi değildir. Muayene ve klinik kararın yerini tutmaz.</p></div><button type="button" aria-label="Uyarıyı kapat" onClick={() => setUyariAcik(false)}><X size={16} /></button></div> : null}
     {hata ? <Hata mesaj={hata} kucuk tekrar={() => { setHata(null); void yukle(); }} /> : null}

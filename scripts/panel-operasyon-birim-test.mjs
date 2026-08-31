@@ -151,6 +151,14 @@ for (const etiket of ['Alıcı', 'Amaç / kanal', 'Tercih', 'Hedef', 'Kanal / am
 }
 assert.match(panelCss, /@media \(max-width: 1380px\)[\s\S]*\.pnl-yeni-modul-ozetleri[\s\S]*\.pnl-operasyon-kisayollari/,
   'Dizüstü kırılımı özet ve kısayolları panel içeriği sıkışmadan iki sütuna indirmeli.');
+assert.match(panelCss, /\.pnl-operasyon-kisayollari strong\s*\{[^}]*font-size:\s*15px/,
+  'Günlük operasyon adları yardımcı metin boyutunda kalmamalı.');
+assert.match(panelCss, /\.pnl-operasyon-kisayollari small\s*\{[^}]*font-size:\s*12\.5px/,
+  'Günlük operasyon açıklamaları okunabilir masaüstü boyutunda kalmalı.');
+assert.match(panelCss, /\.pnl-operasyon-kisayol-widget \.pnl-widget-basi\s*\{[^}]*min-height:\s*62px;[^}]*border-bottom:/,
+  'Operasyon bölümü başlığı altındaki eylem kartlarından yüzey ve ayırıcıyla ayrılmalı.');
+assert.match(panelCss, /\.pnl-operasyon-kisayollari > button\s*\{[^}]*min-height:\s*86px;[^}]*box-shadow:/,
+  'Operasyon geçişleri sıkışık satırlar yerine belirgin, dengeli kartlar olmalı.');
 assert.match(diyalog, /boyut\?: 'normal' \| 'genis' \| 'panorama'/,
   'Karmaşık operasyon pencereleri içerik yoğunluğuna uygun genişlik seçebilmeli.');
 assert.match(diyalog, /oncekiOdak[\s\S]*focus\(\{ preventScroll: true \}\)/,
@@ -159,8 +167,20 @@ assert.match(diyalog, /data-dialog-ilk-odak[\s\S]*input:not/,
   'Diyalog açıldığında kapatma ikonuna değil ilk işlem alanına odaklanmalı.');
 assert.match(panelCss, /\.pnl-diyalog-basi[\s\S]*position: sticky[\s\S]*\.pnl-diyalog-eylem[\s\S]*position: sticky/,
   'Uzun pencerelerde bağlam başlığı ve ana eylemler görünür kalmalı.');
-assert.match(panelCss, /\.pnl-diyalog\s*\{[^}]*position:\s*fixed;[^}]*inset:\s*0;[^}]*margin:\s*auto;/,
-  'Global CSS sıfırlamasından bağımsız olarak bütün panel diyalogları görünüm alanında ortalanmalı.');
+assert.match(panelCss, /\.pnl-diyalog\s*\{[^}]*position:\s*fixed;[^}]*top:\s*50%;[^}]*left:\s*50%;[^}]*transform:\s*translate\(-50%,\s*-50%\);/,
+  'Panel diyalogları tarayıcı varsayılanından bağımsız olarak görünüm alanının gerçek merkezine sabitlenmeli.');
+assert.match(diyalog, /onCancel=\{\(e\) => \{[\s\S]*e\.preventDefault\(\);[\s\S]*kapat\(\);/,
+  'Escape ile kapatma React durumunu güvenilir biçimde güncellemeli.');
+assert.match(diyalog, /onKeyDown=\{\(e\) => \{[\s\S]*e\.key !== 'Escape'[\s\S]*kapat\(\);/,
+  'Tarayıcı cancel olayı üretmese de Escape tuşu diyalogu kapatmalı.');
+assert.match(diyalog, /getBoundingClientRect\(\)[\s\S]*e\.clientX < sinir\.left[\s\S]*if \(disarida\) kapat\(\)/,
+  'Diyalog içindeki boş alan değil yalnız gerçek arka plan tıklaması pencereyi kapatmalı.');
+assert.match(entegrasyon, /disabled=\{hazirSablonSayisi === 0\}/,
+  'Hazır sağlayıcı yokken gönderilemeyecek şablon seçimi etkin görünmemeli.');
+assert.match(entegrasyon, /disabled=\{!sablonHazirMi\(sablon\)\}/,
+  'Hazır olmayan kanala ait her şablon seçim listesinde devre dışı kalmalı.');
+assert.match(entegrasyon, /git\?\.\('entegrasyonlar'\)[\s\S]*Entegrasyon ayarlarına git/,
+  'Hazır kanal yoksa gönderim penceresi kullanıcıyı çalışan entegrasyon ayarına taşımalı.');
 assert.match(panelCss, /@media \(max-width: 1380px\)[\s\S]*\.pnl-operasyon-tablo td::before[\s\S]*content: attr\(data-label\)/,
   'Beş sütunlu operasyon tabloları orta genişlikte etiketli kartlara dönüşmeli.');
 assert.doesNotMatch(entegrasyon, /doğrulama kuyruğuna/i, 'Olmayan otomatik doğrulama kuyruğu vaat edilmemeli.');
@@ -199,6 +219,18 @@ assert.match(stok, /pnl-operasyon-kartlari pnl-stok-kartlari/, 'Stok ürünleri 
 assert.match(panelCss, /\.pnl-stok-kartlari\s*\{[^}]*repeat\(2,[^}]*\}[\s\S]*@media \(max-width: 1180px\)[\s\S]*\.pnl-stok-kartlari, \.pnl-cihaz-formlari\s*\{[^}]*grid-template-columns: 1fr;/,
   'Stok kartları ve cihaz formları geniş ekranda dengeli, dizüstünde sıkışmadan tek sütun olmalı.');
 assert.match(laboratuvar, /pnl-yeni-modul pnl-yeni-modul-operasyon/, 'Laboratuvar ekranı yeni modül dizüstü kırılımlarını kullanmalı.');
+assert.match(laboratuvar, /pnl-yeni-modul-operasyon pnl-laboratuvar/,
+  'Laboratuvar ekranı diğer operasyon sayfalarını etkilemeden özel yerleşim ritmi kullanmalı.');
+assert.match(labCihazlari, /className="pnl-widget pnl-lab-cihazlar"/,
+  'Laboratuvar cihaz yönetimi orta akışta bağımsız ve hedeflenebilir bir yüzey olmalı.');
+assert.match(panelCss, /\.pnl-laboratuvar > \.pnl-yeni-modul-basi \.pnl-basi-dugmeler\s*\{[^}]*padding:\s*6px;[^}]*border:[^}]*border-radius:\s*14px;[^}]*box-shadow:/,
+  'Laboratuvarın sağ üst eylemleri içerik çerçevelerinden ayrılan dengeli bir araç yüzeyinde durmalı.');
+assert.match(panelCss, /\.pnl-laboratuvar > \.pnl-kartlar\s*\{[^}]*margin-bottom:\s*18px;[^}]*\}[\s\S]*\.pnl-laboratuvar > \.pnl-lab-cihazlar,[\s\S]*margin:\s*0 0 18px;/,
+  'Laboratuvar özetleri ile orta cihaz çerçeveleri eşit dış boşlukla ayrılmalı.');
+assert.match(panelCss, /\.pnl-laboratuvar > \.pnl-bos,[\s\S]*\.pnl-laboratuvar > \.pnl-lab-listesi\s*\{[^}]*margin:\s*0 0 22px;/,
+  'Laboratuvar istem alanı ile akademik kaynaklar birbirine yapışmamalı.');
+assert.match(panelCss, /@media \(max-width: 560px\)\s*\{[\s\S]*\.pnl-laboratuvar > \.pnl-kartlar\s*\{[^}]*grid-template-columns:\s*1fr;/,
+  'Laboratuvar özetleri telefonda sıkışık iki sütun yerine tek sütuna inmeli.');
 assert.match(laboratuvar, /sayisalHata[\s\S]*Number\.isFinite/, 'Laboratuvar sonucu NaN veya sonsuz sayısal değeri kayda göndermemeli.');
 assert.match(laboratuvar, /pnl-lab-calisma-cihazi[\s\S]*Aktif çalışma cihazı/, 'OCR ve istem kaynağı ayrı başlıklı çalışma cihazı alanında görünmeli.');
 assert.doesNotMatch(panelCss, /\.pnl-(?:analit-formu|ocr-satirlar)\s*\{[^}]*overflow-y:\s*auto/,
@@ -245,11 +277,15 @@ assert.doesNotMatch(panelVeri, /from\('clinic_offline_(?:customers|pets)'\)\s*\.
   'Web çevrimdışı müşteri veya hastayı doğrudan silmemeli.');
 assert.match(panelBolumler, /gonderiYorumlariniOku/, 'Topluluk gönderisinin yorumları webde yönetilebilmeli.');
 assert.match(panelBolumler, /gonderiYorumunaYanitYaz/, 'Klinik webden topluluk yorumuna yanıt verebilmeli.');
-assert.match(panelBolumler, /pnl-izgara-ikili pnl-profil-ust[\s\S]*Baktığınız türler[\s\S]*Çalışma saatleri/,
+assert.match(panelBolumler, /pnl-izgara-ikili pnl-profil-ust[\s\S]*pnl-profil-sol[\s\S]*Baktığınız türler[\s\S]*Özel çalışma günleri[\s\S]*Çalışma saatleri/,
   'Klinik profilinde baktığınız türler solda, çalışma saatleri sağda kalmalı.');
 assert.match(panelBolumler, /pnl-profil-hizmetler[\s\S]*pnl-hizmet-grid/,
   'Hizmetler üst ikilinin altında kompakt çok sütunlu bölüme taşınmalı.');
-assert.match(panelBolumler, /Özel günler/, 'Çalışma saatlerinde özel gün yönetimi görünmeli.');
+assert.match(panelBolumler, /Özel çalışma günleri/, 'Çalışma saatlerinde özel gün yönetimi görünmeli.');
+assert.match(panelCss, /\.pnl-profil-sol\s*\{[^}]*display:\s*grid;[^}]*gap:\s*14px/,
+  'Tür ve özel gün kartları sol sütundaki boşluğu dengeli kullanmalı.');
+assert.match(panelCss, /\.pnl-hizmet-grid\s*\{[^}]*repeat\(4,/,
+  'Uzun hizmet kataloğu üst kartların altında kompakt dört sütunlu başlamalı.');
 assert.match(panelBolumler, /ozelCalismaGunuYaz[\s\S]*ozelCalismaGunuSil/,
   'Özel çalışma günü ekleme, güncelleme ve kaldırma işlemleri gerçek veri kapısına bağlanmalı.');
 assert.match(panelVeri, /from\('clinic_special_hours'\)[\s\S]*upsert\([\s\S]*onConflict:\s*'clinic_id,special_date'/,

@@ -67,7 +67,7 @@ export default function LabCihazlari({ klinik, sahip, cihazlar, eslemeler, yenil
     catch (e) { setHata((e as Error).message); } finally { setBekliyor(false); }
   }
 
-  return <section id="laboratuvar-cihazlari" className="pnl-widget">
+  return <section id="laboratuvar-cihazlari" className="pnl-widget pnl-lab-cihazlar">
     <header className="pnl-widget-basi"><span className="pnl-widget-ikon"><Cpu size={17} /></span>
       <h3>Laboratuvar cihazları</h3><button type="button" className="pnl-metin-dugme" aria-expanded={acik} aria-controls="laboratuvar-cihaz-ayrintilari" onClick={() => acikligiDegistir(!acik)}>
         {acik ? 'Kapat' : `${cihazlar.filter((c) => c.is_active).length} aktif cihaz`}

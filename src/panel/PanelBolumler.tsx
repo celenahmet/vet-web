@@ -394,7 +394,7 @@ export function PanelSahiplendirme() {
   );
 }
 
-/** Klinik profili: hizmetler ve calisma saatleri. */
+/** Klinik profili: türler, haftalık/özel mesai ve hizmetler. */
 export function PanelProfil({ klinik }: { klinik: string }) {
   const [hizmetler, setHizmetler] = useState<Hizmet[] | null>(null);
   const [saatler, setSaatler] = useState<CalismaSaati[]>([]);
@@ -577,7 +577,8 @@ export function PanelProfil({ klinik }: { klinik: string }) {
       </header>
 
       <div className="pnl-izgara-ikili pnl-profil-ust">
-        <section className="pnl-widget">
+        <div className="pnl-profil-sol">
+          <section className="pnl-widget">
           <header className="pnl-widget-basi">
             <span className="pnl-widget-ikon" aria-hidden="true"><Stethoscope size={17} /></span>
             <h3>Baktığınız türler</h3>
@@ -611,7 +612,83 @@ export function PanelProfil({ klinik }: { klinik: string }) {
               </ul>
             )}
           </div>
-        </section>
+          </section>
+
+          <section className="pnl-widget pnl-ozel-gun-karti">
+            <header className="pnl-widget-basi">
+              <span className="pnl-widget-ikon" aria-hidden="true"><CalendarDays size={17} /></span>
+              <h3>Özel çalışma günleri</h3>
+            </header>
+            <div className="pnl-widget-govde">
+              <p className="pnl-widget-not">Bayram, nöbet veya eğitim günü haftalık mesainin yerine geçer.</p>
+              <form className="pnl-ozel-gun-formu" onSubmit={(e) => void ozelGunuKaydet(e)}>
+                <label className="pnl-alan">
+                  <span>Tarih</span>
+                  <input type="date" required value={ozelGunFormu.tarih}
+                    onChange={(e) => setOzelGunFormu((f) => ({ ...f, tarih: e.target.value }))} />
+                </label>
+                <label className="pnl-alan pnl-ozel-gun-aciklama">
+                  <span>Açıklama</span>
+                  <input type="text" required minLength={2} maxLength={80}
+                    placeholder="Örn. Bayramın 1. günü" value={ozelGunFormu.aciklama}
+                    onChange={(e) => setOzelGunFormu((f) => ({ ...f, aciklama: e.target.value }))} />
+                </label>
+                <label className="pnl-ozel-gun-kapali">
+                  <input type="checkbox" checked={ozelGunFormu.kapali}
+                    onChange={(e) => setOzelGunFormu((f) => ({ ...f, kapali: e.target.checked }))} />
+                  <span>Bu tarihte kapalı</span>
+                </label>
+                {!ozelGunFormu.kapali ? (
+                  <div className="pnl-ozel-gun-saatleri">
+                    <input type="time" aria-label="Özel gün açılış saati" value={ozelGunFormu.acilis}
+                      onChange={(e) => setOzelGunFormu((f) => ({ ...f, acilis: e.target.value }))} />
+                    <span aria-hidden="true">–</span>
+                    <input type="time" aria-label="Özel gün kapanış saati" value={ozelGunFormu.kapanis}
+                      onChange={(e) => setOzelGunFormu((f) => ({ ...f, kapanis: e.target.value }))} />
+                  </div>
+                ) : null}
+                <button type="submit" className="pnl-dugme pnl-dugme-olumlu"
+                  disabled={ozelGunIsleniyor !== null}>
+                  {ozelGunIsleniyor === 'kaydet' ? 'Kaydediliyor…' : 'Özel günü kaydet'}
+                </button>
+              </form>
+
+              {ozelGunMesaji ? <p className="pnl-bilgi pnl-ozel-gun-bildirim" role="status">{ozelGunMesaji}</p> : null}
+              {ozelGunHatasi ? <p className="pnl-hata-kucuk">{ozelGunHatasi}</p> : null}
+              {ozelGunler.length > 0 ? (
+                <ul className="pnl-ozel-gun-listesi">
+                  {ozelGunler.map((g) => (
+                    <li key={g.id}>
+                      <time dateTime={g.special_date}>
+                        {new Date(`${g.special_date}T12:00:00`).toLocaleDateString('tr-TR', { day: '2-digit', month: 'short', year: 'numeric' })}
+                      </time>
+                      <span className="pnl-ozel-gun-ozet">
+                        <strong>{g.label}</strong>
+                        <small>{g.is_closed ? 'Kapalı' : `${saatKirp(g.opens_at)}–${saatKirp(g.closes_at)}`}</small>
+                      </span>
+                      <button type="button" className="pnl-dugme pnl-dugme-sade pnl-dugme-kucuk"
+                        onClick={() => setOzelGunFormu({
+                          tarih: g.special_date, aciklama: g.label, kapali: g.is_closed,
+                          acilis: saatKirp(g.opens_at) === '--:--' ? '09:00' : saatKirp(g.opens_at),
+                          kapanis: saatKirp(g.closes_at) === '--:--' ? '18:00' : saatKirp(g.closes_at),
+                        })}>
+                        Düzenle
+                      </button>
+                      <button type="button" className="pnl-ikon-dugme pnl-ikon-dugme-olumsuz"
+                        aria-label={`${g.label} özel gününü kaldır`}
+                        disabled={ozelGunIsleniyor !== null}
+                        onClick={() => void ozelGunuSil(g)}>
+                        <Trash2 size={15} />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="pnl-widget-bos pnl-ozel-gun-bos">Henüz özel gün eklenmedi.</p>
+              )}
+            </div>
+          </section>
+        </div>
 
         <section className="pnl-widget">
           <header className="pnl-widget-basi">
@@ -672,81 +749,6 @@ export function PanelProfil({ klinik }: { klinik: string }) {
             </div>
             {saatHatasi ? <p className="pnl-hata-kucuk">{saatHatasi}</p> : null}
 
-            <section className="pnl-ozel-gunler">
-              <header className="pnl-ozel-gun-basi">
-                <span className="pnl-widget-ikon" aria-hidden="true"><CalendarDays size={16} /></span>
-                <div>
-                  <h4>Özel günler</h4>
-                  <p>Bayram, nöbet veya eğitim günü haftalık mesainin yerine geçer.</p>
-                </div>
-              </header>
-
-              <form className="pnl-ozel-gun-formu" onSubmit={(e) => void ozelGunuKaydet(e)}>
-                <label className="pnl-alan">
-                  <span>Tarih</span>
-                  <input type="date" required value={ozelGunFormu.tarih}
-                    onChange={(e) => setOzelGunFormu((f) => ({ ...f, tarih: e.target.value }))} />
-                </label>
-                <label className="pnl-alan pnl-ozel-gun-aciklama">
-                  <span>Açıklama</span>
-                  <input type="text" required minLength={2} maxLength={80}
-                    placeholder="Örn. Bayramın 1. günü" value={ozelGunFormu.aciklama}
-                    onChange={(e) => setOzelGunFormu((f) => ({ ...f, aciklama: e.target.value }))} />
-                </label>
-                <label className="pnl-ozel-gun-kapali">
-                  <input type="checkbox" checked={ozelGunFormu.kapali}
-                    onChange={(e) => setOzelGunFormu((f) => ({ ...f, kapali: e.target.checked }))} />
-                  <span>Kapalı</span>
-                </label>
-                {!ozelGunFormu.kapali ? (
-                  <div className="pnl-ozel-gun-saatleri">
-                    <input type="time" aria-label="Özel gün açılış saati" value={ozelGunFormu.acilis}
-                      onChange={(e) => setOzelGunFormu((f) => ({ ...f, acilis: e.target.value }))} />
-                    <span aria-hidden="true">–</span>
-                    <input type="time" aria-label="Özel gün kapanış saati" value={ozelGunFormu.kapanis}
-                      onChange={(e) => setOzelGunFormu((f) => ({ ...f, kapanis: e.target.value }))} />
-                  </div>
-                ) : null}
-                <button type="submit" className="pnl-dugme pnl-dugme-olumlu"
-                  disabled={ozelGunIsleniyor !== null}>
-                  {ozelGunIsleniyor === 'kaydet' ? 'Kaydediliyor…' : 'Özel günü kaydet'}
-                </button>
-              </form>
-
-              {ozelGunMesaji ? <p className="pnl-bilgi pnl-ozel-gun-bildirim" role="status">{ozelGunMesaji}</p> : null}
-              {ozelGunHatasi ? <p className="pnl-hata-kucuk">{ozelGunHatasi}</p> : null}
-              {ozelGunler.length > 0 ? (
-                <ul className="pnl-ozel-gun-listesi">
-                  {ozelGunler.map((g) => (
-                    <li key={g.id}>
-                      <time dateTime={g.special_date}>
-                        {new Date(`${g.special_date}T12:00:00`).toLocaleDateString('tr-TR', { day: '2-digit', month: 'short', year: 'numeric' })}
-                      </time>
-                      <span className="pnl-ozel-gun-ozet">
-                        <strong>{g.label}</strong>
-                        <small>{g.is_closed ? 'Kapalı' : `${saatKirp(g.opens_at)}–${saatKirp(g.closes_at)}`}</small>
-                      </span>
-                      <button type="button" className="pnl-dugme pnl-dugme-sade pnl-dugme-kucuk"
-                        onClick={() => setOzelGunFormu({
-                          tarih: g.special_date, aciklama: g.label, kapali: g.is_closed,
-                          acilis: saatKirp(g.opens_at) === '--:--' ? '09:00' : saatKirp(g.opens_at),
-                          kapanis: saatKirp(g.closes_at) === '--:--' ? '18:00' : saatKirp(g.closes_at),
-                        })}>
-                        Düzenle
-                      </button>
-                      <button type="button" className="pnl-ikon-dugme pnl-ikon-dugme-olumsuz"
-                        aria-label={`${g.label} özel gününü kaldır`}
-                        disabled={ozelGunIsleniyor !== null}
-                        onClick={() => void ozelGunuSil(g)}>
-                        <Trash2 size={15} />
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="pnl-widget-bos pnl-ozel-gun-bos">Henüz özel gün eklenmedi.</p>
-              )}
-            </section>
           </div>
         </section>
       </div>

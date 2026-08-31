@@ -59,10 +59,24 @@ export default function Diyalog({
       className={`pnl-diyalog pnl-diyalog-${boyut}`}
       aria-labelledby={baslikKimligi}
       aria-describedby={aciklama ? aciklamaKimligi : undefined}
+      onCancel={(e) => {
+        e.preventDefault();
+        kapat();
+      }}
+      onKeyDown={(e) => {
+        if (e.key !== 'Escape') return;
+        e.preventDefault();
+        kapat();
+      }}
       onClose={kapat}
       onClick={(e) => {
-        // Arka plana tiklama: hedef diyalogun KENDISI ise disariya tiklanmistir.
-        if (e.target === ref.current) kapat();
+        // `<dialog>` arka plan tiklamasini kendi hedefi olarak bildirir. Koordinat
+        // kontrolu olmazsa kutunun icindeki bos bir alana tiklamak da kapatirdi.
+        if (e.target !== ref.current) return;
+        const sinir = e.currentTarget.getBoundingClientRect();
+        const disarida = e.clientX < sinir.left || e.clientX > sinir.right
+          || e.clientY < sinir.top || e.clientY > sinir.bottom;
+        if (disarida) kapat();
       }}>
       <header className="pnl-diyalog-basi">
         <div>
