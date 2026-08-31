@@ -41,9 +41,28 @@
    * biniyordu; başlık ve etiketle çakışıyordu. Artık kapağın kendi içinde nefes payı
    * var, kartlar aşağıda ayrı duruyor.
    */
-  padding: 132px 0 56px;
+  /*
+   * ⚠️ ARKA PLAN NAVBAR'IN ALTINDAN BAŞLIYOR (01.09.2026).
+   * Navbar `fixed` ve sayfa üstündeyken `bg-transparent`; menü bağlantıları
+   * `--text-muted` (gri) kullanıyor. Kapak koyu olduğu için AÇIK TEMADA menü
+   * okunmuyordu (koyu temada bağlantılar zaten açık renk, orada sorun yok).
+   *
+   * Navbar'a sayfaya özel opak stil vermek bileşeni tüm sayfalarda ilgilendirir.
+   * Onun yerine hero'nun kendisi aşağı alındı: üstte sayfa zemini kalıyor, menü
+   * orada okunuyor. Toplam üst boşluk DEĞİŞMEDİ: eski 132px, şimdi 84 + 48.
+   */
+  margin-top: 84px;
+  padding: 48px 0 56px;
   overflow: hidden;
   isolation: isolate;
+}
+
+@media (max-width: 767px) {
+  /* Mobilde navbar daha alçak (logo h-10, py-5). */
+  .vc-hero {
+    margin-top: 72px;
+    padding-top: 40px;
+  }
 }
 
 .vc-hero-cover {
