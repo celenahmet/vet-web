@@ -28,6 +28,9 @@ import { kopeklereZararliYiyecekler } from './kopeklere-zararli-yiyecekler';
 import { kedilerdePireNasilAnlasilir } from './kedilerde-pire-nasil-anlasilir';
 import { mikrocipNedir } from './mikrocip-nedir';
 import { kliniklerdeAsiHatirlatma } from './kliniklerde-asi-hatirlatma';
+import { kediKopekCheckUpNeZaman } from './kedi-kopek-check-up-ne-zaman';
+import { kopeklerdeZehirlenme } from './kopeklerde-zehirlenme';
+import { evcilHayvanlardaKanTahlili } from './evcil-hayvanlarda-kan-tahlili';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -42,6 +45,7 @@ const TUM_YAZILAR: BlogYazi[] = [
   kopeklerdeKulakEnfeksiyonu, kopeklerdeAyrilikKaygisi, kedilerdeKabizlik,
   kedilerNeZamanKisirlastirilmali, kopeklereZararliYiyecekler,
   kedilerdePireNasilAnlasilir, mikrocipNedir, kliniklerdeAsiHatirlatma,
+  kediKopekCheckUpNeZaman, kopeklerdeZehirlenme, evcilHayvanlardaKanTahlili,
 ];
 
 /**
