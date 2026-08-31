@@ -995,7 +995,9 @@ a.pnl-widget-eylem { text-decoration: none; }
 /* Bes sutunlu iletisim tablolari orta panel genisliginde metni ezmek yerine
    etiketli kayit kartlarina doner. Yatay kaydirma yalniz veri karsilastirmasi
    gereken genel tablolarda kalir. */
-@media (max-width: 1180px) {
+/* Sol menü 228 px yer kapladığı için 1366 px dizüstünde içerik alanı yaklaşık
+   1098 px kalır. Dönüşüm viewport 1180'i beklerse beş sütun bu alanda ezilir. */
+@media (max-width: 1380px) {
   .pnl-operasyon-tablo { display: block; width: 100%; min-width: 0; }
   .pnl-operasyon-tablo thead { display: none; }
   .pnl-operasyon-tablo tbody { display: grid; width: 100%; min-width: 0; gap: 9px; padding: 2px 12px 12px; }
