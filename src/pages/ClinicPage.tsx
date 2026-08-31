@@ -5,6 +5,8 @@ import {
   fetchClinicMedia,
   fetchClinicPage,
   fetchClinicStaff,
+  fetchClinicHours,
+  fetchClinicSpecialHours,
   formatPhone,
   initials,
   mapsUrl,
@@ -13,6 +15,8 @@ import {
   type ClinicMedia,
   type ClinicPage as ClinicPageData,
   type StaffMember,
+  type ClinicHour,
+  type ClinicSpecialHour,
 } from '../lib/clinicPage';
 import {
   IconCheck,
@@ -31,7 +35,29 @@ import './ClinicPage.css';
 
 const NotFound = lazy(() => import('./NotFound'));
 
-type Sekme = 'staff' | 'gallery';
+type Sekme = 'staff' | 'gallery' | 'hours';
+
+/** 0 = Pazar … 6 = Cumartesi (`clinic_hours.weekday` ile aynı sıra). */
+const GUNLER = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+
+/** '09:00:00' -> '09:00'. Saniye gösterilmiyor, ekranda gürültü yapıyor. */
+function saatKisalt(t: string | null): string {
+  return t ? t.slice(0, 5) : '';
+}
+
+/** Kapalı gün ile saati girilmemiş günü AYIRIYOR: ikisi aynı şey değil. */
+function saatMetni(k: { is_closed: boolean; opens_at: string | null; closes_at: string | null } | undefined): string {
+  if (!k) return 'Belirtilmemiş';
+  if (k.is_closed) return 'Kapalı';
+  if (!k.opens_at || !k.closes_at) return 'Belirtilmemiş';
+  return `${saatKisalt(k.opens_at)} - ${saatKisalt(k.closes_at)}`;
+}
+
+function tarihMetni(iso: string): string {
+  const aylar = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+  const [y, a, g] = iso.split('-').map(Number);
+  return `${g} ${aylar[a - 1]} ${y}`;
+}
 
 /**
  * `veterito.com/@kullaniciadi` — kliniğin herkese açık vitrini.
@@ -58,6 +84,8 @@ export default function ClinicPage() {
 
   const [page, setPage] = useState<ClinicPageData | null>(null);
   const [staff, setStaff] = useState<StaffMember[]>([]);
+  const [hours, setHours] = useState<ClinicHour[]>([]);
+  const [specialHours, setSpecialHours] = useState<ClinicSpecialHour[]>([]);
   const [media, setMedia] = useState<ClinicMedia>({
     logo: null,
     cover: null,
@@ -107,6 +135,12 @@ export default function ClinicPage() {
           fetchClinicMedia(username)
             .then((m) => !iptal && setMedia(m))
             .catch((e) => console.error('[clinicPage] görseller alınamadı:', e));
+          fetchClinicHours(p.clinic_id)
+            .then((h) => !iptal && setHours(h))
+            .catch((e) => console.error('[clinicPage] mesai alınamadı:', e));
+          fetchClinicSpecialHours(p.clinic_id)
+            .then((h) => !iptal && setSpecialHours(h))
+            .catch((e) => console.error('[clinicPage] özel günler alınamadı:', e));
         }
       } catch (e) {
         console.error('[clinicPage] sayfa alınamadı:', e);
@@ -261,9 +295,28 @@ export default function ClinicPage() {
   if (!page) return <NotFound />;
 
   const konum = [page.district, page.city].filter(Boolean).join(' / ');
-  const vitrinVar = staff.length > 0 || galeriSayisi > 0;
+  const vitrinVar = staff.length > 0 || galeriSayisi > 0 || hours.length > 0 || specialHours.length > 0;
   // Ekip yoksa sekme galeride açılsın: boş bir sekmeyle karşılamak kötü.
-  const aktifSekme: Sekme = staff.length === 0 ? 'gallery' : galeriSayisi === 0 ? 'staff' : sekme;
+  /**
+   * Boş sekmeyle karşılamamak için düşüş sırası: seçilen sekmenin içeriği yoksa
+   * dolu olana geçiliyor. Mesai en sonda, çünkü ziyaretçi önce kliniği görmek
+   * istiyor; ama ekip ve galeri boşsa mesai tek başına da anlamlı bir vitrin.
+   */
+  const mesaiVar = hours.length > 0 || specialHours.length > 0;
+  const aktifSekme: Sekme =
+    sekme === 'hours' && mesaiVar
+      ? 'hours'
+      : sekme === 'staff' && staff.length > 0
+        ? 'staff'
+        : sekme === 'gallery' && galeriSayisi > 0
+          ? 'gallery'
+          : staff.length > 0
+            ? 'staff'
+            : galeriSayisi > 0
+              ? 'gallery'
+              : mesaiVar
+                ? 'hours'
+                : 'staff';
 
   return (
     <div className="vc">
@@ -499,6 +552,19 @@ export default function ClinicPage() {
                       <span className="vc-tab-count">{galeriSayisi}</span>
                     </button>
                   ) : null}
+                  {mesaiVar ? (
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={aktifSekme === 'hours'}
+                      className={`vc-tab${aktifSekme === 'hours' ? ' vc-tab-on' : ''}`}
+                      onClick={() => setSekme('hours')}>
+                      Mesai saatleri
+                      {specialHours.length > 0 ? (
+                        <span className="vc-tab-count">{specialHours.length}</span>
+                      ) : null}
+                    </button>
+                  ) : null}
                 </div>
 
                 {aktifSekme === 'staff' ? (
@@ -520,7 +586,7 @@ export default function ClinicPage() {
                       yapmaz.
                     </p>
                   </div>
-                ) : (
+                ) : aktifSekme === 'gallery' ? (
                   <div className="vc-panel" role="tabpanel">
                     <div className="vc-gallery-grid">
                       {media.gallery.map((g, i) => (
@@ -538,6 +604,49 @@ export default function ClinicPage() {
                         </button>
                       ))}
                     </div>
+                  </div>
+                ) : (
+                  <div className="vc-panel" role="tabpanel">
+                    <table className="vc-hours">
+                      <tbody>
+                        {GUNLER.map((ad, gun) => {
+                          const kayit = hours.find((h) => h.weekday === gun);
+                          const bugun = new Date().getDay() === gun;
+                          return (
+                            <tr key={gun} className={bugun ? 'vc-hours-today' : undefined}>
+                              <th scope="row">
+                                {ad}
+                                {bugun ? <span className="vc-hours-badge">bugün</span> : null}
+                              </th>
+                              <td>{saatMetni(kayit)}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+
+                    {specialHours.length > 0 ? (
+                      <>
+                        {/* ÖZEL GÜNLER HAFTALIK DÜZENİ EZER. Bayram ya da bakım günü
+                            gibi istisnalar ayrı listeleniyor; üstteki tabloya
+                            karıştırmak, hangi kuralın geçerli olduğunu belirsizleştirirdi. */}
+                        <h3 className="vc-hours-title">Özel günler</h3>
+                        <ul className="vc-hours-special">
+                          {specialHours.map((o) => (
+                            <li key={o.special_date}>
+                              <span className="vc-hours-date">{tarihMetni(o.special_date)}</span>
+                              <span className="vc-hours-label">{o.label}</span>
+                              <span className="vc-hours-value">{saatMetni(o)}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    ) : null}
+
+                    <p className="vc-note">
+                      Saatler kliniğin beyanıdır. Yola çıkmadan önce, özellikle acil bir
+                      durumda, telefonla teyit etmenizi öneririz.
+                    </p>
                   </div>
                 )}
               </section>

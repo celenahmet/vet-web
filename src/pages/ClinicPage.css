@@ -1045,3 +1045,106 @@
   outline: 3px solid var(--color-accent, #c6a15b);
   outline-offset: 2px;
 }
+
+/* ── MESAİ SAATLERİ SEKMESİ (01.09.2026) ─────────────────────────────────
+   Ziyaretçinin klinik sayfasında en çok aradığı bilgi. Veri zaten vardı
+   (clinic_hours + clinic_special_hours), kamusal okuma yolu mig 0199 ile
+   açıldı. */
+.vc-hours {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.vc-hours th,
+.vc-hours td {
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 15px;
+}
+
+.vc-hours th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.vc-hours td {
+  text-align: right;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.vc-hours tr:last-child th,
+.vc-hours tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Bugünün satırı vurgulanıyor: tabloya bakan kişi önce bugünü arıyor. */
+.vc-hours-today th,
+.vc-hours-today td {
+  color: var(--color-vet-primary);
+  font-weight: 700;
+}
+
+.vc-hours-badge {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-vet-primary) 14%, transparent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.vc-hours-title {
+  margin: 24px 0 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.vc-hours-special {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.vc-hours-special li {
+  display: grid;
+  grid-template-columns: minmax(110px, auto) 1fr auto;
+  gap: 10px;
+  align-items: baseline;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--surface-soft, rgba(0, 0, 0, 0.03));
+  font-size: 14px;
+}
+
+.vc-hours-date {
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.vc-hours-label {
+  color: var(--text-muted);
+}
+
+.vc-hours-value {
+  font-weight: 600;
+  color: var(--color-vet-primary);
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  /* Dar ekranda üç kolon sıkışıyor; etiket alta iniyor. */
+  .vc-hours-special li {
+    grid-template-columns: 1fr auto;
+  }
+  .vc-hours-label {
+    grid-column: 1 / -1;
+  }
+}

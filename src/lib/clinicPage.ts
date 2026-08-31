@@ -55,6 +55,23 @@ export type StaffMember = {
   bio: string | null;
 };
 
+/** Haftalık çalışma düzeni. weekday: 0 = Pazar … 6 = Cumartesi. */
+export type ClinicHour = {
+  weekday: number;
+  is_closed: boolean;
+  opens_at: string | null;
+  closes_at: string | null;
+};
+
+/** Tarihe özel istisna (bayram, bakım günü). Yalnız bugünden sonrası gelir. */
+export type ClinicSpecialHour = {
+  special_date: string;
+  label: string;
+  is_closed: boolean;
+  opens_at: string | null;
+  closes_at: string | null;
+};
+
 export type ClinicMedia = {
   logo: string | null;
   cover: string | null;
@@ -104,6 +121,19 @@ export async function fetchClinicStaff(clinicId: string): Promise<StaffMember[]>
 }
 
 /** Görseller: imzayı sunucu üretiyor, burada yalnız kullanılıyor. */
+/**
+ * Mesai saatleri AYRI RPC'den geliyor, `clinic_public_page` genişletilmedi.
+ * Sebep: o fonksiyon tek satır döndürüyor ve dönüş kümesini genişletmek canlı
+ * istemcileri kırma riski taşıyor (mig 0199).
+ */
+export async function fetchClinicHours(clinicId: string): Promise<ClinicHour[]> {
+  return rpc<ClinicHour>('clinic_public_hours', { p_clinic: clinicId });
+}
+
+export async function fetchClinicSpecialHours(clinicId: string): Promise<ClinicSpecialHour[]> {
+  return rpc<ClinicSpecialHour>('clinic_public_special_hours', { p_clinic: clinicId });
+}
+
 export async function fetchClinicMedia(username: string): Promise<ClinicMedia> {
   const bos: ClinicMedia = { logo: null, cover: null, gallery: [], staff: {} };
   if (yapilandirmaEksik()) return bos;
