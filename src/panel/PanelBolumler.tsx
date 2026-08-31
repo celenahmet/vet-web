@@ -1,4 +1,4 @@
-import { FileText, Syringe, MessagesSquare, Heart, Settings, Clock, Megaphone, Stethoscope, Bell, Star, Plus } from 'lucide-react';
+import { CalendarDays, FileText, Syringe, MessagesSquare, Heart, Settings, Clock, Megaphone, Stethoscope, Bell, Star, Plus, Trash2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import {
@@ -9,6 +9,7 @@ import {
   duyurulariOku,
   hizmetleriOku,
   saatleriOku,
+  ozelCalismaGunleriniOku,
   hizmetAdlariniOku,
   bildirimleriOku,
   degerlendirmeleriOku,
@@ -22,11 +23,14 @@ import {
   type Tur,
   type Hizmet,
   type CalismaSaati,
+  type OzelCalismaGunu,
   type Duyuru,
   type UlasilabilirKisi,
   type HizmetAdi,
   hizmetiAcKapat,
   calismaSaatiYaz,
+  ozelCalismaGunuYaz,
+  ozelCalismaGunuSil,
   saglikKaydiSil,
   klinikTurleriniOku,
   turAcKapat,
@@ -403,18 +407,26 @@ export function PanelProfil({ klinik }: { klinik: string }) {
   const [saatHatasi, setSaatHatasi] = useState<string | null>(null);
   const [saatKaydediliyor, setSaatKaydediliyor] = useState(false);
   const [saatMesaji, setSaatMesaji] = useState<string | null>(null);
+  const [ozelGunler, setOzelGunler] = useState<OzelCalismaGunu[]>([]);
+  const [ozelGunFormu, setOzelGunFormu] = useState({
+    tarih: '', aciklama: '', kapali: true, acilis: '09:00', kapanis: '18:00',
+  });
+  const [ozelGunIsleniyor, setOzelGunIsleniyor] = useState<string | null>(null);
+  const [ozelGunHatasi, setOzelGunHatasi] = useState<string | null>(null);
+  const [ozelGunMesaji, setOzelGunMesaji] = useState<string | null>(null);
 
   useEffect(() => {
     let iptal = false;
     setHizmetler(null); setHata(null);
     Promise.all([
       hizmetleriOku(klinik), saatleriOku(klinik), hizmetAdlariniOku(),
-      turleriOku(), klinikTurleriniOku(klinik),
+      turleriOku(), klinikTurleriniOku(klinik), ozelCalismaGunleriniOku(klinik),
     ])
-      .then(([h, sa, k, tk, at]) => {
+      .then(([h, sa, k, tk, at, og]) => {
         if (iptal) return;
         setHizmetler(h); setSaatler(sa); setKatalog(k as HizmetAdi[]);
         setTurKatalog(tk as Tur[]); setAcikTurler(at as string[]);
+        setOzelGunler(og as OzelCalismaGunu[]);
       })
       .catch((e: { message?: string }) => { if (!iptal) { setHizmetler([]); setHata(e?.message ?? ''); } });
     return () => { iptal = true; };
@@ -507,6 +519,52 @@ export function PanelProfil({ klinik }: { klinik: string }) {
     }
   }
 
+  async function ozelGunuKaydet(e: React.FormEvent) {
+    e.preventDefault();
+    setOzelGunHatasi(null); setOzelGunMesaji(null);
+    const aciklama = ozelGunFormu.aciklama.trim();
+    if (!ozelGunFormu.tarih || aciklama.length < 2) {
+      setOzelGunHatasi('Tarih ve en az 2 karakterlik bir açıklama girin.');
+      return;
+    }
+    if (!ozelGunFormu.kapali && (!ozelGunFormu.acilis || !ozelGunFormu.kapanis
+      || ozelGunFormu.acilis >= ozelGunFormu.kapanis)) {
+      setOzelGunHatasi('Açık özel günde kapanış saati açılıştan sonra olmalı.');
+      return;
+    }
+    setOzelGunIsleniyor('kaydet');
+    try {
+      const kayit = await ozelCalismaGunuYaz({
+        klinik, tarih: ozelGunFormu.tarih, aciklama,
+        kapali: ozelGunFormu.kapali,
+        acilis: ozelGunFormu.kapali ? null : ozelGunFormu.acilis,
+        kapanis: ozelGunFormu.kapali ? null : ozelGunFormu.kapanis,
+      });
+      setOzelGunler((onceki) => [...onceki.filter((g) => g.special_date !== kayit.special_date), kayit]
+        .sort((a, b) => a.special_date.localeCompare(b.special_date)));
+      setOzelGunFormu({ tarih: '', aciklama: '', kapali: true, acilis: '09:00', kapanis: '18:00' });
+      setOzelGunMesaji('Özel gün kaydedildi; bu tarih haftalık mesainin yerine geçecek.');
+    } catch (e2) {
+      setOzelGunHatasi((e2 as { message?: string })?.message ?? 'Özel gün kaydedilemedi.');
+    } finally {
+      setOzelGunIsleniyor(null);
+    }
+  }
+
+  async function ozelGunuSil(gun: OzelCalismaGunu) {
+    if (!window.confirm(`${gun.label} (${gun.special_date}) özel günü kaldırılsın mı?`)) return;
+    setOzelGunHatasi(null); setOzelGunMesaji(null); setOzelGunIsleniyor(gun.id);
+    try {
+      await ozelCalismaGunuSil(klinik, gun.id);
+      setOzelGunler((onceki) => onceki.filter((g) => g.id !== gun.id));
+      setOzelGunMesaji('Özel gün kaldırıldı; bu tarihte haftalık mesai yeniden geçerli.');
+    } catch (e2) {
+      setOzelGunHatasi((e2 as { message?: string })?.message ?? 'Özel gün kaldırılamadı.');
+    } finally {
+      setOzelGunIsleniyor(null);
+    }
+  }
+
   return (
     <section className="pnl-bolum">
       <header className="pnl-bolum-basi">
@@ -518,58 +576,40 @@ export function PanelProfil({ klinik }: { klinik: string }) {
         </div>
       </header>
 
-      <div className="pnl-izgara-ikili">
+      <div className="pnl-izgara-ikili pnl-profil-ust">
         <section className="pnl-widget">
           <header className="pnl-widget-basi">
             <span className="pnl-widget-ikon" aria-hidden="true"><Stethoscope size={17} /></span>
-            <h3>Hizmetler</h3>
+            <h3>Baktığınız türler</h3>
           </header>
           <div className="pnl-widget-govde">
-            {katalog.length === 0 ? (
-              <p className="pnl-widget-bos">Hizmet listesi yüklenemedi.</p>
+            <p className="pnl-widget-not">
+              Seçtiğiniz türlerde kliniğiniz uygulama aramalarında görünür.
+            </p>
+            {turKatalog.length === 0 ? (
+              <p className="pnl-widget-bos">Tür listesi yüklenemedi.</p>
             ) : (
-              <ul className="pnl-satirlar">
-                {katalog.map((k) => {
-                  const acik = acikKodlar.has(k.code);
-                  const kayit = secili(k.code);
+              <ul className="pnl-profil-secim-izgara pnl-profil-tur-grid">
+                {turKatalog.map((t) => {
+                  const acik = acikTurler.includes(t.code);
                   return (
-                    <li key={k.code} className="pnl-satir">
-                      <label className={acik ? 'pnl-anahtar' : 'pnl-anahtar pnl-anahtar-kapali'}>
+                    <li key={t.code}>
+                      <label className={acik ? 'pnl-anahtar pnl-profil-anahtar' : 'pnl-anahtar pnl-profil-anahtar pnl-anahtar-kapali'}>
                         <input
                           type="checkbox"
                           checked={acik}
-                          disabled={isleyen !== null}
-                          onChange={(e) => void hizmetDegistir(k.code, e.target.checked)}
+                          disabled={turIsleyen !== null}
+                          onChange={(e) => void turDegistir(t.code, e.target.checked)}
                         />
                         <span className="pnl-anahtar-yazi">
-                          <span className="pnl-anahtar-ad">{k.name_tr}</span>
-                          {kayit?.note ? <span className="pnl-anahtar-alt">{kayit.note}</span> : null}
+                          <span className="pnl-anahtar-ad">{t.name_tr}</span>
                         </span>
                       </label>
-                      {/* ⚠️ Fiyat varsa gosteriliyor, yoksa satir bos birakilmiyor:
-                          "fiyat girilmemis" demek, sifir TL yazmaktan dogru. */}
-                      {/* ⚠️ FIYAT VARSA GOSTERILIYOR, YOKSA SATIR BOS KALIYOR.
-                          Once "fiyat girilmemis" yaziyordu; olculdu, fiyati
-                          girecek bir ekran HICBIR YERDE yok (mobilde
-                          `useSetCapabilityPrice` hicbir ekrandan cagrilmiyor).
-                          Yani o etiket her satirda sonsuza kadar duracakti ve
-                          kullaniciya girmesi gereken bir sey varmis gibi
-                          gosterecekti. Alan sunucuda duruyor, girisi gelince
-                          burasi kendiliginden dolar. */}
-                      {acik && kayit && (kayit.price_min || kayit.price_max) ? (
-                        <span className="pnl-satir-sag pnl-soluk">
-                          {`${((kayit.price_min ?? kayit.price_max ?? 0) / 100).toLocaleString('tr-TR')} ₺`}
-                        </span>
-                      ) : null}
                     </li>
                   );
                 })}
               </ul>
             )}
-            {/* ⚠️ ONCE "fiyat girisi simdilik telefonda" yaziyordu ve BU YANLISTI:
-                olculdu, fiyat girisi telefonda da YOK. Sunucuda alan duruyor ama
-                onu yazan tek bir ekran bile yok. Olmayan bir yeri isaret etmek,
-                kullaniciyi bos yere aramaya gonderir. */}
           </div>
         </section>
 
@@ -631,43 +671,120 @@ export function PanelProfil({ klinik }: { klinik: string }) {
               {saatMesaji ? <span className="pnl-soluk">{saatMesaji}</span> : null}
             </div>
             {saatHatasi ? <p className="pnl-hata-kucuk">{saatHatasi}</p> : null}
+
+            <section className="pnl-ozel-gunler">
+              <header className="pnl-ozel-gun-basi">
+                <span className="pnl-widget-ikon" aria-hidden="true"><CalendarDays size={16} /></span>
+                <div>
+                  <h4>Özel günler</h4>
+                  <p>Bayram, nöbet veya eğitim günü haftalık mesainin yerine geçer.</p>
+                </div>
+              </header>
+
+              <form className="pnl-ozel-gun-formu" onSubmit={(e) => void ozelGunuKaydet(e)}>
+                <label className="pnl-alan">
+                  <span>Tarih</span>
+                  <input type="date" required value={ozelGunFormu.tarih}
+                    onChange={(e) => setOzelGunFormu((f) => ({ ...f, tarih: e.target.value }))} />
+                </label>
+                <label className="pnl-alan pnl-ozel-gun-aciklama">
+                  <span>Açıklama</span>
+                  <input type="text" required minLength={2} maxLength={80}
+                    placeholder="Örn. Bayramın 1. günü" value={ozelGunFormu.aciklama}
+                    onChange={(e) => setOzelGunFormu((f) => ({ ...f, aciklama: e.target.value }))} />
+                </label>
+                <label className="pnl-ozel-gun-kapali">
+                  <input type="checkbox" checked={ozelGunFormu.kapali}
+                    onChange={(e) => setOzelGunFormu((f) => ({ ...f, kapali: e.target.checked }))} />
+                  <span>Kapalı</span>
+                </label>
+                {!ozelGunFormu.kapali ? (
+                  <div className="pnl-ozel-gun-saatleri">
+                    <input type="time" aria-label="Özel gün açılış saati" value={ozelGunFormu.acilis}
+                      onChange={(e) => setOzelGunFormu((f) => ({ ...f, acilis: e.target.value }))} />
+                    <span aria-hidden="true">–</span>
+                    <input type="time" aria-label="Özel gün kapanış saati" value={ozelGunFormu.kapanis}
+                      onChange={(e) => setOzelGunFormu((f) => ({ ...f, kapanis: e.target.value }))} />
+                  </div>
+                ) : null}
+                <button type="submit" className="pnl-dugme pnl-dugme-olumlu"
+                  disabled={ozelGunIsleniyor !== null}>
+                  {ozelGunIsleniyor === 'kaydet' ? 'Kaydediliyor…' : 'Özel günü kaydet'}
+                </button>
+              </form>
+
+              {ozelGunMesaji ? <p className="pnl-bilgi pnl-ozel-gun-bildirim" role="status">{ozelGunMesaji}</p> : null}
+              {ozelGunHatasi ? <p className="pnl-hata-kucuk">{ozelGunHatasi}</p> : null}
+              {ozelGunler.length > 0 ? (
+                <ul className="pnl-ozel-gun-listesi">
+                  {ozelGunler.map((g) => (
+                    <li key={g.id}>
+                      <time dateTime={g.special_date}>
+                        {new Date(`${g.special_date}T12:00:00`).toLocaleDateString('tr-TR', { day: '2-digit', month: 'short', year: 'numeric' })}
+                      </time>
+                      <span className="pnl-ozel-gun-ozet">
+                        <strong>{g.label}</strong>
+                        <small>{g.is_closed ? 'Kapalı' : `${saatKirp(g.opens_at)}–${saatKirp(g.closes_at)}`}</small>
+                      </span>
+                      <button type="button" className="pnl-dugme pnl-dugme-sade pnl-dugme-kucuk"
+                        onClick={() => setOzelGunFormu({
+                          tarih: g.special_date, aciklama: g.label, kapali: g.is_closed,
+                          acilis: saatKirp(g.opens_at) === '--:--' ? '09:00' : saatKirp(g.opens_at),
+                          kapanis: saatKirp(g.closes_at) === '--:--' ? '18:00' : saatKirp(g.closes_at),
+                        })}>
+                        Düzenle
+                      </button>
+                      <button type="button" className="pnl-ikon-dugme pnl-ikon-dugme-olumsuz"
+                        aria-label={`${g.label} özel gününü kaldır`}
+                        disabled={ozelGunIsleniyor !== null}
+                        onClick={() => void ozelGunuSil(g)}>
+                        <Trash2 size={15} />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="pnl-widget-bos pnl-ozel-gun-bos">Henüz özel gün eklenmedi.</p>
+              )}
+            </section>
           </div>
         </section>
       </div>
 
-      {/* ⚠️ TURLER AYRI BIR KUTUDA, ustteki ikili izgaranin icinde degil:
-          liste 14 satir ve iki sutunlu izgarada yaniyla hizalanmiyordu. */}
-      <section className="pnl-widget">
+      <section className="pnl-widget pnl-profil-hizmetler">
         <header className="pnl-widget-basi">
           <span className="pnl-widget-ikon" aria-hidden="true"><Stethoscope size={17} /></span>
-          <h3>Baktığınız türler</h3>
+          <h3>Hizmetler</h3>
         </header>
         <div className="pnl-widget-govde">
-          {/* ⚠️ Bos birakmanin bedeli yaziliyor. Tur secmeyen klinik,
-              bakabilecegi hastaya aramada GORUNMUYOR; bunu soylemeden
-              "istege bagli" bir liste gibi gostermek yaniltici olurdu. */}
           <p className="pnl-widget-not">
-            Hangi hayvanlara baktığınızı seçin. Seçmediğiniz sürece o türün sahibi
-            kliniğinizi aramalarda göremez.
+            Sunduğunuz hizmetleri seçin. Kompakt görünümde tüm listeyi tek bakışta yönetebilirsiniz.
           </p>
-          {turKatalog.length === 0 ? (
-            <p className="pnl-widget-bos">Tür listesi yüklenemedi.</p>
+          {katalog.length === 0 ? (
+            <p className="pnl-widget-bos">Hizmet listesi yüklenemedi.</p>
           ) : (
-            <ul className="pnl-satirlar">
-              {turKatalog.map((t) => {
-                const acik = acikTurler.includes(t.code);
+            <ul className="pnl-profil-secim-izgara pnl-hizmet-grid">
+              {katalog.map((k) => {
+                const acik = acikKodlar.has(k.code);
+                const kayit = secili(k.code);
                 return (
-                  <li key={t.code} className="pnl-satir">
-                    <label className={acik ? 'pnl-anahtar' : 'pnl-anahtar pnl-anahtar-kapali'}>
+                  <li key={k.code}>
+                    <label className={acik ? 'pnl-anahtar pnl-profil-anahtar' : 'pnl-anahtar pnl-profil-anahtar pnl-anahtar-kapali'}>
                       <input
                         type="checkbox"
                         checked={acik}
-                        disabled={turIsleyen !== null}
-                        onChange={(e) => void turDegistir(t.code, e.target.checked)}
+                        disabled={isleyen !== null}
+                        onChange={(e) => void hizmetDegistir(k.code, e.target.checked)}
                       />
                       <span className="pnl-anahtar-yazi">
-                        <span className="pnl-anahtar-ad">{t.name_tr}</span>
+                        <span className="pnl-anahtar-ad">{k.name_tr}</span>
+                        {kayit?.note ? <span className="pnl-anahtar-alt">{kayit.note}</span> : null}
                       </span>
+                      {acik && kayit && (kayit.price_min || kayit.price_max) ? (
+                        <span className="pnl-profil-fiyat">
+                          {`${((kayit.price_min ?? kayit.price_max ?? 0) / 100).toLocaleString('tr-TR')} ₺`}
+                        </span>
+                      ) : null}
                     </label>
                   </li>
                 );

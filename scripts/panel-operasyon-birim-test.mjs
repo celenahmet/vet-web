@@ -172,6 +172,15 @@ assert.doesNotMatch(panelVeri, /from\('clinic_offline_(?:customers|pets)'\)\s*\.
   'Web çevrimdışı müşteri veya hastayı doğrudan silmemeli.');
 assert.match(panelBolumler, /gonderiYorumlariniOku/, 'Topluluk gönderisinin yorumları webde yönetilebilmeli.');
 assert.match(panelBolumler, /gonderiYorumunaYanitYaz/, 'Klinik webden topluluk yorumuna yanıt verebilmeli.');
+assert.match(panelBolumler, /pnl-izgara-ikili pnl-profil-ust[\s\S]*Baktığınız türler[\s\S]*Çalışma saatleri/,
+  'Klinik profilinde baktığınız türler solda, çalışma saatleri sağda kalmalı.');
+assert.match(panelBolumler, /pnl-profil-hizmetler[\s\S]*pnl-hizmet-grid/,
+  'Hizmetler üst ikilinin altında kompakt çok sütunlu bölüme taşınmalı.');
+assert.match(panelBolumler, /Özel günler/, 'Çalışma saatlerinde özel gün yönetimi görünmeli.');
+assert.match(panelBolumler, /ozelCalismaGunuYaz[\s\S]*ozelCalismaGunuSil/,
+  'Özel çalışma günü ekleme, güncelleme ve kaldırma işlemleri gerçek veri kapısına bağlanmalı.');
+assert.match(panelVeri, /from\('clinic_special_hours'\)[\s\S]*upsert\([\s\S]*onConflict:\s*'clinic_id,special_date'/,
+  'Aynı kliniğin aynı tarihli özel günü yinelenmek yerine güncellenmeli.');
 assert.match(pano, /git\('mesajlar'\)/, 'Pano çalışan web gelen kutusuna yönlendirmeli.');
 assert.doesNotMatch(pano, /mesajlaşma yalnızca telefondaki uygulamada/i,
   'Pano çalışan web mesajlaşmasını yakında diye göstermemeli.');

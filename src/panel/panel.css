@@ -1421,6 +1421,73 @@ a.pnl-widget-eylem { text-decoration: none; }
   background: transparent;
 }
 
+/* Klinik profili: turler ve mesai ustte dengeli, uzun hizmet katalogu altta
+   kompakt bir izgara. Tek sutunlu eski liste 17 hizmette sayfayi gereksiz yere
+   birkac ekran uzatiyordu. */
+.pnl-profil-ust { grid-template-columns: minmax(310px, .9fr) minmax(500px, 1.25fr); }
+.pnl-profil-hizmetler { margin-top: 10px; }
+.pnl-profil-secim-izgara {
+  display: grid; gap: 8px; margin: 10px 0 0; padding: 0; list-style: none;
+}
+.pnl-profil-tur-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.pnl-hizmet-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.pnl-profil-anahtar {
+  align-items: center; min-height: 46px; height: 100%; margin: 0; padding: 9px 11px;
+  background: color-mix(in srgb, var(--pnl-vurgu) 3%, var(--pnl-yuzey));
+}
+.pnl-profil-anahtar.pnl-anahtar-kapali { cursor: pointer; opacity: .58; }
+.pnl-profil-anahtar:has(input:checked) {
+  border-color: color-mix(in srgb, var(--pnl-vurgu) 34%, var(--pnl-cizgi));
+  background: color-mix(in srgb, var(--pnl-vurgu) 8%, var(--pnl-yuzey));
+}
+.pnl-profil-fiyat { margin-left: auto; color: var(--pnl-soluk); font-size: 11.5px; white-space: nowrap; }
+
+.pnl-ozel-gunler { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--pnl-cizgi); }
+.pnl-ozel-gun-basi { display: flex; align-items: flex-start; gap: 9px; }
+.pnl-ozel-gun-basi h4 { margin: 0; font-size: 13.5px; }
+.pnl-ozel-gun-basi p { margin: 3px 0 0; color: var(--pnl-soluk); font-size: 11.5px; line-height: 1.45; }
+.pnl-ozel-gun-formu {
+  display: grid; grid-template-columns: 140px minmax(180px, 1fr) auto; gap: 9px;
+  align-items: end; margin-top: 11px; padding: 11px;
+  border: 1px solid var(--pnl-cizgi); border-radius: 12px;
+  background: color-mix(in srgb, var(--pnl-vurgu) 3%, var(--pnl-bg));
+}
+.pnl-ozel-gun-formu .pnl-alan { margin: 0; gap: 5px; }
+.pnl-ozel-gun-formu .pnl-alan > span { font-size: 11.5px; font-weight: 650; }
+.pnl-ozel-gun-kapali { display: flex; align-items: center; gap: 7px; min-height: 38px; font-size: 12.5px; font-weight: 650; }
+.pnl-ozel-gun-kapali input { width: 16px; height: 16px; accent-color: var(--pnl-vurgu); }
+.pnl-ozel-gun-saatleri { display: flex; align-items: center; gap: 6px; grid-column: 1 / 3; }
+.pnl-ozel-gun-saatleri input { width: 108px; }
+.pnl-ozel-gun-formu > .pnl-dugme { grid-column: 3; grid-row: 1 / span 2; align-self: end; white-space: nowrap; }
+.pnl-ozel-gun-bildirim { margin: 9px 0 0; padding: 8px 10px; font-size: 11.5px; }
+.pnl-ozel-gun-listesi { display: grid; gap: 6px; margin: 9px 0 0; padding: 0; list-style: none; }
+.pnl-ozel-gun-listesi li {
+  display: flex; align-items: center; gap: 9px; min-width: 0; padding: 8px 9px;
+  border: 1px solid color-mix(in srgb, var(--pnl-cizgi) 75%, transparent); border-radius: 10px;
+}
+.pnl-ozel-gun-listesi time { width: 86px; flex-shrink: 0; color: var(--pnl-soluk); font-size: 11px; font-variant-numeric: tabular-nums; }
+.pnl-ozel-gun-ozet { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 1px; }
+.pnl-ozel-gun-ozet strong { overflow: hidden; font-size: 12.5px; text-overflow: ellipsis; white-space: nowrap; }
+.pnl-ozel-gun-ozet small { color: var(--pnl-soluk); font-size: 11px; }
+.pnl-dugme-kucuk { padding: 6px 9px; font-size: 11.5px; }
+.pnl-ikon-dugme-olumsuz:hover { color: var(--pnl-tehlike); border-color: color-mix(in srgb, var(--pnl-tehlike) 40%, var(--pnl-cizgi)); }
+.pnl-ozel-gun-bos { padding-bottom: 0; }
+
+@media (max-width: 1440px) {
+  .pnl-hizmet-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 1180px) {
+  .pnl-profil-ust { grid-template-columns: 1fr; }
+  .pnl-hizmet-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 680px) {
+  .pnl-profil-tur-grid, .pnl-hizmet-grid { grid-template-columns: 1fr; }
+  .pnl-ozel-gun-formu { grid-template-columns: 1fr; }
+  .pnl-ozel-gun-formu > .pnl-dugme, .pnl-ozel-gun-saatleri { grid-column: 1; grid-row: auto; }
+  .pnl-ozel-gun-listesi li { flex-wrap: wrap; }
+  .pnl-ozel-gun-ozet { min-width: 140px; }
+}
+
 .pnl-cihaz-listesi { display: grid; gap: 10px; margin: 14px 0; }
 .pnl-cihaz-karti { display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px solid var(--pnl-kenar, #d8dbe3); border-radius: 16px; background: var(--pnl-kart, #fff); }
 .pnl-cihaz-karti > div { flex: 1; min-width: 0; }

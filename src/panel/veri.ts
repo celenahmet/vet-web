@@ -759,6 +759,14 @@ export type Ilan = {
 
 export type Hizmet = { service_code: string; note: string | null; price_min: number | null; price_max: number | null };
 export type CalismaSaati = { weekday: number; is_closed: boolean; opens_at: string | null; closes_at: string | null };
+export type OzelCalismaGunu = {
+  id: string;
+  special_date: string;
+  label: string;
+  is_closed: boolean;
+  opens_at: string | null;
+  closes_at: string | null;
+};
 export type Duyuru = { id: string; body: string | null; audience: string | null; status: string | null; recipient_count: number | null; created_at: string; delivery_kind: string; target_city: string | null; target_species: string | null; channels: string[]; media: { storage_key: string; position: number }[] };
 export type HizmetAdi = { code: string; name_tr: string };
 
@@ -805,6 +813,56 @@ export const hizmetleriOku = (klinik: string) =>
 
 export const saatleriOku = (klinik: string) =>
   tablo<CalismaSaati>('clinic_hours', 'weekday, is_closed, opens_at, closes_at', klinik);
+
+export async function ozelCalismaGunleriniOku(klinik: string): Promise<OzelCalismaGunu[]> {
+  const { data, error } = await istemci
+    .from('clinic_special_hours')
+    .select('id, special_date, label, is_closed, opens_at, closes_at')
+    .eq('clinic_id', klinik)
+    .order('special_date', { ascending: true })
+    .limit(120);
+  if (error) throw error;
+  return (data as OzelCalismaGunu[] | null) ?? [];
+}
+
+export async function ozelCalismaGunuYaz(input: {
+  klinik: string;
+  tarih: string;
+  aciklama: string;
+  kapali: boolean;
+  acilis: string | null;
+  kapanis: string | null;
+}): Promise<OzelCalismaGunu> {
+  const { data: kullanici } = await istemci.auth.getUser();
+  if (!kullanici.user) throw new Error('Özel günü kaydetmek için yeniden giriş yapın.');
+
+  const { data, error } = await istemci
+    .from('clinic_special_hours')
+    .upsert({
+      clinic_id: input.klinik,
+      special_date: input.tarih,
+      label: input.aciklama.trim(),
+      is_closed: input.kapali,
+      opens_at: input.kapali ? null : input.acilis,
+      closes_at: input.kapali ? null : input.kapanis,
+      created_by: kullanici.user.id,
+    }, { onConflict: 'clinic_id,special_date' })
+    .select('id, special_date, label, is_closed, opens_at, closes_at')
+    .single();
+  if (error) throw error;
+  return data as OzelCalismaGunu;
+}
+
+export async function ozelCalismaGunuSil(klinik: string, id: string): Promise<void> {
+  const { data, error } = await istemci
+    .from('clinic_special_hours')
+    .delete()
+    .eq('clinic_id', klinik)
+    .eq('id', id)
+    .select('id');
+  if (error) throw error;
+  if (!data?.length) throw new Error('Özel gün bulunamadı veya silme yetkiniz yok.');
+}
 
 export const hizmetAdlariniOku = () =>
   tablo<HizmetAdi>('service_catalog', 'code, name_tr', null);
