@@ -10,7 +10,7 @@ export const kediKopekCheckUpNeZaman: BlogYazi = {
   baslik: 'Kedi ve Köpeklerde Check-Up Ne Zaman Yapılmalı?',
   ozet: 'Hasta olmayan bir hayvanı kliniğe götürmek gereksiz gelebiliyor. Oysa kontrolün amacı hastalığı tedavi etmek değil, adı konmadan önce yakalamak.',
   kategori: 'Sağlık',
-  tarih: '2026-08-31',
+  tarih: '2026-08-30',
   bloklar: [
     { kind: 'paragraf', metin: 'Çoğu kişi kliniğe bir sorun olduğunda gidiyor: iştah kesilmiş, aksama başlamış, kusma var. Bu makul görünüyor ama bir varsayıma dayanıyor: **hayvan hastaysa bunu belli eder.** Kedi ve köpeklerde bu varsayım çoğu zaman tutmuyor.' },
     { kind: 'paragraf', metin: 'Rutin kontrolün amacı, var olan bir şikâyeti çözmek değil. Amaç, henüz şikâyet üretmemiş bir değişikliği yakalamak; çünkü erken yakalanan sorunun seçenekleri daha fazla oluyor.' },

@@ -11,7 +11,7 @@ export const asgariUcretTarifesiNedir: BlogYazi = {
   baslik: 'Veteriner Hekim Odası Asgari Ücret Tarifesi Nedir, Klinikler Nasıl Uygular?',
   ozet: 'Tarife bir fiyat listesi değil, alt sınır. Aynı işlem için kliniklerin farklı ücret istemesi bu yüzden aykırılık değil.',
   kategori: 'Klinik Yönetimi',
-  tarih: '2026-08-31',
+  tarih: '2026-08-30',
   bloklar: [
     { kind: 'paragraf', metin: 'Fatura elinize geçtiğinde akla gelen soru genelde aynı: "bu fiyat normal mi?" Cevabın dayanağı, veteriner hekimleri odalarının yayımladığı **asgari ücret tarifesi.** Ama bu belge çoğu zaman yanlış anlaşılıyor.' },
 

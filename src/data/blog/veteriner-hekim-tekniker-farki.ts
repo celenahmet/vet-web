@@ -10,7 +10,7 @@ export const veterinerHekimTeknikerFarki: BlogYazi = {
   baslik: 'Veteriner Hekim ile Veteriner Teknikeri Arasındaki Fark Nedir?',
   ozet: 'İkisi de kliniğin içinde, önlükleri benzer. Ama teşhis koyma, reçete yazma ve ameliyat yetkisi yalnız birinde.',
   kategori: 'Klinik Yönetimi',
-  tarih: '2026-08-31',
+  tarih: '2026-08-30',
   bloklar: [
     { kind: 'paragraf', metin: 'Kliniğe giren çoğu kişi karşısındaki iki kişiyi ayırt edemiyor: ikisi de önlüklü, ikisi de hayvanla ilgileniyor. Oysa aradaki fark görgü değil, **kanunla çizilmiş bir yetki sınırı.**' },
     { kind: 'paragraf', metin: 'Fark tek cümleyle şu: veteriner hekimlik mesleğini icra etme yetkisi veteriner hekime ait. Tekniker ve teknisyen, yardımcı sağlık personeli olarak **hekimin sorumluluğu altında** çalışıyor.' },
