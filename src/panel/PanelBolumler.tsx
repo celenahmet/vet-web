@@ -15,6 +15,8 @@ import {
   duyuruOlusturVeGonder,
   ilanOlustur,
   gonderiPaylas,
+  gonderiYorumlariniOku,
+  gonderiYorumunaYanitYaz,
   ulasilabilirKisileriOku,
   turleriOku,
   type Tur,
@@ -31,6 +33,8 @@ import {
   sahiplendirmeBasvurulariniOku,
   sahiplendirmeBasvurusunuYanitla,
   type SahiplendirmeBasvurusu,
+  type Gonderi,
+  type GonderiYorumu,
 } from './veri';
 import { KAYIT_TURU, TUR, tarihYaz } from './sozluk';
 import PanelListe from './PanelListe';
@@ -159,6 +163,25 @@ export function PanelTopluluk({ klinik }: { klinik: string }) {
   const [islemHatasi, setIslemHatasi] = useState<string | null>(null);
   const [bilgi, setBilgi] = useState<string | null>(null);
   const [tazele, setTazele] = useState(0);
+  const [yorumGonderisi, setYorumGonderisi] = useState<Gonderi | null>(null);
+  const [yorumlar, setYorumlar] = useState<GonderiYorumu[]>([]);
+  const [yanitlanan, setYanitlanan] = useState<GonderiYorumu | null>(null);
+  const [yanit, setYanit] = useState('');
+
+  async function yorumlariAc(gonderi: Gonderi) {
+    setBekliyor(true); setIslemHatasi(null);
+    try { setYorumlar(await gonderiYorumlariniOku(gonderi.id)); setYorumGonderisi(gonderi); }
+    catch (e) { setIslemHatasi((e as Error).message); }
+    finally { setBekliyor(false); }
+  }
+
+  async function yanitiGonder(e: React.FormEvent) {
+    e.preventDefault(); if (!yorumGonderisi || !yanitlanan || yanit.trim().length<1 || bekliyor) return;
+    setBekliyor(true); setIslemHatasi(null);
+    try { await gonderiYorumunaYanitYaz(yorumGonderisi.id, yanitlanan.id, yanit); setYanit(''); setYanitlanan(null); setYorumlar(await gonderiYorumlariniOku(yorumGonderisi.id)); setBilgi('Yanıt gönderildi.'); setTazele((n) => n+1); }
+    catch (e) { setIslemHatasi((e as Error).message); }
+    finally { setBekliyor(false); }
+  }
 
   async function paylas(e: React.FormEvent) {
     e.preventDefault();
@@ -201,10 +224,17 @@ export function PanelTopluluk({ klinik }: { klinik: string }) {
             <p className="pnl-kisi-ad">{(g.body || 'Metinsiz paylaşım').slice(0, 90)}</p>
             <p className="pnl-kisi-rol">{g.like_count} beğeni · {g.comment_count} yorum</p>
             <p className="pnl-kisi-ek pnl-soluk">{tarihYaz(g.created_at, false)}</p>
+            <button type="button" className="pnl-dugme pnl-dugme-sade" disabled={bekliyor} onClick={() => void yorumlariAc(g)}>Yorumları yönet</button>
           </div>
         </>
       )}
       />
+
+      <Diyalog acik={!!yorumGonderisi} kapat={() => { setYorumGonderisi(null); setYanitlanan(null); setYanit(''); }} baslik="Gönderi yorumları"
+        aciklama="Yorumları okuyun ve kliniğiniz adına yanıtlayın.">
+        {yorumlar.length===0 ? <p className="pnl-widget-not">Bu gönderide henüz yorum yok.</p> : <div className="pnl-topluluk-yorum-listesi">{yorumlar.map((yorum) => <article key={yorum.id} className={yorum.parent_id ? 'pnl-topluluk-yorum pnl-topluluk-yorum-yanit' : 'pnl-topluluk-yorum'}><div><strong>{yorum.author_name || 'Veterito kullanıcısı'}</strong><small>{tarihYaz(yorum.created_at, false)}</small></div><p>{yorum.body || (yorum.media_key ? 'Görselli yorum' : 'İçerik yok')}</p>{!yorum.parent_id ? <button type="button" className="pnl-metin-dugme" onClick={() => { setYanitlanan(yorum); setYanit(''); }}>Yanıtla{yorum.reply_count ? ` · ${yorum.reply_count} yanıt` : ''}</button> : null}</article>)}</div>}
+        {yanitlanan ? <form onSubmit={yanitiGonder}><div className="pnl-alan"><label htmlFor="pnl-yorum-yanit">{yanitlanan.author_name || 'Kullanıcı'} adlı kişiye yanıt</label><textarea id="pnl-yorum-yanit" required minLength={1} maxLength={2000} value={yanit} onChange={(e) => setYanit(e.target.value)} /><span className="pnl-alan-ipucu">{yanit.length} / 2000</span></div><div className="pnl-diyalog-eylem"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setYanitlanan(null)}>Vazgeç</button><button className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor || !yanit.trim()}>{bekliyor ? 'Gönderiliyor…' : 'Yanıtla'}</button></div></form> : null}
+      </Diyalog>
 
       <Diyalog acik={acik} kapat={() => setAcik(false)} baslik="Paylaşım yap"
         aciklama="Paylaşımınız kliniğiniz adına çıkar ve uygulamadaki akışta görünür.">

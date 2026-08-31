@@ -11,7 +11,6 @@ import {
 import { EKSIK_ALAN, RANDEVU_DURUMU, KAYIT_TURU, TUR, ROL, tarihYaz, saatYaz } from './sozluk';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
-import Yakinda from './Yakinda';
 import type { Bolum } from './bolumler';
 
 /**
@@ -26,7 +25,6 @@ import type { Bolum } from './bolumler';
  *   · randevu tablosunda "Veteriner" sutunu — `appointment_list` hekim dondurmuyor
  *   · "Devam Ediyor" durumu — boyle bir randevu durumu yok
  *   · hasta kilosu — hicbir RPC kilo dondurmuyor
- *   · mesajlar kutusu — klinik gelen kutusu dondurun bir RPC yok
  *   · bildirim zili rozeti — sayiyi verecek bir kaynak yok
  *   · doluluk orani grafigi — zaman serisi yok
  *   · "Pro'ya Yukselt" — 24.08.2026'da "fiyatlar full ucretsiz" karari alindi
@@ -387,16 +385,20 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
           </div>
         </section>
 
-        {/*
-          ⚠️ YER TUTUCULAR. Tasarim taslaginda bu kutular vardi; arkalarinda
-          veri yok. Sayi uydurmak yerine tire konuyor ve neden bos oldugu
-          yaziyor. Kaynak geldiginde yerlerinde doldurulacaklar; tasarim
-          yeniden dizilmeyecek.
-        */}
-        <Yakinda
-          baslik="Mesajlar"
-          aciklama="Hayvan sahiplerinden gelen mesajlar burada listelenecek. Şimdilik mesajlaşma yalnızca telefondaki uygulamada."
-        />
+        <section className="pnl-widget">
+          <header className="pnl-widget-basi">
+            <span className="pnl-widget-ikon" aria-hidden="true"><Inbox size={17} /></span>
+            <h3>Mesajlar</h3>
+            <button type="button" className="pnl-widget-eylem" onClick={() => git('mesajlar')}>
+              Gelen kutusunu aç <ArrowRight size={13} />
+            </button>
+          </header>
+          <div className="pnl-widget-govde">
+            <p className="pnl-widget-bos">
+              Mesaj isteklerini, okunma durumunu, görselleri ve görüşmeleri web panelinden yönetin.
+            </p>
+          </div>
+        </section>
 
       </div>
 

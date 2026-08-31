@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
-import { PawPrint, Plus, Smartphone, NotebookPen, FileText } from 'lucide-react';
+import { Archive, ArchiveRestore, PawPrint, Plus, Smartphone, NotebookPen, FileText } from 'lucide-react';
 
 import {
   hastalariOku, defterHastalariniOku, cevrimdisiMusterileriOku, turleriOku,
   defterHastasiEkle, saglikKaydiEkle,
-  type Hasta, type DefterHastasi, type CevrimdisiMusteri, type Tur,
+  defterArsivEtkisiniOku, defterKaydiniArsivle,
+  arsivdekiHastalariOku, defterKaydiniGeriAc,
+  type Hasta, type DefterHastasi, type CevrimdisiMusteri, type Tur, type DefterArsivEtkisi,
 } from './veri';
 import { KAYIT_TURU, tarihYaz } from './sozluk';
 import Bos from './Bos';
@@ -34,7 +36,7 @@ import Diyalog from './Diyalog';
  * Uygulama uyesi bir musterinin hayvanini deftere yazmak isterse, once o kisi
  * icin bir defter kaydi acmasi gerekiyor; secim listesi bunu soyluyor.
  */
-export default function PanelHastalar({ klinik }: { klinik: string }) {
+export default function PanelHastalar({ klinik, sahip }: { klinik: string; sahip: boolean }) {
   const [uygulama, setUygulama] = useState<Hasta[] | null>(null);
   const [defter, setDefter] = useState<DefterHastasi[]>([]);
   const [musteriler, setMusteriler] = useState<CevrimdisiMusteri[]>([]);
@@ -48,6 +50,9 @@ export default function PanelHastalar({ klinik }: { klinik: string }) {
   const [kayitAcik, setKayitAcik] = useState(false);
   const [hForm, setHForm] = useState({ musteri: '', ad: '', tur: 'dog', cinsiyet: '', dogum: '', not: '' });
   const [kForm, setKForm] = useState({ hasta: '', hastaAdi: '', tur: 'exam', baslik: '', ayrinti: '', tarih: '', sonraki: '', kilo: '' });
+  const [arsiv, setArsiv] = useState<{ kayit: DefterHastasi; etki: DefterArsivEtkisi } | null>(null);
+  const [arsivAcik, setArsivAcik] = useState(false);
+  const [arsivdekiler, setArsivdekiler] = useState<DefterHastasi[]>([]);
 
   const bugun = () => new Date().toISOString().slice(0, 10);
 
@@ -59,6 +64,15 @@ export default function PanelHastalar({ klinik }: { klinik: string }) {
   }, [klinik]);
 
   useEffect(() => { setUygulama(null); yukle(); }, [yukle]);
+  useEffect(() => { if (sahip && arsivAcik) arsivdekiHastalariOku(klinik)
+    .then(setArsivdekiler).catch((e: Error) => setIslemHatasi(e.message)); }, [arsivAcik, klinik, sahip]);
+
+  async function geriAc(id: string) {
+    if (bekliyor) return; setBekliyor(true); setIslemHatasi(null);
+    try { await defterKaydiniGeriAc('pet', id); setBilgi('Hasta yeniden aktif edildi.');
+      setArsivdekiler((rows) => rows.filter((row) => row.id !== id)); yukle(); }
+    catch (e) { setIslemHatasi((e as Error).message); } finally { setBekliyor(false); }
+  }
 
   async function calistir(is: () => Promise<string>, kapat: () => void) {
     if (bekliyor) return;
@@ -69,6 +83,22 @@ export default function PanelHastalar({ klinik }: { klinik: string }) {
     } catch (err) {
       setIslemHatasi((err as { message?: string })?.message ?? '');
     } finally { setBekliyor(false); }
+  }
+
+  async function arsivOnizle(kayit: DefterHastasi) {
+    setBekliyor(true); setIslemHatasi(null);
+    try { setArsiv({ kayit, etki: await defterArsivEtkisiniOku('pet', kayit.id) }); }
+    catch (e) { setIslemHatasi((e as Error).message); }
+    finally { setBekliyor(false); }
+  }
+
+  async function arsivle() {
+    if (!arsiv || bekliyor) return; setBekliyor(true); setIslemHatasi(null);
+    try { const kayit = arsiv.kayit; await defterKaydiniArsivle(arsiv.etki); setArsiv(null);
+      if (arsivAcik) setArsivdekiler((rows) => [kayit, ...rows]);
+      setBilgi('Hasta aktif listeden arşive alındı; klinik geçmişi korunuyor.'); yukle(); }
+    catch (e) { setIslemHatasi((e as Error).message); }
+    finally { setBekliyor(false); }
   }
 
   if (uygulama === null) return <Yukleniyor />;
@@ -94,18 +124,28 @@ export default function PanelHastalar({ klinik }: { klinik: string }) {
             Sağlık kaydı yalnızca kendi defterinizdeki hastalara yazılabiliyor.
           </p>
         </div>
-        <button
+        <div className="pnl-basi-dugmeler">{sahip ? <button type="button" className="pnl-dugme pnl-dugme-sade"
+          onClick={() => setArsivAcik((v) => !v)}><ArchiveRestore size={15} /> {arsivAcik ? 'Arşivi gizle' : 'Arşiv'}</button> : null}<button
           type="button"
           className="pnl-dugme pnl-dugme-olumlu"
           disabled={musteriler.length === 0}
           title={musteriler.length === 0 ? 'Önce Müşteriler bölümünden bir müşteri ekleyin' : undefined}
           onClick={() => { setHForm({ musteri: musteriler[0]?.id ?? '', ad: '', tur: 'dog', cinsiyet: '', dogum: '', not: '' }); setEkleAcik(true); setIslemHatasi(null); }}>
           <Plus size={15} /> Hasta ekle
-        </button>
+        </button></div>
       </header>
 
       {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
       {bilgi ? <p className="pnl-bilgi" role="status">{bilgi}</p> : null}
+      {arsivAcik ? <section className="pnl-arsiv-kutusu"><h3>Arşivlenen hastalar</h3>
+        {arsivdekiler.filter((h) => musteriler.some((m) => m.id === h.customer_id)).length === 0 ?
+          <p className="pnl-soluk">Bağımsız arşivlenmiş hasta yok. Müşteriyle arşivlenen hastayı Müşteriler arşivinden geri açın.</p> :
+          <ul className="pnl-kisi-listesi">{arsivdekiler.filter((h) => musteriler.some((m) => m.id === h.customer_id)).map((h) =>
+            <li className="pnl-kisi" key={h.id}><span className="pnl-avatar"><Archive size={16} /></span>
+              <div className="pnl-kisi-bilgi"><p className="pnl-kisi-ad">{h.name}</p><p className="pnl-kisi-ek">{musteriAdi(h.customer_id)}</p></div>
+              <button type="button" className="pnl-dugme pnl-dugme-sade" disabled={bekliyor}
+                onClick={() => void geriAc(h.id)}><ArchiveRestore size={14} /> Geri aç</button></li>)}</ul>}
+      </section> : null}
 
       {/* ⚠️ Dugme pasifse SEBEBI yaziyor. Tiklanmayan bir dugme, aciklamasi
           yoksa bozuk sanilir. */}
@@ -135,15 +175,15 @@ export default function PanelHastalar({ klinik }: { klinik: string }) {
                 <p className="pnl-kisi-ek">Sahibi: {musteriAdi(h.customer_id)}</p>
                 {h.birth_date ? <p className="pnl-kisi-ek pnl-soluk">Doğum: {tarihYaz(h.birth_date, false)}</p> : null}
               </div>
-              <button
+              <span className="pnl-kisi-eylem"><button
                 type="button"
-                className="pnl-dugme pnl-dugme-sade pnl-kisi-eylem"
+                className="pnl-dugme pnl-dugme-sade"
                 onClick={() => {
                   setKForm({ hasta: h.id, hastaAdi: h.name, tur: 'exam', baslik: '', ayrinti: '', tarih: bugun(), sonraki: '', kilo: '' });
                   setKayitAcik(true); setIslemHatasi(null);
                 }}>
                 <FileText size={14} /> Kayıt ekle
-              </button>
+              </button>{sahip ? <button type="button" className="pnl-dugme pnl-dugme-sade" disabled={bekliyor} onClick={() => void arsivOnizle(h)}><Archive size={14} /> Arşivle</button> : null}</span>
             </li>
           ))}
           {uygulama.map((h) => (
@@ -165,6 +205,11 @@ export default function PanelHastalar({ klinik }: { klinik: string }) {
           ))}
         </ul>
       )}
+
+      <Diyalog acik={!!arsiv} kapat={() => setArsiv(null)} baslik="Hastayı arşive al"
+        aciklama="Hasta silinmez; aktif listelerden kaldırılır ve klinik geçmişi korunur.">
+        {arsiv ? <div className="pnl-etki-ozeti"><strong>{arsiv.kayit.name}</strong><div className="pnl-etki-grid"><span>{arsiv.etki.appointment_count}<small>randevu</small></span><span>{arsiv.etki.record_count}<small>sağlık kaydı</small></span><span>{arsiv.etki.prescription_count}<small>reçete</small></span><span>{arsiv.etki.lab_request_count}<small>lab istemi</small></span></div><p className="pnl-alan-ipucu">Bu {arsiv.etki.dependency_count} kayıt silinmeyecek. Onaydan önce sayı değişirse işlem durur.</p><div className="pnl-diyalog-eylem"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setArsiv(null)}>Vazgeç</button><button type="button" className="pnl-dugme pnl-dugme-olumsuz" disabled={bekliyor} onClick={() => void arsivle()}>{bekliyor ? 'Arşivleniyor…' : 'Arşive al'}</button></div></div> : null}
+      </Diyalog>
 
       {/* ── HASTA EKLE ── */}
       <Diyalog acik={ekleAcik} kapat={() => setEkleAcik(false)} baslik="Hasta ekle"

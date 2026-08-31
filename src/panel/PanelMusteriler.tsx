@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { User, UserPlus, Plus, Smartphone, NotebookPen, Pencil } from 'lucide-react';
+import { Archive, ArchiveRestore, User, UserPlus, Plus, Smartphone, NotebookPen, Pencil } from 'lucide-react';
 
 import {
   musterileriOku, musteriDavetEt, cevrimdisiMusterileriOku, defterMusterisiEkle,
@@ -7,6 +7,11 @@ import {
   musteriNotuYaz,
   musteriyiCikar,
   defterMusterisiniGuncelle,
+  defterArsivEtkisiniOku,
+  defterKaydiniArsivle,
+  arsivdekiMusterileriOku,
+  defterKaydiniGeriAc,
+  type DefterArsivEtkisi,
 } from './veri';
 import { tarihYaz } from './sozluk';
 import Bos from './Bos';
@@ -34,7 +39,7 @@ import Diyalog from './Diyalog';
  * kurmak yerine soru yalnizca "davet de gonderelim mi" karari icin kullaniliyor.
  * Gercek baglanti tek yoldan kuruluyor: davet, karsi taraf kabul ediyor.
  */
-export default function PanelMusteriler({ klinik }: { klinik: string }) {
+export default function PanelMusteriler({ klinik, sahip }: { klinik: string; sahip: boolean }) {
   const [platform, setPlatform] = useState<Musteri[] | null>(null);
   /* Not duzenleme ve cikarma (esitleme 7. madde). Ayni anda tek satir
      duzenleniyor: birden fazla acik kutu, hangisinin kaydedildigini
@@ -55,6 +60,9 @@ export default function PanelMusteriler({ klinik }: { klinik: string }) {
   const [davet, setDavet] = useState({ eposta: '', telefon: '', not: '' });
   const [duzenlenen, setDuzenlenen] = useState<CevrimdisiMusteri | null>(null);
   const [duzenleme, setDuzenleme] = useState({ adSoyad: '', telefon: '', eposta: '', not: '' });
+  const [arsiv, setArsiv] = useState<{ kayit: CevrimdisiMusteri; etki: DefterArsivEtkisi } | null>(null);
+  const [arsivAcik, setArsivAcik] = useState(false);
+  const [arsivdekiler, setArsivdekiler] = useState<CevrimdisiMusteri[]>([]);
 
   const yukle = useCallback(() => {
     setHata(null);
@@ -64,6 +72,15 @@ export default function PanelMusteriler({ klinik }: { klinik: string }) {
   }, [klinik]);
 
   useEffect(() => { setPlatform(null); yukle(); }, [yukle]);
+  useEffect(() => { if (sahip && arsivAcik) arsivdekiMusterileriOku(klinik)
+    .then(setArsivdekiler).catch((e: Error) => setIslemHatasi(e.message)); }, [arsivAcik, klinik, sahip]);
+
+  async function geriAc(id: string) {
+    if (bekliyor) return; setBekliyor(true); setIslemHatasi(null);
+    try { await defterKaydiniGeriAc('customer', id); setBilgi('Müşteri ve bu arşiv paketindeki hastalar yeniden etkinleştirildi.');
+      setArsivdekiler((rows) => rows.filter((row) => row.id !== id)); yukle(); }
+    catch (e) { setIslemHatasi((e as Error).message); } finally { setBekliyor(false); }
+  }
 
   async function musteriEkle(e: React.FormEvent) {
     e.preventDefault();
@@ -116,6 +133,22 @@ export default function PanelMusteriler({ klinik }: { klinik: string }) {
     finally { setBekliyor(false); }
   }
 
+  async function arsivOnizle(kayit: CevrimdisiMusteri) {
+    setBekliyor(true); setIslemHatasi(null);
+    try { setArsiv({ kayit, etki: await defterArsivEtkisiniOku('customer', kayit.id) }); }
+    catch (e) { setIslemHatasi((e as Error).message); }
+    finally { setBekliyor(false); }
+  }
+
+  async function arsivle() {
+    if (!arsiv || bekliyor) return; setBekliyor(true); setIslemHatasi(null);
+    try { const kayit = arsiv.kayit; await defterKaydiniArsivle(arsiv.etki); setArsiv(null);
+      if (arsivAcik) setArsivdekiler((rows) => [kayit, ...rows]);
+      setBilgi('Müşteri aktif defterden arşive alındı; bağlı klinik geçmişi korunuyor.'); yukle(); }
+    catch (e) { setIslemHatasi((e as Error).message); }
+    finally { setBekliyor(false); }
+  }
+
 
   async function notKaydet(kullanici: string) {
     setSatirBekliyor(kullanici); setSatirHatasi(null);
@@ -165,6 +198,9 @@ export default function PanelMusteriler({ klinik }: { klinik: string }) {
           </p>
         </div>
         <div className="pnl-basi-dugmeler">
+          {sahip ? <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setArsivAcik((v) => !v)}>
+            <ArchiveRestore size={15} /> {arsivAcik ? 'Arşivi gizle' : 'Arşiv'}
+          </button> : null}
           <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => { setDavet({ eposta: '', telefon: '', not: '' }); setDavetAcik(true); setIslemHatasi(null); }}>
             <UserPlus size={15} /> Davet et
           </button>
@@ -176,6 +212,13 @@ export default function PanelMusteriler({ klinik }: { klinik: string }) {
 
       {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
       {bilgi ? <p className="pnl-bilgi" role="status">{bilgi}</p> : null}
+      {arsivAcik ? <section className="pnl-arsiv-kutusu"><h3>Arşivlenen müşteriler</h3>
+        {arsivdekiler.length === 0 ? <p className="pnl-soluk">Arşivlenmiş müşteri yok.</p> :
+          <ul className="pnl-kisi-listesi">{arsivdekiler.map((m) => <li className="pnl-kisi" key={m.id}>
+            <span className="pnl-avatar"><Archive size={16} /></span><div className="pnl-kisi-bilgi"><p className="pnl-kisi-ad">{m.full_name}</p>
+            <p className="pnl-kisi-ek">Bağlı klinik geçmişi korunuyor.</p></div><button type="button" className="pnl-dugme pnl-dugme-sade"
+              disabled={bekliyor} onClick={() => void geriAc(m.id)}><ArchiveRestore size={14} /> Geri aç</button></li>)}</ul>}
+      </section> : null}
 
       {toplam === 0 ? (
         <Bos
@@ -269,11 +312,16 @@ export default function PanelMusteriler({ klinik }: { klinik: string }) {
                 {m.note ? <p className="pnl-kisi-ek">Not: {m.note}</p> : null}
                 <p className="pnl-kisi-ek pnl-soluk">Deftere eklendi: {tarihYaz(m.created_at, false)}</p>
               </div>
-              <button type="button" className="pnl-dugme pnl-dugme-sade pnl-kisi-eylem" onClick={() => duzenlemeyiAc(m)}><Pencil size={14} /> Düzenle</button>
+              <span className="pnl-kisi-eylem"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => duzenlemeyiAc(m)}><Pencil size={14} /> Düzenle</button>{sahip ? <button type="button" className="pnl-dugme pnl-dugme-sade" disabled={bekliyor} onClick={() => void arsivOnizle(m)}><Archive size={14} /> Arşivle</button> : null}</span>
             </li>
           ))}
         </ul>
       )}
+
+      <Diyalog acik={!!arsiv} kapat={() => setArsiv(null)} baslik="Müşteriyi arşive al"
+        aciklama="Kayıt silinmez; aktif listelerden kaldırılır ve gerektiğinde geri açılabilir.">
+        {arsiv ? <div className="pnl-etki-ozeti"><strong>{arsiv.kayit.full_name}</strong><p>{arsiv.etki.pet_count} hasta aktif listeden kalkacak.</p><div className="pnl-etki-grid"><span>{arsiv.etki.appointment_count}<small>randevu</small></span><span>{arsiv.etki.record_count}<small>sağlık kaydı</small></span><span>{arsiv.etki.prescription_count}<small>reçete</small></span><span>{arsiv.etki.lab_request_count}<small>lab istemi</small></span></div><p className="pnl-alan-ipucu">Bu {arsiv.etki.dependency_count} bağlı kayıt silinmeyecek. Onaydan önce sayı değişirse işlem güvenli biçimde durur.</p><div className="pnl-diyalog-eylem"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setArsiv(null)}>Vazgeç</button><button type="button" className="pnl-dugme pnl-dugme-olumsuz" disabled={bekliyor} onClick={() => void arsivle()}>{bekliyor ? 'Arşivleniyor…' : 'Arşive al'}</button></div></div> : null}
+      </Diyalog>
 
       {/* ── DEFTERE MUSTERI EKLE ── */}
       <Diyalog acik={ekleAcik} kapat={() => setEkleAcik(false)} baslik="Müşteri ekle"

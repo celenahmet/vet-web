@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, CalendarClock, Users, PawPrint, FileText, Syringe, Building2,
   MessagesSquare, MessageCircle, Heart, UsersRound, Wallet, Globe, BarChart3, Settings,
-  Megaphone, Star, Pill, Boxes, FlaskConical, PlugZap,
+  Megaphone, Star, Pill, Boxes, FlaskConical, PlugZap, Workflow,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -58,13 +58,13 @@ export const BOLUMLER: {
   { anahtar: 'receteler',     ad: 'Reçeteler',         aciklama: 'Yazılan reçeteler ve iptaller', ikon: Pill, ekleme: true },
   { anahtar: 'stok',          ad: 'Ürün ve stok',       aciklama: 'Lot, SKT, barkod ve sayım',     ikon: Boxes, ekleme: true },
   { anahtar: 'laboratuvar',   ad: 'Laboratuvar',        aciklama: 'İstem, sonuç ve klinik destek', ikon: FlaskConical, ekleme: true },
-  { anahtar: 'iletisim',      ad: 'SMS ve WhatsApp',     aciklama: 'İzinler, şablonlar ve ileti kuyruğu', ikon: MessageCircle, ekleme: true },
+  { anahtar: 'iletisim',      ad: 'Operasyonel işlemler', aciklama: 'İzinler, otomasyon hazırlığı ve işlem kuyrukları', ikon: Workflow, ekleme: true },
   { anahtar: 'profil',        ad: 'Klinik profili',    aciklama: 'Bilgiler, hizmetler, saatler',  ikon: Building2 },
   { anahtar: 'topluluk',      ad: 'Topluluk',          aciklama: 'Paylaşımlarınız',               ikon: MessagesSquare },
   { anahtar: 'mesajlar',      ad: 'Mesajlar',          aciklama: 'Hayvan sahipleriyle yazışma',   ikon: MessageCircle },
   { anahtar: 'sahiplendirme', ad: 'Sahiplendirme',     aciklama: 'Sahiplendirme ilanları',        ikon: Heart },
   { anahtar: 'ekip',          ad: 'Ekip',              aciklama: 'Klinikte çalışanlar',           ikon: UsersRound },
-  { anahtar: 'entegrasyonlar', ad: 'Entegrasyon ayarları', aciklama: 'Sağlayıcı, API ve güvenli kimlik bilgileri', ikon: PlugZap, ekleme: true },
+  { anahtar: 'entegrasyonlar', ad: 'Entegrasyonlar', aciklama: 'Sağlayıcı, API, cihaz ve güvenli kimlik bilgileri', ikon: PlugZap, ekleme: true },
   { anahtar: 'duyurular',     ad: 'Duyurular',         aciklama: 'Gönderdiğiniz duyurular',       ikon: Megaphone, ekleme: true },
   { anahtar: 'degerlendirmeler', ad: 'Değerlendirmeler', aciklama: 'Müşteri puan ve yorumları',  ikon: Star, ekleme: true },
   { anahtar: 'defter',        ad: 'Gelir / Gider',     aciklama: 'Klinik defteri',                ikon: Wallet, ekleme: true },

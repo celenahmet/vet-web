@@ -183,14 +183,14 @@ export default function Panel() {
   const icerik = () => {
     switch (bolum) {
       case 'randevular': return <PanelRandevular klinik={secili.clinic_id} />;
-      case 'musteriler': return <PanelMusteriler klinik={secili.clinic_id} />;
-      case 'hastalar': return <PanelHastalar klinik={secili.clinic_id} />;
+      case 'musteriler': return <PanelMusteriler klinik={secili.clinic_id} sahip={secili.role === 'owner'} />;
+      case 'hastalar': return <PanelHastalar klinik={secili.clinic_id} sahip={secili.role === 'owner'} />;
       case 'kayitlar': return <PanelKayitlar klinik={secili.clinic_id} />;
       case 'asi': return <PanelAsi klinik={secili.clinic_id} />;
       case 'receteler': return <PanelReceteler klinik={secili.clinic_id} klinikAdi={secili.clinic_name} />;
       case 'stok': return <PanelStok klinik={secili.clinic_id} />;
       case 'laboratuvar': return <PanelLaboratuvar klinik={secili.clinic_id} sahip={secili.role === 'owner'} />;
-      case 'iletisim': return <PanelEntegrasyonlar klinik={secili.clinic_id} sahip={secili.role === 'owner'} gorunum="communications" />;
+      case 'iletisim': return <PanelEntegrasyonlar klinik={secili.clinic_id} sahip={secili.role === 'owner'} gorunum="communications" git={bolumeGit} />;
       case 'profil': return <PanelProfil klinik={secili.clinic_id} />;
       case 'topluluk': return <PanelTopluluk klinik={secili.clinic_id} />;
       case 'mesajlar': return <PanelMesajlar klinik={secili.clinic_id} />;

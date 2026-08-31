@@ -740,6 +740,10 @@ export type Gonderi = {
   created_at: string;
   media: { storage_key: string; position: number; media_type: string }[];
 };
+export type GonderiYorumu = {
+  id: string; post_id: string; author_id: string; body: string | null; created_at: string;
+  author_name: string; parent_id: string | null; reply_count: number; media_key: string | null;
+};
 
 export type Ilan = {
   id: string;
@@ -824,6 +828,23 @@ export async function gonderileriOku(klinik: string): Promise<Gonderi[]> {
   return (data as Gonderi[] | null) ?? [];
 }
 
+export async function gonderiYorumlariniOku(gonderi: string): Promise<GonderiYorumu[]> {
+  const { data, error } = await istemci.from('post_comment_feed')
+    .select('id,post_id,author_id,body,created_at,author_name,parent_id,reply_count,media_key')
+    .eq('post_id', gonderi).order('created_at');
+  if (error) throw error;
+  return (data as GonderiYorumu[] | null) ?? [];
+}
+
+export async function gonderiYorumunaYanitYaz(gonderi: string, ustYorum: string, metin: string): Promise<void> {
+  const { data: kullanici } = await istemci.auth.getUser();
+  if (!kullanici.user) throw new Error('Yanıtlamak için yeniden giriş yapın.');
+  const { error } = await istemci.from('post_comments').insert({
+    post_id: gonderi, author_id: kullanici.user.id, parent_id: ustYorum, body: metin.trim(),
+  });
+  if (error) throw error;
+}
+
 /* ── DUYURU, BILDIRIM, DEGERLENDIRME, CEVRIMDISI MUSTERI ────────────────────
  * ⚠️ Ahmet, 25.08.2026: *"sol tarafa duyuru ve bildirimler de ekleyelim
  * eksikmiş böyle eksikleri de ilave ekleyelim... proaktif olalım"*.
@@ -884,8 +905,21 @@ export async function okunmamisBildirimSayisi(): Promise<number> {
   return count ?? 0;
 }
 
-export const cevrimdisiMusterileriOku = (klinik: string) =>
-  tablo<CevrimdisiMusteri>('clinic_offline_customers', 'id, full_name, phone, email, note, created_at', klinik, 'created_at');
+export async function cevrimdisiMusterileriOku(klinik: string): Promise<CevrimdisiMusteri[]> {
+  const { data, error } = await istemci.from('clinic_offline_customers')
+    .select('id,full_name,phone,email,note,created_at').eq('clinic_id', klinik)
+    .is('archived_at', null).order('created_at', { ascending: false });
+  if (error) throw error;
+  return (data as CevrimdisiMusteri[] | null) ?? [];
+}
+
+export async function arsivdekiMusterileriOku(klinik: string): Promise<CevrimdisiMusteri[]> {
+  const { data, error } = await istemci.from('clinic_offline_customers')
+    .select('id,full_name,phone,email,note,created_at').eq('clinic_id', klinik)
+    .not('archived_at', 'is', null).order('archived_at', { ascending: false });
+  if (error) throw error;
+  return (data as CevrimdisiMusteri[] | null) ?? [];
+}
 
 /* ═══════════════════════════════════════════════════════════════════════════
  * UYGULAMADAN BAGIMSIZ KAYIT (Ahmet, 25.08.2026: *"hasta kaydı felan yok
@@ -928,8 +962,43 @@ export type Tur = { code: string; name_tr: string };
  */
 export const turleriOku = () => tablo<Tur>('species', 'code, name_tr', null);
 
-export const defterHastalariniOku = (klinik: string) =>
-  tablo<DefterHastasi>('clinic_offline_pets', 'id, customer_id, name, species_code, sex, birth_date, note', klinik, 'created_at');
+export async function defterHastalariniOku(klinik: string): Promise<DefterHastasi[]> {
+  const { data, error } = await istemci.from('clinic_offline_pets')
+    .select('id,customer_id,name,species_code,sex,birth_date,note').eq('clinic_id', klinik)
+    .is('archived_at', null).order('created_at', { ascending: false });
+  if (error) throw error;
+  return (data as DefterHastasi[] | null) ?? [];
+}
+
+export async function arsivdekiHastalariOku(klinik: string): Promise<DefterHastasi[]> {
+  const { data, error } = await istemci.from('clinic_offline_pets')
+    .select('id,customer_id,name,species_code,sex,birth_date,note').eq('clinic_id', klinik)
+    .not('archived_at', 'is', null).order('archived_at', { ascending: false });
+  if (error) throw error;
+  return (data as DefterHastasi[] | null) ?? [];
+}
+
+export type DefterArsivEtkisi = {
+  kind: 'customer' | 'pet'; id: string; pet_count: number; appointment_count: number;
+  record_count: number; prescription_count: number; lab_request_count: number;
+  dependency_count: number;
+};
+export async function defterArsivEtkisiniOku(tur: 'customer' | 'pet', id: string): Promise<DefterArsivEtkisi> {
+  const { data, error } = await istemci.rpc('clinic_offline_archive_impact', { p_kind: tur, p_id: id });
+  if (error) throw error;
+  return data as DefterArsivEtkisi;
+}
+export async function defterKaydiniArsivle(etki: DefterArsivEtkisi): Promise<void> {
+  const { error } = await istemci.rpc('archive_clinic_offline_record', {
+    p_kind: etki.kind, p_id: etki.id, p_expected_pet_count: etki.pet_count,
+    p_expected_dependency_count: etki.dependency_count,
+  });
+  if (error) throw error;
+}
+export async function defterKaydiniGeriAc(tur: 'customer' | 'pet', id: string): Promise<void> {
+  const { error } = await istemci.rpc('restore_clinic_offline_record', { p_kind: tur, p_id: id });
+  if (error) throw error;
+}
 
 /** Deftere musteri ekler. */
 export async function defterMusterisiEkle(

@@ -107,13 +107,33 @@ const ekip = readFileSync(new URL('../src/panel/PanelEkip.tsx', import.meta.url)
 const laboratuvar = readFileSync(new URL('../src/panel/PanelLaboratuvar.tsx', import.meta.url), 'utf8');
 const labVeri = readFileSync(new URL('../src/panel/lab-veri.ts', import.meta.url), 'utf8');
 const labCihazlari = readFileSync(new URL('../src/panel/LabCihazlari.tsx', import.meta.url), 'utf8');
+const musteriler = readFileSync(new URL('../src/panel/PanelMusteriler.tsx', import.meta.url), 'utf8');
+const hastalar = readFileSync(new URL('../src/panel/PanelHastalar.tsx', import.meta.url), 'utf8');
+const panelVeri = readFileSync(new URL('../src/panel/veri.ts', import.meta.url), 'utf8');
+const pano = readFileSync(new URL('../src/panel/PanelPano.tsx', import.meta.url), 'utf8');
+const vercel = readFileSync(new URL('../vercel.json', import.meta.url), 'utf8');
+const envOrnegi = readFileSync(new URL('../.env.example', import.meta.url), 'utf8');
 
-assert.match(bolumler, /anahtar:\s*'iletisim'/, 'SMS ve WhatsApp klinik operasyonlarında ayrı menü olmalı.');
-assert.match(panel, /gorunum="communications"/, 'İletişim menüsü operasyon görünümüne bağlanmalı.');
-assert.match(panel, /gorunum="technical"/, 'Teknik entegrasyon ayarları ayrı görünümde kalmalı.');
+assert.match(bolumler, /anahtar:\s*'iletisim',\s*ad:\s*'Operasyonel işlemler'/, 'Günlük işlemler açık adıyla ayrı menü olmalı.');
+assert.match(bolumler, /anahtar:\s*'entegrasyonlar',\s*ad:\s*'Entegrasyonlar'/, 'Teknik entegrasyonlar solda ayrı menü olmalı.');
+assert.match(panel, /gorunum="communications"\s+git=\{bolumeGit\}/, 'Operasyon menüsü günlük görünüm ve çalışan bölüm geçişlerine bağlanmalı.');
+assert.match(panel, /gorunum="technical"/, 'Teknik entegrasyonlar ayrı görünümde kalmalı.');
+assert.match(entegrasyon, />Entegrasyon ayarları<\//, 'Teknik ekran ayarların bulunduğu yeri açıkça adlandırmalı.');
+for (const alan of ['Sağlayıcı / cihaz sistemi', 'API temel adresi', 'Genel entegrasyon ayarları', 'Gizli kimlik bilgileri']) {
+  assert.match(entegrasyon, new RegExp(alan), `Entegrasyon ekranında ${alan} bulunmalı.`);
+}
+assert.match(entegrasyon, /type="password"\s+autoComplete="new-password"/, 'Gizli entegrasyon alanları parola girdisi olmalı.');
+assert.match(entegrasyon, /••••••••/, 'Kaydedilmiş gizli değerler gerçek değer yerine sabit maskeyle gösterilmeli.');
+assert.match(entegrasyon, /Entegrasyon ayarlarını güvenli kaydet/, 'Teknik ayar kaydetme eylemi açık adlandırılmalı.');
+for (const hedef of ['randevular', 'laboratuvar', 'receteler', 'stok', 'entegrasyonlar']) {
+  assert.match(entegrasyon, new RegExp(`git\\('${hedef}'\\)`), `Operasyon merkezi ${hedef} ekranına işlevsel geçiş vermeli.`);
+}
 assert.match(entegrasyon, /seciliKanalHazir/, 'Hazır olmayan sağlayıcıda ileti gönderimi açılmamalı.');
 assert.match(entegrasyon, /Kuyruğa alındı, gönderildi anlamına gelmez/, 'Kuyruk ve teslim durumu açıkça ayrılmalı.');
 assert.doesNotMatch(entegrasyon, /doğrulama kuyruğuna/i, 'Olmayan otomatik doğrulama kuyruğu vaat edilmemeli.');
+assert.match(envOrnegi, /^VITE_STORAGE_PROVIDER=r2$/m, 'Web paneli taşınmış medya anahtarlarını R2 üzerinden okumalı.');
+assert.match(vercel, /img-src[^;]*https:\/\/cdn\.veterito\.com/, 'CSP, imzalı R2 görsellerinin CDN üzerinden gösterilmesine izin vermeli.');
+assert.match(vercel, /connect-src[^;]*https:\/\/cdn\.veterito\.com/, 'CSP, imzalı R2 yükleme ve silme isteklerine izin vermeli.');
 assert.match(recete, /resmiReceteyiHazirla/, 'Web reçetesi resmî gönderim taslağı kapısına bağlanmalı.');
 assert.match(recete, /degistirilen/, 'Reçete düzeltmesi eski sürümü koruyan akışta kalmalı.');
 assert.match(panel, /import PanelMesajlar from '\.\/PanelMesajlar'/, 'Tam web gelen kutusu panele bağlanmalı.');
@@ -143,5 +163,17 @@ assert.match(laboratuvar, /cihazAdaylariniNormallestir/, 'Cihaza özgü ham anal
 assert.match(labVeri, /create_lab_request_v3/, 'Laboratuvar istemi cihaz kimliğini kabul eden kapıyı kullanmalı.');
 assert.match(labVeri, /save_lab_result_revision_v5/, 'Sonuç revizyonu kaynak cihazı atomik kaydetmeli.');
 assert.match(labCihazlari, /labCihazEslemesiniKaydet/, 'Owner cihaz bazlı analit eşlemesini yönetebilmeli.');
+assert.match(musteriler, /defterArsivEtkisiniOku/, 'Müşteri arşivlenmeden önce bağlı kayıt etkisi okunmalı.');
+assert.match(hastalar, /defterArsivEtkisiniOku/, 'Hasta arşivlenmeden önce bağlı kayıt etkisi okunmalı.');
+assert.match(panelVeri, /archive_clinic_offline_record/, 'Web defter kaydı güvenli arşiv RPC kapısını kullanmalı.');
+assert.match(panelVeri, /restore_clinic_offline_record/, 'Arşivlenen müşteri ve hasta webden geri açılabilmeli.');
+assert.match(panelVeri, /\.is\('archived_at', null\)/, 'Arşivlenen defter kayıtları aktif listeden çıkarılmalı.');
+assert.doesNotMatch(panelVeri, /from\('clinic_offline_(?:customers|pets)'\)\s*\.delete\(/s,
+  'Web çevrimdışı müşteri veya hastayı doğrudan silmemeli.');
+assert.match(panelBolumler, /gonderiYorumlariniOku/, 'Topluluk gönderisinin yorumları webde yönetilebilmeli.');
+assert.match(panelBolumler, /gonderiYorumunaYanitYaz/, 'Klinik webden topluluk yorumuna yanıt verebilmeli.');
+assert.match(pano, /git\('mesajlar'\)/, 'Pano çalışan web gelen kutusuna yönlendirmeli.');
+assert.doesNotMatch(pano, /mesajlaşma yalnızca telefondaki uygulamada/i,
+  'Pano çalışan web mesajlaşmasını yakında diye göstermemeli.');
 
 console.log('PANEL OPERASYON BİRİM TESTİ — OCR, sıfır ham veri ve mobil–web işlem bağları geçti.');
