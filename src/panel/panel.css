@@ -893,6 +893,7 @@ a.pnl-widget-eylem { text-decoration: none; }
  * Bu sayede diyalog acikken arka plan klavyeyle de erisilemez oluyor.
  */
 .pnl-diyalog {
+  position: fixed; inset: 0; margin: auto;
   border: none; border-radius: 16px; padding: 0;
   width: min(520px, calc(100vw - 32px));
   max-height: calc(100dvh - 32px); overflow-y: auto;

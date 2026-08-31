@@ -149,6 +149,8 @@ assert.match(diyalog, /data-dialog-ilk-odak[\s\S]*input:not/,
   'Diyalog açıldığında kapatma ikonuna değil ilk işlem alanına odaklanmalı.');
 assert.match(panelCss, /\.pnl-diyalog-basi[\s\S]*position: sticky[\s\S]*\.pnl-diyalog-eylem[\s\S]*position: sticky/,
   'Uzun pencerelerde bağlam başlığı ve ana eylemler görünür kalmalı.');
+assert.match(panelCss, /\.pnl-diyalog\s*\{[^}]*position:\s*fixed;[^}]*inset:\s*0;[^}]*margin:\s*auto;/,
+  'Global CSS sıfırlamasından bağımsız olarak bütün panel diyalogları görünüm alanında ortalanmalı.');
 assert.match(panelCss, /@media \(max-width: 1380px\)[\s\S]*\.pnl-operasyon-tablo td::before[\s\S]*content: attr\(data-label\)/,
   'Beş sütunlu operasyon tabloları orta genişlikte etiketli kartlara dönüşmeli.');
 assert.doesNotMatch(entegrasyon, /doğrulama kuyruğuna/i, 'Olmayan otomatik doğrulama kuyruğu vaat edilmemeli.');
