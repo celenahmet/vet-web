@@ -40,6 +40,9 @@ export const veterinerHekimTeknikerFarki: BlogYazi = {
     { kind: 'paragraf', metin: 'Kliniğe gittiğinizde hayvanınızla ilgilenen kişinin unvanını bilmek hakkınız. Bu bir güvensizlik değil, sorumluluğun kimde olduğunu bilmek anlamına geliyor. Teşhis, tedavi planı ve reçete konuşulacaksa muhatabınız veteriner hekim.' },
     { kind: 'paragraf', metin: 'Kliniğin türü de bu tabloya giriyor. Muayenehane, poliklinik ve hayvan hastanesinin hangi kadroyla çalıştığını [[muayenehane-poliklinik-hastane-farki|kliniklerin farkı]] yazısında ele aldık.' },
 
+    { kind: 'baslik', metin: 'Yetki ayrımını kayda geçirmek' },
+    { kind: 'paragraf', metin: 'Yetki sınırı yazıda nettir ama günlük işleyişte karışıyor: işlemi kimin yaptığı ve kimin sorumluluğunda yapıldığı çoğu klinikte kayıtsız kalıyor. Veterito klinik panelinde ekip üyeleri rolleriyle tanımlanıyor; hasta kaydına işlemi yapan ve sorumlu hekim birlikte düşüyor. Böyle bir kayıt, sonradan çıkan bir soruda tek dayanak oluyor.' },
+
     { kind: 'uyari', metin: 'Bu yazı mevzuatın genel çerçevesini anlatıyor, hukuki görüş değildir. Güncel düzenlemeler için Resmî Gazete ve Tarım ve Orman Bakanlığı yayımlarını esas alın.' },
   ],
   sss: [

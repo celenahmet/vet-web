@@ -35,6 +35,9 @@ export const asgariUcretTarifesiNedir: BlogYazi = {
     ] },
     { kind: 'paragraf', metin: 'Ücretin hangi kuruluşta oluştuğu da fark yaratıyor. Muayenehane, poliklinik ve hastane arasındaki kapsam farkını [[muayenehane-poliklinik-hastane-farki|kliniklerin farkı]] yazısında anlattık.' },
 
+    { kind: 'baslik', metin: 'Kalemleri ayrı tutmak' },
+    { kind: 'paragraf', metin: 'Tarife tartışmasının klinik tarafındaki karşılığı şeffaf fatura. Veterito klinik panelinde işlem, ilaç ve sarf kalemleri ayrı ayrı işleniyor; gelir gider ekranında hangi işlemin ne getirdiği görünüyor. Kalemleri ayıran bir klinik, ücreti savunurken tahmin değil kayıt gösteriyor.' },
+
     { kind: 'uyari', metin: 'Bu yazı tarifenin ne olduğunu anlatıyor; güncel ücretleri içermiyor. Tarifeler il odalarına göre değişiyor ve yıl içinde güncellenebiliyor. Güncel bilgi için bulunduğunuz ilin veteriner hekimleri odasının yayımladığı belgeye bakın.' },
   ],
   sss: [

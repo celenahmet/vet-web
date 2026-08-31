@@ -65,6 +65,9 @@ export const veterinerHekimMaaslari: BlogYazi = {
       'İlan sitelerindeki rakamları tek başına ölçü almayın; doğrulanmamış beyandır.',
     ] },
 
+    { kind: 'baslik', metin: 'Klinik sahibiyseniz: kazancı görünür kılmak' },
+    { kind: 'paragraf', metin: 'Yazıdaki asıl mesele ciro ile kazancın karıştırılması. Veterito klinik panelinde gelir ve gider kalemleri dönem dönem izlenebiliyor, CSV olarak dışarı alınabiliyor; hangi işlemin ne getirdiği ve tahsil edilmeyenlerin ne kadar tuttuğu görünür oluyor. Bu iki sayı görünmeden maaş ya da kâr konuşmak tahmine dayanıyor.' },
+
     { kind: 'uyari', metin: 'Bu yazı güncel maaş rakamı içermiyor ve kariyer danışmanlığı değildir. Kamu maaşları mevzuat ve katsayı değişikliklerine, özel sektör gelirleri ise işletme koşullarına göre değişir. Karar vermeden önce resmî kaynaklara ve muhasebe desteğine başvurun.' },
   ],
   sss: [

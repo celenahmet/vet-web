@@ -42,6 +42,9 @@ export const veterinerTeknikeriNeIsYapar: BlogYazi = {
     { kind: 'baslik', metin: 'Hekimle farkı nerede başlıyor' },
     { kind: 'paragraf', metin: 'Sınır, kararın alındığı yerde başlıyor. Ayrıntılı karşılaştırma için [[veteriner-hekim-tekniker-farki|veteriner hekim ile tekniker arasındaki fark]] yazısına bakabilirsiniz. Sahip olarak muhatabınız, teşhis ve tedavi konularında her zaman veteriner hekim.' },
 
+    { kind: 'baslik', metin: 'Görev dağılımını yazılı tutmak' },
+    { kind: 'paragraf', metin: 'Yazının sonunda kalan asıl iş şu: kim neyi yapıyor, yazılı mı. Veterito klinik panelinde ekip üyeleri ve yetkileri tanımlanıyor, stok ve hatırlatma gibi yinelenen işler kişiye bağlanabiliyor. Sözlü yürüyen bir dağılım, kişi değiştiğinde kayboluyor; panelde tanımlı olan kalıyor.' },
+
     { kind: 'uyari', metin: 'Bu yazı mesleğin genel çerçevesini anlatıyor, kariyer danışmanlığı ya da hukuki görüş değildir. Görev, yetki ve sorumluluklar mevzuatla belirleniyor; güncel düzenlemeler için Resmî Gazete yayımlarını esas alın.' },
   ],
   sss: [

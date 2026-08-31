@@ -50,6 +50,9 @@ export const veterinerTeknikeriMaaslari: BlogYazi = {
     { kind: 'baslik', metin: 'Klinik sahibi tarafından bakınca' },
     { kind: 'paragraf', metin: 'İşveren tarafında da denklem basit değil. Deneyimli bir teknikerin ücreti gider kalemi gibi görünüyor ama kliniğin kapasitesini doğrudan etkiliyor: hazırlığı hızlanan bir klinik günde daha çok hasta bakabiliyor, takibi düzgün yapılan hasta geri geliyor. Ücret pazarlığını salt maliyet olarak görmek, kapasiteyi de sabitliyor.' },
 
+    { kind: 'baslik', metin: 'Üstlenilen işi görünür kılmak' },
+    { kind: 'paragraf', metin: 'Ücret pazarlığının en zayıf yanı, yapılan işin kayıtsız kalması. Veterito klinik panelinde işlemler, hatırlatmalar ve stok hareketleri kimin üzerinde yürüdüğüyle birlikte duruyor. Hem çalışan için hem işveren için somut bir zemin: konuşma yıl sayısı üzerinden değil, üstlenilen iş üzerinden yürüyor.' },
+
     { kind: 'uyari', metin: 'Bu yazı güncel ücret rakamı içermiyor ve iş hukuku danışmanlığı değildir. Asgari ücret, mesai ve sigorta konularında güncel mevzuat esastır; tereddütte ilgili kurumlara başvurun.' },
   ],
   sss: [

@@ -43,6 +43,9 @@ export const muayenehanePoliklinikHastaneFarki: BlogYazi = {
     ] },
     { kind: 'paragraf', metin: 'Zehirlenme gibi acil durumlarda ne yapılacağını [[kopeklerde-zehirlenme|zehirlenme]] yazısında ayrıca anlattık. Hangi kliniği seçeceğinize dair ölçütler için [[veteriner-klinigi-nasil-secilir|klinik nasıl seçilir]] yazısına bakabilirsiniz.' },
 
+    { kind: 'baslik', metin: 'Kliniğinizi doğru anlatmak' },
+    { kind: 'paragraf', metin: 'Sahiplerin kafası karışıyorsa sorumluluğun bir kısmı bizde: çoğu klinik ne yaptığını dışarıya anlatmıyor. Veterito klinik panelinde kuruluş türü, hizmetler, cihaz envanteri ve çalışma saatleri düzenlenebiliyor, klinik profili aramalarda bu bilgilerle görünüyor. Gece hizmeti veriyorsanız bunu profilde yazmak, acil anında aranan klinik olmayı belirliyor.' },
+
     { kind: 'uyari', metin: 'Bu yazı mevzuatın genel çerçevesini özetliyor. Bir kuruluşun hangi ruhsatla çalıştığı ve hangi işlemleri yapabildiği, o kuruluşun ruhsatına ve kadrosuna bağlıdır; bilgi için doğrudan kuruluşa sorun.' },
   ],
   sss: [
