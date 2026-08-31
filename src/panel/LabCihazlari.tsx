@@ -14,11 +14,16 @@ const DISIPLINLER: { kod: LabDisiplini; ad: string }[] = [
   { kod: 'microbiology', ad: 'Mikrobiyoloji' }, { kod: 'pathology', ad: 'Patoloji' },
 ];
 
-export default function LabCihazlari({ klinik, sahip, cihazlar, eslemeler, yenile }: {
+export default function LabCihazlari({ klinik, sahip, cihazlar, eslemeler, yenile,
+  acik: denetimliAcik, acikDegistir }: {
   klinik: string; sahip: boolean; cihazlar: LabCihazi[]; eslemeler: LabCihazEslemesi[];
   yenile: () => Promise<void>;
+  acik?: boolean;
+  acikDegistir?: (acik: boolean) => void;
 }) {
-  const [acik, setAcik] = useState(false);
+  const [yerelAcik, setYerelAcik] = useState(false);
+  const acik = denetimliAcik ?? yerelAcik;
+  const acikligiDegistir = (deger: boolean) => acikDegistir ? acikDegistir(deger) : setYerelAcik(deger);
   const [bekliyor, setBekliyor] = useState(false);
   const [hata, setHata] = useState<string | null>(null);
   const [bilgi, setBilgi] = useState<string | null>(null);
@@ -62,9 +67,9 @@ export default function LabCihazlari({ klinik, sahip, cihazlar, eslemeler, yenil
     catch (e) { setHata((e as Error).message); } finally { setBekliyor(false); }
   }
 
-  return <section className="pnl-widget">
+  return <section id="laboratuvar-cihazlari" className="pnl-widget">
     <header className="pnl-widget-basi"><span className="pnl-widget-ikon"><Cpu size={17} /></span>
-      <h3>Laboratuvar cihazları</h3><button type="button" className="pnl-metin-dugme" aria-expanded={acik} aria-controls="laboratuvar-cihaz-ayrintilari" onClick={() => setAcik((v) => !v)}>
+      <h3>Laboratuvar cihazları</h3><button type="button" className="pnl-metin-dugme" aria-expanded={acik} aria-controls="laboratuvar-cihaz-ayrintilari" onClick={() => acikligiDegistir(!acik)}>
         {acik ? 'Kapat' : `${cihazlar.filter((c) => c.is_active).length} aktif cihaz`}
       </button></header>
     {acik ? <div id="laboratuvar-cihaz-ayrintilari" className="pnl-widget-govde"><p className="pnl-widget-not">Her istem ve sonuç revizyonu kaynak cihaza sabitlenir. Aynı isteme farklı cihaz sonucu yazılamaz; bu durumda yeni istem açılır.</p>

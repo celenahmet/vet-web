@@ -1394,6 +1394,18 @@ a.pnl-widget-eylem { text-decoration: none; }
 .pnl-gizlilik-notu svg { flex-shrink: 0; }
 .pnl-ocr-ozet, .pnl-ocr-politika { margin: 8px 0; font-size: 12px; line-height: 1.5; }
 .pnl-ocr-politika { color: color-mix(in srgb, var(--pnl-uyari) 82%, #000); }
+.pnl-ocr-secimler { margin-bottom: 12px; }
+.pnl-ocr-onkosullar { display: grid; gap: 8px; margin: 0 0 12px; }
+.pnl-ocr-onkosul { display: flex; align-items: center; gap: 10px; padding: 10px 11px; border: 1px solid var(--pnl-cizgi); border-radius: 10px; }
+.pnl-ocr-onkosul > svg { flex: 0 0 auto; }
+.pnl-ocr-onkosul > div { flex: 1; min-width: 0; }
+.pnl-ocr-onkosul strong { display: block; font-size: 12.5px; }
+.pnl-ocr-onkosul p { margin: 2px 0 0; color: var(--pnl-soluk); font-size: 11.5px; line-height: 1.4; }
+.pnl-ocr-onkosul > span { max-width: 24ch; color: var(--pnl-soluk); font-size: 11.5px; line-height: 1.4; }
+.pnl-ocr-onkosul-eksik { border-color: color-mix(in srgb, var(--pnl-uyari) 34%, var(--pnl-cizgi)); background: color-mix(in srgb, var(--pnl-uyari) 7%, transparent); }
+.pnl-ocr-onkosul-eksik > svg { color: color-mix(in srgb, var(--pnl-uyari) 82%, #000); }
+.pnl-ocr-onkosul-hazir { border-color: color-mix(in srgb, var(--pnl-basarili) 30%, var(--pnl-cizgi)); background: color-mix(in srgb, var(--pnl-basarili) 7%, transparent); }
+.pnl-ocr-onkosul-hazir > svg { color: var(--pnl-basarili); }
 .pnl-ocr-satirlar { display: grid; gap: 6px; }
 .pnl-ocr-satir { padding: 9px 10px; border: 1px solid var(--pnl-cizgi); border-radius: 9px; }
 .pnl-ocr-satir > header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
@@ -1633,4 +1645,7 @@ a.pnl-widget-eylem { text-decoration: none; }
 }
 @media (max-width: 560px) {
   .pnl-form-eylem .pnl-dugme { width: 100%; justify-content: center; }
+  .pnl-ocr-onkosul { align-items: flex-start; flex-wrap: wrap; }
+  .pnl-ocr-onkosul > .pnl-dugme { width: 100%; justify-content: center; }
+  .pnl-ocr-onkosul > span { max-width: none; }
 }

@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/ocr-varliklarini-hazirla.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/ocr-varliklarini-hazirla.mjs",
     "build": "npm run rota-denetimi && npm run kaynak-denetimi && npm run panel-denetimi && npm run hukuki-denetimi && npm run magaza-denetimi && tsc -b && vite build && npm run prerender && npm run blog-besleme",
     "lint": "oxlint",
     "test:operasyon": "node --experimental-strip-types scripts/panel-operasyon-birim-test.mjs",
@@ -21,6 +23,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.4",
+    "@tesseract.js-data/eng": "1.0.0",
     "@zxing/browser": "^0.1.5",
     "@zxing/library": "^0.21.3",
     "clsx": "^2.1.1",
@@ -35,7 +38,7 @@
     "react-i18next": "^17.0.11",
     "react-router-dom": "^7.18.2",
     "tailwind-merge": "^3.6.0",
-    "tesseract.js": "^7.0.0"
+    "tesseract.js": "7.0.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",

@@ -115,6 +115,8 @@ const panelCss = readFileSync(new URL('../src/panel/panel.css', import.meta.url)
 const pano = readFileSync(new URL('../src/panel/PanelPano.tsx', import.meta.url), 'utf8');
 const vercel = readFileSync(new URL('../vercel.json', import.meta.url), 'utf8');
 const envOrnegi = readFileSync(new URL('../.env.example', import.meta.url), 'utf8');
+const paket = readFileSync(new URL('../package.json', import.meta.url), 'utf8');
+const ocrVarliklari = readFileSync(new URL('./ocr-varliklarini-hazirla.mjs', import.meta.url), 'utf8');
 
 assert.match(bolumler, /anahtar:\s*'iletisim',\s*ad:\s*'Operasyonel işlemler'/, 'Günlük işlemler açık adıyla ayrı menü olmalı.');
 assert.match(bolumler, /anahtar:\s*'entegrasyonlar',\s*ad:\s*'Entegrasyonlar'/, 'Teknik entegrasyonlar solda ayrı menü olmalı.');
@@ -157,6 +159,9 @@ assert.doesNotMatch(entegrasyon, /doğrulama kuyruğuna/i, 'Olmayan otomatik do�
 assert.match(envOrnegi, /^VITE_STORAGE_PROVIDER=r2$/m, 'Web paneli taşınmış medya anahtarlarını R2 üzerinden okumalı.');
 assert.match(vercel, /img-src[^;]*https:\/\/cdn\.veterito\.com/, 'CSP, imzalı R2 görsellerinin CDN üzerinden gösterilmesine izin vermeli.');
 assert.match(vercel, /connect-src[^;]*https:\/\/cdn\.veterito\.com/, 'CSP, imzalı R2 yükleme ve silme isteklerine izin vermeli.');
+assert.match(vercel, /worker-src 'self' blob:/, 'Tarayıcı OCR workerı yalnız aynı alan ve geçici blob bağlamında çalışabilmeli.');
+assert.match(vercel, /camera=\(self\)/, 'Web barkod kamerası yalnız aynı kaynaklı panelde kullanıcı izniyle açılabilmeli.');
+assert.doesNotMatch(vercel, /worker-src[^;]*https?:/, 'OCR workerı üçüncü taraf CDN’den çalıştırılmamalı.');
 assert.match(recete, /resmiReceteyiHazirla/, 'Web reçetesi resmî gönderim taslağı kapısına bağlanmalı.');
 assert.match(recete, /degistirilen/, 'Reçete düzeltmesi eski sürümü koruyan akışta kalmalı.');
 assert.match(panel, /import PanelMesajlar from '\.\/PanelMesajlar'/, 'Tam web gelen kutusu panele bağlanmalı.');
@@ -196,6 +201,25 @@ assert.match(stok, /async function tumSayimiSifirla[\s\S]*async function sayimiI
 assert.match(stok, /catch \(e\) \{[\s\S]*setSayimAcik\(false\);[\s\S]*setHata/, 'Sayım başlatılamazsa sonsuz yüklenen pencere açık kalmamalı.');
 assert.match(laboratuvar, /ocrCihazi/, 'OCR sonucu kaydedilmeden önce kaynak cihaz seçilmeli.');
 assert.match(laboratuvar, /cihazAdaylariniNormallestir/, 'Cihaza özgü ham analit kodları kanonikleştirilmeli.');
+for (const yol of ['/ocr/v7/worker.min.js', '/ocr/v7/tesseract-core-lstm.wasm.js', '/ocr/v7']) {
+  assert.match(laboratuvar, new RegExp(yol.replaceAll('/', '\\/')), `Web OCR ${yol} yerel varlığını kullanmalı.`);
+}
+assert.doesNotMatch(laboratuvar, /cdn\.jsdelivr\.net/, 'Laboratuvar fotoğrafı işlenirken çalışma kodu dış CDN’e bağlı kalmamalı.');
+assert.match(laboratuvar, /URL\.revokeObjectURL\(nesneAdresi\)/, 'OCR tamamlanınca veya hata verince geçici fotoğraf nesne adresi silinmeli.');
+assert.match(laboratuvar, /worker\.terminate\(\)/, 'OCR tamamlanınca web worker bellekte bırakılmamalı.');
+assert.match(laboratuvar, /Aktif cihaz profili gerekli[\s\S]*Açık laboratuvar istemi gerekli[\s\S]*OCR için hazır/,
+  'OCR penceresi pasif alan yerine cihaz ve istem ön koşullarını eylemli açıklamalı.');
+assert.match(laboratuvar, /id="ocr-cihaz"[\s\S]*id="ocr-istem"/, 'OCR penceresinde kaynak cihaz ve hasta istemi birlikte seçilebilmeli.');
+assert.match(laboratuvar, /ocrIcinIstem[\s\S]*İstemi oluştur ve OCR’a dön/, 'Eksik istem aynı OCR görevinden oluşturulup akışa geri dönmeli.');
+assert.match(laboratuvar, /id="lab-cihaz"[\s\S]*Cihaz seçimi OCR eşlemelerini/, 'Yeni laboratuvar istemi kaynak cihaz profiline bağlanabilmeli.');
+assert.match(labCihazlari, /acik:\s*denetimliAcik[\s\S]*acikDegistir/, 'OCR ön koşulu cihaz yönetimi panelini programlı açabilmeli.');
+assert.match(paket, /"@tesseract\.js-data\/eng":\s*"1\.0\.0"/, 'OCR İngilizce modeli sabit paket sürümüyle tekrarlanabilir olmalı.');
+assert.match(paket, /"tesseract\.js":\s*"7\.0\.0"/, 'Tarayıcı OCR motoru doğrulanan worker sürümüyle birebir sabitlenmeli.');
+assert.match(paket, /"predev":\s*"node scripts\/ocr-varliklarini-hazirla\.mjs"[\s\S]*"prebuild":\s*"node scripts\/ocr-varliklarini-hazirla\.mjs"/,
+  'Yerel geliştirme ve üretim derlemesi OCR varlıklarını aynı şekilde hazırlamalı.');
+for (const varlik of ['worker.min.js', 'tesseract-core-lstm.wasm.js', 'eng.traineddata.gz']) {
+  assert.match(ocrVarliklari, new RegExp(varlik.replace('.', '\\.')), `OCR hazırlayıcı ${varlik} varlığını üretmeli.`);
+}
 assert.match(labVeri, /create_lab_request_v3/, 'Laboratuvar istemi cihaz kimliğini kabul eden kapıyı kullanmalı.');
 assert.match(labVeri, /save_lab_result_revision_v5/, 'Sonuç revizyonu kaynak cihazı atomik kaydetmeli.');
 assert.match(labCihazlari, /labCihazEslemesiniKaydet/, 'Owner cihaz bazlı analit eşlemesini yönetebilmeli.');
