@@ -64,10 +64,10 @@ export default function LabCihazlari({ klinik, sahip, cihazlar, eslemeler, yenil
 
   return <section className="pnl-widget">
     <header className="pnl-widget-basi"><span className="pnl-widget-ikon"><Cpu size={17} /></span>
-      <h3>Laboratuvar cihazları</h3><button type="button" className="pnl-metin-dugme" onClick={() => setAcik((v) => !v)}>
+      <h3>Laboratuvar cihazları</h3><button type="button" className="pnl-metin-dugme" aria-expanded={acik} aria-controls="laboratuvar-cihaz-ayrintilari" onClick={() => setAcik((v) => !v)}>
         {acik ? 'Kapat' : `${cihazlar.filter((c) => c.is_active).length} aktif cihaz`}
       </button></header>
-    {acik ? <div className="pnl-widget-govde"><p className="pnl-widget-not">Her istem ve sonuç revizyonu kaynak cihaza sabitlenir. Aynı isteme farklı cihaz sonucu yazılamaz; bu durumda yeni istem açılır.</p>
+    {acik ? <div id="laboratuvar-cihaz-ayrintilari" className="pnl-widget-govde"><p className="pnl-widget-not">Her istem ve sonuç revizyonu kaynak cihaza sabitlenir. Aynı isteme farklı cihaz sonucu yazılamaz; bu durumda yeni istem açılır.</p>
       {hata ? <Hata mesaj={hata} kucuk /> : null}{bilgi ? <p className="pnl-bilgi">{bilgi}</p> : null}
       <div className="pnl-cihaz-listesi">{cihazlar.map((cihaz) => <article key={cihaz.id} className="pnl-cihaz-karti">
         <div><strong>{cihaz.display_name}</strong><p>{cihaz.manufacturer} {cihaz.model} · {cihaz.location || 'Konum belirtilmedi'}</p>

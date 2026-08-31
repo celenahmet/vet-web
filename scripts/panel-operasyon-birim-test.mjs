@@ -105,6 +105,7 @@ const medya = readFileSync(new URL('../src/panel/medya-veri.ts', import.meta.url
 const galeri = readFileSync(new URL('../src/panel/KlinikGaleri.tsx', import.meta.url), 'utf8');
 const ekip = readFileSync(new URL('../src/panel/PanelEkip.tsx', import.meta.url), 'utf8');
 const laboratuvar = readFileSync(new URL('../src/panel/PanelLaboratuvar.tsx', import.meta.url), 'utf8');
+const diyalog = readFileSync(new URL('../src/panel/Diyalog.tsx', import.meta.url), 'utf8');
 const labVeri = readFileSync(new URL('../src/panel/lab-veri.ts', import.meta.url), 'utf8');
 const labCihazlari = readFileSync(new URL('../src/panel/LabCihazlari.tsx', import.meta.url), 'utf8');
 const musteriler = readFileSync(new URL('../src/panel/PanelMusteriler.tsx', import.meta.url), 'utf8');
@@ -133,11 +134,21 @@ assert.match(entegrasyon, /seciliKanalHazir/, 'Hazır olmayan sağlayıcıda ile
 assert.match(entegrasyon, /Kuyruğa alındı, gönderildi anlamına gelmez/, 'Kuyruk ve teslim durumu açıkça ayrılmalı.');
 assert.match(entegrasyon, /pnl-yeni-modul-ozetleri/, 'Yeni operasyon ve entegrasyon özetleri kendi duyarlı ızgarasını kullanmalı.');
 assert.match(entegrasyon, /pnl-operasyon-tablo/, 'İletişim tercihleri ve teslim listeleri dar panelde kart düzenine geçebilmeli.');
+assert.match(entegrasyon, /aria-expanded=\{acik\}[\s\S]*aria-controls=\{`entegrasyon-\$\{tur\}-ayrinti`\}/,
+  'Entegrasyon kartı açık durumunu ve ayrıntı ilişkisini yardımcı teknolojilere bildirmeli.');
 for (const etiket of ['Alıcı', 'Amaç / kanal', 'Tercih', 'Hedef', 'Kanal / amaç', 'Şablon', 'Durum', 'Zaman', 'İşlem']) {
   assert.match(entegrasyon, new RegExp(`data-label="${etiket}"`), `Dar operasyon kaydında ${etiket} alan etiketi korunmalı.`);
 }
 assert.match(panelCss, /@media \(max-width: 1380px\)[\s\S]*\.pnl-yeni-modul-ozetleri[\s\S]*\.pnl-operasyon-kisayollari/,
   'Dizüstü kırılımı özet ve kısayolları panel içeriği sıkışmadan iki sütuna indirmeli.');
+assert.match(diyalog, /boyut\?: 'normal' \| 'genis' \| 'panorama'/,
+  'Karmaşık operasyon pencereleri içerik yoğunluğuna uygun genişlik seçebilmeli.');
+assert.match(diyalog, /oncekiOdak[\s\S]*focus\(\{ preventScroll: true \}\)/,
+  'Diyalog kapandığında kullanıcı odağı pencereyi açan eyleme dönmeli.');
+assert.match(diyalog, /data-dialog-ilk-odak[\s\S]*input:not/,
+  'Diyalog açıldığında kapatma ikonuna değil ilk işlem alanına odaklanmalı.');
+assert.match(panelCss, /\.pnl-diyalog-basi[\s\S]*position: sticky[\s\S]*\.pnl-diyalog-eylem[\s\S]*position: sticky/,
+  'Uzun pencerelerde bağlam başlığı ve ana eylemler görünür kalmalı.');
 assert.match(panelCss, /@media \(max-width: 1380px\)[\s\S]*\.pnl-operasyon-tablo td::before[\s\S]*content: attr\(data-label\)/,
   'Beş sütunlu operasyon tabloları orta genişlikte etiketli kartlara dönüşmeli.');
 assert.doesNotMatch(entegrasyon, /doğrulama kuyruğuna/i, 'Olmayan otomatik doğrulama kuyruğu vaat edilmemeli.');
@@ -168,6 +179,12 @@ assert.match(medya, /toBlob\(coz, 'image\/webp'/, 'Görsel EXIF taşımayan yeni
 assert.match(medya, /guvenliGorselleriTemizle/, 'Sahipsiz medya nesnesi için telafi temizliği bulunmalı.');
 assert.match(medya, /action: 'delete'/, 'R2 sağlayıcısında telafi silme imzalı DELETE kullanmalı.');
 assert.match(stok, /mobil uygulamanın kamerasını öneriyoruz/, 'Web kamerası desteklenmediğinde mobil alternatif önerilmeli.');
+assert.match(stok, /pnl-yeni-modul pnl-yeni-modul-operasyon/, 'Stok ekranı yeni modül dizüstü kırılımlarını kullanmalı.');
+assert.match(laboratuvar, /pnl-yeni-modul pnl-yeni-modul-operasyon/, 'Laboratuvar ekranı yeni modül dizüstü kırılımlarını kullanmalı.');
+assert.match(laboratuvar, /aria-expanded=\{acik\}[\s\S]*aria-controls=\{`laboratuvar-\$\{istem\.id\}-ayrinti`\}/,
+  'Laboratuvar sonuç kartı açık durumunu ve ayrıntı ilişkisini yardımcı teknolojilere bildirmeli.');
+assert.match(stok, /async function tumSayimiSifirla[\s\S]*async function sayimiIptal/, 'Sayım sıfırlama ve iptal işlemleri hata kontrollü işlevlere bağlı kalmalı.');
+assert.match(stok, /catch \(e\) \{[\s\S]*setSayimAcik\(false\);[\s\S]*setHata/, 'Sayım başlatılamazsa sonsuz yüklenen pencere açık kalmamalı.');
 assert.match(laboratuvar, /ocrCihazi/, 'OCR sonucu kaydedilmeden önce kaynak cihaz seçilmeli.');
 assert.match(laboratuvar, /cihazAdaylariniNormallestir/, 'Cihaza özgü ham analit kodları kanonikleştirilmeli.');
 assert.match(labVeri, /create_lab_request_v3/, 'Laboratuvar istemi cihaz kimliğini kabul eden kapıyı kullanmalı.');
