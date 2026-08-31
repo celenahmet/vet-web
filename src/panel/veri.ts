@@ -16,6 +16,7 @@
  */
 import { istemci } from './istemci';
 import { guvenliHata } from './guvenli-hata';
+import { guvenliGorselleriTemizle } from './medya-veri';
 
 async function cagir<T>(ad: string, parametre: Record<string, unknown>): Promise<T[]> {
   const { data, error } = await istemci.rpc(ad, parametre);
@@ -66,12 +67,15 @@ export type Hasta = {
 export type Personel = {
   user_id: string;
   display_name: string | null;
+  avatar_url: string | null;
   role: string;
   created_at: string;
   is_me: boolean;
   title: string | null;
   education: string | null;
+  bio: string | null;
   is_public: boolean;
+  photo_key: string | null;
 };
 
 export type Degerlendirme = {
@@ -119,6 +123,10 @@ export type DefterAyi = { ay: number; income: number; expense: number; balance: 
 
 /** Klinik web sayfasinin ayarlari. `clinics` tablosundan, RLS altinda. */
 export type KlinikSayfasi = {
+  name: string;
+  address: string | null;
+  city: string | null;
+  district: string | null;
   username: string | null;
   is_published: boolean;
   is_indexable: boolean;
@@ -148,6 +156,29 @@ export const randevulariOku = (klinik: string) => cagir<Randevu>('appointment_li
 export const musterileriOku = (klinik: string) => cagir<Musteri>('clinic_customer_list', { p_clinic: klinik });
 export const hastalariOku = (klinik: string) => cagir<Hasta>('clinic_pet_list', { p_clinic: klinik });
 export const personeliOku = (klinik: string) => cagir<Personel>('clinic_staff_list', { p_clinic: klinik });
+
+export async function personelProfiliniGuncelle(input: {
+  klinik: string;
+  kullanici: string;
+  unvan: string;
+  egitim: string;
+  tanitim: string;
+  yayinda?: boolean;
+}): Promise<void> {
+  await calistir('update_staff_profile', {
+    p_clinic: input.klinik,
+    p_user: input.kullanici,
+    p_title: input.unvan.trim(),
+    p_education: input.egitim.trim(),
+    p_bio: input.tanitim.trim(),
+    p_public: input.yayinda ?? null,
+    p_sort: null,
+  });
+}
+
+export async function kendiPersonelFotografiniGuncelle(klinik: string, key: string): Promise<void> {
+  await calistir('update_staff_photo', { p_clinic: klinik, p_key: key });
+}
 export const degerlendirmeleriOku = (klinik: string) => cagir<Degerlendirme>('clinic_review_list', { p_clinic: klinik });
 export type Hatirlatma = {
   record_id: string;
@@ -203,8 +234,8 @@ export async function randevuDurumunuDegistir(randevu: string, durum: string, no
  * ⚠️ Defter ekip disina kapali (migration 0096) ve bu kontrol sunucuda:
  * `is_clinic_member(p_clinic)` sorgunun `where` sartinda.
  */
-export const defterOzetiOku = (klinik: string) => cagir<DefterOzeti>('clinic_ledger_summary', { p_clinic: klinik });
-export const defterKalemleriOku = (klinik: string) => cagir<DefterKalemi>('clinic_ledger_by_category', { p_clinic: klinik });
+export const defterOzetiOku = (klinik: string, aralik?: { baslangic?: string; bitis?: string }) => cagir<DefterOzeti>('clinic_ledger_summary', { p_clinic: klinik, p_from: aralik?.baslangic ?? null, p_to: aralik?.bitis ?? null });
+export const defterKalemleriOku = (klinik: string, aralik?: { baslangic?: string; bitis?: string }) => cagir<DefterKalemi>('clinic_ledger_by_category', { p_clinic: klinik, p_from: aralik?.baslangic ?? null, p_to: aralik?.bitis ?? null });
 
 /**
  * Yilin on iki ayi. Toplama SUNUCUDA (migration 0139): on iki ayri cagri
@@ -224,7 +255,7 @@ export const defterAylariOku = (klinik: string, yil?: number) =>
 export async function klinikSayfasiniOku(klinik: string): Promise<KlinikSayfasi | null> {
   const { data, error } = await istemci
     .from('clinics')
-    .select('username, is_published, is_indexable, is_verified, page_tagline, directions, about, phone, whatsapp, email, website, instagram, facebook, x_handle, tiktok, youtube, linkedin, logo_key, cover_key, view_count, rating_avg, rating_count')
+    .select('name, address, city, district, username, is_published, is_indexable, is_verified, page_tagline, directions, about, phone, whatsapp, email, website, instagram, facebook, x_handle, tiktok, youtube, linkedin, logo_key, cover_key, view_count, rating_avg, rating_count')
     .eq('id', klinik)
     .maybeSingle();
   if (error) throw error;
@@ -707,6 +738,7 @@ export type Gonderi = {
   like_count: number;
   comment_count: number;
   created_at: string;
+  media: { storage_key: string; position: number; media_type: string }[];
 };
 
 export type Ilan = {
@@ -715,11 +747,15 @@ export type Ilan = {
   species_code: string | null;
   status: string | null;
   created_at: string;
+  reject_reason: string | null;
+  city: string | null;
+  district: string | null;
+  photos: { storage_key: string; sort_order: number }[];
 };
 
 export type Hizmet = { service_code: string; note: string | null; price_min: number | null; price_max: number | null };
 export type CalismaSaati = { weekday: number; is_closed: boolean; opens_at: string | null; closes_at: string | null };
-export type Duyuru = { id: string; body: string | null; audience: string | null; status: string | null; recipient_count: number | null; created_at: string };
+export type Duyuru = { id: string; body: string | null; audience: string | null; status: string | null; recipient_count: number | null; created_at: string; delivery_kind: string; target_city: string | null; target_species: string | null; channels: string[]; media: { storage_key: string; position: number }[] };
 export type HizmetAdi = { code: string; name_tr: string };
 
 async function tablo<T>(ad: string, secim: string, klinik: string | null, siralama?: string): Promise<T[]> {
@@ -734,11 +770,31 @@ async function tablo<T>(ad: string, secim: string, klinik: string | null, sirala
 export const saglikKayitlariniOku = (klinik: string) =>
   tablo<SaglikKaydi>('clinic_pet_records', 'id, pet_id, kind, title, detail, performed_at, next_due_at, weight_kg', klinik, 'performed_at');
 
-export const ilanlariOku = () =>
-  tablo<Ilan>('adoption_listings', 'id, title, species_code, status, created_at', null, 'created_at');
+export async function ilanlarimiOku(): Promise<Ilan[]> {
+  const { data: kullanici } = await istemci.auth.getUser();
+  if (!kullanici.user) return [];
+  const { data, error } = await istemci.from('adoption_listings')
+    .select('id, title, species_code, status, created_at, reject_reason, city, district, photos:adoption_photos(storage_key,sort_order)')
+    .eq('created_by', kullanici.user.id).order('created_at', { ascending: false });
+  if (error) throw error;
+  return (data as unknown as Ilan[] | null) ?? [];
+}
+
+export type SahiplendirmeBasvurusu = { id: string; listing_id: string; applicant_id: string; message: string; contact_phone: string | null; status: 'pending' | 'accepted' | 'rejected'; created_at: string };
+export async function sahiplendirmeBasvurulariniOku(): Promise<SahiplendirmeBasvurusu[]> {
+  const { data, error } = await istemci.from('adoption_applications').select('*').order('created_at', { ascending: false });
+  if (error) throw error;
+  return (data as SahiplendirmeBasvurusu[] | null) ?? [];
+}
+
+export async function sahiplendirmeBasvurusunuYanitla(id: string, durum: 'accepted' | 'rejected'): Promise<void> {
+  const { data, error } = await istemci.from('adoption_applications').update({ status: durum }).eq('id', id).select('id');
+  if (error) throw error;
+  if (!data?.length) throw new Error('permission denied');
+}
 
 export const duyurulariOku = (klinik: string) =>
-  tablo<Duyuru>('announcements', 'id, body, audience, status, recipient_count, created_at', klinik, 'created_at');
+  tablo<Duyuru>('announcements', 'id, body, audience, status, recipient_count, created_at, delivery_kind, target_city, target_species, channels, media:announcement_media(storage_key,position)', klinik, 'created_at');
 
 export const hizmetleriOku = (klinik: string) =>
   tablo<Hizmet>('clinic_capabilities', 'service_code, note, price_min, price_max', klinik);
@@ -757,14 +813,11 @@ export const hizmetAdlariniOku = () =>
  * uygulamada baska turlu isliyorsa burasi eksik kalir; ekranda bu acikca
  * yaziyor, sessizce "hic paylasim yok" denmiyor.
  */
-export async function gonderileriOku(): Promise<Gonderi[]> {
-  const { data: kullanici } = await istemci.auth.getUser();
-  const kimlik = kullanici.user?.id;
-  if (!kimlik) return [];
+export async function gonderileriOku(klinik: string): Promise<Gonderi[]> {
   const { data, error } = await istemci
     .from('posts')
-    .select('id, body, status, like_count, comment_count, created_at')
-    .eq('author_id', kimlik)
+    .select('id, body, status, like_count, comment_count, created_at, media:post_media(storage_key,position,media_type)')
+    .eq('clinic_id', klinik)
     .order('created_at', { ascending: false })
     .limit(40);
   if (error) throw error;
@@ -900,6 +953,20 @@ export async function defterMusterisiEkle(
   return (data as { id: string }).id;
 }
 
+export async function defterMusterisiniGuncelle(
+  id: string,
+  alanlar: { adSoyad: string; telefon?: string; eposta?: string; not?: string },
+): Promise<void> {
+  const { data, error } = await istemci.from('clinic_offline_customers').update({
+    full_name: alanlar.adSoyad.trim(),
+    phone: alanlar.telefon?.trim() || null,
+    email: alanlar.eposta?.trim() || null,
+    note: alanlar.not?.trim() || null,
+  }).eq('id', id).select('id');
+  if (error) throw error;
+  if (!data?.length) throw new Error('permission denied');
+}
+
 /**
  * Deftere hasta ekler.
  *
@@ -968,10 +1035,21 @@ export async function saglikKaydiEkle(
  */
 export async function duyuruOlusturVeGonder(
   klinik: string,
-  alanlar: { metin: string; kitle: 'customers' | 'followers' | 'both'; pushGonder: boolean },
+  alanlar: {
+    metin: string;
+    kitle: 'customers' | 'followers' | 'both' | 'selected';
+    pushGonder: boolean;
+    teslim: 'announcement' | 'notification';
+    sehir?: string;
+    tur?: string;
+    alicilar?: string[];
+    gorseller?: string[];
+  },
 ): Promise<number> {
   const { data: kullanici } = await istemci.auth.getUser();
   const pushOlur = alanlar.pushGonder && alanlar.kitle === 'customers';
+  const tekilAlicilar = [...new Set(alanlar.alicilar ?? [])];
+  if (alanlar.kitle === 'selected' && tekilAlicilar.length === 0) throw new Error('En az bir alıcı seçin.');
 
   const { data, error } = await istemci
     .from('announcements')
@@ -979,16 +1057,43 @@ export async function duyuruOlusturVeGonder(
       clinic_id: klinik,
       body: alanlar.metin.trim(),
       audience: alanlar.kitle,
+      target_city: alanlar.sehir?.trim() || null,
+      target_species: alanlar.tur || null,
       channels: pushOlur ? ['inapp', 'push'] : ['inapp'],
-      delivery_kind: 'announcement',
+      delivery_kind: alanlar.teslim,
       created_by: kullanici.user?.id ?? null,
     })
     .select('id')
     .single();
-  if (error) throw error;
+  if (error) {
+    await guvenliGorselleriTemizle(alanlar.gorseller ?? []);
+    throw error;
+  }
+
+  const duyuru = (data as { id: string }).id;
+  if (alanlar.kitle === 'selected') {
+    const { error: aliciHatasi } = await istemci.from('announcement_recipients').insert(
+      tekilAlicilar.map((user_id) => ({ announcement_id: duyuru, user_id })),
+    );
+    if (aliciHatasi) {
+      const { error: geriAlmaHatasi } = await istemci.from('announcements').delete().eq('id', duyuru);
+      if (!geriAlmaHatasi) await guvenliGorselleriTemizle(alanlar.gorseller ?? []);
+      throw aliciHatasi;
+    }
+  }
+  if (alanlar.gorseller?.length) {
+    const { error: medyaHatasi } = await istemci.from('announcement_media').insert(
+      alanlar.gorseller.slice(0, 4).map((storage_key, position) => ({ announcement_id: duyuru, storage_key, position })),
+    );
+    if (medyaHatasi) {
+      const { error: geriAlmaHatasi } = await istemci.from('announcements').delete().eq('id', duyuru);
+      if (!geriAlmaHatasi) await guvenliGorselleriTemizle(alanlar.gorseller ?? []);
+      throw medyaHatasi;
+    }
+  }
 
   const { data: sayi, error: gonderimHatasi } = await istemci.rpc('send_announcement', {
-    p_announcement: (data as { id: string }).id,
+    p_announcement: duyuru,
   });
   if (gonderimHatasi) throw gonderimHatasi;
   return (sayi as number) ?? 0;
@@ -1039,20 +1144,6 @@ export const ulasilabilirKisileriOku = (klinik: string) =>
  * donduruyor), sonra mesaj satiri ekleniyor. RPC'nin kendisi mesaj yazmiyor;
  * ayni kisiye ikinci kez yazarken yeni konusma acilmasin diye boyle.
  */
-export async function mesajGonder(kisi: string, metin: string): Promise<void> {
-  const { data, error } = await istemci.rpc('open_direct_conversation', { p_other: kisi });
-  if (error) throw error;
-  const konusma = data as string;
-
-  const { data: kullanici } = await istemci.auth.getUser();
-  const { error: mesajHatasi } = await istemci.from('messages').insert({
-    conversation_id: konusma,
-    sender_id: kullanici.user?.id,
-    body: metin.trim(),
-  });
-  if (mesajHatasi) throw mesajHatasi;
-}
-
 /**
  * Gonderi olusturur ve yayimlar.
  *
@@ -1063,7 +1154,7 @@ export async function mesajGonder(kisi: string, metin: string): Promise<void> {
  * ⚠️ `clinic_id` yaziliyor (migration 0043): gonderi klinik adina cikiyor,
  * kisisel hesap adina degil.
  */
-export async function gonderiPaylas(klinik: string, metin: string, herkeseAcik: boolean): Promise<void> {
+export async function gonderiPaylas(klinik: string, metin: string, herkeseAcik: boolean, gorseller: string[] = []): Promise<void> {
   const { data: kullanici } = await istemci.auth.getUser();
   const { data, error } = await istemci
     .from('posts')
@@ -1075,9 +1166,23 @@ export async function gonderiPaylas(klinik: string, metin: string, herkeseAcik: 
     })
     .select('id')
     .single();
-  if (error) throw error;
+  if (error) {
+    await guvenliGorselleriTemizle(gorseller);
+    throw error;
+  }
 
-  const { error: yayinHatasi } = await istemci.rpc('publish_post', { p_post: (data as { id: string }).id });
+  if (gorseller.length) {
+    const { error: medyaHatasi } = await istemci.from('post_media').insert(
+      gorseller.slice(0, 8).map((storage_key, position) => ({ post_id: data.id, storage_key, position, media_type: 'image' })),
+    );
+    if (medyaHatasi) {
+      const { error: geriAlmaHatasi } = await istemci.from('posts').delete().eq('id', data.id);
+      if (!geriAlmaHatasi) await guvenliGorselleriTemizle(gorseller);
+      throw medyaHatasi;
+    }
+  }
+
+  const { error: yayinHatasi } = await istemci.rpc('publish_post', { p_post: data.id });
   if (yayinHatasi) throw yayinHatasi;
 }
 
@@ -1089,18 +1194,33 @@ export async function gonderiPaylas(klinik: string, metin: string, herkeseAcik: 
  * olurdu.
  */
 export async function ilanOlustur(alanlar: {
-  baslik: string; aciklama: string; tur: string; cinsiyet: string; kosullar?: string;
+  baslik: string; aciklama: string; tur: string; cinsiyet: string; kosullar?: string; sehir?: string; ilce?: string; gorseller?: string[];
 }): Promise<void> {
   const { data: kullanici } = await istemci.auth.getUser();
-  const { error } = await istemci.from('adoption_listings').insert({
+  const { data, error } = await istemci.from('adoption_listings').insert({
     created_by: kullanici.user?.id,
     title: alanlar.baslik.trim(),
     description: alanlar.aciklama.trim(),
     species_code: alanlar.tur,
     sex: alanlar.cinsiyet || 'unknown',
     conditions: alanlar.kosullar?.trim() || null,
-  });
-  if (error) throw error;
+    city: alanlar.sehir?.trim() || null,
+    district: alanlar.ilce?.trim() || null,
+  }).select('id').single();
+  if (error) {
+    await guvenliGorselleriTemizle(alanlar.gorseller ?? []);
+    throw error;
+  }
+  if (alanlar.gorseller?.length) {
+    const { error: fotografHatasi } = await istemci.from('adoption_photos').insert(
+      alanlar.gorseller.slice(0, 8).map((storage_key, sort_order) => ({ listing_id: data.id, storage_key, sort_order })),
+    );
+    if (fotografHatasi) {
+      const { error: geriAlmaHatasi } = await istemci.from('adoption_listings').delete().eq('id', data.id);
+      if (!geriAlmaHatasi) await guvenliGorselleriTemizle(alanlar.gorseller ?? []);
+      throw fotografHatasi;
+    }
+  }
 }
 
 /**
@@ -1136,11 +1256,36 @@ export type DefterKaydi = {
   category: string;
   note: string | null;
   occurred_on: string;
+  category_code: string | null;
+  payment_method: string | null;
 };
 
 /** Tek tek kayitlar. Ozet kategoriye gore; silmek icin satirin kendisi gerekiyor. */
-export const defterKayitlariniOku = (klinik: string) =>
-  tablo<DefterKaydi>('clinic_transactions', 'id, kind, amount, category, note, occurred_on', klinik, 'occurred_on');
+export async function defterKayitlariniOku(klinik: string, aralik?: { baslangic?: string; bitis?: string }): Promise<DefterKaydi[]> {
+  let sorgu = istemci.from('clinic_transactions')
+    .select('id, kind, amount, category, note, occurred_on, category_code, payment_method')
+    .eq('clinic_id', klinik)
+    .order('occurred_on', { ascending: false });
+  if (aralik?.baslangic) sorgu = sorgu.gte('occurred_on', aralik.baslangic);
+  if (aralik?.bitis) sorgu = sorgu.lte('occurred_on', aralik.bitis);
+  const { data, error } = await sorgu.limit(500);
+  if (error) throw error;
+  return (data as DefterKaydi[] | null) ?? [];
+}
+
+export type DefterBoyutu = { code: string; name: string };
+export async function defterBoyutlariniOku(tur: string): Promise<DefterBoyutu[]> {
+  const { data, error } = await istemci.from('ledger_dimensions').select('code, name').eq('dimension_code', tur).order('sort_order');
+  if (error) throw error;
+  return (data as DefterBoyutu[] | null) ?? [];
+}
+
+export type DefterKategorisi = { code: string; group_name: string; name: string };
+export async function defterKategorileriniOku(tur: 'income' | 'expense'): Promise<DefterKategorisi[]> {
+  const { data, error } = await istemci.from('ledger_categories').select('code, group_name, name').eq('kind', tur).order('group_no').order('name');
+  if (error) throw error;
+  return (data as DefterKategorisi[] | null) ?? [];
+}
 
 /**
  * Deftere kayit ekler.
@@ -1154,7 +1299,7 @@ export const defterKayitlariniOku = (klinik: string) =>
  */
 export async function defterKaydiEkle(
   klinik: string,
-  alanlar: { tur: 'income' | 'expense'; tutarTL: string; kategori: string; tarih: string; not?: string },
+  alanlar: { tur: 'income' | 'expense'; tutarTL: string; kategori: string; kategoriKodu?: string | null; odemeYontemi?: string | null; tarih: string; not?: string },
 ): Promise<void> {
   const kurus = Math.round(Number(String(alanlar.tutarTL).replace(',', '.')) * 100);
   if (!Number.isFinite(kurus) || kurus <= 0) throw new Error('Tutar geçersiz.');
@@ -1165,6 +1310,8 @@ export async function defterKaydiEkle(
     kind: alanlar.tur,
     amount: kurus,
     category: alanlar.kategori.trim(),
+    category_code: alanlar.kategoriKodu ?? null,
+    payment_method: alanlar.odemeYontemi ?? null,
     note: alanlar.not?.trim() || null,
     occurred_on: alanlar.tarih,
     created_by: kullanici.user?.id ?? null,

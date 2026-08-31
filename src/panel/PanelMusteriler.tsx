@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
-import { User, UserPlus, Plus, Smartphone, NotebookPen } from 'lucide-react';
+import { User, UserPlus, Plus, Smartphone, NotebookPen, Pencil } from 'lucide-react';
 
 import {
   musterileriOku, musteriDavetEt, cevrimdisiMusterileriOku, defterMusterisiEkle,
   type Musteri, type CevrimdisiMusteri,
   musteriNotuYaz,
   musteriyiCikar,
+  defterMusterisiniGuncelle,
 } from './veri';
 import { tarihYaz } from './sozluk';
 import Bos from './Bos';
@@ -52,6 +53,8 @@ export default function PanelMusteriler({ klinik }: { klinik: string }) {
   const [davetAcik, setDavetAcik] = useState(false);
   const [form, setForm] = useState({ adSoyad: '', telefon: '', eposta: '', not: '', platformda: 'bilinmiyor' as 'evet' | 'hayir' | 'bilinmiyor' });
   const [davet, setDavet] = useState({ eposta: '', telefon: '', not: '' });
+  const [duzenlenen, setDuzenlenen] = useState<CevrimdisiMusteri | null>(null);
+  const [duzenleme, setDuzenleme] = useState({ adSoyad: '', telefon: '', eposta: '', not: '' });
 
   const yukle = useCallback(() => {
     setHata(null);
@@ -99,6 +102,18 @@ export default function PanelMusteriler({ klinik }: { klinik: string }) {
     } catch (err) {
       setIslemHatasi((err as { message?: string })?.message ?? '');
     } finally { setBekliyor(false); }
+  }
+
+  function duzenlemeyiAc(m: CevrimdisiMusteri) {
+    setDuzenlenen(m); setDuzenleme({ adSoyad: m.full_name ?? '', telefon: m.phone ?? '', eposta: m.email ?? '', not: m.note ?? '' }); setIslemHatasi(null);
+  }
+
+  async function duzenlemeyiKaydet(e: React.FormEvent) {
+    e.preventDefault(); if (!duzenlenen || bekliyor) return;
+    setBekliyor(true); setIslemHatasi(null);
+    try { await defterMusterisiniGuncelle(duzenlenen.id, duzenleme); setDuzenlenen(null); setBilgi('Müşteri kaydı güncellendi.'); yukle(); }
+    catch (err) { setIslemHatasi((err as Error).message); }
+    finally { setBekliyor(false); }
   }
 
 
@@ -254,6 +269,7 @@ export default function PanelMusteriler({ klinik }: { klinik: string }) {
                 {m.note ? <p className="pnl-kisi-ek">Not: {m.note}</p> : null}
                 <p className="pnl-kisi-ek pnl-soluk">Deftere eklendi: {tarihYaz(m.created_at, false)}</p>
               </div>
+              <button type="button" className="pnl-dugme pnl-dugme-sade pnl-kisi-eylem" onClick={() => duzenlemeyiAc(m)}><Pencil size={14} /> Düzenle</button>
             </li>
           ))}
         </ul>
@@ -316,6 +332,10 @@ export default function PanelMusteriler({ klinik }: { klinik: string }) {
             </button>
           </div>
         </form>
+      </Diyalog>
+
+      <Diyalog acik={duzenlenen !== null} kapat={() => setDuzenlenen(null)} baslik="Defter müşterisini düzenle" aciklama="Bu kayıt yalnız kliniğinizin kendi defterindedir; Veterito hesabını değiştirmez.">
+        <form onSubmit={duzenlemeyiKaydet}><div className="pnl-alan"><label htmlFor="pnl-md-ad">Ad soyad</label><input id="pnl-md-ad" required minLength={2} maxLength={120} value={duzenleme.adSoyad} onChange={(e) => setDuzenleme((f) => ({ ...f, adSoyad: e.target.value }))} /></div><div className="pnl-alan"><label htmlFor="pnl-md-tel">Telefon</label><input id="pnl-md-tel" type="tel" maxLength={30} value={duzenleme.telefon} onChange={(e) => setDuzenleme((f) => ({ ...f, telefon: e.target.value }))} /></div><div className="pnl-alan"><label htmlFor="pnl-md-eposta">E-posta</label><input id="pnl-md-eposta" type="email" maxLength={200} value={duzenleme.eposta} onChange={(e) => setDuzenleme((f) => ({ ...f, eposta: e.target.value }))} /></div><div className="pnl-alan"><label htmlFor="pnl-md-not">Klinik içi not</label><textarea id="pnl-md-not" maxLength={500} value={duzenleme.not} onChange={(e) => setDuzenleme((f) => ({ ...f, not: e.target.value }))} /></div><div className="pnl-diyalog-eylem"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setDuzenlenen(null)}>Vazgeç</button><button className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor || duzenleme.adSoyad.trim().length < 2}>Kaydet</button></div></form>
       </Diyalog>
 
       {/* ── PLATFORM DAVETI ── */}

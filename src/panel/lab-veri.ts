@@ -22,6 +22,7 @@ export type LabIstemi = {
   lab_system_type: LabSistemTuru | null;
   result_stage: 'pending' | 'partial' | 'final' | 'corrected' | 'cancelled';
   current_result_revision: number;
+  device_id: string | null;
   created_at: string;
 };
 
@@ -31,6 +32,17 @@ export type LabPaneli = {
   title_key: string;
   expected_analytes: string[];
   supports_text_results: boolean;
+};
+export type LabCihazi = {
+  id: string; display_name: string; manufacturer: string; model: string;
+  device_identifier: string; serial_last4: string | null; location: string | null;
+  lab_system_type: LabSistemTuru; disciplines: LabDisiplini[]; is_active: boolean;
+  mapping_version: number;
+};
+export type LabCihazEslemesi = {
+  id: string; device_id: string; raw_code: string; canonical_code: string;
+  raw_unit: string | null; canonical_unit: string | null; conversion_factor: number;
+  method_name: string | null; is_active: boolean;
 };
 
 export type LabKalitesi = {
@@ -61,6 +73,7 @@ export type LabAnaliti = {
   provider_flag: string | null;
   method_name: string | null;
   measured_at: string;
+  source_device_id: string | null;
 };
 
 export type LabAnalitGirdisi = {
@@ -83,6 +96,7 @@ export type LabSurumu = {
   stage: 'partial' | 'final' | 'corrected';
   correction_of: string | null;
   source_kind: 'manual' | 'provider' | 'file_import' | 'image_ocr';
+  source_device_id: string | null;
   created_at: string;
 };
 
@@ -135,7 +149,7 @@ async function rpc<T>(ad: string, parametre: Record<string, unknown>): Promise<T
 
 export async function labIstemleriniOku(klinik: string): Promise<LabIstemi[]> {
   const { data, error } = await istemci.from('clinic_lab_requests')
-    .select('id,pet_id,provider_name,external_request_id,test_name,specimen,status,result_value,result_note,reviewed_at,panel_code,lab_system_type,result_stage,current_result_revision,created_at')
+    .select('id,pet_id,provider_name,external_request_id,test_name,specimen,status,result_value,result_note,reviewed_at,panel_code,lab_system_type,result_stage,current_result_revision,device_id,created_at')
     .eq('clinic_id', klinik).order('created_at', { ascending: false });
   if (error) throw guvenliHata(error, 'lab_istemleri');
   return (data ?? []) as LabIstemi[];
@@ -164,7 +178,7 @@ export async function labKalitesiniOku(klinik: string): Promise<LabKalitesi[]> {
 
 export async function labAnalitleriniOku(klinik: string): Promise<LabAnaliti[]> {
   const { data, error } = await istemci.from('clinic_lab_observations')
-    .select('id,request_id,analyte_code,analyte_name,numeric_value,text_value,unit,reference_low,reference_high,provider_flag,method_name,measured_at')
+    .select('id,request_id,analyte_code,analyte_name,numeric_value,text_value,unit,reference_low,reference_high,provider_flag,method_name,measured_at,source_device_id')
     .eq('clinic_id', klinik).order('created_at');
   if (error) throw guvenliHata(error, 'lab_analitleri');
   return ((data ?? []) as LabAnaliti[]).map((satir) => ({
@@ -177,7 +191,7 @@ export async function labAnalitleriniOku(klinik: string): Promise<LabAnaliti[]> 
 
 export async function labSurumleriniOku(klinik: string): Promise<LabSurumu[]> {
   const { data, error } = await istemci.from('clinic_lab_result_revisions')
-    .select('id,request_id,revision,stage,correction_of,source_kind,created_at')
+    .select('id,request_id,revision,stage,correction_of,source_kind,source_device_id,created_at')
     .eq('clinic_id', klinik).order('revision', { ascending: false });
   if (error) throw guvenliHata(error, 'lab_surumleri');
   return (data ?? []) as LabSurumu[];
@@ -208,16 +222,54 @@ export async function kuralAciklamalariniOku(): Promise<KuralAciklamasi[]> {
 
 export const labIstemiOlustur = (girdi: {
   klinik: string; hasta: string; saglayici: string; panel: string; sistem: LabSistemTuru;
-  numune?: string | null; disKimlik?: string | null;
-}) => rpc<string>('create_lab_request_v2', {
+  cihaz?: string | null; numune?: string | null; disKimlik?: string | null;
+}) => rpc<string>('create_lab_request_v3', {
   p_clinic: girdi.klinik,
   p_pet: girdi.hasta,
   p_provider: girdi.saglayici,
   p_panel: girdi.panel,
   p_system_type: girdi.sistem,
+  p_device: girdi.cihaz ?? null,
   p_specimen: girdi.numune ?? null,
   p_external_request: girdi.disKimlik ?? null,
 });
+
+export async function labCihazlariniOku(klinik: string): Promise<LabCihazi[]> {
+  const { data, error } = await istemci.from('clinic_lab_devices')
+    .select('id,display_name,manufacturer,model,device_identifier,serial_last4,location,lab_system_type,disciplines,is_active,mapping_version')
+    .eq('clinic_id', klinik).order('display_name');
+  if (error) throw guvenliHata(error, 'lab_cihazlari');
+  return (data ?? []) as LabCihazi[];
+}
+
+export async function labCihazEslemeleriniOku(klinik: string): Promise<LabCihazEslemesi[]> {
+  const { data, error } = await istemci.from('clinic_lab_device_mappings')
+    .select('id,device_id,raw_code,canonical_code,raw_unit,canonical_unit,conversion_factor,method_name,is_active')
+    .eq('clinic_id', klinik).eq('is_active', true).order('raw_code');
+  if (error) throw guvenliHata(error, 'lab_cihaz_eslemeleri');
+  return ((data ?? []) as LabCihazEslemesi[]).map((row) => ({ ...row, conversion_factor: Number(row.conversion_factor) }));
+}
+
+export const labCihaziniKaydet = (girdi: {
+  klinik: string; id?: string | null; ad: string; uretici: string; model: string;
+  kimlik: string; seriSon4?: string | null; konum?: string | null; sistem: LabSistemTuru;
+  disiplinler: LabDisiplini[];
+}) => rpc<string>('save_lab_device', { p_clinic: girdi.klinik, p_id: girdi.id ?? null,
+  p_display_name: girdi.ad, p_manufacturer: girdi.uretici, p_model: girdi.model,
+  p_device_identifier: girdi.kimlik, p_serial_last4: girdi.seriSon4 ?? null,
+  p_location: girdi.konum ?? null, p_system_type: girdi.sistem,
+  p_disciplines: girdi.disiplinler, p_integration: null });
+
+export const labCihaziniAktiflestir = (cihaz: string, aktif: boolean) =>
+  rpc<null>('set_lab_device_active', { p_device: cihaz, p_active: aktif });
+
+export const labCihazEslemesiniKaydet = (girdi: {
+  cihaz: string; id?: string | null; hamKod: string; kanonikKod: string; hamBirim?: string | null;
+  kanonikBirim?: string | null; katsayi: number; yontem?: string | null;
+}) => rpc<string>('save_lab_device_mapping', { p_device: girdi.cihaz, p_id: girdi.id ?? null,
+  p_raw_code: girdi.hamKod, p_canonical_code: girdi.kanonikKod,
+  p_raw_unit: girdi.hamBirim ?? null, p_canonical_unit: girdi.kanonikBirim ?? null,
+  p_conversion_factor: girdi.katsayi, p_method_name: girdi.yontem ?? null });
 
 export const labDurumunuGuncelle = (girdi: {
   istem: string; durum: LabDurumu; sonucNotu?: string | null;
@@ -236,22 +288,17 @@ export async function labSonucSurumuKaydet(girdi: {
   analitler: LabAnalitGirdisi[];
   duzeltme?: string | null;
   kaynak: 'manual' | 'image_ocr';
+  beklenenSurum: number;
+  cihaz?: string | null;
 }): Promise<string> {
-  const v3 = await istemci.rpc('save_lab_result_revision_v3', {
+  const v5 = await istemci.rpc('save_lab_result_revision_v5', {
     p_request: girdi.istem, p_stage: girdi.asama, p_observations: girdi.analitler,
     p_correction_of: girdi.duzeltme ?? null, p_source_kind: girdi.kaynak,
+    p_expected_revision: girdi.beklenenSurum, p_result_note: null,
+    p_source_device: girdi.cihaz ?? null,
   });
-  if (!v3.error) return String(v3.data);
-  if (v3.error.code !== 'PGRST202') throw guvenliHata(v3.error, 'save_lab_result_revision_v3');
-
-  // 0190 ile v3 yayına alınana kadar yalnız fotoğrafsız v2 kapısına geri düş.
-  // Yetki/validasyon/ağ hatalarında geri dönüş yapılmaz; hata görünür kalır.
-  const v2 = await istemci.rpc('save_lab_result_revision_v2', {
-    p_request: girdi.istem, p_stage: girdi.asama, p_observations: girdi.analitler,
-    p_correction_of: girdi.duzeltme ?? null, p_source_image: null,
-  });
-  if (v2.error) throw guvenliHata(v2.error, 'save_lab_result_revision_v2');
-  return String(v2.data);
+  if (v5.error) throw guvenliHata(v5.error, 'save_lab_result_revision_v5');
+  return String(v5.data);
 }
 
 export const labDegerlendirmesiUret = (istem: string) =>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Pill, Plus, Ban, Printer } from 'lucide-react';
+import { Pill, Plus, Ban, Printer, FileCheck2, RotateCcw, ShieldCheck, X } from 'lucide-react';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
 import Bos from './Bos';
@@ -14,6 +14,10 @@ import {
   type Hasta,
 } from './veri';
 import { receteyiYazdir } from './recete-yazdir';
+import {
+  entegrasyonlariOku, resmiReceteGonderimleriniOku, resmiReceteyiHazirla,
+  type KlinikEntegrasyonu, type ResmiReceteGonderimi,
+} from './entegrasyon-veri';
 
 /**
  * RECETELER (esitleme denetimi 3. madde, 27.08.2026).
@@ -38,6 +42,10 @@ import { receteyiYazdir } from './recete-yazdir';
  */
 
 const bosKalem = (): ReceteKalemi => ({ drug_name: '', dosage: '', frequency: '', duration: '', note: '' });
+const RESMI_DURUM: Record<ResmiReceteGonderimi['status'], string> = {
+  prepared: 'Hazırlandı', queued: 'Kuyrukta', submitted: 'Sağlayıcıya iletildi',
+  accepted: 'Kabul edildi', rejected: 'Reddedildi', cancelled: 'İptal edildi',
+};
 
 function tarih(s: string): string {
   try {
@@ -50,13 +58,17 @@ function tarih(s: string): string {
 export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; klinikAdi: string }) {
   const [receteler, setReceteler] = useState<Recete[] | null>(null);
   const [hastalar, setHastalar] = useState<Hasta[]>([]);
+  const [entegrasyonlar, setEntegrasyonlar] = useState<KlinikEntegrasyonu[]>([]);
+  const [resmiGonderimler, setResmiGonderimler] = useState<ResmiReceteGonderimi[]>([]);
   const [hata, setHata] = useState<string | null>(null);
+  const [bilgi, setBilgi] = useState<string | null>(null);
 
   const [yazAcik, setYazAcik] = useState(false);
   const [hasta, setHasta] = useState('');
   const [tani, setTani] = useState('');
   const [notlar, setNotlar] = useState('');
   const [kalemler, setKalemler] = useState<ReceteKalemi[]>([bosKalem()]);
+  const [degistirilen, setDegistirilen] = useState<string | null>(null);
   const [bekliyor, setBekliyor] = useState(false);
   const [yazHatasi, setYazHatasi] = useState<string | null>(null);
 
@@ -67,9 +79,14 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
   async function yukle() {
     setHata(null);
     try {
-      const [r, h] = await Promise.all([receteleriOku(klinik), hastalariOku(klinik)]);
+      const [r, h, e, g] = await Promise.all([
+        receteleriOku(klinik), hastalariOku(klinik), entegrasyonlariOku(klinik),
+        resmiReceteGonderimleriniOku(klinik),
+      ]);
       setReceteler(r);
       setHastalar(h);
+      setEntegrasyonlar(e);
+      setResmiGonderimler(g);
     } catch (e) {
       setReceteler([]);
       setHata((e as { message?: string })?.message ?? '');
@@ -93,6 +110,16 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
   /** Ilac adi bos olan kalem yazilmiyor: bos satir bir ilac degildir. */
   const gecerliKalemler = kalemler.filter((k) => k.drug_name.trim().length > 0);
 
+  function yazmayiKapat() {
+    setYazAcik(false);
+    setHasta('');
+    setTani('');
+    setNotlar('');
+    setKalemler([bosKalem()]);
+    setDegistirilen(null);
+    setYazHatasi(null);
+  }
+
   async function kaydet() {
     setBekliyor(true); setYazHatasi(null);
     try {
@@ -107,16 +134,36 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
           note: k.note?.trim() || null,
         })),
         tani: tani.trim() || null,
-        notlar: notlar.trim() || null,
+        notlar: notlar.trim() || null, degistirilen,
       });
-      setYazAcik(false);
-      setHasta(''); setTani(''); setNotlar(''); setKalemler([bosKalem()]);
+      yazmayiKapat();
+      setBilgi(degistirilen ? 'Düzeltilmiş reçete yeni sürüm olarak yazıldı; önceki reçete korundu.' : 'Reçete kaydedildi.');
       await yukle();
     } catch (e) {
       setYazHatasi((e as { message?: string })?.message ?? 'Reçete yazılamadı.');
     } finally {
       setBekliyor(false);
     }
+  }
+
+  function duzeltmeyeAc(recete: Recete) {
+    setHasta(recete.pet_id); setTani(recete.diagnosis ?? ''); setNotlar(recete.notes ?? '');
+    setKalemler(recete.prescription_items.length ? recete.prescription_items.map((kalem) => ({
+      drug_name: kalem.drug_name, dosage: kalem.dosage, frequency: kalem.frequency,
+      duration: kalem.duration, note: kalem.note,
+    })) : [bosKalem()]);
+    setDegistirilen(recete.id); setYazHatasi(null); setYazAcik(true);
+  }
+
+  async function resmiHazirla(recete: string) {
+    if (bekliyor) return;
+    setBekliyor(true); setHata(null); setBilgi(null);
+    try {
+      await resmiReceteyiHazirla(recete);
+      setBilgi('Yerel reçete resmî sağlayıcı gönderimi için hazırlandı; sağlayıcı kabulü gelmeden resmî reçete sayılmaz.');
+      await yukle();
+    } catch (e) { setHata((e as Error).message); }
+    finally { setBekliyor(false); }
   }
 
   async function iptalEt() {
@@ -134,7 +181,8 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
   }
 
   if (receteler === null) return <Yukleniyor />;
-  if (hata) return <Hata mesaj={hata} />;
+
+  const resmiHazir = entegrasyonlar.some((satir) => satir.kind === 'official_erx' && satir.status === 'ready');
 
   return (
     <section className="pnl-bolum">
@@ -149,7 +197,7 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
           <button
             type="button"
             className="pnl-dugme pnl-dugme-olumlu"
-            onClick={() => setYazAcik(true)}
+            onClick={() => { yazmayiKapat(); setYazAcik(true); }}
             disabled={hastalar.length === 0}
           >
             <Plus size={16} aria-hidden="true" />
@@ -158,6 +206,10 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
         </div>
       </header>
 
+      <div className="pnl-klinik-uyari"><ShieldCheck size={20} /><div><strong>Yerel reçete ile resmî e-reçete aynı kayıt değildir</strong><p>{resmiHazir ? 'Hazırla işlemi yalnız gönderim taslağı oluşturur. Resmî durum ve dış kimlik yalnız sağlayıcı cevabıyla güncellenir.' : 'E-reçete bağlantısı hazır değil. Yerel reçete yazılabilir; resmî gönderim Entegrasyon ayarlarında bağlantı doğrulanmadan açılmaz.'}</p></div></div>
+      {hata ? <Hata mesaj={hata} kucuk tekrar={() => void yukle()} /> : null}
+      {bilgi ? <p className="pnl-bilgi" role="status">{bilgi}</p> : null}
+
       {receteler.length === 0 ? (
         <Bos
           baslik="Henüz reçete yok"
@@ -165,7 +217,9 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
         />
       ) : (
         <ul className="pnl-satirlar">
-          {receteler.map((r) => (
+          {receteler.map((r) => {
+            const resmi = resmiGonderimler.find((gonderim) => gonderim.prescription_id === r.id);
+            return (
             <li key={r.id} className="pnl-satir">
               <span className="pnl-avatar" aria-hidden="true"><Pill size={17} /></span>
               <div className="pnl-satir-govde">
@@ -188,6 +242,8 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
                     İptal edildi{r.void_reason ? `: ${r.void_reason}` : ''}
                   </p>
                 ) : null}
+                {r.superseded_by ? <p className="pnl-satir-alt">Yeni reçeteyle düzeltildi; geçmiş sürüm</p> : null}
+                {resmi ? <p className="pnl-satir-alt"><FileCheck2 size={13} /> Resmî gönderim: {RESMI_DURUM[resmi.status]}{resmi.external_id ? ` · ${resmi.external_id}` : ''}{resmi.last_error_code ? ` · hata: ${resmi.last_error_code}` : ''}</p> : null}
               </div>
               <span className="pnl-satir-sag">
                 {/* ⚠️ IPTAL EDILMIS RECETE DE YAZDIRILABILIYOR. Ciktinin
@@ -203,19 +259,21 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
                 </button>
                 {r.voided_at ? (
                   <span className="pnl-etiket">İptal</span>
+                ) : r.superseded_by ? (
+                  <span className="pnl-etiket">Düzeltildi</span>
                 ) : (
-                  <button
+                  <><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => duzeltmeyeAc(r)}><RotateCcw size={15} /> Düzelt</button>{resmiHazir && !resmi ? <button type="button" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor} onClick={() => void resmiHazirla(r.id)}><FileCheck2 size={15} /> E-reçeteye hazırla</button> : null}<button
                     type="button"
                     className="pnl-dugme pnl-dugme-sade"
                     onClick={() => { setIptalEdilecek(r); setIptalSebebi(''); setIptalHatasi(null); }}
                   >
                     <Ban size={15} aria-hidden="true" />
                     İptal et
-                  </button>
+                  </button></>
                 )}
               </span>
             </li>
-          ))}
+          ); })}
         </ul>
       )}
 
@@ -227,11 +285,12 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
       </p>
 
       <Diyalog
-        baslik="Reçete yaz"
+        baslik={degistirilen ? 'Reçeteyi yeni sürümle düzelt' : 'Reçete yaz'}
         aciklama="İlaç, doz ve süreyi siz girersiniz. Uygulama öneri sunmaz."
         acik={yazAcik}
-        kapat={() => setYazAcik(false)}
+        kapat={yazmayiKapat}
       >
+        {degistirilen ? <div className="pnl-gizlilik-notu"><RotateCcw size={17} /><span>Önceki reçete silinmez; bu kayıt onun yerine geçen yeni reçete olur.</span></div> : null}
         <div className="pnl-alan">
           <label htmlFor="pnl-recete-hasta">Hasta</label>
           <select
@@ -290,16 +349,18 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
               onChange={(e) => setKalemler((o) => o.map((x, j) => (j === i ? { ...x, duration: e.target.value } : x)))}
               placeholder="Süre"
             />
+            {kalemler.length > 1 ? <button type="button" className="pnl-metin-dugme pnl-eksi" onClick={() => setKalemler((o) => o.filter((_, j) => j !== i))}><X size={13} /> Bu ilacı kaldır</button> : null}
           </div>
         ))}
 
         <button
           type="button"
           className="pnl-dugme pnl-dugme-sade"
+          disabled={kalemler.length >= 20}
           onClick={() => setKalemler((o) => [...o, bosKalem()])}
         >
           <Plus size={15} aria-hidden="true" />
-          İlaç ekle
+          {kalemler.length >= 20 ? 'En fazla 20 ilaç' : 'İlaç ekle'}
         </button>
 
         <div className="pnl-alan">
@@ -316,7 +377,7 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
         {yazHatasi ? <p className="pnl-hata-kucuk">{yazHatasi}</p> : null}
 
         <div className="pnl-diyalog-eylem">
-          <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setYazAcik(false)}>
+          <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={yazmayiKapat}>
             Vazgeç
           </button>
           {/* ⚠️ Hasta secilmeden ve en az bir ilac girilmeden yazilamiyor:

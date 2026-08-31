@@ -84,6 +84,16 @@ export type IletisimDogrulamasi = {
   revoked_at: string | null;
 };
 
+export type ResmiReceteGonderimi = {
+  id: string;
+  prescription_id: string;
+  status: 'prepared' | 'queued' | 'submitted' | 'accepted' | 'rejected' | 'cancelled';
+  provider_name: string;
+  external_id: string | null;
+  last_error_code: string | null;
+  updated_at: string;
+};
+
 async function rpc<T>(ad: string, parametre: Record<string, unknown>): Promise<T> {
   const { data, error } = await istemci.rpc(ad, parametre);
   if (error) throw guvenliHata(error, ad);
@@ -208,3 +218,14 @@ export const iletiKuyrukla = (girdi: {
 
 export const kuyruktakiIletiyiIptalEt = (is: string) =>
   rpc<null>('cancel_queued_clinic_communication', { p_job: is });
+
+export async function resmiReceteGonderimleriniOku(klinik: string): Promise<ResmiReceteGonderimi[]> {
+  const { data, error } = await istemci.from('official_prescription_submissions')
+    .select('id,prescription_id,status,provider_name,external_id,last_error_code,updated_at')
+    .eq('clinic_id', klinik).order('updated_at', { ascending: false });
+  if (error) throw guvenliHata(error, 'resmi_recete_gonderimleri');
+  return (data ?? []) as ResmiReceteGonderimi[];
+}
+
+export const resmiReceteyiHazirla = (recete: string) =>
+  rpc<string>('prepare_official_prescription', { p_prescription: recete });

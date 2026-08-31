@@ -1,11 +1,11 @@
-import { FileText, Syringe, MessagesSquare, Heart, Settings, Clock, Megaphone, Stethoscope, Bell, Star, Plus, Send } from 'lucide-react';
+import { FileText, Syringe, MessagesSquare, Heart, Settings, Clock, Megaphone, Stethoscope, Bell, Star, Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import {
   saglikKayitlariniOku,
   hatirlatmalariOku,
   gonderileriOku,
-  ilanlariOku,
+  ilanlarimiOku,
   duyurulariOku,
   hizmetleriOku,
   saatleriOku,
@@ -15,27 +15,35 @@ import {
   duyuruOlusturVeGonder,
   ilanOlustur,
   gonderiPaylas,
-  mesajGonder,
   ulasilabilirKisileriOku,
   turleriOku,
-  type UlasilabilirKisi,
   type Tur,
   type Hizmet,
   type CalismaSaati,
   type Duyuru,
+  type UlasilabilirKisi,
   type HizmetAdi,
   hizmetiAcKapat,
   calismaSaatiYaz,
   saglikKaydiSil,
   klinikTurleriniOku,
   turAcKapat,
+  sahiplendirmeBasvurulariniOku,
+  sahiplendirmeBasvurusunuYanitla,
+  type SahiplendirmeBasvurusu,
 } from './veri';
 import { KAYIT_TURU, TUR, tarihYaz } from './sozluk';
 import PanelListe from './PanelListe';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
-import Bos from './Bos';
 import Diyalog from './Diyalog';
+import { guvenliGorselleriYukle, imzaliGorselAdresi } from './medya-veri';
+
+function DuyuruGorseli({ storageKey }: { storageKey: string }) {
+  const [adres, setAdres] = useState<string | null>(null);
+  useEffect(() => { let gecerli = true; imzaliGorselAdresi(storageKey).then((u) => { if (gecerli) setAdres(u); }).catch(() => setAdres('')); return () => { gecerli = false; }; }, [storageKey]);
+  return adres ? <img className="pnl-duyuru-gorseli" src={adres} alt="Duyuru görseli" loading="lazy" /> : null;
+}
 
 /**
  * REFERANS MENUSUNDEKI BOLUMLER
@@ -146,6 +154,7 @@ export function PanelTopluluk({ klinik }: { klinik: string }) {
   const [acik, setAcik] = useState(false);
   const [metin, setMetin] = useState('');
   const [herkese, setHerkese] = useState(true);
+  const [gorseller, setGorseller] = useState<File[]>([]);
   const [bekliyor, setBekliyor] = useState(false);
   const [islemHatasi, setIslemHatasi] = useState<string | null>(null);
   const [bilgi, setBilgi] = useState<string | null>(null);
@@ -156,8 +165,9 @@ export function PanelTopluluk({ klinik }: { klinik: string }) {
     if (bekliyor) return;
     setBekliyor(true); setIslemHatasi(null); setBilgi(null);
     try {
-      await gonderiPaylas(klinik, metin, herkese);
-      setAcik(false); setMetin('');
+      const anahtarlar = await guvenliGorselleriYukle(gorseller, `post-${klinik}`);
+      await gonderiPaylas(klinik, metin, herkese, anahtarlar);
+      setAcik(false); setMetin(''); setGorseller([]);
       setBilgi('Paylaşımınız yayımlandı.');
       setTazele((n) => n + 1);
     } catch (err) {
@@ -174,7 +184,7 @@ export function PanelTopluluk({ klinik }: { klinik: string }) {
       key={tazele}
       baslik="Topluluk"
       aciklama="Kliniğiniz adına yaptığınız paylaşımlar ve aldıkları etkileşim."
-      yukle={gonderileriOku}
+      yukle={() => gonderileriOku(klinik)}
       bosBaslik="Henüz paylaşımınız yok"
       bosAciklama="Kliniğiniz adına bir paylaşım yaptığınızda, aldığı beğeni ve yorumlarla birlikte burada listelenir."
       anahtar={(g) => g.id}
@@ -187,6 +197,7 @@ export function PanelTopluluk({ klinik }: { klinik: string }) {
         <>
           <span className="pnl-avatar" aria-hidden="true"><MessagesSquare size={17} /></span>
           <div className="pnl-kisi-bilgi">
+            {g.media?.[0]?.storage_key ? <DuyuruGorseli storageKey={g.media[0].storage_key} /> : null}
             <p className="pnl-kisi-ad">{(g.body || 'Metinsiz paylaşım').slice(0, 90)}</p>
             <p className="pnl-kisi-rol">{g.like_count} beğeni · {g.comment_count} yorum</p>
             <p className="pnl-kisi-ek pnl-soluk">{tarihYaz(g.created_at, false)}</p>
@@ -205,6 +216,7 @@ export function PanelTopluluk({ klinik }: { klinik: string }) {
               placeholder="Örnek: Kış aylarında kedilerde su tüketimi azalır. Su kabını sık sık tazelemek böbrek sağlığını koruyor." />
             <span className="pnl-alan-ipucu">{metin.length} / 2000 karakter</span>
           </div>
+          <div className="pnl-alan"><label htmlFor="pnl-post-gorseller">Görseller (en fazla 8)</label><input id="pnl-post-gorseller" type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={(e) => setGorseller(Array.from(e.target.files ?? []).slice(0, 8))} /><span className="pnl-alan-ipucu">{gorseller.length ? `${gorseller.length} görsel seçildi.` : 'Görsel seçilmedi.'}</span></div>
           <div className="pnl-alan">
             <label htmlFor="pnl-post-gorunur">Kimler görebilsin</label>
             <select id="pnl-post-gorunur" value={herkese ? 'public' : 'followers'}
@@ -228,21 +240,25 @@ export function PanelTopluluk({ klinik }: { klinik: string }) {
 export function PanelSahiplendirme() {
   const [acik, setAcik] = useState(false);
   const [turler, setTurler] = useState<Tur[]>([]);
-  const [form, setForm] = useState({ baslik: '', aciklama: '', tur: 'cat', cinsiyet: 'unknown', kosullar: '' });
+  const [form, setForm] = useState({ baslik: '', aciklama: '', tur: 'cat', cinsiyet: 'unknown', kosullar: '', sehir: '', ilce: '' });
+  const [gorseller, setGorseller] = useState<File[]>([]);
+  const [basvurular, setBasvurular] = useState<SahiplendirmeBasvurusu[]>([]);
   const [bekliyor, setBekliyor] = useState(false);
   const [islemHatasi, setIslemHatasi] = useState<string | null>(null);
   const [bilgi, setBilgi] = useState<string | null>(null);
   const [tazele, setTazele] = useState(0);
 
   useEffect(() => { turleriOku().then(setTurler).catch(() => setTurler([])); }, []);
+  useEffect(() => { sahiplendirmeBasvurulariniOku().then(setBasvurular).catch(() => setBasvurular([])); }, [tazele]);
 
   async function olustur(e: React.FormEvent) {
     e.preventDefault();
     if (bekliyor) return;
     setBekliyor(true); setIslemHatasi(null); setBilgi(null);
     try {
-      await ilanOlustur(form);
-      setAcik(false); setForm({ baslik: '', aciklama: '', tur: 'cat', cinsiyet: 'unknown', kosullar: '' });
+      const anahtarlar = await guvenliGorselleriYukle(gorseller, 'adoption');
+      await ilanOlustur({ ...form, gorseller: anahtarlar });
+      setAcik(false); setForm({ baslik: '', aciklama: '', tur: 'cat', cinsiyet: 'unknown', kosullar: '', sehir: '', ilce: '' }); setGorseller([]);
       /* ⚠️ "Yayimlandi" DEMIYORUZ: ilan `pending` aciliyor ve moderasyondan
          geciyor. Yayimlandi demek, olmayan bir seyi soylemek olurdu. */
       setBilgi('İlanınız oluşturuldu. Yayımlanmadan önce incelemeden geçiyor.');
@@ -250,6 +266,13 @@ export function PanelSahiplendirme() {
     } catch (err) {
       setIslemHatasi((err as { message?: string })?.message ?? '');
     } finally { setBekliyor(false); }
+  }
+
+  async function basvuruyuYanitla(id: string, durum: 'accepted' | 'rejected') {
+    if (bekliyor) return; setBekliyor(true); setIslemHatasi(null);
+    try { await sahiplendirmeBasvurusunuYanitla(id, durum); setBilgi(durum === 'accepted' ? 'Başvuru kabul edildi; iletişim bilgisi açıldı.' : 'Başvuru reddedildi.'); setTazele((n) => n + 1); }
+    catch (e) { setIslemHatasi((e as Error).message); }
+    finally { setBekliyor(false); }
   }
 
   return (
@@ -261,7 +284,7 @@ export function PanelSahiplendirme() {
       key={tazele}
       baslik="Sahiplendirme"
       aciklama="Sahiplendirme ilanları. Kliniğinize bırakılan bir hayvan için ilan açabilirsiniz."
-      yukle={ilanlariOku}
+      yukle={ilanlarimiOku}
       bosBaslik="Görünen ilan yok"
       bosAciklama="Sahiplendirme ilanları açıldıkça burada listelenir."
       anahtar={(i) => i.id}
@@ -274,8 +297,12 @@ export function PanelSahiplendirme() {
         <>
           <span className="pnl-avatar" aria-hidden="true"><Heart size={17} /></span>
           <div className="pnl-kisi-bilgi">
+            {i.photos?.[0]?.storage_key ? <DuyuruGorseli storageKey={i.photos[0].storage_key} /> : null}
             <p className="pnl-kisi-ad">{i.title || 'Başlıksız ilan'}</p>
             <p className="pnl-kisi-rol">{i.species_code ? (TUR[i.species_code] ?? i.species_code) : 'Tür belirtilmemiş'}</p>
+            <p className="pnl-kisi-ek">Durum: {i.status}{i.city ? ` · ${i.district ? `${i.district}, ` : ''}${i.city}` : ''}</p>
+            {i.reject_reason ? <p className="pnl-hata-kucuk">Ret gerekçesi: {i.reject_reason}</p> : null}
+            {basvurular.filter((b) => b.listing_id === i.id).map((b) => <div key={b.id} className="pnl-basvuru-karti"><strong>Başvuru · {b.status === 'pending' ? 'bekliyor' : b.status === 'accepted' ? 'kabul edildi' : 'reddedildi'}</strong><p>{b.message}</p>{b.status === 'accepted' && b.contact_phone ? <a href={`tel:${b.contact_phone}`}>{b.contact_phone}</a> : null}{b.status === 'pending' ? <span className="pnl-satir-eylem"><button type="button" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor} onClick={() => void basvuruyuYanitla(b.id, 'accepted')}>Kabul et</button><button type="button" className="pnl-dugme pnl-dugme-sade" disabled={bekliyor} onClick={() => void basvuruyuYanitla(b.id, 'rejected')}>Reddet</button></span> : null}</div>)}
             <p className="pnl-kisi-ek pnl-soluk">{tarihYaz(i.created_at, false)}</p>
           </div>
         </>
@@ -291,6 +318,8 @@ export function PanelSahiplendirme() {
               onChange={(e) => setForm((f) => ({ ...f, baslik: e.target.value }))}
               placeholder="Örnek: Üç aylık tekir yavru yuva arıyor" />
           </div>
+          <div className="pnl-form-ikili"><div className="pnl-alan"><label htmlFor="pnl-i-sehir">Şehir</label><input id="pnl-i-sehir" maxLength={80} value={form.sehir} onChange={(e) => setForm((f) => ({ ...f, sehir: e.target.value }))} /></div><div className="pnl-alan"><label htmlFor="pnl-i-ilce">İlçe</label><input id="pnl-i-ilce" maxLength={80} value={form.ilce} onChange={(e) => setForm((f) => ({ ...f, ilce: e.target.value }))} /></div></div>
+          <div className="pnl-alan"><label htmlFor="pnl-i-gorseller">Görseller (en fazla 8)</label><input id="pnl-i-gorseller" type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={(e) => setGorseller(Array.from(e.target.files ?? []).slice(0, 8))} /><span className="pnl-alan-ipucu">{gorseller.length ? `${gorseller.length} görsel seçildi.` : 'Görsel seçilmedi.'}</span></div>
           <div className="pnl-alan">
             <label htmlFor="pnl-i-tur">Tür</label>
             <select id="pnl-i-tur" value={form.tur} onChange={(e) => setForm((f) => ({ ...f, tur: e.target.value }))}>
@@ -328,141 +357,6 @@ export function PanelSahiplendirme() {
         </form>
       </Diyalog>
     </>
-  );
-}
-
-/**
- * MESAJLAR
- *
- * ⚠️ GELEN KUTUSU YOK, YENI MESAJ VAR. Sunucuda klinigin konusma listesini
- * donduren bir cagri bulunmuyor; ama konusma ACMAK ve mesaj YAZMAK mumkun
- * (`open_direct_conversation` + `messages`). Yani ekran yarim: yazabiliyor,
- * gelen cevabi burada okuyamiyor. Bu acikca yaziliyor, gizlenmiyor.
- *
- * ⚠️ HERKESE YAZILAMIYOR: yalniz klinigin TAKIPCISI ya da MUSTERISI olanlar
- * listeleniyor (`clinic_reachable_users`). Rastgele kullanici aramak istenmeyen
- * mesajin en kolay yolu olurdu.
- */
-export function PanelMesajlar({ klinik }: { klinik: string }) {
-  const [kisiler, setKisiler] = useState<UlasilabilirKisi[] | null>(null);
-  const [acik, setAcik] = useState(false);
-  const [kisi, setKisi] = useState('');
-  const [metin, setMetin] = useState('');
-  const [bekliyor, setBekliyor] = useState(false);
-  const [islemHatasi, setIslemHatasi] = useState<string | null>(null);
-  const [bilgi, setBilgi] = useState<string | null>(null);
-
-  useEffect(() => {
-    setKisiler(null);
-    ulasilabilirKisileriOku(klinik).then(setKisiler).catch(() => setKisiler([]));
-  }, [klinik]);
-
-  async function gonder(e: React.FormEvent) {
-    e.preventDefault();
-    if (bekliyor) return;
-    setBekliyor(true); setIslemHatasi(null); setBilgi(null);
-    try {
-      await mesajGonder(kisi, metin);
-      setAcik(false); setMetin('');
-      setBilgi('Mesajınız gönderildi. Gelen cevapları şimdilik telefondaki uygulamadan görebilirsiniz.');
-    } catch (err) {
-      setIslemHatasi((err as { message?: string })?.message ?? '');
-    } finally { setBekliyor(false); }
-  }
-
-  const iliski = (r: string) => (r === 'customer' ? 'müşteriniz' : r === 'follower' ? 'takipçiniz' : r);
-
-  return (
-    <section className="pnl-bolum">
-      <header className="pnl-bolum-basi">
-        {/*
-          ⚠️ BOLUM BASLIGI BURADA YOK, UST CUBUKTA. Once ikisi de yaziyordu ve
-          ekranda ayni kelime iki kez goruluyordu ("Raporlar / Raporlar").
-          Ust cubuk yapiskan, yani sayfa kaydiginca da gorunur duruyor; burada
-          tekrarlamak hem yer yiyor hem ekran okuyucuya ayni basligi iki kez
-          okutuyordu. Burada yalniz ACIKLAMA ve eylem dugmeleri kaliyor.
-        */}
-        <div>
-          <p className="pnl-aciklama">
-            Müşterilerinize ve takipçilerinize mesaj yazabilirsiniz. Gelen cevapları şimdilik
-            telefondaki uygulamadan görüyorsunuz.
-          </p>
-        </div>
-        <button
-          type="button"
-          className="pnl-dugme pnl-dugme-olumlu"
-          disabled={!kisiler || kisiler.length === 0}
-          title={kisiler && kisiler.length === 0 ? 'Mesaj yazabileceğiniz kişi yok' : undefined}
-          onClick={() => { setKisi(kisiler?.[0]?.user_id ?? ''); setMetin(''); setAcik(true); setIslemHatasi(null); }}>
-          <Send size={15} /> Yeni mesaj
-        </button>
-      </header>
-
-      {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
-      {bilgi ? <p className="pnl-bilgi" role="status">{bilgi}</p> : null}
-
-      {kisiler === null ? (
-        <Yukleniyor />
-      ) : kisiler.length === 0 ? (
-        <Bos
-          baslik="Mesaj yazabileceğiniz kimse yok"
-          aciklama="Yalnızca kliniğinizin müşterilerine ve takipçilerine mesaj yazılabiliyor. Müşteri davet ettiğinizde ya da biri sizi takip ettiğinde burada görünür."
-        />
-      ) : (
-        <ul className="pnl-kisi-listesi">
-          {kisiler.map((k) => (
-            <li key={k.user_id} className="pnl-kisi">
-              <span className="pnl-avatar" aria-hidden="true"><MessagesSquare size={17} /></span>
-              <div className="pnl-kisi-bilgi">
-                <p className="pnl-kisi-ad">{k.display_name || 'İsim girilmemiş'}</p>
-                <p className="pnl-kisi-rol">{iliski(k.relation)}</p>
-              </div>
-              <button
-                type="button"
-                className="pnl-dugme pnl-dugme-sade pnl-kisi-eylem"
-                onClick={() => { setKisi(k.user_id); setMetin(''); setAcik(true); setIslemHatasi(null); }}>
-                <Send size={14} /> Mesaj yaz
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <p className="pnl-dipnot">
-        <MessagesSquare size={14} aria-hidden="true" />
-        Gelen mesajları web panelinde okumak henüz mümkün değil: sunucu tarafında kliniğin gelen
-        kutusunu veren bir yol yok. Hazır olduğunda bu ekran tamamlanacak.
-      </p>
-
-      <Diyalog acik={acik} kapat={() => setAcik(false)} baslik="Mesaj yaz"
-        aciklama="Mesajınız kişiye bildirim olarak gider.">
-        <form onSubmit={gonder}>
-          <div className="pnl-alan">
-            <label htmlFor="pnl-msj-kisi">Kime</label>
-            <select id="pnl-msj-kisi" required value={kisi} onChange={(e) => setKisi(e.target.value)}>
-              {(kisiler ?? []).map((k) => (
-                <option key={k.user_id} value={k.user_id}>
-                  {k.display_name || 'İsim girilmemiş'} — {iliski(k.relation)}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="pnl-alan">
-            <label htmlFor="pnl-msj-metin">Mesaj</label>
-            <textarea id="pnl-msj-metin" required maxLength={1000} value={metin}
-              onChange={(e) => setMetin(e.target.value)}
-              placeholder="Örnek: Pati'nin aşı zamanı geldi, uygun olduğunuz bir gün için randevu oluşturabiliriz." />
-            <span className="pnl-alan-ipucu">{metin.length} / 1000 karakter</span>
-          </div>
-          <div className="pnl-diyalog-eylem">
-            <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setAcik(false)}>Vazgeç</button>
-            <button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor || !kisi || metin.trim().length < 2}>
-              {bekliyor ? 'Gönderiliyor…' : 'Gönder'}
-            </button>
-          </div>
-        </form>
-      </Diyalog>
-    </section>
   );
 }
 
@@ -760,26 +654,40 @@ export function PanelProfil({ klinik }: { klinik: string }) {
 const KITLE: Record<string, string> = {
   customers: 'Müşterilerinize',
   followers: 'Takipçilerinize',
-  all: 'Herkese',
+  both: 'Müşteri ve takipçilerinize',
+  selected: 'Seçtiğiniz kişilere',
 };
 
 export function PanelDuyurular({ klinik }: { klinik: string }) {
   const [acik, setAcik] = useState(false);
   const [metin, setMetin] = useState('');
-  const [kitle, setKitle] = useState<'customers' | 'followers' | 'both'>('customers');
+  const [kitle, setKitle] = useState<'customers' | 'followers' | 'both' | 'selected'>('customers');
   const [push, setPush] = useState(false);
+  const [teslim, setTeslim] = useState<'announcement' | 'notification'>('announcement');
+  const [sehir, setSehir] = useState('');
+  const [tur, setTur] = useState('');
+  const [kisiler, setKisiler] = useState<UlasilabilirKisi[]>([]);
+  const [secilenler, setSecilenler] = useState<string[]>([]);
+  const [gorseller, setGorseller] = useState<File[]>([]);
   const [bekliyor, setBekliyor] = useState(false);
   const [islemHatasi, setIslemHatasi] = useState<string | null>(null);
   const [bilgi, setBilgi] = useState<string | null>(null);
   const [tazele, setTazele] = useState(0);
+
+  useEffect(() => {
+    ulasilabilirKisileriOku(klinik).then(setKisiler).catch(() => setKisiler([]));
+  }, [klinik]);
 
   async function gonder(e: React.FormEvent) {
     e.preventDefault();
     if (bekliyor) return;
     setBekliyor(true); setIslemHatasi(null); setBilgi(null);
     try {
-      const kisi = await duyuruOlusturVeGonder(klinik, { metin, kitle, pushGonder: push });
-      setAcik(false); setMetin(''); setPush(false);
+      const anahtarlar = await guvenliGorselleriYukle(gorseller, `announcement-${klinik}`);
+      const kisi = await duyuruOlusturVeGonder(klinik, {
+        metin, kitle, pushGonder: push, teslim, sehir, tur, alicilar: secilenler, gorseller: anahtarlar,
+      });
+      setAcik(false); setMetin(''); setPush(false); setTeslim('announcement'); setSehir(''); setTur(''); setSecilenler([]); setGorseller([]);
       setBilgi(kisi > 0 ? `Duyuru ${kisi} kişiye gönderildi.` : 'Duyuru oluşturuldu ama ulaşacak kimse bulunamadı.');
       setTazele((n) => n + 1);
     } catch (err) {
@@ -809,8 +717,11 @@ export function PanelDuyurular({ klinik }: { klinik: string }) {
         <>
           <span className="pnl-avatar" aria-hidden="true"><Megaphone size={17} /></span>
           <div className="pnl-kisi-bilgi">
+            {d.media?.[0]?.storage_key ? <DuyuruGorseli storageKey={d.media[0].storage_key} /> : null}
             <p className="pnl-kisi-ad">{(d.body || 'Metinsiz duyuru').slice(0, 110)}</p>
             <p className="pnl-kisi-rol">{d.audience ? (KITLE[d.audience] ?? d.audience) : 'Kitle belirtilmemiş'}</p>
+            <p className="pnl-kisi-ek">{d.delivery_kind === 'notification' ? 'İşlemsel bildirim' : 'Duyuru'}{d.channels?.includes('push') ? ' · uygulama içi + push' : ' · uygulama içi'}</p>
+            {d.target_city || d.target_species ? <p className="pnl-kisi-ek pnl-soluk">Filtre: {[d.target_city, d.target_species ? (TUR[d.target_species] ?? d.target_species) : null].filter(Boolean).join(' · ')}</p> : null}
             <p className="pnl-kisi-ek pnl-soluk">
               {d.recipient_count ? `${d.recipient_count} kişiye ulaştı` : 'Henüz gönderilmedi'}
               {' · '}{tarihYaz(d.created_at, false)}
@@ -845,22 +756,38 @@ export function PanelDuyurular({ klinik }: { klinik: string }) {
           </div>
 
           <div className="pnl-alan">
+            <label htmlFor="pnl-duyuru-teslim">Gönderim türü</label>
+            <select id="pnl-duyuru-teslim" value={teslim} onChange={(e) => {
+              const y = e.target.value as 'announcement' | 'notification'; setTeslim(y);
+              if (y === 'notification') { setKitle('customers'); setPush(true); }
+            }}><option value="announcement">Duyuru</option><option value="notification">İşlemsel bildirim</option></select>
+            <span className="pnl-alan-ipucu">İşlemsel bildirim yalnız müşterilere gider; pazarlama duyurusu yerine kullanılmamalıdır.</span>
+          </div>
+
+          <div className="pnl-alan">
             <label htmlFor="pnl-duyuru-kitle">Kime gitsin</label>
             <select
               id="pnl-duyuru-kitle"
               value={kitle}
               onChange={(e) => {
-                const y = e.target.value as 'customers' | 'followers' | 'both';
+                const y = e.target.value as 'customers' | 'followers' | 'both' | 'selected';
                 setKitle(y);
                 /* ⚠️ Push yalniz musterilere acik; kitle degisince secim sessizce
                    kalmasin, kullanici gondereceğini sandigi bildirimi gonderemez. */
-                if (y !== 'customers') setPush(false);
+                if (y !== 'customers') { setPush(false); if (teslim === 'notification') setTeslim('announcement'); }
               }}>
               <option value="customers">Müşterilerime</option>
               <option value="followers">Takipçilerime</option>
               <option value="both">Müşteri ve takipçilerime</option>
+              <option value="selected">Seçtiğim kişilere</option>
             </select>
           </div>
+
+          {kitle === 'selected' ? <fieldset className="pnl-secilebilir-liste"><legend>Alıcılar ({secilenler.length} seçili)</legend>{kisiler.length === 0 ? <p className="pnl-not">Seçilebilecek müşteri veya takipçi yok.</p> : kisiler.map((k) => <label key={k.user_id}><input type="checkbox" checked={secilenler.includes(k.user_id)} onChange={(e) => setSecilenler((l) => e.target.checked ? [...l, k.user_id] : l.filter((id) => id !== k.user_id))} /><span>{k.display_name || 'İsimsiz kullanıcı'} <small>{k.relation === 'customer' ? 'müşteri' : 'takipçi'}</small></span></label>)}</fieldset> : null}
+
+          <div className="pnl-form-ikili"><div className="pnl-alan"><label htmlFor="pnl-duyuru-sehir">Şehir filtresi (isteğe bağlı)</label><input id="pnl-duyuru-sehir" maxLength={80} value={sehir} onChange={(e) => setSehir(e.target.value)} placeholder="Örn. İstanbul" /></div><div className="pnl-alan"><label htmlFor="pnl-duyuru-tur">Hayvan türü filtresi (isteğe bağlı)</label><select id="pnl-duyuru-tur" value={tur} onChange={(e) => setTur(e.target.value)}><option value="">Tüm türler</option>{Object.entries(TUR).map(([kod, ad]) => <option key={kod} value={kod}>{ad}</option>)}</select></div></div>
+
+          <div className="pnl-alan"><label htmlFor="pnl-duyuru-gorsel">Görseller (isteğe bağlı, en fazla 4)</label><input id="pnl-duyuru-gorsel" type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={(e) => setGorseller(Array.from(e.target.files ?? []).slice(0, 4))} /><span className="pnl-alan-ipucu">{gorseller.length ? `${gorseller.length} görsel seçildi. WebP'ye çevrilip EXIF verisi atılır.` : 'Görsel seçilmedi.'}</span></div>
 
           <label className={kitle === 'customers' ? 'pnl-anahtar' : 'pnl-anahtar pnl-anahtar-kapali'}>
             <input
@@ -881,7 +808,7 @@ export function PanelDuyurular({ klinik }: { klinik: string }) {
 
           <div className="pnl-diyalog-eylem">
             <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setAcik(false)}>Vazgeç</button>
-            <button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor || metin.trim().length < 5}>
+            <button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor || metin.trim().length < 5 || (kitle === 'selected' && secilenler.length === 0)}>
               {bekliyor ? 'Gönderiliyor…' : 'Duyuruyu gönder'}
             </button>
           </div>

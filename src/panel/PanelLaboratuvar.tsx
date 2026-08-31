@@ -8,18 +8,21 @@ import Bos from './Bos';
 import Diyalog from './Diyalog';
 import Hata from './Hata';
 import Yukleniyor from './Yukleniyor';
+import LabCihazlari from './LabCihazlari';
 import { hastalariOku, type Hasta } from './veri';
 import {
   klinikKaynaklariniOku, kuralAciklamalariniOku, labAnalitleriniOku,
+  labCihazEslemeleriniOku, labCihazlariniOku,
   labDegerlendirmeleriniOku, labDegerlendirmesiUret, labDegerlendirmesiniIncele,
   labDurumunuGuncelle, labIstemiOlustur, labIstemleriniOku, labKalitesiniOku,
   labPanelleriniOku, labSonucSurumuKaydet, labSurumleriniOku,
   type KlinikKaynak, type KuralAciklamasi, type LabAnalitGirdisi, type LabAnaliti,
+  type LabCihazEslemesi, type LabCihazi,
   type LabDegerlendirmesi, type LabDurumu, type LabIstemi, type LabKalitesi,
   type LabPaneli, type LabSistemTuru, type LabSurumu,
 } from './lab-veri';
 import {
-  birlestirilmisAnalitler, ocrMetniniCoz, ocrSonucunuBirlestir,
+  birlestirilmisAnalitler, cihazAdaylariniNormallestir, ocrMetniniCoz, ocrSonucunuBirlestir,
   type OcrBirlestirme,
 } from './lab-ocr';
 
@@ -67,7 +70,7 @@ function ocrDegeri(satir: OcrBirlestirme): string {
   return `${satir.scanned.value}${satir.scanned.unit ? ` ${satir.scanned.unit}` : ''}${aralik}`;
 }
 
-export default function PanelLaboratuvar({ klinik }: { klinik: string }) {
+export default function PanelLaboratuvar({ klinik, sahip }: { klinik: string; sahip: boolean }) {
   const [istemler, setIstemler] = useState<LabIstemi[] | null>(null);
   const [hastalar, setHastalar] = useState<Hasta[]>([]);
   const [paneller, setPaneller] = useState<LabPaneli[]>([]);
@@ -77,18 +80,21 @@ export default function PanelLaboratuvar({ klinik }: { klinik: string }) {
   const [degerlendirmeler, setDegerlendirmeler] = useState<LabDegerlendirmesi[]>([]);
   const [kaynaklar, setKaynaklar] = useState<KlinikKaynak[]>([]);
   const [kurallar, setKurallar] = useState<KuralAciklamasi[]>([]);
+  const [cihazlar, setCihazlar] = useState<LabCihazi[]>([]);
+  const [cihazEslemeleri, setCihazEslemeleri] = useState<LabCihazEslemesi[]>([]);
   const [hata, setHata] = useState<string | null>(null);
   const [bilgi, setBilgi] = useState<string | null>(null);
   const [bekliyor, setBekliyor] = useState(false);
   const [uyariAcik, setUyariAcik] = useState(true);
   const [acikIstem, setAcikIstem] = useState<string | null>(null);
   const [yeniAcik, setYeniAcik] = useState(false);
-  const [yeni, setYeni] = useState({ hasta: '', saglayici: '', panel: '', sistem: 'external_reference_lab' as LabSistemTuru, numune: '', disKimlik: '' });
+  const [yeni, setYeni] = useState({ hasta: '', saglayici: '', panel: '', sistem: 'external_reference_lab' as LabSistemTuru, cihaz: '', numune: '', disKimlik: '' });
   const [sonucIstemi, setSonucIstemi] = useState<LabIstemi | null>(null);
   const [sonucAsamasi, setSonucAsamasi] = useState<'partial' | 'final' | 'corrected'>('final');
   const [sonucAnalitleri, setSonucAnalitleri] = useState<LabAnalitGirdisi[]>([]);
   const [ocrAcik, setOcrAcik] = useState(false);
   const [ocrIstemi, setOcrIstemi] = useState('');
+  const [ocrCihazi, setOcrCihazi] = useState('');
   const [ocrSatirlari, setOcrSatirlari] = useState<OcrBirlestirme[]>([]);
   const [ocrIlerleme, setOcrIlerleme] = useState<number | null>(null);
   const [ocrDurum, setOcrDurum] = useState('');
@@ -98,13 +104,15 @@ export default function PanelLaboratuvar({ klinik }: { klinik: string }) {
   const yukle = useCallback(async () => {
     setHata(null);
     try {
-      const [i, h, p, k, a, s, d, kk, ka] = await Promise.all([
+      const [i, h, p, k, a, s, d, kk, ka, c, ce] = await Promise.all([
         labIstemleriniOku(klinik), hastalariOku(klinik), labPanelleriniOku(),
         labKalitesiniOku(klinik), labAnalitleriniOku(klinik), labSurumleriniOku(klinik),
         labDegerlendirmeleriniOku(klinik), klinikKaynaklariniOku(), kuralAciklamalariniOku(),
+        labCihazlariniOku(klinik), labCihazEslemeleriniOku(klinik),
       ]);
       setIstemler(i); setHastalar(h); setPaneller(p); setKalite(k); setAnalitler(a);
       setSurumler(s); setDegerlendirmeler(d); setKaynaklar(kk); setKurallar(ka);
+      setCihazlar(c); setCihazEslemeleri(ce);
     } catch (e) { setHata((e as Error).message); setIstemler([]); }
   }, [klinik]);
 
@@ -121,11 +129,13 @@ export default function PanelLaboratuvar({ klinik }: { klinik: string }) {
 
   async function istemOlustur(e: React.FormEvent) {
     e.preventDefault();
-    if (bekliyor || !yeni.hasta || !yeni.saglayici.trim() || !yeni.panel) return;
+    if (bekliyor || !yeni.hasta || !yeni.saglayici.trim() || !yeni.panel
+        || (yeni.sistem === 'in_house_analyzer' && !yeni.cihaz)) return;
     setBekliyor(true); setHata(null); setBilgi(null);
     try {
-      await labIstemiOlustur({ klinik, hasta: yeni.hasta, saglayici: yeni.saglayici.trim(), panel: yeni.panel, sistem: yeni.sistem, numune: yeni.numune.trim() || null, disKimlik: yeni.disKimlik.trim() || null });
-      setYeniAcik(false); setYeni({ hasta: '', saglayici: '', panel: '', sistem: 'external_reference_lab', numune: '', disKimlik: '' });
+      await labIstemiOlustur({ klinik, hasta: yeni.hasta, saglayici: yeni.saglayici.trim(), panel: yeni.panel, sistem: yeni.sistem, cihaz: yeni.cihaz || null, numune: yeni.numune.trim() || null, disKimlik: yeni.disKimlik.trim() || null });
+      const profil = cihazlar.find((satir) => satir.id === ocrCihazi);
+      setYeniAcik(false); setYeni({ hasta: '', saglayici: profil?.display_name ?? '', panel: '', sistem: profil?.lab_system_type ?? 'external_reference_lab', cihaz: ocrCihazi, numune: '', disKimlik: '' });
       setBilgi('Laboratuvar istemi oluşturuldu.'); await yukle();
     } catch (e) { setHata((e as Error).message); } finally { setBekliyor(false); }
   }
@@ -169,15 +179,26 @@ export default function PanelLaboratuvar({ klinik }: { klinik: string }) {
     setBekliyor(true); setHata(null); setBilgi(null);
     try {
       const onceki = surumler.find((satir) => satir.request_id === sonucIstemi.id);
-      await labSonucSurumuKaydet({ istem: sonucIstemi.id, asama: sonucAsamasi, analitler: gecerli, duzeltme: sonucAsamasi === 'corrected' ? onceki?.id ?? null : null, kaynak: 'manual' });
+      await labSonucSurumuKaydet({ istem: sonucIstemi.id, asama: sonucAsamasi, analitler: gecerli, duzeltme: sonucAsamasi === 'corrected' ? onceki?.id ?? null : null, kaynak: 'manual', beklenenSurum: sonucIstemi.current_result_revision, cihaz: sonucIstemi.device_id });
       setSonucIstemi(null); setBilgi('Yapılandırılmış sonuç yeni sürüm olarak kaydedildi.'); await yukle();
     } catch (e) { setHata((e as Error).message); } finally { setBekliyor(false); }
   }
 
   async function fotografiOku(dosya: File) {
     const istem = acikIstemler.find((satir) => satir.id === ocrIstemi);
+    const cihaz = cihazlar.find((satir) => satir.id === ocrCihazi && satir.is_active);
     const beklenen = istem ? panel(istem)?.expected_analytes ?? [] : [];
-    if (!istem || beklenen.length === 0) return setHata('Önce beklenen analitleri bulunan açık bir istem seçin.');
+    if (!istem || !cihaz || beklenen.length === 0) return setHata('Önce açık istemi ve sonucu üreten aktif cihazı seçin.');
+    if (istem.device_id && istem.device_id !== cihaz.id) return setHata('Bu istem başka bir cihaza bağlı. Sonuçları karıştırmak yerine yeni istem açın.');
+    const izinliTurler = new Set(['image/jpeg', 'image/png', 'image/webp']);
+    if (!izinliTurler.has(dosya.type)) {
+      if (dosyaAlani.current) dosyaAlani.current.value = '';
+      return setHata('Yalnız JPEG, PNG veya WebP biçiminde cihaz fotoğrafı seçin.');
+    }
+    if (dosya.size > 12 * 1024 * 1024) {
+      if (dosyaAlani.current) dosyaAlani.current.value = '';
+      return setHata('Cihaz fotoğrafı en fazla 12 MB olabilir. Daha küçük bir görüntü seçin.');
+    }
     const nesneAdresi = URL.createObjectURL(dosya);
     setBekliyor(true); setHata(null); setOcrIlerleme(0); setOcrDurum('OCR motoru hazırlanıyor');
     try {
@@ -190,7 +211,9 @@ export default function PanelLaboratuvar({ klinik }: { klinik: string }) {
       });
       try {
         const sonuc = await worker.recognize(nesneAdresi);
-        const taranan = ocrMetniniCoz(sonuc.data.text, beklenen);
+        const eslemeler = cihazEslemeleri.filter((satir) => satir.device_id === cihaz.id);
+        const taranan = cihazAdaylariniNormallestir(ocrMetniniCoz(sonuc.data.text,
+          [...new Set([...beklenen, ...eslemeler.map((satir) => satir.raw_code)])]), eslemeler);
         setOcrSatirlari(ocrSonucunuBirlestir(taranan, istemAnalitleri(istem.id)));
         setOcrDurum('Fotoğraf silindi; doğrulanabilir taslak hazır'); setOcrIlerleme(100);
       } finally { await worker.terminate(); }
@@ -224,12 +247,12 @@ export default function PanelLaboratuvar({ klinik }: { klinik: string }) {
 
   async function ocrSonucunuKaydet() {
     const istem = acikIstemler.find((satir) => satir.id === ocrIstemi);
-    if (!istem || cozulmemis > 0 || !degisiklikVar || bekliyor) return;
+    if (!istem || !ocrCihazi || cozulmemis > 0 || !degisiklikVar || bekliyor) return;
     setBekliyor(true); setHata(null); setBilgi(null);
     try {
       const onceki = surumler.find((satir) => satir.request_id === istem.id);
-      await labSonucSurumuKaydet({ istem: istem.id, asama: istem.current_result_revision > 0 ? 'corrected' : 'final', analitler: birlestirilmisAnalitler(ocrSatirlari), duzeltme: istem.current_result_revision > 0 ? onceki?.id ?? null : null, kaynak: 'image_ocr' });
-      setOcrSatirlari([]); setOcrIstemi(''); setOcrAcik(false); setOcrIlerleme(null);
+      await labSonucSurumuKaydet({ istem: istem.id, asama: istem.current_result_revision > 0 ? 'corrected' : 'final', analitler: birlestirilmisAnalitler(ocrSatirlari), duzeltme: istem.current_result_revision > 0 ? onceki?.id ?? null : null, kaynak: 'image_ocr', beklenenSurum: istem.current_result_revision, cihaz: ocrCihazi });
+      setOcrSatirlari([]); setOcrIstemi(''); setOcrCihazi(''); setOcrAcik(false); setOcrIlerleme(null);
       setBilgi('Fotoğraf saklanmadan doğrulanan sonuç sürümü kaydedildi.'); await yukle();
     } catch (e) { setHata((e as Error).message); } finally { setBekliyor(false); }
   }
@@ -254,6 +277,18 @@ export default function PanelLaboratuvar({ klinik }: { klinik: string }) {
     {hata ? <Hata mesaj={hata} kucuk tekrar={() => { setHata(null); void yukle(); }} /> : null}
     {bilgi ? <p className="pnl-bilgi" role="status">{bilgi}</p> : null}
     <div className="pnl-kartlar"><div className="pnl-kart pnl-kart-durgun"><span className="pnl-kart-ikon"><FlaskConical size={21} /></span><span className="pnl-kart-govde"><span className="pnl-kart-ad">İstem</span><span className="pnl-kart-deger">{istemler.length}</span><span className="pnl-kart-anlam">Toplam laboratuvar istemi</span></span></div><div className="pnl-kart pnl-kart-durgun"><span className="pnl-kart-ikon"><Beaker size={21} /></span><span className="pnl-kart-govde"><span className="pnl-kart-ad">Açık akış</span><span className="pnl-kart-deger">{acikIstemler.length}</span><span className="pnl-kart-anlam">İşlem bekleyen</span></span></div><div className="pnl-kart pnl-kart-durgun"><span className="pnl-kart-ikon pnl-kart-ikon-altin"><FileCheck2 size={21} /></span><span className="pnl-kart-govde"><span className="pnl-kart-ad">Sonuç hazır</span><span className="pnl-kart-deger">{sonucHazir}</span><span className="pnl-kart-anlam">Hekim incelemesi bekliyor</span></span></div><div className="pnl-kart pnl-kart-durgun"><span className="pnl-kart-ikon pnl-kart-ikon-uyari"><CircleAlert size={21} /></span><span className="pnl-kart-govde"><span className="pnl-kart-ad">Teknik eksik</span><span className="pnl-kart-deger">{teknikEksik}</span><span className="pnl-kart-anlam">Eşleme veya metadata sorunu</span></span></div></div>
+
+    <LabCihazlari klinik={klinik} sahip={sahip} cihazlar={cihazlar} eslemeler={cihazEslemeleri} yenile={yukle} />
+    <section className="pnl-widget"><div className="pnl-widget-govde"><div className="pnl-alan">
+      <label htmlFor="lab-calisma-cihazi">İstem ve OCR için çalışma cihazı</label>
+      <select id="lab-calisma-cihazi" value={ocrCihazi} onChange={(e) => {
+        const cihaz = e.target.value; const profil = cihazlar.find((satir) => satir.id === cihaz);
+        setOcrCihazi(cihaz); setYeni((onceki) => ({ ...onceki, cihaz,
+          ...(profil ? { saglayici: profil.display_name, sistem: profil.lab_system_type } : {}) }));
+        setOcrSatirlari([]);
+      }}><option value="">Cihaz seçin</option>{cihazlar.filter((cihaz) => cihaz.is_active).map((cihaz) => <option key={cihaz.id} value={cihaz.id}>{cihaz.display_name} · {cihaz.manufacturer} {cihaz.model}</option>)}</select>
+      <span className="pnl-alan-ipucu">Seçim isteme ve sonuç revizyonuna kaydedilir. Başka cihazdan sonuç gelirse aynı isteme karıştırılmaz.</span>
+    </div></div></section>
 
     {istemler.length === 0 ? <Bos baslik="Henüz laboratuvar istemi yok" aciklama="Hasta ve panel seçerek ilk laboratuvar istemini oluşturun." /> : <div className="pnl-lab-listesi">{istemler.map((istem) => {
       const p = panel(istem); const q = istemKalitesi(istem.id); const a = istemAnalitleri(istem.id); const d = istemDegerlendirmesi(istem.id); const acik = acikIstem === istem.id;

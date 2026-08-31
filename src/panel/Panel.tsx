@@ -19,8 +19,9 @@ import PanelRaporlar from './PanelRaporlar';
 import PanelDefter from './PanelDefter';
 import PanelReceteler from './PanelReceteler';
 import PanelWebSitesi from './PanelWebSitesi';
+import PanelMesajlar from './PanelMesajlar';
 import {
-  PanelKayitlar, PanelAsi, PanelTopluluk, PanelSahiplendirme, PanelMesajlar,
+  PanelKayitlar, PanelAsi, PanelTopluluk, PanelSahiplendirme,
   PanelProfil, PanelAyarlar, PanelDuyurular, PanelBildirimler, PanelDegerlendirmeler,
 } from './PanelBolumler';
 import { okunmamisBildirimSayisi } from './veri';
@@ -188,7 +189,8 @@ export default function Panel() {
       case 'asi': return <PanelAsi klinik={secili.clinic_id} />;
       case 'receteler': return <PanelReceteler klinik={secili.clinic_id} klinikAdi={secili.clinic_name} />;
       case 'stok': return <PanelStok klinik={secili.clinic_id} />;
-      case 'laboratuvar': return <PanelLaboratuvar klinik={secili.clinic_id} />;
+      case 'laboratuvar': return <PanelLaboratuvar klinik={secili.clinic_id} sahip={secili.role === 'owner'} />;
+      case 'iletisim': return <PanelEntegrasyonlar klinik={secili.clinic_id} sahip={secili.role === 'owner'} gorunum="communications" />;
       case 'profil': return <PanelProfil klinik={secili.clinic_id} />;
       case 'topluluk': return <PanelTopluluk klinik={secili.clinic_id} />;
       case 'mesajlar': return <PanelMesajlar klinik={secili.clinic_id} />;
@@ -198,8 +200,8 @@ export default function Panel() {
       case 'degerlendirmeler': return <PanelDegerlendirmeler klinik={secili.clinic_id} />;
       case 'defter': return <PanelDefter klinik={secili.clinic_id} />;
       case 'ekip': return <PanelEkip klinik={secili.clinic_id} />;
-      case 'entegrasyonlar': return <PanelEntegrasyonlar klinik={secili.clinic_id} sahip={secili.role === 'owner'} />;
-      case 'websitesi': return <PanelWebSitesi klinik={secili.clinic_id} />;
+      case 'entegrasyonlar': return <PanelEntegrasyonlar klinik={secili.clinic_id} sahip={secili.role === 'owner'} gorunum="technical" />;
+      case 'websitesi': return <PanelWebSitesi klinik={secili.clinic_id} sahip={secili.role === 'owner'} />;
       case 'ayarlar': return <PanelAyarlar />;
       case 'raporlar': return <PanelRaporlar klinik={secili.clinic_id} />;
       default: return <PanelPano klinik={secili.clinic_id} git={bolumeGit} />;

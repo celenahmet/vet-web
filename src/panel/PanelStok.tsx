@@ -29,6 +29,7 @@ type BarkodAlgilayiciKurucusu = {
   new (secenekler?: { formats?: string[] }): BarkodAlgilayici;
   getSupportedFormats?: () => Promise<string[]>;
 };
+type KameraKontrolleri = { stop: () => void };
 
 const TUR_ADI: Record<UrunTuru, string> = { medicine: 'İlaç', consumable: 'Sarf', retail: 'Perakende' };
 const BIRIM_ADI: Partial<Record<UrunBirimi, string>> = {
@@ -86,6 +87,8 @@ export default function PanelStok({ klinik }: { klinik: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const kameraAkisiRef = useRef<MediaStream | null>(null);
   const kameraTuruRef = useRef<number | null>(null);
+  const zxingKontrolRef = useRef<KameraKontrolleri | null>(null);
+  const kameraAktifRef = useRef(false);
   const sonOkutulanKodRef = useRef('');
 
   const yukle = useCallback(async () => {
@@ -101,8 +104,11 @@ export default function PanelStok({ klinik }: { klinik: string }) {
   useEffect(() => { void yukle(); }, [yukle]);
 
   const kamerayiDurdur = useCallback(() => {
+    kameraAktifRef.current = false;
     if (kameraTuruRef.current !== null) cancelAnimationFrame(kameraTuruRef.current);
     kameraTuruRef.current = null;
+    zxingKontrolRef.current?.stop();
+    zxingKontrolRef.current = null;
     kameraAkisiRef.current?.getTracks().forEach((iz) => iz.stop());
     kameraAkisiRef.current = null;
     if (videoRef.current) videoRef.current.srcObject = null;
@@ -248,25 +254,42 @@ export default function PanelStok({ klinik }: { klinik: string }) {
     if (kameraBasliyor || kameraAcik) return;
     setKameraHatasi(null);
     const Kurucu = (window as Window & { BarcodeDetector?: BarkodAlgilayiciKurucusu }).BarcodeDetector;
-    if (!Kurucu) {
-      setKameraHatasi('Bu tarayıcı kamera ile barkod algılamayı desteklemiyor. USB okuyucu veya elle giriş kullanabilirsiniz.');
-      return;
-    }
     if (!navigator.mediaDevices?.getUserMedia) {
-      setKameraHatasi('Kamera erişimi bu bağlantıda kullanılamıyor. Güvenli bağlantı, USB okuyucu veya elle giriş kullanın.');
+      setKameraHatasi('Bu bilgisayar veya tarayıcı kamerayı desteklemiyor. USB okuyucu ya da elle giriş kullanın; seri sayım için mobil uygulamanın kamerasını öneriyoruz.');
       return;
     }
     setKameraBasliyor(true);
     try {
+      kameraAktifRef.current = true;
+      setKameraAcik(true);
+      await new Promise<void>((coz) => requestAnimationFrame(() => coz()));
+      const video = videoRef.current;
+      if (!video) throw new Error('Kamera önizlemesi hazırlanamadı.');
+
+      if (!Kurucu) {
+        const { BrowserMultiFormatReader } = await import('@zxing/browser');
+        const okuyucu = new BrowserMultiFormatReader();
+        const kontroller = await okuyucu.decodeFromConstraints({
+          audio: false,
+          video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } },
+        }, video, (sonuc) => {
+          const kod = sonuc?.getText().trim() ?? '';
+          if (kod.length < 3) return;
+          setKodTuru(sonuc?.getBarcodeFormat().toString() || 'unknown');
+          setTaramaKodu(kod);
+          kamerayiDurdur();
+          void koduIsle(kod);
+        });
+        if (kameraAktifRef.current) zxingKontrolRef.current = kontroller;
+        else kontroller.stop();
+        return;
+      }
+
       const akis = await navigator.mediaDevices.getUserMedia({
         audio: false,
         video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } },
       });
       kameraAkisiRef.current = akis;
-      setKameraAcik(true);
-      await new Promise<void>((coz) => requestAnimationFrame(() => coz()));
-      const video = videoRef.current;
-      if (!video) throw new Error('Kamera önizlemesi hazırlanamadı.');
       video.srcObject = akis;
       await video.play();
       const istenenFormatlar = ['qr_code', 'ean_13', 'ean_8', 'upc_a', 'upc_e', 'code_39', 'code_93', 'code_128', 'itf'];
@@ -304,7 +327,7 @@ export default function PanelStok({ klinik }: { klinik: string }) {
       kamerayiDurdur();
       const ad = e instanceof DOMException ? e.name : '';
       setKameraHatasi(ad === 'NotAllowedError'
-        ? 'Kamera izni verilmedi. Tarayıcı ayarlarından izin verebilir veya USB okuyucu kullanabilirsiniz.'
+        ? 'Kamera izni verilmedi. Tarayıcı ayarlarından izin verebilir, USB okuyucu kullanabilir veya daha ergonomik seri sayım için mobil uygulamaya geçebilirsiniz.'
         : (e as Error).message || 'Kamera başlatılamadı.');
     } finally { setKameraBasliyor(false); }
   }
@@ -404,7 +427,7 @@ export default function PanelStok({ klinik }: { klinik: string }) {
         <form className="pnl-tarama-formu" onSubmit={koduCoz}><div className="pnl-operasyon-arama"><Barcode size={17} /><input autoFocus value={taramaKodu} onChange={(e) => setTaramaKodu(e.target.value)} placeholder="Barkod veya QR okutun" aria-label="Barkod veya QR kodu" /></div><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => void kamerayiAc()} disabled={kameraAcik || kameraBasliyor}><Camera size={15} /> {kameraBasliyor ? 'Açılıyor…' : 'Kamera'}</button><button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor || taramaKodu.trim().length < 3}>Say</button></form>
         {kameraHatasi ? <p className="pnl-alan-hata" role="alert">{kameraHatasi}</p> : null}
         {kameraAcik ? <div className="pnl-kamera-okuyucu"><video ref={videoRef} muted playsInline aria-label="Barkod kamera önizlemesi" /><span>Kodu çerçevenin ortasında sabit tutun</span><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={kamerayiDurdur}>Kamerayı kapat</button></div> : null}
-        <p className="pnl-alan-ipucu">USB okuyucuyu alana odaklayıp okutun veya kamerayı açın. Kod tek ürüne bağlıysa +1 sayılır; birden fazlaysa seçim ister.</p>
+        <p className="pnl-alan-ipucu">USB okuyucuyu alana odaklayıp okutun veya bilgisayar kameranızı açın. Kod tek ürüne bağlıysa +1 sayılır; birden fazlaysa seçim ister. Uzun raf sayımlarında mobil uygulamanın kamerası daha ergonomiktir.</p>
         {eslesmeler.length > 1 ? <div className="pnl-secim-kutusu"><strong>Birden fazla eşleşme bulundu</strong>{eslesmeler.map((satir) => <button type="button" key={`${satir.product_id}-${satir.lot_id}`} onClick={() => void eslesmeyiSec(satir)}><span>{satir.product_name}{satir.lot_code ? ` · lot ${satir.lot_code}` : ''}</span><small>{satir.match_type} · mevcut {satir.current_stock}</small></button>)}</div> : null}
         {bekleyenEslesme ? <div className="pnl-secim-kutusu"><strong>Lot seçmeden sayım yapılamaz</strong><select value={bekleyenLot} onChange={(e) => setBekleyenLot(e.target.value)}>{(lotlar[bekleyenEslesme.product_id] ?? []).map((lot) => <option key={lot.id} value={lot.id}>{lot.lot_code} · {lot.current_stock} stok · {lot.expires_on ? new Date(lot.expires_on).toLocaleDateString('tr-TR') : 'SKT yok'}</option>)}</select><button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => void eslesmeyiSay(bekleyenEslesme, bekleyenLot)}>Bu lota +1 ekle</button></div> : null}
         {eslesmeyenKod ? <div className="pnl-uyari pnl-uyari-bilgi"><div><p className="pnl-uyari-baslik">Kod hiçbir ürünle eşleşmedi</p><p>{eslesmeyenKod} kodunu doğru ürüne bağlayabilir veya alanı temizleyip yeni kod okutabilirsiniz.</p><div className="pnl-form-ikili"><div className="pnl-alan"><label htmlFor="bagla-urun">Ürün</label><select id="bagla-urun" value={baglanacakUrun} onChange={(e) => setBaglanacakUrun(e.target.value)}><option value="">Ürün seçin</option>{urunler.map((urun) => <option key={urun.product_id} value={urun.product_id}>{urun.name} · {urun.internal_code}</option>)}</select></div><div className="pnl-alan"><label htmlFor="bagla-tur">Kod türü</label><select id="bagla-tur" value={kodTuru} onChange={(e) => setKodTuru(e.target.value)}><option value="unknown">Bilinmiyor</option><option value="ean13">EAN-13</option><option value="ean8">EAN-8</option><option value="upc_a">UPC-A</option><option value="code128">Code 128</option><option value="qr">QR</option></select></div></div><button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => void eslesmeyeniBagla()} disabled={!baglanacakUrun || bekliyor}>Bağla ve +1 say</button></div></div> : null}

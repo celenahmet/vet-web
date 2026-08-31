@@ -1,4 +1,4 @@
-import type { LabAnaliti, LabAnalitGirdisi } from './lab-veri';
+import type { LabAnaliti, LabAnalitGirdisi, LabCihazEslemesi } from './lab-veri';
 
 export type OcrAdayi = LabAnalitGirdisi & { code: string; name: string; raw_line: string | null };
 export type OcrDurumu = 'same' | 'new' | 'conflict' | 'unreadable' | 'existing_only';
@@ -49,8 +49,8 @@ function satiriCoz(kod: string, satir: string): OcrAdayi {
 
 export function ocrMetniniCoz(metin: string, beklenenler: string[]): OcrAdayi[] {
   const satirlar = metin.split(/\r?\n/).map((satir) => satir.replace(/\s+/g, ' ').trim()).filter(Boolean);
-  return beklenenler.map((hamKod) => {
-    const kod = hamKod.toUpperCase();
+  const kodlar = [...new Set(beklenenler.map((hamKod) => hamKod.trim().toUpperCase()).filter(Boolean))];
+  return kodlar.map((kod) => {
     const satir = satirlar.find((aday) => new RegExp(
       `(?:^|[^A-Z0-9_])${kacir(kod)}(?:$|[^A-Z0-9_])`, 'i',
     ).test(aday));
@@ -60,6 +60,45 @@ export function ocrMetniniCoz(metin: string, beklenenler: string[]): OcrAdayi[] 
       method_name: 'browser_on_device_ocr', raw_line: null,
     };
   });
+}
+
+export function cihazAdaylariniNormallestir(
+  adaylar: OcrAdayi[], eslemeler: LabCihazEslemesi[],
+): OcrAdayi[] {
+  const sonuc = new Map<string, OcrAdayi>();
+  for (const aday of adaylar) {
+    const adayEslemeler = eslemeler.filter((satir) => satir.raw_code.trim().toUpperCase()
+      === aday.code.trim().toUpperCase());
+    const adayBirimi = norm(aday.unit);
+    const esleme = adayEslemeler.find((satir) => norm(satir.raw_unit) === adayBirimi)
+      ?? adayEslemeler.find((satir) => norm(satir.raw_unit) == null)
+      ?? (adayEslemeler.length === 1 ? adayEslemeler[0] : undefined);
+    if (!esleme && adayEslemeler.length > 1) {
+      throw new Error('Bu ham analit kodunun birden fazla birim eşlemesi var ancak cihaz çıktısında birim okunamadı. Birimi doğrulayın veya varsayılan eşleme tanımlayın.');
+    }
+    const guncel = esleme ? {
+      ...aday,
+      code: esleme.canonical_code.trim().toUpperCase(),
+      name: esleme.canonical_code.trim().toUpperCase(),
+      value: aday.value == null ? null : aday.value * esleme.conversion_factor,
+      unit: esleme.canonical_unit ?? aday.unit,
+      method_name: esleme.method_name ?? aday.method_name,
+    } : aday;
+    const kod = guncel.code.trim().toUpperCase();
+    const onceki = sonuc.get(kod);
+    if (onceki && !ayniCihazAdayi(onceki, guncel)) {
+      throw new Error('Aynı kanonik analite eşlenen cihaz satırları değer, birim, yöntem veya referans bakımından çakışıyor. Eşleme düzeltilmeden kaydedilemez.');
+    }
+    if (!onceki || (onceki.value == null && guncel.value != null)) sonuc.set(kod, { ...guncel, code: kod });
+  }
+  return [...sonuc.values()];
+}
+
+function ayniCihazAdayi(sol: OcrAdayi, sag: OcrAdayi): boolean {
+  return sol.value === sag.value && norm(sol.unit) === norm(sag.unit)
+    && sol.reference_low === sag.reference_low && sol.reference_high === sag.reference_high
+    && norm(sol.provider_flag) === norm(sag.provider_flag)
+    && norm(sol.method_name) === norm(sag.method_name);
 }
 
 const norm = (deger: string | null | undefined) => deger?.trim().toLocaleLowerCase('en-US') || null;

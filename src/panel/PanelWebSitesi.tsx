@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import {
-  AtSign, CheckCircle2, ExternalLink, Eye, Globe, MapPin,
+  AtSign, Building2, CheckCircle2, ExternalLink, Eye, Globe, MapPin,
   MessageCircle, Pencil, Share2, Star, XCircle,
 } from 'lucide-react';
 
@@ -16,6 +16,7 @@ import {
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
 import Diyalog from './Diyalog';
+import KlinikGaleri from './KlinikGaleri';
 
 /**
  * KLINIK WEB SITESI (İSTEK: Ahmet, 24.08.2026 — *"sol tarafa Klinik Web sitesi
@@ -57,7 +58,7 @@ const KULLANICI_ADI_HATALARI: Record<string, string> = {
   bad_start: 'Kullanıcı adı harfle başlamalı.',
 };
 
-export default function PanelWebSitesi({ klinik }: { klinik: string }) {
+export default function PanelWebSitesi({ klinik, sahip }: { klinik: string; sahip: boolean }) {
   const [sayfa, setSayfa] = useState<KlinikSayfasi | null>(null);
   const [yukleniyor, setYukleniyor] = useState(true);
   const [hata, setHata] = useState<string | null>(null);
@@ -66,10 +67,12 @@ export default function PanelWebSitesi({ klinik }: { klinik: string }) {
   const [duzenle, setDuzenle] = useState(false);
   const [adresDuzenle, setAdresDuzenle] = useState(false);
   const [iletisimDuzenle, setIletisimDuzenle] = useState(false);
+  const [klinikDuzenle, setKlinikDuzenle] = useState(false);
   const [bekliyor, setBekliyor] = useState(false);
   const [form, setForm] = useState({ slogan: '', tanitim: '', yolTarifi: '', yayinda: false, aramayaAcik: false });
   const [kullaniciAdi, setKullaniciAdi] = useState('');
   const [iletisim, setIletisim] = useState(BOS_ILETISIM);
+  const [klinikFormu, setKlinikFormu] = useState({ name: '', address: '', city: '', district: '', phone: '', email: '' });
 
   const yukle = useCallback(() => {
     setYukleniyor(true); setHata(null);
@@ -112,6 +115,29 @@ export default function PanelWebSitesi({ klinik }: { klinik: string }) {
     setIslemHatasi(null);
     setIletisimDuzenle(true);
   }
+
+  function klinikDuzenlemeyiAc() {
+    setKlinikFormu({
+      name: sayfa?.name ?? '', address: sayfa?.address ?? '', city: sayfa?.city ?? '',
+      district: sayfa?.district ?? '', phone: sayfa?.phone ?? '', email: sayfa?.email ?? '',
+    });
+    setIslemHatasi(null); setKlinikDuzenle(true);
+  }
+
+  async function klinigiKaydet(e: React.FormEvent) {
+    e.preventDefault(); if (bekliyor || !sahip) return;
+    if (klinikFormu.name.trim().length < 2) return setIslemHatasi('Klinik adı en az 2 karakter olmalı.');
+    setBekliyor(true); setIslemHatasi(null); setBilgi(null);
+    try {
+      await klinikBilgileriniGuncelle(klinik, {
+        name: klinikFormu.name.trim(), address: klinikFormu.address.trim(), city: klinikFormu.city.trim(),
+        district: klinikFormu.district.trim(), phone: klinikFormu.phone.trim(), email: klinikFormu.email.trim(),
+      });
+      setKlinikDuzenle(false); setBilgi('Klinik iletişim ve konum bilgileri güncellendi.'); yukle();
+    } catch (err) { setIslemHatasi((err as { message?: string })?.message ?? ''); }
+    finally { setBekliyor(false); }
+  }
+
 
   async function kaydet(e: React.FormEvent) {
     e.preventDefault();
@@ -335,7 +361,22 @@ export default function PanelWebSitesi({ klinik }: { klinik: string }) {
         </section>
       </div>
 
+      <KlinikGaleri klinik={klinik} logo={sayfa?.logo_key ?? null} kapak={sayfa?.cover_key ?? null} />
+
       <div className="pnl-pano-izgara pnl-izgara-ikili">
+        <section className="pnl-widget">
+          <header className="pnl-widget-basi">
+            <span className="pnl-widget-ikon" aria-hidden="true"><Building2 size={17} /></span>
+            <h3>Klinik bilgileri</h3>
+            {sahip ? <button type="button" className="pnl-widget-eylem" onClick={klinikDuzenlemeyiAc}><Pencil size={13} /> Düzenle</button> : null}
+          </header>
+          <div className="pnl-widget-govde">
+            <p className="pnl-kisi-ad">{sayfa?.name || 'Klinik adı girilmemiş'}</p>
+            <p className="pnl-widget-not">{[sayfa?.address, sayfa?.district, sayfa?.city].filter(Boolean).join(' · ') || 'Adres bilgisi girilmemiş'}</p>
+            <p className="pnl-widget-not">{sayfa?.phone || 'Telefon girilmemiş'} · {sayfa?.email || 'E-posta girilmemiş'}</p>
+            {!sahip ? <p className="pnl-not">Bu bilgileri yalnız klinik sahibi düzenleyebilir.</p> : null}
+          </div>
+        </section>
         <section className="pnl-widget">
           <header className="pnl-widget-basi">
             <span className="pnl-widget-ikon" aria-hidden="true"><AtSign size={17} /></span>
@@ -398,9 +439,19 @@ export default function PanelWebSitesi({ klinik }: { klinik: string }) {
 
       <p className="pnl-dipnot">
         <Globe size={14} aria-hidden="true" />
-        Logo ve kapak görseli yükleme şimdilik telefondaki uygulamada. Web adresi,
-        sayfa içeriği ve iletişim kanalları bu panelden yönetilebilir.
+        Klinik bilgileri, logo, kapak, galeri, web adresi, sayfa içeriği ve iletişim kanalları
+        mobil uygulamayla aynı kayıtlar üzerinden yönetilir.
       </p>
+
+      <Diyalog acik={klinikDuzenle} kapat={() => setKlinikDuzenle(false)} baslik="Klinik bilgilerini düzenle" aciklama="Bu bilgiler hem mobil klinik profilinde hem web sitenizde kullanılır.">
+        <form onSubmit={klinigiKaydet}>
+          <div className="pnl-alan"><label htmlFor="pnl-klinik-ad">Klinik adı</label><input id="pnl-klinik-ad" required minLength={2} maxLength={140} value={klinikFormu.name} onChange={(e) => setKlinikFormu((f) => ({ ...f, name: e.target.value }))} /></div>
+          <div className="pnl-alan"><label htmlFor="pnl-klinik-adres">Adres</label><textarea id="pnl-klinik-adres" maxLength={500} value={klinikFormu.address} onChange={(e) => setKlinikFormu((f) => ({ ...f, address: e.target.value }))} /></div>
+          <div className="pnl-form-ikili"><div className="pnl-alan"><label htmlFor="pnl-klinik-sehir">Şehir</label><input id="pnl-klinik-sehir" maxLength={80} value={klinikFormu.city} onChange={(e) => setKlinikFormu((f) => ({ ...f, city: e.target.value }))} /></div><div className="pnl-alan"><label htmlFor="pnl-klinik-ilce">İlçe</label><input id="pnl-klinik-ilce" maxLength={80} value={klinikFormu.district} onChange={(e) => setKlinikFormu((f) => ({ ...f, district: e.target.value }))} /></div></div>
+          <div className="pnl-form-ikili"><div className="pnl-alan"><label htmlFor="pnl-klinik-telefon">Telefon</label><input id="pnl-klinik-telefon" type="tel" maxLength={30} value={klinikFormu.phone} onChange={(e) => setKlinikFormu((f) => ({ ...f, phone: e.target.value }))} /></div><div className="pnl-alan"><label htmlFor="pnl-klinik-eposta">E-posta</label><input id="pnl-klinik-eposta" type="email" maxLength={200} value={klinikFormu.email} onChange={(e) => setKlinikFormu((f) => ({ ...f, email: e.target.value }))} /></div></div>
+          <div className="pnl-diyalog-eylem"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setKlinikDuzenle(false)}>Vazgeç</button><button className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor}>Kaydet</button></div>
+        </form>
+      </Diyalog>
 
       <Diyalog
         acik={duzenle}
