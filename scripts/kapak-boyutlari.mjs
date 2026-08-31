@@ -33,7 +33,13 @@ if (!varMi('sips') || !varMi('cwebp')) {
   process.exit(1);
 }
 
-const asillar = readdirSync(KLASOR).filter((f) => f.endsWith('.webp') && !/-\d+\.webp$/.test(f));
+// ⚠️ SUZGEC GERCEK OLCULERE BAGLI, "tire + sayi" kalibina DEGIL (31.08.2026).
+// Onceki bicim /-\d+\.webp$/ idi ve yil iceren bir slug'i (veteriner-ucretleri-2026)
+// varyant sanip asil listesinden dusuruyordu; o kapagin dar surumleri hic
+// uretilmedi ve hata sessiz kaldi, cunku betik "0 yeni surum" deyip basariyla
+// bitiyordu. Artik yalniz uretilen olculer (400, 800) varyant sayiliyor.
+const VARYANT = new RegExp(`-(${OLCULER.join('|')})\\.webp$`);
+const asillar = readdirSync(KLASOR).filter((f) => f.endsWith('.webp') && !VARYANT.test(f));
 if (asillar.length === 0) {
   console.error('kapak boyutlari: hic asil gorsel bulunamadi — tarama bozuk olabilir.');
   process.exit(1);

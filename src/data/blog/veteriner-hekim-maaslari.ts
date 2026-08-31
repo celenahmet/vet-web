@@ -18,7 +18,18 @@ export const veterinerHekimMaaslari: BlogYazi = {
   tarih: '2026-08-31',
   bloklar: [
     { kind: 'paragraf', metin: 'Bu sorunun tek rakamlı bir cevabı yok ve olmaması normal. Veteriner hekimin geliri **nerede çalıştığına** göre bambaşka bir mantıkla oluşuyor. Kamuda maaş bir formülün sonucu; özel sektörde kliniğin cirosuna ve yapılan işe bağlı.' },
-    { kind: 'paragraf', metin: 'Bu yazı güncel rakam vermiyor, çünkü rakam hızla eskiyor: kamu maaşları katsayıya bağlı olarak yılda en az iki kez değişiyor, özel sektörde ise merkezi bir kayıt yok. Anlatılan şey **maaşın nasıl oluştuğu**; güncel sayıyı doğru kaynaktan almanın yolu da yazının sonunda.' },
+    { kind: 'paragraf', metin: 'Aşağıda önce **yaklaşık bantları** veriyoruz, sonra bu bantları neyin belirlediğini açıyoruz. Rakamlar hızla eskiyor: kamu maaşları katsayıya bağlı olarak yılda en az iki kez değişiyor, özel sektörde ise merkezi bir kayıt yok. Bu yüzden her sayının yanında hangi tarihe ait olduğu ve neye göre değiştiği yazıyor.' },
+
+    { kind: 'baslik', metin: 'Kısa cevap: 2026 için yaklaşık bantlar' },
+    { kind: 'paragraf', metin: 'Aşağıdaki değerler **Ağustos 2026 itibarıyla** kamu maaş katsayısı ve sektör ilanlarından derlenen yaklaşık bantlardır. Kesin tutar değildir: kamuda derece, kademe, ek gösterge ve döner sermayeye; özelde kliniğin cirosuna ve çalışma biçimine göre değişir.' },
+    { kind: 'tablo', basliklar: ['Durum', 'Yaklaşık aylık net', 'Neye göre değişir'], satirlar: [
+      ['Kamu, yeni başlayan (8/1)', '65.000 - 75.000 TL', 'Derece, kademe, ek ödeme'],
+      ['Kamu, kıdemli (5. derece, 2400 ek gösterge)', '75.000 - 81.000 TL', 'Kıdem, döner sermaye'],
+      ['Özel klinikte çalışan', 'Meslek örgütünün açıkladığı asgari net ücret 85.000 TL', 'Prim, mesai, kliniğin hacmi'],
+      ['Klinik sahibi', 'Sabit bant yok', 'Ciro eksi giderler'],
+    ] },
+    { kind: 'uyari', metin: 'Bu bantlar bilgilendirme amaçlıdır ve garanti edilmez. Kamu maaşları katsayı değişikliğiyle yıl içinde güncellenir; özel sektörde ilan edilen ücretler doğrulanmamış beyandır. Karar vermeden önce aşağıdaki resmî kaynaklardan güncel değeri teyit edin.' },
+    { kind: 'paragraf', metin: 'Bantların neden bu kadar geniş olduğunu ve aradaki farkı neyin ürettiğini aşağıda açıyoruz.' },
 
     { kind: 'baslik', metin: 'Kamuda: maaş bir toplama işlemi' },
     { kind: 'paragraf', metin: 'Kamuda çalışan veteriner hekim, devlet memuru statüsünde. Maaş tek kalem değil, birkaç bileşenin toplamı olarak çıkıyor:' },
@@ -57,7 +68,7 @@ export const veterinerHekimMaaslari: BlogYazi = {
     { kind: 'uyari', metin: 'Bu yazı güncel maaş rakamı içermiyor ve kariyer danışmanlığı değildir. Kamu maaşları mevzuat ve katsayı değişikliklerine, özel sektör gelirleri ise işletme koşullarına göre değişir. Karar vermeden önce resmî kaynaklara ve muhasebe desteğine başvurun.' },
   ],
   sss: [
-    { soru: 'Neden net bir maaş rakamı yazmıyorsunuz?', cevap: 'Kamu maaşları katsayıya bağlı olarak yılda birkaç kez değişiyor, özel sektörde ise merkezi bir kayıt yok. Buraya yazılacak bir sayı kısa sürede yanlış olur ve okuyan yanlış bilgiyle karar verir.' },
+    { soru: 'Verilen rakamlar kesin mi?', cevap: 'Hayır, yaklaşık bantlardır ve Ağustos 2026 durumunu yansıtır. Kamu maaşları katsayı değişikliğiyle yıl içinde güncellenir; özel sektörde ilan edilen ücretler doğrulanmamış beyandır. Karar vermeden önce resmî kaynaktan teyit edin.' },
     { soru: 'Kamuda mı özelde mi daha çok kazanılır?', cevap: 'Tek yönlü bir cevabı yok. Kamu daha öngörülebilir, özel sektör performansa bağlı olarak daha geniş bir aralık sunuyor ama gider ve risk hekimde.' },
     { soru: 'Klinik sahibi olmak geliri artırır mı?', cevap: 'Ciroyu artırabilir, kazancı artırıp artırmadığı gider yapısına bağlı. Kira, personel, sarf ve cihaz giderleri düşüldükten sonra kalana bakmak gerekiyor.' },
     { soru: 'Döner sermaye her kurumda var mı?', cevap: 'Hayır. Kuruma ve göreve göre değişiyor; olmadığı kadrolar da var.' },

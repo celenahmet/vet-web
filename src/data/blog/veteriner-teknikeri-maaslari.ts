@@ -13,7 +13,17 @@ export const veterinerTeknikeriMaaslari: BlogYazi = {
   tarih: '2026-08-31',
   bloklar: [
     { kind: 'paragraf', metin: 'Veteriner sağlık teknikerlerinin kazancı geniş bir aralıkta değişiyor ve bu aralığın sebebi çoğu zaman yanlış anlaşılıyor. Belirleyici olan diploma değil; **nerede, hangi kadroda ve hangi saatlerde** çalışıldığı.' },
-    { kind: 'paragraf', metin: 'Bu yazı güncel rakam vermiyor. Kamuda ücret merkezi katsayıya bağlı olarak dönemsel değişiyor, özel sektörde ise merkezi bir kayıt yok. Anlatılan şey ücreti belirleyen kalemler ve pazarlıkta nelerin konuşulması gerektiği.' },
+    { kind: 'paragraf', metin: 'Aşağıda önce dayanağı belli bantları, sonra bu bantları neyin belirlediğini veriyoruz. Teknikerlerde özel sektör için merkezi bir ücret kaydı bulunmuyor; bu yüzden uydurma bir ortalama yerine **tabanı ve tabanı yukarı taşıyan kalemleri** anlatmak daha dürüst.' },
+
+    { kind: 'baslik', metin: 'Kısa cevap: neye bakmalı' },
+    { kind: 'paragraf', metin: '**Ağustos 2026 itibarıyla** durum şöyle: teknikerlerde özel sektör için merkezi ve doğrulanabilir bir ücret kaydı yok. Bu yüzden aşağıda uydurma bir ortalama değil, ücretin dayandığı taban ve tabanı yukarı taşıyan kalemler veriliyor.' },
+    { kind: 'tablo', basliklar: ['Durum', 'Ücretin dayanağı', 'Neye göre yukarı çıkar'], satirlar: [
+      ['Özel klinik, yeni mezun', 'Asgari ücret mevzuatındaki taban', 'Mesai ve nöbet ekleri'],
+      ['Özel klinik, deneyimli', 'Tabanın belirgin üzeri', 'Laboratuvar, anestezi takibi, stok sorumluluğu'],
+      ['Kamu kadrosu', 'Gösterge, ek gösterge, katsayı, kıdem', 'Derece ve kademe ilerlemesi'],
+      ['Nöbetli çalışma', 'Taban ücrete ek', 'Fazla çalışma ve gece ücreti'],
+    ] },
+    { kind: 'uyari', metin: 'İlan sitelerinde görülen rakamlar doğrulanmamış beyandır. Asgari ücret ve kamu katsayısı yıl içinde güncellenir; güncel değeri resmî kaynaktan teyit edin.' },
 
     { kind: 'baslik', metin: 'Ücreti belirleyen dört kalem' },
     { kind: 'tablo', basliklar: ['Kalem', 'Neden fark yaratıyor'], satirlar: [
@@ -43,7 +53,7 @@ export const veterinerTeknikeriMaaslari: BlogYazi = {
     { kind: 'uyari', metin: 'Bu yazı güncel ücret rakamı içermiyor ve iş hukuku danışmanlığı değildir. Asgari ücret, mesai ve sigorta konularında güncel mevzuat esastır; tereddütte ilgili kurumlara başvurun.' },
   ],
   sss: [
-    { soru: 'Neden net rakam verilmiyor?', cevap: 'Kamuda ücret merkezi katsayıya bağlı olarak dönemsel değişiyor, özel sektörde merkezi bir kayıt yok. Yazılacak sayı kısa sürede yanlış olurdu.' },
+    { soru: 'Neden tek bir ortalama rakam yok?', cevap: 'Teknikerlerde özel sektör için merkezi ve doğrulanabilir bir ücret kaydı bulunmuyor. Uydurma bir ortalama vermek yerine tabanı, yani asgari ücret mevzuatını ve tabanı yukarı taşıyan kalemleri veriyoruz.' },
     { soru: 'Kamuda mı özelde mi daha yüksek?', cevap: 'Kamu daha öngörülebilir ve haklar mevzuatla belirli. Özel sektörde aralık geniş; üstlenilen sorumluluk ve çalışma saatiyle değişiyor.' },
     { soru: 'Ücret artışı için ne yapmalı?', cevap: 'Somut yetkinlik eklemek: laboratuvar, anestezi takibi, stok ve hatırlatma sistemleri. Pazarlık yıl sayısı üzerinden değil, üstlenilen iş üzerinden yürüyor.' },
     { soru: 'Sigorta primim gerçek ücretim üzerinden mi yatmalı?', cevap: 'Evet. Priminizin fiilen aldığınız ücret üzerinden yatırılması gerekir; bordronuzu düzenli kontrol edin.' },

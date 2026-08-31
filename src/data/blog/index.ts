@@ -37,6 +37,7 @@ import { asgariUcretTarifesiNedir } from './asgari-ucret-tarifesi-nedir';
 import { veterinerTeknikeriNeIsYapar } from './veteriner-teknikeri-ne-is-yapar';
 import { veterinerHekimMaaslari } from './veteriner-hekim-maaslari';
 import { veterinerTeknikeriMaaslari } from './veteriner-teknikeri-maaslari';
+import { veterinerUcretleri } from './veteriner-ucretleri';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -54,7 +55,7 @@ const TUM_YAZILAR: BlogYazi[] = [
   kediKopekCheckUpNeZaman, kopeklerdeZehirlenme, evcilHayvanlardaKanTahlili,
   veterinerHekimTeknikerFarki, muayenehanePoliklinikHastaneFarki,
   asgariUcretTarifesiNedir, veterinerTeknikeriNeIsYapar,
-  veterinerHekimMaaslari, veterinerTeknikeriMaaslari,
+  veterinerHekimMaaslari, veterinerTeknikeriMaaslari, veterinerUcretleri,
 ];
 
 /**
