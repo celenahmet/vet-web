@@ -92,6 +92,7 @@ assert.equal(kalici.some((satir) => satir.code === 'ALT'), false, 'Çözülmemi�
 // yine geçebilir. Bu sözleşme kontrolleri menü/işlem bağlarının gerçekten panelde
 // kaldığını ölçer; canlı RPC davranışı mobil repodaki kabul testiyle ayrıca ölçülür.
 const panel = readFileSync(new URL('../src/panel/Panel.tsx', import.meta.url), 'utf8');
+const panelGiris = readFileSync(new URL('../src/panel/PanelGiris.tsx', import.meta.url), 'utf8');
 const bolumler = readFileSync(new URL('../src/panel/bolumler.ts', import.meta.url), 'utf8');
 const entegrasyon = readFileSync(new URL('../src/panel/PanelEntegrasyonlar.tsx', import.meta.url), 'utf8');
 const recete = readFileSync(new URL('../src/panel/PanelReceteler.tsx', import.meta.url), 'utf8');
@@ -117,6 +118,13 @@ const vercel = readFileSync(new URL('../vercel.json', import.meta.url), 'utf8');
 const envOrnegi = readFileSync(new URL('../.env.example', import.meta.url), 'utf8');
 const paket = readFileSync(new URL('../package.json', import.meta.url), 'utf8');
 const ocrVarliklari = readFileSync(new URL('./ocr-varliklarini-hazirla.mjs', import.meta.url), 'utf8');
+
+assert.match(panelGiris, /import logoUrl from '\.\.\/assets\/logo\.webp'/,
+  'Klinik girişi açık zemin Veterito marka varlığını yeniden kullanmalı.');
+assert.match(panelGiris, /className="pnl-giris-marka"[\s\S]*src=\{logoUrl\}[\s\S]*alt="Veterito"/,
+  'Klinik giriş kartının üstünde erişilebilir Veterito logosu bulunmalı.');
+assert.match(panelCss, /\.pnl-giris-marka img\s*\{[^}]*height:\s*34px;[^}]*max-width:\s*100%;/,
+  'Giriş logosu kart sınırlarında doğal oranını korumalı.');
 
 assert.match(bolumler, /anahtar:\s*'iletisim',\s*ad:\s*'Operasyonel işlemler'/, 'Günlük işlemler açık adıyla ayrı menü olmalı.');
 assert.match(bolumler, /anahtar:\s*'entegrasyonlar',\s*ad:\s*'Entegrasyonlar'/, 'Teknik entegrasyonlar solda ayrı menü olmalı.');

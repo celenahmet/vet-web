@@ -626,6 +626,8 @@
   padding: 30px 28px; background: var(--pnl-yuzey-ust);
   border: 1px solid var(--pnl-cizgi); border-radius: 14px;
 }
+.pnl-giris-marka { display: flex; align-items: center; margin: 0 0 22px; }
+.pnl-giris-marka img { display: block; width: auto; height: 34px; max-width: 100%; }
 .pnl-giris h1 { margin: 0 0 4px; font-size: 21px; }
 .pnl-giris-alt { margin: 0 0 20px; font-size: 13.5px; line-height: 1.55; color: var(--pnl-soluk); }
 .pnl-alan { display: flex; flex-direction: column; gap: 5px; margin-bottom: 13px; }

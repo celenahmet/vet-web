@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { AlertTriangle, LogIn } from 'lucide-react';
 
+import logoUrl from '../assets/logo.webp';
 import { istemci, yapilandirmaEksik } from './istemci';
 import Hata from './Hata';
 
@@ -49,6 +50,9 @@ export default function PanelGiris({ girildi }: { girildi: () => void }) {
 
   return (
     <div className="pnl-giris">
+      <div className="pnl-giris-marka">
+        <img src={logoUrl} alt="Veterito" width={567} height={144} />
+      </div>
       <h1>Klinik girişi</h1>
       <p className="pnl-giris-alt">
         Veterito uygulamasında kullandığınız klinik hesabınızla girin. Ayrı bir web hesabı
