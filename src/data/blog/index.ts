@@ -31,6 +31,12 @@ import { kliniklerdeAsiHatirlatma } from './kliniklerde-asi-hatirlatma';
 import { kediKopekCheckUpNeZaman } from './kedi-kopek-check-up-ne-zaman';
 import { kopeklerdeZehirlenme } from './kopeklerde-zehirlenme';
 import { evcilHayvanlardaKanTahlili } from './evcil-hayvanlarda-kan-tahlili';
+import { veterinerHekimTeknikerFarki } from './veteriner-hekim-tekniker-farki';
+import { muayenehanePoliklinikHastaneFarki } from './muayenehane-poliklinik-hastane-farki';
+import { asgariUcretTarifesiNedir } from './asgari-ucret-tarifesi-nedir';
+import { veterinerTeknikeriNeIsYapar } from './veteriner-teknikeri-ne-is-yapar';
+import { veterinerHekimMaaslari } from './veteriner-hekim-maaslari';
+import { veterinerTeknikeriMaaslari } from './veteriner-teknikeri-maaslari';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -46,6 +52,9 @@ const TUM_YAZILAR: BlogYazi[] = [
   kedilerNeZamanKisirlastirilmali, kopeklereZararliYiyecekler,
   kedilerdePireNasilAnlasilir, mikrocipNedir, kliniklerdeAsiHatirlatma,
   kediKopekCheckUpNeZaman, kopeklerdeZehirlenme, evcilHayvanlardaKanTahlili,
+  veterinerHekimTeknikerFarki, muayenehanePoliklinikHastaneFarki,
+  asgariUcretTarifesiNedir, veterinerTeknikeriNeIsYapar,
+  veterinerHekimMaaslari, veterinerTeknikeriMaaslari,
 ];
 
 /**
