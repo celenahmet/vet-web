@@ -110,6 +110,7 @@ const labCihazlari = readFileSync(new URL('../src/panel/LabCihazlari.tsx', impor
 const musteriler = readFileSync(new URL('../src/panel/PanelMusteriler.tsx', import.meta.url), 'utf8');
 const hastalar = readFileSync(new URL('../src/panel/PanelHastalar.tsx', import.meta.url), 'utf8');
 const panelVeri = readFileSync(new URL('../src/panel/veri.ts', import.meta.url), 'utf8');
+const panelCss = readFileSync(new URL('../src/panel/panel.css', import.meta.url), 'utf8');
 const pano = readFileSync(new URL('../src/panel/PanelPano.tsx', import.meta.url), 'utf8');
 const vercel = readFileSync(new URL('../vercel.json', import.meta.url), 'utf8');
 const envOrnegi = readFileSync(new URL('../.env.example', import.meta.url), 'utf8');
@@ -130,6 +131,15 @@ for (const hedef of ['randevular', 'laboratuvar', 'receteler', 'stok', 'entegras
 }
 assert.match(entegrasyon, /seciliKanalHazir/, 'Hazır olmayan sağlayıcıda ileti gönderimi açılmamalı.');
 assert.match(entegrasyon, /Kuyruğa alındı, gönderildi anlamına gelmez/, 'Kuyruk ve teslim durumu açıkça ayrılmalı.');
+assert.match(entegrasyon, /pnl-yeni-modul-ozetleri/, 'Yeni operasyon ve entegrasyon özetleri kendi duyarlı ızgarasını kullanmalı.');
+assert.match(entegrasyon, /pnl-operasyon-tablo/, 'İletişim tercihleri ve teslim listeleri dar panelde kart düzenine geçebilmeli.');
+for (const etiket of ['Alıcı', 'Amaç / kanal', 'Tercih', 'Hedef', 'Kanal / amaç', 'Şablon', 'Durum', 'Zaman', 'İşlem']) {
+  assert.match(entegrasyon, new RegExp(`data-label="${etiket}"`), `Dar operasyon kaydında ${etiket} alan etiketi korunmalı.`);
+}
+assert.match(panelCss, /@media \(max-width: 1380px\)[\s\S]*\.pnl-yeni-modul-ozetleri[\s\S]*\.pnl-operasyon-kisayollari/,
+  'Dizüstü kırılımı özet ve kısayolları panel içeriği sıkışmadan iki sütuna indirmeli.');
+assert.match(panelCss, /@media \(max-width: 1180px\)[\s\S]*\.pnl-operasyon-tablo td::before[\s\S]*content: attr\(data-label\)/,
+  'Beş sütunlu operasyon tabloları orta genişlikte etiketli kartlara dönüşmeli.');
 assert.doesNotMatch(entegrasyon, /doğrulama kuyruğuna/i, 'Olmayan otomatik doğrulama kuyruğu vaat edilmemeli.');
 assert.match(envOrnegi, /^VITE_STORAGE_PROVIDER=r2$/m, 'Web paneli taşınmış medya anahtarlarını R2 üzerinden okumalı.');
 assert.match(vercel, /img-src[^;]*https:\/\/cdn\.veterito\.com/, 'CSP, imzalı R2 görsellerinin CDN üzerinden gösterilmesine izin vermeli.');

@@ -407,6 +407,21 @@
 .pnl-entegrasyon-rehberi strong { font-size: 12px; }
 .pnl-entegrasyon-rehberi span { color: var(--pnl-soluk); font-size: 10.5px; line-height: 1.4; }
 
+/* Yeni operasyon/entegrasyon ekranlari panelin kullanilabilir GENISLIGINE gore
+   kirilir. Sol menulu 1280–1366 px dizustunde viewport genisligini esas alan eski
+   1050 px siniri gec kaliyor ve dort karti 200 px altina sikistiriyordu. */
+.pnl-yeni-modul { --pnl-entegrasyon-yatay: 18px; }
+.pnl-yeni-modul-basi > div { min-width: min(100%, 420px); }
+.pnl-yeni-modul-ozetleri .pnl-kart { min-width: 0; }
+.pnl-operasyon-kisayol-widget, .pnl-operasyon-panelleri { margin-top: 14px; }
+.pnl-operasyon-panelleri { display: grid; gap: 14px; }
+.pnl-operasyon-kisayol-widget .pnl-widget-basi { min-height: 52px; }
+.pnl-entegrasyon-ayrinti > .pnl-alan:first-of-type { margin-top: 3px; }
+.pnl-entegrasyon-ayrinti .pnl-alt-baslik {
+  margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--pnl-cizgi);
+}
+.pnl-operasyon-tablo td { overflow-wrap: anywhere; }
+
 /* Widget icindeki kompakt satirlar */
 .pnl-satirlar { list-style: none; margin: 0; padding: 0; }
 .pnl-satir {
@@ -971,10 +986,52 @@ a.pnl-widget-eylem { text-decoration: none; }
  * yazilmali. `auto-fit` bunu kendiliginden yapiyordu; referans yerlesim icin
  * sabit sayiya gecilince koruma da kaybolmus.
  * ══════════════════════════════════════════════════════════════════════════ */
-@media (max-width: 1050px) {
-  .pnl-kartlar { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 1380px) {
+  .pnl-yeni-modul-ozetleri { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pnl-operasyon-kisayollari { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pnl-entegrasyon-rehberi { grid-template-columns: 1fr; }
+}
+
+/* Bes sutunlu iletisim tablolari orta panel genisliginde metni ezmek yerine
+   etiketli kayit kartlarina doner. Yatay kaydirma yalniz veri karsilastirmasi
+   gereken genel tablolarda kalir. */
+@media (max-width: 1180px) {
+  .pnl-operasyon-tablo { display: block; width: 100%; min-width: 0; }
+  .pnl-operasyon-tablo thead { display: none; }
+  .pnl-operasyon-tablo tbody { display: grid; width: 100%; min-width: 0; gap: 9px; padding: 2px 12px 12px; }
+  .pnl-operasyon-tablo tr {
+    display: block; overflow: hidden; border: 1px solid var(--pnl-cizgi);
+    border-radius: 11px; background: var(--pnl-yuzey);
+  }
+  .pnl-operasyon-tablo td,
+  .pnl-operasyon-tablo td:first-child {
+    display: grid; grid-template-columns: minmax(112px, .36fr) minmax(0, 1fr);
+    align-items: center; gap: 12px; padding: 9px 12px;
+    border-bottom: 1px solid color-mix(in srgb, var(--pnl-cizgi) 65%, transparent);
+  }
+  .pnl-operasyon-tablo td:last-child { border-bottom: 0; }
+  .pnl-operasyon-tablo td::before {
+    content: attr(data-label); color: var(--pnl-soluk); font-size: 10.5px;
+    font-weight: 700; letter-spacing: .035em; text-transform: uppercase;
+  }
+}
+
+@media (max-width: 1050px) {
+  .pnl-kartlar { grid-template-columns: repeat(2, 1fr); }
+  .pnl-lab-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pnl-yeni-modul-basi { flex-wrap: wrap; }
+  .pnl-yeni-modul-basi .pnl-basi-dugmeler { width: 100%; margin-left: 0; }
+}
+@media (max-width: 760px) {
+  .pnl-yeni-modul { --pnl-entegrasyon-yatay: 13px; }
+  .pnl-yeni-modul .pnl-widget-basi { flex-wrap: wrap; }
+  .pnl-yeni-modul .pnl-widget-eylem { width: 100%; margin-left: 0; justify-content: center; }
+  .pnl-entegrasyon-basi {
+    display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: start;
+  }
+  .pnl-entegrasyon-basi .pnl-durum { grid-column: 2; justify-self: start; }
+  .pnl-entegrasyon-basi > svg { grid-column: 3; grid-row: 1; }
+  .pnl-entegrasyon-rehberi ul, .pnl-form-ikili { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .pnl-kartlar { grid-template-columns: 1fr; }
@@ -985,6 +1042,11 @@ a.pnl-widget-eylem { text-decoration: none; }
   /* ⚠️ Tablo dar ekranda kendi icinde kayar; sayfa gövdesi ASLA yatay kaymaz. */
   .pnl-widget-govde-tablo { overflow-x: auto; }
   .pnl-tablo { min-width: 480px; }
+  .pnl-operasyon-tablo { min-width: 0; }
+  .pnl-yeni-modul-basi .pnl-basi-dugmeler { flex-direction: column; }
+  .pnl-yeni-modul-basi .pnl-basi-dugmeler .pnl-dugme { width: 100%; justify-content: center; }
+  .pnl-operasyon-tablo td,
+  .pnl-operasyon-tablo td:first-child { grid-template-columns: 1fr; gap: 4px; }
 }
 
 /* İçerik dolgusu tek yerden: alttaki iki eski kural fazlaydi ve panoyu
@@ -1172,7 +1234,7 @@ a.pnl-widget-eylem { text-decoration: none; }
 .pnl-segment button:hover { color: var(--pnl-metin); }
 .pnl-segment .pnl-segment-etkin { background: var(--pnl-yuzey); color: var(--pnl-vurgu); box-shadow: 0 1px 4px rgba(7,63,53,.1); }
 .pnl-sonuc-sayisi { margin-left: auto; color: var(--pnl-soluk); font-size: 12px; }
-.pnl-operasyon-kartlari, .pnl-lab-listesi, .pnl-entegrasyon-listesi { display: grid; gap: 12px; }
+.pnl-operasyon-kartlari, .pnl-lab-listesi, .pnl-entegrasyon-listesi { display: grid; gap: 12px; margin-top: 14px; }
 .pnl-urun-karti { padding: 17px; }
 .pnl-urun-basi { display: flex; align-items: flex-start; gap: 10px; }
 .pnl-urun-basi > div { flex: 1; min-width: 0; }
@@ -1236,7 +1298,7 @@ a.pnl-widget-eylem { text-decoration: none; }
 .pnl-lab-kart-basi > span:nth-child(2), .pnl-entegrasyon-basi > span:nth-child(2) { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .pnl-lab-kart-basi strong, .pnl-entegrasyon-basi strong { font-size: 13.5px; }
 .pnl-lab-kart-basi small, .pnl-entegrasyon-basi small { color: var(--pnl-soluk); font-size: 11.5px; line-height: 1.4; }
-.pnl-lab-ayrinti, .pnl-entegrasyon-ayrinti { padding: 0 15px 15px; border-top: 1px solid var(--pnl-cizgi); }
+.pnl-lab-ayrinti, .pnl-entegrasyon-ayrinti { padding: 0 var(--pnl-entegrasyon-yatay, 15px) 18px; border-top: 1px solid var(--pnl-cizgi); }
 .pnl-lab-meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; padding: 12px 0; }
 .pnl-lab-meta span { display: flex; flex-direction: column; gap: 2px; min-width: 0; font-size: 12px; overflow-wrap: anywhere; }
 .pnl-lab-meta b { color: var(--pnl-soluk); font-size: 10.5px; text-transform: uppercase; letter-spacing: .03em; }
