@@ -9,6 +9,7 @@ import Diyalog from './Diyalog';
 import Hata from './Hata';
 import StokEtiketi from './StokEtiketi';
 import Yukleniyor from './Yukleniyor';
+import { stokKameraAkisiniIste, stokKameraHataMesaji } from './stok-kamera';
 import {
   aktifSayimiOku, sayimBaslat, sayimSatiriYaz, sayimSatirlariOku, sayimiIptalEt,
   sayimiTamamla, sayimiTemizle, stokHareketiKaydet, stokKodunuBagla,
@@ -58,7 +59,7 @@ const bosUrun = (): UrunFormu => ({
   paketMiktari: '1', receteli: false,
 });
 
-export default function PanelStok({ klinik }: { klinik: string }) {
+export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klinikAdi: string }) {
   const [urunler, setUrunler] = useState<StokUrunu[] | null>(null);
   const [hata, setHata] = useState<string | null>(null);
   const [bilgi, setBilgi] = useState<string | null>(null);
@@ -257,25 +258,27 @@ export default function PanelStok({ klinik }: { klinik: string }) {
     if (kameraBasliyor || kameraAcik) return;
     setKameraHatasi(null);
     const Kurucu = (window as Window & { BarcodeDetector?: BarkodAlgilayiciKurucusu }).BarcodeDetector;
-    if (!navigator.mediaDevices?.getUserMedia) {
-      setKameraHatasi('Bu bilgisayar veya tarayıcı kamerayı desteklemiyor. USB okuyucu ya da elle giriş kullanın; seri sayım için mobil uygulamanın kamerasını öneriyoruz.');
-      return;
-    }
     setKameraBasliyor(true);
     try {
       kameraAktifRef.current = true;
+      // Izin talebi kütüphaneye bırakılmaz. Kullanıcının doğrudan Kamera
+      // tıklaması içinde tek kez çağrıldığı için tarayıcı izin penceresini
+      // güvenilir biçimde gösterebilir; iki okuyucu da aynı akışı kullanır.
+      const akis = await stokKameraAkisiniIste();
+      if (!kameraAktifRef.current) { akis.getTracks().forEach((iz) => iz.stop()); return; }
+      kameraAkisiRef.current = akis;
       setKameraAcik(true);
-      await new Promise<void>((coz) => requestAnimationFrame(() => coz()));
-      const video = videoRef.current;
+      let video = videoRef.current;
+      for (let deneme = 0; !video && deneme < 6; deneme += 1) {
+        await new Promise<void>((coz) => requestAnimationFrame(() => coz()));
+        video = videoRef.current;
+      }
       if (!video) throw new Error('Kamera önizlemesi hazırlanamadı.');
 
       if (!Kurucu) {
         const { BrowserMultiFormatReader } = await import('@zxing/browser');
         const okuyucu = new BrowserMultiFormatReader();
-        const kontroller = await okuyucu.decodeFromConstraints({
-          audio: false,
-          video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } },
-        }, video, (sonuc) => {
+        const kontroller = await okuyucu.decodeFromStream(akis, video, (sonuc) => {
           const kod = sonuc?.getText().trim() ?? '';
           if (kod.length < 3) return;
           setKodTuru(sonuc?.getBarcodeFormat().toString() || 'unknown');
@@ -288,11 +291,6 @@ export default function PanelStok({ klinik }: { klinik: string }) {
         return;
       }
 
-      const akis = await navigator.mediaDevices.getUserMedia({
-        audio: false,
-        video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } },
-      });
-      kameraAkisiRef.current = akis;
       video.srcObject = akis;
       await video.play();
       const istenenFormatlar = ['qr_code', 'ean_13', 'ean_8', 'upc_a', 'upc_e', 'code_39', 'code_93', 'code_128', 'itf'];
@@ -328,10 +326,7 @@ export default function PanelStok({ klinik }: { klinik: string }) {
       kameraTuruRef.current = requestAnimationFrame(() => void tara());
     } catch (e) {
       kamerayiDurdur();
-      const ad = e instanceof DOMException ? e.name : '';
-      setKameraHatasi(ad === 'NotAllowedError'
-        ? 'Kamera izni verilmedi. Tarayıcı ayarlarından izin verebilir, USB okuyucu kullanabilir veya daha ergonomik seri sayım için mobil uygulamaya geçebilirsiniz.'
-        : (e as Error).message || 'Kamera başlatılamadı.');
+      setKameraHatasi(stokKameraHataMesaji(e));
     } finally { setKameraBasliyor(false); }
   }
 
@@ -444,11 +439,11 @@ export default function PanelStok({ klinik }: { klinik: string }) {
       {hareketUrunu ? <form onSubmit={hareketiKaydet}><div className="pnl-alan"><label htmlFor="hareket-tur">Hareket türü</label><select id="hareket-tur" value={hareket.tur} onChange={(e) => setHareket({ ...hareket, tur: e.target.value as HareketTuru })}>{HAREKETLER.map((deger) => <option key={deger} value={deger}>{HAREKET_ADI[deger]}</option>)}</select></div><div className="pnl-alan"><label htmlFor="hareket-miktar">Miktar</label><input id="hareket-miktar" required inputMode="decimal" value={hareket.miktar} onChange={(e) => setHareket({ ...hareket, miktar: e.target.value })} /></div>{hareketUrunu.lot_tracking ? <><div className="pnl-alan"><label htmlFor="hareket-lot">Lot kodu</label><input id="hareket-lot" required value={hareket.lot} onChange={(e) => setHareket({ ...hareket, lot: e.target.value })} /></div><div className="pnl-alan"><label htmlFor="hareket-skt">Son kullanma tarihi</label><input id="hareket-skt" type="date" required={hareketUrunu.kind === 'medicine' && GIRISLER.includes(hareket.tur)} value={hareket.skt} onChange={(e) => setHareket({ ...hareket, skt: e.target.value })} /></div></> : null}<div className="pnl-alan"><label htmlFor="hareket-not">Klinik notu</label><textarea id="hareket-not" maxLength={300} value={hareket.not} onChange={(e) => setHareket({ ...hareket, not: e.target.value })} /></div><div className="pnl-diyalog-eylem"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setHareketUrunu(null)}>Vazgeç</button><button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor}>{bekliyor ? 'Kaydediliyor…' : 'Hareketi kaydet'}</button></div></form> : null}
     </Diyalog>
 
-    <Diyalog acik={etiket !== null} kapat={() => setEtiket(null)} baslik="Ürün etiketi" aciklama="QR iç etiketi Veterito kodunu, barkod varsa üretici GTIN’ini taşır.">{etiket ? <StokEtiketi ad={etiket.name} kod={etiket.internal_label} gtin={etiket.gtin} /> : null}</Diyalog>
+    <Diyalog acik={etiket !== null} kapat={() => setEtiket(null)} baslik="Ürün etiketi" aciklama="QR iç etiketi Veterito kodunu, barkod varsa üretici GTIN’ini taşır.">{etiket ? <StokEtiketi klinikAdi={klinikAdi} ad={etiket.name} kod={etiket.internal_label} gtin={etiket.gtin} /> : null}</Diyalog>
 
     <Diyalog boyut="panorama" acik={sayimAcik} kapat={() => { kamerayiDurdur(); setSayimAcik(false); }} baslik="Akıllı stok sayımı" aciklama="USB okuyucu, kamera veya elle girilen kod aynı güvenli eşleştirme kapısından geçer. Tarama stok değiştirmez; farklar yalnız ‘Sayımı tamamla’ ile işlenir.">
       {!sayim ? <Yukleniyor metin="Sayım açılıyor" /> : <>
-        <form className="pnl-tarama-formu" onSubmit={koduCoz}><div className="pnl-operasyon-arama"><Barcode size={17} /><input autoFocus value={taramaKodu} onChange={(e) => setTaramaKodu(e.target.value)} placeholder="Barkod veya QR okutun" aria-label="Barkod veya QR kodu" /></div><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => void kamerayiAc()} disabled={kameraAcik || kameraBasliyor}><Camera size={15} /> {kameraBasliyor ? 'Açılıyor…' : 'Kamera'}</button><button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor || taramaKodu.trim().length < 3}>Say</button></form>
+        <form className="pnl-tarama-formu" onSubmit={koduCoz}><div className="pnl-operasyon-arama"><Barcode size={17} /><input autoFocus value={taramaKodu} onChange={(e) => setTaramaKodu(e.target.value)} placeholder="Barkod veya QR okutun" aria-label="Barkod veya QR kodu" /></div><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => void kamerayiAc()} disabled={kameraAcik || kameraBasliyor}><Camera size={15} /> {kameraBasliyor ? 'İzin bekleniyor…' : kameraHatasi ? 'Kamera iznini yeniden dene' : 'Kamerayı aç'}</button><button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor || taramaKodu.trim().length < 3}>Say</button></form>
         {kameraHatasi ? <p className="pnl-alan-hata" role="alert">{kameraHatasi}</p> : null}
         {kameraAcik ? <div className="pnl-kamera-okuyucu"><video ref={videoRef} muted playsInline aria-label="Barkod kamera önizlemesi" /><span>Kodu çerçevenin ortasında sabit tutun</span><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={kamerayiDurdur}>Kamerayı kapat</button></div> : null}
         <p className="pnl-alan-ipucu">USB okuyucuyu alana odaklayıp okutun veya bilgisayar kameranızı açın. Kod tek ürüne bağlıysa +1 sayılır; birden fazlaysa seçim ister. Uzun raf sayımlarında mobil uygulamanın kamerası daha ergonomiktir.</p>

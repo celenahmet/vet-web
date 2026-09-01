@@ -36,12 +36,12 @@ Yeni bir ekran açmadan önce: `grep -rhoE "rpc\(\s*['\"][a-z_]+['\"]" ~/Develop
 | Duyurular | `announcements` · **`send_announcement`** | ✅ **duyuru oluşturulup gönderilebiliyor** |
 | Klinik profili · Topluluk · Sahiplendirme · Değerlendirmeler · Ayarlar | ilgili tablolar | ✅ salt okuma |
 | Bildirimler | `notifications` | ✅ zil rozeti gerçek sayı; menüde yok, zilden açılıyor |
-| Mesajlar | — | ⬜ tek gerçekten boş bölüm: gelen kutusu RPC'si yok |
+| Mesajlar | `conversation_list` · `conversation_request_list` · `message_list` · `respond_to_message_request` · `conversation_peer_info` | ✅ gelen kutusu, istek kabul/ret, okundu bilgisi, görsel, sessize alma, silme, şikâyet ve engelleme webde bağlı |
 | Gelir / Gider | `clinic_ledger_summary` · `clinic_ledger_by_category` | ✅ salt okuma |
 | Ekip | `clinic_staff_list` · **`clinic_invite_staff`** · **`clinic_remove_staff`** | ✅ davet / çıkarma (onaylı) |
 | Klinik web sitesi | `clinics` (RLS) · **`update_clinic_page`** · **`set_clinic_username`** · **`update_clinic_contact`** · `clinics` kolon güncellemesi | ✅ adres, slogan, tanıtım, yol tarifi, yayın, arama, WhatsApp ve sosyal hesaplar düzenlenebiliyor |
 | Raporlar | `clinic_analytics` · `clinic_report` · `clinic_review_list` | ✅ salt okuma |
-| Ürün ve stok | `clinic_inventory_list_v2` · `upsert_clinic_product_v2` · `record_inventory_movement` · barkod/QR ve sayım RPC'leri | ✅ arama, ilaç/lot/SKT, kamera/USB okuma, eşleme ve taslak sayım canlı kabulden geçti |
+| Ürün ve stok | `clinic_inventory_list_v2` · `upsert_clinic_product_v2` · `record_inventory_movement` · barkod/QR ve sayım RPC'leri | ✅ arama, ilaç/lot/SKT, kamera/USB okuma, eşleme ve taslak sayım; doğrudan kamera izin kapısı ve klinik adlı 100×50 mm tek sayfa etiket çıktısı ölçüldü |
 | Laboratuvar | istem, kalite, sürüm, analit, karar desteği ve `save_lab_result_revision_v3` | 🟨 fotoğrafsız saklama + tarayıcı OCR + merge; canlı 0190 geçişi bekliyor |
 | Entegrasyon ayarları | sağlayıcı kataloğu · Vault Edge Function · ileti izin/kuyruk RPC'leri | ✅ owner-only sır yönetimi, SMS/WhatsApp izin, doğrulama, kota ve spam kapıları canlı kabulden geçti |
 
@@ -126,11 +126,11 @@ kurulu. Yani içe aktarma yeni bir yetki yüzeyi açmıyor; risk yetkide değil
       hesaplarını mobildeki mevcut veri kaynakları ve RPC üzerinden düzenlenebilir yap.
       — ✅ İkinci tablo/RPC açılmadı; mobilin `update_clinic_page` ve
       `update_clinic_contact` yolları kullanılıyor.
-- [ ] Mevcut panel tasarımını ve sabit açık tema kuralını koru; masaüstü/dar ekran,
+- [x] Mevcut panel tasarımını ve sabit açık tema kuralını koru; masaüstü/dar ekran,
       TypeScript, panel denetimi ve production build ile ölçüp ayrı commit oluştur.
-      — 🟨 TypeScript, değişen dosya lint'i, 251 sınıflı panel denetimi ve tam
-      production build geçti. Yerel tarayıcıda klinik oturumu olmadığı için panel
-      içi masaüstü/dar ekran görsel kabulü oturumlu kontrolde tamamlanacak.
+      — ✅ Değişen dosya lint'i, 387 sınıflı panel denetimi ve tam production
+      build geçti. Operasyon diyalogları, klinik profili, laboratuvar ve stok
+      yüzeyleri masaüstü/dar ekran yerel tarayıcı kabulünde ölçüldü; yatay taşma yok.
 
 ### 1. Taslaktaki boş kutular (Ahmet: *"olmayanlara - koyarız sonra oturturuz"*)
 Tasarım taslağındaki bu kutuların arkasında **veri yok**; yer tutucu olarak

@@ -1339,9 +1339,11 @@ a.pnl-widget-eylem { text-decoration: none; }
 .pnl-lot-satiri span { font-size: 11.5px; color: var(--pnl-soluk); }
 .pnl-etiket-sarmal { display: flex; flex-direction: column; align-items: center; gap: 14px; }
 .pnl-urun-etiketi { display: flex; align-items: center; gap: 18px; width: 100%; padding: 16px; border: 1px dashed var(--pnl-cizgi); border-radius: 11px; background: #fff; color: #10211d; }
-.pnl-urun-etiketi > div { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
-.pnl-urun-etiketi strong { font-size: 15px; overflow-wrap: anywhere; }
-.pnl-urun-etiketi span { font-size: 11px; color: #56645f; }
+.pnl-urun-etiket-bilgi { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.pnl-urun-etiket-klinik { color: var(--pnl-vurgu); font-size: 11px; font-weight: 700; }
+.pnl-urun-etiket-ad { font-size: 15px; overflow-wrap: anywhere; }
+.pnl-urun-etiket-kod, .pnl-urun-etiket-qr span { font-size: 11px; color: #56645f; }
+.pnl-urun-etiket-qr { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .pnl-urun-etiketi svg { max-width: 100%; height: auto; }
 .pnl-tarama-formu { display: flex; gap: 8px; align-items: stretch; }
 .pnl-tarama-formu .pnl-operasyon-arama { flex-basis: auto; }
@@ -1570,13 +1572,6 @@ a.pnl-widget-eylem { text-decoration: none; }
   .pnl-stok-deger { margin-left: 52px; }
   .pnl-tarama-formu { flex-direction: column; }
   .pnl-sayim-alt .pnl-dugme { flex: 1 1 100%; }
-}
-
-@media print {
-  body:has(.pnl-urun-etiketi) * { visibility: hidden !important; }
-  body:has(.pnl-urun-etiketi) .pnl-urun-etiketi,
-  body:has(.pnl-urun-etiketi) .pnl-urun-etiketi * { visibility: visible !important; }
-  body:has(.pnl-urun-etiketi) .pnl-urun-etiketi { position: fixed; inset: 20mm; width: auto; border: 0; }
 }
 
 /* ── RANDEVU KLINIK NOTU ─────────────────────────────────

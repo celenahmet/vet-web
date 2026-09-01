@@ -7,6 +7,8 @@ import {
   ocrMetniniCoz,
   ocrSonucunuBirlestir,
 } from '../src/panel/lab-ocr.ts';
+import { stokEtiketiYazdirmaHtml } from '../src/panel/stok-etiketi-yazdir.ts';
+import { stokKameraHataMesaji } from '../src/panel/stok-kamera.ts';
 
 const mevcut = (kod, deger, ek = {}) => ({
   id: kod,
@@ -88,6 +90,23 @@ assert.equal(kalici.some((satir) => 'raw_line' in satir), false, 'Ham OCR satır
 assert.equal(kalici.find((satir) => satir.code === 'HGB')?.value, 2, 'Çakışmada mevcut değer varsayılan kalmalı.');
 assert.equal(kalici.some((satir) => satir.code === 'ALT'), false, 'Çözülmemiş ?? kalıcı sonuca yazılmamalı.');
 
+const etiketBelgesi = stokEtiketiYazdirmaHtml({
+  outerHTML: '<div class="pnl-urun-etiketi"><small>Patili Dostlar Veteriner Kliniği</small></div>',
+});
+assert.match(etiketBelgesi, /@page \{ size: 100mm 50mm; margin: 0; \}/,
+  'Çalışan etiket üreticisi yazıcıya tek etiketlik özel sayfa ölçüsü vermeli.');
+assert.equal((etiketBelgesi.match(/Patili Dostlar Veteriner Kliniği/g) ?? []).length, 1,
+  'Klinik adı yazdırma belgesine kaybolmadan ve yinelenmeden taşınmalı.');
+for (const [ad, beklenen] of [
+  ['NotAllowedError', 'Kamera izni bu site için engellenmiş.'],
+  ['NotFoundError', 'Kullanılabilir kamera bulunamadı.'],
+  ['NotReadableError', 'Kamera başka bir uygulama tarafından kullanılıyor.'],
+]) {
+  const hata = new Error('ham tarayıcı hatası'); hata.name = ad;
+  assert.match(stokKameraHataMesaji(hata), new RegExp(`^${beklenen.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`),
+    `${ad} kullanıcıya kendi çözümünü açıklamalı.`);
+}
+
 // Kritik mobil–web eşlik kapıları bileşen ağacından yanlışlıkla çıkarılırsa build
 // yine geçebilir. Bu sözleşme kontrolleri menü/işlem bağlarının gerçekten panelde
 // kaldığını ölçer; canlı RPC davranışı mobil repodaki kabul testiyle ayrıca ölçülür.
@@ -102,6 +121,9 @@ const panelBolumler = readFileSync(new URL('../src/panel/PanelBolumler.tsx', imp
 const defter = readFileSync(new URL('../src/panel/PanelDefter.tsx', import.meta.url), 'utf8');
 const webSitesi = readFileSync(new URL('../src/panel/PanelWebSitesi.tsx', import.meta.url), 'utf8');
 const stok = readFileSync(new URL('../src/panel/PanelStok.tsx', import.meta.url), 'utf8');
+const stokEtiketi = readFileSync(new URL('../src/panel/StokEtiketi.tsx', import.meta.url), 'utf8');
+const stokEtiketiYazdir = readFileSync(new URL('../src/panel/stok-etiketi-yazdir.ts', import.meta.url), 'utf8');
+const stokKamera = readFileSync(new URL('../src/panel/stok-kamera.ts', import.meta.url), 'utf8');
 const medya = readFileSync(new URL('../src/panel/medya-veri.ts', import.meta.url), 'utf8');
 const galeri = readFileSync(new URL('../src/panel/KlinikGaleri.tsx', import.meta.url), 'utf8');
 const ekip = readFileSync(new URL('../src/panel/PanelEkip.tsx', import.meta.url), 'utf8');
@@ -213,7 +235,29 @@ assert.match(ekip, /kendiPersonelFotografiniGuncelle/, 'Personel kendi yayın fo
 assert.match(medya, /toBlob\(coz, 'image\/webp'/, 'Görsel EXIF taşımayan yeniden kodlanmış WebP olmalı.');
 assert.match(medya, /guvenliGorselleriTemizle/, 'Sahipsiz medya nesnesi için telafi temizliği bulunmalı.');
 assert.match(medya, /action: 'delete'/, 'R2 sağlayıcısında telafi silme imzalı DELETE kullanmalı.');
-assert.match(stok, /mobil uygulamanın kamerasını öneriyoruz/, 'Web kamerası desteklenmediğinde mobil alternatif önerilmeli.');
+assert.match(stokKamera, /mobil uygulamanın kamerasını öneriyoruz/, 'Web kamerası desteklenmediğinde mobil alternatif önerilmeli.');
+assert.match(panel, /<PanelStok klinik=\{secili\.clinic_id\} klinikAdi=\{secili\.clinic_name\}/,
+  'Stok etiketi seçili kliniğin görünen adını almalı.');
+assert.match(stokKamera, /return navigator\.mediaDevices\.getUserMedia\(STOK_KAMERA_KISITLARI\)/,
+  'Kamera izni okuyucu kütüphanesine bırakılmadan doğrudan kullanıcı eyleminde istenmeli ve aynı akış yedek okuyucuda kullanılmalı.');
+assert.match(stok, /stokKameraAkisiniIste\(\)[\s\S]*if \(!Kurucu\)[\s\S]*decodeFromStream\(akis, video/,
+  'Doğrudan izinle alınan tek kamera akışı yerleşik ve yedek barkod okuyucular arasında paylaşılmalı.');
+assert.doesNotMatch(stok, /decodeFromConstraints\(/,
+  'Yedek barkod okuyucu ikinci bir örtük kamera izni istememeli.');
+assert.match(stok, /Kamera iznini yeniden dene/,
+  'Engellenen kamera izninden sonra kullanıcıya çalışan yeniden deneme eylemi sunulmalı.');
+assert.match(stokKamera, /NotFoundError[\s\S]*NotReadableError/,
+  'İzin reddi, kamera yokluğu ve kameranın meşgul olması birbirinden ayrılmalı.');
+assert.match(stokEtiketi, /pnl-urun-etiket-klinik[^>]*>\{klinikAdi\}/,
+  'Yazdırılan ürün etiketinde klinik adı görünmeli.');
+assert.match(stokEtiketiYazdir, /@page \{ size: 100mm 50mm; margin: 0; \}[\s\S]*html, body \{ width: 100mm; height: 50mm; margin: 0; overflow: hidden; \}/,
+  'Etiket çıktısı ikinci sayfa üretmeyen sabit 100 × 50 mm belge olmalı.');
+assert.match(stokEtiketiYazdir, /document\.createElement\('iframe'\)[\s\S]*srcdoc = stokEtiketiYazdirmaHtml\(etiket\)[\s\S]*pencere\.print\(\)/,
+  'Etiket bütün panel yerine yalıtılmış tek sayfalık yazdırma çerçevesinden basılmalı.');
+assert.doesNotMatch(stokEtiketiYazdir, /window\.print\(\)/,
+  'Etiket eylemi uzun panel sayfasının tamamını yazdırmamalı.');
+assert.doesNotMatch(panelCss, /body:has\(\.pnl-urun-etiketi\)/,
+  'Etiket çıktısı panel gövdesini görünmez yaparak sayfa sayısını yazıcı motoruna bırakmamalı.');
 assert.match(stok, /pnl-yeni-modul pnl-yeni-modul-operasyon/, 'Stok ekranı yeni modül dizüstü kırılımlarını kullanmalı.');
 assert.match(stok, /pnl-operasyon-kartlari pnl-stok-kartlari/, 'Stok ürünleri geniş ekranda alanı dengeli kullanan özel kart ızgarasına bağlanmalı.');
 assert.match(panelCss, /\.pnl-stok-kartlari\s*\{[^}]*repeat\(2,[^}]*\}[\s\S]*@media \(max-width: 1180px\)[\s\S]*\.pnl-stok-kartlari, \.pnl-cihaz-formlari\s*\{[^}]*grid-template-columns: 1fr;/,
