@@ -131,6 +131,8 @@ export default function BlogPost() {
    */
   const [isaretliler, setIsaretliler] = useState<Set<number>>(() => new Set());
   useEffect(() => { setIsaretliler(new Set()); }, [slug]);
+  // Geçersiz slug da bir render yoludur; hook dönüşten önce koşulsuz çağrılır.
+  useOncedenUretilmisVeriyiDevral();
 
   function isaretiCevir(sira: number) {
     setIsaretliler((onceki) => {
@@ -213,10 +215,6 @@ export default function BlogPost() {
       acceptedAnswer: { '@type': 'Answer', text: s.cevap },
     })),
   };
-
-  // Prerender ayni Article/FAQPage bloklarini HTML'e yazmisti; Helmet asagida
-  // kendi kopyasini basiyor. Bu, HTML'dekini devralip cift beyani onluyor.
-  useOncedenUretilmisVeriyiDevral();
 
   return (
     <article className="yazi-sayfa">

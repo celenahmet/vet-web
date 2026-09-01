@@ -7,7 +7,7 @@ import logoUrl from '../assets/logo.webp';
 import logoKoyuUrl from '../assets/logo-koyu.webp';
 import { istemci } from './istemci';
 import { klinikUyelikleri, seciliKlinigiOku, seciliKlinigiYaz, type KlinikUyeligi } from './oturum';
-import { BOLUMLER, type Bolum } from './bolumler';
+import { BOLUMLER, BOLUM_GRUBU_ADI, type Bolum, type BolumGrubu } from './bolumler';
 import { ROL } from './sozluk';
 import PanelGiris from './PanelGiris';
 import PanelPano from './PanelPano';
@@ -70,6 +70,7 @@ export default function Panel() {
   const [klinikler, setKlinikler] = useState<KlinikUyeligi[] | null>(null);
   const [seciliId, setSeciliId] = useState<string | null>(seciliKlinigiOku());
   const [bolum, setBolum] = useState<Bolum>('pano');
+  const [acikMenuGrubu, setAcikMenuGrubu] = useState<BolumGrubu | null>('daily');
   const [menuAcik, setMenuAcik] = useState(false);
   /*
    * ⚠️ ZIL ROZETI ARTIK GERCEK. Once yer tutucuydu, cunku sayiyi verecek bir
@@ -117,6 +118,8 @@ export default function Panel() {
 
   function bolumeGit(b: Bolum) {
     setBolum(b);
+    const hedefGrup = BOLUMLER.find((bolum2) => bolum2.anahtar === b)?.grup;
+    if (hedefGrup) setAcikMenuGrubu(hedefGrup);
     setMenuAcik(false);
     /* ⚠️ Bolum degisince yukari cikiyoruz: uzun bir listeden kisa bir bolume
        gecince kullanici sayfanin ortasinda kaliyordu ve ekran bos sanilıyordu. */
@@ -189,7 +192,7 @@ export default function Panel() {
       case 'asi': return <PanelAsi klinik={secili.clinic_id} />;
       case 'receteler': return <PanelReceteler klinik={secili.clinic_id} klinikAdi={secili.clinic_name} />;
       case 'stok': return <PanelStok klinik={secili.clinic_id} klinikAdi={secili.clinic_name} />;
-      case 'laboratuvar': return <PanelLaboratuvar klinik={secili.clinic_id} sahip={secili.role === 'owner'} />;
+      case 'laboratuvar': return <PanelLaboratuvar klinik={secili.clinic_id} sahip={secili.role === 'owner'} git={bolumeGit} />;
       case 'iletisim': return <PanelEntegrasyonlar klinik={secili.clinic_id} sahip={secili.role === 'owner'} gorunum="communications" git={bolumeGit} />;
       case 'profil': return <PanelProfil klinik={secili.clinic_id} />;
       case 'topluluk': return <PanelTopluluk klinik={secili.clinic_id} />;
@@ -202,14 +205,14 @@ export default function Panel() {
       case 'ekip': return <PanelEkip klinik={secili.clinic_id} />;
       case 'entegrasyonlar': return <PanelEntegrasyonlar klinik={secili.clinic_id} sahip={secili.role === 'owner'} gorunum="technical" />;
       case 'websitesi': return <PanelWebSitesi klinik={secili.clinic_id} sahip={secili.role === 'owner'} />;
-      case 'ayarlar': return <PanelAyarlar />;
+      case 'ayarlar': return <PanelAyarlar git={bolumeGit} />;
       case 'raporlar': return <PanelRaporlar klinik={secili.clinic_id} />;
       default: return <PanelPano klinik={secili.clinic_id} git={bolumeGit} />;
     }
   };
 
   return (
-    <div className="pnl-kabuk">
+    <div className="pnl-kabuk" data-panel-domain={aktif?.grup ?? 'daily'}>
       {/* ⚠️ Yalniz oturum ACIKKEN kuruluyor; giris ekraninda sayac calismasin. */}
       <OturumKilidi />
       <SEO title="Klinik Paneli" description="Veterito klinik yönetim paneli." noindex />
@@ -248,11 +251,18 @@ export default function Panel() {
 
           <div className="pnl-menu-sarmal">
           <ul className="pnl-menu">
-            {BOLUMLER.map((b) => {
-              const Ikon = b.ikon;
-              return (
-                <li key={b.anahtar}>
-                  <button
+            {(Object.entries(BOLUM_GRUBU_ADI) as Array<[BolumGrubu, string]>).map(([grup, grupAdi]) => {
+              const acik = acikMenuGrubu === grup;
+              const grupBolumleri = BOLUMLER.filter((b) => b.grup === grup);
+              return <li key={grup} className="pnl-menu-bolumu">
+                <button type="button" className="pnl-menu-grup" aria-expanded={acik}
+                  aria-controls={`pnl-menu-${grup}`} onClick={() => setAcikMenuGrubu(acik ? null : grup)}>
+                  <span>{grupAdi}</span><ChevronDown size={13} aria-hidden="true" />
+                </button>
+                {acik ? <ul id={`pnl-menu-${grup}`} className="pnl-menu-alt">
+                  {grupBolumleri.map((b) => {
+                    const Ikon = b.ikon;
+                    return <li key={b.anahtar}><button
                     type="button"
                     aria-current={bolum === b.anahtar ? 'page' : undefined}
                     className={bolum === b.anahtar ? 'pnl-menu-ogesi pnl-menu-etkin' : 'pnl-menu-ogesi'}
@@ -268,9 +278,10 @@ export default function Panel() {
                     onClick={() => bolumeGit(b.anahtar as Bolum)}>
                     <Ikon size={18} aria-hidden="true" />
                     <span className="pnl-menu-ad">{b.ad}</span>
-                  </button>
-                </li>
-              );
+                  </button></li>;
+                  })}
+                </ul> : null}
+              </li>;
             })}
           </ul>
           </div>

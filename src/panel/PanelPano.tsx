@@ -90,8 +90,8 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
       anlam: 'Onayınızı bekliyor', hedef: 'randevular' as Bolum,
     },
     {
-      ikon: PawPrint, sinif: '', ad: 'Kayıtlı hasta', deger: analiz?.patients_total ?? 0,
-      anlam: 'Kliniğinize bağlı hayvanlar', hedef: 'hastalar' as Bolum,
+      ikon: PawPrint, sinif: '', ad: 'Klinik defteri hastası', deger: analiz?.patients_total ?? 0,
+      anlam: 'Klinik kaydı açılan hayvanlar', hedef: 'hastalar' as Bolum,
     },
     {
       ikon: Syringe, sinif: 'pnl-kart-ikon-altin', ad: 'Yaklaşan hatırlatma', deger: hatirlatmalar.length,
@@ -253,7 +253,7 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
         <section className="pnl-widget">
           <header className="pnl-widget-basi">
             <span className="pnl-widget-ikon" aria-hidden="true"><PawPrint size={17} /></span>
-            <h3>Son hastalar</h3>
+            <h3>Son uygulama hastaları</h3>
             <button type="button" className="pnl-widget-eylem" onClick={() => git('hastalar')}>
               Tüm hastalar <ArrowRight size={13} />
             </button>
@@ -261,7 +261,7 @@ export default function PanelPano({ klinik, git }: { klinik: string; git: (b: Bo
           <div className="pnl-widget-govde">
             {hastalar.length === 0 ? (
               <p className="pnl-widget-bos">
-                Kayıtlı hasta yok. Müşterileriniz uygulamada hayvanlarını kaydettiğinde burada görünür.
+                Uygulama hastası yok. Müşterileriniz uygulamada hayvanlarını kaydettiğinde burada görünür.
               </p>
             ) : (
               <ul className="pnl-satirlar">

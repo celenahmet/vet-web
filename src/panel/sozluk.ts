@@ -29,7 +29,7 @@ export const RANDEVU_DURUMU: Record<string, { ad: string; anlam: string }> = {
   },
   confirmed: {
     ad: 'Onaylandı',
-    anlam: 'Randevu kesinleşti. Gün gelince "Geldi" işaretleyin.',
+    anlam: 'Randevu kesinleşti. Muayene tamamlandığında kaydı tamamlayın.',
   },
   done: {
     ad: 'Tamamlandı',

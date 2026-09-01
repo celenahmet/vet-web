@@ -34,8 +34,8 @@ function donemAraligi(donem: Donem) {
  *
  * ⚠️ TUTARLAR KURUS OLARAK GELIYOR, ekranda 100'e bolunuyor. Veride bolunmuyor.
  *
- * ⚠️ Bu ekran YALNIZ GOSTERIYOR. Kayit ekleme telefonda; para girisi yanlis
- * yazildiginda geri almak zor ve web tarafinda henuz onay akisi yok.
+ * ⚠️ Webde kayit ekleme ve acik silme onayi var. Otomatik tahsilat veya banka
+ * mutabakati yok; bu nedenle rakamlar klinigin kendi beyanidir.
  */
 export default function PanelDefter({ klinik }: { klinik: string }) {
   const [ozet, setOzet] = useState<DefterOzeti | null>(null);
@@ -184,7 +184,7 @@ export default function PanelDefter({ klinik }: { klinik: string }) {
           </header>
           <div className="pnl-widget-govde">
             {gelirler.length === 0 ? (
-              <p className="pnl-widget-bos">Henüz gelir kaydı yok. Kayıtlar uygulamadan giriliyor.</p>
+              <p className="pnl-widget-bos">Bu dönemde gelir kaydı yok. Sağ üstteki “Kayıt ekle” ile ilk geliri girebilirsiniz.</p>
             ) : (
               <ul className="pnl-satirlar">
                 {gelirler.map((g) => (
@@ -208,7 +208,7 @@ export default function PanelDefter({ klinik }: { klinik: string }) {
           </header>
           <div className="pnl-widget-govde">
             {giderler.length === 0 ? (
-              <p className="pnl-widget-bos">Henüz gider kaydı yok. Kayıtlar uygulamadan giriliyor.</p>
+              <p className="pnl-widget-bos">Bu dönemde gider kaydı yok. Sağ üstteki “Kayıt ekle” ile ilk gideri girebilirsiniz.</p>
             ) : (
               <ul className="pnl-satirlar">
                 {giderler.map((g) => (

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Pill, Plus, Ban, Printer, FileCheck2, RotateCcw, ShieldCheck, X } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
+import { Pill, Plus, Ban, Printer, FileCheck2, RotateCcw, Search, ShieldCheck, X } from 'lucide-react';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
 import Bos from './Bos';
@@ -14,6 +14,7 @@ import {
   type Hasta,
 } from './veri';
 import { receteyiYazdir } from './recete-yazdir';
+import { receteHastalariniFiltrele } from './recete-hasta-arama';
 import {
   entegrasyonlariOku, resmiReceteGonderimleriniOku, resmiReceteyiHazirla,
   type KlinikEntegrasyonu, type ResmiReceteGonderimi,
@@ -65,6 +66,7 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
 
   const [yazAcik, setYazAcik] = useState(false);
   const [hasta, setHasta] = useState('');
+  const [hastaAramasi, setHastaAramasi] = useState('');
   const [tani, setTani] = useState('');
   const [notlar, setNotlar] = useState('');
   const [kalemler, setKalemler] = useState<ReceteKalemi[]>([bosKalem()]);
@@ -107,12 +109,18 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
   const hastaAdi = (id: string) =>
     hastalar.find((h) => h.pet_id === id)?.pet_name ?? 'Hasta';
 
+  const gorunenHastalar = useMemo(() => {
+    return receteHastalariniFiltrele(hastalar, hastaAramasi);
+  }, [hastaAramasi, hastalar]);
+  const seciliHasta = hastalar.find((satir) => satir.pet_id === hasta);
+
   /** Ilac adi bos olan kalem yazilmiyor: bos satir bir ilac degildir. */
   const gecerliKalemler = kalemler.filter((k) => k.drug_name.trim().length > 0);
 
   function yazmayiKapat() {
     setYazAcik(false);
     setHasta('');
+    setHastaAramasi('');
     setTani('');
     setNotlar('');
     setKalemler([bosKalem()]);
@@ -147,7 +155,7 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
   }
 
   function duzeltmeyeAc(recete: Recete) {
-    setHasta(recete.pet_id); setTani(recete.diagnosis ?? ''); setNotlar(recete.notes ?? '');
+    setHasta(recete.pet_id); setHastaAramasi(''); setTani(recete.diagnosis ?? ''); setNotlar(recete.notes ?? '');
     setKalemler(recete.prescription_items.length ? recete.prescription_items.map((kalem) => ({
       drug_name: kalem.drug_name, dosage: kalem.dosage, frequency: kalem.frequency,
       duration: kalem.duration, note: kalem.note,
@@ -292,19 +300,50 @@ export default function PanelReceteler({ klinik, klinikAdi }: { klinik: string; 
       >
         {degistirilen ? <div className="pnl-gizlilik-notu"><RotateCcw size={17} /><span>Önceki reçete silinmez; bu kayıt onun yerine geçen yeni reçete olur.</span></div> : null}
         <div className="pnl-alan">
-          <label htmlFor="pnl-recete-hasta">Hasta</label>
+          <label htmlFor="pnl-recete-hasta-arama">Hasta veya müşteri bul</label>
+          <div className="pnl-secim-arama">
+            <Search size={17} aria-hidden="true" />
+            <input
+              id="pnl-recete-hasta-arama"
+              data-dialog-ilk-odak
+              type="search"
+              autoComplete="off"
+              value={hastaAramasi}
+              onChange={(e) => setHastaAramasi(e.target.value)}
+              placeholder="Hasta ya da sahibi/müşteri adıyla ara"
+            />
+            {hastaAramasi ? <button type="button" onClick={() => setHastaAramasi('')} aria-label="Hasta aramasını temizle"><X size={15} /></button> : null}
+          </div>
+          <span className="pnl-alan-ipucu" aria-live="polite">
+            {hastaAramasi.trim() ? `${gorunenHastalar.length} eşleşme bulundu` : `${hastalar.length} aktif hasta`}
+          </span>
+        </div>
+
+        <div className="pnl-alan">
+          <label htmlFor="pnl-recete-hasta">Hasta seçimi</label>
           <select
             id="pnl-recete-hasta"
             value={hasta}
             onChange={(e) => setHasta(e.target.value)}
+            disabled={gorunenHastalar.length === 0 && !seciliHasta}
           >
-            <option value="">Seçiniz</option>
-            {hastalar.map((h) => (
+            <option value="">{gorunenHastalar.length ? 'Hasta seçiniz' : 'Eşleşen hasta bulunamadı'}</option>
+            {seciliHasta && !gorunenHastalar.some((satir) => satir.pet_id === seciliHasta.pet_id) ? (
+              <option value={seciliHasta.pet_id}>
+                {seciliHasta.pet_name ?? 'Hasta'}{seciliHasta.owner_name ? ` · ${seciliHasta.owner_name}` : ''} · seçili
+              </option>
+            ) : null}
+            {gorunenHastalar.map((h) => (
               <option key={h.pet_id} value={h.pet_id}>
                 {h.pet_name ?? 'Hasta'}{h.owner_name ? ` · ${h.owner_name}` : ''}
               </option>
             ))}
           </select>
+          {seciliHasta && !gorunenHastalar.some((satir) => satir.pet_id === hasta) ? (
+            <button type="button" className="pnl-secili-hasta" onClick={() => setHastaAramasi('')}>
+              Seçili hasta: {seciliHasta.pet_name ?? 'Hasta'} · filtreyi temizle
+            </button>
+          ) : null}
         </div>
 
         <div className="pnl-alan">

@@ -304,10 +304,10 @@ export default function PanelWebSitesi({ klinik, sahip }: { klinik: string; sahi
             <CheckCircle2 size={21} />
           </span>
           <span className="pnl-kart-govde">
-            <span className="pnl-kart-ad">Sayfa doluluğu</span>
+            <span className="pnl-kart-ad">Profil alanları</span>
             <span className="pnl-kart-deger">{durumlar.length - eksikSayisi}/{durumlar.length}</span>
             <span className="pnl-kart-anlam">
-              {eksikSayisi ? `${eksikSayisi} madde eksik` : 'Her şey tamam'}
+              {eksikSayisi ? `${eksikSayisi} alan eksik` : 'Zorunlu alanlar tamam'}
             </span>
           </span>
         </div>
@@ -321,7 +321,7 @@ export default function PanelWebSitesi({ klinik, sahip }: { klinik: string; sahi
           <header className="pnl-widget-basi">
             <span className="pnl-widget-ikon" aria-hidden="true"><Globe size={17} /></span>
             <h3>Sayfanızın durumu</h3>
-            <button type="button" className="pnl-widget-eylem" onClick={duzenlemeyiAc}>
+            <button type="button" className="pnl-widget-eylem" aria-label="Sayfa yayın ayarlarını düzenle" onClick={duzenlemeyiAc}>
               <Pencil size={13} /> Düzenle
             </button>
             {adres ? (
@@ -368,7 +368,7 @@ export default function PanelWebSitesi({ klinik, sahip }: { klinik: string; sahi
           <header className="pnl-widget-basi">
             <span className="pnl-widget-ikon" aria-hidden="true"><Building2 size={17} /></span>
             <h3>Klinik bilgileri</h3>
-            {sahip ? <button type="button" className="pnl-widget-eylem" onClick={klinikDuzenlemeyiAc}><Pencil size={13} /> Düzenle</button> : null}
+            {sahip ? <button type="button" className="pnl-widget-eylem" aria-label="Klinik bilgilerini düzenle" onClick={klinikDuzenlemeyiAc}><Pencil size={13} /> Düzenle</button> : null}
           </header>
           <div className="pnl-widget-govde">
             <p className="pnl-kisi-ad">{sayfa?.name || 'Klinik adı girilmemiş'}</p>
@@ -381,7 +381,7 @@ export default function PanelWebSitesi({ klinik, sahip }: { klinik: string; sahi
           <header className="pnl-widget-basi">
             <span className="pnl-widget-ikon" aria-hidden="true"><AtSign size={17} /></span>
             <h3>Web adresi</h3>
-            <button type="button" className="pnl-widget-eylem" onClick={adresDuzenlemeyiAc}>
+            <button type="button" className="pnl-widget-eylem" aria-label="Web adresini düzenle" onClick={adresDuzenlemeyiAc}>
               <Pencil size={13} /> Düzenle
             </button>
           </header>
@@ -405,7 +405,7 @@ export default function PanelWebSitesi({ klinik, sahip }: { klinik: string; sahi
           <header className="pnl-widget-basi">
             <span className="pnl-widget-ikon" aria-hidden="true"><Share2 size={17} /></span>
             <h3>İletişim ve sosyal medya</h3>
-            <button type="button" className="pnl-widget-eylem" onClick={iletisimDuzenlemeyiAc}>
+            <button type="button" className="pnl-widget-eylem" aria-label="İletişim ve sosyal medya bilgilerini düzenle" onClick={iletisimDuzenlemeyiAc}>
               <Pencil size={13} /> Düzenle
             </button>
           </header>

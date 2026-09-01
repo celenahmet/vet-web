@@ -1,5 +1,5 @@
-import { CalendarDays, FileText, Syringe, MessagesSquare, Heart, Settings, Clock, Megaphone, Stethoscope, Bell, Star, Plus, Trash2 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { CalendarDays, FileText, Syringe, MessagesSquare, Heart, Settings, Clock, Megaphone, Stethoscope, Bell, Star, Plus, Trash2, Search, MapPin, Images, UsersRound, BarChart3, Send, ImageIcon, ChevronRight, Eye, Pencil, CircleCheck, Archive, KeyRound, LogOut } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
 
 import {
   saglikKayitlariniOku,
@@ -36,7 +36,10 @@ import {
   turAcKapat,
   sahiplendirmeBasvurulariniOku,
   sahiplendirmeBasvurusunuYanitla,
+  sahiplendirmeIlaniniKapat,
+  sahiplendirmeIlaniniGuncelle,
   type SahiplendirmeBasvurusu,
+  type Ilan,
   type Gonderi,
   type GonderiYorumu,
 } from './veri';
@@ -44,14 +47,63 @@ import { KAYIT_TURU, TUR, tarihYaz } from './sozluk';
 import PanelListe from './PanelListe';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
+import Bos from './Bos';
 import Diyalog from './Diyalog';
 import { guvenliGorselleriYukle, imzaliGorselAdresi } from './medya-veri';
+import { sahiplendirmeIlanlariniFiltreleSirala, type SahiplendirmeSiralama } from './sahiplendirme-liste';
+import { duyurulariFiltrele } from './duyuru-liste';
+import { istemci } from './istemci';
 
 function DuyuruGorseli({ storageKey }: { storageKey: string }) {
   const [adres, setAdres] = useState<string | null>(null);
   useEffect(() => { let gecerli = true; imzaliGorselAdresi(storageKey).then((u) => { if (gecerli) setAdres(u); }).catch(() => setAdres('')); return () => { gecerli = false; }; }, [storageKey]);
   return adres ? <img className="pnl-duyuru-gorseli" src={adres} alt="Duyuru görseli" loading="lazy" /> : null;
 }
+
+function DuyuruPostGorseli({ storageKey, alt }: { storageKey: string; alt: string }) {
+  const [adres, setAdres] = useState<string | null>(null);
+  const [yenidenDeneme, setYenidenDeneme] = useState(0);
+  useEffect(() => {
+    let gecerli = true;
+    let zamanlayici: ReturnType<typeof setTimeout> | null = null;
+    setAdres(null);
+    imzaliGorselAdresi(storageKey)
+      .then((url) => { if (gecerli) setAdres(url); })
+      .catch(() => {
+        if (!gecerli) return;
+        if (yenidenDeneme < 1) zamanlayici = setTimeout(() => setYenidenDeneme(1), 1200);
+        else setAdres('');
+      });
+    return () => { gecerli = false; if (zamanlayici) clearTimeout(zamanlayici); };
+  }, [storageKey, yenidenDeneme]);
+
+  if (adres === null) return <span className="pnl-duyuru-post-yukleniyor"><Megaphone size={28} /><small>{yenidenDeneme ? 'Görsel yeniden deneniyor…' : 'Görsel hazırlanıyor…'}</small></span>;
+  if (!adres) return <span className="pnl-duyuru-post-gorsel-yok"><Megaphone size={30} /><small>Görsel alınamadı · duyuru metni kullanılabilir</small></span>;
+  return <img className="pnl-duyuru-post-kapak" src={adres} alt={alt} loading="lazy" />;
+}
+
+function SahiplendirmeGorseli({ storageKey, alt }: { storageKey: string; alt: string }) {
+  const [adres, setAdres] = useState<string | null>(null);
+  useEffect(() => {
+    let gecerli = true;
+    imzaliGorselAdresi(storageKey)
+      .then((url) => { if (gecerli) setAdres(url); })
+      .catch(() => { if (gecerli) setAdres(''); });
+    return () => { gecerli = false; };
+  }, [storageKey]);
+
+  if (adres === null) return <span className="pnl-ilan-gorsel-yukleniyor" aria-hidden="true" />;
+  if (!adres) return <span className="pnl-ilan-gorsel-yok"><Heart size={28} /><small>Görsel önizlemesi alınamadı</small></span>;
+  return <img className="pnl-ilan-kapak" src={adres} alt={alt} loading="lazy" />;
+}
+
+const ILAN_DURUMLARI: Record<string, string> = {
+  pending: 'İncelemede',
+  published: 'Yayında',
+  adopted: 'Sahiplendirildi',
+  rejected: 'Reddedildi',
+  removed: 'Kaldırıldı',
+};
 
 /**
  * REFERANS MENUSUNDEKI BOLUMLER
@@ -63,6 +115,15 @@ function DuyuruGorseli({ storageKey }: { storageKey: string }) {
 
 /** Gunun adi. Sunucu 0-6 tutuyor; 0 pazar. */
 const GUNLER = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+const HIZMET_KATEGORISI: Record<string, string> = {
+  muayene: 'Muayene ve koruyucu hekimlik',
+  cerrahi: 'Cerrahi',
+  bakim: 'Bakım',
+  acil: 'Acil ve saha hizmetleri',
+  goruntuleme: 'Görüntüleme',
+  donanim: 'Klinik donanımı',
+  uzmanlik: 'Uzmanlıklar',
+};
 
 /** '09:00:00' -> '09:00' */
 const saatKirp = (s: string | null) => (s ? s.slice(0, 5) : '--:--');
@@ -274,32 +335,91 @@ export function PanelTopluluk({ klinik }: { klinik: string }) {
 export function PanelSahiplendirme() {
   const [acik, setAcik] = useState(false);
   const [turler, setTurler] = useState<Tur[]>([]);
+  const [ilanlar, setIlanlar] = useState<Ilan[] | null>(null);
+  const [ilanHatasi, setIlanHatasi] = useState<string | null>(null);
+  const [basvuruHatasi, setBasvuruHatasi] = useState<string | null>(null);
   const [form, setForm] = useState({ baslik: '', aciklama: '', tur: 'cat', cinsiyet: 'unknown', kosullar: '', sehir: '', ilce: '' });
   const [gorseller, setGorseller] = useState<File[]>([]);
   const [basvurular, setBasvurular] = useState<SahiplendirmeBasvurusu[]>([]);
+  const [arama, setArama] = useState('');
+  const [durumFiltresi, setDurumFiltresi] = useState('all');
+  const [turFiltresi, setTurFiltresi] = useState('all');
+  const [siralama, setSiralama] = useState<SahiplendirmeSiralama>('newest');
   const [bekliyor, setBekliyor] = useState(false);
   const [islemHatasi, setIslemHatasi] = useState<string | null>(null);
   const [bilgi, setBilgi] = useState<string | null>(null);
   const [tazele, setTazele] = useState(0);
+  const [duzenlenen, setDuzenlenen] = useState<Ilan | null>(null);
+  const [onizlenen, setOnizlenen] = useState<Ilan | null>(null);
+  const [kapatilacak, setKapatilacak] = useState<{ ilan: Ilan; durum: 'adopted' | 'removed' } | null>(null);
 
   useEffect(() => { turleriOku().then(setTurler).catch(() => setTurler([])); }, []);
-  useEffect(() => { sahiplendirmeBasvurulariniOku().then(setBasvurular).catch(() => setBasvurular([])); }, [tazele]);
+  useEffect(() => {
+    let iptal = false;
+    setIlanlar(null); setIlanHatasi(null); setBasvuruHatasi(null);
+    Promise.allSettled([ilanlarimiOku(), sahiplendirmeBasvurulariniOku()])
+      .then(([ilanSonucu, basvuruSonucu]) => {
+        if (iptal) return;
+        if (ilanSonucu.status === 'fulfilled') setIlanlar(ilanSonucu.value);
+        else {
+          setIlanlar([]);
+          setIlanHatasi((ilanSonucu.reason as { message?: string })?.message ?? 'İlanlar okunamadı.');
+        }
+        if (basvuruSonucu.status === 'fulfilled') setBasvurular(basvuruSonucu.value);
+        else {
+          setBasvurular([]);
+          setBasvuruHatasi((basvuruSonucu.reason as { message?: string })?.message ?? 'Başvurular okunamadı.');
+        }
+      });
+    return () => { iptal = true; };
+  }, [tazele]);
+
+  const turAdlari = useMemo(() => Object.fromEntries(turler.map((tur) => [tur.code, tur.name_tr])), [turler]);
+  const gorunenIlanlar = useMemo(() => sahiplendirmeIlanlariniFiltreleSirala(
+    ilanlar ?? [], basvurular, { arama, durum: durumFiltresi, tur: turFiltresi, siralama },
+    { ...TUR, ...turAdlari },
+  ), [arama, basvurular, durumFiltresi, ilanlar, siralama, turAdlari, turFiltresi]);
+
+  const filtreleriTemizle = () => {
+    setArama(''); setDurumFiltresi('all'); setTurFiltresi('all'); setSiralama('newest');
+  };
 
   async function olustur(e: React.FormEvent) {
     e.preventDefault();
     if (bekliyor) return;
     setBekliyor(true); setIslemHatasi(null); setBilgi(null);
     try {
-      const anahtarlar = await guvenliGorselleriYukle(gorseller, 'adoption');
-      await ilanOlustur({ ...form, gorseller: anahtarlar });
-      setAcik(false); setForm({ baslik: '', aciklama: '', tur: 'cat', cinsiyet: 'unknown', kosullar: '', sehir: '', ilce: '' }); setGorseller([]);
+      if (duzenlenen) {
+        await sahiplendirmeIlaniniGuncelle(duzenlenen.id, form);
+      } else {
+        const anahtarlar = await guvenliGorselleriYukle(gorseller, 'adoption');
+        await ilanOlustur({ ...form, gorseller: anahtarlar });
+      }
+      setAcik(false); setDuzenlenen(null); setForm({ baslik: '', aciklama: '', tur: 'cat', cinsiyet: 'unknown', kosullar: '', sehir: '', ilce: '' }); setGorseller([]);
       /* ⚠️ "Yayimlandi" DEMIYORUZ: ilan `pending` aciliyor ve moderasyondan
          geciyor. Yayimlandi demek, olmayan bir seyi soylemek olurdu. */
-      setBilgi('İlanınız oluşturuldu. Yayımlanmadan önce incelemeden geçiyor.');
+      setBilgi(duzenlenen ? 'İlan bilgileri güncellendi.' : 'İlanınız oluşturuldu. Yayımlanmadan önce incelemeden geçiyor.');
       setTazele((n) => n + 1);
     } catch (err) {
       setIslemHatasi((err as { message?: string })?.message ?? '');
     } finally { setBekliyor(false); }
+  }
+
+  async function ilaniKapat() {
+    if (!kapatilacak || bekliyor) return;
+    setBekliyor(true); setIslemHatasi(null); setBilgi(null);
+    try {
+      await sahiplendirmeIlaniniKapat(kapatilacak.ilan.id, kapatilacak.durum);
+      setBilgi(kapatilacak.durum === 'adopted' ? 'İlan sahiplendirildi olarak kapatıldı.' : 'İlan yayından kaldırıldı.');
+      setKapatilacak(null); setTazele((n) => n + 1);
+    } catch (e) { setIslemHatasi((e as Error).message); }
+    finally { setBekliyor(false); }
+  }
+
+  function duzenlemeyiAc(ilan: Ilan) {
+    setDuzenlenen(ilan);
+    setForm({ baslik: ilan.title ?? '', aciklama: ilan.description ?? '', tur: ilan.species_code ?? 'cat', cinsiyet: ilan.sex ?? 'unknown', kosullar: ilan.conditions ?? '', sehir: ilan.city ?? '', ilce: ilan.district ?? '' });
+    setGorseller([]); setAcik(true); setIslemHatasi(null);
   }
 
   async function basvuruyuYanitla(id: string, durum: 'accepted' | 'rejected') {
@@ -312,39 +432,110 @@ export function PanelSahiplendirme() {
   return (
     <>
       {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
+      {basvuruHatasi ? <Hata mesaj={basvuruHatasi} kucuk /> : null}
       {bilgi ? <p className="pnl-bilgi" role="status">{bilgi}</p> : null}
 
-      <PanelListe
-      key={tazele}
-      baslik="Sahiplendirme"
-      aciklama="Sahiplendirme ilanları. Kliniğinize bırakılan bir hayvan için ilan açabilirsiniz."
-      yukle={ilanlarimiOku}
-      bosBaslik="Görünen ilan yok"
-      bosAciklama="Sahiplendirme ilanları açıldıkça burada listelenir."
-      anahtar={(i) => i.id}
-      eylem={
-        <button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => { setAcik(true); setIslemHatasi(null); }}>
-          <Plus size={15} /> İlan oluştur
-        </button>
-      }
-      satir={(i) => (
-        <>
-          <span className="pnl-avatar" aria-hidden="true"><Heart size={17} /></span>
-          <div className="pnl-kisi-bilgi">
-            {i.photos?.[0]?.storage_key ? <DuyuruGorseli storageKey={i.photos[0].storage_key} /> : null}
-            <p className="pnl-kisi-ad">{i.title || 'Başlıksız ilan'}</p>
-            <p className="pnl-kisi-rol">{i.species_code ? (TUR[i.species_code] ?? i.species_code) : 'Tür belirtilmemiş'}</p>
-            <p className="pnl-kisi-ek">Durum: {i.status}{i.city ? ` · ${i.district ? `${i.district}, ` : ''}${i.city}` : ''}</p>
-            {i.reject_reason ? <p className="pnl-hata-kucuk">Ret gerekçesi: {i.reject_reason}</p> : null}
-            {basvurular.filter((b) => b.listing_id === i.id).map((b) => <div key={b.id} className="pnl-basvuru-karti"><strong>Başvuru · {b.status === 'pending' ? 'bekliyor' : b.status === 'accepted' ? 'kabul edildi' : 'reddedildi'}</strong><p>{b.message}</p>{b.status === 'accepted' && b.contact_phone ? <a href={`tel:${b.contact_phone}`}>{b.contact_phone}</a> : null}{b.status === 'pending' ? <span className="pnl-satir-eylem"><button type="button" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor} onClick={() => void basvuruyuYanitla(b.id, 'accepted')}>Kabul et</button><button type="button" className="pnl-dugme pnl-dugme-sade" disabled={bekliyor} onClick={() => void basvuruyuYanitla(b.id, 'rejected')}>Reddet</button></span> : null}</div>)}
-            <p className="pnl-kisi-ek pnl-soluk">{tarihYaz(i.created_at, false)}</p>
+      <section className="pnl-bolum pnl-sahiplendirme">
+        <header className="pnl-bolum-basi">
+          <div>
+            <h2>Sahiplendirme ilanları</h2>
+            <p className="pnl-aciklama">Kliniğinizin açtığı ilanları, uygulamadaki gönderi görünümüne yakın kartlarla yönetin; başvuruları tek yerde değerlendirin.</p>
           </div>
-        </>
-      )}
-      />
+          <button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => { setAcik(true); setIslemHatasi(null); }}>
+            <Plus size={15} /> İlan oluştur
+          </button>
+        </header>
 
-      <Diyalog acik={acik} kapat={() => setAcik(false)} baslik="Sahiplendirme ilanı oluştur"
-        aciklama="İlanınız incelemeden geçtikten sonra uygulamada yayımlanır.">
+        <div className="pnl-ilan-araclari" aria-label="İlan arama, filtreleme ve sıralama">
+          <label className="pnl-operasyon-arama" htmlFor="pnl-ilan-arama">
+            <Search size={17} aria-hidden="true" />
+            <input id="pnl-ilan-arama" type="search" value={arama} onChange={(e) => setArama(e.target.value)} placeholder="Başlık, konum veya tür ara" />
+          </label>
+          <select aria-label="İlan durumuna göre filtrele" value={durumFiltresi} onChange={(e) => setDurumFiltresi(e.target.value)}>
+            <option value="all">Tüm durumlar</option>
+            {Object.entries(ILAN_DURUMLARI).map(([kod, ad]) => <option key={kod} value={kod}>{ad}</option>)}
+          </select>
+          <select aria-label="Hayvan türüne göre filtrele" value={turFiltresi} onChange={(e) => setTurFiltresi(e.target.value)}>
+            <option value="all">Tüm türler</option>
+            {turler.map((tur) => <option key={tur.code} value={tur.code}>{tur.name_tr}</option>)}
+          </select>
+          <select aria-label="İlanları sırala" value={siralama} onChange={(e) => setSiralama(e.target.value as SahiplendirmeSiralama)}>
+            <option value="newest">En yeni</option>
+            <option value="oldest">En eski</option>
+            <option value="applications">En çok başvuru</option>
+            <option value="title">Başlığa göre</option>
+          </select>
+          <span className="pnl-sonuc-sayisi" aria-live="polite">{gorunenIlanlar.length} / {ilanlar?.length ?? 0} ilan</span>
+        </div>
+
+        {ilanHatasi ? <Hata mesaj={ilanHatasi} tekrar={() => setTazele((n) => n + 1)} /> : null}
+        {ilanlar === null ? <Yukleniyor /> : null}
+        {ilanlar !== null && !ilanHatasi && ilanlar.length === 0 ? <Bos baslik="Henüz ilan yok" aciklama="İlk sahiplendirme ilanınızı oluşturduğunuzda burada gönderi kartı olarak görünür." /> : null}
+        {ilanlar !== null && ilanlar.length > 0 && gorunenIlanlar.length === 0 ? (
+          <div className="pnl-ilan-filtre-bos">
+            <Bos baslik="Filtrelere uygun ilan yok" aciklama="Arama kelimesini veya filtreleri değiştirerek tekrar deneyin." />
+            <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={filtreleriTemizle}>Filtreleri temizle</button>
+          </div>
+        ) : null}
+
+        {gorunenIlanlar.length ? (
+          <div className="pnl-ilan-kartlari">
+            {gorunenIlanlar.map((ilan) => {
+              const ilanBasvurulari = basvurular.filter((basvuru) => basvuru.listing_id === ilan.id);
+              const bekleyenSayisi = ilanBasvurulari.filter((basvuru) => basvuru.status === 'pending').length;
+              const konum = [ilan.district, ilan.city].filter(Boolean).join(', ');
+              const durumKodu = ilan.status ?? 'pending';
+              return (
+                <article className="pnl-ilan-karti" key={ilan.id}>
+                  <div className="pnl-ilan-medya">
+                    {ilan.photos?.[0]?.storage_key ? (
+                      <SahiplendirmeGorseli storageKey={ilan.photos[0].storage_key} alt={`${ilan.title || 'Sahiplendirme ilanı'} görseli`} />
+                    ) : (
+                      <span className="pnl-ilan-gorsel-yok"><Heart size={30} /><small>Görsel eklenmedi</small></span>
+                    )}
+                    <span className={`pnl-ilan-durum pnl-ilan-durum-${durumKodu}`}>{ILAN_DURUMLARI[durumKodu] ?? durumKodu}</span>
+                    {(ilan.photos?.length ?? 0) > 1 ? <span className="pnl-ilan-gorsel-sayisi"><Images size={14} /> {ilan.photos.length}</span> : null}
+                  </div>
+                  <div className="pnl-ilan-icerik">
+                    <div className="pnl-ilan-meta">
+                      <span>{ilan.species_code ? (turAdlari[ilan.species_code] ?? TUR[ilan.species_code] ?? ilan.species_code) : 'Tür belirtilmemiş'}</span>
+                      <time dateTime={ilan.created_at}>{tarihYaz(ilan.created_at, false)}</time>
+                    </div>
+                    <h3>{ilan.title || 'Başlıksız ilan'}</h3>
+                    <div className="pnl-ilan-ozet">
+                      <span><MapPin size={15} /> {konum || 'Konum belirtilmemiş'}</span>
+                      <span className={bekleyenSayisi ? 'pnl-ilan-basvuru-bekliyor' : ''}><UsersRound size={15} /> {ilanBasvurulari.length} başvuru{bekleyenSayisi ? ` · ${bekleyenSayisi} bekliyor` : ''}</span>
+                    </div>
+                    {ilan.reject_reason ? <p className="pnl-ilan-ret"><strong>Ret gerekçesi:</strong> {ilan.reject_reason}</p> : null}
+                    {ilanBasvurulari.length ? (
+                      <div className="pnl-ilan-basvurular">
+                        <h4>Başvurular</h4>
+                        {ilanBasvurulari.map((basvuru) => (
+                          <div key={basvuru.id} className="pnl-basvuru-karti">
+                            <strong>Başvuru · {basvuru.status === 'pending' ? 'bekliyor' : basvuru.status === 'accepted' ? 'kabul edildi' : 'reddedildi'}</strong>
+                            <p>{basvuru.message}</p>
+                            {basvuru.status === 'accepted' && basvuru.contact_phone ? <a href={`tel:${basvuru.contact_phone}`}>{basvuru.contact_phone}</a> : null}
+                            {basvuru.status === 'pending' ? <span className="pnl-satir-eylem"><button type="button" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor} onClick={() => void basvuruyuYanitla(basvuru.id, 'accepted')}>Kabul et</button><button type="button" className="pnl-dugme pnl-dugme-sade" disabled={bekliyor} onClick={() => void basvuruyuYanitla(basvuru.id, 'rejected')}>Reddet</button></span> : null}
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
+                    <div className="pnl-ilan-eylemleri">
+                      <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setOnizlenen(ilan)}><Eye size={14} /> Uygulama kartını önizle</button>
+                      {['pending', 'published'].includes(durumKodu) ? <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => duzenlemeyiAc(ilan)}><Pencil size={14} /> Düzenle</button> : null}
+                      {durumKodu === 'published' ? <button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => setKapatilacak({ ilan, durum: 'adopted' })}><CircleCheck size={14} /> Sahiplendirildi</button> : null}
+                      {['pending', 'published'].includes(durumKodu) ? <button type="button" className="pnl-dugme pnl-dugme-sade pnl-eksi" onClick={() => setKapatilacak({ ilan, durum: 'removed' })}><Archive size={14} /> Yayından kaldır</button> : null}
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        ) : null}
+      </section>
+
+      <Diyalog acik={acik} kapat={() => { setAcik(false); setDuzenlenen(null); }} baslik={duzenlenen ? 'Sahiplendirme ilanını düzenle' : 'Sahiplendirme ilanı oluştur'}
+        aciklama={duzenlenen ? 'Metin ve konum değişiklikleri kaydedilir; mevcut fotoğraflar korunur.' : 'İlanınız incelemeden geçtikten sonra uygulamada yayımlanır.'}>
         <form onSubmit={olustur}>
           <div className="pnl-alan">
             <label htmlFor="pnl-i-baslik">Başlık</label>
@@ -353,7 +544,7 @@ export function PanelSahiplendirme() {
               placeholder="Örnek: Üç aylık tekir yavru yuva arıyor" />
           </div>
           <div className="pnl-form-ikili"><div className="pnl-alan"><label htmlFor="pnl-i-sehir">Şehir</label><input id="pnl-i-sehir" maxLength={80} value={form.sehir} onChange={(e) => setForm((f) => ({ ...f, sehir: e.target.value }))} /></div><div className="pnl-alan"><label htmlFor="pnl-i-ilce">İlçe</label><input id="pnl-i-ilce" maxLength={80} value={form.ilce} onChange={(e) => setForm((f) => ({ ...f, ilce: e.target.value }))} /></div></div>
-          <div className="pnl-alan"><label htmlFor="pnl-i-gorseller">Görseller (en fazla 8)</label><input id="pnl-i-gorseller" type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={(e) => setGorseller(Array.from(e.target.files ?? []).slice(0, 8))} /><span className="pnl-alan-ipucu">{gorseller.length ? `${gorseller.length} görsel seçildi.` : 'Görsel seçilmedi.'}</span></div>
+          {!duzenlenen ? <div className="pnl-alan"><label htmlFor="pnl-i-gorseller">Görseller (en fazla 8)</label><input id="pnl-i-gorseller" type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={(e) => setGorseller(Array.from(e.target.files ?? []).slice(0, 8))} /><span className="pnl-alan-ipucu">{gorseller.length ? `${gorseller.length} görsel seçildi.` : 'Görsel seçilmedi.'}</span></div> : null}
           <div className="pnl-alan">
             <label htmlFor="pnl-i-tur">Tür</label>
             <select id="pnl-i-tur" value={form.tur} onChange={(e) => setForm((f) => ({ ...f, tur: e.target.value }))}>
@@ -385,10 +576,18 @@ export function PanelSahiplendirme() {
             <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setAcik(false)}>Vazgeç</button>
             <button type="submit" className="pnl-dugme pnl-dugme-olumlu"
               disabled={bekliyor || form.baslik.trim().length < 3 || form.aciklama.trim().length < 10}>
-              {bekliyor ? 'Oluşturuluyor…' : 'İlanı oluştur'}
+              {bekliyor ? 'Kaydediliyor…' : duzenlenen ? 'Değişiklikleri kaydet' : 'İlanı oluştur'}
             </button>
           </div>
         </form>
+      </Diyalog>
+
+      <Diyalog acik={onizlenen !== null} kapat={() => setOnizlenen(null)} baslik="Uygulama kartı önizlemesi" aciklama="Bu önizleme ilanınızın mobil akıştaki içerik hiyerarşisini gösterir; gerçek yayın durumu moderasyon sonucuna bağlıdır.">
+        {onizlenen ? <article className="pnl-ilan-onizleme"><div className="pnl-ilan-medya">{onizlenen.photos?.[0]?.storage_key ? <SahiplendirmeGorseli storageKey={onizlenen.photos[0].storage_key} alt={`${onizlenen.title ?? 'İlan'} önizleme görseli`} /> : <span className="pnl-ilan-gorsel-yok"><Heart size={30} /><small>Görsel eklenmedi</small></span>}</div><div className="pnl-ilan-icerik"><span className="pnl-etiket">{onizlenen.species_code ? turAdlari[onizlenen.species_code] ?? onizlenen.species_code : 'Tür belirtilmedi'}</span><h3>{onizlenen.title || 'Başlıksız ilan'}</h3><p>{onizlenen.description || 'Açıklama girilmedi.'}</p><p className="pnl-soluk"><MapPin size={14} /> {[onizlenen.district, onizlenen.city].filter(Boolean).join(', ') || 'Konum belirtilmedi'}</p>{onizlenen.conditions ? <p><strong>Koşullar:</strong> {onizlenen.conditions}</p> : null}</div></article> : null}
+      </Diyalog>
+
+      <Diyalog acik={kapatilacak !== null} kapat={() => setKapatilacak(null)} baslik={kapatilacak?.durum === 'adopted' ? 'İlan sahiplendirildi mi?' : 'İlan yayından kaldırılsın mı?'} aciklama="Bu işlem ilanı kapatır; yeniden yayımlama moderasyon akışı gerektirir.">
+        <div className="pnl-diyalog-eylem"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setKapatilacak(null)}>Vazgeç</button><button type="button" className={kapatilacak?.durum === 'adopted' ? 'pnl-dugme pnl-dugme-olumlu' : 'pnl-dugme pnl-dugme-olumsuz'} disabled={bekliyor} onClick={() => void ilaniKapat()}>{bekliyor ? 'İşleniyor…' : kapatilacak?.durum === 'adopted' ? 'Sahiplendirildi olarak kapat' : 'Yayından kaldır'}</button></div>
       </Diyalog>
     </>
   );
@@ -414,6 +613,9 @@ export function PanelProfil({ klinik }: { klinik: string }) {
   const [ozelGunIsleniyor, setOzelGunIsleniyor] = useState<string | null>(null);
   const [ozelGunHatasi, setOzelGunHatasi] = useState<string | null>(null);
   const [ozelGunMesaji, setOzelGunMesaji] = useState<string | null>(null);
+  const [hizmetArama, setHizmetArama] = useState('');
+  const [yalnizSeciliHizmetler, setYalnizSeciliHizmetler] = useState(false);
+  const [hizmetKategorisi, setHizmetKategorisi] = useState('all');
 
   useEffect(() => {
     let iptal = false;
@@ -437,6 +639,12 @@ export function PanelProfil({ klinik }: { klinik: string }) {
 
   const acikKodlar = new Set(hizmetler.map((h) => h.service_code));
   const secili = (kod: string) => hizmetler.find((h) => h.service_code === kod);
+  const gorunenHizmetler = katalog.filter((hizmet) => {
+    if (yalnizSeciliHizmetler && !acikKodlar.has(hizmet.code)) return false;
+    if (hizmetKategorisi !== 'all' && hizmet.category !== hizmetKategorisi) return false;
+    const aranan = hizmetArama.trim().toLocaleLowerCase('tr-TR');
+    return !aranan || `${hizmet.name_tr} ${hizmet.code}`.toLocaleLowerCase('tr-TR').includes(aranan);
+  });
 
   /**
    * ⚠️ IYIMSER GUNCELLEME, AMA GERI SARILIYOR. Anahtar aninda donuyor cunku
@@ -762,11 +970,29 @@ export function PanelProfil({ klinik }: { klinik: string }) {
           <p className="pnl-widget-not">
             Sunduğunuz hizmetleri seçin. Kompakt görünümde tüm listeyi tek bakışta yönetebilirsiniz.
           </p>
+          <div className="pnl-liste-araclari pnl-profil-hizmet-araclari" role="search" aria-label="Hizmetlerde ara ve filtrele">
+            <label className="pnl-operasyon-arama" htmlFor="pnl-hizmet-arama"><Search size={16} aria-hidden="true" /><input
+              id="pnl-hizmet-arama" type="search" value={hizmetArama}
+              onChange={(e) => setHizmetArama(e.target.value)} placeholder="Hizmet adı veya kodu ara" /></label>
+            <label className="pnl-secim-kutusu pnl-profil-secili-suzgeci"><input type="checkbox"
+              checked={yalnizSeciliHizmetler} onChange={(e) => setYalnizSeciliHizmetler(e.target.checked)} />
+              <span>Yalnız sunduklarım</span></label>
+            <label className="pnl-liste-filtre" htmlFor="pnl-hizmet-kategori"><span>Kategori</span><select
+              id="pnl-hizmet-kategori" value={hizmetKategorisi} onChange={(e) => setHizmetKategorisi(e.target.value)}>
+              <option value="all">Tüm kategoriler</option>
+              {[...new Set(katalog.map((hizmet) => hizmet.category))].map((kategori) => <option key={kategori} value={kategori}>
+                {HIZMET_KATEGORISI[kategori] ?? kategori}
+              </option>)}
+            </select></label>
+            <span className="pnl-liste-sonuc" aria-live="polite">{gorunenHizmetler.length} / {katalog.length} hizmet</span>
+          </div>
           {katalog.length === 0 ? (
             <p className="pnl-widget-bos">Hizmet listesi yüklenemedi.</p>
+          ) : gorunenHizmetler.length === 0 ? (
+            <p className="pnl-widget-bos">Arama ve filtreyle eşleşen hizmet bulunamadı.</p>
           ) : (
             <ul className="pnl-profil-secim-izgara pnl-hizmet-grid">
-              {katalog.map((k) => {
+              {gorunenHizmetler.map((k) => {
                 const acik = acikKodlar.has(k.code);
                 const kayit = secili(k.code);
                 return (
@@ -807,8 +1033,20 @@ const KITLE: Record<string, string> = {
   selected: 'Seçtiğiniz kişilere',
 };
 
+const DUYURU_DURUMLARI: Record<string, string> = {
+  draft: 'Taslak',
+  sent: 'Gönderildi',
+  failed: 'Başarısız',
+};
+
 export function PanelDuyurular({ klinik }: { klinik: string }) {
   const [acik, setAcik] = useState(false);
+  const [duyurular, setDuyurular] = useState<Duyuru[] | null>(null);
+  const [duyuruHatasi, setDuyuruHatasi] = useState<string | null>(null);
+  const [seciliDuyuru, setSeciliDuyuru] = useState<Duyuru | null>(null);
+  const [duyuruAramasi, setDuyuruAramasi] = useState('');
+  const [duyuruDurumu, setDuyuruDurumu] = useState('all');
+  const [duyuruTeslimi, setDuyuruTeslimi] = useState('all');
   const [metin, setMetin] = useState('');
   const [kitle, setKitle] = useState<'customers' | 'followers' | 'both' | 'selected'>('customers');
   const [push, setPush] = useState(false);
@@ -826,6 +1064,24 @@ export function PanelDuyurular({ klinik }: { klinik: string }) {
   useEffect(() => {
     ulasilabilirKisileriOku(klinik).then(setKisiler).catch(() => setKisiler([]));
   }, [klinik]);
+
+  useEffect(() => {
+    let iptal = false;
+    setDuyurular(null); setDuyuruHatasi(null);
+    duyurulariOku(klinik)
+      .then((liste) => { if (!iptal) setDuyurular(liste); })
+      .catch((e: { message?: string }) => {
+        if (!iptal) { setDuyurular([]); setDuyuruHatasi(e?.message ?? 'Duyurular okunamadı.'); }
+      });
+    return () => { iptal = true; };
+  }, [klinik, tazele]);
+
+  const gorunenDuyurular = useMemo(() => duyurulariFiltrele(
+    duyurular ?? [],
+    { arama: duyuruAramasi, durum: duyuruDurumu, teslim: duyuruTeslimi },
+    KITLE,
+    TUR,
+  ), [duyuruAramasi, duyuruDurumu, duyuruTeslimi, duyurular]);
 
   async function gonder(e: React.FormEvent) {
     e.preventDefault();
@@ -849,36 +1105,96 @@ export function PanelDuyurular({ klinik }: { klinik: string }) {
       {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
       {bilgi ? <p className="pnl-bilgi" role="status">{bilgi}</p> : null}
 
-      <PanelListe
-      key={tazele}
-      baslik="Duyurular"
-      aciklama="Kliniğinizin gönderdiği duyurular ve kaç kişiye ulaştıkları."
-      yukle={() => duyurulariOku(klinik)}
-      bosBaslik="Henüz duyuru göndermediniz"
-      bosAciklama="Müşterilerinize ya da takipçilerinize duyuru gönderdiğinizde, kime gittiği ve kaç kişiye ulaştığıyla birlikte burada listelenir."
-      anahtar={(d: Duyuru) => d.id}
-      eylem={
-        <button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => { setAcik(true); setIslemHatasi(null); }}>
-          <Megaphone size={15} /> Duyuru oluştur
-        </button>
-      }
-      satir={(d: Duyuru) => (
-        <>
-          <span className="pnl-avatar" aria-hidden="true"><Megaphone size={17} /></span>
-          <div className="pnl-kisi-bilgi">
-            {d.media?.[0]?.storage_key ? <DuyuruGorseli storageKey={d.media[0].storage_key} /> : null}
-            <p className="pnl-kisi-ad">{(d.body || 'Metinsiz duyuru').slice(0, 110)}</p>
-            <p className="pnl-kisi-rol">{d.audience ? (KITLE[d.audience] ?? d.audience) : 'Kitle belirtilmemiş'}</p>
-            <p className="pnl-kisi-ek">{d.delivery_kind === 'notification' ? 'İşlemsel bildirim' : 'Duyuru'}{d.channels?.includes('push') ? ' · uygulama içi + push' : ' · uygulama içi'}</p>
-            {d.target_city || d.target_species ? <p className="pnl-kisi-ek pnl-soluk">Filtre: {[d.target_city, d.target_species ? (TUR[d.target_species] ?? d.target_species) : null].filter(Boolean).join(' · ')}</p> : null}
-            <p className="pnl-kisi-ek pnl-soluk">
-              {d.recipient_count ? `${d.recipient_count} kişiye ulaştı` : 'Henüz gönderilmedi'}
-              {' · '}{tarihYaz(d.created_at, false)}
-            </p>
+      <section className="pnl-bolum pnl-duyuru-postlari" aria-label="Duyurular">
+        <header className="pnl-bolum-basi">
+          <div><p className="pnl-aciklama">Kliniğinizin gönderdiği duyuruları post görünümünde inceleyin; karta dokunarak teslim ve hedefleme özetini açın.</p></div>
+          <button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => { setAcik(true); setIslemHatasi(null); }}>
+            <Megaphone size={15} /> Duyuru oluştur
+          </button>
+        </header>
+
+        <div className="pnl-duyuru-araclari" aria-label="Duyuru arama ve filtreleme">
+          <label className="pnl-operasyon-arama" htmlFor="pnl-duyuru-arama">
+            <Search size={17} aria-hidden="true" />
+            <input id="pnl-duyuru-arama" type="search" value={duyuruAramasi} onChange={(e) => setDuyuruAramasi(e.target.value)} placeholder="Duyuru metni, kitle veya filtre ara" />
+          </label>
+          <select aria-label="Duyuru durumuna göre filtrele" value={duyuruDurumu} onChange={(e) => setDuyuruDurumu(e.target.value)}>
+            <option value="all">Tüm durumlar</option>
+            {Object.entries(DUYURU_DURUMLARI).map(([kod, ad]) => <option key={kod} value={kod}>{ad}</option>)}
+          </select>
+          <select aria-label="Duyuru türüne göre filtrele" value={duyuruTeslimi} onChange={(e) => setDuyuruTeslimi(e.target.value)}>
+            <option value="all">Tüm türler</option>
+            <option value="announcement">Duyuru</option>
+            <option value="notification">İşlemsel bildirim</option>
+          </select>
+          <span className="pnl-sonuc-sayisi" aria-live="polite">{gorunenDuyurular.length} / {duyurular?.length ?? 0} duyuru</span>
+        </div>
+
+        {duyurular === null ? <Yukleniyor /> : null}
+        {duyuruHatasi ? <Hata mesaj={duyuruHatasi} tekrar={() => setTazele((n) => n + 1)} /> : null}
+        {duyurular !== null && !duyuruHatasi && duyurular.length === 0 ? <Bos baslik="Henüz duyuru göndermediniz" aciklama="İlk duyurunuz oluşturulduğunda burada post kartı olarak görünür." /> : null}
+        {duyurular !== null && duyurular.length > 0 && gorunenDuyurular.length === 0 ? <Bos baslik="Filtrelere uygun duyuru yok" aciklama="Arama kelimesini veya filtreleri değiştirerek tekrar deneyin." /> : null}
+
+        {gorunenDuyurular.length ? (
+          <div className="pnl-duyuru-post-grid">
+            {gorunenDuyurular.map((duyuru) => {
+              const durumKodu = duyuru.status ?? 'draft';
+              const aliciMetni = durumKodu === 'sent' ? `${duyuru.recipient_count ?? 0} alıcı kaydı` : 'Henüz gönderilmedi';
+              return (
+                <article className="pnl-duyuru-post" key={duyuru.id}>
+                  <button type="button" className="pnl-duyuru-post-ac" onClick={() => setSeciliDuyuru(duyuru)} aria-label="Duyuru ayrıntılarını ve istatistiklerini aç">
+                    <span className="pnl-duyuru-post-medya">
+                      {duyuru.media?.[0]?.storage_key ? <DuyuruPostGorseli storageKey={duyuru.media[0].storage_key} alt="Duyuru görseli" /> : <span className="pnl-duyuru-post-gorsel-yok"><Megaphone size={32} /><small>Kliniğinizden duyuru</small></span>}
+                      <span className={`pnl-duyuru-post-durum pnl-duyuru-post-durum-${durumKodu}`}>{DUYURU_DURUMLARI[durumKodu] ?? durumKodu}</span>
+                      {(duyuru.media?.length ?? 0) > 1 ? <span className="pnl-duyuru-post-medya-sayisi"><Images size={14} /> {duyuru.media.length}</span> : null}
+                    </span>
+                    <span className="pnl-duyuru-post-icerik">
+                      <span className="pnl-duyuru-post-meta"><b>{duyuru.audience ? (KITLE[duyuru.audience] ?? duyuru.audience) : 'Kitle belirtilmemiş'}</b><time dateTime={duyuru.created_at}>{tarihYaz(duyuru.created_at, false)}</time></span>
+                      <strong className="pnl-duyuru-post-metin">{duyuru.body || 'Metinsiz duyuru'}</strong>
+                      <span className="pnl-duyuru-post-alt">
+                        <span><Send size={14} /> {duyuru.channels?.includes('push') ? 'Uygulama içi + push' : 'Uygulama içi'}</span>
+                        <span><UsersRound size={14} /> {aliciMetni}</span>
+                        <ChevronRight size={18} aria-hidden="true" />
+                      </span>
+                    </span>
+                  </button>
+                </article>
+              );
+            })}
           </div>
-        </>
-      )}
-      />
+        ) : null}
+      </section>
+
+      <Diyalog
+        acik={seciliDuyuru !== null}
+        kapat={() => setSeciliDuyuru(null)}
+        baslik="Duyuru istatistikleri"
+        aciklama="Teslim, kanal ve hedefleme özeti. Alıcı kaydı görüntülenme veya okunma anlamına gelmez."
+        boyut="genis">
+        {seciliDuyuru ? (
+          <div className="pnl-duyuru-detay">
+            <div className="pnl-duyuru-detay-post">
+              {seciliDuyuru.media?.[0]?.storage_key ? <DuyuruPostGorseli storageKey={seciliDuyuru.media[0].storage_key} alt="Duyuru ayrıntı görseli" /> : null}
+              <p>{seciliDuyuru.body || 'Metinsiz duyuru'}</p>
+            </div>
+            <div className="pnl-duyuru-istatistikleri">
+              <div><UsersRound size={18} /><span><small>Alıcı kaydı</small><strong>{seciliDuyuru.status === 'sent' ? seciliDuyuru.recipient_count ?? 0 : '—'}</strong></span></div>
+              <div><Send size={18} /><span><small>Kanal</small><strong>{seciliDuyuru.channels?.includes('push') ? '2 kanal' : '1 kanal'}</strong></span></div>
+              <div><ImageIcon size={18} /><span><small>Medya</small><strong>{seciliDuyuru.media?.length ?? 0}</strong></span></div>
+              <div><BarChart3 size={18} /><span><small>Durum</small><strong>{DUYURU_DURUMLARI[seciliDuyuru.status ?? 'draft'] ?? seciliDuyuru.status}</strong></span></div>
+            </div>
+            <dl className="pnl-duyuru-hedef-ozeti">
+              <div><dt>Hedef kitle</dt><dd>{seciliDuyuru.audience ? (KITLE[seciliDuyuru.audience] ?? seciliDuyuru.audience) : 'Belirtilmedi'}</dd></div>
+              <div><dt>Gönderim türü</dt><dd>{seciliDuyuru.delivery_kind === 'notification' ? 'İşlemsel bildirim' : 'Duyuru'}</dd></div>
+              <div><dt>Kanallar</dt><dd>{seciliDuyuru.channels?.includes('push') ? 'Uygulama içi + push' : 'Uygulama içi'}</dd></div>
+              <div><dt>Hedef filtresi</dt><dd>{[seciliDuyuru.target_city, seciliDuyuru.target_species ? (TUR[seciliDuyuru.target_species] ?? seciliDuyuru.target_species) : null].filter(Boolean).join(' · ') || 'Filtre uygulanmadı'}</dd></div>
+              <div><dt>Oluşturuldu</dt><dd>{tarihYaz(seciliDuyuru.created_at)}</dd></div>
+              <div><dt>Gönderildi</dt><dd>{seciliDuyuru.sent_at ? tarihYaz(seciliDuyuru.sent_at) : 'Henüz gönderilmedi'}</dd></div>
+            </dl>
+            <p className="pnl-duyuru-olcum-notu"><BarChart3 size={16} /> Okunma ve görüntülenme sayısı mevcut veri modelinde klinik paneline açılmıyor. Bu nedenle erişim sayısı uydurulmadan yalnız oluşturulan alıcı kaydı gösterilir.</p>
+          </div>
+        ) : null}
+      </Diyalog>
 
       <Diyalog
         acik={acik}
@@ -1036,7 +1352,26 @@ export function PanelDegerlendirmeler({ klinik }: { klinik: string }) {
 }
 
 /** Ayarlar: hesap ve oturum. */
-export function PanelAyarlar() {
+export function PanelAyarlar({ git }: { git: (bolum: 'profil' | 'entegrasyonlar' | 'iletisim' | 'ekip') => void }) {
+  const [oturumBilgisi, setOturumBilgisi] = useState<{ email: string; sonaErme: string | null }>({ email: '', sonaErme: null });
+  const [tumCihazOnayi, setTumCihazOnayi] = useState(false);
+  const [isleniyor, setIsleniyor] = useState(false);
+  const [ayarHatasi, setAyarHatasi] = useState<string | null>(null);
+
+  useEffect(() => {
+    istemci.auth.getSession().then(({ data }) => setOturumBilgisi({
+      email: data.session?.user.email ?? '',
+      sonaErme: data.session?.expires_at ? new Date(data.session.expires_at * 1000).toLocaleString('tr-TR') : null,
+    }));
+  }, []);
+
+  async function tumCihazlardanCik() {
+    if (isleniyor) return;
+    setIsleniyor(true); setAyarHatasi(null);
+    const { error } = await istemci.auth.signOut({ scope: 'global' });
+    if (error) { setAyarHatasi('Tüm cihaz oturumları kapatılamadı. Bağlantınızı kontrol edip tekrar deneyin.'); setIsleniyor(false); }
+  }
+
   return (
     <section className="pnl-bolum">
       <header className="pnl-bolum-basi">
@@ -1052,7 +1387,8 @@ export function PanelAyarlar() {
         </div>
       </header>
 
-      <div className="pnl-izgara-ikili">
+      {ayarHatasi ? <Hata mesaj={ayarHatasi} kucuk /> : null}
+      <div className="pnl-izgara-ikili pnl-ayarlar-izgarasi">
         <section className="pnl-widget">
           <header className="pnl-widget-basi">
             <span className="pnl-widget-ikon" aria-hidden="true"><Settings size={17} /></span>
@@ -1063,6 +1399,8 @@ export function PanelAyarlar() {
               Web panelinden çıkmak, telefondaki uygulamadaki oturumunuzu kapatmaz. İki cihaz
               birbirinden bağımsız çalışır. Çıkmak için sol menünün altındaki düğmeyi kullanın.
             </p>
+            <p className="pnl-widget-not">Ortak bilgisayarlarda işiniz bittiğinde oturumu açık bırakmayın; tarayıcının parola kaydetme seçeneğini kullanmayın.</p>
+            <dl className="pnl-ayarlar-oturum-ozeti"><div><dt>Hesap</dt><dd>{oturumBilgisi.email || 'Yükleniyor…'}</dd></div><div><dt>Bu web oturumu</dt><dd>{oturumBilgisi.sonaErme ? `${oturumBilgisi.sonaErme} tarihinde yenilenir` : 'Aktif'}</dd></div></dl>
           </div>
         </section>
 
@@ -1072,13 +1410,31 @@ export function PanelAyarlar() {
             <h3>Hesap işlemleri</h3>
           </header>
           <div className="pnl-widget-govde">
-            <p className="pnl-widget-not">
-              Şifre değiştirme, hesap silme ve bildirim tercihleri şimdilik telefondaki
-              uygulamada. Web paneline sırayla ekleniyor.
-            </p>
+            <p className="pnl-widget-not">Klinik görünürlüğü ve teknik sağlayıcı ayarları webde yönetilir. Kişisel şifre, hesap silme ve bireysel bildirim tercihleri mobil uygulamada kalır.</p>
+            <div className="pnl-urun-eylemler">
+              <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => git('profil')}>Klinik profiline git</button>
+              <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => git('entegrasyonlar')}>Entegrasyonlara git</button>
+            </div>
           </div>
         </section>
+
+        <section className="pnl-widget">
+          <header className="pnl-widget-basi"><span className="pnl-widget-ikon"><Bell size={17} /></span><h3>Bildirim ve iletişim</h3></header>
+          <div className="pnl-widget-govde"><p className="pnl-widget-not">Klinik SMS/WhatsApp izinleri, doğrulanmış hedefler ve teslim kuyruğu operasyonel işlemlerde; sağlayıcı anahtarları entegrasyonlarda yönetilir.</p><div className="pnl-urun-eylemler"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => git('iletisim')}>İletişim tercihlerine git</button><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => git('entegrasyonlar')}>Sağlayıcı ayarlarına git</button></div></div>
+        </section>
+
+        <section className="pnl-widget">
+          <header className="pnl-widget-basi"><span className="pnl-widget-ikon"><UsersRound size={17} /></span><h3>Ekip yetkileri</h3></header>
+          <div className="pnl-widget-govde"><p className="pnl-widget-not">Klinik sahibini, çalışan davetlerini ve ekipten çıkarma işlemlerini Ekip bölümünde yönetin. Teknik sırları yalnız klinik sahibi değiştirebilir.</p><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => git('ekip')}>Ekip yönetimine git</button></div>
+        </section>
+
+        <section className="pnl-widget pnl-ayarlar-guvenlik">
+          <header className="pnl-widget-basi"><span className="pnl-widget-ikon"><KeyRound size={17} /></span><h3>Hesap güvenliği</h3></header>
+          <div className="pnl-widget-govde"><p className="pnl-widget-not">Şüpheli bir oturum varsa tüm web ve mobil oturumlarını kapatabilirsiniz. Bu işlem geri alınamaz; her cihazda yeniden giriş gerekir.</p><button type="button" className="pnl-dugme pnl-dugme-olumsuz" onClick={() => setTumCihazOnayi(true)}><LogOut size={15} /> Tüm cihazlardan çık</button></div>
+        </section>
       </div>
+
+      <Diyalog acik={tumCihazOnayi} kapat={() => setTumCihazOnayi(false)} baslik="Tüm cihazlardan çıkılsın mı?" aciklama="Telefon, tablet ve diğer tarayıcılardaki Veterito oturumları kapatılır. Kaydedilmemiş işlemleri önce tamamlayın."><div className="pnl-diyalog-eylem"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setTumCihazOnayi(false)}>Vazgeç</button><button type="button" className="pnl-dugme pnl-dugme-olumsuz" disabled={isleniyor} onClick={() => void tumCihazlardanCik()}>{isleniyor ? 'Oturumlar kapatılıyor…' : 'Tüm cihazlardan çık'}</button></div></Diyalog>
     </section>
   );
 }

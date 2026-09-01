@@ -98,7 +98,7 @@ export default function PanelRaporlar({ klinik }: { klinik: string }) {
       <div className="pnl-kartlar">
         {[
           { ikon: CalendarCheck, ad: 'Toplam randevu', deger: analiz?.appt_total ?? 0, anlam: 'Bugüne kadar açılan', sinif: '' },
-          { ikon: PawPrint, ad: 'Kayıtlı hasta', deger: analiz?.patients_total ?? 0, anlam: `${analiz?.patients_new ?? 0} tanesi yeni`, sinif: '' },
+          { ikon: PawPrint, ad: 'Klinik defteri hastası', deger: analiz?.patients_total ?? 0, anlam: `${analiz?.patients_new ?? 0} tanesi yeni`, sinif: '' },
           /* ⚠️ `upcoming_due` esitleme denetiminde cikan TEK eksikti: mobil
              rapor ekrani bunu gosteriyordu, panel gostermiyordu. Ayni kaynaktan
              (`clinic_analytics`) geliyor, yeni sunucu isi yok. */

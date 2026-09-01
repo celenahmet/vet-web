@@ -754,6 +754,12 @@ export type Ilan = {
   reject_reason: string | null;
   city: string | null;
   district: string | null;
+  description: string | null;
+  conditions: string | null;
+  sex: string | null;
+  approx_age: string | null;
+  is_neutered: boolean | null;
+  is_vaccinated: boolean | null;
   photos: { storage_key: string; sort_order: number }[];
 };
 
@@ -767,8 +773,8 @@ export type OzelCalismaGunu = {
   opens_at: string | null;
   closes_at: string | null;
 };
-export type Duyuru = { id: string; body: string | null; audience: string | null; status: string | null; recipient_count: number | null; created_at: string; delivery_kind: string; target_city: string | null; target_species: string | null; channels: string[]; media: { storage_key: string; position: number }[] };
-export type HizmetAdi = { code: string; name_tr: string };
+export type Duyuru = { id: string; body: string | null; audience: string | null; status: string | null; recipient_count: number | null; created_at: string; sent_at: string | null; delivery_kind: string; target_city: string | null; target_species: string | null; channels: string[]; media: { storage_key: string; position: number }[] };
+export type HizmetAdi = { code: string; name_tr: string; kind: string; category: string; sort_order: number };
 
 async function tablo<T>(ad: string, secim: string, klinik: string | null, siralama?: string): Promise<T[]> {
   let q = istemci.from(ad).select(secim);
@@ -786,7 +792,7 @@ export async function ilanlarimiOku(): Promise<Ilan[]> {
   const { data: kullanici } = await istemci.auth.getUser();
   if (!kullanici.user) return [];
   const { data, error } = await istemci.from('adoption_listings')
-    .select('id, title, species_code, status, created_at, reject_reason, city, district, photos:adoption_photos(storage_key,sort_order)')
+    .select('id, title, description, conditions, species_code, sex, approx_age, is_neutered, is_vaccinated, status, created_at, reject_reason, city, district, photos:adoption_photos(storage_key,sort_order)')
     .eq('created_by', kullanici.user.id).order('created_at', { ascending: false });
   if (error) throw error;
   return (data as unknown as Ilan[] | null) ?? [];
@@ -805,8 +811,25 @@ export async function sahiplendirmeBasvurusunuYanitla(id: string, durum: 'accept
   if (!data?.length) throw new Error('permission denied');
 }
 
+export async function sahiplendirmeIlaniniKapat(id: string, durum: 'adopted' | 'removed'): Promise<void> {
+  const { error } = await istemci.rpc('close_adoption_listing', { p_listing: id, p_status: durum });
+  if (error) throw error;
+}
+
+export async function sahiplendirmeIlaniniGuncelle(id: string, alanlar: {
+  baslik: string; aciklama: string; tur: string; cinsiyet: string; kosullar?: string; sehir?: string; ilce?: string;
+}): Promise<void> {
+  const { data, error } = await istemci.from('adoption_listings').update({
+    title: alanlar.baslik.trim(), description: alanlar.aciklama.trim(), species_code: alanlar.tur,
+    sex: alanlar.cinsiyet || 'unknown', conditions: alanlar.kosullar?.trim() || null,
+    city: alanlar.sehir?.trim() || null, district: alanlar.ilce?.trim() || null,
+  }).eq('id', id).select('id');
+  if (error) throw error;
+  if (!data?.length) throw new Error('İlan bulunamadı veya düzenleme yetkiniz yok.');
+}
+
 export const duyurulariOku = (klinik: string) =>
-  tablo<Duyuru>('announcements', 'id, body, audience, status, recipient_count, created_at, delivery_kind, target_city, target_species, channels, media:announcement_media(storage_key,position)', klinik, 'created_at');
+  tablo<Duyuru>('announcements', 'id, body, audience, status, recipient_count, created_at, sent_at, delivery_kind, target_city, target_species, channels, media:announcement_media(storage_key,position)', klinik, 'created_at');
 
 export const hizmetleriOku = (klinik: string) =>
   tablo<Hizmet>('clinic_capabilities', 'service_code, note, price_min, price_max', klinik);
@@ -864,8 +887,12 @@ export async function ozelCalismaGunuSil(klinik: string, id: string): Promise<vo
   if (!data?.length) throw new Error('Özel gün bulunamadı veya silme yetkiniz yok.');
 }
 
-export const hizmetAdlariniOku = () =>
-  tablo<HizmetAdi>('service_catalog', 'code, name_tr', null);
+export async function hizmetAdlariniOku(): Promise<HizmetAdi[]> {
+  const { data, error } = await istemci.from('service_catalog')
+    .select('code,name_tr,kind,category,sort_order').order('sort_order', { ascending: true }).limit(80);
+  if (error) throw error;
+  return (data as HizmetAdi[] | null) ?? [];
+}
 
 /**
  * Klinigin kendi paylasimlari.
@@ -1006,6 +1033,7 @@ export type DefterHastasi = {
   species_code: string;
   sex: string | null;
   birth_date: string | null;
+  microchip_no: string | null;
   note: string | null;
 };
 
@@ -1022,7 +1050,7 @@ export const turleriOku = () => tablo<Tur>('species', 'code, name_tr', null);
 
 export async function defterHastalariniOku(klinik: string): Promise<DefterHastasi[]> {
   const { data, error } = await istemci.from('clinic_offline_pets')
-    .select('id,customer_id,name,species_code,sex,birth_date,note').eq('clinic_id', klinik)
+    .select('id,customer_id,name,species_code,sex,birth_date,microchip_no,note').eq('clinic_id', klinik)
     .is('archived_at', null).order('created_at', { ascending: false });
   if (error) throw error;
   return (data as DefterHastasi[] | null) ?? [];
@@ -1030,7 +1058,7 @@ export async function defterHastalariniOku(klinik: string): Promise<DefterHastas
 
 export async function arsivdekiHastalariOku(klinik: string): Promise<DefterHastasi[]> {
   const { data, error } = await istemci.from('clinic_offline_pets')
-    .select('id,customer_id,name,species_code,sex,birth_date,note').eq('clinic_id', klinik)
+    .select('id,customer_id,name,species_code,sex,birth_date,microchip_no,note').eq('clinic_id', klinik)
     .not('archived_at', 'is', null).order('archived_at', { ascending: false });
   if (error) throw error;
   return (data as DefterHastasi[] | null) ?? [];
@@ -1104,7 +1132,7 @@ export async function defterMusterisiniGuncelle(
 export async function defterHastasiEkle(
   klinik: string,
   musteri: string,
-  alanlar: { ad: string; tur: string; cinsiyet?: string; dogum?: string; not?: string },
+  alanlar: { ad: string; tur: string; cinsiyet?: string; dogum?: string; mikrocip?: string; not?: string },
 ): Promise<string> {
   const { data, error } = await istemci
     .from('clinic_offline_pets')
@@ -1115,6 +1143,7 @@ export async function defterHastasiEkle(
       species_code: alanlar.tur,
       sex: alanlar.cinsiyet || null,
       birth_date: alanlar.dogum || null,
+      microchip_no: alanlar.mikrocip?.trim() || null,
       note: alanlar.not?.trim() || null,
     })
     .select('id')

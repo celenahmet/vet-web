@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Check, X, CalendarCheck, Ban, RefreshCw, CalendarClock, StickyNote } from 'lucide-react';
+import { Check, X, CalendarCheck, Ban, RefreshCw, CalendarClock, StickyNote, Search } from 'lucide-react';
 
 import { randevulariOku, randevuDurumunuDegistir, baskaSaatOner, randevuNotuYaz, type Randevu } from './veri';
 import { RANDEVU_DURUMU, IZINLI_GECISLER, tarihYaz, gorecelizaman } from './sozluk';
@@ -7,6 +7,7 @@ import Bos from './Bos';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
 import Diyalog from './Diyalog';
+import { randevulariFiltrele, type RandevuZamanFiltresi } from './randevu-liste';
 
 /**
  * RANDEVULAR — panelin is yapan ekrani
@@ -16,7 +17,7 @@ import Diyalog from './Diyalog';
  * ekrani okunacak bir tablo degil, onaylanacak bir kuyruk.
  *
  * ⚠️ DUGME SAYISI SUNUCUNUN KURALINDAN GELIYOR. `IZINLI_GECISLER` sunucudaki
- * makinenin kopyasi; "Onayla" yalnizca yeni talepte, "Geldi" yalnizca onaylanmis
+ * makinenin kopyasi; "Onayla" yalnizca yeni talepte, "Geldi, tamamlandi" yalnizca onaylanmis
  * randevuda cikiyor. Bu bir yetki katmani DEGIL: kopya eskise bile karari sunucu
  * veriyor ve gecersiz gecisi reddettigi olculdu.
  *
@@ -40,6 +41,8 @@ export default function PanelRandevular({ klinik }: { klinik: string }) {
   const [notlu, setNotlu] = useState<Randevu | null>(null);
   const [notMetin, setNotMetin] = useState('');
   const [notBekliyor, setNotBekliyor] = useState(false);
+  const [arama, setArama] = useState('');
+  const [zamanFiltresi, setZamanFiltresi] = useState<RandevuZamanFiltresi>('all');
 
   const yukle = useCallback(() => {
     setHata(null);
@@ -115,7 +118,8 @@ export default function PanelRandevular({ klinik }: { klinik: string }) {
   if (hata) return <Hata mesaj={hata} tekrar={yukle} />;
 
   const bekleyenDurumlar = new Set(['requested', 'confirmed', 'proposed']);
-  const gosterilen = suzgec === 'bekleyen' ? liste.filter((r) => bekleyenDurumlar.has(r.status)) : liste;
+  const durumlaSuzulen = suzgec === 'bekleyen' ? liste.filter((r) => bekleyenDurumlar.has(r.status)) : liste;
+  const gosterilen = randevulariFiltrele(durumlaSuzulen, arama, zamanFiltresi);
   const bekleyenSayisi = liste.filter((r) => bekleyenDurumlar.has(r.status)).length;
 
   return (
@@ -144,7 +148,7 @@ export default function PanelRandevular({ klinik }: { klinik: string }) {
           type="button" role="tab" aria-selected={suzgec === 'bekleyen'}
           className={suzgec === 'bekleyen' ? 'pnl-sekme pnl-sekme-etkin' : 'pnl-sekme'}
           onClick={() => setSuzgec('bekleyen')}>
-          İşlem bekleyenler {bekleyenSayisi > 0 ? <span className="pnl-rozet">{bekleyenSayisi}</span> : null}
+          Aksiyon bekleyen {bekleyenSayisi > 0 ? <span className="pnl-rozet">{bekleyenSayisi}</span> : null}
         </button>
         <button
           type="button" role="tab" aria-selected={suzgec === 'tumu'}
@@ -154,13 +158,28 @@ export default function PanelRandevular({ klinik }: { klinik: string }) {
         </button>
       </div>
 
+      {liste.length > 0 ? <div className="pnl-liste-araclari" role="search" aria-label="Randevularda ara ve filtrele">
+        <label className="pnl-operasyon-arama" htmlFor="pnl-randevu-arama"><Search size={16} aria-hidden="true" /><input
+          id="pnl-randevu-arama" type="search" value={arama} onChange={(e) => setArama(e.target.value)}
+          placeholder="Hasta, sahip, hizmet veya not ara" /></label>
+        <label className="pnl-liste-filtre" htmlFor="pnl-randevu-zaman"><span>Takvim kapsamı</span><select id="pnl-randevu-zaman"
+          value={zamanFiltresi} onChange={(e) => setZamanFiltresi(e.target.value as RandevuZamanFiltresi)}>
+          <option value="all">Tüm tarihler</option><option value="today">Günlük · bugün</option>
+          <option value="week">Haftalık · bu hafta</option>
+          <option value="upcoming">Yaklaşan</option><option value="past">Geçmiş</option>
+        </select></label>
+        <span className="pnl-liste-sonuc" aria-live="polite">{gosterilen.length} / {durumlaSuzulen.length} randevu</span>
+      </div> : null}
+
       {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
 
       {gosterilen.length === 0 ? (
         <Bos
-          baslik={suzgec === 'bekleyen' ? 'Şu an işlem bekleyen randevu yok' : 'Henüz randevu yok'}
+          baslik={arama || zamanFiltresi !== 'all' ? 'Eşleşen randevu bulunamadı' : suzgec === 'bekleyen' ? 'Şu an aksiyon bekleyen randevu yok' : 'Henüz randevu yok'}
           aciklama={
-            suzgec === 'bekleyen'
+            arama || zamanFiltresi !== 'all'
+              ? 'Arama metnini veya zaman filtresini değiştirin.'
+              : suzgec === 'bekleyen'
               ? 'Yeni bir talep geldiğinde burada görünür ve onayınızı bekler.'
               : 'Hayvan sahipleri uygulamadan randevu istediğinde talepler buraya düşer.'
           }

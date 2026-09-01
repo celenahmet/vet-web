@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Archive, ArchiveRestore, User, UserPlus, Plus, Smartphone, NotebookPen, Pencil } from 'lucide-react';
+import { Archive, ArchiveRestore, User, UserPlus, Plus, Smartphone, NotebookPen, Pencil, Search } from 'lucide-react';
 
 import {
   musterileriOku, musteriDavetEt, cevrimdisiMusterileriOku, defterMusterisiEkle,
@@ -18,6 +18,7 @@ import Bos from './Bos';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
 import Diyalog from './Diyalog';
+import { musterileriFiltrele, type KayitKaynagi } from './klinik-kayit-arama';
 
 /**
  * MUSTERILER — iki kaynak tek liste
@@ -63,6 +64,8 @@ export default function PanelMusteriler({ klinik, sahip }: { klinik: string; sah
   const [arsiv, setArsiv] = useState<{ kayit: CevrimdisiMusteri; etki: DefterArsivEtkisi } | null>(null);
   const [arsivAcik, setArsivAcik] = useState(false);
   const [arsivdekiler, setArsivdekiler] = useState<CevrimdisiMusteri[]>([]);
+  const [arama, setArama] = useState('');
+  const [kaynak, setKaynak] = useState<KayitKaynagi>('all');
 
   const yukle = useCallback(() => {
     setHata(null);
@@ -180,6 +183,8 @@ export default function PanelMusteriler({ klinik, sahip }: { klinik: string; sah
   if (hata) return <Hata mesaj={hata} tekrar={yukle} />;
 
   const toplam = platform.length + defter.length;
+  const gorunen = musterileriFiltrele(platform, defter, arama, kaynak);
+  const gorunenToplam = gorunen.platform.length + gorunen.defter.length;
 
   return (
     <section className="pnl-bolum">
@@ -212,6 +217,22 @@ export default function PanelMusteriler({ klinik, sahip }: { klinik: string; sah
 
       {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
       {bilgi ? <p className="pnl-bilgi" role="status">{bilgi}</p> : null}
+      {toplam > 0 ? <div className="pnl-liste-araclari" role="search" aria-label="Müşteri listesinde ara ve filtrele">
+        <label className="pnl-operasyon-arama" htmlFor="pnl-musteri-arama">
+          <Search size={16} aria-hidden="true" />
+          <input id="pnl-musteri-arama" type="search" value={arama} onChange={(e) => setArama(e.target.value)}
+            placeholder="Ad, telefon, e-posta veya not ara" />
+        </label>
+        <label className="pnl-liste-filtre" htmlFor="pnl-musteri-kaynak">
+          <span>Kayıt kaynağı</span>
+          <select id="pnl-musteri-kaynak" value={kaynak} onChange={(e) => setKaynak(e.target.value as KayitKaynagi)}>
+            <option value="all">Tüm müşteriler</option>
+            <option value="platform">Veterito üyeleri</option>
+            <option value="ledger">Klinik defteri</option>
+          </select>
+        </label>
+        <span className="pnl-liste-sonuc" aria-live="polite">{gorunenToplam} / {toplam} kayıt</span>
+      </div> : null}
       {arsivAcik ? <section className="pnl-arsiv-kutusu"><h3>Arşivlenen müşteriler</h3>
         {arsivdekiler.length === 0 ? <p className="pnl-soluk">Arşivlenmiş müşteri yok.</p> :
           <ul className="pnl-kisi-listesi">{arsivdekiler.map((m) => <li className="pnl-kisi" key={m.id}>
@@ -225,9 +246,11 @@ export default function PanelMusteriler({ klinik, sahip }: { klinik: string; sah
           baslik="Henüz müşteriniz yok"
           aciklama="Uygulamayı kullanmayan bir müşteriyi “Müşteri ekle” ile defterinize yazabilir, uygulamayı kullananı “Davet et” ile kliniğinize bağlayabilirsiniz."
         />
+      ) : gorunenToplam === 0 ? (
+        <Bos baslik="Eşleşen müşteri bulunamadı" aciklama="Arama metnini veya kayıt kaynağı filtresini değiştirin." />
       ) : (
         <ul className="pnl-kisi-listesi">
-          {platform.map((m) => (
+          {gorunen.platform.map((m) => (
             <li key={`p-${m.user_id}`} className="pnl-kisi">
               <span className="pnl-avatar" aria-hidden="true"><User size={17} /></span>
               <div className="pnl-kisi-bilgi">
@@ -300,7 +323,7 @@ export default function PanelMusteriler({ klinik, sahip }: { klinik: string; sah
               </span>
             </li>
           ))}
-          {defter.map((m) => (
+          {gorunen.defter.map((m) => (
             <li key={`d-${m.id}`} className="pnl-kisi">
               <span className="pnl-avatar" aria-hidden="true"><NotebookPen size={17} /></span>
               <div className="pnl-kisi-bilgi">

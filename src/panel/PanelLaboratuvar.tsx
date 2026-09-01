@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Beaker, BookOpen, Camera, Check, ChevronDown, ChevronUp, CircleAlert,
-  FileCheck2, FlaskConical, Plus, ShieldCheck, Sparkles, X,
+  FileCheck2, FlaskConical, Plus, ShieldCheck, Sparkles, X, PlugZap, PawPrint,
 } from 'lucide-react';
 
 import Bos from './Bos';
@@ -9,7 +9,8 @@ import Diyalog from './Diyalog';
 import Hata from './Hata';
 import Yukleniyor from './Yukleniyor';
 import LabCihazlari from './LabCihazlari';
-import { hastalariOku, type Hasta } from './veri';
+import { defterHastalariniOku, type DefterHastasi } from './veri';
+import type { Bolum } from './bolumler';
 import {
   klinikKaynaklariniOku, kuralAciklamalariniOku, labAnalitleriniOku,
   labCihazEslemeleriniOku, labCihazlariniOku,
@@ -55,6 +56,8 @@ const bosAnalit = (kod = ''): LabAnalitGirdisi => ({
   reference_low: null, reference_high: null, provider_flag: null, method_name: null,
 });
 
+type LabHastasi = DefterHastasi & { pet_id: string; pet_name: string };
+
 function analitDegeri(analit?: LabAnaliti | null): string {
   if (!analit) return '—';
   const deger = analit.numeric_value ?? analit.text_value ?? '—';
@@ -70,9 +73,9 @@ function ocrDegeri(satir: OcrBirlestirme): string {
   return `${satir.scanned.value}${satir.scanned.unit ? ` ${satir.scanned.unit}` : ''}${aralik}`;
 }
 
-export default function PanelLaboratuvar({ klinik, sahip }: { klinik: string; sahip: boolean }) {
+export default function PanelLaboratuvar({ klinik, sahip, git }: { klinik: string; sahip: boolean; git: (bolum: Bolum) => void }) {
   const [istemler, setIstemler] = useState<LabIstemi[] | null>(null);
-  const [hastalar, setHastalar] = useState<Hasta[]>([]);
+  const [hastalar, setHastalar] = useState<LabHastasi[]>([]);
   const [paneller, setPaneller] = useState<LabPaneli[]>([]);
   const [kalite, setKalite] = useState<LabKalitesi[]>([]);
   const [analitler, setAnalitler] = useState<LabAnaliti[]>([]);
@@ -107,12 +110,12 @@ export default function PanelLaboratuvar({ klinik, sahip }: { klinik: string; sa
     setHata(null);
     try {
       const [i, h, p, k, a, s, d, kk, ka, c, ce] = await Promise.all([
-        labIstemleriniOku(klinik), hastalariOku(klinik), labPanelleriniOku(),
+        labIstemleriniOku(klinik), defterHastalariniOku(klinik), labPanelleriniOku(),
         labKalitesiniOku(klinik), labAnalitleriniOku(klinik), labSurumleriniOku(klinik),
         labDegerlendirmeleriniOku(klinik), klinikKaynaklariniOku(), kuralAciklamalariniOku(),
         labCihazlariniOku(klinik), labCihazEslemeleriniOku(klinik),
       ]);
-      setIstemler(i); setHastalar(h); setPaneller(p); setKalite(k); setAnalitler(a);
+      setIstemler(i); setHastalar(h.map((hasta) => ({ ...hasta, pet_id: hasta.id, pet_name: hasta.name }))); setPaneller(p); setKalite(k); setAnalitler(a);
       setSurumler(s); setDegerlendirmeler(d); setKaynaklar(kk); setKurallar(ka);
       setCihazlar(c); setCihazEslemeleri(ce);
     } catch (e) { setHata((e as Error).message); setIstemler([]); }
@@ -120,7 +123,7 @@ export default function PanelLaboratuvar({ klinik, sahip }: { klinik: string; sa
 
   useEffect(() => { void yukle(); }, [yukle]);
 
-  const hastaAdi = (id: string) => hastalar.find((hasta) => hasta.pet_id === id)?.pet_name ?? 'Hasta';
+  const hastaAdi = (id: string) => hastalar.find((hasta) => hasta.id === id)?.name ?? 'Hasta';
   const panel = (istem: LabIstemi) => paneller.find((satir) => satir.code === istem.panel_code);
   const istemAnalitleri = (istem: string) => analitler.filter((satir) => satir.request_id === istem);
   const istemKalitesi = (istem: string) => kalite.find((satir) => satir.request_id === istem);
@@ -323,10 +326,18 @@ export default function PanelLaboratuvar({ klinik, sahip }: { klinik: string; sa
   if (istemler === null) return <Yukleniyor metin="Laboratuvar akışı yükleniyor" />;
 
   return <section className="pnl-bolum pnl-yeni-modul pnl-yeni-modul-operasyon pnl-laboratuvar">
-    <header className="pnl-bolum-basi pnl-yeni-modul-basi"><div><p className="pnl-aciklama">İstem, cihaz sonucu, teknik kalite, sürüm geçmişi ve kaynaklı klinik karar desteğini tek izlenebilir akışta yönetin.</p></div><div className="pnl-basi-dugmeler"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={ocrPenceresiniAc}><Camera size={15} /> Cihaz ekranını oku</button><button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => setYeniAcik(true)}><Plus size={15} /> İstem oluştur</button></div></header>
+    <header className="pnl-bolum-basi pnl-yeni-modul-basi"><div><p className="pnl-aciklama">İstem, cihaz sonucu, teknik kalite, sürüm geçmişi ve kaynaklı klinik karar desteğini tek izlenebilir akışta yönetin.</p></div><div className="pnl-basi-dugmeler"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={ocrPenceresiniAc}><Camera size={15} /> Cihaz ekranını oku</button><button type="button" className="pnl-dugme pnl-dugme-olumlu" disabled={hastalar.length === 0} title={hastalar.length === 0 ? 'Önce klinik defterinde hasta oluşturun' : undefined} onClick={() => setYeniAcik(true)}><Plus size={15} /> İstem oluştur</button></div></header>
     {uyariAcik ? <div className="pnl-klinik-uyari"><ShieldCheck size={20} /><div><strong>Veteriner doğrulaması zorunludur</strong><p>OCR ve açıklanabilir kurallar eksik veya hatalı olabilir; tanı ve tedavi önerisi değildir. Muayene ve klinik kararın yerini tutmaz.</p></div><button type="button" aria-label="Uyarıyı kapat" onClick={() => setUyariAcik(false)}><X size={16} /></button></div> : null}
     {hata ? <Hata mesaj={hata} kucuk tekrar={() => { setHata(null); void yukle(); }} /> : null}
     {bilgi ? <p className="pnl-bilgi" role="status">{bilgi}</p> : null}
+    {hastalar.length === 0 || aktifCihazlar.length === 0 ? <section className="pnl-onkosul-merkezi" aria-label="Laboratuvar başlangıç adımları">
+      <div><strong>Laboratuvar akışını tamamlayın</strong><p>İstem klinik defteri hastasına bağlanır. Klinik içi cihaz ve OCR için ayrıca aktif cihaz profili gerekir.</p></div>
+      <div className="pnl-onkosul-adimlari">
+        <button type="button" className={hastalar.length ? 'pnl-onkosul-adim pnl-onkosul-tamam' : 'pnl-onkosul-adim'} onClick={() => git('hastalar')}><PawPrint size={17} /><span><b>{hastalar.length ? `${hastalar.length} klinik hastası hazır` : 'Klinik hastası ekleyin'}</b><small>Hasta ve sağlık geçmişi bağı</small></span></button>
+        <button type="button" className={aktifCihazlar.length ? 'pnl-onkosul-adim pnl-onkosul-tamam' : 'pnl-onkosul-adim'} onClick={() => setCihazPaneliAcik(true)}><Beaker size={17} /><span><b>{aktifCihazlar.length ? `${aktifCihazlar.length} aktif cihaz profili` : 'Cihaz profili ekleyin'}</b><small>Model, yöntem ve OCR eşlemesi</small></span></button>
+        <button type="button" className="pnl-onkosul-adim" onClick={() => git('entegrasyonlar')}><PlugZap size={17} /><span><b>Teknik bağlantı ayarları</b><small>LIS veya dış laboratuvar sağlayıcısı</small></span></button>
+      </div>
+    </section> : null}
     <div className="pnl-kartlar"><div className="pnl-kart pnl-kart-durgun"><span className="pnl-kart-ikon"><FlaskConical size={21} /></span><span className="pnl-kart-govde"><span className="pnl-kart-ad">İstem</span><span className="pnl-kart-deger">{istemler.length}</span><span className="pnl-kart-anlam">Toplam laboratuvar istemi</span></span></div><div className="pnl-kart pnl-kart-durgun"><span className="pnl-kart-ikon"><Beaker size={21} /></span><span className="pnl-kart-govde"><span className="pnl-kart-ad">Açık akış</span><span className="pnl-kart-deger">{acikIstemler.length}</span><span className="pnl-kart-anlam">İşlem bekleyen</span></span></div><div className="pnl-kart pnl-kart-durgun"><span className="pnl-kart-ikon pnl-kart-ikon-altin"><FileCheck2 size={21} /></span><span className="pnl-kart-govde"><span className="pnl-kart-ad">Sonuç hazır</span><span className="pnl-kart-deger">{sonucHazir}</span><span className="pnl-kart-anlam">Hekim incelemesi bekliyor</span></span></div><div className="pnl-kart pnl-kart-durgun"><span className="pnl-kart-ikon pnl-kart-ikon-uyari"><CircleAlert size={21} /></span><span className="pnl-kart-govde"><span className="pnl-kart-ad">Teknik eksik</span><span className="pnl-kart-deger">{teknikEksik}</span><span className="pnl-kart-anlam">Eşleme veya metadata sorunu</span></span></div></div>
 
     <LabCihazlari klinik={klinik} sahip={sahip} cihazlar={cihazlar} eslemeler={cihazEslemeleri} yenile={yukle}
@@ -342,7 +353,7 @@ export default function PanelLaboratuvar({ klinik, sahip }: { klinik: string; sa
       <span className="pnl-alan-ipucu">Seçim isteme ve sonuç revizyonuna kaydedilir. Başka cihazdan sonuç gelirse aynı isteme karıştırılmaz.</span>
     </div></div></section>
 
-    {istemler.length === 0 ? <Bos baslik="Henüz laboratuvar istemi yok" aciklama="Hasta ve panel seçerek ilk laboratuvar istemini oluşturun." /> : <div className="pnl-lab-listesi">{istemler.map((istem) => {
+    {istemler.length === 0 ? <Bos baslik="Henüz laboratuvar istemi yok" aciklama={hastalar.length === 0 ? 'Önce klinik defterinde bir hasta oluşturun; ardından hasta ve panel seçerek ilk istemi açın.' : 'Hasta ve panel seçerek ilk laboratuvar istemini oluşturun.'} /> : <div className="pnl-lab-listesi">{istemler.map((istem) => {
       const p = panel(istem); const q = istemKalitesi(istem.id); const a = istemAnalitleri(istem.id); const d = istemDegerlendirmesi(istem.id); const acik = acikIstem === istem.id;
       return <article className="pnl-widget pnl-lab-karti" key={istem.id}><button type="button" className="pnl-lab-kart-basi" aria-expanded={acik} aria-controls={`laboratuvar-${istem.id}-ayrinti`} onClick={() => setAcikIstem(acik ? null : istem.id)}><span className="pnl-widget-ikon"><FlaskConical size={17} /></span><span><strong>{hastaAdi(istem.pet_id)} · {p ? DISIPLIN[p.discipline] : istem.test_name}</strong><small>{istem.provider_name} · {new Date(istem.created_at).toLocaleString('tr-TR')}</small></span><em className={`pnl-durum pnl-durum-${istem.status}`}>{DURUM[istem.status]}</em>{acik ? <ChevronUp size={17} /> : <ChevronDown size={17} />}</button>
       {acik ? <div id={`laboratuvar-${istem.id}-ayrinti`} className="pnl-lab-ayrinti"><div className="pnl-lab-meta"><span><b>Sistem</b>{istem.lab_system_type ? SISTEM[istem.lab_system_type] : '—'}</span><span><b>Numune</b>{istem.specimen || '—'}</span><span><b>Dış istem</b>{istem.external_request_id || '—'}</span><span><b>Sonuç sürümü</b>{istem.current_result_revision || 'Henüz yok'}</span></div>

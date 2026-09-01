@@ -9,6 +9,77 @@ import {
 } from '../src/panel/lab-ocr.ts';
 import { stokEtiketiYazdirmaHtml } from '../src/panel/stok-etiketi-yazdir.ts';
 import { stokKameraHataMesaji } from '../src/panel/stok-kamera.ts';
+import { receteHastalariniFiltrele } from '../src/panel/recete-hasta-arama.ts';
+import { stokKodTurunuNormallestir, ureticiKoduGtinOlabilir } from '../src/panel/stok-kod-turu.ts';
+import { sahiplendirmeIlanlariniFiltreleSirala } from '../src/panel/sahiplendirme-liste.ts';
+import { duyurulariFiltrele } from '../src/panel/duyuru-liste.ts';
+import { musterileriFiltrele, hastalariFiltrele, olasiDefterHastasiEslesmeleri } from '../src/panel/klinik-kayit-arama.ts';
+import { randevulariFiltrele } from '../src/panel/randevu-liste.ts';
+
+const platformMusterileri = [{ user_id: 'u1', display_name: 'İlker Işık', note: 'Kontrol listesi' }];
+const defterMusterileri = [{ id: 'd1', full_name: 'Ayşe Yılmaz', phone: '905322221100', email: 'ayse@example.com', note: null }];
+assert.equal(musterileriFiltrele(platformMusterileri, defterMusterileri, 'ışık', 'platform').platform.length, 1,
+  'Müşteri araması Türkçe I/İ eşleşmesini ve kayıt kaynağını korumalı.');
+assert.equal(musterileriFiltrele(platformMusterileri, defterMusterileri, '532', 'ledger').defter.length, 1,
+  'Klinik defteri müşterisi telefonun bir bölümüyle bulunabilmeli.');
+const platformHastalari = [{ pet_id: 'p1', pet_name: 'Zeytin', owner_name: 'Rümeysa Büyük', species_code: 'cat' }];
+const defterHastalari = [{ id: 'p2', name: 'Paşa', customer_id: 'd1', species_code: 'dog', microchip_no: '900123456789012', note: 'Golden Retriever' }];
+assert.equal(hastalariFiltrele(platformHastalari, defterHastalari, () => 'Ayşe Yılmaz', () => 'Köpek', 'golden', 'ledger').defter.length, 1,
+  'Hasta araması klinik defterindeki not alanını da taramalı.');
+assert.equal(hastalariFiltrele(platformHastalari, defterHastalari, () => 'Ayşe Yılmaz', () => 'Köpek', '345678', 'ledger').defter.length, 1,
+  'Hasta araması mikroçip numarasının bir bölümüyle çalışmalı.');
+assert.equal(olasiDefterHastasiEslesmeleri(
+  { pet_id: 'p3', pet_name: 'Paşa', owner_name: 'Ayşe Yılmaz', species_code: 'dog' },
+  defterHastalari, () => 'Ayşe Yılmaz',
+).length, 1, 'Aynı hasta ve sahip adına ait olası klinik kaydı ikinci kayıt açılmadan görünmeli.');
+
+const randevular = [
+  { id: 'r1', owner_name: 'İlker Işık', pet_name: 'Misket', service_name: 'Muayene', clinic_note: 'Kontrol', note: null, starts_at: '2026-09-01T10:00:00Z', proposed_at: null },
+  { id: 'r2', owner_name: 'Ayşe', pet_name: 'Paşa', service_name: 'Aşı', clinic_note: null, note: null, starts_at: '2026-09-03T10:00:00Z', proposed_at: null },
+];
+assert.deepEqual(randevulariFiltrele(randevular, 'ışık', 'all', new Date('2026-09-01T08:00:00Z')).map((r) => r.id), ['r1'],
+  'Randevu araması sahip, hasta, hizmet ve not alanlarında Türkçe eşleşmeli.');
+assert.deepEqual(randevulariFiltrele(randevular, '', 'upcoming', new Date('2026-09-02T08:00:00Z')).map((r) => r.id), ['r2'],
+  'Yaklaşan randevu filtresi geçmiş kayıtları dışarıda bırakmalı.');
+assert.deepEqual(randevulariFiltrele(randevular, '', 'week', new Date('2026-09-02T08:00:00Z')).map((r) => r.id), ['r1', 'r2'],
+  'Haftalık randevu filtresi pazartesi-pazar aralığını göstermeli.');
+
+const ornekDuyurular = [
+  { body: 'İstanbul kliniğimiz bayramda açıktır', audience: 'customers', status: 'sent', delivery_kind: 'announcement', target_city: 'İstanbul', target_species: 'cat' },
+  { body: 'Randevunuz yarın', audience: 'customers', status: 'draft', delivery_kind: 'notification', target_city: null, target_species: null },
+];
+assert.equal(
+  duyurulariFiltrele(ornekDuyurular, { arama: 'İSTANBUL', durum: 'all', teslim: 'all' }, { customers: 'Müşterilerinize' }, { cat: 'Kedi' }).length,
+  1,
+  'Duyuru araması Türkçe büyük/küçük harf ve hedef filtrelerinde çalışmalı.',
+);
+assert.equal(
+  duyurulariFiltrele(ornekDuyurular, { arama: '', durum: 'draft', teslim: 'notification' }, { customers: 'Müşterilerinize' }, { cat: 'Kedi' }).length,
+  1,
+  'Duyuru durum ve gönderim türü filtreleri birlikte uygulanmalı.',
+);
+
+const ornekIlanlar = [
+  { id: '1', title: 'İnci yuva arıyor', species_code: 'cat', status: 'published', created_at: '2026-08-30T10:00:00Z', city: 'İstanbul', district: 'Kadıköy' },
+  { id: '2', title: 'Cesur için sıcak yuva', species_code: 'dog', status: 'pending', created_at: '2026-08-31T10:00:00Z', city: 'Ankara', district: 'Çankaya' },
+  { id: '3', title: 'Misket sahiplendirildi', species_code: 'cat', status: 'adopted', created_at: '2026-08-29T10:00:00Z', city: 'İzmir', district: 'Karşıyaka' },
+];
+const ornekBasvurular = [{ listing_id: '1' }, { listing_id: '1' }, { listing_id: '2' }];
+assert.deepEqual(
+  sahiplendirmeIlanlariniFiltreleSirala(ornekIlanlar, ornekBasvurular, { arama: 'İSTANBUL', durum: 'all', tur: 'all', siralama: 'newest' }, { cat: 'Kedi', dog: 'Köpek' }).map((ilan) => ilan.id),
+  ['1'],
+  'Sahiplendirme araması Türkçe büyük/küçük harf ve konum alanında çalışmalı.',
+);
+assert.deepEqual(
+  sahiplendirmeIlanlariniFiltreleSirala(ornekIlanlar, ornekBasvurular, { arama: '', durum: 'published', tur: 'cat', siralama: 'newest' }, { cat: 'Kedi', dog: 'Köpek' }).map((ilan) => ilan.id),
+  ['1'],
+  'Sahiplendirme durum ve tür filtreleri birlikte uygulanmalı.',
+);
+assert.deepEqual(
+  sahiplendirmeIlanlariniFiltreleSirala(ornekIlanlar, ornekBasvurular, { arama: '', durum: 'all', tur: 'all', siralama: 'applications' }, { cat: 'Kedi', dog: 'Köpek' }).map((ilan) => ilan.id),
+  ['1', '2', '3'],
+  'Başvuru sıralaması en çok başvurusu olan ilanı üste taşımalı.',
+);
 
 const mevcut = (kod, deger, ek = {}) => ({
   id: kod,
@@ -97,6 +168,26 @@ assert.match(etiketBelgesi, /@page \{ size: 100mm 50mm; margin: 0; \}/,
   'Çalışan etiket üreticisi yazıcıya tek etiketlik özel sayfa ölçüsü vermeli.');
 assert.equal((etiketBelgesi.match(/Patili Dostlar Veteriner Kliniği/g) ?? []).length, 1,
   'Klinik adı yazdırma belgesine kaybolmadan ve yinelenmeden taşınmalı.');
+const receteHastalari = [
+  { pet_id: '1', pet_name: 'Zeytin', owner_name: 'Rümeysa Büyük' },
+  { pet_id: '2', pet_name: 'Misket', owner_name: 'İlker Işık' },
+];
+assert.deepEqual(receteHastalariniFiltrele(receteHastalari, 'rümeysa').map((satir) => satir.pet_id), ['1'],
+  'Reçete araması müşteri/sahip adıyla hastayı bulmalı.');
+assert.deepEqual(receteHastalariniFiltrele(receteHastalari, 'misket').map((satir) => satir.pet_id), ['2'],
+  'Reçete araması hasta adıyla kaydı bulmalı.');
+assert.deepEqual(receteHastalariniFiltrele(receteHastalari, 'ışık').map((satir) => satir.pet_id), ['2'],
+  'Reçete araması Türkçe I/İ harflerini doğru eşlemeli.');
+assert.equal(stokKodTurunuNormallestir('EAN_13', '8690506076379'), 'ean13',
+  'ZXing EAN_13 adı sunucunun ean13 sözlüğüne çevrilmeli.');
+assert.equal(stokKodTurunuNormallestir('qr_code', 'P1234567890'), 'qr',
+  'Tarayıcı qr_code adı sunucunun qr sözlüğüne çevrilmeli.');
+assert.equal(stokKodTurunuNormallestir('itf', '12345'), 'unknown',
+  '14 hane olmayan genel ITF kodu yanlışlıkla ITF-14 diye kaydedilmemeli.');
+assert.equal(ureticiKoduGtinOlabilir('ean13', '8690506076379'), true,
+  'Geçerli EAN-13 yeni ürünün GTIN alanına taşınabilmeli.');
+assert.equal(ureticiKoduGtinOlabilir('qr', '8690506076379'), false,
+  'Sayısal QR içeriği sırf rakam diye üretici GTIN’i sayılmamalı.');
 for (const [ad, beklenen] of [
   ['NotAllowedError', 'Kamera izni bu site için engellenmiş.'],
   ['NotFoundError', 'Kullanılabilir kamera bulunamadı.'],
@@ -124,6 +215,7 @@ const stok = readFileSync(new URL('../src/panel/PanelStok.tsx', import.meta.url)
 const stokEtiketi = readFileSync(new URL('../src/panel/StokEtiketi.tsx', import.meta.url), 'utf8');
 const stokEtiketiYazdir = readFileSync(new URL('../src/panel/stok-etiketi-yazdir.ts', import.meta.url), 'utf8');
 const stokKamera = readFileSync(new URL('../src/panel/stok-kamera.ts', import.meta.url), 'utf8');
+const stokKodTuru = readFileSync(new URL('../src/panel/stok-kod-turu.ts', import.meta.url), 'utf8');
 const medya = readFileSync(new URL('../src/panel/medya-veri.ts', import.meta.url), 'utf8');
 const galeri = readFileSync(new URL('../src/panel/KlinikGaleri.tsx', import.meta.url), 'utf8');
 const ekip = readFileSync(new URL('../src/panel/PanelEkip.tsx', import.meta.url), 'utf8');
@@ -140,11 +232,17 @@ const vercel = readFileSync(new URL('../vercel.json', import.meta.url), 'utf8');
 const envOrnegi = readFileSync(new URL('../.env.example', import.meta.url), 'utf8');
 const paket = readFileSync(new URL('../package.json', import.meta.url), 'utf8');
 const ocrVarliklari = readFileSync(new URL('./ocr-varliklarini-hazirla.mjs', import.meta.url), 'utf8');
+assert.ok(hastalar.includes('ikinci müşteri kaydı açmayın'),
+  'Hasta formu uygulama üyesi için sessiz ikiz kaydı önlemeli.');
+assert.ok(!hastalar.includes('onun adına bir kayıt açın'),
+  'Hasta formu mükerrer defter müşterisi önermemeli.');
 
 assert.match(panelGiris, /import logoUrl from '\.\.\/assets\/logo\.webp'/,
   'Klinik girişi açık zemin Veterito marka varlığını yeniden kullanmalı.');
 assert.match(panelGiris, /className="pnl-giris-marka"[\s\S]*src=\{logoUrl\}[\s\S]*alt="Veterito"/,
   'Klinik giriş kartının üstünde erişilebilir Veterito logosu bulunmalı.');
+assert.match(panel, /acikMenuGrubu[\s\S]*aria-expanded=\{acik\}[\s\S]*pnl-menu-alt/,
+  'Uzun web menüsü alan gruplarıyla açılıp kapanmalı; alt menüler ekran dışında kaybolmamalı.');
 assert.match(panelCss, /\.pnl-giris-marka img\s*\{[^}]*height:\s*34px;[^}]*max-width:\s*100%;/,
   'Giriş logosu kart sınırlarında doğal oranını korumalı.');
 
@@ -153,6 +251,8 @@ assert.match(bolumler, /anahtar:\s*'entegrasyonlar',\s*ad:\s*'Entegrasyonlar'/, 
 assert.match(panel, /gorunum="communications"\s+git=\{bolumeGit\}/, 'Operasyon menüsü günlük görünüm ve çalışan bölüm geçişlerine bağlanmalı.');
 assert.match(panel, /gorunum="technical"/, 'Teknik entegrasyonlar ayrı görünümde kalmalı.');
 assert.match(entegrasyon, />Entegrasyon ayarları<\//, 'Teknik ekran ayarların bulunduğu yeri açıkça adlandırmalı.');
+assert.match(entegrasyon, /Kolay kurulum[\s\S]*Uzman ayarları[\s\S]*pnl-entegrasyon-kolay-grid/,
+  'Teknik entegrasyonlar klinik sahibi için sade ve uzman katmanlarına ayrılmalı.');
 for (const alan of ['Sağlayıcı / cihaz sistemi', 'API temel adresi', 'Genel entegrasyon ayarları', 'Gizli kimlik bilgileri']) {
   assert.match(entegrasyon, new RegExp(alan), `Entegrasyon ekranında ${alan} bulunmalı.`);
 }
@@ -214,6 +314,9 @@ assert.match(vercel, /camera=\(self\)/, 'Web barkod kamerası yalnız aynı kayn
 assert.doesNotMatch(vercel, /worker-src[^;]*https?:/, 'OCR workerı üçüncü taraf CDN’den çalıştırılmamalı.');
 assert.match(recete, /resmiReceteyiHazirla/, 'Web reçetesi resmî gönderim taslağı kapısına bağlanmalı.');
 assert.match(recete, /degistirilen/, 'Reçete düzeltmesi eski sürümü koruyan akışta kalmalı.');
+assert.match(recete, /Hasta veya müşteri bul/, 'Reçete hastası hasta veya müşteri adına göre aranabilmeli.');
+assert.match(recete, /receteHastalariniFiltrele\(hastalar, hastaAramasi\)/, 'Reçete araması test edilen ortak filtreyi kullanmalı.');
+assert.match(recete, /Eşleşen hasta bulunamadı/, 'Reçete hasta araması boş sonucu açıkça anlatmalı.');
 assert.match(panel, /import PanelMesajlar from '\.\/PanelMesajlar'/, 'Tam web gelen kutusu panele bağlanmalı.');
 assert.match(mesajVeri, /conversation_request_list/, 'Web gelen kutusu mesaj isteklerini okumalı.');
 assert.match(mesajVeri, /respond_to_message_request/, 'Mesaj isteği kabul ve ret yolu bağlı kalmalı.');
@@ -226,6 +329,31 @@ assert.match(panelBolumler, /value="selected"/, 'Duyuruda ilişki içindeki seç
 assert.match(panelBolumler, /İşlemsel bildirim yalnız müşterilere gider/, 'Duyuru ve işlemsel bildirim ayrımı açıklanmalı.');
 assert.match(panelBolumler, /guvenliGorselleriYukle/, 'Çoklu topluluk, ilan ve duyuru görselleri yarım yüklemede temizlenmeli.');
 assert.match(panelBolumler, /sahiplendirmeBasvurusunuYanitla/, 'Sahiplendirme başvurusu kabul ve ret yolu bağlı kalmalı.');
+assert.match(panelBolumler, /sahiplendirmeIlaniniKapat[\s\S]*Uygulama kartını önizle[\s\S]*Sahiplendirildi[\s\S]*Yayından kaldır/,
+  'Sahiplendirme kartında önizleme ve güvenli kapatma eylemleri bulunmalı.');
+assert.match(panelBolumler, /signOut\(\{ scope: 'global' \}\)[\s\S]*Tüm cihazlardan çık/,
+  'Ayarlar ekranı açık onayla tüm oturumları kapatabilmeli.');
+assert.match(panelBolumler, /Görsel yeniden deneniyor[\s\S]*duyuru metni kullanılabilir/,
+  'Duyuru görseli başarısız olduğunda otomatik yeniden deneme ve kullanılabilir yedek içerik göstermeli.');
+assert.match(panelBolumler, /placeholder="Başlık, konum veya tür ara"/, 'Sahiplendirme ilanları başlık, konum ve tür üzerinden aranabilmeli.');
+assert.match(panelBolumler, /aria-label="İlan durumuna göre filtrele"[\s\S]*aria-label="Hayvan türüne göre filtrele"[\s\S]*aria-label="İlanları sırala"/,
+  'Sahiplendirme arama araçlarında durum, tür ve sıralama ayrı ve erişilebilir olmalı.');
+assert.match(panelBolumler, /pnl-ilan-kartlari[\s\S]*SahiplendirmeGorseli[\s\S]*pnl-ilan-basvurular/,
+  'Sahiplendirme ilanı medya, içerik ve başvuruları ayrılmış post kartı olmalı.');
+assert.match(panelCss, /\.pnl-ilan-kartlari\s*\{[^}]*repeat\(2,[^}]*\}[\s\S]*@media \(max-width: 760px\)[\s\S]*\.pnl-ilan-kartlari\s*\{[^}]*grid-template-columns:\s*1fr;/,
+  'Sahiplendirme post kartları geniş ekranda iki, dar ekranda tek sütun olmalı.');
+assert.match(panelBolumler, /pnl-duyuru-post-grid[\s\S]*setSeciliDuyuru\(duyuru\)[\s\S]*Duyuru istatistikleri/,
+  'Duyuru post kartı tıklanınca istatistik ayrıntısı açılmalı.');
+assert.match(panelBolumler, /placeholder="Duyuru metni, kitle veya filtre ara"[\s\S]*Duyuru durumuna göre filtrele[\s\S]*Duyuru türüne göre filtrele/,
+  'Duyuru listesi metin araması, durum ve tür filtresi sunmalı.');
+assert.match(panelBolumler, /Alıcı kaydı görüntülenme veya okunma anlamına gelmez/,
+  'Duyuru istatistiği alıcı kaydını görüntülenme olarak sunmamalı.');
+assert.match(panelBolumler, /recipient_count \?\? 0/,
+  'Sıfır alıcılı gönderilmiş duyuru henüz gönderilmedi diye yanlış etiketlenmemeli.');
+assert.match(panelVeri, /created_at, sent_at, delivery_kind/,
+  'Duyuru ayrıntısı gerçek gönderim zamanını veri kaynağından okumalı.');
+assert.match(panelCss, /\.pnl-duyuru-post-grid\s*\{[^}]*repeat\(2,[^}]*\}[\s\S]*@media \(max-width: 760px\)[\s\S]*\.pnl-duyuru-post-grid\s*\{[^}]*grid-template-columns:\s*1fr;/,
+  'Duyuru postları geniş ekranda iki, dar ekranda tek sütun olmalı.');
 assert.match(defter, /CSV indir/, 'Defter seçili dönem verisini dışa aktarabilmeli.');
 assert.match(defter, /odemeYontemi/, 'Ödeme yöntemi kategoriden ayrı tutulmalı.');
 assert.match(webSitesi, /Klinik bilgilerini düzenle/, 'Klinik temel bilgileri webden düzenlenebilmeli.');
@@ -244,6 +372,10 @@ assert.match(stok, /stokKameraAkisiniIste\(\)[\s\S]*if \(!Kurucu\)[\s\S]*decodeF
   'Doğrudan izinle alınan tek kamera akışı yerleşik ve yedek barkod okuyucular arasında paylaşılmalı.');
 assert.doesNotMatch(stok, /decodeFromConstraints\(/,
   'Yedek barkod okuyucu ikinci bir örtük kamera izni istememeli.');
+assert.match(stok, /Yeni ürün oluştur/, 'Eşleşmeyen stok kodundan yeni ürün kartı açılabilmeli.');
+assert.match(stok, /STOK_KOD_TURLERI\.map/, 'Kod türü seçimi sunucunun tam sözlüğünden üretilmeli.');
+assert.match(stokKodTuru, /code39.*code93.*code128.*itf14/s,
+  'Kod türü sözlüğü sunucunun desteklediği Code ve ITF türlerini içermeli.');
 assert.match(stok, /Kamera iznini yeniden dene/,
   'Engellenen kamera izninden sonra kullanıcıya çalışan yeniden deneme eylemi sunulmalı.');
 assert.match(stokKamera, /NotFoundError[\s\S]*NotReadableError/,
@@ -263,6 +395,10 @@ assert.match(stok, /pnl-operasyon-kartlari pnl-stok-kartlari/, 'Stok ürünleri 
 assert.match(panelCss, /\.pnl-stok-kartlari\s*\{[^}]*repeat\(2,[^}]*\}[\s\S]*@media \(max-width: 1180px\)[\s\S]*\.pnl-stok-kartlari, \.pnl-cihaz-formlari\s*\{[^}]*grid-template-columns: 1fr;/,
   'Stok kartları ve cihaz formları geniş ekranda dengeli, dizüstünde sıkışmadan tek sütun olmalı.');
 assert.match(laboratuvar, /pnl-yeni-modul pnl-yeni-modul-operasyon/, 'Laboratuvar ekranı yeni modül dizüstü kırılımlarını kullanmalı.');
+assert.match(laboratuvar, /defterHastalariniOku\(klinik\)/,
+  'Laboratuvar istemi RPC’nin kabul ettiği klinik defteri hastalarından oluşturulmalı.');
+assert.doesNotMatch(laboratuvar, /hastalariOku\(klinik\)/,
+  'Platform hastası bağlantı kaydı olmadan laboratuvar istemine sessizce gönderilmemeli.');
 assert.match(laboratuvar, /pnl-yeni-modul-operasyon pnl-laboratuvar/,
   'Laboratuvar ekranı diğer operasyon sayfalarını etkilemeden özel yerleşim ritmi kullanmalı.');
 assert.match(labCihazlari, /className="pnl-widget pnl-lab-cihazlar"/,
@@ -325,6 +461,12 @@ assert.match(panelBolumler, /pnl-izgara-ikili pnl-profil-ust[\s\S]*pnl-profil-so
   'Klinik profilinde baktığınız türler solda, çalışma saatleri sağda kalmalı.');
 assert.match(panelBolumler, /pnl-profil-hizmetler[\s\S]*pnl-hizmet-grid/,
   'Hizmetler üst ikilinin altında kompakt çok sütunlu bölüme taşınmalı.');
+assert.match(panelBolumler, /placeholder="Hizmet adı veya kodu ara"[\s\S]*Yalnız sunduklarım[\s\S]*Tüm kategoriler/,
+  'Uzun hizmet kataloğu arama, yalnız seçili ve kategori filtresi sunmalı.');
+assert.match(panelVeri, /service_catalog'\)[\s\S]*category,sort_order[\s\S]*order\('sort_order'/,
+  'Hizmet kategorisi ve klinik sırası sunucunun katalog sözleşmesinden gelmeli.');
+assert.match(panelCss, /data-panel-domain="care"[\s\S]*data-panel-domain="operations"[\s\S]*data-panel-domain="communication"/,
+  'Web panelinin klinik alanları tekdüze beyaz yerine ölçülü semantik renk ayrımı kullanmalı.');
 assert.match(panelBolumler, /Özel çalışma günleri/, 'Çalışma saatlerinde özel gün yönetimi görünmeli.');
 assert.match(panelCss, /\.pnl-profil-sol\s*\{[^}]*display:\s*grid;[^}]*gap:\s*14px/,
   'Tür ve özel gün kartları sol sütundaki boşluğu dengeli kullanmalı.');

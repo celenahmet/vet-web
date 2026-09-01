@@ -13,6 +13,61 @@ bizim sürümümüz kalır; pazarlama sayfalarında stajyerin sürümü esastır
 
 ---
 
+## 02.09.2026 · Klinik sahibi raporu yeniden kabul matrisi
+
+Bu tur, önceki eleştiri raporundaki her maddeyi yalnız ekranda görünmesine göre
+değil; veri kaynağı, yetki sınırı, boş durum, dar ekran ve geri dönüş davranışıyla
+yeniden değerlendirir. Mobil kaynak kodu değiştirilmedi. Ortak veride yapılan tek
+ekleme, klinik defteri hastasına isteğe bağlı ve klinik içinde tekil mikroçip
+numarasıdır (`0200_clinic_offline_pet_microchip.sql`).
+
+| Rapor bulgusu | Kabul sonucu | Kanıt / sınır |
+|---|---|---|
+| Müşteri–hasta kayıtlarının parçalanması | **Kısmen kapalı** | Mevcut Veterito müşterisi `clinic_invite_customer` ile açık davet/kabul akışında bağlanıyor. Klinik defteri hayvanını platform hayvanına otomatik birleştirmek yasak; sahip onaylı kimlik köprüsü ayrı veri sözleşmesi ister. |
+| Hasta sayaçlarının çelişmesi | **Kapalı** | Veterito bağlantılı, klinik defteri ve toplam aktif hasta ayrı ad ve kapsamla gösteriliyor. |
+| Laboratuvar cihazı yokken çıkmaz | **Kapalı** | İstem penceresi önkoşulu açıklıyor ve cihaz/entegrasyon kurulumuna doğrudan geçiriyor; istem yalnız klinik defteri hastasıyla açılıyor. |
+| Müşteri/hasta araması | **Kapalı** | Türkçe duyarlı isim, telefon, e-posta, sahip, tür ve not araması; klinik hastasında ayrıca mikroçip araması ve açık sıfır sonuç durumu var. |
+| Randevu dili ve takvim kapsamı | **Kısmen kapalı** | “Aksiyon bekleyen”, günlük/haftalık/tarih/durum araması var. Sunucu tek `done` durumu taşıdığı için eylem dürüstçe “Geldi, tamamlandı”; ayrı `arrived` ve atanmış veteriner alanı Faz 5'tedir. |
+| Uzun klinik profili | **Kapalı** | Türler ve mesai üstte; hizmetler arama, kategori, seçili filtresi ve kompakt ızgarada; özel gün istisnaları korunuyor. |
+| Entegrasyonların teknik yoğunluğu | **Kapalı** | Varsayılan “Kolay kurulum” durum/eksik adımı gösteriyor; “Uzman ayarları” gerçek sağlayıcı, uç nokta, webhook ve sır kasası alanlarını koruyor. |
+| Ayarlar ekranının boşluğu | **Kapalı** | İletişim/bildirim, ekip yetkisi, aktif oturum ve tüm cihazlardan çıkış yalnız çalışan hedeflerle sunuluyor; var olmayan parola işlevi vaat edilmiyor. |
+| Sahiplendirme yönetimi | **Kapalı** | Arama/filtre/sıralamaya ek olarak uygulama önizlemesi, düzenleme, sahiplendirildi ve yayından kaldırma güvenli RPC üzerinden çalışıyor. |
+| Gelir/gider metin çelişkisi | **Kapalı** | Webde gerçekten desteklenen kayıt/okuma sınırı tek anlamlı metinle gösteriliyor. |
+| Web sitesi tamamlanma ve medya sağlığı | **Kapalı** | İçerik tamamlanması ile logo/kapak/galeri önizleme sağlığı ayrı ölçülüyor. |
+| Duyuru görsel hatası | **Kapalı** | İmzalı URL bir kez yenileniyor; ikinci hatada ham hata yerine kalıcı, dengeli yedek görünüm çıkıyor. |
+| Düz ve uzun navigasyon | **Kapalı** | Altı görev alanına ayrılmış akordeon; mevcut bölüm anahtarları ve erişim kuralları korunuyor. |
+| Webde soğuk renk dağılımı | **Kapalı** | Mobil palete dokunmadan yalnız panelde laboratuvar/operasyon/finans/uyarı yüzeyleri düşük doygunluklu alan tonlarıyla ayrıldı. |
+
+### Aşamalı Ar-Ge ve yayın kapısı
+
+1. **Güven ve veri bütünlüğü:** sayaç kapsamı, kayıt kaynağı, laboratuvar
+   yabancı anahtarı ve mikroçip tekilliği.
+2. **Yoğun klinik hızı:** birleşik arama, günlük/haftalık randevu kapsamı,
+   kategori ve sıfır sonuç davranışları.
+3. **Kurulum ve işletme:** kolay/uzman entegrasyon, çalışan ayar hedefleri,
+   güvenli sahiplendirme eylemleri ve medya geri kazanımı.
+4. **Masaüstü sunum:** görev tabanlı menü, iş alanı renkleri, geniş/dar ekran
+   boşluk ve hiyerarşi kabulü.
+5. **Şema ve açık onay gerektiren devam işi:** platform hayvanı–klinik defteri
+   kimlik köprüsü; randevuda `arrived`, `completed` ve atanmış veteriner.
+   Bunlar eklenene kadar arayüz veri uydurmayacak veya iki durumu tekmiş gibi
+   göstermeyecek.
+6. **Yayın kapısı:** saf birim testleri, lint, TypeScript/production build,
+   gizli anahtar taraması ve kimlikli demo tarayıcı kabulü birlikte geçmeden
+   tamamlandı işareti konmayacak.
+
+**02.09 kabul ölçümü:** Demo owner oturumunda 1280×720 görünümde hasta/mikroçip
+alanı, randevu günlük–haftalık kapsamı, entegrasyon kolay–uzman geçişi, ayarlar
+hedefleri, sahiplendirme önizlemesi, duyuru görseli yeniden deneme/yedek durumu ve
+laboratuvar önkoşul kapıları açıldı. Yatay taşma ve konsol hatası görülmedi. Veri
+oluşturan, ileti gönderen, ilan kapatan veya oturum sonlandıran eylemler kabul
+testinde çalıştırılmadı; bunların veri yazmayan yüzey ve güvenli RPC sözleşmeleri
+birim/statik denetimle ölçüldü. Dar ekran davranışı aynı paket içindeki önceki
+390 px gerçek tarayıcı kabulünde geçmişti; son ekler mevcut tek sütun kırılımlarını
+değiştirmedi.
+
+---
+
 ## Temel kural
 
 **Arka uçta hiçbir şey yazılmadı ve yazılmayacak gibi duruyor.** Klinik
@@ -33,15 +88,17 @@ Yeni bir ekran açmadan önce: `grep -rhoE "rpc\(\s*['\"][a-z_]+['\"]" ~/Develop
 | Hastalar | `clinic_pet_list` · `clinic_offline_pets` | ✅ **hasta eklenebiliyor**, sağlık kaydı girilebiliyor |
 | Sağlık kayıtları | `clinic_pet_records` | ✅ kayıt eklenebiliyor (aşı, parazit, muayene, ilaç, kilo) |
 | Aşı takvimi | `clinic_upcoming_records` | ✅ girilen sonraki tarihler buraya düşüyor |
-| Duyurular | `announcements` · **`send_announcement`** | ✅ **duyuru oluşturulup gönderilebiliyor** |
-| Klinik profili · Topluluk · Sahiplendirme · Değerlendirmeler · Ayarlar | ilgili tablolar | ✅ salt okuma |
+| Reçeteler | `clinic_prescription_list` · `write_prescription` · `void_prescription` | ✅ yazma, sürümlü düzeltme, iptal ve çıktı; hasta seçimi hasta veya müşteri/sahip adına göre aranıyor, Türkçe I/İ ve sıfır sonuç davranışı ölçüldü |
+| Duyurular | `announcements` · `announcement_media` · **`send_announcement`** | ✅ post kartı, arama/durum/tür filtresi ve tıklanabilir teslim istatistik özeti; gerçek `sent_at`, sıfır alıcı ve 1440/390 px tarayıcı kabulü ölçüldü, okunma verisi olmadığı için uydurulmadı |
+| Klinik profili · Topluluk · Değerlendirmeler · Ayarlar | ilgili tablolar | ✅ salt okuma |
+| Sahiplendirme | `adoption_listings` · `adoption_photos` · başvuru okuma/yanıtlama RPC'leri | ✅ post kartı görünümü, arama, tür/durum filtresi ve sıralama; ilan oluşturma ile başvuru kabul/ret korundu, davranış ve 1440/390 px tarayıcı kabulü ölçüldü |
 | Bildirimler | `notifications` | ✅ zil rozeti gerçek sayı; menüde yok, zilden açılıyor |
 | Mesajlar | `conversation_list` · `conversation_request_list` · `message_list` · `respond_to_message_request` · `conversation_peer_info` | ✅ gelen kutusu, istek kabul/ret, okundu bilgisi, görsel, sessize alma, silme, şikâyet ve engelleme webde bağlı |
 | Gelir / Gider | `clinic_ledger_summary` · `clinic_ledger_by_category` | ✅ salt okuma |
 | Ekip | `clinic_staff_list` · **`clinic_invite_staff`** · **`clinic_remove_staff`** | ✅ davet / çıkarma (onaylı) |
 | Klinik web sitesi | `clinics` (RLS) · **`update_clinic_page`** · **`set_clinic_username`** · **`update_clinic_contact`** · `clinics` kolon güncellemesi | ✅ adres, slogan, tanıtım, yol tarifi, yayın, arama, WhatsApp ve sosyal hesaplar düzenlenebiliyor |
 | Raporlar | `clinic_analytics` · `clinic_report` · `clinic_review_list` | ✅ salt okuma |
-| Ürün ve stok | `clinic_inventory_list_v2` · `upsert_clinic_product_v2` · `record_inventory_movement` · barkod/QR ve sayım RPC'leri | ✅ arama, ilaç/lot/SKT, kamera/USB okuma, eşleme ve taslak sayım; doğrudan kamera izin kapısı ve klinik adlı 100×50 mm tek sayfa etiket çıktısı ölçüldü |
+| Ürün ve stok | `clinic_inventory_list_v2` · `upsert_clinic_product_v2` · `record_inventory_movement` · barkod/QR ve sayım RPC'leri | ✅ arama, ilaç/lot/SKT, kamera/USB okuma, eşleme ve taslak sayım; eşleşmeyen üretici kodundan yeni ürün oluşturma, tam kod türü sözlüğü, doğrudan kamera izin kapısı ve klinik adlı 100×50 mm tek sayfa etiket çıktısı ölçüldü |
 | Laboratuvar | istem, kalite, sürüm, analit, karar desteği ve `save_lab_result_revision_v3` | 🟨 fotoğrafsız saklama + tarayıcı OCR + merge; canlı 0190 geçişi bekliyor |
 | Entegrasyon ayarları | sağlayıcı kataloğu · Vault Edge Function · ileti izin/kuyruk RPC'leri | ✅ owner-only sır yönetimi, SMS/WhatsApp izin, doğrulama, kota ve spam kapıları canlı kabulden geçti |
 
@@ -113,6 +170,19 @@ kurulu. Yani içe aktarma yeni bir yetki yüzeyi açmıyor; risk yetkide değil
 
 ## Sırada — panel
 
+### Ürün görselleri — backend kararı gerekiyor (01.09.2026)
+
+- [ ] Ürün başına iki ayrı görsel rolü tanımla: **katalog/referans görseli** ve
+      **kliniğin çektiği ürün görseli**. Mevcut `clinic_products` tablosunda görsel
+      alanı, ilişkili medya tablosu veya `can_read_media` yetki dalı yok.
+- [ ] Görsel tablosu ve medya okuma yetkisi backend kaynak deposunda eklenmeden
+      webde yükleme alanı açma. Klinik galerisi ya da web vitrini referans tablosu
+      ürün medyası için yeniden kullanılmayacak; aksi halde görünürlük ve silme
+      yaşam döngüsü birbirine karışır.
+- [ ] Kamera barkodu okuduğunda alınan kare yalnız kullanıcı açıkça onaylarsa
+      “ürün fotoğrafı” adayı olsun. Varsayılan davranış kareyi saklamamak;
+      reddedilirse veya ürün kaydı tamamlanmazsa nesne yüklenmemeli.
+
 ### Mobil → web eşitleme devamı (29.08.2026)
 
 > Ahmet: *"Mobilde olan her şeyin webde de mevcut tasarıma uygun şekilde
@@ -151,7 +221,7 @@ konacak, sayı uydurulmayacak:
 | İş | RPC | Not |
 |---|---|---|
 | Duyuru gönderme | `send_announcement` | ⚠️ **DÖRT tanımı var**, en sonuncusu alınacak. Önce duyuru satırı oluşturulmalı |
-| Reçete yazma / iptal | `write_prescription` · `void_prescription` | tıbbi kayıt, onay akışı şart |
+| ~~Reçete yazma / iptal~~ | `write_prescription` · `void_prescription` | ✅ tamamlandı; sürüm geçmişi ve iptal gerekçesi korunuyor |
 | Hizmet / kabiliyet düzenleme | `capabilities-api` | yalnız klinik sahibi |
 | Gelir / gider kaydı | `clinic_transactions` | para girişi, geri alma zor |
 | Adres ve konum | — | ⚠️ `latitude`/`longitude` kolon yetkisinde YOK (migration 0022). Panodaki "haritadaki konum eksik" uyarısı bu yüzden panelden kapatılamıyor; ayrı bir yol gerekiyor |

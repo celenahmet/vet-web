@@ -11,6 +11,10 @@ import StokEtiketi from './StokEtiketi';
 import Yukleniyor from './Yukleniyor';
 import { stokKameraAkisiniIste, stokKameraHataMesaji } from './stok-kamera';
 import {
+  STOK_KOD_TURLERI, STOK_KOD_TURU_ADI, stokKodTurunuNormallestir,
+  type StokKodTuru, ureticiKoduGtinOlabilir,
+} from './stok-kod-turu';
+import {
   aktifSayimiOku, sayimBaslat, sayimSatiriYaz, sayimSatirlariOku, sayimiIptalEt,
   sayimiTamamla, sayimiTemizle, stokHareketiKaydet, stokKodunuBagla,
   stokKodunuCoz, stokLotlariOku, stokOku, urunKaydet,
@@ -67,6 +71,7 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
   const [arama, setArama] = useState('');
   const [tur, setTur] = useState<UrunTuru | 'all'>('all');
   const [urunFormu, setUrunFormu] = useState<UrunFormu | null>(null);
+  const [yeniUrunKaynagi, setYeniUrunKaynagi] = useState<{ kod: string; tur: StokKodTuru } | null>(null);
   const [hareketUrunu, setHareketUrunu] = useState<StokUrunu | null>(null);
   const [hareket, setHareket] = useState({ tur: 'purchase' as HareketTuru, miktar: '', lot: '', skt: '', not: '' });
   const [acikLot, setAcikLot] = useState<string | null>(null);
@@ -81,7 +86,7 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
   const [bekleyenLot, setBekleyenLot] = useState('');
   const [eslesmeyenKod, setEslesmeyenKod] = useState('');
   const [baglanacakUrun, setBaglanacakUrun] = useState('');
-  const [kodTuru, setKodTuru] = useState('unknown');
+  const [kodTuru, setKodTuru] = useState<StokKodTuru>('unknown');
   const [kameraAcik, setKameraAcik] = useState(false);
   const [kameraHatasi, setKameraHatasi] = useState<string | null>(null);
   const [kameraBasliyor, setKameraBasliyor] = useState(false);
@@ -135,6 +140,7 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
   const yaklasan = (urunler ?? []).reduce((toplam, urun) => toplam + urun.expiring_lot_count, 0);
 
   function urunuDuzenle(urun: StokUrunu) {
+    setYeniUrunKaynagi(null);
     setUrunFormu({
       id: urun.product_id, ad: urun.name, kod: urun.internal_code, gtin: urun.gtin ?? '', tur: urun.kind,
       birim: urun.unit, minimum: String(urun.minimum_stock), lotTakibi: urun.lot_tracking,
@@ -142,6 +148,19 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
       guc: urun.strength ?? '', uretici: urun.manufacturer ?? '', paketMiktari: String(urun.package_quantity),
       receteli: urun.requires_prescription,
     });
+  }
+
+  function urunFormunuKapat() {
+    setUrunFormu(null);
+    setYeniUrunKaynagi(null);
+  }
+
+  function eslesmeyenKoddanUrunAc() {
+    if (!eslesmeyenKod) return;
+    const form = bosUrun();
+    if (ureticiKoduGtinOlabilir(kodTuru, eslesmeyenKod)) form.gtin = eslesmeyenKod;
+    setYeniUrunKaynagi({ kod: eslesmeyenKod, tur: kodTuru });
+    setUrunFormu(form);
   }
 
   async function urunuKaydet(e: React.FormEvent) {
@@ -154,7 +173,7 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
     }
     setBekliyor(true); setHata(null); setBilgi(null);
     try {
-      await urunKaydet({
+      const urunKimligi = await urunKaydet({
         klinik, id: urunFormu.id, ad: urunFormu.ad.trim(), icKod: urunFormu.kod.trim(), tur: urunFormu.tur,
         birim: urunFormu.birim, gtin: urunFormu.gtin.trim() || null,
         lotTakibi: urunFormu.tur === 'medicine' || urunFormu.lotTakibi, minimum,
@@ -164,7 +183,26 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
         uretici: urunFormu.uretici.trim() || null, paketMiktari: paket,
         receteli: urunFormu.tur === 'medicine' && urunFormu.receteli,
       });
-      setUrunFormu(null); setBilgi(urunFormu.id ? 'Ürün güncellendi.' : 'Ürün oluşturuldu.'); await yukle();
+      const kaynak = yeniUrunKaynagi;
+      urunFormunuKapat();
+      await yukle();
+      if (kaynak && !urunFormu.id) {
+        if (ureticiKoduGtinOlabilir(kaynak.tur, kaynak.kod)) {
+          const eslesme = (await stokKodunuCoz(klinik, kaynak.kod)).find((satir) => satir.product_id === urunKimligi);
+          if (!eslesme) throw new Error('Ürün oluşturuldu ancak üretici koduyla yeniden bulunamadı.');
+          if (eslesme.lot_tracking) {
+            sonOkutulanKodRef.current = '';
+            setTaramaKodu(''); setEslesmeyenKod(''); setBaglanacakUrun('');
+            setBilgi('Ürün ve üretici kodu kaydedildi. Lot takipli ürünü saymadan önce stok girişiyle lot ve son kullanma tarihi ekleyin.');
+          } else {
+            await eslesmeyiSay(eslesme);
+            setBilgi('Yeni ürün oluşturuldu, üretici kodu eşleştirildi ve sayıma +1 eklendi.');
+          }
+        } else {
+          setBaglanacakUrun(urunKimligi);
+          setBilgi('Yeni ürün oluşturuldu. QR/Code içeriği güvenlik denetiminden geçmeden kaydedilmez; kod türünü kontrol edip “Bağla ve +1 say”ı seçin.');
+        }
+      } else setBilgi(urunFormu.id ? 'Ürün güncellendi.' : 'Ürün oluşturuldu.');
     } catch (e) { setHata((e as Error).message); } finally { setBekliyor(false); }
   }
 
@@ -281,7 +319,7 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
         const kontroller = await okuyucu.decodeFromStream(akis, video, (sonuc) => {
           const kod = sonuc?.getText().trim() ?? '';
           if (kod.length < 3) return;
-          setKodTuru(sonuc?.getBarcodeFormat().toString() || 'unknown');
+          setKodTuru(stokKodTurunuNormallestir(sonuc?.getBarcodeFormat().toString(), kod));
           setTaramaKodu(kod);
           kamerayiDurdur();
           void koduIsle(kod);
@@ -311,7 +349,7 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
             const bulunan = sonuc.find((satir) => satir.rawValue.trim().length >= 3);
             if (bulunan) {
               const kod = bulunan.rawValue.trim();
-              setKodTuru(bulunan.format || 'unknown');
+              setKodTuru(stokKodTurunuNormallestir(bulunan.format, kod));
               setTaramaKodu(kod);
               kamerayiDurdur();
               await koduIsle(kod);
@@ -379,7 +417,7 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
       <div><p className="pnl-aciklama">İlaç, sarf ve perakende ürünlerini; lot, son kullanma tarihi, barkod ve sayım farklarıyla tek yerde yönetin.</p></div>
       <div className="pnl-basi-dugmeler">
         <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => void sayimiAc()}><ClipboardCheck size={15} /> Akıllı sayım</button>
-        <button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => setUrunFormu(bosUrun())}><Plus size={15} /> Ürün ekle</button>
+        <button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => { setYeniUrunKaynagi(null); setUrunFormu(bosUrun()); }}><Plus size={15} /> Ürün ekle</button>
       </div>
     </header>
     {hata ? <Hata mesaj={hata} kucuk tekrar={() => { setHata(null); void yukle(); }} /> : null}
@@ -420,7 +458,7 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
         </article>;
       })}</div>}
 
-    <Diyalog boyut="genis" acik={urunFormu !== null} kapat={() => setUrunFormu(null)} baslik={urunFormu?.id ? 'Ürün kartını düzenle' : 'Yeni ürün kartı'} aciklama="Stok, lot ve etiket işlemleri bu kartın birim ve takip kurallarını kullanır.">
+    <Diyalog boyut="genis" acik={urunFormu !== null} kapat={urunFormunuKapat} baslik={urunFormu?.id ? 'Ürün kartını düzenle' : 'Yeni ürün kartı'} aciklama={yeniUrunKaynagi ? `${yeniUrunKaynagi.kod} kodundan yeni ürün oluşturuluyor. Stok, kod bağlama ve sayım ayrı güvenlik adımlarından geçer.` : 'Stok, lot ve etiket işlemleri bu kartın birim ve takip kurallarını kullanır.'}>
       {urunFormu ? <form onSubmit={urunuKaydet}><div className="pnl-form-ikili">
         <div className="pnl-alan"><label htmlFor="stok-ad">Ürün adı</label><input id="stok-ad" required value={urunFormu.ad} onChange={(e) => setUrunFormu({ ...urunFormu, ad: e.target.value })} /></div>
         <div className="pnl-alan"><label htmlFor="stok-kod">Klinik iç kodu</label><input id="stok-kod" required value={urunFormu.kod} onChange={(e) => setUrunFormu({ ...urunFormu, kod: e.target.value })} /></div>
@@ -432,7 +470,8 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
         <div className="pnl-alan"><label htmlFor="stok-uretici">Üretici</label><input id="stok-uretici" value={urunFormu.uretici} onChange={(e) => setUrunFormu({ ...urunFormu, uretici: e.target.value })} /></div>
       </div>{urunFormu.tur === 'medicine' ? <><div className="pnl-form-ikili"><div className="pnl-alan"><label htmlFor="stok-form">İlaç formu</label><select id="stok-form" value={urunFormu.ilacFormu} onChange={(e) => setUrunFormu({ ...urunFormu, ilacFormu: e.target.value as IlacFormu })}>{FORMLAR.map((deger) => <option key={deger} value={deger}>{FORM_ADI[deger]}</option>)}</select></div><div className="pnl-alan"><label htmlFor="stok-etken">Etken madde</label><input id="stok-etken" value={urunFormu.etkenMadde} onChange={(e) => setUrunFormu({ ...urunFormu, etkenMadde: e.target.value })} /></div><div className="pnl-alan"><label htmlFor="stok-guc">Doz / konsantrasyon</label><input id="stok-guc" value={urunFormu.guc} onChange={(e) => setUrunFormu({ ...urunFormu, guc: e.target.value })} /></div></div><label className="pnl-anahtar"><input type="checkbox" checked={urunFormu.receteli} onChange={(e) => setUrunFormu({ ...urunFormu, receteli: e.target.checked })} /><span className="pnl-anahtar-yazi"><span className="pnl-anahtar-ad">Reçeteli ürün</span><span className="pnl-anahtar-alt">Ürünün reçete gerektirdiğini kartta görünür kılar.</span></span></label></> : null}
       <label className="pnl-anahtar"><input type="checkbox" checked={urunFormu.tur === 'medicine' || urunFormu.lotTakibi} disabled={urunFormu.tur === 'medicine'} onChange={(e) => setUrunFormu({ ...urunFormu, lotTakibi: e.target.checked })} /><span className="pnl-anahtar-yazi"><span className="pnl-anahtar-ad">Lot ve son kullanma tarihi takibi</span><span className="pnl-anahtar-alt">İlaçlarda zorunludur; giriş hareketi lot ve SKT olmadan kaydedilmez.</span></span></label>
-      <div className="pnl-diyalog-eylem"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setUrunFormu(null)}>Vazgeç</button><button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor}>{bekliyor ? 'Kaydediliyor…' : 'Ürünü kaydet'}</button></div></form> : null}
+      {yeniUrunKaynagi ? <p className="pnl-alan-ipucu">Algılanan kod türü: <strong>{STOK_KOD_TURU_ADI[yeniUrunKaynagi.tur]}</strong>. Üretici koduysa GTIN alanına taşınır; QR ve Code türleri ürün oluşturulduktan sonra ayrıca onaylanır.</p> : null}
+      <div className="pnl-diyalog-eylem"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={urunFormunuKapat}>Vazgeç</button><button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor}>{bekliyor ? 'Kaydediliyor…' : 'Ürünü kaydet'}</button></div></form> : null}
     </Diyalog>
 
     <Diyalog acik={hareketUrunu !== null} kapat={() => setHareketUrunu(null)} baslik="Stok hareketi" aciklama={hareketUrunu ? `${hareketUrunu.name} · mevcut ${hareketUrunu.current_stock} ${BIRIM_ADI[hareketUrunu.unit] ?? hareketUrunu.unit}` : undefined}>
@@ -449,7 +488,7 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
         <p className="pnl-alan-ipucu">USB okuyucuyu alana odaklayıp okutun veya bilgisayar kameranızı açın. Kod tek ürüne bağlıysa +1 sayılır; birden fazlaysa seçim ister. Uzun raf sayımlarında mobil uygulamanın kamerası daha ergonomiktir.</p>
         {eslesmeler.length > 1 ? <div className="pnl-secim-kutusu"><strong>Birden fazla eşleşme bulundu</strong>{eslesmeler.map((satir) => <button type="button" key={`${satir.product_id}-${satir.lot_id}`} onClick={() => void eslesmeyiSec(satir)}><span>{satir.product_name}{satir.lot_code ? ` · lot ${satir.lot_code}` : ''}</span><small>{satir.match_type} · mevcut {satir.current_stock}</small></button>)}</div> : null}
         {bekleyenEslesme ? <div className="pnl-secim-kutusu"><strong>Lot seçmeden sayım yapılamaz</strong><select value={bekleyenLot} onChange={(e) => setBekleyenLot(e.target.value)}>{(lotlar[bekleyenEslesme.product_id] ?? []).map((lot) => <option key={lot.id} value={lot.id}>{lot.lot_code} · {lot.current_stock} stok · {lot.expires_on ? new Date(lot.expires_on).toLocaleDateString('tr-TR') : 'SKT yok'}</option>)}</select><button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => void eslesmeyiSay(bekleyenEslesme, bekleyenLot)}>Bu lota +1 ekle</button></div> : null}
-        {eslesmeyenKod ? <div className="pnl-uyari pnl-uyari-bilgi"><div><p className="pnl-uyari-baslik">Kod hiçbir ürünle eşleşmedi</p><p>{eslesmeyenKod} kodunu doğru ürüne bağlayabilir veya alanı temizleyip yeni kod okutabilirsiniz.</p><div className="pnl-form-ikili"><div className="pnl-alan"><label htmlFor="bagla-urun">Ürün</label><select id="bagla-urun" value={baglanacakUrun} onChange={(e) => setBaglanacakUrun(e.target.value)}><option value="">Ürün seçin</option>{urunler.map((urun) => <option key={urun.product_id} value={urun.product_id}>{urun.name} · {urun.internal_code}</option>)}</select></div><div className="pnl-alan"><label htmlFor="bagla-tur">Kod türü</label><select id="bagla-tur" value={kodTuru} onChange={(e) => setKodTuru(e.target.value)}><option value="unknown">Bilinmiyor</option><option value="ean13">EAN-13</option><option value="ean8">EAN-8</option><option value="upc_a">UPC-A</option><option value="code128">Code 128</option><option value="qr">QR</option></select></div></div><button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => void eslesmeyeniBagla()} disabled={!baglanacakUrun || bekliyor}>Bağla ve +1 say</button></div></div> : null}
+        {eslesmeyenKod ? <div className="pnl-uyari pnl-uyari-bilgi"><div><p className="pnl-uyari-baslik">Kod hiçbir ürünle eşleşmedi</p><p>{eslesmeyenKod} kodunu mevcut ürüne bağlayın veya bu koddan yeni ürün kartı oluşturun.</p><div className="pnl-form-ikili"><div className="pnl-alan"><label htmlFor="bagla-urun">Mevcut ürün</label><select id="bagla-urun" value={baglanacakUrun} onChange={(e) => setBaglanacakUrun(e.target.value)}><option value="">Ürün seçin</option>{urunler.map((urun) => <option key={urun.product_id} value={urun.product_id}>{urun.name} · {urun.internal_code}</option>)}</select></div><div className="pnl-alan"><label htmlFor="bagla-tur">Kod türü</label><select id="bagla-tur" value={kodTuru} onChange={(e) => setKodTuru(e.target.value as StokKodTuru)}>{STOK_KOD_TURLERI.map((tur) => <option key={tur} value={tur}>{STOK_KOD_TURU_ADI[tur]}</option>)}</select></div></div><div className="pnl-uyari-eylemleri"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={eslesmeyenKoddanUrunAc} disabled={bekliyor}><PackagePlus size={15} /> Yeni ürün oluştur</button><button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => void eslesmeyeniBagla()} disabled={!baglanacakUrun || bekliyor}>Bağla ve +1 say</button></div></div></div> : null}
         <h3 className="pnl-alt-baslik">Sayılanlar</h3>{sayimSatirlari.length === 0 ? <p className="pnl-widget-bos">Henüz ürün sayılmadı.</p> : <div className="pnl-sayim-listesi">{sayimSatirlari.map((satir) => { const urun = urunler.find((u) => u.product_id === satir.product_id); return <div key={satir.id} className="pnl-sayim-satiri"><div><strong>{urun?.name ?? 'Ürün'}{satir.lot_code ? ` · ${satir.lot_code}` : ''}</strong><span>Beklenen {satir.expected_quantity} · tarama {satir.scan_count}</span></div><input aria-label={`${urun?.name ?? 'Ürün'} sayılan miktar`} inputMode="decimal" value={satir.counted_quantity} onChange={(e) => setSayimSatirlari((liste) => liste.map((s) => s.id === satir.id ? { ...s, counted_quantity: Number(e.target.value) || 0 } : s))} onBlur={() => void sayimSatiriYaz({ oturum: sayim.id, urun: satir.product_id, lot: satir.lot_id, miktar: satir.counted_quantity })} /><button type="button" className="pnl-ikon-dugme" aria-label="Bu sayımı sıfırla" onClick={async () => { await sayimiTemizle(sayim.id, satir.product_id, satir.lot_id); await sayimiTazele(); }}><RotateCcw size={15} /></button></div>; })}</div>}
         <div className="pnl-sayim-alt"><button type="button" className="pnl-dugme pnl-dugme-sade" disabled={sayimSatirlari.length === 0 || bekliyor} onClick={() => void tumSayimiSifirla()}><Trash2 size={14} /> Tüm sayımı sıfırla</button><button type="button" className="pnl-dugme pnl-dugme-olumsuz" disabled={bekliyor} onClick={() => void sayimiIptal()}>Sayımı iptal et</button><button type="button" className="pnl-dugme pnl-dugme-olumlu" disabled={sayimSatirlari.length === 0 || bekliyor} onClick={() => void sayimiBitir()}>Sayımı tamamla</button></div>
       </>}

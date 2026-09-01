@@ -44,31 +44,42 @@ export type Bolum =
   | 'stok' | 'laboratuvar' | 'iletisim' | 'entegrasyonlar'
   | 'defter' | 'websitesi' | 'raporlar' | 'ayarlar';
 
+export type BolumGrubu = 'daily' | 'care' | 'operations' | 'communication' | 'clinic' | 'management';
+
+export const BOLUM_GRUBU_ADI: Record<BolumGrubu, string> = {
+  daily: 'Günlük',
+  care: 'Klinik bakım',
+  operations: 'Operasyon',
+  communication: 'İletişim',
+  clinic: 'Klinik yönetimi',
+  management: 'Yönetim',
+};
+
 export const BOLUMLER: {
-  anahtar: Bolum; ad: string; aciklama: string; ikon: LucideIcon;
+  anahtar: Bolum; ad: string; aciklama: string; ikon: LucideIcon; grup: BolumGrubu;
   /** Referansta olmayan, sonradan eklenen bolum. */
   ekleme?: boolean;
 }[] = [
-  { anahtar: 'pano',          ad: 'Genel bakış',       aciklama: 'Kliniğinizin özeti',            ikon: LayoutDashboard },
-  { anahtar: 'randevular',    ad: 'Randevular',        aciklama: 'Talepleri onaylayın',           ikon: CalendarClock },
-  { anahtar: 'musteriler',    ad: 'Müşteriler',        aciklama: 'Bağlı hayvan sahipleri',        ikon: Users },
-  { anahtar: 'hastalar',      ad: 'Hastalar',          aciklama: 'Kayıtlı hayvanlar',             ikon: PawPrint },
-  { anahtar: 'kayitlar',      ad: 'Sağlık kayıtları',  aciklama: 'Muayene, tedavi ve reçeteler',  ikon: FileText },
-  { anahtar: 'asi',           ad: 'Aşı takvimi',       aciklama: 'Zamanı yaklaşan aşı ve parazit',ikon: Syringe },
-  { anahtar: 'receteler',     ad: 'Reçeteler',         aciklama: 'Yazılan reçeteler ve iptaller', ikon: Pill, ekleme: true },
-  { anahtar: 'stok',          ad: 'Ürün ve stok',       aciklama: 'Lot, SKT, barkod ve sayım',     ikon: Boxes, ekleme: true },
-  { anahtar: 'laboratuvar',   ad: 'Laboratuvar',        aciklama: 'İstem, sonuç ve klinik destek', ikon: FlaskConical, ekleme: true },
-  { anahtar: 'iletisim',      ad: 'Operasyonel işlemler', aciklama: 'İzinler, otomasyon hazırlığı ve işlem kuyrukları', ikon: Workflow, ekleme: true },
-  { anahtar: 'profil',        ad: 'Klinik profili',    aciklama: 'Bilgiler, hizmetler, saatler',  ikon: Building2 },
-  { anahtar: 'topluluk',      ad: 'Topluluk',          aciklama: 'Paylaşımlarınız',               ikon: MessagesSquare },
-  { anahtar: 'mesajlar',      ad: 'Mesajlar',          aciklama: 'Hayvan sahipleriyle yazışma',   ikon: MessageCircle },
-  { anahtar: 'sahiplendirme', ad: 'Sahiplendirme',     aciklama: 'Sahiplendirme ilanları',        ikon: Heart },
-  { anahtar: 'ekip',          ad: 'Ekip',              aciklama: 'Klinikte çalışanlar',           ikon: UsersRound },
-  { anahtar: 'entegrasyonlar', ad: 'Entegrasyonlar', aciklama: 'Sağlayıcı, API, cihaz ve güvenli kimlik bilgileri', ikon: PlugZap, ekleme: true },
-  { anahtar: 'duyurular',     ad: 'Duyurular',         aciklama: 'Gönderdiğiniz duyurular',       ikon: Megaphone, ekleme: true },
-  { anahtar: 'degerlendirmeler', ad: 'Değerlendirmeler', aciklama: 'Müşteri puan ve yorumları',  ikon: Star, ekleme: true },
-  { anahtar: 'defter',        ad: 'Gelir / Gider',     aciklama: 'Klinik defteri',                ikon: Wallet, ekleme: true },
-  { anahtar: 'websitesi',     ad: 'Klinik web sitesi', aciklama: 'Genel sayfanız',                ikon: Globe, ekleme: true },
-  { anahtar: 'raporlar',      ad: 'Raporlar',          aciklama: 'Sayılar ve yorumlar',           ikon: BarChart3, ekleme: true },
-  { anahtar: 'ayarlar',       ad: 'Ayarlar',           aciklama: 'Çalışma saatleri ve duyurular', ikon: Settings },
+  { anahtar: 'pano', ad: 'Genel bakış', aciklama: 'Kliniğinizin özeti', ikon: LayoutDashboard, grup: 'daily' },
+  { anahtar: 'randevular', ad: 'Randevular', aciklama: 'Talepleri onaylayın', ikon: CalendarClock, grup: 'daily' },
+  { anahtar: 'musteriler', ad: 'Müşteriler', aciklama: 'Bağlı hayvan sahipleri', ikon: Users, grup: 'daily' },
+  { anahtar: 'hastalar', ad: 'Hastalar', aciklama: 'Kayıtlı hayvanlar', ikon: PawPrint, grup: 'daily' },
+  { anahtar: 'kayitlar', ad: 'Sağlık kayıtları', aciklama: 'Muayene, tedavi ve reçeteler', ikon: FileText, grup: 'care' },
+  { anahtar: 'asi', ad: 'Aşı takvimi', aciklama: 'Zamanı yaklaşan aşı ve parazit', ikon: Syringe, grup: 'care' },
+  { anahtar: 'receteler', ad: 'Reçeteler', aciklama: 'Yazılan reçeteler ve iptaller', ikon: Pill, grup: 'care', ekleme: true },
+  { anahtar: 'laboratuvar', ad: 'Laboratuvar', aciklama: 'İstem, sonuç ve klinik destek', ikon: FlaskConical, grup: 'care', ekleme: true },
+  { anahtar: 'stok', ad: 'Ürün ve stok', aciklama: 'Lot, SKT, barkod ve sayım', ikon: Boxes, grup: 'operations', ekleme: true },
+  { anahtar: 'iletisim', ad: 'Operasyonel işlemler', aciklama: 'İzinler, otomasyon hazırlığı ve işlem kuyrukları', ikon: Workflow, grup: 'operations', ekleme: true },
+  { anahtar: 'mesajlar', ad: 'Mesajlar', aciklama: 'Hayvan sahipleriyle yazışma', ikon: MessageCircle, grup: 'communication' },
+  { anahtar: 'topluluk', ad: 'Topluluk', aciklama: 'Paylaşımlarınız', ikon: MessagesSquare, grup: 'communication' },
+  { anahtar: 'duyurular', ad: 'Duyurular', aciklama: 'Gönderdiğiniz duyurular', ikon: Megaphone, grup: 'communication', ekleme: true },
+  { anahtar: 'sahiplendirme', ad: 'Sahiplendirme', aciklama: 'Sahiplendirme ilanları', ikon: Heart, grup: 'communication' },
+  { anahtar: 'profil', ad: 'Klinik profili', aciklama: 'Bilgiler, hizmetler, saatler', ikon: Building2, grup: 'clinic' },
+  { anahtar: 'ekip', ad: 'Ekip', aciklama: 'Klinikte çalışanlar', ikon: UsersRound, grup: 'clinic' },
+  { anahtar: 'websitesi', ad: 'Klinik web sitesi', aciklama: 'Genel sayfanız', ikon: Globe, grup: 'clinic', ekleme: true },
+  { anahtar: 'degerlendirmeler', ad: 'Değerlendirmeler', aciklama: 'Müşteri puan ve yorumları', ikon: Star, grup: 'clinic', ekleme: true },
+  { anahtar: 'entegrasyonlar', ad: 'Entegrasyonlar', aciklama: 'Sağlayıcı, API, cihaz ve güvenli kimlik bilgileri', ikon: PlugZap, grup: 'management', ekleme: true },
+  { anahtar: 'defter', ad: 'Gelir / Gider', aciklama: 'Klinik defteri', ikon: Wallet, grup: 'management', ekleme: true },
+  { anahtar: 'raporlar', ad: 'Raporlar', aciklama: 'Sayılar ve yorumlar', ikon: BarChart3, grup: 'management', ekleme: true },
+  { anahtar: 'ayarlar', ad: 'Ayarlar', aciklama: 'Hesap ve web oturumu', ikon: Settings, grup: 'management' },
 ];

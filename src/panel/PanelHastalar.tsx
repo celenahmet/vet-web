@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Archive, ArchiveRestore, PawPrint, Plus, Smartphone, NotebookPen, FileText } from 'lucide-react';
+import { Archive, ArchiveRestore, PawPrint, Plus, Smartphone, NotebookPen, FileText, Search } from 'lucide-react';
 
 import {
   hastalariOku, defterHastalariniOku, cevrimdisiMusterileriOku, turleriOku,
@@ -13,6 +13,7 @@ import Bos from './Bos';
 import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
 import Diyalog from './Diyalog';
+import { hastalariFiltrele, olasiDefterHastasiEslesmeleri, type KayitKaynagi } from './klinik-kayit-arama';
 
 /**
  * HASTALAR — iki kaynak tek liste
@@ -33,8 +34,8 @@ import Diyalog from './Diyalog';
  * hicbir sey yapmamak, ikisi de daha kotu olurdu.
  *
  * ⚠️ Defter hayvani bir DEFTER MUSTERISINE baglanmak zorunda (yabanci anahtar).
- * Uygulama uyesi bir musterinin hayvanini deftere yazmak isterse, once o kisi
- * icin bir defter kaydi acmasi gerekiyor; secim listesi bunu soyluyor.
+ * Uygulama uyesi icin ikinci defter musterisi acmak sessiz ikiz uretir. Sahip
+ * onayli hayvan koprusu hazir olana kadar arayuz bunu cozum diye onermez.
  */
 export default function PanelHastalar({ klinik, sahip }: { klinik: string; sahip: boolean }) {
   const [uygulama, setUygulama] = useState<Hasta[] | null>(null);
@@ -48,11 +49,13 @@ export default function PanelHastalar({ klinik, sahip }: { klinik: string; sahip
 
   const [ekleAcik, setEkleAcik] = useState(false);
   const [kayitAcik, setKayitAcik] = useState(false);
-  const [hForm, setHForm] = useState({ musteri: '', ad: '', tur: 'dog', cinsiyet: '', dogum: '', not: '' });
+  const [hForm, setHForm] = useState({ musteri: '', ad: '', tur: 'dog', cinsiyet: '', dogum: '', mikrocip: '', not: '' });
   const [kForm, setKForm] = useState({ hasta: '', hastaAdi: '', tur: 'exam', baslik: '', ayrinti: '', tarih: '', sonraki: '', kilo: '' });
   const [arsiv, setArsiv] = useState<{ kayit: DefterHastasi; etki: DefterArsivEtkisi } | null>(null);
   const [arsivAcik, setArsivAcik] = useState(false);
   const [arsivdekiler, setArsivdekiler] = useState<DefterHastasi[]>([]);
+  const [arama, setArama] = useState('');
+  const [kaynak, setKaynak] = useState<KayitKaynagi>('all');
 
   const bugun = () => new Date().toISOString().slice(0, 10);
 
@@ -107,6 +110,8 @@ export default function PanelHastalar({ klinik, sahip }: { klinik: string; sahip
   const turAdi = (kod: string | null) => (kod ? (turler.find((t) => t.code === kod)?.name_tr ?? kod) : 'Türü girilmemiş');
   const musteriAdi = (id: string) => musteriler.find((m) => m.id === id)?.full_name ?? 'Bilinmeyen müşteri';
   const toplam = uygulama.length + defter.length;
+  const gorunen = hastalariFiltrele(uygulama, defter, musteriAdi, turAdi, arama, kaynak);
+  const gorunenToplam = gorunen.platform.length + gorunen.defter.length;
 
   return (
     <section className="pnl-bolum">
@@ -130,13 +135,29 @@ export default function PanelHastalar({ klinik, sahip }: { klinik: string; sahip
           className="pnl-dugme pnl-dugme-olumlu"
           disabled={musteriler.length === 0}
           title={musteriler.length === 0 ? 'Önce Müşteriler bölümünden bir müşteri ekleyin' : undefined}
-          onClick={() => { setHForm({ musteri: musteriler[0]?.id ?? '', ad: '', tur: 'dog', cinsiyet: '', dogum: '', not: '' }); setEkleAcik(true); setIslemHatasi(null); }}>
+          onClick={() => { setHForm({ musteri: musteriler[0]?.id ?? '', ad: '', tur: 'dog', cinsiyet: '', dogum: '', mikrocip: '', not: '' }); setEkleAcik(true); setIslemHatasi(null); }}>
           <Plus size={15} /> Hasta ekle
         </button></div>
       </header>
 
       {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
       {bilgi ? <p className="pnl-bilgi" role="status">{bilgi}</p> : null}
+      {toplam > 0 ? <div className="pnl-liste-araclari" role="search" aria-label="Hasta listesinde ara ve filtrele">
+        <label className="pnl-operasyon-arama" htmlFor="pnl-hasta-arama">
+          <Search size={16} aria-hidden="true" />
+          <input id="pnl-hasta-arama" type="search" value={arama} onChange={(e) => setArama(e.target.value)}
+            placeholder="Hasta, sahip, tür veya mikroçip ara" />
+        </label>
+        <label className="pnl-liste-filtre" htmlFor="pnl-hasta-kaynak">
+          <span>Kayıt kaynağı</span>
+          <select id="pnl-hasta-kaynak" value={kaynak} onChange={(e) => setKaynak(e.target.value as KayitKaynagi)}>
+            <option value="all">Tüm hastalar</option>
+            <option value="platform">Veterito bağlantılı</option>
+            <option value="ledger">Klinik defteri</option>
+          </select>
+        </label>
+        <span className="pnl-liste-sonuc" aria-live="polite">{gorunenToplam} / {toplam} kayıt</span>
+      </div> : null}
       {arsivAcik ? <section className="pnl-arsiv-kutusu"><h3>Arşivlenen hastalar</h3>
         {arsivdekiler.filter((h) => musteriler.some((m) => m.id === h.customer_id)).length === 0 ?
           <p className="pnl-soluk">Bağımsız arşivlenmiş hasta yok. Müşteriyle arşivlenen hastayı Müşteriler arşivinden geri açın.</p> :
@@ -161,9 +182,11 @@ export default function PanelHastalar({ klinik, sahip }: { klinik: string; sahip
           baslik="Kayıtlı hasta yok"
           aciklama="Uygulama üyesi müşterileriniz hayvanlarını kendileri kaydeder. Uygulamayı kullanmayanlar için “Hasta ekle” ile kendi defterinize kayıt açabilirsiniz."
         />
+      ) : gorunenToplam === 0 ? (
+        <Bos baslik="Eşleşen hasta bulunamadı" aciklama="Hasta, sahip veya tür aramasını ya da kayıt kaynağı filtresini değiştirin." />
       ) : (
         <ul className="pnl-kisi-listesi">
-          {defter.map((h) => (
+          {gorunen.defter.map((h) => (
             <li key={`d-${h.id}`} className="pnl-kisi">
               <span className="pnl-avatar" aria-hidden="true"><NotebookPen size={17} /></span>
               <div className="pnl-kisi-bilgi">
@@ -173,6 +196,7 @@ export default function PanelHastalar({ klinik, sahip }: { klinik: string; sahip
                 </p>
                 <p className="pnl-kisi-rol">{turAdi(h.species_code)}</p>
                 <p className="pnl-kisi-ek">Sahibi: {musteriAdi(h.customer_id)}</p>
+                {h.microchip_no ? <p className="pnl-kisi-ek pnl-soluk">Mikroçip: {h.microchip_no}</p> : null}
                 {h.birth_date ? <p className="pnl-kisi-ek pnl-soluk">Doğum: {tarihYaz(h.birth_date, false)}</p> : null}
               </div>
               <span className="pnl-kisi-eylem"><button
@@ -186,7 +210,7 @@ export default function PanelHastalar({ klinik, sahip }: { klinik: string; sahip
               </button>{sahip ? <button type="button" className="pnl-dugme pnl-dugme-sade" disabled={bekliyor} onClick={() => void arsivOnizle(h)}><Archive size={14} /> Arşivle</button> : null}</span>
             </li>
           ))}
-          {uygulama.map((h) => (
+          {gorunen.platform.map((h) => (
             <li key={`u-${h.pet_id}`} className="pnl-kisi">
               <span className="pnl-avatar" aria-hidden="true"><PawPrint size={17} /></span>
               <div className="pnl-kisi-bilgi">
@@ -196,10 +220,14 @@ export default function PanelHastalar({ klinik, sahip }: { klinik: string; sahip
                 </p>
                 <p className="pnl-kisi-rol">{turAdi(h.species_code)}</p>
                 <p className="pnl-kisi-ek">Sahibi: {h.owner_name || 'İsim girilmemiş'}</p>
-                {/* ⚠️ Neden dugme yok, ekran soyluyor. */}
-                <p className="pnl-kisi-ek pnl-soluk">
-                  Bu kaydı hayvan sahibi tutuyor; kliniğin sağlık kaydı kendi defterine yazılıyor.
-                </p>
+                {(() => {
+                  const adaylar = olasiDefterHastasiEslesmeleri(h, defter, musteriAdi);
+                  return adaylar.length ? <p className="pnl-kisi-ek pnl-eslesme-uyarisi">
+                    Olası klinik kaydı: {adaylar.map((aday) => aday.name).join(', ')}. Yeni kayıt açmadan önce klinik defteri satırını kontrol edin.
+                  </p> : <p className="pnl-kisi-ek pnl-soluk">
+                    Bağlı klinik kaydı yok; sağlık kaydı klinik defteri hastasına yazılır.
+                  </p>;
+                })()}
               </div>
             </li>
           ))}
@@ -215,7 +243,7 @@ export default function PanelHastalar({ klinik, sahip }: { klinik: string; sahip
       <Diyalog acik={ekleAcik} kapat={() => setEkleAcik(false)} baslik="Hasta ekle"
         aciklama="Kendi defterinize hayvan kaydı açın. Her hayvan bir müşteriye bağlanıyor.">
         <form onSubmit={(e) => { e.preventDefault(); calistir(async () => {
-          await defterHastasiEkle(klinik, hForm.musteri, { ad: hForm.ad, tur: hForm.tur, cinsiyet: hForm.cinsiyet, dogum: hForm.dogum, not: hForm.not });
+          await defterHastasiEkle(klinik, hForm.musteri, { ad: hForm.ad, tur: hForm.tur, cinsiyet: hForm.cinsiyet, dogum: hForm.dogum, mikrocip: hForm.mikrocip, not: hForm.not });
           return `${hForm.ad.trim()} deftere eklendi. Artık sağlık kaydı girebilirsiniz.`;
         }, () => setEkleAcik(false)); }}>
           <div className="pnl-alan">
@@ -224,16 +252,10 @@ export default function PanelHastalar({ klinik, sahip }: { klinik: string; sahip
               onChange={(e) => setHForm((f) => ({ ...f, musteri: e.target.value }))}>
               {musteriler.map((m) => <option key={m.id} value={m.id}>{m.full_name}</option>)}
             </select>
-            {/*
-              ⚠️ Listede yalniz DEFTER musterileri var. Uygulama uyesi bir
-              musterinin hayvani kendi hesabinda duruyor ve klinik oraya kayit
-              acamiyor; acabilseydi hayvan sahibinin kaydini klinik degistirmis
-              olurdu. Uygulama uyesi icin de defter kaydi tutmak isterseniz,
-              Musteriler bolumunden onun adina bir defter kaydi acin.
-            */}
             <span className="pnl-alan-ipucu">
-              Listede yalnızca kendi defterinizdeki müşteriler var. Uygulama üyesi bir müşteri için de
-              kayıt tutmak isterseniz, Müşteriler bölümünden onun adına bir kayıt açın.
+              Burada yalnız klinik defteri müşterileri bulunur. Veterito bağlantılı bir kişi adına
+              ikinci müşteri kaydı açmayın; sahip onaylı hasta bağlantısı hazır olduğunda bu listede
+              ayrıca gösterilecektir.
             </span>
           </div>
           <div className="pnl-alan">
@@ -263,6 +285,13 @@ export default function PanelHastalar({ klinik, sahip }: { klinik: string; sahip
             <input id="pnl-h-dogum" type="date" max={bugun()} value={hForm.dogum}
               onChange={(e) => setHForm((f) => ({ ...f, dogum: e.target.value }))} />
             <span className="pnl-alan-ipucu">Bilinmiyorsa boş bırakın.</span>
+          </div>
+          <div className="pnl-alan">
+            <label htmlFor="pnl-h-mikrocip">Mikroçip numarası</label>
+            <input id="pnl-h-mikrocip" inputMode="numeric" pattern="[0-9]{9,15}" minLength={9} maxLength={15}
+              value={hForm.mikrocip} onChange={(e) => setHForm((f) => ({ ...f, mikrocip: e.target.value.replace(/\D/g, '').slice(0, 15) }))}
+              placeholder="9–15 haneli, isteğe bağlı" />
+            <span className="pnl-alan-ipucu">Aynı klinikte aktif iki hastaya aynı mikroçip kaydedilemez.</span>
           </div>
           <div className="pnl-diyalog-eylem">
             <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setEkleAcik(false)}>Vazgeç</button>

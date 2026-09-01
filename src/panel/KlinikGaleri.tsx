@@ -11,7 +11,7 @@ function Onizleme({ storageKey, alt }: { storageKey: string; alt: string }) {
   const [adres, setAdres] = useState<string | null>(null);
   useEffect(() => { let gecerli = true; imzaliGorselAdresi(storageKey).then((u) => { if (gecerli) setAdres(u); }).catch(() => setAdres('')); return () => { gecerli = false; }; }, [storageKey]);
   if (adres === null) return <span className="pnl-gorsel-yukleniyor"><LoaderCircle size={17} /></span>;
-  if (!adres) return <span className="pnl-gorsel-yukleniyor">Önizleme açılamadı</span>;
+  if (!adres) return <span className="pnl-gorsel-yukleniyor">Görsel kaydı var; önizleme şu anda alınamadı</span>;
   return <img src={adres} alt={alt} loading="lazy" />;
 }
 
