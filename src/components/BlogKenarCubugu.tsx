@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { ArrowRight, Clock, Eye, Flame, HelpCircle, ListChecks } from 'lucide-react';
 import ReklamKutusu from './ReklamKutusu';
 import { useEffect, useState } from 'react';
@@ -60,6 +61,7 @@ const POPULER_ESIGI = { toplam: 50, enAzKacYazi: 3 };
 export default function BlogKenarCubugu({
   haricSlug, sorular, kontrolListesi, isaretliler, isaretiCevir,
 }: Props) {
+  const { t } = useTranslation();
   const sayim = new Map<string, number>();
   for (const y of YAZILAR) sayim.set(y.kategori, (sayim.get(y.kategori) ?? 0) + 1);
 
@@ -94,11 +96,11 @@ export default function BlogKenarCubugu({
   return (
     <aside className="blog-kenar">
       <section className="kenar-kutu">
-        <h2>Kategoriler</h2>
+        <h2>{t('sidebar_categories')}</h2>
         <ul className="kenar-kategori">
           <li>
             <Link to="/blog">
-              <span>Tümü</span>
+              <span>{t('sidebar_all')}</span>
               <em>{YAZILAR.length}</em>
             </Link>
           </li>
@@ -123,7 +125,7 @@ export default function BlogKenarCubugu({
 
       {populerYazilar.length ? (
         <section className="kenar-kutu">
-          <h2><Flame size={17} /> Popüler yazılar</h2>
+          <h2><Flame size={17} />{t('sidebar_popular')}</h2>
           <ul className="kenar-yazilar">
             {populerYazilar.map((y) => (
               <li key={y.slug}>
@@ -136,7 +138,7 @@ export default function BlogKenarCubugu({
                     {/* Iddianin kaniti okuyucuya da gosteriliyor: kac kez acildigi
                         yaziyor. "Populer" diyip sayiyi saklamak, dogrulanamaz bir
                         siralama sunmak olurdu. */}
-                    <span><Eye size={12} /> {sayiyiKisalt(gorulenler?.get(y.slug) ?? 0)} görüntülenme</span>
+                    <span><Eye size={12} /> {sayiyiKisalt(gorulenler?.get(y.slug) ?? 0)} {t('post_views')}</span>
                   </div>
                 </Link>
               </li>
@@ -163,7 +165,7 @@ export default function BlogKenarCubugu({
       */}
       {sorular?.length ? (
         <section className="kenar-kutu">
-          <h2><HelpCircle size={17} /> Bu yazıda cevaplananlar</h2>
+          <h2><HelpCircle size={17} />{t('sidebar_answered')}</h2>
           <ol className="kenar-sorular">
             {sorular.map((soru, i) => (
               <li key={soru}><a href={`#soru-${i + 1}`}>{soru}</a></li>
@@ -174,7 +176,7 @@ export default function BlogKenarCubugu({
 
       {kontrolListesi?.length && isaretliler && isaretiCevir ? (
         <section className="kenar-kutu">
-          <h2><ListChecks size={17} /> Kontrol listesi</h2>
+          <h2><ListChecks size={17} />{t('sidebar_checklist')}</h2>
           <ul className="kenar-kontrol">
             {kontrolListesi.map((madde, i) => (
               <li key={madde}>
@@ -196,7 +198,7 @@ export default function BlogKenarCubugu({
           yazilar aldi, bu liste kesif icin altta duruyor. */}
       {sonYazilar.length ? (
         <section className="kenar-kutu">
-          <h2>Son yazılar</h2>
+          <h2>{t('sidebar_recent')}</h2>
           <ul className="kenar-yazilar">
             {sonYazilar.map((y) => (
               <li key={y.slug}>
@@ -206,7 +208,7 @@ export default function BlogKenarCubugu({
                   </div>
                   <div>
                     <h3>{y.baslik}</h3>
-                    <span><Clock size={12} /> {okumaSuresi(y)} dk · {tarihiYaz(y.tarih)}</span>
+                    <span><Clock size={12} /> {okumaSuresi(y)} {t('blog_read_time')} · {tarihiYaz(y.tarih)}</span>
                   </div>
                 </Link>
               </li>
@@ -216,9 +218,9 @@ export default function BlogKenarCubugu({
       ) : null}
 
       <section className="kenar-kutu kenar-cta">
-        <h2>Dostunuzun sağlık defteri</h2>
-        <p>Aşı takvimi, sağlık kaydı ve veteriner randevusu tek uygulamada. Ücretsizdir.</p>
-        <Link to="/">Uygulamayı keşfet <ArrowRight size={15} /></Link>
+        <h2>{t('sidebar_app_title')}</h2>
+        <p>{t('sidebar_app_desc')}</p>
+        <Link to="/">{t('sidebar_app_btn')}<ArrowRight size={15} /></Link>
       </section>
     </aside>
   );

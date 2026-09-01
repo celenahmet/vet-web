@@ -20,9 +20,9 @@ const Footer = () => {
   const year = 2026;
 
   return (
-    <footer className="snap-end relative z-10 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 py-12">
+    <footer className="snap-end relative z-10 bg-white dark:bg-transparent border-t border-slate-200 dark:border-transparent text-slate-600 dark:text-slate-400 py-12">
       <div className="container mx-auto px-6 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 mb-12">
           <div className="flex flex-col gap-4">
             <Link to="/" className="inline-block hover:opacity-80 transition-opacity">
               {/*
@@ -70,7 +70,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:col-span-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:col-span-4">
             <div className="flex flex-col gap-3">
               <h3 className="font-semibold text-slate-900 dark:text-white mb-2">{t('footer_explore')}</h3>
               <Link to="/features" className="text-sm hover:text-emerald-600 transition-colors">{t('nav_features')}</Link>
@@ -90,6 +90,45 @@ const Footer = () => {
             <Link to="/contact" className="text-sm hover:text-emerald-600 transition-colors">{t('contact_title')}</Link>
               <a href={`mailto:${brandConfig.social.contactEmail}`} className="text-sm hover:text-emerald-600 transition-colors">{brandConfig.social.contactEmail}</a>
             </div>
+
+            <div className="flex flex-col gap-3">
+              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">{t('footer_download_app')}</h3>
+              
+              <div className="flex flex-col gap-3">
+                {/* App Store */}
+                <a href={brandConfig.appStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-4 py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[160px]">
+                  <div className="flex items-center justify-center gap-3 w-full">
+                    <img src="/apple-logo.png" alt="App Store" className="w-7 h-7 object-contain shrink-0 invert" />
+                    <div className="flex flex-col items-start leading-none pt-0.5 text-white">
+                      <div className="text-[8px] font-semibold tracking-[0.08em] text-white">Download on the</div>
+                      <div className="text-[18px] font-bold tracking-tight mt-0.5 text-white">App Store</div>
+                    </div>
+                  </div>
+                </a>
+
+                {/* Google Play */}
+                <a href={brandConfig.playStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-4 py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[160px]">
+                  <div className="flex items-center justify-center gap-3 w-full">
+                    <img src="/google-play-logo.png" alt="Play Store" className="w-7 h-7 object-contain shrink-0" />
+                    <div className="flex flex-col items-start leading-none pt-0.5 text-white">
+                      <div className="text-[8px] font-semibold tracking-wide text-white">GET IT ON</div>
+                      <div className="text-[16px] font-bold tracking-tight mt-0.5 text-white">Google Play</div>
+                    </div>
+                  </div>
+                </a>
+
+                {/* AppGallery */}
+                <a href={brandConfig.appGalleryUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-4 py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[160px]">
+                  <div className="flex items-center justify-center gap-3 w-full">
+                    <img src="/appgallery-logo.png" alt="AppGallery" className="w-7 h-7 object-contain shrink-0" />
+                    <div className="flex flex-col items-start leading-none pt-0.5 text-white">
+                      <div className="text-[8px] font-semibold tracking-wide text-white">EXPLORE IT ON</div>
+                      <div className="text-[16px] font-bold tracking-tight mt-0.5 text-white">AppGallery</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -99,7 +138,7 @@ const Footer = () => {
           piksellik bir bosluk kaliyordu. Iki kucuk oge o genislige yayilinca
           satir dagilmis gorunuyordu; ortada tek grup olarak daha derli toplu.
         */}
-        <div className="relative pt-6 border-t border-slate-200 dark:border-slate-800 text-center text-sm flex flex-col md:flex-row justify-center items-center gap-4">
+        <div className="relative pt-6 border-t border-slate-200 dark:border-transparent text-center text-sm flex flex-col md:flex-row justify-center items-center gap-4">
           <p>{t('footer_copyright').replace('{{year}}', year.toString()).replace('Veterito', brandConfig.name)}</p>
           {/*
             ⚠️ KUCUK LOGO MUTLAK KONUMLU, EN SAGDA (Ahmet, 24.08.2026).

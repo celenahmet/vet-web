@@ -1,6 +1,6 @@
+import { useTranslation } from 'react-i18next';
 import {
-  ArrowRight, BarChart3, Cat, Clock, Dog, HeartPulse, Mail, Sparkles, Star, Users, Utensils, Building2,
-} from 'lucide-react';
+  ArrowRight, BarChart3, Cat, Clock, Dog, HeartPulse, Mail,  Star, Users, Utensils, Building2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
@@ -32,10 +32,10 @@ const KATEGORI_IKON = {
   'Beslenme': Utensils,
   'Sağlık': HeartPulse,
   'Klinik Yönetimi': BarChart3,
-  'Pet Sahipleri': Users,
-} as const;
+  'Pet Sahipleri': Users } as const;
 
 export default function Blog() {
+  const { t } = useTranslation();
   /**
    * ⚠️ KATEGORI BAGLANTILARI OLU IDI (duzeltme 23.08.2026). Serit `/blog?kategori=Kedi`
    * adresine gidiyordu ama bu sayfa parametreyi hic okumuyordu: kullanici tikliyor,
@@ -140,8 +140,8 @@ export default function Blog() {
 
       {secili && !suzulmus.length ? (
         <section className="container blog-bos">
-          <p>Bu kategoride henüz yazı yok.</p>
-          <button type="button" onClick={() => kategoriSec(null)}>Tüm yazılara dön</button>
+          <p>{t('blog_empty_category')}</p>
+          <button type="button" onClick={() => kategoriSec(null)}>{t('blog_back_to_all')}</button>
         </section>
       ) : null}
 
@@ -151,11 +151,10 @@ export default function Blog() {
               her yazida yeniden kosuyor. Olmasaydi metin sessizce degisirdi ve
               degistigi fark edilmezdi. */}
           <div className="one-cikan-metin belir" key={oneCikan.slug}>
-            <span className="one-cikan-etiket">ÖNE ÇIKAN YAZI</span>
+            <span className="one-cikan-etiket">{t('blog_featured_badge')}</span>
             <h1>{oneCikan.baslik}</h1>
             <p>{oneCikan.ozet}</p>
-            <Link to={`/blog/${oneCikan.slug}`} className="one-cikan-dugme">
-              Yazıyı Oku <ArrowRight size={18} />
+            <Link to={`/blog/${oneCikan.slug}`} className="one-cikan-dugme">{t('blog_read_post')}<ArrowRight size={18} />
             </Link>
             {donenler.length > 1 ? (
               <div className="one-cikan-noktalar" role="tablist" aria-label="Öne çıkan yazılar">
@@ -183,13 +182,13 @@ export default function Blog() {
       ) : null}
 
       <section className="container">
-        <nav className="kategori-seridi" aria-label="Kategoriler">
+        <nav className="kategori-seridi" aria-label={t('blog_sidebar_categories')}>
           <button
             type="button"
             className={`kategori-oge${secili ? '' : ' secili'}`}
             onClick={() => kategoriSec(null)}
           >
-            <span>Tümü</span>
+            <span>{t('pets_filter_all')}</span>
             <em>{YAZILAR.length}</em>
           </button>
           {(Object.keys(KATEGORI_IKON) as (keyof typeof KATEGORI_IKON)[]).map((ad) => {
@@ -204,7 +203,7 @@ export default function Blog() {
                 disabled={!adet}
               >
                 <Ikon size={18} />
-                <span>{ad}</span>
+                <span>{t('blog_cat_' + ad, ad)}</span>
                 <em>{adet}</em>
               </button>
             );
@@ -220,10 +219,10 @@ export default function Blog() {
                 <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.baslik} boyut={40} olcu="kart" />
               </div>
               <div className="blog-kart-govde">
-                <span className="blog-kart-kategori">{yazi.kategori.toLocaleUpperCase('tr-TR')}</span>
+                <span className="blog-kart-kategori">{t('blog_cat_' + yazi.kategori, yazi.kategori).toLocaleUpperCase()}</span>
                 <h3>{yazi.baslik}</h3>
                 <div className="blog-kart-alt">
-                  <span><Clock size={14} /> {okumaSuresi(yazi)} dk okuma</span>
+                  <span><Clock size={14} /> {okumaSuresi(yazi)} {t('blog_read_time')}</span>
                   <span>{tarihiYaz(yazi.tarih)}</span>
                 </div>
               </div>
@@ -235,8 +234,8 @@ export default function Blog() {
       {liste.length ? (
         <section className="container blog-liste-bolum">
           <header className="blog-liste-baslik">
-            <h2><Star size={20} /> Öne Çıkan Yazılar</h2>
-            <Link to="/blog">Tümünü Gör <ArrowRight size={16} /></Link>
+            <h2><Star size={20} />{t('blog_featured_title')}</h2>
+            <Link to="/blog">{t('blog_view_all')}<ArrowRight size={16} /></Link>
           </header>
           <div className="blog-liste">
             {liste.map((yazi) => (
@@ -245,8 +244,8 @@ export default function Blog() {
                 <div>
                   <h4>{yazi.baslik}</h4>
                   <div className="blog-liste-alt">
-                    <span>{yazi.kategori}</span>
-                    <span>{okumaSuresi(yazi)} dk okuma</span>
+                    <span>{t('blog_cat_' + yazi.kategori, yazi.kategori)}</span>
+                    <span>{okumaSuresi(yazi)} {t('blog_read_time')}</span>
                   </div>
                 </div>
               </Link>
@@ -270,8 +269,8 @@ export default function Blog() {
       {!suzuluyor && sonEklenenler.length ? (
         <section className="container blog-son-eklenenler">
           <header className="blog-liste-baslik">
-            <h2><Sparkles size={20} /> Son eklenenler</h2>
-            <Link to="/blog">Tüm yazılar <ArrowRight size={16} /></Link>
+            <h2>{t('blog_recent_added')}</h2>
+            <Link to="/blog">{t('blog_all_posts')}<ArrowRight size={16} /></Link>
           </header>
           <div className="blog-liste">
             {sonEklenenler.map((yazi) => (
@@ -280,8 +279,8 @@ export default function Blog() {
                 <div>
                   <h4>{yazi.baslik}</h4>
                   <div className="blog-liste-alt">
-                    <span>{yazi.kategori}</span>
-                    <span>{okumaSuresi(yazi)} dk okuma</span>
+                    <span>{t('blog_cat_' + yazi.kategori, yazi.kategori)}</span>
+                    <span>{okumaSuresi(yazi)} {t('blog_read_time')}</span>
                   </div>
                 </div>
               </Link>
@@ -294,9 +293,9 @@ export default function Blog() {
         <div className="klinik-bandi">
           <div className="klinik-bandi-ikon"><Building2 size={30} /></div>
           <div className="klinik-bandi-metin">
-            <h2>Klinik yönetimini dijitalleştirin, dostlara daha fazla zaman ayırın</h2>
-            <p>Veterito ile randevu talepleri, müşteri kayıtları ve hasta geçmişi tek panelde toplanır. Klinik paneli ücretsizdir.</p>
-            <Link to="/clinics" className="klinik-bandi-dugme">Klinikler İçin Veterito <ArrowRight size={16} /></Link>
+            <h2>{t('blog_clinic_banner_title')}</h2>
+            <p>{t('blog_clinic_banner_desc')}</p>
+            <Link to="/clinics" className="klinik-bandi-dugme">{t('blog_clinic_banner_btn')}<ArrowRight size={16} /></Link>
           </div>
         </div>
       </section>
@@ -306,12 +305,11 @@ export default function Blog() {
           <div className="bulten-metin">
             <Mail size={26} />
             <div>
-              <h2>Yeni yazılardan haberdar olun</h2>
-              <p>Kedi ve köpek sağlığına dair yeni yazılar yayınlandığında haber verelim.</p>
+              <h2>{t('blog_newsletter_title')}</h2>
+              <p>{t('blog_newsletter_desc')}</p>
             </div>
           </div>
-          <a className="bulten-dugme" href="mailto:info@veterito.com?subject=Blog%20bultenine%20abone%20olmak%20istiyorum">
-            Bültene Abone Ol <ArrowRight size={16} />
+          <a className="bulten-dugme" href="mailto:info@veterito.com?subject=Blog%20bultenine%20abone%20olmak%20istiyorum">{t('blog_newsletter_btn')}<ArrowRight size={16} />
           </a>
         </div>
       </section>

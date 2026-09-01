@@ -21,10 +21,10 @@ export default function Pricing() {
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-3xl lg:text-4xl font-extrabold mb-4 text-[var(--text-main)] leading-tight">
             {/* ⚠️ "Seffaf ve Esnek Paketler" birden fazla ucretli paket ima
                 ediyordu; bugun tek bir surum var ve ucretsiz. */}
-            Klinikleriniz İçin <br/> <span className="text-[var(--color-vet-primary)]">Şeffaf ve Ücretsiz</span>
+            {t('pricing_h1_1')} <br/> <span className="text-[var(--color-vet-primary)]">{t('pricing_h1_2')}</span>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-base text-[var(--text-muted)] font-medium">
-            Klinik yönetiminizi dijitalleştirin. Randevu, müşteri kaydı, hasta geçmişi ve kliniğinizin web sayfası tek yerde. Bugün için hepsi ücretsiz.
+            {t('pricing_desc')}
           </motion.p>
 
           {/*
@@ -39,8 +39,8 @@ export default function Pricing() {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
             className="mt-6 flex flex-col gap-1 rounded-2xl border border-[var(--color-vet-primary)]/30 bg-[var(--color-vet-accent-light)] px-6 py-4 text-sm font-semibold text-[var(--color-vet-accent)]"
           >
-            <span>Şu anda tüm paketler ücretsiz. Kredi kartı istenmiyor, otomatik ücretlendirme yok.</span>
-            <span className="font-medium opacity-80">Evcil hayvan sahipleri için Veterito tamamen ücretsizdir; buradaki paketler yalnızca klinikler içindir.</span>
+            <span>{t('pricing_alert_desc')}</span>
+            <span className="font-medium opacity-80">{t('pricing_note')}</span>
           </motion.div>
         </div>
 
@@ -76,28 +76,28 @@ export default function Pricing() {
             className="glass-card p-6 lg:p-10 rounded-[2.5rem] border border-[var(--color-vet-primary)]/40 flex flex-col"
           >
             <div className="flex items-center gap-3 mb-2">
-              <h3 className="text-2xl font-extrabold text-[var(--text-main)]">Veterito Klinik</h3>
+              <h3 className="text-2xl font-extrabold text-[var(--text-main)]">{t('pricing_tier1_name')}</h3>
               <PawPrint className="text-[var(--color-vet-primary)]" size={28} />
             </div>
             <p className="text-[var(--text-muted)] text-sm mb-6">
-              Bugün kullanabileceğiniz her şey. Sürüm ayrımı yok, kısıt yok.
+              {t('pricing_tier1_desc')}
             </p>
             <div className="mb-6 flex flex-col items-start gap-1">
-              <span className="text-5xl font-extrabold text-[var(--color-vet-primary)]">Ücretsiz</span>
-              <span className="text-xs font-semibold text-[var(--text-muted)]">Kredi kartı istenmiyor</span>
+              <span className="text-5xl font-extrabold text-[var(--color-vet-primary)]">{t('pricing_free')}</span>
+              <span className="text-xs font-semibold text-[var(--text-muted)]">{t('pricing_no_cc')}</span>
             </div>
 
             <ul className="flex-1 text-[13px] md:text-sm font-medium">
               {[
-                { ikon: User, ad: 'Veteriner klinik profili' },
-                { ikon: Globe, ad: 'Kliniğe özel düzenlenebilir web sayfası' },
-                { ikon: Search, ad: 'Klinik dizininde görünürlük' },
-                { ikon: Database, ad: 'Randevu talepleri ve karşı teklif' },
-                { ikon: Users, ad: 'Müşteri kaydı ve müşteri hayvanları' },
-                { ikon: Cloud, ad: 'Hasta kayıtları ve reçete' },
-                { ikon: Smartphone, ad: 'Mobil klinik paneli' },
-                { ikon: Shield, ad: 'Ekip daveti, rol ve yetki yönetimi' },
-                { ikon: Monitor, ad: 'Klinik raporları ve gelir gider defteri' },
+                { ikon: User, ad: t('pricing_feat_profile') },
+                { ikon: Globe, ad: t('pricing_feat_webpage') },
+                { ikon: Search, ad: t('pricing_feat_directory') },
+                { ikon: Database, ad: t('pricing_feat_appt') },
+                { ikon: Users, ad: t('pricing_feat_customers') },
+                { ikon: Cloud, ad: t('pricing_feat_records') },
+                { ikon: Smartphone, ad: t('pricing_feat_mobile') },
+                { ikon: Shield, ad: t('pricing_feat_team') },
+                { ikon: Monitor, ad: t('pricing_feat_reports') },
               ].map(({ ikon: Ikon, ad }) => (
                 <li key={ad} className="flex items-center justify-between border-b border-[var(--border-color)] py-3">
                   <div className="flex items-center gap-3">
@@ -110,7 +110,7 @@ export default function Pricing() {
             </ul>
 
             <Link to="/contact" className="mt-6 w-full py-4 rounded-xl font-bold btn-primary shadow-md hover:shadow-lg transition-shadow text-center">
-              Kliniğinizi Ekleyin
+              {t('pricing_btn_add')}
             </Link>
           </motion.div>
 
@@ -119,32 +119,32 @@ export default function Pricing() {
             className="glass-card p-6 lg:p-10 rounded-[2.5rem] border border-[var(--border-color)] flex flex-col"
           >
             <div className="flex items-center gap-3 mb-2">
-              <h3 className="text-2xl font-extrabold text-[var(--text-main)]">Yol haritası</h3>
+              <h3 className="text-2xl font-extrabold text-[var(--text-main)]">{t('pricing_roadmap')}</h3>
               <Star className="text-[var(--text-muted)]" size={26} />
             </div>
             <p className="text-[var(--text-muted)] text-sm mb-6">
-              Üzerinde çalıştıklarımız. Hazır olmadan pakete konmuyor, fiyatlandırılmıyor.
+              {t('pricing_roadmap_desc')}
             </p>
 
             <ul className="flex-1 text-[13px] md:text-sm font-medium">
               {[
-                { ikon: Monitor, ad: 'Tarayıcıdan klinik yönetim paneli' },
-                { ikon: Eye, ad: 'Dizinde öne çıkarma seçeneği' },
-                { ikon: CreditCard, ad: 'Klinikler için ücretli paketler' },
-                { ikon: Headphones, ad: 'Öncelikli destek hattı' },
+                { ikon: Monitor, ad: t('pricing_roadmap_1') },
+                { ikon: Eye, ad: t('pricing_roadmap_2') },
+                { ikon: CreditCard, ad: t('pricing_roadmap_3') },
+                { ikon: Headphones, ad: t('pricing_roadmap_4') },
               ].map(({ ikon: Ikon, ad }) => (
                 <li key={ad} className="flex items-center justify-between border-b border-[var(--border-color)] py-3">
                   <div className="flex items-center gap-3">
                     <Ikon className="text-[var(--text-muted)] opacity-70 shrink-0" size={18} />
                     <span className="text-[var(--text-muted)]">{ad}</span>
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] bg-[var(--bg-secondary)] px-2 py-1 rounded">Yakında</span>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] bg-[var(--bg-secondary)] px-2 py-1 rounded">{t('pricing_soon')}</span>
                 </li>
               ))}
             </ul>
 
-            <p className="mt-6 text-xs text-[var(--text-muted)] leading-relaxed">
-              Ücretli bir pakete geçiş olduğunda önceden haber verilir. Bugün kayıtlı hiçbir kliniğe otomatik ücret yansıtılmaz.
+            <p className="mt-6 text-base text-[var(--text-muted)] leading-relaxed">
+              {t('pricing_footer_note')}
             </p>
           </motion.div>
 

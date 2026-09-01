@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { lazy, useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -73,6 +74,7 @@ function tarihMetni(iso: string): string {
  * tarafının değil web mimarisinin kararı.
  */
 export default function ClinicPage() {
+  const { t } = useTranslation();
   const { handle } = useParams<{ handle: string }>();
   const raw = handle ?? '';
   /**
@@ -418,14 +420,14 @@ export default function ClinicPage() {
         gelir, kartlar başlar.
       */}
       <div className="vc-wrap">
-        <section className="vc-contact" aria-label="İletişim">
+        <section className="vc-contact" aria-label={t('footer_contact')}>
           {page.phone ? (
             <a className="vc-contact-card" href={`tel:${page.phone}`}>
               <span className="vc-contact-icon">
                 <IconPhone className="vc-ci" />
               </span>
               <span className="vc-contact-body">
-                <span className="vc-contact-label">Telefon</span>
+                <span className="vc-contact-label">{t('cp_contact_phone')}</span>
                 {/* Numara METİN olarak da yazılı: masaüstünde tel: tıklanamaz. */}
                 <span className="vc-contact-value">{formatPhone(page.phone)}</span>
               </span>
@@ -442,7 +444,7 @@ export default function ClinicPage() {
                 <IconWhatsApp className="vc-ci" />
               </span>
               <span className="vc-contact-body">
-                <span className="vc-contact-label">WhatsApp</span>
+                <span className="vc-contact-label">{t('cp_contact_whatsapp')}</span>
                 <span className="vc-contact-value">{formatPhone(page.whatsapp)}</span>
               </span>
             </a>
@@ -454,7 +456,7 @@ export default function ClinicPage() {
                 <IconMail className="vc-ci" />
               </span>
               <span className="vc-contact-body">
-                <span className="vc-contact-label">E-posta</span>
+                <span className="vc-contact-label">{t('cp_contact_email')}</span>
                 <span className="vc-contact-value">{page.email}</span>
               </span>
             </a>
@@ -470,8 +472,8 @@ export default function ClinicPage() {
                 <IconPin className="vc-ci" />
               </span>
               <span className="vc-contact-body">
-                <span className="vc-contact-label">Yol tarifi</span>
-                <span className="vc-contact-value">Haritada aç</span>
+                <span className="vc-contact-label">{t('cp_contact_directions')}</span>
+                <span className="vc-contact-value">{t('cp_contact_map')}</span>
               </span>
             </a>
           ) : null}
@@ -487,7 +489,7 @@ export default function ClinicPage() {
             */}
             {page.address || page.directions ? (
               <section className="vc-block">
-                <h2 className="vc-h2">Adres ve ulaşım</h2>
+                <h2 className="vc-h2">{t('cp_address_title')}</h2>
                 {page.address ? <p className="vc-text vc-strong">{page.address}</p> : null}
                 {konum ? <p className="vc-text vc-muted">{konum}</p> : null}
                 {page.directions ? <p className="vc-text">{page.directions}</p> : null}
@@ -496,15 +498,13 @@ export default function ClinicPage() {
                   href={mapsUrl(page)}
                   target="_blank"
                   rel="noopener noreferrer">
-                  <IconPin className="vc-btn-icon" />
-                  Haritada görüntüle
-                </a>
+                  <IconPin className="vc-btn-icon" />{t('cp_address_view_map')}</a>
               </section>
             ) : null}
 
             {page.about ? (
               <section className="vc-block">
-                <h2 className="vc-h2">Hakkımızda</h2>
+                <h2 className="vc-h2">{t('cp_about_title')}</h2>
                 {page.about
                   .split('\n')
                   .filter(Boolean)
@@ -517,7 +517,7 @@ export default function ClinicPage() {
             ) : null}
 
             <section className="vc-block vc-cta">
-              <h2 className="vc-h2">Veterito&apos;da bul</h2>
+              <h2 className="vc-h2">{t('cp_find_in_vet')}</h2>
               <p className="vc-text">
                 Sağlık kaydı, aşı takvimi ve klinikle mesajlaşma için Veterito uygulamasını
                 kullanabilirsin.
@@ -536,9 +536,7 @@ export default function ClinicPage() {
                       role="tab"
                       aria-selected={aktifSekme === 'staff'}
                       className={`vc-tab${aktifSekme === 'staff' ? ' vc-tab-on' : ''}`}
-                      onClick={() => setSekme('staff')}>
-                      Çalışanlarımız
-                      <span className="vc-tab-count">{staff.length}</span>
+                      onClick={() => setSekme('staff')}>{t('cp_staff_tab')}<span className="vc-tab-count">{staff.length}</span>
                     </button>
                   ) : null}
                   {galeriSayisi > 0 ? (
@@ -547,9 +545,7 @@ export default function ClinicPage() {
                       role="tab"
                       aria-selected={aktifSekme === 'gallery'}
                       className={`vc-tab${aktifSekme === 'gallery' ? ' vc-tab-on' : ''}`}
-                      onClick={() => setSekme('gallery')}>
-                      Foto galeri
-                      <span className="vc-tab-count">{galeriSayisi}</span>
+                      onClick={() => setSekme('gallery')}>{t('cp_gallery_tab')}<span className="vc-tab-count">{galeriSayisi}</span>
                     </button>
                   ) : null}
                   {mesaiVar ? (
@@ -756,6 +752,7 @@ function StaffCard({
   photo?: string;
   onOpen: () => void;
 }) {
+  const { t } = useTranslation();
   return (
     <button type="button" className="vc-staff" onClick={onOpen}>
       <span className="vc-staff-photo">
@@ -771,7 +768,7 @@ function StaffCard({
         <span className="vc-staff-name">{member.display_name}</span>
         {member.education ? <span className="vc-staff-edu">{member.education}</span> : null}
       </span>
-      <span className="vc-staff-more">Profili gör</span>
+      <span className="vc-staff-more">{t('cp_view_profile')}</span>
     </button>
   );
 }
@@ -805,6 +802,7 @@ function Modal({
  * göz alıyordu; yerini yerinde duran, çok düşük kontrastlı bir soluklaşma aldı.
  */
 function PageSkeleton() {
+  const { t } = useTranslation();
   return (
     <div className="vc" aria-busy="true" aria-live="polite">
       <div className="vc-hero">
@@ -835,7 +833,7 @@ function PageSkeleton() {
           </div>
         </div>
       </div>
-      <span className="vc-sr">Sayfa yükleniyor</span>
+      <span className="vc-sr">{t('cp_loading')}</span>
     </div>
   );
 }

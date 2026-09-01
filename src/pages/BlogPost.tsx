@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { ArrowLeft, ArrowRight, Clock, CalendarDays, AlertTriangle, CircleAlert, CheckCircle2, Eye } from 'lucide-react';
 import { useOncedenUretilmisVeriyiDevral } from '../yapisal-veri';
 import { useEffect, useRef, useState } from 'react';
@@ -92,6 +94,7 @@ function Blok({ blok }: { blok: BlogBlock }) {
 }
 
 export default function BlogPost() {
+  const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const yazi = yaziBul(slug);
 
@@ -162,13 +165,13 @@ export default function BlogPost() {
         />
         <section className="container yazi-bulunamadi">
           <span className="yazi-kategori">404</span>
-          <h1>Yazı bulunamadı</h1>
-          <p>Aradığınız yazı kaldırılmış ya da adresi değişmiş olabilir. Aşağıdaki yazılara göz atabilir ya da blogun tamamına dönebilirsiniz.</p>
-          <Link to="/blog" className="one-cikan-dugme">Bloga dön <ArrowRight size={18} /></Link>
+          <h1>{t('post_not_found_title')}</h1>
+          <p>{t('post_not_found_desc')}</p>
+          <Link to="/blog" className="one-cikan-dugme">{t('post_back_to_blog')}<ArrowRight size={18} /></Link>
         </section>
         {oneriler.length ? (
           <section className="container yazi-ilgili">
-            <h2>Son yazılar</h2>
+            <h2>{t('post_recent_posts')}</h2>
             <div className="yazi-ilgili-liste">
               {oneriler.map((y) => (
                 <Link key={y.slug} to={`/blog/${y.slug}`} className="yazi-ilgili-kart">
@@ -236,19 +239,19 @@ export default function BlogPost() {
         <div className="yazi-ana">
           <header className="yazi-basi">
             <div className="yazi-ust-satir">
-              <Link to="/blog" className="yazi-geri"><ArrowLeft size={16} /> Bloga dön</Link>
+              <Link to="/blog" className="yazi-geri"><ArrowLeft size={16} />{t('post_back_to_blog')}</Link>
               <span className="yazi-kategori">{yazi.kategori.toLocaleUpperCase('tr-TR')}</span>
             </div>
             <h1>{yazi.baslik}</h1>
             <p className="yazi-ozet">{yazi.ozet}</p>
             <div className="yazi-kunye">
-              <span className="yazi-yazar">Veterito Editör</span>
+              <span className="yazi-yazar">{t('post_author')}</span>
               <span><CalendarDays size={14} /> {tarihiYaz(yazi.tarih)}</span>
-              <span><Clock size={14} /> {dakika} dk okuma</span>
+              <span><Clock size={14} /> {dakika} {t('post_read_time')}</span>
               {/* Sayac gelene kadar hic gosterilmiyor: "0 goruntulenme" yazmak,
                   hic yazmamaktan kotu. */}
               {goruntulenme !== null ? (
-                <span><Eye size={14} /> {sayiyiKisalt(goruntulenme)} görüntülenme</span>
+                <span><Eye size={14} /> {sayiyiKisalt(goruntulenme)} {t('post_views')}</span>
               ) : null}
             </div>
           </header>
@@ -277,8 +280,8 @@ export default function BlogPost() {
             <header>
               <CheckCircle2 size={22} />
               <div>
-                <h2>Kontrol listesi</h2>
-                <p>Yazıyı kapatmadan önce bunları gözden geçirin.</p>
+                <h2>{t('post_checklist_title')}</h2>
+                <p>{t('post_checklist_desc')}</p>
               </div>
             </header>
             {/*
@@ -317,7 +320,7 @@ export default function BlogPost() {
 
       {yazi.sss.length ? (
         <section className="container yazi-sss">
-          <h2>Sık sorulanlar</h2>
+          <h2>{t('post_faq_title')}</h2>
           {/*
             ⚠️ ACILIR KAPANIR DEGIL (Ahmet, 23.08.2026): "sikca sorulan sorular
             acilir kapanirda degil de direkt gozukse tasarimi ayri gozukur".
@@ -343,7 +346,7 @@ export default function BlogPost() {
 
       {yazi.kaynaklar?.length ? (
         <section className="container yazi-kaynaklar">
-          <h2>Kaynaklar</h2>
+          <h2>{t('post_sources_title')}</h2>
           {/*
             ⚠️ KUNYE PARCALI GOSTERILIYOR (Ahmet, 24.08.2026: "hangi dergi hangi
             makale hangi sayi vs vs"). Once yalniz bir baglanti etiketi vardi ve
@@ -374,7 +377,7 @@ export default function BlogPost() {
 
       {ilgili.length ? (
         <section className="container yazi-ilgili">
-          <h2>İlgili yazılar</h2>
+          <h2>{t('post_related_title')}</h2>
           <div className="yazi-ilgili-liste">
             {ilgili.map((y) => (
               <Link key={y.slug} to={`/blog/${y.slug}`} className="yazi-ilgili-kart">
@@ -392,10 +395,10 @@ export default function BlogPost() {
       <section className="container">
         <div className="yazi-uygulama-bandi">
           <div>
-            <h2>Dostunuzun sağlık defteri cebinizde olsun</h2>
-            <p>Aşı takvimi, sağlık kaydı ve veteriner randevusu tek uygulamada. Veterito ücretsizdir.</p>
+            <h2>{t('post_app_banner_title')}</h2>
+            <p>{t('post_app_banner_desc')}</p>
           </div>
-          <Link to="/" className="yazi-uygulama-dugme">Uygulamayı keşfet <ArrowRight size={16} /></Link>
+          <Link to="/" className="yazi-uygulama-dugme">{t('post_app_banner_btn')}<ArrowRight size={16} /></Link>
         </div>
       </section>
     </article>

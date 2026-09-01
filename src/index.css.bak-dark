@@ -49,7 +49,7 @@
   --text-muted: #475569; /* slate-600 */
   --border-color: #e2e8f0; /* slate-200 */
   
-  --color-vet-primary: #2EBFA5; /* Bright Teal from Shield/Left V */
+  --color-vet-primary: #17B8A8; /* Bright Teal from Shield/Left V */
   --color-vet-secondary: #0C7A77; /* Deep Teal from Waves */
   --color-vet-accent: #0C3B43; /* Navy Teal from Text/Right V */
   --color-vet-accent-light: #e0f2f1; /* Light Teal bg */
@@ -58,18 +58,27 @@
 .dark {
   color-scheme: dark;
 
-  --bg-main: #000000; /* Almost black Navy Teal */
-  --bg-surface: #000000; 
-  --bg-secondary: #000000;
+  --bg-main: #0A110F; /* Dark Forest Green/Gray from App */
+  --bg-surface: #FFFFFF; /* Card background from App */
+  --bg-secondary: #FFFFFF; /* Hover/secondary surface */
   
-  --text-main: #F5F5F7; /* White */
-  --text-muted: #86868B; /* slate-400 */
-  --border-color: #38383A; /* slate-800 */
+  --text-main: #F9FAFB; /* Off-White */
+  --text-muted: #859891; /* Muted Green-Gray */
+  --border-color: #243731; /* Subtle Dark Green Border */
   
-  --color-vet-primary: #2EBFA5;
-  --color-vet-secondary: #20D0BF;
-  --color-vet-accent: #0C7A77;
-  --color-vet-accent-light: #062326;
+  --color-vet-primary: #2EBFA5; /* Bright Mint/Teal Accent */
+  --color-vet-secondary: #24A38C;
+  --color-vet-accent: #18584B;
+  --color-vet-accent-light: #0D1F1A;
+
+  /* Override Tailwind slate colors in dark mode to match our new palette */
+  --color-slate-900: #0A110F;
+  --color-slate-800: #14221D;
+  --color-slate-700: #1B2D26;
+  --color-slate-600: #243731;
+  --color-slate-500: #859891;
+  --color-slate-400: #9CA3AF;
+  --color-slate-300: #D1D5DB;
 }
 
 html {
@@ -105,10 +114,9 @@ body {
   }
   
   .dark .glass-nav {
-  background-color: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--border-color);
-}
+    background-color: rgba(4, 10, 7, 0.85);
+    border-bottom: 1px solid var(--border-color);
+  }
 
   .glass-card {
     background-color: var(--bg-surface);
@@ -180,15 +188,4 @@ body {
 .phone-scrollbar {
   scrollbar-width: thin !important;
   scrollbar-color: rgba(156, 163, 175, 0.9) rgba(0, 0, 0, 0.03) !important;
-}
-
-
-/* Tema geçişi için yavaş ve pürüzsüz animasyon */
-.theme-transition,
-.theme-transition *,
-.theme-transition *::before,
-.theme-transition *::after {
-  transition-property: background-color, border-color, color, fill, stroke, box-shadow !important;
-  transition-duration: 2000ms !important;
-  transition-timing-function: ease-in-out !important;
 }

@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Globe, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import '../styles/navbar-menu.css';
@@ -131,18 +131,42 @@ const Navbar = () => {
           <div className="hidden md:flex items-center justify-end gap-4 flex-1">
             <button 
               onClick={() => setIsDarkMode(!isDarkMode)} 
-              className="p-2 rounded-full text-[var(--text-muted)] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+              className="flex items-center bg-slate-200 dark:bg-zinc-900 rounded-full p-1 relative shadow-inner w-[72px] h-[36px] overflow-hidden group cursor-pointer"
               aria-label={isDarkMode ? 'Aydınlık temaya geç' : 'Koyu temaya geç'}
             >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              {/* BACKGROUND GRAY ICONS */}
+              <div className="absolute left-[4px] top-[4px] w-[28px] h-[28px] flex items-center justify-center pointer-events-none">
+                <Sun size={16} className="text-zinc-500 transition-colors duration-300 group-hover:text-amber-500" />
+              </div>
+              <div className="absolute right-[4px] top-[4px] w-[28px] h-[28px] flex items-center justify-center pointer-events-none">
+                <Moon size={16} className="text-slate-500 transition-colors duration-300 group-hover:text-indigo-500" />
+              </div>
+
+              {/* SLIDING THUMB WITH WIPE EFFECT */}
+              <div 
+                className={`absolute top-[4px] w-[28px] h-[28px] bg-white rounded-full transition-transform duration-700 ease-in-out shadow-md overflow-hidden z-20 ${isDarkMode ? 'translate-x-[36px]' : 'translate-x-0'}`}
+                style={{ left: '4px' }}
+              >
+                {/* INNER CONTAINER COUNTER-TRANSLATES TO STAY STATIC RELATIVE TO PARENT */}
+                <div 
+                  className={`absolute w-[72px] h-[36px] transition-transform duration-700 ease-in-out ${isDarkMode ? '-translate-x-[36px]' : 'translate-x-0'}`}
+                  style={{ left: '-4px', top: '-4px' }}
+                >
+                  <div className="absolute left-[4px] top-[4px] w-[28px] h-[28px] flex items-center justify-center pointer-events-none">
+                    <Sun size={16} className="text-amber-500" />
+                  </div>
+                  <div className="absolute right-[4px] top-[4px] w-[28px] h-[28px] flex items-center justify-center pointer-events-none">
+                    <Moon size={16} className="text-indigo-500" />
+                  </div>
+                </div>
+              </div>
             </button>
             <button 
               onClick={toggleLanguage}
-              className="flex items-center gap-1 p-2 rounded-full text-xs font-semibold text-[var(--text-muted)] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+              className="flex items-center justify-center bg-slate-200 dark:bg-zinc-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-zinc-700 rounded-full w-[48px] h-[36px] text-[13px] font-extrabold tracking-wider transition-colors shadow-inner"
               aria-label={i18n.language === 'tr' ? 'Switch to English' : 'Türkçeye geç'}
             >
-              <Globe size={16} />
-              {i18n.language.toUpperCase()}
+              {i18n.language === 'tr' ? 'EN' : 'TR'}
             </button>
             
             <Link to="/download" className="hidden lg:flex bg-[#038d91] text-white hover:bg-[#027376] rounded-full font-semibold transition-all duration-300 px-5 py-2.5 text-sm shadow-sm hover:scale-105 whitespace-nowrap">
@@ -188,7 +212,7 @@ const Navbar = () => {
       */}
       {(isMenuOpen || kapaniyor) && (
           <div
-            className={`${kapaniyor ? 'mobil-menu kapaniyor' : 'mobil-menu'} absolute top-full left-0 right-0 bg-white dark:bg-slate-900 border-t border-[var(--border-color)] p-6 flex flex-col gap-4 shadow-xl md:hidden z-[100] h-screen overflow-y-auto pb-32`}
+            className={`${kapaniyor ? 'mobil-menu kapaniyor' : 'mobil-menu'} absolute top-full left-0 right-0 bg-white dark:bg-transparent border-t border-[var(--border-color)] p-6 flex flex-col gap-4 shadow-xl md:hidden z-[100] h-screen overflow-y-auto pb-32`}
           >
             {navLinks.map((link) => (
               <Link 
@@ -205,11 +229,44 @@ const Navbar = () => {
             </Link>
             <div className="flex items-center justify-between mt-4">
               <div className="flex gap-4">
-                <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-3 bg-black/5 dark:bg-white/10 rounded-full">
-                  {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+                <button 
+                  onClick={() => setIsDarkMode(!isDarkMode)} 
+                  className="flex items-center bg-slate-200 dark:bg-zinc-900 rounded-full p-1 relative shadow-inner w-[76px] h-[40px] overflow-hidden group cursor-pointer"
+                  aria-label={isDarkMode ? 'Aydınlık temaya geç' : 'Koyu temaya geç'}
+                >
+                  {/* BACKGROUND GRAY ICONS */}
+                  <div className="absolute left-[4px] top-[4px] w-[32px] h-[32px] flex items-center justify-center pointer-events-none">
+                    <Sun size={18} className="text-zinc-500 transition-colors duration-300 group-hover:text-amber-500" />
+                  </div>
+                  <div className="absolute right-[4px] top-[4px] w-[32px] h-[32px] flex items-center justify-center pointer-events-none">
+                    <Moon size={18} className="text-slate-500 transition-colors duration-300 group-hover:text-indigo-500" />
+                  </div>
+
+                  {/* SLIDING THUMB WITH WIPE EFFECT */}
+                  <div 
+                    className={`absolute top-[4px] w-[32px] h-[32px] bg-white rounded-full transition-transform duration-700 ease-in-out shadow-md overflow-hidden z-20 ${isDarkMode ? 'translate-x-[36px]' : 'translate-x-0'}`}
+                    style={{ left: '4px' }}
+                  >
+                    {/* INNER CONTAINER COUNTER-TRANSLATES */}
+                    <div 
+                      className={`absolute w-[76px] h-[40px] transition-transform duration-700 ease-in-out ${isDarkMode ? '-translate-x-[36px]' : 'translate-x-0'}`}
+                      style={{ left: '-4px', top: '-4px' }}
+                    >
+                      <div className="absolute left-[4px] top-[4px] w-[32px] h-[32px] flex items-center justify-center pointer-events-none">
+                        <Sun size={18} className="text-amber-500" />
+                      </div>
+                      <div className="absolute right-[4px] top-[4px] w-[32px] h-[32px] flex items-center justify-center pointer-events-none">
+                        <Moon size={18} className="text-indigo-500" />
+                      </div>
+                    </div>
+                  </div>
                 </button>
-                <button onClick={toggleLanguage} className="p-3 bg-black/5 dark:bg-white/10 rounded-full flex items-center gap-2">
-                  <Globe size={20} /> <span className="font-semibold text-sm">{i18n.language.toUpperCase()}</span>
+                <button 
+                  onClick={toggleLanguage}
+                  className="flex items-center justify-center bg-slate-200 dark:bg-zinc-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-zinc-700 rounded-full w-[52px] h-[40px] text-[14px] font-extrabold tracking-wider transition-colors shadow-inner"
+                  aria-label={i18n.language === 'tr' ? 'Switch to English' : 'Türkçeye geç'}
+                >
+                  {i18n.language === 'tr' ? 'EN' : 'TR'}
                 </button>
               </div>
             </div>

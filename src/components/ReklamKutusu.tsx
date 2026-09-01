@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { Megaphone, ArrowUpRight } from 'lucide-react';
 
@@ -38,6 +39,7 @@ import uniconnectlyLogo from '../assets/uniconnectly.webp';
 const ARALIK_MS = 20_000;
 
 export default function ReklamKutusu() {
+  const { t } = useTranslation();
   const [ikinci, setIkinci] = useState(false);
 
   useEffect(() => {
@@ -53,17 +55,14 @@ export default function ReklamKutusu() {
     <section className="kenar-kutu kenar-reklam" aria-label="Reklam alanı">
       {/* ⚠️ Etiket her iki kartta da duruyor: hangisi gorunurse gorunsun
           okuyucu bunun reklam alani oldugunu biliyor. */}
-      <p className="reklam-etiket">Reklam</p>
+      <p className="reklam-etiket">{t('ad_label')}</p>
 
       {!ikinci ? (
         <div className="reklam-kart">
           <span className="reklam-ikon" aria-hidden="true"><Megaphone size={18} /></span>
-          <p className="reklam-baslik">Burada yer almak ister misiniz?</p>
-          <p className="reklam-metin">
-            Veterito blogunu hayvan sahipleri ve klinikler okuyor. Reklam vermek için yazın.
-          </p>
-          <a className="reklam-dugme" href="mailto:info@veterito.com?subject=Blog%20reklam">
-            Reklam verin <ArrowUpRight size={14} />
+          <p className="reklam-baslik">{t('ad_title_1')}</p>
+          <p className="reklam-metin">{t('ad_desc_1')}</p>
+          <a className="reklam-dugme" href="mailto:info@veterito.com?subject=Blog%20reklam">{t('ad_btn_1')}<ArrowUpRight size={14} />
           </a>
         </div>
       ) : (
@@ -86,8 +85,7 @@ export default function ReklamKutusu() {
             className="reklam-dugme"
             href="https://uniconnectly.com"
             target="_blank"
-            rel="sponsored noopener noreferrer">
-            İncele <ArrowUpRight size={14} />
+            rel="sponsored noopener noreferrer">{t('ad_btn_2')}<ArrowUpRight size={14} />
           </a>
         </div>
       )}
