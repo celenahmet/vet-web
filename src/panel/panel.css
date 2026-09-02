@@ -197,26 +197,21 @@
 .pnl-logo-acik { display: none; }
 
 .pnl-klinik-kutu {
-  display: flex; align-items: center; gap: 9px;
-  margin: 12px 0 14px; padding: 8px 9px;
+  display: block;
+  margin: 12px 0 14px; padding: 10px 12px;
   background: var(--pnl-yan-kutu);
   border: 1px solid var(--pnl-yan-cizgi);
   border-radius: 11px;
 }
-.pnl-klinik-rozet {
-  flex-shrink: 0; width: 30px; height: 30px; border-radius: 8px;
-  display: grid; place-items: center;
-  background: #2FAE8F; color: #06231C;
-  font-size: 13px; font-weight: 700;
-}
-.pnl-klinik-metin { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.pnl-klinik-metin { min-width: 0; width: 100%; display: flex; flex-direction: column; gap: 3px; }
 .pnl-klinik-etiket { font-size: 9.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--pnl-yan-soluk); font-weight: 700; }
 .pnl-klinik-ad { font-weight: 600; font-size: 13px; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; color: var(--pnl-yan-metin); }
 .pnl-klinik-secim {
-  font: inherit; font-size: 13px; font-weight: 600;
+  width: 100%; font: inherit; font-size: 13px; font-weight: 600;
   background: transparent; color: var(--pnl-yan-metin);
-  border: none; padding: 0; cursor: pointer; max-width: 100%;
+  border: none; padding: 0 18px 0 0; cursor: pointer; max-width: 100%;
 }
+.pnl-klinik-secim:focus-visible { outline: 2px solid color-mix(in srgb, #2FAE8F 78%, white); outline-offset: 4px; border-radius: 3px; }
 /* ⚠️ Acilir listenin ogeleri isletim sisteminin penceresinde ciziliyor, koyu
    menunun icinde degil; rengi ayrica verilmezse koyu zeminde koyu metin cikar. */
 .pnl-klinik-secim option { color: var(--pnl-metin); background: var(--pnl-yuzey); }
@@ -458,6 +453,9 @@
 .pnl-entegrasyon-kolay-karti > div > strong { display: block; margin-bottom: 4px; font-size: 15px; }
 .pnl-entegrasyon-kolay-karti p { min-height: 38px; margin: 0 0 10px; color: var(--pnl-soluk); font-size: 12px; line-height: 1.5; }
 .pnl-entegrasyon-kolay-karti > .pnl-dugme { grid-column: 1 / -1; justify-self: start; }
+.pnl-entegrasyon-ayar-penceresi { display: grid; gap: 14px; }
+.pnl-entegrasyon-ayar-penceresi > .pnl-gizlilik-notu { margin: 0; }
+.pnl-entegrasyon-ayar-penceresi .pnl-entegrasyon-listesi { margin: 0; }
 
 /* Yeni operasyon/entegrasyon ekranlari panelin kullanilabilir GENISLIGINE gore
    kirilir. Sol menulu 1280–1366 px dizustunde viewport genisligini esas alan eski
@@ -771,6 +769,25 @@
 .pnl-adres span { color: var(--pnl-soluk); }
 .pnl-adres a { color: var(--pnl-vurgu); font-weight: 600; text-decoration: none; }
 .pnl-adres a:hover { text-decoration: underline; }
+.pnl-web-yayin-basari {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 13px;
+  margin: 0 0 16px; padding: 15px 16px;
+  border: 1px solid color-mix(in srgb, var(--pnl-basarili) 38%, var(--pnl-cizgi));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--pnl-basarili) 9%, var(--pnl-yuzey));
+}
+.pnl-web-yayin-basari-ikonu {
+  display: grid; place-items: center; width: 43px; height: 43px; border-radius: 50%;
+  color: var(--pnl-basarili); background: color-mix(in srgb, var(--pnl-basarili) 13%, var(--pnl-yuzey));
+}
+.pnl-web-yayin-basari strong { display: block; color: var(--pnl-basarili); font-size: 15px; }
+.pnl-web-yayin-basari p { margin: 3px 0 0; color: var(--pnl-soluk); font-size: 12.5px; line-height: 1.5; }
+.pnl-web-yayin-basari a { display: inline-flex; align-items: center; gap: 6px; color: var(--pnl-basarili); font-size: 12.5px; font-weight: 700; text-decoration: none; }
+.pnl-web-yayin-basari a:hover { text-decoration: underline; }
+@media (max-width: 760px) {
+  .pnl-web-yayin-basari { grid-template-columns: auto minmax(0, 1fr); align-items: start; }
+  .pnl-web-yayin-basari a { grid-column: 2; }
+}
 .pnl-slogan {
   margin: 0 0 12px; padding: 10px 13px;
   font-size: 13.5px; font-style: italic; line-height: 1.5;

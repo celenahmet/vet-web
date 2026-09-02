@@ -211,6 +211,9 @@ const mesajVeri = readFileSync(new URL('../src/panel/mesaj-veri.ts', import.meta
 const panelBolumler = readFileSync(new URL('../src/panel/PanelBolumler.tsx', import.meta.url), 'utf8');
 const defter = readFileSync(new URL('../src/panel/PanelDefter.tsx', import.meta.url), 'utf8');
 const webSitesi = readFileSync(new URL('../src/panel/PanelWebSitesi.tsx', import.meta.url), 'utf8');
+const klinikSayfasi = readFileSync(new URL('../src/pages/ClinicPage.tsx', import.meta.url), 'utf8');
+const klinikSayfasiCss = readFileSync(new URL('../src/pages/ClinicPage.css', import.meta.url), 'utf8');
+const turkce = JSON.parse(readFileSync(new URL('../src/locales/tr.json', import.meta.url), 'utf8'));
 const stok = readFileSync(new URL('../src/panel/PanelStok.tsx', import.meta.url), 'utf8');
 const stokEtiketi = readFileSync(new URL('../src/panel/StokEtiketi.tsx', import.meta.url), 'utf8');
 const stokEtiketiYazdir = readFileSync(new URL('../src/panel/stok-etiketi-yazdir.ts', import.meta.url), 'utf8');
@@ -250,9 +253,10 @@ assert.match(bolumler, /anahtar:\s*'iletisim',\s*ad:\s*'Operasyonel işlemler'/,
 assert.match(bolumler, /anahtar:\s*'entegrasyonlar',\s*ad:\s*'Entegrasyonlar'/, 'Teknik entegrasyonlar solda ayrı menü olmalı.');
 assert.match(panel, /gorunum="communications"\s+git=\{bolumeGit\}/, 'Operasyon menüsü günlük görünüm ve çalışan bölüm geçişlerine bağlanmalı.');
 assert.match(panel, /gorunum="technical"/, 'Teknik entegrasyonlar ayrı görünümde kalmalı.');
-assert.match(entegrasyon, />Entegrasyon ayarları<\//, 'Teknik ekran ayarların bulunduğu yeri açıkça adlandırmalı.');
-assert.match(entegrasyon, /Kolay kurulum[\s\S]*Uzman ayarları[\s\S]*pnl-entegrasyon-kolay-grid/,
-  'Teknik entegrasyonlar klinik sahibi için sade ve uzman katmanlarına ayrılmalı.');
+assert.match(entegrasyon, /Entegrasyon ayarlarını aç[\s\S]*acik=\{ayarPenceresiAcik\}[\s\S]*baslik="Entegrasyon ayarları"/,
+  'Hassas entegrasyon ayarları aynı sekmede, odaklı diyalog içinde açılmalı.');
+assert.match(entegrasyon, /pnl-entegrasyon-kolay-grid[\s\S]*setAyarPenceresiAcik\(true\)/,
+  'Özet entegrasyon kartları seçilen sistemi odaklı ayar penceresinde açmalı.');
 for (const alan of ['Sağlayıcı / cihaz sistemi', 'API temel adresi', 'Genel entegrasyon ayarları', 'Gizli kimlik bilgileri']) {
   assert.match(entegrasyon, new RegExp(alan), `Entegrasyon ekranında ${alan} bulunmalı.`);
 }
@@ -358,6 +362,14 @@ assert.match(defter, /CSV indir/, 'Defter seçili dönem verisini dışa aktarab
 assert.match(defter, /odemeYontemi/, 'Ödeme yöntemi kategoriden ayrı tutulmalı.');
 assert.match(webSitesi, /Klinik bilgilerini düzenle/, 'Klinik temel bilgileri webden düzenlenebilmeli.');
 assert.match(webSitesi, /KlinikGaleri/, 'Klinik logo, kapak ve galeri yönetimi web sitesine bağlı olmalı.');
+assert.match(webSitesi, /Webde görünürsünüz — sayfanız yayında[\s\S]*Yayındaki sayfayı görüntüle/,
+  'Yayındaki klinik sayfası web görünürlüğünü açık başarı durumu ve çalışan bağlantıyla anlatmalı.');
+for (const anahtar of ['cp_contact_phone', 'cp_contact_whatsapp', 'cp_contact_email', 'cp_contact_directions', 'cp_contact_map', 'cp_address_title', 'cp_staff_tab', 'cp_gallery_tab', 'cp_hours_tab']) {
+  assert.ok(turkce[anahtar] && !turkce[anahtar].startsWith('cp_'), `${anahtar} Türkçe kullanıcı metnine çözülmeli.`);
+  assert.match(klinikSayfasi, new RegExp(`t\\('${anahtar}'\\)`), `${anahtar} genel klinik sayfasında çeviri katmanından okunmalı.`);
+}
+assert.match(klinikSayfasiCss, /\.vc-staff-photo\s*\{[^}]*aspect-ratio:\s*5\s*\/\s*4;/,
+  'Klinik çalışan kartları web vitrini için daha kısa yatay fotoğraf oranı kullanmalı.');
 assert.match(galeri, /guvenliGorselSil/, 'Galeri veritabanı bağı kurulamazsa yüklenen nesne temizlenmeli.');
 assert.match(ekip, /kendiPersonelFotografiniGuncelle/, 'Personel kendi yayın fotoğrafını güncelleyebilmeli.');
 assert.match(medya, /toBlob\(coz, 'image\/webp'/, 'Görsel EXIF taşımayan yeniden kodlanmış WebP olmalı.');

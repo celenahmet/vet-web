@@ -518,10 +518,7 @@ export default function ClinicPage() {
 
             <section className="vc-block vc-cta">
               <h2 className="vc-h2">{t('cp_find_in_vet')}</h2>
-              <p className="vc-text">
-                Sağlık kaydı, aşı takvimi ve klinikle mesajlaşma için Veterito uygulamasını
-                kullanabilirsin.
-              </p>
+              <p className="vc-text">{t('cp_find_in_vet_desc')}</p>
             </section>
           </aside>
 
@@ -555,7 +552,7 @@ export default function ClinicPage() {
                       aria-selected={aktifSekme === 'hours'}
                       className={`vc-tab${aktifSekme === 'hours' ? ' vc-tab-on' : ''}`}
                       onClick={() => setSekme('hours')}>
-                      Mesai saatleri
+                      {t('cp_hours_tab')}
                       {specialHours.length > 0 ? (
                         <span className="vc-tab-count">{specialHours.length}</span>
                       ) : null}
@@ -577,10 +574,7 @@ export default function ClinicPage() {
                     </div>
                     {/* ⚠️ BEYAN OLDUĞU YAZIYOR: platform diploma doğrulaması yapmıyor
                         (ürün briefi §4.4.2c). Doğrulanmış gibi göstermek yanıltıcı olurdu. */}
-                    <p className="vc-note">
-                      Eğitim ve ünvan bilgileri kliniğin beyanıdır; platform belge doğrulaması
-                      yapmaz.
-                    </p>
+                    <p className="vc-note">{t('cp_staff_note')}</p>
                   </div>
                 ) : aktifSekme === 'gallery' ? (
                   <div className="vc-panel" role="tabpanel">

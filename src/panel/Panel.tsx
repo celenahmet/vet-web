@@ -225,12 +225,6 @@ export default function Panel() {
           </div>
 
           <div className="pnl-klinik-kutu">
-            {/* ⚠️ Bas harf, logo yerine gecen kucuk bir kimlik. Klinigin kendi
-                gorseli sunucudan gelmiyor; uydurma bir ikon koymak yerine adin
-                ilk harfi kullaniliyor. */}
-            <span className="pnl-klinik-rozet" aria-hidden="true">
-              {(secili.clinic_name || 'K').trim().charAt(0).toLocaleUpperCase('tr-TR')}
-            </span>
             <span className="pnl-klinik-metin">
               <span className="pnl-klinik-etiket">Klinik</span>
               {klinikler.length > 1 ? (

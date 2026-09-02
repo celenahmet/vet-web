@@ -331,6 +331,16 @@ export default function PanelWebSitesi({ klinik, sahip }: { klinik: string; sahi
             ) : null}
           </header>
           <div className="pnl-widget-govde">
+            {sayfa?.is_published && adres ? (
+              <div className="pnl-web-yayin-basari" role="status">
+                <span className="pnl-web-yayin-basari-ikonu" aria-hidden="true"><CheckCircle2 size={24} /></span>
+                <div>
+                  <strong>Webde görünürsünüz — sayfanız yayında</strong>
+                  <p>{sayfa.is_indexable ? 'Ziyaretçiler sayfanızı açabilir; arama motorları da sayfanızı listeleyebilir.' : 'Ziyaretçiler sayfanızı doğrudan açabilir. Arama motorlarında görünmek için indekslemeyi ayrıca açabilirsiniz.'}</p>
+                </div>
+                <a href={adres} target="_blank" rel="noopener noreferrer">Yayındaki sayfayı görüntüle <ExternalLink size={14} /></a>
+              </div>
+            ) : null}
             {adres ? (
               <p className="pnl-adres">
                 <span>Adresiniz:</span> <a href={adres} target="_blank" rel="noopener noreferrer">veterito.com/@{sayfa?.username}</a>
