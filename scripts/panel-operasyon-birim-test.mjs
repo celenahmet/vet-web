@@ -15,6 +15,14 @@ import { sahiplendirmeIlanlariniFiltreleSirala } from '../src/panel/sahiplendirm
 import { duyurulariFiltrele } from '../src/panel/duyuru-liste.ts';
 import { musterileriFiltrele, hastalariFiltrele, olasiDefterHastasiEslesmeleri } from '../src/panel/klinik-kayit-arama.ts';
 import { randevulariFiltrele } from '../src/panel/randevu-liste.ts';
+import { guvenliDisWebAdresi } from '../src/lib/safe-url.ts';
+
+assert.equal(guvenliDisWebAdresi('https://klinik.example/yol'), 'https://klinik.example/yol',
+  'HTTPS klinik web adresi tıklanabilir kalmalı.');
+assert.equal(guvenliDisWebAdresi('javascript:alert(1)'), null,
+  'Çalıştırılabilir URL şeması kamusal klinik sayfasında bağlantıya dönüşmemeli.');
+assert.equal(guvenliDisWebAdresi('http://klinik.example'), null,
+  'Şifresiz HTTP klinik web adresi bağlantıya dönüşmemeli.');
 
 const platformMusterileri = [{ user_id: 'u1', display_name: 'İlker Işık', note: 'Kontrol listesi' }];
 const defterMusterileri = [{ id: 'd1', full_name: 'Ayşe Yılmaz', phone: '905322221100', email: 'ayse@example.com', note: null }];

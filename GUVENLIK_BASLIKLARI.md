@@ -49,6 +49,13 @@ sunucu tarafı render'a geçersek, `'unsafe-inline'` kaldırılır.
 React ve framer-motion satır içi `style` yazıyor. Kaldırmak animasyonları ve
 düzeni bozar. Stil enjeksiyonunun saldırı değeri betiğe göre düşük.
 
+## `script-src-attr 'none'`
+
+Statik tema ve yapılandırılmış veri blokları nedeniyle satır içi script elemanları
+şimdilik açık kalsa da HTML içine enjekte edilen `onclick` gibi olay öznitelikleri
+hiçbir sayfada gerekli değildir. Bu ayrı direktif onları tamamen kapatır; React'in
+olay dinleyicileri DOM özniteliği olarak çalışmadığı için mevcut etkileşimleri bozmaz.
+
 ## Diğerleri
 
 | Başlık | Neden |

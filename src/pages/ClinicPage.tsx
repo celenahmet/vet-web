@@ -19,6 +19,7 @@ import {
   type ClinicHour,
   type ClinicSpecialHour,
 } from '../lib/clinicPage';
+import { guvenliDisWebAdresi } from '../lib/safe-url';
 import {
   IconCheck,
   IconClose,
@@ -95,6 +96,7 @@ export default function ClinicPage() {
     staff: {},
   });
   const [loading, setLoading] = useState(true);
+  const websiteUrl = guvenliDisWebAdresi(page?.website);
 
   /**
    * Vitrin: ekip ve galeri AYNI panelde, sekmeyle geçişli (İSTEK: Ahmet, 20.08.2026).
@@ -380,7 +382,7 @@ export default function ClinicPage() {
             En altta kimse görmüyordu; kimlik bilgisi olarak adın yanında duruyor.
             Etiket yerine logo — "Instagram" bir "I" harfi olarak görünmemeli.
           */}
-          {sosyal.length > 0 || page.website ? (
+          {sosyal.length > 0 || websiteUrl ? (
             <nav className="vc-social" aria-label="Sosyal medya hesapları">
               {sosyal.map((s) => {
                 const Ikon = socialIcon[s.key];
@@ -397,10 +399,10 @@ export default function ClinicPage() {
                   </a>
                 );
               })}
-              {page.website ? (
+              {websiteUrl ? (
                 <a
                   className="vc-social-btn"
-                  href={page.website}
+                  href={websiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Web sitesi"
