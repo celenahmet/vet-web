@@ -26,6 +26,7 @@ import {
   birlestirilmisAnalitler, cihazAdaylariniNormallestir, ocrMetniniCoz, ocrSonucunuBirlestir,
   type OcrBirlestirme,
 } from './lab-ocr';
+import { OcrGorselHatasi, ocrGorseliniHazirla, ocrZamanSinirli } from './ocr-gorsel-guvenligi';
 
 const DURUM: Record<LabDurumu, string> = {
   requested: 'İstendi', accepted: 'Kabul edildi', processing: 'Çalışılıyor',
@@ -238,18 +239,11 @@ export default function PanelLaboratuvar({ klinik, sahip, git }: { klinik: strin
     const beklenen = istem ? panel(istem)?.expected_analytes ?? [] : [];
     if (!istem || !cihaz || beklenen.length === 0) return setHata('Önce açık istemi ve sonucu üreten aktif cihazı seçin.');
     if (istem.device_id && istem.device_id !== cihaz.id) return setHata('Bu istem başka bir cihaza bağlı. Sonuçları karıştırmak yerine yeni istem açın.');
-    const izinliTurler = new Set(['image/jpeg', 'image/png', 'image/webp']);
-    if (!izinliTurler.has(dosya.type)) {
-      if (dosyaAlani.current) dosyaAlani.current.value = '';
-      return setHata('Yalnız JPEG, PNG veya WebP biçiminde cihaz fotoğrafı seçin.');
-    }
-    if (dosya.size > 12 * 1024 * 1024) {
-      if (dosyaAlani.current) dosyaAlani.current.value = '';
-      return setHata('Cihaz fotoğrafı en fazla 12 MB olabilir. Daha küçük bir görüntü seçin.');
-    }
-    const nesneAdresi = URL.createObjectURL(dosya);
+    let nesneAdresi: string | null = null;
     setBekliyor(true); setHata(null); setOcrIlerleme(0); setOcrDurum('OCR motoru hazırlanıyor');
     try {
+      const hazirGorsel = await ocrGorseliniHazirla(dosya);
+      nesneAdresi = URL.createObjectURL(hazirGorsel);
       const { createWorker } = await import('tesseract.js');
       const worker = await createWorker('eng', 1, {
         workerPath: '/ocr/v7/worker.min.js',
@@ -261,19 +255,19 @@ export default function PanelLaboratuvar({ klinik, sahip, git }: { klinik: strin
         },
       });
       try {
-        const sonuc = await worker.recognize(nesneAdresi);
+        const sonuc = await ocrZamanSinirli(worker.recognize(nesneAdresi));
         const eslemeler = cihazEslemeleri.filter((satir) => satir.device_id === cihaz.id);
         const taranan = cihazAdaylariniNormallestir(ocrMetniniCoz(sonuc.data.text,
           [...new Set([...beklenen, ...eslemeler.map((satir) => satir.raw_code)])]), eslemeler);
         setOcrSatirlari(ocrSonucunuBirlestir(taranan, istemAnalitleri(istem.id)));
         setOcrDurum('Fotoğraf silindi; doğrulanabilir taslak hazır'); setOcrIlerleme(100);
       } finally { await worker.terminate(); }
-    } catch {
-      setHata('Fotoğraf web tarayıcısında okunamadı. Görüntüyü yalnız cihaz ekranını içerecek şekilde kırpıp daha net ışıkla yeniden deneyin.');
+    } catch (e) {
+      setHata(e instanceof OcrGorselHatasi ? e.message : 'Fotoğraf web tarayıcısında okunamadı. Görüntüyü yalnız cihaz ekranını içerecek şekilde kırpıp daha net ışıkla yeniden deneyin.');
       setOcrDurum(''); setOcrIlerleme(null);
     }
     finally {
-      URL.revokeObjectURL(nesneAdresi);
+      if (nesneAdresi) URL.revokeObjectURL(nesneAdresi);
       if (dosyaAlani.current) dosyaAlani.current.value = '';
       setBekliyor(false);
     }

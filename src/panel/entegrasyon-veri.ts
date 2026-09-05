@@ -35,6 +35,7 @@ export type EntegrasyonSaglayicisi = {
   required_config_fields: string[];
   optional_config_fields: string[];
   required_secret_fields: string[];
+  allowed_base_hosts: string[];
   capabilities: string[];
   lab_system_type: 'external_reference_lab' | 'lis_middleware' | 'in_house_analyzer' | 'manual_file_import' | null;
   lab_disciplines: string[];
@@ -110,7 +111,7 @@ export async function entegrasyonlariOku(klinik: string): Promise<KlinikEntegras
 
 export async function entegrasyonSaglayicilariniOku(): Promise<EntegrasyonSaglayicisi[]> {
   const { data, error } = await istemci.from('integration_provider_catalog')
-    .select('code,kind,display_name,adapter_kind,environments,required_config_fields,optional_config_fields,required_secret_fields,capabilities,lab_system_type,lab_disciplines')
+    .select('code,kind,display_name,adapter_kind,environments,required_config_fields,optional_config_fields,required_secret_fields,allowed_base_hosts,capabilities,lab_system_type,lab_disciplines')
     .eq('is_active', true).order('kind').order('sort_order');
   if (error) throw guvenliHata(error, 'entegrasyon_saglayicilari');
   return (data ?? []) as EntegrasyonSaglayicisi[];

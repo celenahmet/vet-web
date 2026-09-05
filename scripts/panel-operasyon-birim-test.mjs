@@ -16,6 +16,7 @@ import { duyurulariFiltrele } from '../src/panel/duyuru-liste.ts';
 import { musterileriFiltrele, hastalariFiltrele, olasiDefterHastasiEslesmeleri } from '../src/panel/klinik-kayit-arama.ts';
 import { randevulariFiltrele } from '../src/panel/randevu-liste.ts';
 import { guvenliDisWebAdresi } from '../src/lib/safe-url.ts';
+import { ocrGorselBoyutunuOku } from '../src/panel/ocr-gorsel-guvenligi.ts';
 
 assert.equal(guvenliDisWebAdresi('https://klinik.example/yol'), 'https://klinik.example/yol',
   'HTTPS klinik web adresi tıklanabilir kalmalı.');
@@ -23,6 +24,16 @@ assert.equal(guvenliDisWebAdresi('javascript:alert(1)'), null,
   'Çalıştırılabilir URL şeması kamusal klinik sayfasında bağlantıya dönüşmemeli.');
 assert.equal(guvenliDisWebAdresi('http://klinik.example'), null,
   'Şifresiz HTTP klinik web adresi bağlantıya dönüşmemeli.');
+
+const pngBasligi = new Uint8Array(24);
+pngBasligi.set([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a], 0);
+pngBasligi.set([0x49, 0x48, 0x44, 0x52], 12);
+pngBasligi.set([0, 0, 6, 64, 0, 0, 4, 176], 16);
+assert.deepEqual(ocrGorselBoyutunuOku(pngBasligi, 'image/png'),
+  { width: 1600, height: 1200, format: 'png' },
+  'OCR güvenlik kapısı görüntü boyutunu dosyanın gerçek başlığından okumalı.');
+assert.equal(ocrGorselBoyutunuOku(pngBasligi, 'image/jpeg'), null,
+  'OCR güvenlik kapısı sahte MIME etiketiyle gerçek dosya imzası uyuşmazlığını reddetmeli.');
 
 const platformMusterileri = [{ user_id: 'u1', display_name: 'İlker Işık', note: 'Kontrol listesi' }];
 const defterMusterileri = [{ id: 'd1', full_name: 'Ayşe Yılmaz', phone: '905322221100', email: 'ayse@example.com', note: null }];
@@ -321,6 +332,8 @@ assert.doesNotMatch(entegrasyon, /doğrulama kuyruğuna/i, 'Olmayan otomatik do�
 assert.match(envOrnegi, /^VITE_STORAGE_PROVIDER=r2$/m, 'Web paneli taşınmış medya anahtarlarını R2 üzerinden okumalı.');
 assert.match(vercel, /img-src[^;]*https:\/\/cdn\.veterito\.com/, 'CSP, imzalı R2 görsellerinin CDN üzerinden gösterilmesine izin vermeli.');
 assert.match(vercel, /connect-src[^;]*https:\/\/cdn\.veterito\.com/, 'CSP, imzalı R2 yükleme ve silme isteklerine izin vermeli.');
+assert.doesNotMatch(vercel, /https:\/\/\*\.supabase\.co/, 'CSP bağlantı izni yalnız kullanılan Supabase projesiyle sınırlı kalmalı.');
+assert.match(vercel, /"type":\s*"host"[\s\S]*"value":\s*"www\.veterito\.com"[\s\S]*https:\/\/veterito\.com\/:path\*/, 'Vercel, www isteğini kanonik apex alanına yönlendirmeli.');
 assert.match(vercel, /worker-src 'self' blob:/, 'Tarayıcı OCR workerı yalnız aynı alan ve geçici blob bağlamında çalışabilmeli.');
 assert.match(vercel, /camera=\(self\)/, 'Web barkod kamerası yalnız aynı kaynaklı panelde kullanıcı izniyle açılabilmeli.');
 assert.doesNotMatch(vercel, /worker-src[^;]*https?:/, 'OCR workerı üçüncü taraf CDN’den çalıştırılmamalı.');
@@ -447,6 +460,8 @@ for (const yol of ['/ocr/v7/worker.min.js', '/ocr/v7/tesseract-core-lstm.wasm.js
 assert.doesNotMatch(laboratuvar, /cdn\.jsdelivr\.net/, 'Laboratuvar fotoğrafı işlenirken çalışma kodu dış CDN’e bağlı kalmamalı.');
 assert.match(laboratuvar, /URL\.revokeObjectURL\(nesneAdresi\)/, 'OCR tamamlanınca veya hata verince geçici fotoğraf nesne adresi silinmeli.');
 assert.match(laboratuvar, /worker\.terminate\(\)/, 'OCR tamamlanınca web worker bellekte bırakılmamalı.');
+assert.match(laboratuvar, /ocrGorseliniHazirla\(dosya\)/, 'OCR dosyası motora verilmeden önce doğrulanıp yeniden kodlanmalı.');
+assert.match(laboratuvar, /ocrZamanSinirli\(worker\.recognize/, 'OCR işlemi kaynak tüketimini sınırlayan zaman aşımıyla çalışmalı.');
 assert.match(laboratuvar, /Aktif cihaz profili gerekli[\s\S]*Açık laboratuvar istemi gerekli[\s\S]*OCR için hazır/,
   'OCR penceresi pasif alan yerine cihaz ve istem ön koşullarını eylemli açıklamalı.');
 assert.match(laboratuvar, /id="ocr-cihaz"[\s\S]*id="ocr-istem"/, 'OCR penceresinde kaynak cihaz ve hasta istemi birlikte seçilebilmeli.');
@@ -466,8 +481,10 @@ assert.match(labCihazlari, /labCihazEslemesiniKaydet/, 'Owner cihaz bazlı anali
 assert.match(labCihazlari, /cihazlar\.length === 0[\s\S]*Henüz cihaz profili yok/, 'Cihaz listesi boşken kullanıcıya sonraki adım açıklanmalı.');
 assert.equal((labCihazlari.match(/className="pnl-form-eylem"/g) ?? []).length, 2,
   'Cihaz ve analit eşleme formunun ana eylemleri aynı hizalı alt alanda kalmalı.');
-assert.match(entegrasyon, /function saglayiciyiSec[\s\S]*temelAdres: ayni \? mevcut\?\.base_url \?\? '' : ''/,
+assert.match(entegrasyon, /function saglayiciyiSec[\s\S]*temelAdres: ayni[\s\S]*allowed_base_hosts\[0\]/,
   'Sağlayıcı değişince eski sağlayıcının API adresi yeni yapılandırmaya taşınmamalı.');
+assert.match(entegrasyon, /adres\.protocol !== 'https:'[\s\S]*adres\.username[\s\S]*allowed_base_hosts\.includes/,
+  'Entegrasyon formu yalnız katalogda doğrulanmış HTTPS sağlayıcı alanını kabul etmeli.');
 assert.match(musteriler, /defterArsivEtkisiniOku/, 'Müşteri arşivlenmeden önce bağlı kayıt etkisi okunmalı.');
 assert.match(hastalar, /defterArsivEtkisiniOku/, 'Hasta arşivlenmeden önce bağlı kayıt etkisi okunmalı.');
 assert.match(panelVeri, /archive_clinic_offline_record/, 'Web defter kaydı güvenli arşiv RPC kapısını kullanmalı.');

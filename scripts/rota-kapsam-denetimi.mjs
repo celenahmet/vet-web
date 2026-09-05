@@ -97,8 +97,14 @@ for (const k of kapsanan) {
 // ⚠️ KAYNAK AYNI ZAMANDA ROTA OLAMAZ. Vercel yonlendirmeyi rewrite'tan ONCE
 // isliyor; ikisi de tanimliysa sayfa asla acilmaz, sessizce erisilmez olur.
 const yonlendirmeler = vercel.redirects ?? [];
-const kirikHedef = yonlendirmeler.filter((y) => !rotalar.includes(y.destination));
-const golgeliKaynak = yonlendirmeler.filter((y) => rotalar.includes(y.source));
+// Host koşullu kanonik alan yönlendirmesi uygulama rotası değildir. Hedefi mutlak
+// HTTPS adresidir ve aynı path parametresini korur; App.tsx rota listesine karşı
+// sınamak bu geçerli Vercel kuralını yanlışlıkla “kırık” sayardı.
+const uygulamaYonlendirmeleri = yonlendirmeler.filter((y) =>
+  !y.has?.some((kosul) => kosul.type === 'host') && !/^https:\/\//.test(y.destination),
+);
+const kirikHedef = uygulamaYonlendirmeleri.filter((y) => !rotalar.includes(y.destination));
+const golgeliKaynak = uygulamaYonlendirmeleri.filter((y) => rotalar.includes(y.source));
 
 if (kirikHedef.length || golgeliKaynak.length) {
   console.error('\n!!! YONLENDIRME BOZUK — DERLEME DURDURULDU !!!\n');
