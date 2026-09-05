@@ -23,6 +23,11 @@ import { musterileriFiltrele, hastalariFiltrele, olasiDefterHastasiEslesmeleri }
 import { randevulariFiltrele } from '../src/panel/randevu-liste.ts';
 import { guvenliDisWebAdresi } from '../src/lib/safe-url.ts';
 import { ocrGorselBoyutunuOku } from '../src/panel/ocr-gorsel-guvenligi.ts';
+import {
+  aktarimSatirlariniOlustur,
+  MUSTERI_SEMA_KIMLIGI,
+  varsayilanEslestirmeler,
+} from '../src/panel/musteri-aktarim.ts';
 
 assert.equal(guvenliDisWebAdresi('https://klinik.example/yol'), 'https://klinik.example/yol',
   'HTTPS klinik web adresi tıklanabilir kalmalı.');
@@ -242,6 +247,36 @@ assert.throws(
   /en az bir ürün|Zorunlu sütun|başlık/i,
   'Eksik ürün dosyası sessizce içeri alınmamalı.',
 );
+
+const musteriBasliklari = ['Müşteri No', 'Ad Soyad', 'Cep Telefonu', 'Eposta', 'Sadakat Seviyesi'];
+const musteriEslemeleri = varsayilanEslestirmeler(musteriBasliklari, []);
+assert.deepEqual(
+  musteriEslemeleri.map((x) => x.target),
+  ['external_ref', 'full_name', 'phone', 'email', 'ignore'],
+  'Müşteri aktarımı yaygın başlıkları otomatik eşlemeli, bilinmeyen sütunu açık seçim olmadan içeri almamalı.',
+);
+musteriEslemeleri[4] = { ...musteriEslemeleri[4], target: 'custom', dataType: 'tag' };
+const musteriAktarimSatirlari = aktarimSatirlariniOlustur({
+  headers: musteriBasliklari,
+  rows: [['ESKI-42', 'Ayşe Yılmaz', '0532 000 00 00', 'ayse@example.com', 'Altın']],
+  digest: 'a'.repeat(64),
+  format: 'csv',
+  name: 'eski-program.csv',
+}, musteriEslemeleri);
+assert.deepEqual(
+  [musteriAktarimSatirlari[0]?.schema_id, musteriAktarimSatirlari[0]?.external_ref,
+    musteriAktarimSatirlari[0]?.full_name, musteriAktarimSatirlari[0]?.custom_fields[0]?.data_type,
+    musteriAktarimSatirlari[0]?.custom_fields[0]?.value],
+  [MUSTERI_SEMA_KIMLIGI, 'ESKI-42', 'Ayşe Yılmaz', 'tag', 'Altın'],
+  'Seçilen özel müşteri sütunu Veterito şema kimliğiyle ve veri tipi korunarak aktarım planına girmeli.',
+);
+assert.throws(
+  () => aktarimSatirlariniOlustur({
+    headers: ['Ad Soyad', 'Ad'], rows: [['Ayşe', 'Yılmaz']], digest: 'b'.repeat(64), format: 'csv', name: 'ikiz.csv',
+  }, varsayilanEslestirmeler(['Ad Soyad', 'Ad'], [])),
+  /Tam olarak bir sütun/,
+  'İki ad sütunu aynı hedefe sessizce yazılmamalı.',
+);
 for (const [ad, beklenen] of [
   ['NotAllowedError', 'Kamera izni bu site için engellenmiş.'],
   ['NotFoundError', 'Kullanılabilir kamera bulunamadı.'],
@@ -289,6 +324,8 @@ const vercel = readFileSync(new URL('../vercel.json', import.meta.url), 'utf8');
 const envOrnegi = readFileSync(new URL('../.env.example', import.meta.url), 'utf8');
 const paket = readFileSync(new URL('../package.json', import.meta.url), 'utf8');
 const ocrVarliklari = readFileSync(new URL('./ocr-varliklarini-hazirla.mjs', import.meta.url), 'utf8');
+const musteriAktarimi = readFileSync(new URL('../src/panel/musteri-aktarim.ts', import.meta.url), 'utf8');
+const musteriAktarimVerisi = readFileSync(new URL('../src/panel/musteri-aktarim-veri.ts', import.meta.url), 'utf8');
 assert.ok(hastalar.includes('ikinci müşteri kaydı açmayın'),
   'Hasta formu uygulama üyesi için sessiz ikiz kaydı önlemeli.');
 assert.ok(!hastalar.includes('onun adına bir kayıt açın'),
@@ -521,6 +558,14 @@ assert.match(entegrasyon, /function saglayiciyiSec[\s\S]*temelAdres: ayni[\s\S]*
 assert.match(entegrasyon, /adres\.protocol !== 'https:'[\s\S]*adres\.username[\s\S]*allowed_base_hosts\.includes/,
   'Entegrasyon formu yalnız katalogda doğrulanmış HTTPS sağlayıcı alanını kabul etmeli.');
 assert.match(musteriler, /defterArsivEtkisiniOku/, 'Müşteri arşivlenmeden önce bağlı kayıt etkisi okunmalı.');
+assert.match(musteriler, /Veterito müşteri aktarımı[\s\S]*Aktarım yetkisini onaylıyorum/,
+  'Müşteri aktarımı alan eşleme ve açık kullanıcı onayını aynı kontrollü akışta sunmalı.');
+assert.match(musteriler, /external_ref[\s\S]*custom_data/,
+  'İçe aktarılan dış müşteri numarası ve kliniğe özel alanlar müşteri kartında görünür olmalı.');
+assert.match(musteriAktarimi, /veterito-\$\{klinik\}[\s\S]*Veterito Müşteriler[\s\S]*Veterito Alan Rehberi/,
+  'Dışa aktarılan dosya adı ve XLSX sekmeleri Veterito kimliğini taşımalı.');
+assert.match(musteriAktarimVerisi, /process_customer_file_import/,
+  'Müşteri içe aktarımı doğrudan tablo yazmak yerine atomik doğrulama RPC kapısını kullanmalı.');
 assert.match(hastalar, /defterArsivEtkisiniOku/, 'Hasta arşivlenmeden önce bağlı kayıt etkisi okunmalı.');
 assert.match(panelVeri, /archive_clinic_offline_record/, 'Web defter kaydı güvenli arşiv RPC kapısını kullanmalı.');
 assert.match(panelVeri, /restore_clinic_offline_record/, 'Arşivlenen müşteri ve hasta webden geri açılabilmeli.');

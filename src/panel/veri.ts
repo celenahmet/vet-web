@@ -951,6 +951,9 @@ export type CevrimdisiMusteri = {
   phone: string | null;
   email: string | null;
   note: string | null;
+  external_ref: string | null;
+  labels: string[];
+  custom_data: Record<string, unknown>;
   created_at: string;
 };
 
@@ -992,7 +995,7 @@ export async function okunmamisBildirimSayisi(): Promise<number> {
 
 export async function cevrimdisiMusterileriOku(klinik: string): Promise<CevrimdisiMusteri[]> {
   const { data, error } = await istemci.from('clinic_offline_customers')
-    .select('id,full_name,phone,email,note,created_at').eq('clinic_id', klinik)
+    .select('id,full_name,phone,email,note,external_ref,labels,custom_data,created_at').eq('clinic_id', klinik)
     .is('archived_at', null).order('created_at', { ascending: false });
   if (error) throw error;
   return (data as CevrimdisiMusteri[] | null) ?? [];
@@ -1000,7 +1003,7 @@ export async function cevrimdisiMusterileriOku(klinik: string): Promise<Cevrimdi
 
 export async function arsivdekiMusterileriOku(klinik: string): Promise<CevrimdisiMusteri[]> {
   const { data, error } = await istemci.from('clinic_offline_customers')
-    .select('id,full_name,phone,email,note,created_at').eq('clinic_id', klinik)
+    .select('id,full_name,phone,email,note,external_ref,labels,custom_data,created_at').eq('clinic_id', klinik)
     .not('archived_at', 'is', null).order('archived_at', { ascending: false });
   if (error) throw error;
   return (data as CevrimdisiMusteri[] | null) ?? [];

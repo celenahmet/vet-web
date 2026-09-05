@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Archive, ArchiveRestore, User, UserPlus, Plus, Smartphone, NotebookPen, Pencil, Search } from 'lucide-react';
+import { Archive, ArchiveRestore, User, UserPlus, Plus, Smartphone, NotebookPen, Pencil, Search,
+  Download, FileSpreadsheet, Upload } from 'lucide-react';
 
 import {
   musterileriOku, musteriDavetEt, cevrimdisiMusterileriOku, defterMusterisiEkle,
@@ -19,6 +20,16 @@ import Yukleniyor from './Yukleniyor';
 import Hata from './Hata';
 import Diyalog from './Diyalog';
 import { musterileriFiltrele, type KayitKaynagi } from './klinik-kayit-arama';
+import {
+  aktarimSatirlariniOlustur, musteriCsvIndir, musteriCsvRehberiIndir, musteriDosyasiniOku,
+  musteriXlsxIndir, ornekMusteriSatirlari, varsayilanEslestirmeler,
+  type HamMusteriDosyasi, type MusteriAlanEslestirmesi, type MusteriHedefAlani,
+  type MusteriOzelAlan, type OzelAlanTuru,
+} from './musteri-aktarim';
+import {
+  musteriAktarimListesiniOku, musteriDosyasiAktar, musteriOzelAlanlariniOku,
+  type MusteriAktarimSonucu,
+} from './musteri-aktarim-veri';
 
 /**
  * MUSTERILER — iki kaynak tek liste
@@ -40,7 +51,7 @@ import { musterileriFiltrele, type KayitKaynagi } from './klinik-kayit-arama';
  * kurmak yerine soru yalnizca "davet de gonderelim mi" karari icin kullaniliyor.
  * Gercek baglanti tek yoldan kuruluyor: davet, karsi taraf kabul ediyor.
  */
-export default function PanelMusteriler({ klinik, sahip }: { klinik: string; sahip: boolean }) {
+export default function PanelMusteriler({ klinik, klinikAdi, sahip }: { klinik: string; klinikAdi: string; sahip: boolean }) {
   const [platform, setPlatform] = useState<Musteri[] | null>(null);
   /* Not duzenleme ve cikarma (esitleme 7. madde). Ayni anda tek satir
      duzenleniyor: birden fazla acik kutu, hangisinin kaydedildigini
@@ -66,11 +77,18 @@ export default function PanelMusteriler({ klinik, sahip }: { klinik: string; sah
   const [arsivdekiler, setArsivdekiler] = useState<CevrimdisiMusteri[]>([]);
   const [arama, setArama] = useState('');
   const [kaynak, setKaynak] = useState<KayitKaynagi>('all');
+  const [aktarimAcik, setAktarimAcik] = useState(false);
+  const [aktarimDosyasi, setAktarimDosyasi] = useState<HamMusteriDosyasi | null>(null);
+  const [eslemeler, setEslemeler] = useState<MusteriAlanEslestirmesi[]>([]);
+  const [ozelAlanlar, setOzelAlanlar] = useState<MusteriOzelAlan[]>([]);
+  const [aktarimSonucu, setAktarimSonucu] = useState<MusteriAktarimSonucu | null>(null);
+  const [cozumler, setCozumler] = useState<Record<number, string>>({});
+  const [hukukiBeyan, setHukukiBeyan] = useState(false);
 
   const yukle = useCallback(() => {
     setHata(null);
-    Promise.all([musterileriOku(klinik), cevrimdisiMusterileriOku(klinik)])
-      .then(([p, d]) => { setPlatform(p); setDefter(d); })
+    Promise.all([musterileriOku(klinik), cevrimdisiMusterileriOku(klinik), musteriOzelAlanlariniOku(klinik)])
+      .then(([p, d, alanlar]) => { setPlatform(p); setDefter(d); setOzelAlanlar(alanlar); })
       .catch((e: { message?: string }) => { setPlatform([]); setHata(e?.message ?? ''); });
   }, [klinik]);
 
@@ -108,6 +126,69 @@ export default function PanelMusteriler({ klinik, sahip }: { klinik: string; sah
     } catch (err) {
       setIslemHatasi((err as { message?: string })?.message ?? '');
     } finally { setBekliyor(false); }
+  }
+
+  async function aktarimiAc() {
+    setBekliyor(true); setIslemHatasi(null); setAktarimSonucu(null); setAktarimDosyasi(null);
+    setEslemeler([]); setCozumler({}); setHukukiBeyan(false);
+    try { setOzelAlanlar(await musteriOzelAlanlariniOku(klinik)); setAktarimAcik(true); }
+    catch (e) { setIslemHatasi((e as Error).message); }
+    finally { setBekliyor(false); }
+  }
+
+  async function aktarimDosyasiniSec(dosya: File | undefined) {
+    if (!dosya || bekliyor) return;
+    setBekliyor(true); setIslemHatasi(null); setAktarimSonucu(null); setCozumler({}); setHukukiBeyan(false);
+    try {
+      const okunan = await musteriDosyasiniOku(dosya);
+      setAktarimDosyasi(okunan); setEslemeler(varsayilanEslestirmeler(okunan.headers, ozelAlanlar));
+    } catch (e) { setAktarimDosyasi(null); setEslemeler([]); setIslemHatasi((e as Error).message); }
+    finally { setBekliyor(false); }
+  }
+
+  function eslemeyiDegistir(indeks: number, alanlar: Partial<MusteriAlanEslestirmesi>) {
+    setEslemeler((onceki) => onceki.map((x, i) => i === indeks ? { ...x, ...alanlar } : x));
+    setAktarimSonucu(null); setHukukiBeyan(false);
+  }
+
+  async function aktarimiOnizle(yeniCozumler = cozumler) {
+    if (!aktarimDosyasi || bekliyor) return;
+    setBekliyor(true); setIslemHatasi(null); setHukukiBeyan(false);
+    try {
+      const satirlar = aktarimSatirlariniOlustur(aktarimDosyasi, eslemeler, yeniCozumler);
+      setAktarimSonucu(await musteriDosyasiAktar({ klinik, satirlar, kesin: false,
+        kaynakOzeti: aktarimDosyasi.digest, dosyaAdi: aktarimDosyasi.name,
+        bicim: aktarimDosyasi.format, hukukiBeyan: false }));
+    } catch (e) { setAktarimSonucu(null); setIslemHatasi((e as Error).message); }
+    finally { setBekliyor(false); }
+  }
+
+  async function aktarimiTamamla() {
+    if (!aktarimDosyasi || !aktarimSonucu?.valid || !hukukiBeyan || bekliyor) return;
+    setBekliyor(true); setIslemHatasi(null); setBilgi(null);
+    try {
+      const satirlar = aktarimSatirlariniOlustur(aktarimDosyasi, eslemeler, cozumler);
+      const sonuc = await musteriDosyasiAktar({ klinik, satirlar, kesin: true,
+        planHash: aktarimSonucu.plan_hash, kaynakOzeti: aktarimDosyasi.digest,
+        dosyaAdi: aktarimDosyasi.name, bicim: aktarimDosyasi.format, hukukiBeyan: true });
+      if (!sonuc.valid) { setAktarimSonucu(sonuc); return; }
+      setBilgi(`${sonuc.summary.new_customers} yeni müşteri eklendi, ${sonuc.summary.updated_customers} mevcut kayıt korumalı biçimde tamamlandı.${sonuc.replay ? ' Aynı onaylı plan daha önce işlendiği için kayıt çoğaltılmadı.' : ''}`);
+      setAktarimAcik(false); setAktarimDosyasi(null); setAktarimSonucu(null); yukle();
+    } catch (e) { setIslemHatasi((e as Error).message); }
+    finally { setBekliyor(false); }
+  }
+
+  async function disaAktar(bicim: 'csv' | 'xlsx', sablon = false) {
+    if (bekliyor) return; setBekliyor(true); setIslemHatasi(null);
+    try {
+      const [satirlar, tanimlar] = await Promise.all([
+        sablon ? Promise.resolve(ornekMusteriSatirlari()) : musteriAktarimListesiniOku(klinik),
+        musteriOzelAlanlariniOku(klinik),
+      ]);
+      if (bicim === 'csv') musteriCsvIndir(klinikAdi, satirlar, tanimlar, sablon);
+      else await musteriXlsxIndir(klinikAdi, satirlar, tanimlar, sablon);
+    } catch (e) { setIslemHatasi((e as Error).message); }
+    finally { setBekliyor(false); }
   }
 
   async function davetGonder(e: React.FormEvent) {
@@ -203,6 +284,9 @@ export default function PanelMusteriler({ klinik, sahip }: { klinik: string; sah
           </p>
         </div>
         <div className="pnl-basi-dugmeler">
+          {sahip ? <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => void aktarimiAc()} disabled={bekliyor}>
+            <FileSpreadsheet size={15} /> İçe / dışa aktar
+          </button> : null}
           {sahip ? <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setArsivAcik((v) => !v)}>
             <ArchiveRestore size={15} /> {arsivAcik ? 'Arşivi gizle' : 'Arşiv'}
           </button> : null}
@@ -332,6 +416,16 @@ export default function PanelMusteriler({ klinik, sahip }: { klinik: string; sah
                   <span className="pnl-etiket">kendi kaydınız</span>
                 </p>
                 <p className="pnl-kisi-rol">{m.phone || m.email || 'İletişim bilgisi yok'}</p>
+                {m.external_ref ? <p className="pnl-kisi-ek">Dış müşteri no: {m.external_ref}</p> : null}
+                {m.labels?.length ? <div className="pnl-musteri-etiketleri" aria-label="Müşteri etiketleri">
+                  {m.labels.map((etiket) => <span className="pnl-etiket" key={etiket}>{etiket}</span>)}
+                </div> : null}
+                {m.custom_data && Object.keys(m.custom_data).length ? <dl className="pnl-musteri-ozel-alanlar">
+                  {Object.entries(m.custom_data).map(([anahtar, deger]) => <div key={anahtar}>
+                    <dt>{ozelAlanlar.find((alan) => alan.field_key === anahtar)?.label ?? anahtar}</dt>
+                    <dd>{typeof deger === 'boolean' ? (deger ? 'Evet' : 'Hayır') : String(deger ?? '')}</dd>
+                  </div>)}
+                </dl> : null}
                 {m.note ? <p className="pnl-kisi-ek">Not: {m.note}</p> : null}
                 <p className="pnl-kisi-ek pnl-soluk">Deftere eklendi: {tarihYaz(m.created_at, false)}</p>
               </div>
@@ -340,6 +434,61 @@ export default function PanelMusteriler({ klinik, sahip }: { klinik: string; sah
           ))}
         </ul>
       )}
+
+      <Diyalog boyut="panorama" acik={aktarimAcik} kapat={() => setAktarimAcik(false)}
+        baslik="Veterito müşteri aktarımı"
+        aciklama="Dosya alanlarını eşleyin, olası ikizleri çözün ve sonucu görmeden kayıt yazmayın. Ham dosya saklanmaz; platform hesabı otomatik bağlanmaz.">
+        <div className="pnl-aktarim-adimlari" aria-label="Aktarım adımları">
+          <span className={aktarimDosyasi ? 'tamam' : 'aktif'}><b>1</b> Dosya</span>
+          <span className={aktarimDosyasi && !aktarimSonucu ? 'aktif' : aktarimSonucu ? 'tamam' : ''}><b>2</b> Alan eşleme</span>
+          <span className={aktarimSonucu && !aktarimSonucu.valid ? 'aktif' : aktarimSonucu?.valid ? 'tamam' : ''}><b>3</b> Çakışmalar</span>
+          <span className={aktarimSonucu?.valid ? 'aktif' : ''}><b>4</b> Onay</span>
+        </div>
+        {islemHatasi ? <Hata mesaj={islemHatasi} kucuk /> : null}
+        <div className="pnl-aktarim-izgara">
+          <section className="pnl-aktarim-karti"><div><Download size={19} /><span><strong>Veterito şablonu ve rehberi</strong><small>Dosya adı, şema kimliği ve Excel sekmeleri Veterito olarak işaretlenir.</small></span></div>
+            <div className="pnl-aktarim-eylemleri"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => void disaAktar('csv', true)}>CSV şablonu</button><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => void disaAktar('xlsx', true)}>XLSX + rehber</button><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={musteriCsvRehberiIndir}>Alan rehberi</button></div>
+          </section>
+          <section className="pnl-aktarim-karti"><div><FileSpreadsheet size={19} /><span><strong>Mevcut defteri dışa aktar</strong><small>Platform üyeleri değil, kliniğin kendi defter müşterileri ve özel alanları çıkarılır.</small></span></div>
+            <div className="pnl-aktarim-eylemleri"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => void disaAktar('csv')}>CSV indir</button><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => void disaAktar('xlsx')}>XLSX indir</button></div>
+          </section>
+        </div>
+        <label className="pnl-aktarim-yukle"><Upload size={22} /><span><strong>{aktarimDosyasi?.name ?? 'CSV veya XLSX dosyanızı seçin'}</strong><small>En fazla 5 MB, 1.000 satır ve 64 sütun · dosya yüklenmeden tarayıcıda okunur</small></span>
+          <input type="file" accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            onClick={(e) => { e.currentTarget.value = ''; }} onChange={(e) => void aktarimDosyasiniSec(e.target.files?.[0])} disabled={bekliyor} />
+        </label>
+        {aktarimDosyasi ? <section className="pnl-aktarim-esleme">
+          <div className="pnl-aktarim-baslik"><div><h3>Kaynak alanlarını eşleyin</h3><p>{aktarimDosyasi.rows.length} satır · eşlenmeyen sütunlar içeri alınmaz.</p></div><span>{eslemeler.filter((x) => x.target !== 'ignore').length} / {eslemeler.length} alan</span></div>
+          <div className="pnl-aktarim-esleme-listesi">{eslemeler.map((esleme, indeks) => <div className="pnl-aktarim-esleme-satiri" key={`${esleme.source}-${indeks}`}>
+            <strong title={esleme.source}>{esleme.source}</strong><span aria-hidden="true">→</span>
+            <select aria-label={`${esleme.source} hedef alanı`} value={esleme.target} onChange={(e) => eslemeyiDegistir(indeks, { target: e.target.value as MusteriHedefAlani })}>
+              <option value="ignore">Yok say</option><option value="full_name">Ad Soyad (zorunlu)</option><option value="external_ref">Dış müşteri no</option>
+              <option value="phone">Telefon</option><option value="email">E-posta</option><option value="note">Klinik içi not</option>
+              <option value="labels">Etiket listesi</option><option value="schema_id">Veterito şema kimliği</option><option value="custom">Kliniğe özel alan</option>
+            </select>
+            {esleme.target === 'custom' ? <select aria-label={`${esleme.source} veri tipi`} value={esleme.dataType}
+              onChange={(e) => eslemeyiDegistir(indeks, { dataType: e.target.value as OzelAlanTuru })}>
+              <option value="text">Metin</option><option value="number">Sayı</option><option value="date">Tarih</option>
+              <option value="boolean">Evet / hayır</option><option value="tag">Etiket</option>
+            </select> : <small>{esleme.target === 'ignore' ? 'aktarılmaz' : 'Veterito alanı'}</small>}
+          </div>)}</div>
+          <div className="pnl-diyalog-eylem"><button type="button" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor} onClick={() => void aktarimiOnizle()}>{bekliyor ? 'Denetleniyor…' : 'Önizlemeyi oluştur'}</button></div>
+        </section> : null}
+        {aktarimSonucu ? <section className={aktarimSonucu.valid ? 'pnl-aktarim-onizleme pnl-aktarim-gecerli' : 'pnl-aktarim-onizleme pnl-aktarim-hatali'}>
+          <h3>{aktarimSonucu.valid ? 'Aktarım planı hazır' : 'Onaydan önce çözülmesi gereken kayıtlar var'}</h3>
+          <div className="pnl-aktarim-sayilar"><span><b>{aktarimSonucu.summary.rows}</b> satır</span><span><b>{aktarimSonucu.summary.new_customers}</b> yeni</span><span><b>{aktarimSonucu.summary.updated_customers}</b> korumalı eşleşme</span><span><b>{aktarimSonucu.summary.skipped}</b> atlanan</span><span><b>{aktarimSonucu.summary.custom_fields}</b> özel alan</span></div>
+          {aktarimSonucu.errors.map((x, i) => <p className="pnl-hata-kucuk" key={`e-${x.row_no}-${i}`}><strong>Satır {x.row_no}:</strong> {x.message}</p>)}
+          {aktarimSonucu.conflicts.map((sorun) => <div className="pnl-aktarim-cakisma" key={`${sorun.row_no}-${sorun.kind}`}><div><strong>Satır {sorun.row_no} · {sorun.message}</strong><small>İsim benzerliği tek başına birleştirme kanıtı değildir.</small></div>
+            <select value={cozumler[sorun.row_no] ?? 'auto'} onChange={(e) => setCozumler((onceki) => ({ ...onceki, [sorun.row_no]: e.target.value }))}>
+              <option value="auto">Bir çözüm seçin</option>{sorun.kind === 'same_name' ? sorun.candidates.map((aday) => <option key={aday.id} value={`merge:${aday.id}`} disabled={aday.archived}>Mevcut: {aday.name}{aday.phone ? ` · ${aday.phone}` : ''}{aday.archived ? ' · arşivde' : ''}</option>) : null}
+              {sorun.kind === 'same_name' ? <option value="create">Ayrı yeni müşteri oluştur</option> : null}<option value="skip">Bu satırı atla</option>
+            </select></div>)}
+          {aktarimSonucu.conflicts.length ? <button type="button" className="pnl-dugme pnl-dugme-sade pnl-aktarim-yeniden" disabled={bekliyor || aktarimSonucu.conflicts.some((x) => !cozumler[x.row_no] || cozumler[x.row_no] === 'auto')} onClick={() => void aktarimiOnizle()}>Çözümleri yeniden doğrula</button> : null}
+          {aktarimSonucu.warnings.map((x, i) => <p className="pnl-uyari-kucuk" key={`w-${x.row_no}-${i}`}><strong>Satır {x.row_no}:</strong> {x.message}</p>)}
+          {aktarimSonucu.valid ? <label className="pnl-aktarim-beyan"><input type="checkbox" checked={hukukiBeyan} onChange={(e) => setHukukiBeyan(e.target.checked)} /><span><strong>Aktarım yetkisini onaylıyorum</strong><small>Bu müşteri verilerini kliniğim adına işlemeye yetkili olduğumu ve mevcut kayıtların dolu alanlarının korunacağını anladım. Bu onay iletişim izni veya Veterito üyeliği oluşturmaz.</small></span></label> : null}
+        </section> : null}
+        <div className="pnl-diyalog-eylem"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setAktarimAcik(false)}>Vazgeç</button><button type="button" className="pnl-dugme pnl-dugme-olumlu" disabled={!aktarimSonucu?.valid || !hukukiBeyan || bekliyor} onClick={() => void aktarimiTamamla()}>{bekliyor ? 'Aktarılıyor…' : 'Onayla ve müşterileri aktar'}</button></div>
+      </Diyalog>
 
       <Diyalog acik={!!arsiv} kapat={() => setArsiv(null)} baslik="Müşteriyi arşive al"
         aciklama="Kayıt silinmez; aktif listelerden kaldırılır ve gerektiğinde geri açılabilir.">
