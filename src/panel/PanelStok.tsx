@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  Barcode, Boxes, Camera, CircleAlert, ClipboardCheck, PackagePlus, Pencil, Plus,
-  QrCode, RotateCcw, Search, Trash2, XCircle,
+  Barcode, Boxes, Camera, CircleAlert, ClipboardCheck, Download, FileSpreadsheet,
+  PackagePlus, Pencil, Plus, QrCode, RotateCcw, Search, Trash2, Upload, XCircle,
 } from 'lucide-react';
 
 import Bos from './Bos';
@@ -17,10 +17,16 @@ import {
 import {
   aktifSayimiOku, sayimBaslat, sayimSatiriYaz, sayimSatirlariOku, sayimiIptalEt,
   sayimiTamamla, sayimiTemizle, stokHareketiKaydet, stokKodunuBagla,
-  stokKodunuCoz, stokLotlariOku, stokOku, urunKaydet,
+  stokKodunuCoz, stokLotlariOku, stokOku, urunKaydet, stokAktarimListesiniOku,
+  stokDosyasiAktar,
   type HareketTuru, type IlacFormu, type KodEslesmesi, type SayimOturumu,
-  type SayimSatiri, type StokLotu, type StokUrunu, type UrunBirimi, type UrunTuru,
+  type SayimSatiri, type StokAktarimSonucu, type StokLotu, type StokUrunu,
+  type UrunBirimi, type UrunTuru,
 } from './stok-veri';
+import {
+  bosStokAktarimOrnegi, dosyaOzetiniHesapla, stokAktarimHataRaporuIndir,
+  stokCsvIndir, stokDosyasiniOku, stokXlsxIndir, type StokAktarimSatiri,
+} from './stok-aktarim';
 
 const TURLER: UrunTuru[] = ['medicine', 'consumable', 'retail'];
 const BIRIMLER: UrunBirimi[] = ['piece', 'box', 'pack', 'bottle', 'vial', 'ampoule', 'syringe', 'tablet', 'capsule', 'dose', 'tube', 'can', 'bag', 'roll', 'pair', 'set', 'ml', 'l', 'g', 'kg'];
@@ -63,7 +69,7 @@ const bosUrun = (): UrunFormu => ({
   paketMiktari: '1', receteli: false,
 });
 
-export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klinikAdi: string }) {
+export default function PanelStok({ klinik, klinikAdi, sahip }: { klinik: string; klinikAdi: string; sahip: boolean }) {
   const [urunler, setUrunler] = useState<StokUrunu[] | null>(null);
   const [hata, setHata] = useState<string | null>(null);
   const [bilgi, setBilgi] = useState<string | null>(null);
@@ -90,6 +96,11 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
   const [kameraAcik, setKameraAcik] = useState(false);
   const [kameraHatasi, setKameraHatasi] = useState<string | null>(null);
   const [kameraBasliyor, setKameraBasliyor] = useState(false);
+  const [aktarimAcik, setAktarimAcik] = useState(false);
+  const [aktarimDosyasi, setAktarimDosyasi] = useState<File | null>(null);
+  const [aktarimSatirlari, setAktarimSatirlari] = useState<StokAktarimSatiri[]>([]);
+  const [aktarimOzeti, setAktarimOzeti] = useState<string | null>(null);
+  const [aktarimSonucu, setAktarimSonucu] = useState<StokAktarimSonucu | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const kameraAkisiRef = useRef<MediaStream | null>(null);
   const kameraTuruRef = useRef<number | null>(null);
@@ -410,12 +421,58 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
     } catch (e) { setHata((e as Error).message); } finally { setBekliyor(false); }
   }
 
+  async function aktarimDosyasiniSec(dosya: File | undefined) {
+    if (!dosya || bekliyor) return;
+    setBekliyor(true); setHata(null); setBilgi(null); setAktarimSonucu(null);
+    try {
+      const [satirlar, ozet] = await Promise.all([stokDosyasiniOku(dosya), dosyaOzetiniHesapla(dosya)]);
+      const bicim = dosya.name.toLocaleLowerCase('tr-TR').endsWith('.xlsx') ? 'xlsx' : 'csv';
+      const sonuc = await stokDosyasiAktar({
+        klinik, satirlar: satirlar.map((satir) => ({ ...satir })), kesin: false,
+        dosyaAdi: dosya.name, dosyaOzeti: ozet, bicim,
+      });
+      setAktarimDosyasi(dosya); setAktarimSatirlari(satirlar); setAktarimOzeti(ozet); setAktarimSonucu(sonuc);
+    } catch (e) {
+      setAktarimDosyasi(null); setAktarimSatirlari([]); setAktarimOzeti(null);
+      setHata((e as Error).message);
+    } finally { setBekliyor(false); }
+  }
+
+  async function aktarimiTamamla() {
+    if (!aktarimDosyasi || !aktarimOzeti || !aktarimSonucu?.valid || bekliyor) return;
+    setBekliyor(true); setHata(null); setBilgi(null);
+    try {
+      const bicim = aktarimDosyasi.name.toLocaleLowerCase('tr-TR').endsWith('.xlsx') ? 'xlsx' : 'csv';
+      const sonuc = await stokDosyasiAktar({
+        klinik, satirlar: aktarimSatirlari.map((satir) => ({ ...satir })), kesin: true,
+        dosyaAdi: aktarimDosyasi.name, dosyaOzeti: aktarimOzeti, bicim,
+      });
+      setAktarimSonucu(sonuc);
+      if (!sonuc.valid) return;
+      const tekrar = sonuc.replay ? ' Bu dosya daha önce işlendiği için ikinci kez stok hareketi yaratılmadı.' : '';
+      setBilgi(`${sonuc.summary.new_products} yeni ürün, ${sonuc.summary.updated_products} güncellenen ürün ve ${sonuc.summary.opening_movements} açılış hareketi işlendi.${tekrar}`);
+      setAktarimAcik(false); setAktarimDosyasi(null); setAktarimSatirlari([]); setAktarimOzeti(null); setAktarimSonucu(null);
+      await yukle();
+    } catch (e) { setHata((e as Error).message); } finally { setBekliyor(false); }
+  }
+
+  async function disaAktar(bicim: 'csv' | 'xlsx', sablon = false) {
+    if (bekliyor) return;
+    setBekliyor(true); setHata(null);
+    try {
+      const satirlar = sablon ? bosStokAktarimOrnegi() : await stokAktarimListesiniOku(klinik);
+      if (bicim === 'csv') stokCsvIndir(klinikAdi, satirlar, sablon);
+      else await stokXlsxIndir(klinikAdi, satirlar, sablon);
+    } catch (e) { setHata((e as Error).message); } finally { setBekliyor(false); }
+  }
+
   if (urunler === null) return <Yukleniyor metin="Ürün ve stoklar yükleniyor" />;
 
   return <section className="pnl-bolum pnl-yeni-modul pnl-yeni-modul-operasyon">
     <header className="pnl-bolum-basi pnl-yeni-modul-basi">
       <div><p className="pnl-aciklama">İlaç, sarf ve perakende ürünlerini; lot, son kullanma tarihi, barkod ve sayım farklarıyla tek yerde yönetin.</p></div>
       <div className="pnl-basi-dugmeler">
+        {sahip ? <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setAktarimAcik(true)}><FileSpreadsheet size={15} /> İçe / dışa aktar</button> : null}
         <button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => void sayimiAc()}><ClipboardCheck size={15} /> Akıllı sayım</button>
         <button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => { setYeniUrunKaynagi(null); setUrunFormu(bosUrun()); }}><Plus size={15} /> Ürün ekle</button>
       </div>
@@ -472,6 +529,31 @@ export default function PanelStok({ klinik, klinikAdi }: { klinik: string; klini
       <label className="pnl-anahtar"><input type="checkbox" checked={urunFormu.tur === 'medicine' || urunFormu.lotTakibi} disabled={urunFormu.tur === 'medicine'} onChange={(e) => setUrunFormu({ ...urunFormu, lotTakibi: e.target.checked })} /><span className="pnl-anahtar-yazi"><span className="pnl-anahtar-ad">Lot ve son kullanma tarihi takibi</span><span className="pnl-anahtar-alt">İlaçlarda zorunludur; giriş hareketi lot ve SKT olmadan kaydedilmez.</span></span></label>
       {yeniUrunKaynagi ? <p className="pnl-alan-ipucu">Algılanan kod türü: <strong>{STOK_KOD_TURU_ADI[yeniUrunKaynagi.tur]}</strong>. Üretici koduysa GTIN alanına taşınır; QR ve Code türleri ürün oluşturulduktan sonra ayrıca onaylanır.</p> : null}
       <div className="pnl-diyalog-eylem"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={urunFormunuKapat}>Vazgeç</button><button type="submit" className="pnl-dugme pnl-dugme-olumlu" disabled={bekliyor}>{bekliyor ? 'Kaydediliyor…' : 'Ürünü kaydet'}</button></div></form> : null}
+    </Diyalog>
+
+    <Diyalog boyut="panorama" acik={aktarimAcik} kapat={() => setAktarimAcik(false)} baslik="Ürün ve stok dosyası" aciklama="CSV veya XLSX şablonuyla ürün kartlarını toplu oluşturun. Dosya önce önizlenir; mevcut stok doğrudan ezilmez ve ham dosya saklanmaz.">
+      <div className="pnl-aktarim-izgara">
+        <section className="pnl-aktarim-karti">
+          <div><Download size={19} /><span><strong>Dışa aktar</strong><small>Ürünler, lotlar, SKT ve güncel stok salt okunur bilgi olarak çıkar.</small></span></div>
+          <div className="pnl-aktarim-eylemleri"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => void disaAktar('csv')} disabled={bekliyor}>CSV indir</button><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => void disaAktar('xlsx')} disabled={bekliyor}>XLSX indir</button></div>
+        </section>
+        <section className="pnl-aktarim-karti">
+          <div><FileSpreadsheet size={19} /><span><strong>Boş şablon</strong><small>Örnek satırı silin; açılış miktarı yalnız yeni ürünlerde hareket üretir.</small></span></div>
+          <div className="pnl-aktarim-eylemleri"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => void disaAktar('csv', true)} disabled={bekliyor}>CSV şablonu</button><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => void disaAktar('xlsx', true)} disabled={bekliyor}>XLSX şablonu</button></div>
+        </section>
+      </div>
+      <label className="pnl-aktarim-yukle">
+        <Upload size={22} />
+        <span><strong>{aktarimDosyasi?.name ?? 'Dosyayı seçin'}</strong><small>CSV veya XLSX · en fazla 5 MB ve 1.000 satır</small></span>
+        <input type="file" accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onClick={(e) => { e.currentTarget.value = ''; }} onChange={(e) => void aktarimDosyasiniSec(e.target.files?.[0])} disabled={bekliyor} />
+      </label>
+      {bekliyor ? <Yukleniyor metin="Dosya denetleniyor" /> : null}
+      {aktarimSonucu ? <section className={aktarimSonucu.valid ? 'pnl-aktarim-onizleme pnl-aktarim-gecerli' : 'pnl-aktarim-onizleme pnl-aktarim-hatali'}>
+        <h3>{aktarimSonucu.valid ? 'Önizleme hazır' : 'Dosyada düzeltilmesi gereken alanlar var'}</h3>
+        <div className="pnl-aktarim-sayilar"><span><b>{aktarimSonucu.summary.rows}</b> satır</span><span><b>{aktarimSonucu.summary.new_products}</b> yeni ürün</span><span><b>{aktarimSonucu.summary.updated_products}</b> güncelleme</span><span><b>{aktarimSonucu.summary.lots}</b> lot</span><span><b>{aktarimSonucu.summary.opening_movements}</b> açılış hareketi</span></div>
+        {aktarimSonucu.errors.length ? <><div className="pnl-aktarim-hatalar" role="alert">{aktarimSonucu.errors.slice(0, 50).map((satir, i) => <p key={`${satir.row_no}-${i}`}><strong>Satır {satir.row_no}:</strong> {satir.message}</p>)}{aktarimSonucu.errors.length > 50 ? <p>İlk 50 hata gösteriliyor.</p> : null}</div><button type="button" className="pnl-dugme pnl-dugme-sade pnl-aktarim-rapor" onClick={() => stokAktarimHataRaporuIndir(klinikAdi, aktarimSonucu.errors)}><Download size={14} /> Hata raporunu CSV indir</button></> : <p>Kesin aktarımda ürün kartları güncellenir; yalnız yeni ürünlerin açılış miktarı hareket defterine eklenir.</p>}
+      </section> : null}
+      <div className="pnl-diyalog-eylem"><button type="button" className="pnl-dugme pnl-dugme-sade" onClick={() => setAktarimAcik(false)}>Vazgeç</button><button type="button" className="pnl-dugme pnl-dugme-olumlu" onClick={() => void aktarimiTamamla()} disabled={!aktarimSonucu?.valid || bekliyor}>{bekliyor ? 'İşleniyor…' : 'Onayla ve aktar'}</button></div>
     </Diyalog>
 
     <Diyalog acik={hareketUrunu !== null} kapat={() => setHareketUrunu(null)} baslik="Stok hareketi" aciklama={hareketUrunu ? `${hareketUrunu.name} · mevcut ${hareketUrunu.current_stock} ${BIRIM_ADI[hareketUrunu.unit] ?? hareketUrunu.unit}` : undefined}>

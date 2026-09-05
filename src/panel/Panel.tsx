@@ -191,7 +191,7 @@ export default function Panel() {
       case 'kayitlar': return <PanelKayitlar klinik={secili.clinic_id} />;
       case 'asi': return <PanelAsi klinik={secili.clinic_id} />;
       case 'receteler': return <PanelReceteler klinik={secili.clinic_id} klinikAdi={secili.clinic_name} />;
-      case 'stok': return <PanelStok klinik={secili.clinic_id} klinikAdi={secili.clinic_name} />;
+      case 'stok': return <PanelStok klinik={secili.clinic_id} klinikAdi={secili.clinic_name} sahip={secili.role === 'owner'} />;
       case 'laboratuvar': return <PanelLaboratuvar klinik={secili.clinic_id} sahip={secili.role === 'owner'} git={bolumeGit} />;
       case 'iletisim': return <PanelEntegrasyonlar klinik={secili.clinic_id} sahip={secili.role === 'owner'} gorunum="communications" git={bolumeGit} />;
       case 'profil': return <PanelProfil klinik={secili.clinic_id} />;

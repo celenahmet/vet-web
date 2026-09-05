@@ -44,6 +44,42 @@ export type StokLotu = {
   expiry_status: 'expired' | 'expiring' | 'valid' | 'no_expiry';
 };
 
+export type StokAktarimOzet = {
+  rows: number;
+  new_products: number;
+  updated_products: number;
+  lots: number;
+  opening_movements: number;
+};
+
+export type StokAktarimSonucu = {
+  valid: boolean;
+  replay: boolean;
+  batch_id?: string;
+  errors: { row_no: number; message: string }[];
+  summary: StokAktarimOzet;
+};
+
+export type StokDisaAktarimKaydi = {
+  schema_version: string;
+  internal_code: string;
+  name: string;
+  kind: UrunTuru;
+  unit: UrunBirimi;
+  minimum_stock: number;
+  lot_tracking: boolean;
+  medicine_form: IlacFormu | null;
+  active_ingredient: string | null;
+  strength: string | null;
+  manufacturer: string | null;
+  package_quantity: number;
+  requires_prescription: boolean;
+  gtin: string | null;
+  lot_code: string | null;
+  expires_on: string | null;
+  current_stock: number;
+};
+
 export type KodEslesmesi = {
   product_id: string;
   product_name: string;
@@ -92,6 +128,34 @@ export async function stokOku(klinik: string): Promise<StokUrunu[]> {
     expired_lot_count: Number(satir.expired_lot_count),
     expiring_lot_count: Number(satir.expiring_lot_count),
   }));
+}
+
+export async function stokAktarimListesiniOku(klinik: string): Promise<StokDisaAktarimKaydi[]> {
+  const satirlar = await rpc<StokDisaAktarimKaydi[]>('clinic_inventory_export_rows', { p_clinic: klinik });
+  return (satirlar ?? []).map((satir) => ({
+    ...satir,
+    minimum_stock: Number(satir.minimum_stock),
+    package_quantity: Number(satir.package_quantity),
+    current_stock: Number(satir.current_stock),
+  }));
+}
+
+export function stokDosyasiAktar(girdi: {
+  klinik: string;
+  satirlar: Record<string, unknown>[];
+  kesin: boolean;
+  dosyaOzeti?: string | null;
+  dosyaAdi?: string | null;
+  bicim: 'csv' | 'xlsx';
+}): Promise<StokAktarimSonucu> {
+  return rpc<StokAktarimSonucu>('process_inventory_file_import', {
+    p_clinic: girdi.klinik,
+    p_rows: girdi.satirlar,
+    p_commit: girdi.kesin,
+    p_idempotency_key: girdi.dosyaOzeti ?? null,
+    p_source_name: girdi.dosyaAdi ?? null,
+    p_source_format: girdi.bicim,
+  });
 }
 
 export function urunKaydet(girdi: {

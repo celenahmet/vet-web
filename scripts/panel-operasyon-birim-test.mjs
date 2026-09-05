@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { readSheet as xlsxSayfasiniOku } from 'read-excel-file/node';
+import writeXlsxFile from 'write-excel-file/node';
 
 import {
   birlestirilmisAnalitler,
@@ -11,6 +13,10 @@ import { stokEtiketiYazdirmaHtml } from '../src/panel/stok-etiketi-yazdir.ts';
 import { stokKameraHataMesaji } from '../src/panel/stok-kamera.ts';
 import { receteHastalariniFiltrele } from '../src/panel/recete-hasta-arama.ts';
 import { stokKodTurunuNormallestir, ureticiKoduGtinOlabilir } from '../src/panel/stok-kod-turu.ts';
+import {
+  csvMetniniCoz, STOK_AKTARIM_BASLIKLARI, tabloyuAktarimSatirlarinaCevir,
+  xlsxPaketSinirlariniDogrula,
+} from '../src/panel/stok-aktarim.ts';
 import { sahiplendirmeIlanlariniFiltreleSirala } from '../src/panel/sahiplendirme-liste.ts';
 import { duyurulariFiltrele } from '../src/panel/duyuru-liste.ts';
 import { musterileriFiltrele, hastalariFiltrele, olasiDefterHastasiEslesmeleri } from '../src/panel/klinik-kayit-arama.ts';
@@ -207,6 +213,35 @@ assert.equal(ureticiKoduGtinOlabilir('ean13', '8690506076379'), true,
   'Geçerli EAN-13 yeni ürünün GTIN alanına taşınabilmeli.');
 assert.equal(ureticiKoduGtinOlabilir('qr', '8690506076379'), false,
   'Sayısal QR içeriği sırf rakam diye üretici GTIN’i sayılmamalı.');
+
+const stokCsv = [
+  'Şema Sürümü;İç Kod;Ürün Adı;Tür;Birim;Minimum Stok;Lot Takibi;İlaç Formu;Etken Madde;Doz / Konsantrasyon;Üretici;Paket Miktarı;Reçeteli;GTIN;Lot Kodu;Son Kullanma Tarihi;Mevcut Stok (salt okunur);Açılış Miktarı',
+  '1;ILAC-01;Örnek İlaç;medicine;box;2,5;true;tablet;Etken;10 mg;Üretici;1;true;8690506076379;LOT-1;2027-12-31;0;4,5',
+].join('\r\n');
+const stokSatirlari = tabloyuAktarimSatirlarinaCevir(csvMetniniCoz(stokCsv));
+assert.deepEqual(
+  [stokSatirlari[0]?.row_no, stokSatirlari[0]?.internal_code, stokSatirlari[0]?.minimum_stock, stokSatirlari[0]?.opening_quantity],
+  [2, 'ILAC-01', '2,5', '4,5'],
+  'Noktalı virgüllü CSV içindeki ondalık virgüller sütunları kaydırmadan okunmalı.',
+);
+const xlsxBelgesi = writeXlsxFile([
+  STOK_AKTARIM_BASLIKLARI.map((deger) => ({ value: deger, type: String })),
+  csvMetniniCoz(stokCsv)[1].map((deger) => ({ value: deger, type: String })),
+], { sheet: 'Ürün ve stok' });
+const xlsxTamponu = await xlsxBelgesi.toBuffer();
+xlsxPaketSinirlariniDogrula(xlsxTamponu.buffer.slice(xlsxTamponu.byteOffset, xlsxTamponu.byteOffset + xlsxTamponu.byteLength));
+assert.throws(
+  () => xlsxPaketSinirlariniDogrula(new ArrayBuffer(32)),
+  /bozuk|desteklenmiyor/i,
+  'Bozuk XLSX paketi ayrıştırıcıya ulaşmadan reddedilmeli.',
+);
+const xlsxSatirlari = tabloyuAktarimSatirlarinaCevir(await xlsxSayfasiniOku(xlsxTamponu, 1));
+assert.equal(xlsxSatirlari[0]?.name, 'Örnek İlaç', 'XLSX üretme ve yeniden okuma Türkçe ürün adını korumalı.');
+assert.throws(
+  () => tabloyuAktarimSatirlarinaCevir(csvMetniniCoz('Şema Sürümü,İç Kod,Tür,Birim\n1,KOD,retail,piece')),
+  /en az bir ürün|Zorunlu sütun|başlık/i,
+  'Eksik ürün dosyası sessizce içeri alınmamalı.',
+);
 for (const [ad, beklenen] of [
   ['NotAllowedError', 'Kamera izni bu site için engellenmiş.'],
   ['NotFoundError', 'Kullanılabilir kamera bulunamadı.'],
