@@ -12,7 +12,6 @@ import {
   List, Hourglass, ArrowRightLeft
 } from 'lucide-react';
 import SEO from '../components/SEO';
-
 import Footer from '../components/Footer';
 
 const AnimatedBorder = ({ color, rx = "32" }: { color: string, rx?: string }) => (
@@ -599,8 +598,6 @@ export default function Clinics() {
       {/* Footer Section - Outside of container but still part of scroll snap wrapper */}
       <section className="snap-always snap-start flex flex-col justify-end min-h-[40vh] bg-[var(--bg-secondary)] w-full">
         <Footer />
-      </section>
-
-    </div>
+      </section>    </div>
   );
 }

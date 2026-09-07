@@ -72,7 +72,7 @@ const Footer = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:col-span-4">
             <div className="flex flex-col gap-3">
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">{t('footer_explore')}</h3>
+              <h3 className="font-semibold text-[15px] text-slate-900 dark:text-white mb-2">{t('footer_explore')}</h3>
               <Link to="/features" className="text-sm hover:text-emerald-600 transition-colors">{t('nav_features')}</Link>
               <Link to="/pets" className="text-sm hover:text-emerald-600 transition-colors">{t('nav_pets')}</Link>
               <Link to="/clinics" className="text-sm hover:text-emerald-600 transition-colors">{t('nav_clinics')}</Link>
@@ -80,19 +80,19 @@ const Footer = () => {
               <Link to="/blog" className="text-sm hover:text-emerald-600 transition-colors">{t('nav_blog')}</Link>
             </div>
             <div className="flex flex-col gap-3">
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">{t('footer_legal')}</h3>
+              <h3 className="font-semibold text-[15px] text-slate-900 dark:text-white mb-2">{t('footer_legal')}</h3>
               <Link to="/privacy" className="text-sm hover:text-emerald-600 transition-colors">{t('footer_privacy')}</Link>
               <Link to="/terms" className="text-sm hover:text-emerald-600 transition-colors">{t('footer_terms')}</Link>
               <Link to="/deletion" className="text-sm hover:text-emerald-600 transition-colors">{t('footer_deletion')}</Link>
             </div>
             <div className="flex flex-col gap-3">
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">{t('footer_contact')}</h3>
+              <h3 className="font-semibold text-[15px] text-slate-900 dark:text-white mb-2">{t('footer_contact')}</h3>
             <Link to="/contact" className="text-sm hover:text-emerald-600 transition-colors">{t('contact_title')}</Link>
               <a href={`mailto:${brandConfig.social.contactEmail}`} className="text-sm hover:text-emerald-600 transition-colors">{brandConfig.social.contactEmail}</a>
             </div>
 
             <div className="flex flex-col gap-3">
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">{t('footer_download_app')}</h3>
+              <h3 className="font-semibold text-[15px] text-slate-900 dark:text-white mb-2">{t('footer_download_app')}</h3>
               
               <div className="flex flex-col gap-3">
                 {/* App Store */}
