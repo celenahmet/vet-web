@@ -1,22 +1,17 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { Activity, AlertTriangle, ArrowLeft, ArrowRight, Bell, Bookmark, Building2, Calendar, CalendarDays, Camera, CheckCircle2, ChevronDown, ChevronRight, ChevronUp, ChevronsUpDown, Eye, FileText, Heart, Home, LayoutDashboard, LogOut, MapPin, MessageCircle, MessageSquare, MoreHorizontal, PawPrint, Phone, Plus, QrCode, Search, Send, Share2, ShieldCheck, Star, StarHalf, Stethoscope, User, Users } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Activity, AlertTriangle, ArrowLeft, ArrowRight, Bell, Bookmark, Building2, Calendar, CalendarDays, Camera, CheckCircle2, ChevronDown, ChevronRight, ChevronUp, ChevronsUpDown, FileText, Heart, Home, LayoutDashboard, LogOut, MapPin, MessageCircle, MoreHorizontal, PawPrint, Phone, Plus, Search, Send, Share2, ShieldCheck, Star, StarHalf, Stethoscope, User, Users } from 'lucide-react';
 import SEO from '../components/SEO';
-import { brandConfig } from '../config/brand';
+
 import logoNew from '../assets/showcase-logo-new.png';
 import logoNewDark from '../assets/showcase-logo-new-dark.png';
 
 export default function Features() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('owners');
-  const { scrollY } = useScroll();
 
-  // Geri çekilme ve silinme animasyonu
-  // Scroll 0'dan 500'e giderken Hero görünmez olur ve küçülür.
-  const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
-  const heroScale = useTransform(scrollY, [0, 500], [1, 0.8]);
 
   // Sayfaya özel Snap Scroll (Tam Ekran Kaydırma) Efekti
   useEffect(() => {
@@ -27,20 +22,6 @@ export default function Features() {
       document.documentElement.classList.remove('snap-y', 'snap-proximity', 'scroll-smooth');
     };
   }, []);
-
-  const fadeInUp: any = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-50px" },
-    transition: { type: "spring", stiffness: 300, damping: 20, duration: 0.5 }
-  };
-
-  const staggerContainer: any = {
-    initial: { opacity: 0 },
-    whileInView: { opacity: 1 },
-    viewport: { once: true },
-    transition: { staggerChildren: 0.1 }
-  };
 
   return (
     <div className="w-full relative bg-[var(--bg-main)]">
