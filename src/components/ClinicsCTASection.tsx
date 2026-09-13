@@ -1,7 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle2, ArrowRight } from 'lucide-react';
+import { CheckCircle2, } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function ClinicsCTASection() {

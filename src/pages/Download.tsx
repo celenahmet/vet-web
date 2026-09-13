@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { QrCode, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 import { brandConfig } from '../config/brand';
 /**

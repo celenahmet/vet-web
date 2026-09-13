@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Building2, Calendar, Archive, Megaphone, Stethoscope, MapPin,
-  Award, Grid, FileText, Activity,
-  CheckCircle, Bell,
+  Award, Grid, Activity,
+  Bell,
   Phone, ChevronRight,
   Users, Edit3, CheckCircle2,
   PieChart, Wallet, Globe, Star, StarHalf, Clock,
@@ -20,19 +20,7 @@ import LabInnovationMockup from '../components/LabInnovationMockup';
 import DigitalGrowthSection from '../components/DigitalGrowthSection';
 import ClinicsCTASection from '../components/ClinicsCTASection';
 
-const AnimatedBorder = ({ color, rx = "32" }: { color: string, rx?: string }) => (
-  <motion.svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 10 }}>
-    <motion.rect
-      x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx={rx}
-      fill="none" stroke={color} strokeWidth="2"
-      style={{ filter: `drop-shadow(0 0 6px ${color}80)` }}
-      initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
-      viewport={{ once: false, margin: "-50px" }}
-      transition={{ duration: 1.5, ease: "easeInOut" }}
-    />
-  </motion.svg>
-);
+
 
 export default function Clinics() {
   const { t } = useTranslation();

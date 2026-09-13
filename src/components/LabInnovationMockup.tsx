@@ -2,19 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldCheck, Cpu, Scan, BookOpen, ChevronDown, ChevronUp, Plus, ArrowLeft } from 'lucide-react';
 
-const AnimatedBorder = ({ color, rx = "32" }: { color: string, rx?: string }) => (
-  <motion.svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 10 }}>
-    <motion.rect
-      x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx={rx}
-      fill="none" stroke={color} strokeWidth="2"
-      style={{ filter: `drop-shadow(0 0 6px ${color}80)` }}
-      initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
-      viewport={{ once: false, margin: "-50px" }}
-      transition={{ duration: 1.5, ease: "easeInOut" }}
-    />
-  </motion.svg>
-);
+
 
 const LabInnovationMockup = () => {
   const [activeTab, setActiveTab] = useState('scan');

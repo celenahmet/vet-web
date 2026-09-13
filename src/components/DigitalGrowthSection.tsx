@@ -1,17 +1,13 @@
 import { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Globe, MessageCircle, Search, ShieldCheck, ArrowRight, Smartphone, Link as LinkIcon, FileText, CheckCircle2 } from 'lucide-react';
+import { Globe, MessageCircle, Search, ShieldCheck, ArrowRight, Link as LinkIcon, FileText, CheckCircle2 } from 'lucide-react';
 
 const DigitalGrowthSection = () => {
   const { t } = useTranslation();
 
   // Array of sections for the scroll spy
-  const sections = [
-    { id: 'f1', title: t('clinics_s6_f1_title'), icon: <Globe size={18} /> },
-    { id: 'f2', title: t('clinics_s6_f2_title'), icon: <MessageCircle size={18} /> },
-    { id: 'f3', title: t('clinics_s6_f3_title'), icon: <ShieldCheck size={18} /> }
-  ];
+
 
   const [activeSection, setActiveSection] = useState<string>('');
 

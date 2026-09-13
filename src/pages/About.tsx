@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Heart, Globe, Users, Target, ShieldCheck, HeartPulse, BookOpen, Smartphone, Building2 } from 'lucide-react';
+import { Heart, Globe, Users, Target, ShieldCheck, HeartPulse, BookOpen, } from 'lucide-react';
 import SEO from '../components/SEO';
 
 
 export default function About() {
   const { t } = useTranslation();
-  const [activeCard, setActiveCard] = useState<'pet' | 'vet'>('pet');
+  const [] = useState<'pet' | 'vet'>('pet');
   const [activeStory, setActiveStory] = useState<1 | 2>(1);
   return (
     <div className="min-h-screen pt-24 pb-12 md:pb-16 relative overflow-hidden bg-[var(--bg-main)]">
