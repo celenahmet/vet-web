@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lunar Oasis - Glassmorphism Cutout</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Arka planı koyulaştıralım ki cam efekti daha iyi parlasın */
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .card-container {
+      position: relative;
+      width: 350px;
+      height: 320px;
+      z-index: 10;
+    }
+
+    /* 
+      KRİTİK BİLGİ: 
+      "box-shadow" hilesi düz (solid) renkler için harika çalışır ancak "backdrop-filter" (buzlu cam)
+      ile kullanıldığında gölgeler arka planı bulanıklaştırmaz, sadece düz renk olarak kalır.
+      Bu yüzden "kusursuz bir ters kavis (fillet)" ve "buzlu cam" efektini bir arada kullanmanın
+      modern ve en kusursuz yolu "SVG Gooey Filter Mask" kullanmaktır.
+    */
+    .glass-card {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.15); /* Çok hafif nötr dolgu */
+      backdrop-filter: blur(25px); /* Güçlü buzlu cam efekti */
+      -webkit-backdrop-filter: blur(25px);
+      border-radius: 40px; /* Ana kartın dış kavisleri */
+      
+      /* SVG Maskesini uygula */
+      mask-image: url(#cutout-mask);
+      -webkit-mask-image: url(#cutout-mask);
+      mask-size: cover;
+      
+      /* İsteğe bağlı: Camın kenarlarını belirginleştirmek için çok hafif bir iç gölge */
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+      
+      padding: 30px;
+      color: white;
+    }
+
+    /* Sol Alt Köşedeki Lacivert Daire */
+    .logo-circle {
+      position: absolute;
+      left: -10px;
+      bottom: -10px;
+      width: 100px;
+      height: 100px;
+      background-color: #1a163a; /* Koyu lacivert */
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      z-index: 20;
+    }
+
+    /* Sadece şıklık için kart içeriği */
+    .card-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    
+    .card-text {
+      font-size: 14px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 
+    KUSURSUZ TERS KAVİS (FILLET) İÇİN SVG MASKESİ
+    feGaussianBlur ve feColorMatrix kullanılarak keskin köşeler sıvı (gooey) gibi eritilir 
+    ve ortaya harika, organik bir kavis (squircle) çıkar.
+  -->
+  <svg width="0" height="0" style="position: absolute; pointer-events: none;">
+    <defs>
+      <!-- Gooey (Akışkan) Filtre -->
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="
+          1 0 0 0 0  
+          0 1 0 0 0  
+          0 0 1 0 0  
+          0 0 0 22 -10" />
+      </filter>
+      <!-- Maske Tanımı -->
+      <mask id="cutout-mask">
+        <!-- Filtreyi gruba uyguluyoruz -->
+        <g filter="url(#goo)">
+          <!-- Ana maske gövdesi (Kutu boyutundan büyük tutulur ki kenarlar erimesin) -->
+          <rect x="-100" y="-100" width="1000" height="1000" fill="white" />
+          <!-- İçe göçük yapacak kesici daire (Daire boyutu, lacivert logodan çok az büyük) -->
+          <!-- 100px logomuz var, 110px'lik bir boşluk açıyoruz ki etrafını sarsın -->
+          <!-- cx="40" cy="280" => Logonun merkezine göre ayarlandı -->
+          <circle cx="40" cy="280" r="65" fill="black" style="mix-blend-mode: destination-out;" />
+        </g>
+      </mask>
+    </defs>
+  </svg>
+
+  <div class="card-container">
+    <!-- Ana Blurlu Kart -->
+    <div class="glass-card">
+      <h2 class="card-title">Lunar Oasis Villa</h2>
+      <p class="card-text">
+        Bu fütüristik villa çöl ortamına kusursuzca uyum sağlar. Panoramik çöl manzarası ve 
+        modern, akıcı alanlarıyla kusursuz bir kaçamak sunar.
+      </p>
+    </div>
+
+    <!-- Lacivert Daire -->
+    <div class="logo-circle">
+      <!-- Örnek Logo İkonu -->
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+      </svg>
+    </div>
+  </div>
+
+</body>
+</html>

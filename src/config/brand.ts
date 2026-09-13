@@ -14,7 +14,7 @@ export const brandConfig = {
   // ⚠️ Magaza adresleri uygulama yayina alininca gercek listeleme adresiyle
   // degistirilecek. Su an magaza ana sayfasina gidiyor.
   appStoreUrl: "https://apps.apple.com/tr/app/veterito/id6804301087?l=tr",
-  playStoreUrl: null as string | null,
+  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.veterito.app',
   appGalleryUrl: "https://appgallery.huawei.com/app/C118760085",
   social: {
     website: "https://veterito.com",

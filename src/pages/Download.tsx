@@ -56,87 +56,73 @@ export default function Download() {
           initial="hidden"
           animate="visible"
         >
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--color-vet-primary)]/10 text-[var(--color-vet-primary)] font-bold text-sm mb-4 border border-[var(--color-vet-primary)]/20">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-vet-primary)] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-vet-primary)]"></span>
-            </span>{t('dl_badge_live')}</motion.div>
+
 
           <motion.h1 
             variants={itemVariants}
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-4 leading-tight"
-          >{t('dl_hero_title1')}<br className="hidden sm:block" />
-            <span className="bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent">{t('dl_hero_title2')}</span>
+            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-6 leading-tight"
+          >
+            {t('dl_hero_title1')} <span className="text-[#009689]">{t('dl_hero_title2')}</span>
           </motion.h1>
 
           <motion.p 
             variants={itemVariants}
-            className="text-lg text-[var(--text-muted)] font-medium mb-8 max-w-3xl leading-relaxed mx-auto"
+            className="text-lg text-[var(--text-muted)] font-medium mb-16 max-w-3xl leading-relaxed mx-auto"
           >{t('dl_hero_desc1')}<br className="hidden md:block" />{t('dl_hero_desc2')}</motion.p>
 
+
+
           {/* Cards Grid */}
-          <motion.div variants={itemVariants} className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+          <motion.div variants={itemVariants} className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             
-            {/* QR Card */}
-            <div className="glass-card p-8 sm:p-10 rounded-[2.5rem] shadow-xl flex flex-col items-center justify-center border border-slate-100 dark:border-transparent">
-              <a href={brandConfig.appGalleryUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-white/50 dark:bg-transparent p-6 rounded-3xl mb-6 relative group cursor-pointer shadow-sm hover:shadow-md transition-all">
-                <QrCode size={100} strokeWidth={1.5} className="text-[var(--color-vet-primary)] dark:text-[var(--color-vet-primary-glow)] group-hover:scale-105 transition-transform" />
+            {/* App Store Card */}
+            <div className="glass-card p-6 sm:p-8 rounded-[2rem] shadow-xl flex flex-col items-center justify-between border border-slate-100 dark:border-transparent gap-8">
+              <div className="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 w-full flex justify-center">
+                <img src="/qr-code.svg" alt="App Store QR" className="w-40 h-40 object-contain" />
+              </div>
+              <a href={brandConfig.appStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-4 py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[160px] mt-auto mx-auto">
+                <div className="flex items-center justify-center gap-3 w-full">
+                  <img src="/apple-logo.png" alt="App Store" className="w-7 h-7 object-contain shrink-0 invert" />
+                  <div className="flex flex-col items-start leading-none pt-0.5 text-white">
+                    <div className="text-[8px] font-semibold tracking-[0.08em] text-white">Download on the</div>
+                    <div className="text-[18px] font-bold tracking-tight mt-0.5 text-white">App Store</div>
+                  </div>
+                </div>
               </a>
-              <h3 className="font-bold text-lg text-[var(--text-main)] mb-2">{t('dl_qr_title')}</h3>
-              <p className="text-[15px] text-[var(--text-muted)] font-medium max-w-sm leading-relaxed">{t('dl_qr_desc')}</p>
             </div>
 
-            {/* Store Badges Card */}
-            <div className="glass-card p-8 sm:p-10 rounded-[2.5rem] shadow-xl flex flex-col justify-center space-y-4 border border-slate-100 dark:border-transparent">
-              
-              <h3 className="font-bold text-lg text-[var(--text-main)] mb-2 text-left">{t('dl_stores_title')}</h3>
-              
-              {/* App Store (Active) */}
-              <a href={brandConfig.appStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="relative group overflow-hidden bg-[#007AFF] text-white rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex items-center justify-between gap-4 block w-full">
-                <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                <div className="flex items-center gap-4 relative z-10">
-                  <div className="w-14 h-14 bg-white dark:bg-transparent rounded-2xl flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-2">
-                    <img src="/apple-logo.png" alt="Apple" className="w-full h-full object-contain scale-100 dark:invert" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-[10px] font-bold text-white/90 tracking-[0.08em] -mb-0.5">Download on the</div>
-                    <div className="text-[22px] font-bold leading-none tracking-tight">App Store</div>
+            {/* Google Play Card */}
+            <div className="glass-card p-6 sm:p-8 rounded-[2rem] shadow-xl flex flex-col items-center justify-between border border-slate-100 dark:border-transparent gap-8">
+              <div className="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 w-full flex justify-center">
+                <img src="/qr-code-3.svg" alt="Google Play QR" className="w-40 h-40 object-contain" />
+              </div>
+              <a href={brandConfig.playStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-4 py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[160px] mt-auto mx-auto">
+                <div className="flex items-center justify-center gap-3 w-full">
+                  <img src="/google-play-logo.png" alt="Play Store" className="w-7 h-7 object-contain shrink-0" />
+                  <div className="flex flex-col items-start leading-none pt-0.5 text-white">
+                    <div className="text-[8px] font-semibold tracking-wide text-white">GET IT ON</div>
+                    <div className="text-[16px] font-bold tracking-tight mt-0.5 text-white">Google Play</div>
                   </div>
                 </div>
-                <ArrowRight size={20} className="text-white/80 group-hover:text-white transition-colors relative z-10 shrink-0" />
               </a>
-
-              {/* Google Play (Active) */}
-              <a href={brandConfig.playStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="relative group overflow-hidden bg-emerald-50/80 dark:bg-emerald-900/20 hover:bg-[#0f9d58] rounded-2xl p-4 border border-emerald-100 dark:border-emerald-800/50 hover:border-[#0f9d58] transition-all duration-300 hover:-translate-y-1 flex items-center justify-between gap-4 block w-full">
-                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform group-hover:duration-700 duration-0"></div>
-                <div className="flex items-center gap-4 relative z-10">
-                  <div className="w-14 h-14 bg-white dark:bg-transparent rounded-2xl flex items-center justify-center shrink-0 shadow-sm p-1.5 transition-transform duration-300">
-                    <img src="/google-play-logo.png" alt="Google Play" className="w-full h-full object-contain scale-[1.1]" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-[10px] font-bold tracking-wide text-[#0f9d58]/80 group-hover:text-white/90 transition-colors duration-300">GET IT ON</div>
-                    <div className="text-xl font-bold leading-none tracking-tight text-[#0f9d58] group-hover:text-white transition-colors duration-300">Google Play</div>
-                  </div>
-                </div>
-                <ArrowRight size={20} className="text-[#0f9d58]/50 group-hover:text-white transition-colors duration-300 relative z-10 shrink-0" />
-              </a>
-
-              {/* AppGallery (Active, Secondary) */}
-              <a href={brandConfig.appGalleryUrl || undefined} target="_blank" rel="noopener noreferrer" className="relative group overflow-hidden bg-red-50/80 dark:bg-red-900/20 hover:bg-[#ef4050] rounded-2xl p-4 border border-red-100 dark:border-red-800/50 hover:border-[#ef4050] transition-all duration-300 hover:-translate-y-1 flex items-center justify-between gap-4 block w-full">
-                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform group-hover:duration-700 duration-0"></div>
-                <div className="flex items-center gap-4 relative z-10">
-                  <div className="w-14 h-14 bg-white dark:bg-transparent rounded-2xl flex items-center justify-center shrink-0 shadow-sm p-1.5 transition-transform duration-300">
-                    <img src="/appgallery-logo.png" alt="AppGallery" className="w-full h-full object-contain scale-[1.2]" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-[10px] font-bold tracking-wide text-[#ef4050]/80 group-hover:text-white/90 transition-colors duration-300">EXPLORE IT ON</div>
-                    <div className="text-xl font-bold leading-none tracking-tight text-[#ef4050] group-hover:text-white transition-colors duration-300">AppGallery</div>
-                  </div>
-                </div>
-                <ArrowRight size={20} className="text-[#ef4050]/50 group-hover:text-white transition-colors duration-300 relative z-10 shrink-0" />
-              </a>
-
             </div>
+
+            {/* AppGallery Card */}
+            <div className="glass-card p-6 sm:p-8 rounded-[2rem] shadow-xl flex flex-col items-center justify-between border border-slate-100 dark:border-transparent gap-8">
+              <div className="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 w-full flex justify-center">
+                <img src="/qr-code-2.svg" alt="AppGallery QR" className="w-40 h-40 object-contain" />
+              </div>
+              <a href={brandConfig.appGalleryUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-4 py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[160px] mt-auto mx-auto">
+                <div className="flex items-center justify-center gap-3 w-full">
+                  <img src="/appgallery-logo.png" alt="AppGallery" className="w-7 h-7 object-contain shrink-0" />
+                  <div className="flex flex-col items-start leading-none pt-0.5 text-white">
+                    <div className="text-[8px] font-semibold tracking-wide text-white">EXPLORE IT ON</div>
+                    <div className="text-[16px] font-bold tracking-tight mt-0.5 text-white">AppGallery</div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            
           </motion.div>
 
         </motion.div>
