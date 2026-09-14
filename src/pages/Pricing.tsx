@@ -1,8 +1,10 @@
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
   CheckCircle2, PawPrint, Star, Building2, Rocket, ArrowRight,
   Users, MessageCircle, Calendar, Globe, Wallet, Sparkles, Scan, Package, FileText, TestTube, BarChart3, BookOpen, Smartphone,
-  Layout, Link as LinkIcon, Bot, LifeBuoy, Search
+  Layout, Link as LinkIcon, Bot, LifeBuoy, Search, Info,
+  LayoutDashboard, Database, Zap, Store, Activity, Clock, UserPlus, Lock
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
@@ -10,6 +12,18 @@ import { useTranslation } from 'react-i18next';
 
 export default function Pricing() {
   const { t } = useTranslation();
+  const [baseHeight, setBaseHeight] = useState<number | 'auto'>('auto');
+  const proCardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Capture the initial height of the Pro card to keep other cards identical initially
+    const timer = setTimeout(() => {
+      if (proCardRef.current) {
+        setBaseHeight(proCardRef.current.offsetHeight);
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const getFeaturesArray = (key: string) => {
     const raw = t(key, { returnObjects: true });
@@ -57,6 +71,7 @@ export default function Pricing() {
 
           {/* Tier 1: Standart */}
           <motion.div
+            style={{ minHeight: baseHeight !== 'auto' ? baseHeight : undefined }}
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
             className="glass-card p-8 lg:p-10 rounded-[2.5rem] border border-slate-200 dark:border-zinc-800 flex flex-col transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-2 hover:border-[#009689]/30 bg-white/60 dark:bg-zinc-900/60 relative group"
           >
@@ -91,6 +106,7 @@ export default function Pricing() {
 
           {/* Tier 2: Pro */}
           <motion.div
+            ref={proCardRef}
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
             className="glass-card p-8 lg:p-10 rounded-[2.5rem] border-2 border-[#009689] flex flex-col transition-all duration-300 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(0,150,137,0.3)] hover:-translate-y-2 relative bg-white dark:bg-zinc-900 group"
           >
@@ -118,11 +134,23 @@ export default function Pricing() {
               {getFeaturesArray('pricing_tier2_features').map((feat, idx) => (
                 <li key={idx} className="flex items-start gap-4 py-4 border-b border-slate-200/80 dark:border-zinc-800/80 last:border-0">
                   {getIconForFeature(feat)}
-                  <span className="text-[var(--text-main)] leading-relaxed">
-                    {feat.includes(':') ? (
+                  <div className="text-[var(--text-main)] leading-relaxed flex-1">
+                    {feat.includes('|') ? (
+                      <details className="group/details cursor-pointer w-full">
+                        <summary className="list-none outline-none [&::-webkit-details-marker]:hidden inline-block w-full">
+                          <span className="border-b border-dashed border-slate-400 dark:border-zinc-500 font-medium group-open/details:text-[#009689] transition-colors">
+                            {feat.split('|')[0]}
+                          </span>
+                          <Info size={15} className="text-slate-400 inline-block ml-1.5 align-middle -mt-0.5 group-open/details:text-[#009689] transition-colors" />
+                        </summary>
+                        <div className="text-[13px] text-[var(--text-muted)] mt-2 pl-3 border-l-2 border-[#009689]/40 leading-relaxed font-normal whitespace-pre-line">
+                          {feat.split('|')[1]}
+                        </div>
+                      </details>
+                    ) : feat.includes(':') ? (
                       <><strong>{feat.split(':')[0]}:</strong>{feat.split(':')[1]}</>
                     ) : feat}
-                  </span>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -130,6 +158,7 @@ export default function Pricing() {
 
           {/* Tier 3: Enterprise */}
           <motion.div
+            style={{ minHeight: baseHeight !== 'auto' ? baseHeight : undefined }}
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}
             className="glass-card p-8 lg:p-10 rounded-[2.5rem] border border-slate-200 dark:border-zinc-800 flex flex-col transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-2 hover:border-slate-800 dark:hover:border-slate-300 bg-gradient-to-b from-white to-slate-50 dark:from-zinc-900/60 dark:to-slate-900/40 relative group"
           >
@@ -166,64 +195,49 @@ export default function Pricing() {
         </div>
 
         {/* Common Features Section */}
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={{
-            hidden: { opacity: 0, y: 30 },
-            visible: { 
-              opacity: 1, 
-              y: 0, 
-              transition: { duration: 0.5 }
-            }
-          }}
-          className="max-w-6xl mx-auto bg-teal-50 dark:bg-teal-950/20 rounded-[2.5rem] p-6 md:p-8 lg:p-10 shadow-xl border border-teal-100 dark:border-teal-900/50 relative overflow-hidden"
-        >
-          {/* Subtle texture overlay */}
-          <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
-
-          <div className="flex flex-col items-center mb-8 text-center relative z-10">
-            <motion.div 
-              variants={{ hidden: { scale: 0.8, opacity: 0 }, visible: { scale: 1, opacity: 1 } }}
-              className="w-14 h-14 bg-gradient-to-tr from-[#008075] to-[#009689] text-white rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-[#009689]/30 border-none transform -translate-y-2"
-            >
-              <Rocket size={24} />
-            </motion.div>
+        <div className="max-w-7xl mx-auto mt-40 mb-24 relative z-10">
+          <div className="flex flex-col items-center mb-20 text-center">
             <motion.h2 
-              variants={{ hidden: { y: -20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
-              className="text-2xl md:text-3xl font-extrabold text-[var(--text-main)]"
+              initial={{ y: -20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[var(--text-main)]"
             >
               {t('pricing_common_title')}
             </motion.h2>
           </div>
 
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6 relative z-10">
-            {getFeaturesArray('pricing_common_features').map((feat, idx) => (
-              <motion.div 
-                key={idx} 
-                custom={idx}
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: (i) => ({ 
-                    opacity: 1, 
-                    transition: { 
-                      duration: 1.2, 
-                      delay: Math.floor(i / 3) * 0.5,
-                      ease: 'easeInOut'
-                    }
-                  })
-                }}
-                className="flex items-start gap-4 p-2 cursor-default"
-              >
-                <div className="mt-1">
-                  <CheckCircle2 className="text-[#009689]" size={22} />
-                </div>
-                <span className="text-sm md:text-base text-[var(--text-main)] font-medium leading-relaxed">{feat}</span>
-              </motion.div>
-            ))}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 relative z-10">
+            {[
+              { icon: LayoutDashboard, titleKey: 'pricing_cfeat_1_title', descKey: 'pricing_cfeat_1_desc' },
+              { icon: Users, titleKey: 'pricing_cfeat_2_title', descKey: 'pricing_cfeat_2_desc' },
+              { icon: Database, titleKey: 'pricing_cfeat_3_title', descKey: 'pricing_cfeat_3_desc' },
+              { icon: Zap, titleKey: 'pricing_cfeat_4_title', descKey: 'pricing_cfeat_4_desc' },
+              { icon: Store, titleKey: 'pricing_cfeat_5_title', descKey: 'pricing_cfeat_5_desc' },
+              { icon: Activity, titleKey: 'pricing_cfeat_7_title', descKey: 'pricing_cfeat_7_desc' },
+              { icon: UserPlus, titleKey: 'pricing_cfeat_9_title', descKey: 'pricing_cfeat_9_desc' },
+              { icon: Lock, titleKey: 'pricing_cfeat_10_title', descKey: 'pricing_cfeat_10_desc' },
+            ].map((feat, idx) => {
+              const Icon = feat.icon;
+              return (
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: (idx % 4) * 0.1 }}
+                  className="bg-white dark:bg-zinc-900 rounded-[1.5rem] p-6 border border-slate-200 dark:border-zinc-800 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-teal-300 dark:hover:border-teal-800 transition-all duration-300 flex flex-col group cursor-default"
+                >
+                  <div className="w-12 h-12 bg-[#009689]/10 dark:bg-[#009689]/20 rounded-xl flex items-center justify-center mb-5 text-[#009689] group-hover:scale-110 group-hover:bg-[#009689] group-hover:text-white transition-all duration-300">
+                    <Icon size={22} strokeWidth={2} />
+                  </div>
+                  <h3 className="text-lg font-bold text-[var(--text-main)] mb-2">{t(feat.titleKey)}</h3>
+                  <p className="text-[14px] text-[var(--text-muted)] font-medium leading-relaxed">{t(feat.descKey)}</p>
+                </motion.div>
+              );
+            })}
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </div>
