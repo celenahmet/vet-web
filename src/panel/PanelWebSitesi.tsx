@@ -58,6 +58,35 @@ const KULLANICI_ADI_HATALARI: Record<string, string> = {
   bad_start: 'Kullanıcı adı harfle başlamalı.',
 };
 
+const WEB_SAGLIK_TTL = 5 * 60_000;
+const webSaglikOnbellegi = new Map<string, { aktif: boolean; zaman: number }>();
+const webSaglikIstekleri = new Map<string, Promise<boolean>>();
+
+function webSayfasi200Mu(adres: string): Promise<boolean> {
+  const onceki = webSaglikOnbellegi.get(adres);
+  if (onceki && Date.now() - onceki.zaman < WEB_SAGLIK_TTL) return Promise.resolve(onceki.aktif);
+  const suren = webSaglikIstekleri.get(adres);
+  if (suren) return suren;
+  const istek = (async () => {
+    const denetleyici = new AbortController();
+    const zamanAsimi = window.setTimeout(() => denetleyici.abort(), 8_000);
+    try {
+      const yanit = await fetch(adres, { method: 'HEAD', cache: 'no-store', signal: denetleyici.signal });
+      const aktif = yanit.status === 200;
+      webSaglikOnbellegi.set(adres, { aktif, zaman: Date.now() });
+      return aktif;
+    } catch {
+      webSaglikOnbellegi.set(adres, { aktif: false, zaman: Date.now() });
+      return false;
+    } finally {
+      window.clearTimeout(zamanAsimi);
+      webSaglikIstekleri.delete(adres);
+    }
+  })();
+  webSaglikIstekleri.set(adres, istek);
+  return istek;
+}
+
 export default function PanelWebSitesi({ klinik, sahip }: { klinik: string; sahip: boolean }) {
   const [sayfa, setSayfa] = useState<KlinikSayfasi | null>(null);
   const [yukleniyor, setYukleniyor] = useState(true);
@@ -73,6 +102,7 @@ export default function PanelWebSitesi({ klinik, sahip }: { klinik: string; sahi
   const [kullaniciAdi, setKullaniciAdi] = useState('');
   const [iletisim, setIletisim] = useState(BOS_ILETISIM);
   const [klinikFormu, setKlinikFormu] = useState({ name: '', address: '', city: '', district: '', phone: '', email: '' });
+  const [webSayfasiAktif, setWebSayfasiAktif] = useState<boolean | null>(null);
 
   const yukle = useCallback(() => {
     setYukleniyor(true); setHata(null);
@@ -83,6 +113,16 @@ export default function PanelWebSitesi({ klinik, sahip }: { klinik: string; sahi
   }, [klinik]);
 
   useEffect(() => { yukle(); }, [yukle]);
+
+  useEffect(() => {
+    const kullaniciAdi = sayfa?.username;
+    if (!sayfa?.is_published || !kullaniciAdi) { setWebSayfasiAktif(false); return; }
+    let iptal = false;
+    setWebSayfasiAktif(null);
+    void webSayfasi200Mu(`https://veterito.com/@${kullaniciAdi}`)
+      .then((aktif) => { if (!iptal) setWebSayfasiAktif(aktif); });
+    return () => { iptal = true; };
+  }, [sayfa?.is_published, sayfa?.username]);
 
   function duzenlemeyiAc() {
     setForm({
@@ -239,10 +279,14 @@ export default function PanelWebSitesi({ klinik, sahip }: { klinik: string; sahi
 
   const durumlar = [
     {
-      tamam: Boolean(sayfa?.is_published),
+      tamam: Boolean(sayfa?.is_published && webSayfasiAktif),
       ad: 'Sayfa yayında',
       evet: 'Kliniğinizin sayfası açık, adresi bilen herkes görebiliyor.',
-      hayir: 'Sayfanız şu an kapalı. Kimse göremiyor.',
+      hayir: sayfa?.is_published && webSayfasiAktif === null
+        ? 'Yayındaki adresin HTTP yanıtı kontrol ediliyor.'
+        : sayfa?.is_published
+          ? 'Sayfa ayarı açık ancak web adresi şu anda HTTP 200 yanıtı vermiyor.'
+          : 'Sayfanız şu an kapalı. Kimse göremiyor.',
     },
     {
       tamam: Boolean(sayfa?.is_indexable),
@@ -331,7 +375,7 @@ export default function PanelWebSitesi({ klinik, sahip }: { klinik: string; sahi
             ) : null}
           </header>
           <div className="pnl-widget-govde">
-            {sayfa?.is_published && adres ? (
+            {sayfa?.is_published && adres && webSayfasiAktif ? (
               <div className="pnl-web-yayin-basari" role="status">
                 <span className="pnl-web-yayin-basari-ikonu" aria-hidden="true"><CheckCircle2 size={24} /></span>
                 <div>
@@ -475,12 +519,12 @@ export default function PanelWebSitesi({ klinik, sahip }: { klinik: string; sahi
             <input
               id="pnl-slogan"
               type="text"
-              maxLength={120}
+              maxLength={160}
               value={form.slogan}
               onChange={(e) => setForm((f) => ({ ...f, slogan: e.target.value }))}
               placeholder="Örnek: Kediniz ve köpeğiniz için 7/24 yanınızdayız"
             />
-            <span className="pnl-alan-ipucu">Sayfanızın en üstünde, klinik adının altında görünür.</span>
+            <span className="pnl-alan-ipucu">{form.slogan.length} / 160 karakter · Sayfanızın en üstünde, klinik adının altında görünür.</span>
           </div>
 
           <div className="pnl-alan">
@@ -488,11 +532,11 @@ export default function PanelWebSitesi({ klinik, sahip }: { klinik: string; sahi
             <textarea
               id="pnl-tanitim"
               value={form.tanitim}
-              maxLength={1200}
+              maxLength={1000}
               onChange={(e) => setForm((f) => ({ ...f, tanitim: e.target.value }))}
               placeholder="Hangi hizmetleri veriyorsunuz, ne zamandır buradasınız, ekibinizde kimler var?"
             />
-            <span className="pnl-alan-ipucu">{form.tanitim.length} / 1200 karakter</span>
+            <span className="pnl-alan-ipucu">{form.tanitim.length} / 1000 karakter</span>
           </div>
 
           <div className="pnl-alan">
