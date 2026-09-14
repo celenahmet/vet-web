@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  CheckCircle2, PawPrint, Star, Building2, Rocket, ArrowRight,
+  CheckCircle2, PawPrint, Star, Building2, ArrowRight,
   Users, MessageCircle, Calendar, Globe, Wallet, Sparkles, Scan, Package, FileText, TestTube, BarChart3, BookOpen, Smartphone,
   Layout, Link as LinkIcon, Bot, LifeBuoy, Search, Info,
-  LayoutDashboard, Database, Zap, Store, Activity, Clock, UserPlus, Lock
+  LayoutDashboard, Database, Zap, Store, Activity, UserPlus, Lock
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
