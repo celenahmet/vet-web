@@ -253,7 +253,7 @@ export default function Pricing() {
               {t('pricing_advanced_title')}
             </motion.h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 relative z-10">
+          <div className="grid md:grid-cols-2 xl:grid-cols-5 gap-6 relative z-10">
             {getFeaturesArray('pricing_tier2_features').map((feat, idx) => {
               const [baslik, aciklama] = String(feat).split('|');
               return (
