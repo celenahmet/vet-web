@@ -67,8 +67,62 @@ export default function Pricing() {
 
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 relative z-10 mb-20 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 relative z-10 mb-20 items-start max-w-5xl mx-auto">
 
+          {/* KLİNİK HESABI — tek kart (Ahmet, 15.09.2026): "mağazada para
+              kazanmıyoruz, zemin kuruyoruz; ticari koku olmasın; pilot olmasın."
+              Standart/Pro kademeleri, "İlk Yıl Ücretsiz" rozetleri ve fiyat imâsı
+              kaldırıldı; klinik hesabı uygulamadaki tüm klinik özelliklerini içerir.
+              Enterprise (Teklif Al) duruyor: uygulama dışı, kurumsal hizmet. */}
+          <motion.div
+            ref={proCardRef}
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
+            className="glass-card p-8 lg:p-10 rounded-[2.5rem] border-2 border-[#009689] flex flex-col transition-all duration-300 shadow-2xl relative overflow-hidden"
+          >
+            <div className="mb-4 text-slate-500 dark:text-slate-400">
+              <PawPrint size={32} />
+            </div>
+            <h3 className="text-3xl font-extrabold text-[var(--text-main)] mb-2">{t('pricing_clinic_name')}</h3>
+            <p className="text-[var(--text-muted)] text-[15px] font-medium mb-6 min-h-[44px]">
+              {t('pricing_clinic_desc')}
+            </p>
+
+            <div className="mb-6">
+              <span className="text-xl md:text-2xl font-semibold text-[var(--text-main)] block leading-tight">{t('pricing_clinic_includes')}</span>
+            </div>
+
+            <Link to="/download" className="w-full py-4 mb-8 rounded-xl font-bold bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+              {t('pricing_btn_start')} <ArrowRight size={18} />
+            </Link>
+
+            <ul className="flex-1 text-[14px] font-medium">
+              {getFeaturesArray('pricing_tier1_features').map((feat, idx) => (
+                <li key={`base-${idx}`} className="flex items-start gap-4 py-4 border-b border-slate-200/80 dark:border-zinc-800/80 last:border-0">
+                  {getIconForFeature(feat)}
+                  <span className="text-[var(--text-main)] leading-relaxed">{feat}</span>
+                </li>
+              ))}
+              {getFeaturesArray('pricing_tier2_features').map((feat, idx) => (
+                <li key={`adv-${idx}`} className="flex items-start gap-4 py-4 border-b border-slate-200/80 dark:border-zinc-800/80 last:border-0">
+                  {getIconForFeature(feat)}
+                  <div>
+                    <span className="text-[var(--text-main)] leading-relaxed font-semibold block">{feat.split('|')[0]}</span>
+                    {feat.split('|')[1] ? (
+                      <span className="text-[var(--text-muted)] leading-relaxed text-[13px] block mt-1 whitespace-pre-line">{feat.split('|')[1]}</span>
+                    ) : null}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* ESKİ KADEMELER (Standart / Pro) — Ahmet 15.09: "öncekileri de yorum
+              satırına al, tekrar düzenlememiz gerekebilir." Render edilmiyor;
+              `false &&` ile tutuluyor ki iç yorumlar bozulmasın ve derleyici
+              metinleri denetlemeye devam etsin. Geri açmak için `false` → `true`
+              ve gridi 3 sütuna çevir. */}
+          {false && (
+            <>
           {/* Tier 1: Standart */}
           <motion.div
             style={{ minHeight: baseHeight !== 'auto' ? baseHeight : undefined }}
@@ -106,8 +160,7 @@ export default function Pricing() {
 
           {/* Tier 2: Pro */}
           <motion.div
-            ref={proCardRef}
-            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
+                        initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
             className="glass-card p-8 lg:p-10 rounded-[2.5rem] border-2 border-[#009689] flex flex-col transition-all duration-300 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(0,150,137,0.3)] hover:-translate-y-2 relative bg-white dark:bg-zinc-900 group"
           >
             <div className="mb-4 text-slate-500 dark:text-slate-400">
@@ -156,6 +209,9 @@ export default function Pricing() {
             </ul>
           </motion.div>
 
+            </>
+          )}
+
           {/* Tier 3: Enterprise */}
           <motion.div
             style={{ minHeight: baseHeight !== 'auto' ? baseHeight : undefined }}
@@ -182,7 +238,7 @@ export default function Pricing() {
             </Link>
 
             <ul className="flex-1 text-[14px] font-medium">
-              <div className="text-[12px] font-extrabold uppercase tracking-widest text-[var(--text-muted)] mb-2">Pro paket içerikleri, ayrıca:</div>
+              <div className="text-[12px] font-extrabold uppercase tracking-widest text-[var(--text-muted)] mb-2">{t('pricing_enterprise_addon_label')}</div>
               {getFeaturesArray('pricing_tier3_features').map((feat, idx) => (
                 <li key={idx} className="flex items-start gap-4 py-4 border-b border-slate-200/80 dark:border-zinc-800/80 last:border-0">
                   {getIconForFeature(feat)}

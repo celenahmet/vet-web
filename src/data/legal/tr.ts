@@ -708,7 +708,7 @@ export const legalDocumentsTR: Record<LegalDocumentId, LegalDocument> = {
     title: 'Kurumsal Sözleşme',
     summary:
       'Veteriner hekimler, klinikler ve kurumsal hesaplar için ek koşullar: doğrulama, hasta verisi sorumluluğu, ekip yönetimi.',
-    effectiveDate: YURURLUK,
+    effectiveDate: '15 Eylül 2026',
     related: ['terms', 'kvkk', 'privacy'],
     required: true,
     intro: [
@@ -829,40 +829,29 @@ export const legalDocumentsTR: Record<LegalDocumentId, LegalDocument> = {
       },
       {
         number: '7',
-        title: 'Paketler ve ücretlendirme',
+        title: 'Ücretlendirme',
         blocks: [
           {
             kind: 'callout',
             value:
-              'Bu sürümde klinik hesabı **tamamen ücretsizdir** ve uygulama içinde herhangi bir ödeme alınmaz. Aşağıdaki kurallar, ileride ücretli bir paket sunulması hâlinde uygulanacak taahhütlerimizdir.',
+              'Klinik hesabı için ücret talep edilmemekte ve uygulama içinde herhangi bir ödeme alınmamaktadır. Klinik hesabı uygulamadaki klinik özelliklerini içerir.',
           },
           {
             kind: 'text',
-            value:
-              'Klinik hesapları için iki paket planlanmaktadır: temel özellikleri kapsayan **Veterito Klinik** ve ekip yönetimi, web paneli ve gelişmiş görünürlük içeren **Veterito Klinik Pro**. Paketler yayına alındığında her ikisi de **ilk yıl ücretsiz** olacaktır.',
-          },
-          {
-            kind: 'text',
-            value: 'Ücretli döneme geçilirse aşağıdakileri taahhüt ederiz:',
+            value: 'İleride ücretlendirme yapılacak olursa aşağıdakileri taahhüt ederiz:',
           },
           {
             kind: 'list',
             items: [
               'Ücretlendirme başlamadan **en az 30 gün önce** bildirim yapılır.',
-              'Ücretsiz dönemde kullandığınız özellikler, o dönem boyunca geri alınmaz.',
-              'Ücretli pakete geçmemeyi seçerseniz hesabınız kapatılmaz; **ücretsiz pakete döner** ve verileriniz silinmez. Yalnızca ücretli pakete özgü özellikler devre dışı kalır.',
-              'Fiyat değişiklikleri yürürlüğe girmeden önce duyurulur; devam etmek istemezseniz süre sonunda ücretsiz pakete dönebilirsiniz.',
+              'Hesabınız kapatılmaz ve verileriniz silinmez; devam etmemeyi seçerseniz verilerinizi dışa aktarabilirsiniz.',
+              'Fiyat ve kapsam değişiklikleri yürürlüğe girmeden önce duyurulur.',
             ],
           },
           {
             kind: 'text',
             value:
-              '**Uygulama içinde ödeme alınmaz.** Ücretli paketler yayına alındığında ödeme, uygulama dışındaki kurumsal satış kanalı üzerinden yapılır. Mobil uygulama bir satın alma aracı değildir.',
-          },
-          {
-            kind: 'text',
-            value:
-              'Platform, hasta ile klinik arasındaki ödemeye de hiçbir şekilde aracılık etmez. Muayene, tedavi ve hizmet bedelleri tamamen klinik ile müşterisi arasındadır.',
+              'Platform, hasta ile klinik arasındaki ödemeye hiçbir şekilde aracılık etmez. Muayene, tedavi ve hizmet bedelleri tamamen klinik ile müşterisi arasındadır.',
           },
         ],
       },

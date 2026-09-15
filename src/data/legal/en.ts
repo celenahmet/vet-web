@@ -382,7 +382,7 @@ export const legalDocumentsEN: Record<LegalDocumentId, LegalDocument> = {
     slug: '/service-agreement',
     title: 'Corporate Agreement',
     summary: 'Additional terms for veterinarians, clinics and corporate accounts: verification, responsibility for patient data, team management.',
-    effectiveDate: EFFECTIVE,
+    effectiveDate: '15 September 2026',
     related: ['terms', 'kvkk', 'privacy'],
     required: true,
     intro: [
@@ -444,18 +444,15 @@ export const legalDocumentsEN: Record<LegalDocumentId, LegalDocument> = {
         blocks: [{ kind: 'text', value: 'The clinic undertakes to respond to appointment requests within a reasonable time. Accepting, proposing another time and cancelling are the clinic\'s responsibility. The service relationship is formed between the clinic and the animal owner; **the platform is not a party to it.**' }],
       },
       {
-        number: '7', title: 'Plans and pricing',
+        number: '7', title: 'Fees',
         blocks: [
-          { kind: 'callout', value: 'Clinic accounts are **entirely free** in this release, and no payment of any kind is taken inside the app. The rules below are the commitments that will apply if a paid plan is offered in future.' },
-          { kind: 'text', value: 'Two plans are planned for clinic accounts: **Veterito Klinik**, covering the core features, and **Veterito Klinik Pro**, which adds team management, a web panel and enhanced visibility. When the plans launch, both will be **free for the first year**.' },
-          { kind: 'text', value: 'If a paid period begins, we commit to the following:' },
+          { kind: 'callout', value: 'No fee is charged for the clinic account and no payment of any kind is taken inside the app. The clinic account includes the clinic features in the app.' },
+          { kind: 'text', value: 'Should charging be introduced in the future, we commit to the following:' },
           { kind: 'list', items: [
             'Notice is given **at least 30 days** before any charging starts.',
-            'Features you used during the free period are not withdrawn during that period.',
-            'If you choose not to move to a paid plan your account is not closed: it **returns to the free plan** and your data is not deleted. Only the features specific to the paid plan are disabled.',
-            'Price changes are announced before they take effect; if you do not wish to continue, you may return to the free plan at the end of the term.',
+            'Your account is not closed and your data is not deleted; if you choose not to continue, you may export your data.',
+            'Price and scope changes are announced before they take effect.',
           ]},
-          { kind: 'text', value: '**No payment is taken inside the app.** When paid plans launch, payment will be handled through the corporate sales channel outside the app. The mobile app is not a purchasing tool.' },
           { kind: 'text', value: 'Nor does the platform intermediate payment between patient and clinic. Examination, treatment and service fees are entirely between the clinic and its customer.' },
         ],
       },
