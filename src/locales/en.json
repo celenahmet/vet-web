@@ -1233,7 +1233,7 @@
     "Automation and artificial intelligence solutions",
     "Maintenance, development, and technical support"
   ],
-  "pricing_common_title": "Common Features in All Packages",
+  "pricing_common_title": "Core Tools in the Clinic Account",
   "pricing_common_features": [
     "Comprehensive clinic dashboard and daily appointment flow tracking",
     "Two-tab customer and patient (pet) management panel",
@@ -1268,6 +1268,7 @@
   "pricing_cfeat_10_desc": "Data privacy based on owner permission (Only name and species shown in unauthorized profiles)",
   "pricing_btn_start": "Download Veterito",
   "pricing_btn_contact": "Get a Quote",
+  "pricing_advanced_title": "Advanced Tools in the Clinic Account",
   "pricing_enterprise_addon_label": "In addition to the clinic account features:",
   "pricing_clinic_includes": "Includes the clinic features in the app",
   "pricing_clinic_desc": "One account for your clinic's daily operations, patients and visibility.",

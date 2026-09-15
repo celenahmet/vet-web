@@ -1180,7 +1180,7 @@
     "Otomasyon ve yapay zekâ çözümleri",
     "Bakım, geliştirme ve teknik destek"
   ],
-  "pricing_common_title": "Tüm Paketlerde Ortak Sunulan Özellikler",
+  "pricing_common_title": "Klinik Hesabındaki Temel Araçlar",
   "pricing_common_features": [
     "Kapsamlı klinik kontrol paneli ve günlük randevu akışı takibi",
     "İki sekmeli müşteri ve hasta (dost) yönetim paneli",
@@ -1215,6 +1215,7 @@
   "pricing_cfeat_10_desc": "Sahip iznine bağlı veri gizliliği (İzin verilmeyen profillerde yalnızca ad ve tür gösterimi)",
   "pricing_btn_start": "Veterito'yu İndirin",
   "pricing_btn_contact": "Teklif Al",
+  "pricing_advanced_title": "Klinik Hesabındaki Gelişmiş Araçlar",
   "pricing_enterprise_addon_label": "Klinik hesabındaki özelliklere ek olarak:",
   "pricing_clinic_includes": "Uygulamadaki klinik özelliklerini içerir",
   "pricing_clinic_desc": "Kliniğinizin günlük işleyişi, hastaları ve görünürlüğü için tek hesap.",

@@ -102,18 +102,9 @@ export default function Pricing() {
                   <span className="text-[var(--text-main)] leading-relaxed">{feat}</span>
                 </li>
               ))}
-              {getFeaturesArray('pricing_tier2_features').map((feat, idx) => (
-                <li key={`adv-${idx}`} className="flex items-start gap-4 py-4 border-b border-slate-200/80 dark:border-zinc-800/80 last:border-0">
-                  {getIconForFeature(feat)}
-                  <div>
-                    <span className="text-[var(--text-main)] leading-relaxed font-semibold block">{feat.split('|')[0]}</span>
-                    {feat.split('|')[1] ? (
-                      <span className="text-[var(--text-muted)] leading-relaxed text-[13px] block mt-1 whitespace-pre-line">{feat.split('|')[1]}</span>
-                    ) : null}
-                  </div>
-                </li>
-              ))}
             </ul>
+            {/* Gelismis araclar (eski Pro listesi) asagida kendi bolumunde: iki kart
+                ayni boyda kalsin diye (Ahmet 15.09: "paket dengesizligi"). */}
           </motion.div>
 
           {/* ESKİ KADEMELER (Standart / Pro) — Ahmet 15.09: "öncekileri de yorum
@@ -250,8 +241,45 @@ export default function Pricing() {
 
         </div>
 
+        {/* Gelismis araclar — klinik hesabinin icindeki ileri ozellikler (tier2 metinleri) */}
+        <div className="max-w-7xl mx-auto mt-32 mb-8 relative z-10">
+          <div className="flex flex-col items-center mb-14 text-center">
+            <motion.h2
+              initial={{ y: -20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[var(--text-main)]"
+            >
+              {t('pricing_advanced_title')}
+            </motion.h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 relative z-10">
+            {getFeaturesArray('pricing_tier2_features').map((feat, idx) => {
+              const [baslik, aciklama] = String(feat).split('|');
+              return (
+                <motion.div
+                  key={`adv-${idx}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: (idx % 4) * 0.1 }}
+                  className="bg-white dark:bg-zinc-900 rounded-[1.5rem] p-6 border border-slate-200 dark:border-zinc-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+                >
+                  <div className="w-12 h-12 bg-[#009689]/10 dark:bg-[#009689]/20 rounded-xl flex items-center justify-center mb-5 text-[#009689]">
+                    {getIconForFeature(String(feat))}
+                  </div>
+                  <h3 className="text-lg font-bold text-[var(--text-main)] mb-2">{baslik}</h3>
+                  {aciklama ? (
+                    <p className="text-[14px] text-[var(--text-muted)] font-medium leading-relaxed whitespace-pre-line">{aciklama}</p>
+                  ) : null}
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Common Features Section */}
-        <div className="max-w-7xl mx-auto mt-40 mb-24 relative z-10">
+        <div className="max-w-7xl mx-auto mt-24 mb-24 relative z-10">
           <div className="flex flex-col items-center mb-20 text-center">
             <motion.h2 
               initial={{ y: -20, opacity: 0 }}
