@@ -26,6 +26,12 @@ export const config = { runtime: 'edge' };
 // ── ELLE TETİKLEME ──────────────────────────────────────────────────────────
 //   curl -H "Authorization: Bearer $CRON_SECRET" https://veterito.com/api/gunluk-yayin
 // ============================================================================
+//
+// ⚠️ ORTAM DEGISKENI EKLENDIKTEN SONRA TAZE DERLEME SART (16.09.2026 olculdu).
+// Degiskenler Vercel'de eklendikten sonra "Redeploy" yapildi ama uc hala
+// `503 eksik: CRON_SECRET, VERCEL_DEPLOY_HOOK` donuyordu. Sebep derleme
+// onbellegi: Edge fonksiyonunun paketi yeniden uretilmezse degiskenler
+// gomulmuyor. Cozum: onbelleksiz redeploy ya da yeni bir commit.
 export default async function handler(req: Request): Promise<Response> {
   const secret = process.env.CRON_SECRET;
   const hook = process.env.VERCEL_DEPLOY_HOOK;
