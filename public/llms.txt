@@ -20,9 +20,14 @@ hangi yıl, DOI'si ne — hepsi doğrulanabilir.
 
 ## Blog
 
-28 yazı yayında. Her yazının altında en az iki kaynak var; genelde biri
+33 yazı yayında. Her yazının altında en az iki kaynak var; genelde biri
 uluslararası üniversite ya da hakemli dergi (Cornell, AAHA/AAFP, WSAVA gibi).
 
+- [Kedinin İdrarında Kan: Sebepleri ve Ne Zaman Acil?](https://veterito.com/blog/kedi-idrarinda-kan) — Kedi, 2026-09-16: Kumda pembe leke, sık sık kum kabına gidip az idrar yapmak ve zorlanma birlikteyse beklenmiyor. Erkek kedide tıkanıklık saatlerle ölçülen bir acil.
+- [Kediler İçin Zehirli Bitkiler: Evdeki Riskler ve Zambak Tehlikesi](https://veterito.com/blog/kediler-icin-zehirli-bitkiler) — Kedi, 2026-09-16: Zambak kedide iki yaprakla ölümcül olabiliyor, poleni bile toksik. Evdeki bitkilerde risk sıralaması ve şüphede ne yapılacağı.
+- [Kedilerde Göz Akıntısı: Sebepleri ve Ne Zaman Veterinere Gidilir?](https://veterito.com/blog/kedilerde-goz-akintisi) — Kedi, 2026-09-16: Göz akıntısı kedilerde en sık görülen göz sorununun habercisi. Akıntının rengi, gözün kısılması ve tek mi çift mi olduğu yönü belirliyor.
+- [Kedim Kusuyor: Ne Zaman Beklenir, Ne Zaman Veterinere Gidilir?](https://veterito.com/blog/kedim-kusuyor) — Kedi, 2026-09-16: Kedilerde kusma sık görülüyor ama "kedi zaten kusar" cümlesi çoğu zaman yanlış. Sıklık, süre ve eşlik eden bulgular sınırı belirliyor.
+- [Köpeğim Kusuyor: Ne Zaman Beklenir, Ne Zaman Acil?](https://veterito.com/blog/kopegim-kusuyor) — Köpek, 2026-09-16: Kusmakla çıkarmak aynı şey değil. Köpekte kusmaya çalışıp çıkaramamak, özellikle büyük ırklarda saatle ölçülen bir acil.
 - [Evcil Hayvanlarda Kan Tahlili Neden Yapılır?](https://veterito.com/blog/evcil-hayvanlarda-kan-tahlili) — Sağlık, 2026-08-31: Kan tahlili her ziyaretin zorunlu parçası değil ama gözle görülmeyeni gösterebilen tek araç. Ne zaman gerçekten fark yarattığına bakıyoruz.
 - [Köpeklerde Zehirlenme Nasıl Anlaşılır?](https://veterito.com/blog/kopeklerde-zehirlenme) — Köpek, 2026-08-31: Zehirlenmede en kritik bilgi belirti değil, zaman. Belirti çıkmasını beklemek çoğu maddede müdahale penceresini kapatıyor.
 - [Veteriner Muayenehanesi, Poliklinik ve Hayvan Hastanesi Arasındaki Fark Nedir?](https://veterito.com/blog/muayenehane-poliklinik-hastane-farki) — Klinik Yönetimi, 2026-08-31: Tabeladaki isim tesadüf değil. Her biri farklı bir ruhsata, farklı bir kadroya ve farklı bir hizmet kapsamına karşılık geliyor.

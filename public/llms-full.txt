@@ -1,6 +1,627 @@
 # Veterito — blog yazılarının tam metni
 
-Üretim: 2026-09-16. 28 yazı. Kaynak künyeleri her yazının sonunda.
+Üretim: 2026-09-16. 33 yazı. Kaynak künyeleri her yazının sonunda.
+
+---
+
+# Kedinin İdrarında Kan: Sebepleri ve Ne Zaman Acil?
+
+Adres: https://veterito.com/blog/kedi-idrarinda-kan
+Kategori: Kedi · Yayın: 2026-09-16
+
+Kumda pembe leke, sık sık kum kabına gidip az idrar yapmak ve zorlanma birlikteyse beklenmiyor. Erkek kedide tıkanıklık saatlerle ölçülen bir acil.
+
+Kumda pembemsi bir leke ya da kum topağında kırmızı bir iz, çoğu sahibin ilk kez karşılaştığında ne yapacağını bilemediği bulgulardan. Sorunun cevabı tek başına kanda değil, kanın **yanında ne olduğunda**: kedi idrarını yapabiliyor mu, ne sıklıkta gidiyor, zorlanıyor mu, sesleniyor mu.
+
+Bu yazı üç şeyi ayırıyor: idrarda kan ne anlama geliyor, hangi tablo saatler içinde hayati risk taşıyor, ve muayenede ne yapılıyor.
+
+
+## Tek bulgu değil, bulgu kümesi
+
+Cornell Üniversitesi Kedi Sağlığı Merkezi, alt idrar yolu hastalığını bir bulgu kümesiyle tanımlıyor. Kan çoğu zaman bu kümenin yalnız bir parçası.
+
+- İdrar yaparken zorlanma ya da ağrı
+- İdrar sıklığında artış, her seferinde az miktar
+- İdrar yaparken sesli miyavlama
+- İdrarda kan
+- Kum kabı dışına idrar yapmaya başlamak
+- Genital bölgeyi aşırı yalamak
+
+Kum kabının dışına idrar yapmak sık yanlış okunuyor: inatçılık ya da küslük sanılıyor. Oysa kedi çoğu zaman **ağrıyı kum kabıyla ilişkilendirdiği için** oradan kaçınıyor. Aynı okuma hatası kabızlıkta (https://veterito.com/blog/kedilerde-kabizlik) da yapılıyor.
+
+YAYGIN YANILGI — "Kan var ama idrarını yapıyor, sabaha bakarız" yanılgısı: Kedinin kum kabında oturup çıkması, idrarın gerçekten çıktığı anlamına gelmiyor. Tıkanıklıkta kedi defalarca kum kabına gidiyor, zorluyor, birkaç damla çıkarıyor ya da hiç çıkaramıyor. Cornell bu tabloyu "en tehlikeli sorun" ve "gerçek bir tıbbi acil" olarak tanımlıyor: tam tıkanıklıktan ölüme geçen süre yirmi dört ila kırk sekiz saatten az olabiliyor. Bu yüzden "sabaha bakarız" cümlesi, özellikle erkek kedide kurulmuyor.
+
+
+## Arkasında ne çıkıyor
+
+İsviçre’de Zürih Üniversitesi kliniğinden 2005 tarihli bir çalışma, alt idrar yolu hastalığı tanısı alan 77 kediyi inceledi ve tanıların dağılımını şöyle verdi:
+
+Tanı | Oran (77 kedilik seride)
+İdiopatik (sebebi bulunamayan) alt idrar yolu hastalığı | %57
+İdrar taşı | %22
+Üretra tıkacı | %10
+İdrar yolu enfeksiyonu | %8
+Kesin tanı konulamayan | %3
+
+Aynı çalışmanın en dikkat çeken sayısı şu: başvuru anında kedilerin **%58’inde üretra tıkanıklığı** vardı ve seride 77 kedinin 67’si erkekti. Yani idrarda kanla gelen kedilerin önemli bir kısmı zaten tıkanmış hâlde geliyor. Bu oranlar tek bir seriye ait, Türkiye geneli için bir tahmin değil; ama sıralamayı gösteriyor.
+
+Cornell, idiopatik sistiti "kedilerde en sık konan tanı" olarak tanımlıyor ve bulguların tedaviden bağımsız olarak birkaç hafta içinde gerilediğini belirtiyor. Buradan çıkan sonuç "o zaman beklerim" değil: tıkanıklık ihtimali dışlanmadan hangi tablo olduğu bilinmiyor.
+
+
+## Aynı gün başvuru gerektiren tablo
+
+- Kum kabına gidip hiç idrar çıkaramamak
+- Zorlanmaya rağmen birkaç damla çıkması
+- İdrar yaparken sesli ağrı belirtisi
+- Halsizlik, kusma, iştahın kesilmesi
+- Karnın gergin olması ve dokunmaya tepki
+- Erkek kedide bu bulguların herhangi biri
+
+UYARI: Bu yazı bilgilendirme amaçlı; teşhis ve tedavi yerine geçmez. İdrar yapamayan kedi bekletilmez, aynı gün en yakın veteriner hekime başvurulur.
+
+
+## Muayenede ne yapılıyor
+
+Cornell’in tarif ettiği ilk basamak fizik muayene ve idrar tahlili. Gerekirse kan tahlili, röntgen, ultrason ve idrar kültürü ekleniyor. Taş tipinin (struvit ya da kalsiyum oksalat) belirlenmesi tedaviyi ve sonraki beslenme planını değiştiriyor.
+
+Kan tahlilinin hangi başlıklara baktığı için kan tahlili (https://veterito.com/blog/evcil-hayvanlarda-kan-tahlili) yazısına, düzenli kontrolün bu tabloları erken yakalamadaki rolü için check-up (https://veterito.com/blog/kedi-kopek-check-up-ne-zaman) yazısına bakabilirsiniz.
+
+
+## Karar tablosu
+
+Durum | Ne yapılır
+Kumda tek seferlik pembe iz, kedi normal | Aynı gün hekime danışılır, gözlem başlatılır
+Sık sık kum kabına gidiyor, az idrar var | Aynı gün başvurulur
+Zorluyor, idrar çıkmıyor | Acil başvuru, beklenmez
+Erkek kedi, zorlanma var | Acil başvuru, beklenmez
+Kusma, halsizlik eşlik ediyor | Acil başvuru
+Şikâyet geçti ama tekrarlıyor | Zemin araştırılır; tekrar eden tablo tek atak gibi tedavi edilmez
+
+
+## Erkek ve dişi kedide tablo neden farklı
+
+Alt idrar yolu hastalığı cinsiyet ayırmıyor; tehlikeli olan tıkanıklık ise ayırıyor. Erkek kedide üretra daha uzun ve uç kısmına doğru belirgin biçimde daralıyor. Kristal, mukus ve iltihap hücrelerinden oluşan tıkacın takıldığı yer çoğunlukla burası. Dişi kedide aynı hastalık görülüyor ama kanal daha geniş olduğu için tam tıkanıklık çok daha seyrek.
+
+Bu yüzden iki kedide aynı bulgu farklı aciliyet taşıyor: kanlı idrar yapan dişi kedide aynı gün değerlendirme yeterliyken, zorlanan ve idrar çıkaramayan erkek kedide saat sayılıyor. Kısırlaştırılmış erkek kedilerde risk daha da öne çıkıyor; kısırlaştırma zamanlaması (https://veterito.com/blog/kediler-ne-zaman-kisirlastirilmali) yazısında bu başlık ayrıca geçiyor.
+
+
+## Kum kabı, evin en iyi ölçüm aracı
+
+Bu hastalıkta ilk bulguyu genelde tahlil değil, kum kabı veriyor. Topaklanan kum kullanan evlerde topağın büyüklüğü idrar miktarını, sayısı ise sıklığı gösteriyor. Günlük temizlik sırasında iki soruya bakmak yetiyor: her zamankinden çok mu daha küçük topak var, ve toplam sayı arttı mı.
+
+- Normalde birkaç büyük topak varken çok sayıda küçük topak çıkması
+- Kum kabında uzun süre oturup çıkması, çıkınca hemen geri dönmesi
+- Kabın dışına, küvete, lavaboya ya da yumuşak zemine yapması
+- Kum kabında ya da yattığı yerde pembe-kırmızı leke
+- İdrar yaparken ses çıkarması
+
+Çok kedili evde hangi kedinin yaptığını ayırmak zorlaşıyor. Böyle durumlarda kedileri kısa süreliğine ayrı kum kaplarıyla izlemek ya da kabı gün içinde birkaç kez kontrol etmek, hekime götürülecek bilgiyi netleştiriyor.
+
+
+## Tekrarı azaltan başlıklar
+
+İdiopatik tabloda tedavi sonrası asıl iş nüksü azaltmak oluyor; Cornell hastalığın orta yaşlı, kilolu ve az hareket eden kedilerde daha sık görüldüğünü belirtiyor. Bu üç başlık evde doğrudan çalışılabiliyor: su tüketimini artırmak, kiloyu hekimle birlikte hedefe çekmek ve günlük oyunla hareketi düzenli hâle getirmek.
+
+Kum kabı düzeni de sanıldığından fazla etkili. Kedi sayısından bir fazla kap, sessiz ve geçiş yolu üzerinde olmayan konum, günlük temizlik ve kedinin alıştığı kumdan vazgeçmemek ilk sırada geliyor. Ev içi stresi azaltan düzenlemeler, mama ve tedavi kararları ise hekimle birlikte veriliyor.
+
+
+## Eve dönerken
+
+İdrarda kan tek başına bir teşhis değil, bir yön tabelası. Asıl soru kedinin idrarını **yapabiliyor** olup olmadığı. Yapabiliyorsa değerlendirme aynı gün planlanır; yapamıyorsa saat değil dakika konuşulur.
+
+## Sıkça sorulan sorular
+
+**Kedimin idrarında kan gördüm ama keyfi yerinde, bekleyebilir miyim?**
+Keyfin yerinde olması tıkanıklık ihtimalini dışlamıyor; kedi ağrısını uzun süre saklayabiliyor. Kedi idrarını rahat yapabiliyorsa aynı gün hekime danışılır. Zorlanma varsa, kum kabına sık gidip az çıkarıyorsa ya da hiç idrar çıkmıyorsa tablo acil kabul edilir ve beklenmez.
+
+**Neden erkek kediler daha riskli?**
+Erkek kedilerde üretra daha dar olduğu için tıkanma riski yüksek. 77 kedilik bir seride kedilerin 67’si erkekti ve başvuru anında %58’inde tıkanıklık vardı. Cornell de tıkanıklığı gerçek bir tıbbi acil olarak tanımlıyor.
+
+**Kan idrar yolu enfeksiyonundan mı geliyor?**
+Her zaman değil, hatta çoğu zaman değil. 77 kedilik seride idrar yolu enfeksiyonu oranı %8 çıktı; en sık tanı, sebebi bulunamayan idiopatik hastalıktı. Bu yüzden antibiyotik kararı peşinen verilmiyor, tanı idrar tahlili ve gerekirse görüntülemeyle konuyor.
+
+**Kum kabının dışına yapıyor, ceza vermeli miyim?**
+Hayır. Bu davranış çoğu zaman ağrıyla kum kabı arasında kurulan ilişkiden kaynaklanıyor: kedi acıyı kaba bağlıyor ve başka zemin arıyor. Ceza hem tabloyu hem aranızdaki ilişkiyi kötüleştiriyor. Yapılması gereken şey ceza değil, tıbbi değerlendirme ve ardından kum kabı düzeninin gözden geçirilmesi.
+
+**Tekrarlamasını nasıl azaltırım?**
+Su tüketimi, kilo, hareket, kum kabı düzeni ve stres başlıkları hekimle birlikte gözden geçirilir. Cornell, hastalığın orta yaşlı, kilolu ve az hareket eden kedilerde daha sık görüldüğünü belirtiyor.
+
+## Kaynaklar
+
+- Cornell University College of Veterinary Medicine · Cornell Feline Health Center · Feline Lower Urinary Tract Disease · https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-lower-urinary-tract-disease
+- British Small Animal Veterinary Association · Evaluation of clinical signs and causes of lower urinary tract disease in European cats · Gerber B, Boretti FS, Kley S, Laluha P, Müller C ve ark. · Journal of Small Animal Practice · 2005 · 46(12):571-577 · DOI: 10.1111/j.1748-5827.2005.tb00288.x · https://pubmed.ncbi.nlm.nih.gov/16355731/
+
+---
+
+# Kediler İçin Zehirli Bitkiler: Evdeki Riskler ve Zambak Tehlikesi
+
+Adres: https://veterito.com/blog/kediler-icin-zehirli-bitkiler
+Kategori: Kedi · Yayın: 2026-09-16
+
+Zambak kedide iki yaprakla ölümcül olabiliyor, poleni bile toksik. Evdeki bitkilerde risk sıralaması ve şüphede ne yapılacağı.
+
+Eve alınan bir saksı ya da gelen bir çiçek buketi, kedili evde sessiz bir risk olabiliyor. Riskin büyüklüğü bitkiden bitkiye çok değişiyor: bazıları ağızda tahrişle sınırlı kalırken, zambak kedide **böbrek yetmezliğine** yol açabiliyor.
+
+Bu yazı üç şeyi ayırıyor: hangi bitkiler gerçekten tehlikeli, zambak neden ayrı bir başlık ve şüphelenildiğinde ne yapılıyor.
+
+
+## Zambak: kedilerde ayrı bir başlık
+
+2010 tarihli bir derleme, zambak toksisitesini kedilere özgü bir tablo olarak anlatıyor. Lilium ve Hemerocallis (gün zambağı) türleri kedide **nefrotoksik**, yani böbrek dokusunu hedef alıyor.
+
+- Kediler zambağın toksik etkisine aşırı duyarlı
+- Yalnızca iki yaprak ya da tek bir çiçeğin bir parçası ölümle sonuçlanmış vakalar var
+- Bitkinin tamamı toksik: taç yaprak, ercik, yaprak ve polen
+- Kesin toksik doz ve sorumlu toksin hâlâ bilinmiyor
+- Belirtilerin hızlı başlaması, toksinin hızlı emildiğini düşündürüyor
+
+Polen maddesi pratikte en çok gözden kaçan kısım: kedi vazoya hiç dokunmasa bile tüyüne bulaşan poleni yalayarak alabiliyor. Aynı derleme, halkın büyük kısmının zambağın kedilere tehlikeli olduğunu bilmediğini ve kendi evindeki bitkiyi doğru tanımlayamadığını da belirtiyor.
+
+YAYGIN YANILGI — "Adında zambak geçen her bitki aynı şeydir" yanılgısı: Kafa karışıklığının kaynağı isim benzerliği. Müge (Convallaria) da halk arasında zambak olarak anılıyor ama böbrek üzerinden değil, dijital benzeri güçlü kalp glikozitleriyle etki ediyor; yani tablo tamamen farklı. Melez türlerin çokluğu da ayrımı zorlaştırıyor. Bu yüzden "hangi zambak" sorusunun cevabı evde değil, hekimde aranıyor: mümkünse bitkinin fotoğrafı ya da kendisi götürülüyor.
+
+
+## Evde sık bulunan riskli bitkiler
+
+ASPCA’nın kediler için zehirli bitkiler listesinde en sık karşılaşılan başlıklar şunlar:
+
+Bitki | Not
+Zambaklar (Asya, Paskalya, kaplan, rubrum) | Kedide böbrek yetmezliği riski, en ciddi grup
+Sagu palmiyesi (Cycas) | Ciddi toksisite
+Zakkum | Ciddi toksisite
+Açalya ve ormangülü | Toksik
+Difenbahya | Ağız ve yutakta tahriş
+Şeytan sarmaşığı (pothos) | Ağız ve sindirim tahrişi
+Filodendron | Ağız ve sindirim tahrişi
+Sonbahar çiğdemi | Toksik
+Lale | Toksik, özellikle soğanı
+
+Bu tablo tam liste değil: ASPCA’nın kendi listesi yüzlerce bitki içeriyor ve güncelleniyor. Eve yeni bir bitki almadan önce adını o listede aratmak, sonradan yapılacak her şeyden kolay.
+
+
+## Şüpheleniyorsanız ne yapılır
+
+- Kediyi bitkiden uzaklaştırın, ağzında kalan parçaları alın
+- Bitkinin adını öğrenin; bilmiyorsanız bir parçasını ya da fotoğrafını hazırlayın
+- Ne kadar ve ne zaman yediğini not edin
+- Belirti beklemeden hekime haber verin
+- Evde kusturmaya çalışmayın; bu, tabloyu ağırlaştırabiliyor
+
+UYARI: Bu yazı bilgilendirme amaçlı; teşhis ve tedavi yerine geçmez. Zambak temasından şüpheleniyorsanız belirti çıkmasını beklemeden en yakın veteriner hekime başvurun.
+
+Kusma ve iştahsızlık zehirlenmenin ilk işaretleri olabiliyor ama tek başına ayırt edici değil; kedilerde kusma (https://veterito.com/blog/kedim-kusuyor) yazısında bu ayrım anlatılıyor. Köpek tarafı için köpeklerde zehirlenme (https://veterito.com/blog/kopeklerde-zehirlenme) ve köpeklere zararlı yiyecekler (https://veterito.com/blog/kopeklere-zararli-yiyecekler) yazıları var.
+
+
+## Zambak zehirlenmesi nasıl ilerliyor
+
+Derlemenin tarif ettiği tablo aşamalı. İlk saatlerde kusma, salya, iştahsızlık ve halsizlik görülüyor; bu bulgular birkaç saat sonra geçici olarak hafifleyebiliyor ve tam da bu yüzden "atlattı" sanılıyor. Oysa asıl hasar böbrek tübüllerinde ilerliyor ve tablo bir iki gün içinde akut böbrek yetmezliği olarak geri dönüyor.
+
+Bu ara dönem, evde beklemeyi en çok pahalıya çıkaran kısım. Tedavinin sonucunu belirleyen şey temasla müdahale arasındaki süre oluyor; belirti çıkmadan başvurulan kedi ile böbrek değerleri yükseldikten sonra gelen kedi aynı yerde değil. Karar, belirtiye değil temas öyküsüne göre veriliyor.
+
+
+## Buket ve saksı: risk nereden giriyor
+
+Eve zambağın giriş yolu çoğu zaman saksı değil, hediye buketi oluyor: doğum günü, ziyaret, bayram. Buket masaya konduğunda kimse bitkinin türünü kontrol etmiyor. Poleni de toksik kabul edildiği için kedinin bitkiyi yemesi bile gerekmiyor; tüyüne bulaşan poleni yalaması tarif edilen temas yollarından biri.
+
+- Buket gelince önce türünü kontrol edin, sonra vazoya koyun
+- Vazo suyu da temas kaynağı; kedinin erişemeyeceği yere koyun
+- Dökülen polen ve yaprakları aynı gün toplayın
+- Kapalı balkon ya da kedinin girmediği oda, yüksek raf demek değil: kedi rafa çıkar
+- Emin değilseniz bitkiyi evde tutmayın, kediye alternatif yeşillik verin
+
+
+## Kediye güvenli yeşillik
+
+Bitki kemirme davranışı kedide sık; yeşilliği tamamen kaldırmak yerine güvenli bir seçenek sunmak daha çok işe yarıyor. Kedi otu olarak satılan çimler ve ASPCA listesinde toksik olmayan bölümde yer alan türler bu iş için kullanılıyor. Listeyi eve bitki almadan önce bir kez açmak, sonradan yapılacak acil başvurudan çok daha ucuz.
+
+Bitki dışında da benzer bir liste var: mutfaktan gelen riskler. Köpekler için zararlı yiyecekler (https://veterito.com/blog/kopeklere-zararli-yiyecekler) yazısında topladığımız kalemlerin bir kısmı kediler için de geçerli, ve zehirlenme şüphesinde izlenen yol zehirlenme (https://veterito.com/blog/kopeklerde-zehirlenme) yazısında anlatılan yolla aynı: evde müdahale edilmiyor, temas bilgisiyle hekime gidiliyor.
+
+
+## Belirti yokken başvurmak neden mantıklı
+
+Zehirlenme başlıklarının çoğunda "belirti çıkarsa gidin" cümlesi kuruluyor; zambakta bu cümle tersine dönüyor. Böbrek hasarı belirtilerden önce başlıyor ve tedavinin başarısı, hasar yerleşmeden önce başlamasına bağlı. Yani burada başvuru ölçütü kedinin görünümü değil, temas ihtimalinin kendisi.
+
+Aynı mantık şüpheli madde yutan köpeklerde de geçerli. Evde beklemek, kusturmaya çalışmak ya da internetten doz aramak geçen sürenin uzamasından başka bir işe yaramıyor; yapılacak tek şey maddeyi tanımlayıp hekime gitmek.
+
+Bir nokta daha: evde birden fazla kedi varsa hangisinin bitkiye dokunduğunu ayırmak çoğu zaman mümkün olmuyor. Bu durumda değerlendirme tek kediyle sınırlandırılmıyor, temas ihtimali olan bütün kediler hekime götürülüyor.
+
+
+## Evi düzenlerken
+
+Kedili evde en sağlam kural, riskli bitkiyi "ulaşamayacağı yere koymak" değil **eve hiç almamak.** Kedi rafa çıkar, vazoyu devirir, poleni tüyüne bulaştırır. Gelen buketten zambağı ayırmak, sonrasında yapılacak her müdahaleden ucuz.
+
+## Sıkça sorulan sorular
+
+**Kedim zambak yaprağını sadece ısırdı, yutmadı. Risk var mı?**
+Evet. Derlemede iki yaprak kadar az miktarın ölümle sonuçlandığı vakalar bildiriliyor ve bitkinin tamamı, poleni dahil toksik kabul ediliyor. Miktar tartışmasına girmeden hekime başvurmak gerekiyor.
+
+**Vazodaki suyu içti, sorun olur mu?**
+Zambak temasında güvenli bir eşik bilinmiyor; derleme kesin toksik dozun hâlâ belirlenmemiş olduğunu söylüyor ve bitkinin tamamını, poleni ve vazo suyu dahil, toksik kabul ediyor. Temas şüphesi varsa belirti beklemeden değerlendirme isteniyor.
+
+**Zehirlenmede ilk belirtiler neler?**
+Kusma, salya artışı, iştahsızlık ve halsizlik ilk sıralarda geliyor; birkaç saat sonra geçici bir düzelme görülebiliyor ve bu aldatıcı oluyor. Belirtiler başka birçok tabloda da görüldüğü için ayırt edici değil; asıl bilgi veren şey temas öyküsü.
+
+**Evde kusturmak doğru mu?**
+Hayır, kendi başınıza kusturmaya çalışmayın. Bazı maddelerde kusturma yemek borusuna ve solunum yoluna ek hasar veriyor, üstelik kedide evde uygulanan yöntemler güvenli değil. Kusturma kararı da yöntemi de hekime ait; siz bitkinin adını ya da bir parçasını götürün.
+
+**Hangi bitkilerin güvenli olduğunu nereden öğrenirim?**
+ASPCA’nın kediler için hazırladığı liste hem toksik hem toksik olmayan bitkileri bilimsel adlarıyla birlikte veriyor; halk arasındaki isimler karıştığı için bilimsel ad üzerinden bakmak daha güvenli. Eve bitki almadan ya da gelen buketi vazoya koymadan önce adı oradan kontrol edilebilir.
+
+## Kaynaklar
+
+- ASPCA Animal Poison Control Center · Toxic and Non-Toxic Plants: Cats · https://www.aspca.org/pet-care/animal-poison-control/cats-plant-list
+- Elsevier · Topics in Companion Animal Medicine · Lily toxicity in the cat · Fitzgerald KT · Topics in Companion Animal Medicine · 2010 · 25(4):213-217 · DOI: 10.1053/j.tcam.2010.09.006 · https://pubmed.ncbi.nlm.nih.gov/21147474/
+
+---
+
+# Kedilerde Göz Akıntısı: Sebepleri ve Ne Zaman Veterinere Gidilir?
+
+Adres: https://veterito.com/blog/kedilerde-goz-akintisi
+Kategori: Kedi · Yayın: 2026-09-16
+
+Göz akıntısı kedilerde en sık görülen göz sorununun habercisi. Akıntının rengi, gözün kısılması ve tek mi çift mi olduğu yönü belirliyor.
+
+Gözün köşesinde biriken akıntı, kedilerde en sık karşılaşılan şikâyetlerden. Çoğu zaman "uyku tozu" diye geçiştiriliyor; oysa akıntının **rengi, miktarı ve yanındaki bulgular** ciddi bir tabloyla basit bir tahrişi ayırıyor.
+
+Bu yazı üç şeyi ayırıyor: akıntının arkasında ne var, hangi bulgu beklemeye uygun değil ve muayenede ne yapılıyor.
+
+
+## En sık görülen göz sorunu
+
+Cornell Üniversitesi Kedi Sağlığı Merkezi konjonktiviti "kedilerdeki tüm göz rahatsızlıkları içinde en sık görüleni" olarak tanımlıyor. Konjonktiva, göz kapaklarının iç yüzünü ve göz küresinin dışını kaplayan zar; iltihaplandığında tablo şöyle görünüyor:
+
+- Gözü kısma, sık kırpma
+- Renksiz ve sulu ya da koyu renkli ve yoğun akıntı
+- Konjonktivada şişlik ve kızarıklık
+- Üçüncü göz kapağının belirginleşmesi
+- Gözü patiyle ovalama, ışıktan rahatsız olma
+
+Akıntının niteliği yön veriyor ama tek başına tanı koymuyor: sulu akıntı daha çok tahriş ve virüs tablolarında, koyu ve yoğun akıntı bakteriyel katkı olan tablolarda öne çıkıyor.
+
+
+## Arkasında genelde enfeksiyon var
+
+Cornell’in saydığı başlıca sebepler herpesvirüs, kalisivirüs ve iki bakteri: klamidofila ile mikoplazma. FIV ya da FeLV nedeniyle bağışıklığı baskılanmış kedilerde tablo daha sık görülüyor.
+
+Münih’teki Ludwig Maximilian Üniversitesi kliniğinden 2010 tarihli bir çalışma, konjonktiviti olan 41 kedide göz sürüntüsünü PCR ile inceledi. 41 kedinin 37’sinde bir etken saptandı ve dağılım şöyleydi:
+
+Etken | Oran (41 kedilik seride)
+Chlamydophila felis | %56
+Mikoplazma türleri | %49
+Kedi herpesvirüsü (FHV) | %27
+
+Aynı çalışmada 22 kedide **birden çok etken birlikte** bulundu. Pratikteki karşılığı şu: "virüstür, geçer" ya da "damla yeterli" demek çoğu zaman tabloyu eksik okumak oluyor.
+
+YAYGIN YANILGI — "Tek gözde akıntı varsa önemsizdir" yanılgısı: Tek taraflı akıntı bazen yabancı cisim, tıkalı gözyaşı kanalı ya da kornea çiziği gibi mekanik bir sebebe işaret ediyor; bunlar kendiliğinden geçen tablolar değil. Çift taraflı akıntı ise daha çok bulaşıcı sebepleri düşündürüyor. Yani taraf sayısı ciddiyeti değil, aranacak yeri değiştiriyor.
+
+
+## Aynı gün başvuru gerektiren bulgular
+
+- Gözü tamamen kapalı tutmak, açamamak
+- Belirgin ağrı: dokunmaya izin vermeme, yüzünü ovalamayı sürdürme
+- Gözde bulanıklık, mavimsi ya da beyazımsı görünüm
+- Kanlı ya da irinli akıntı
+- Akıntıya hapşırık, burun akıntısı ve iştahsızlığın eşlik etmesi
+- Yavru kedide göz kapaklarının yapışması ve şişlik
+
+UYARI: Bu yazı bilgilendirme amaçlı; teşhis ve tedavi yerine geçmez. Evde eczaneden alınan göz damlası kullanılmaz: yanlış tabloda kortizonlu damla kornea hasarını ağırlaştırabiliyor.
+
+
+## Tedavi ve süre
+
+Cornell, birçok olgunun ilaçsız gerilediğini, tedavi gerektiğinde ise genellikle **iki ila üç hafta boyunca günde üç dört kez** antibiyotikli damla ya da merhem uygulandığını belirtiyor; herpesvirüs şüphesinde antiviral ilaç ekleniyor. Buradaki kritik nokta süre: birkaç gün sonra "düzeldi" diye bırakılan tedavi, tablonun tekrarlamasının en sık sebebi.
+
+Çok kedili evlerde bulaş önemli. Cornell, tablonun özellikle genç hayvanlarda ve kedi barınağı gibi çok kedili ortamlarda yaygın olduğunu belirtiyor. Yeni kedi alındığında ayrı tutma ve aşı takvimi (https://veterito.com/blog/kedi-asi-takvimi) bu yüzden önem kazanıyor.
+
+
+## Karar tablosu
+
+Durum | Ne yapılır
+Sabah köşede az miktarda kuru akıntı, göz açık ve berrak | Birkaç gün gözlenir, tekrarlıyorsa randevu alınır
+Sulu akıntı, hafif kızarıklık | Hekime danışılır
+Göz kısılıyor, kedi rahatsız | Aynı gün başvurulur
+İrinli akıntı ya da gözde bulanıklık | Aynı gün başvurulur
+Yavru kedide kapaklar yapışık | Aynı gün başvurulur
+Evde başka kedilerde de başladı | Ayrı tutulur, hep birlikte değerlendirilir
+
+
+## Akıntının görüntüsü ne anlatıyor
+
+Akıntının rengi ve kıvamı tek başına tanı koydurmuyor ama hekime gidene kadar ne izleneceğini belirliyor. Berrak ve sulu akıntı daha çok tahriş ya da gözyaşı akışındaki bir aksaklığı; koyu, yeşilimsi ve yapışkan akıntı ise iltihabi bir süreci düşündürüyor. Göz çevresinde kuruyup kabuklanan kahverengi iz, akıntının gün boyu devam ettiğini gösteriyor.
+
+- Akıntı hangi gözde, ne zaman başladı
+- Renk ve kıvam: berrak, beyaz, sarı-yeşil
+- Göz kısılıyor mu, kedi pati ile ovuyor mu
+- Üçüncü göz kapağı görünüyor mu
+- Burun akıntısı, hapşırma ya da iştahsızlık eşlik ediyor mu
+- Evde başka kedide aynı bulgu var mı
+
+Bu altı satır, muayenede hekimin zaten soracağı sorular. Telefonla randevu alırken söylenmesi bile sıranın ve hazırlığın değişmesini sağlayabiliyor; özellikle göz kısılması ve ovma bulgusu, ağrı anlamına geldiği için öne alınıyor.
+
+
+## Yavru kedilerde ve çok kedili evde
+
+Bulaşıcı etkenler söz konusu olduğunda yaş ve ortam tabloyu değiştiriyor. Yavru kedilerde göz akıntısı üst solunum yolu enfeksiyonuyla birlikte gidiyor ve göz kapakları birbirine yapışabiliyor; bu yaşta beklemek, kornea hasarı riskini artırıyor. Sokaktan yeni alınmış ya da barınaktan gelmiş yavruda akıntı, ilk muayene sebeplerinden biri.
+
+Çok kedili evlerde ise soru tek kediyle sınırlı kalmıyor. 41 kedilik seride kedilerin yarısından fazlasında birden çok etken birlikte bulundu; yani "hangi mikrop" sorusunun cevabı çoğu zaman tek değil. Hekim bu yüzden ev içindeki diğer kedileri, aşı geçmişini ve yeni gelen kedi olup olmadığını soruyor. Aşı düzeni için kedi aşı takvimi (https://veterito.com/blog/kedi-asi-takvimi) yazısına bakabilirsiniz.
+
+
+## Tekrarlayan akıntı ve stres
+
+Bazı kedilerde akıntı geçiyor, aylar sonra geri geliyor. Herpes virüsü taşıyan kedilerde bu tablo biliniyor: virüs vücutta sessiz kalıyor ve stres dönemlerinde yeniden aktifleşiyor. Taşınma, eve yeni bir hayvan ya da bebek gelmesi, pansiyon, uzun süren misafirlik gibi değişiklikler bu dönemlerin tipik örnekleri.
+
+Nüksü tamamen engellemek her zaman mümkün olmuyor ama iki şey işe yarıyor: tedaviyi hekimin verdiği süre boyunca yarıda kesmemek ve stres kaynaklarını öngörülebilir hâle getirmek. Tekrarların tarihini kaydetmek de yardımcı oluyor; hekim böylece sıklığı ve tetikleyiciyi görebiliyor.
+
+
+## Eve dönerken
+
+Göz akıntısı kedilerde sık, bu doğru. Ama sık olan şeyin ucuz atlatılacağı anlamına gelmiyor: kornea hasarı ve görme kaybı, geciken tabloların bilinen sonuçları. Bakılacak üç şey var: göz açılabiliyor mu, akıntı nasıl, ağrı var mı.
+
+## Sıkça sorulan sorular
+
+**Kedimin gözündeki akıntı kendiliğinden geçer mi?**
+Cornell birçok olgunun ilaçsız gerilediğini belirtiyor, ama bu her akıntının evde beklenebileceği anlamına gelmiyor. Göz kısılıyorsa, kedi patisiyle ovuyorsa, akıntı koyulaşmışsa ya da kornea bulanık görünüyorsa beklenmez; bu bulgular ağrı ve yüzey hasarı anlamına geliyor.
+
+**Eczaneden göz damlası alabilir miyim?**
+Hayır. İnsan için üretilen bazı damlalar kortizon içeriyor ve kornea çiziği olan bir gözde iyileşmeyi geciktirip tabloyu ağırlaştırabiliyor. Hangi damlanın kullanılacağı, boyalı muayeneyle kornea yüzeyi değerlendirildikten sonra belirleniyor.
+
+**Diğer kedilerime bulaşır mı?**
+Bulaşıcı etkenler söz konusu olduğunda evet. Cornell, tablonun çok kedili ortamlarda yaygın olduğunu belirtiyor; 41 kedilik bir seride en sık etkenler klamidofila ve mikoplazma çıktı ve kedilerin yarısından fazlasında birden çok etken birlikte bulundu. Evdeki diğer kedileri de gözlemek gerekiyor.
+
+**Tedavi ne kadar sürer?**
+Genellikle iki ila üç hafta sürüyor ve günde üç dört uygulama isteniyor. Göz birkaç günde düzelmiş görünse bile erken bırakmak, tekrarlamanın en sık sebebi. Süreyi ve uygulama sıklığını hekim belirliyor, evde kısaltılmıyor.
+
+**Tek gözde akıntı varsa ne düşünülür?**
+Tek taraflı akıntıda yabancı cisim, tıkalı gözyaşı kanalı ya da kornea çiziği gibi mekanik sebepler öne çıkıyor; çift taraflı akıntı ise daha çok bulaşıcı sebepleri düşündürüyor. Taraf sayısı ciddiyeti değil, aranacak yeri değiştiriyor ve her ikisinde de muayene gerekiyor.
+
+## Kaynaklar
+
+- Cornell University College of Veterinary Medicine · Cornell Feline Health Center · Conjunctivitis · https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/conjunctivitis
+- ISFM · AAFP · Journal of Feline Medicine and Surgery · Detection of bacterial and viral organisms from the conjunctiva of cats with conjunctivitis and upper respiratory tract disease · Hartmann AD, Hawley J, Werckenthin C, Lappin MR, Hartmann K · Journal of Feline Medicine and Surgery · 2010 · 12(10):775-782 · DOI: 10.1016/j.jfms.2010.06.001 · https://pubmed.ncbi.nlm.nih.gov/20817584/
+
+---
+
+# Kedim Kusuyor: Ne Zaman Beklenir, Ne Zaman Veterinere Gidilir?
+
+Adres: https://veterito.com/blog/kedim-kusuyor
+Kategori: Kedi · Yayın: 2026-09-16
+
+Kedilerde kusma sık görülüyor ama "kedi zaten kusar" cümlesi çoğu zaman yanlış. Sıklık, süre ve eşlik eden bulgular sınırı belirliyor.
+
+Kedi sahiplerinin en sık sorduğu şeylerden biri: “kustu, önemli mi?” Cevap tek bir kusmada değil, **desende** saklı. Ne sıklıkta olduğu, ne kadar sürdüğü ve yanında başka bulgu olup olmadığı, evde beklenecek bir tabloyla hekime götürülecek bir tabloyu ayırıyor.
+
+Bu yazı üç şeyi ayırıyor: hangi kusma beklenebilir, hangi bulgu aynı gün başvuru gerektirir ve “kedi zaten kusar” cümlesi neden çoğu zaman yanlış.
+
+
+## Sıklık, tek kusmadan daha çok şey söylüyor
+
+Cornell Üniversitesi Kedi Sağlığı Merkezi, kusmayı sıklığa göre değerlendiriyor: **haftada birden sık kusan** kedi veteriner değerlendirmesi gerektiriyor. Tüy yumağı için beklenen aralık ise daha geniş; iki haftada bir tüy yumağı çıkarmak tipik kabul ediliyor.
+
+Buradaki ayrım pratikte şöyle işliyor: ayda bir tüy yumağı çıkaran, kilosu sabit, iştahı yerinde bir kedi ile haftada üç kez kusan bir kedi aynı tabloda değil. İkincisinde kusma bir alışkanlık değil, bir bulgu.
+
+- Ne sıklıkta: haftada bir mi, günde bir mi, ayda bir mi
+- Ne çıkıyor: yem, tüy, safra, köpük, yabancı cisim
+- Ne zaman: yemekten hemen sonra mı, aç karnına mı
+- Yanında ne var: iştahsızlık, halsizlik, ishal, kilo kaybı, su tüketiminde artış
+- Ne kadar zamandır: birkaç gün mü, haftalardır mı
+
+Bu beş başlık hekimin ilk soracağı şeyler. Kusmanın videosunu çekmek ya da tarih tutmak, muayenede tahmin yürütmeyi bitiriyor. Uygulamada sağlık kaydı tutuyorsanız tarihleri geriye dönük görebiliyorsunuz; kusmanın sıklaştığı çoğu zaman ancak böyle fark ediliyor.
+
+YAYGIN YANILGI — "Kedi zaten kusar, normaldir" yanılgısı: Bu cümle en sık tekrarlanan ve en çok zaman kaybettiren cümle. 2013 tarihli bir çalışma (JAVMA), kronik kusma, ince bağırsak ishali ya da kilo kaybı olan ve ultrasonda bağırsak duvarı kalınlaşmış 100 kediyi biyopsiyle inceledi: **99’unda kronik ince bağırsak hastalığı bulundu.** En sık iki tanı kronik enterit ve intestinal lenfomaydı. Çalışmanın kendi sonucu net: bu bulgular normal kabul edilmemeli ve “kedim zaten kusar” açıklamasıyla geçiştirilmemeli.
+
+
+## Aynı gün başvuru gerektiren bulgular
+
+Cornell’in listelediği uyarı bulguları, kusmanın yanında göründüğünde beklemeyi anlamsız kılıyor:
+
+- Kusmukta kan olması
+- Halsizlik, güçsüzlük, tepkisizlik
+- İştahın belirgin azalması ya da tamamen kesilmesi
+- Su tüketiminde belirgin artış
+- İshalin eşlik etmesi
+- Tekrarlayan kusma nedeniyle suyun da tutulamaması
+
+UYARI: Bu yazı bilgilendirme amaçlı; teşhis ve tedavi yerine geçmez. Yukarıdaki bulgulardan biri varsa ya da kedi kısa sürede birden çok kez kusuyorsa en yakın veteriner hekime başvurun.
+
+
+## Sık karşılaşılan sebepler
+
+Kusmanın arkasında sindirimle sınırlı bir sebep de olabiliyor, sistemik bir hastalık da. Cornell’in sıraladığı başlıklar iki kümede toplanıyor.
+
+Çoğunlukla iyi huylu | Ciddi olabilen
+Tüy yumağı | Yabancı cisim ve bağırsak tıkanıklığı
+Bozuk yiyecek ya da uygunsuz insan yiyeceği | İç parazitler
+Hızlı yeme | Şeker hastalığı, böbrek hastalığı, hipertiroidi
+Mama değişikliğine uyum | İnflamatuvar bağırsak hastalığı
+ | Bağırsakta kitle
+ | Zehirlenme: zehirli bitkiler, antifriz, ilaçlar
+
+İp, kurdele, lastik ve ataş gibi cisimler özellikle tehlikeli: kediler bunları oynarken yutabiliyor ve tıkanıklık yapabiliyor. İç parazit tarafı için kedilerde iç ve dış parazit (https://veterito.com/blog/kedilerde-ic-ve-dis-parazit) yazısına bakabilirsiniz; iştah tarafı içinse kedim yemek yemiyor (https://veterito.com/blog/kedim-yemek-yemiyor).
+
+
+## Muayenede ne yapılıyor
+
+Kusmanın sebebi dışarıdan bakarak ayrılmıyor; bu yüzden değerlendirme basamaklı ilerliyor. Cornell’in tarif ettiği sıra: ayrıntılı öykü, fizik muayene, kan tahlili, dışkı incelemesi ve görüntüleme (röntgen ya da ultrason). Bulgular net değilse bağırsak biyopsisi gündeme geliyor.
+
+Kan tahlilinin neyi gösterdiği ve neden istendiği için evcil hayvanlarda kan tahlili (https://veterito.com/blog/evcil-hayvanlarda-kan-tahlili) yazısı ayrıntılı. Düzenli kontrolün bu tabloları erken yakalamadaki rolü için check-up ne zaman yapılmalı (https://veterito.com/blog/kedi-kopek-check-up-ne-zaman).
+
+
+## Karar tablosu
+
+Durum | Ne yapılır
+Ayda bir tüy yumağı, kedi keyifli | Takip edilir, tarama düzeni gözden geçirilir
+Haftada birden sık kusma | Hekime danışılır
+Kusma haftalardır sürüyor | Randevu alınır, öykü ve kilo kaydı götürülür
+Kilo kaybı ya da ishal eşlik ediyor | Değerlendirme geciktirilmez
+Kusmukta kan, halsizlik, su tutamama | Aynı gün başvurulur
+İp ya da cisim yuttuğundan şüphe var | Aynı gün başvurulur, beklenmez
+
+
+## Kusma mı, çıkarma mı
+
+Sahibin gördüğü iki olay birbirine benziyor ama aynı yeri işaret etmiyor. Kusmada karın kasları çalışıyor: kedi öncesinde huzursuzlanıyor, salyası artıyor, öğürme sesi duyuluyor ve içerik güçle dışarı atılıyor. Çıkarmada yani regürjitasyonda böyle bir çaba yok; kedi başını eğiyor ve sindirilmemiş, çoğu zaman silindir biçiminde bir materyal ağzından geliyor.
+
+Ayrım önemli çünkü ikisi farklı organları düşündürüyor. Kusma mideyi ve ötesini, çıkarma ise yemek borusunu akla getiriyor. Muayenede hekimin ilk sorduğu şeylerden biri bu ve cevabı yalnızca olayı gören kişi verebiliyor. Hekime "kusuyor" demekle "yediğini olduğu gibi çıkarıyor" demek aynı bilgi değil.
+
+
+## Kronik kusmada kayıt tutmak
+
+Tek seferlik kusmada kayıt gerekmiyor; tekrarlayan kusmada ise tanıyı hızlandıran şey çoğu zaman sahibin tuttuğu kayıt oluyor. Kronik tabloda muayene anındaki tek fotoğraf yetmiyor, hekim haftalar içindeki eğilimi görmek istiyor. Kilo kaybının sinsi ilerlediği bu tablolarda eğilim, tek bir tartımdan çok daha fazlasını söylüyor.
+
+- Tarih ve saat: kusma yemekten hemen sonra mı, aç karnına mı
+- İçerik: yiyecek, köpük, safra, tüy, kan
+- Kilo: aynı terazide, mümkünse haftada bir ve aynı saatte
+- İştah ve su tüketimindeki değişiklik
+- Dışkı düzeni: kıvam, sıklık, renk
+- Mama değişikliği, yeni bir ödül maması ya da eve yeni giren bir bitki
+
+Bu kayıtları telefon notunda tutmak da işe yarıyor; tartım ve not aynı yerde biriktiğinde muayenede tek ekrandan gösterilebiliyor. İştahın kesilmesi ayrı bir başlık; kedim yemek yemiyor (https://veterito.com/blog/kedim-yemek-yemiyor) yazısı oradan devam ediyor. Yeni giren bitki başlığı için kediler için zehirli bitkiler (https://veterito.com/blog/kediler-icin-zehirli-bitkiler) listesine bakabilirsiniz.
+
+
+## Eve dönerken
+
+Kusma kedilerde sık görülüyor, bu doğru. Ama sık görülmesi onu normal yapmıyor. Karar verirken bakılacak üç şey var: sıklık, süre ve eşlik eden bulgular. Üçünden biri sınırı geçtiğinde beklemek, kazanılan zamanı değil kaybedilen zamanı büyütüyor.
+
+## Sıkça sorulan sorular
+
+**Kedim ayda bir tüy yumağı çıkarıyor, normal mi?**
+Cornell Kedi Sağlığı Merkezi, iki haftada bir tüy yumağı çıkarmayı tipik kabul ediyor. Ayda bir çıkaran, kilosu ve iştahı yerinde bir kedi bu aralığın içinde. Sıklık artıyorsa ya da yanında başka bulgu varsa değerlendirme gerekiyor.
+
+**Kaç kez kusarsa veterinere gitmeliyim?**
+Sıklık ölçütü haftada bir: bundan sık kusan kedi değerlendirilmeli. Kısa sürede tekrarlayan kusma, kanlı kusma, halsizlik ya da suyun tutulamaması durumunda sayı beklenmeden aynı gün başvurulur.
+
+**Kedim kusuyor ama iştahı yerinde, yine de gitmeli miyim?**
+İştahın yerinde olması tabloyu tek başına güvenli yapmıyor. 2013 tarihli JAVMA çalışmasında kronik kusma ve kilo kaybı olan 100 kedinin 99’unda tedavi edilebilir bir bağırsak hastalığı bulundu. Kusma haftalardır sürüyorsa iştahtan bağımsız olarak değerlendirme isteniyor.
+
+**Evde aç bırakmak doğru mu?**
+Aç bırakma süresi, mama değişimi ve ilaç kullanımı hekim kararı. Özellikle kedilerde uzun süre yemek yememek ayrı bir risk oluşturuyor; evde karar vermek yerine hekime danışmak gerekiyor.
+
+**Muayeneye giderken ne götürmeliyim?**
+Kusmanın tarihleri ve sıklığı, her seferinde ne çıktığı, son haftalardaki kilo değişimi, kullanılan mama ile parazit ve aşı geçmişi işe yarıyor. Mümkünse kusma anının kısa bir videosunu çekin: hekim kusmayla çıkarmayı bu görüntüden ayırabiliyor. Bu bilgiler tanı basamaklarını belirgin biçimde kısaltıyor.
+
+## Kaynaklar
+
+- Cornell University College of Veterinary Medicine · Cornell Feline Health Center · Vomiting · https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/vomiting
+- American Veterinary Medical Association · Diagnosis of chronic small bowel disease in cats: 100 cases (2008-2012) · Norsworthy GD, Scot Estep J, Kiupel M, Olson JC, Gassler LN · Journal of the American Veterinary Medical Association · 2013 · 243(10):1455-1461 · DOI: 10.2460/javma.243.10.1455 · https://pubmed.ncbi.nlm.nih.gov/24171376/
+
+---
+
+# Köpeğim Kusuyor: Ne Zaman Beklenir, Ne Zaman Acil?
+
+Adres: https://veterito.com/blog/kopegim-kusuyor
+Kategori: Köpek · Yayın: 2026-09-16
+
+Kusmakla çıkarmak aynı şey değil. Köpekte kusmaya çalışıp çıkaramamak, özellikle büyük ırklarda saatle ölçülen bir acil.
+
+Köpeklerde kusma sık görülüyor ve çoğu zaman tek seferlik bir olayla bitiyor. Ama bazı tabloların görüntüsü benziyor, sonucu benzemiyor. Bu yazının amacı, evde takip edilebilecek bir kusmayla aynı gün hekime gitmesi gereken bir kusmayı ayırmak.
+
+
+## Önce ayrım: kusma mı, çıkarma mı
+
+MSD Veteriner El Kitabı, kusmayı "mide ve ince bağırsağın üst kısmındaki içeriğin güçle dışarı atılması" olarak tanımlıyor: karın kaslarının kasılmasıyla oluyor, öncesinde salya artışı ve öğürme görülüyor. Regürjitasyon yani çıkarma ise pasif: kas çabası yok, çıkan materyal sindirilmemiş ve çoğu zaman silindirik biçimde.
+
+Bu ayrım önemli çünkü ikisi farklı yerlere işaret ediyor. Kusma mideyi ve ötesini, çıkarma daha çok yemek borusunu düşündürüyor. Hekime "kusuyor" demekle "yediğini olduğu gibi çıkarıyor" demek aynı bilgi değil.
+
+
+## Arkasında ne olabilir
+
+- Sindirim sistemi hastalıkları
+- Böbrek ya da karaciğer yetmezliği
+- Pankreatit
+- Sinir sistemi kaynaklı sebepler
+- Zararlı madde ya da yabancı cisim yutulması
+
+Zararlı madde başlığı köpeklerde özellikle geniş: çikolata, üzüm, soğan gibi mutfak kalemleri ve ev bitkileri sık karşılaşılan sebepler. Ayrıntı için köpeklere zararlı yiyecekler (https://veterito.com/blog/kopeklere-zararli-yiyecekler) ve köpeklerde zehirlenme (https://veterito.com/blog/kopeklerde-zehirlenme) yazıları var.
+
+YAYGIN YANILGI — "Kusmaya çalışıyor ama çıkaramıyor, boğazına bir şey takılmış olmalı" yanılgısı: Bu tablo özellikle büyük ve dev ırklarda mide dilatasyonu-volvulus (halk arasında şişkinlik) belirtisi olabiliyor ve saatlerle ölçülen bir acil. 2000 tarihli geniş bir çalışma, büyük ve dev ırklarda kümülatif görülme oranını %6 olarak bildiriyor; riski artıran etkenler arasında ileri yaş, birinci derece akrabada aynı öykünün bulunması, hızlı yeme ve yükseltilmiş mama kabı sayılıyor. Aynı çalışmada dev ırklardaki vakaların yaklaşık %52’si yükseltilmiş mama kabına atfedildi. Karnı gergin, huzursuz, öğürüp bir şey çıkaramayan köpekte beklenmiyor.
+
+
+## Aynı gün başvuru gerektiren bulgular
+
+- Öğürüp bir şey çıkaramamak, karnın gergin görünmesi
+- Kusmukta kan ya da kahve telvesi görünümü
+- Halsizlik, ayakta durmakta zorlanma
+- Kısa sürede tekrarlayan kusma, suyun tutulamaması
+- Yavru köpekte kusma ve ishalin birlikte olması
+- Zararlı madde, ip ya da oyuncak parçası yutulduğundan şüphe
+
+UYARI: Bu yazı bilgilendirme amaçlı; teşhis ve tedavi yerine geçmez. Yukarıdaki bulgulardan biri varsa en yakın veteriner hekime başvurun; özellikle öğürüp çıkaramama tablosunda beklemeyin.
+
+
+## Muayenede ne yapılıyor
+
+MSD, üç dört günden kısa süren ve başka bulgu eşlik etmeyen kusmada değerlendirmeyi şöyle tarif ediyor: ayrıntılı öykü ve fizik muayene, yabancı cisim gibi hayati durumları görmek için röntgen, ardından kan, idrar ve dışkı tetkikleri. Uzayan kusmada inceleme derinleşiyor: endoskopi, biyopsi, ultrason, tomografi ya da MR.
+
+Sıvı kaybı ve elektrolit dengesi tedavinin ayrı bir başlığı. Evde su kısıtlaması yapmak yerine hekimin planladığı sıvı desteği uygulanıyor.
+
+
+## Karar tablosu
+
+Durum | Ne yapılır
+Tek sefer kustu, köpek neşeli, iştahı yerinde | Gözlenir, su erişimi kesilmez
+Gün içinde iki üç kez kusma, halsizlik yok | Aynı gün hekime danışılır
+Kusma üç günden uzun sürüyor | Randevu alınır, öykü ve kilo kaydı götürülür
+Kusmukta kan, halsizlik ya da su tutulamıyor | Aynı gün başvurulur
+Öğürüyor, çıkaramıyor, karın gergin | Acil başvuru, beklenmez
+Yavru köpekte kusma + ishal | Acil başvuru
+
+
+## Yavru köpekte kusma ayrı bir başlık
+
+Yetişkin bir köpekte tek seferlik kusma gözlenebilirken yavruda aynı tolerans yok. Yavrunun sıvı ve şeker rezervi küçük; kusma ve ishal birlikte olduğunda tablo saatler içinde ağırlaşabiliyor. Üstelik bu yaşta aşı serisi henüz tamamlanmamış oluyor ve bulaşıcı hastalıklar ilk sırada düşünülüyor.
+
+Bu yüzden yavru köpekte kusma, halsizlik ya da ishal eşlik ediyorsa gözlem süresi tanınmıyor. Aşı ve parazit uygulamalarının tarihlerini yanınızda götürmek tanıyı hızlandırıyor; takvimin nasıl ilerlediğini köpek aşı takvimi (https://veterito.com/blog/kopek-asi-takvimi) yazısında anlattık.
+
+
+## Hekime giderken ne götürülür
+
+Kusma şikayetinde muayenenin ilk yarısı öyküden oluşuyor ve öykünün tek kaynağı sahip. Aşağıdaki başlıklar hazır gidildiğinde hekim, hangi tetkikin gerekli olduğuna daha erken karar verebiliyor.
+
+- Kusmanın başlangıç tarihi, günde kaç kez tekrarladığı
+- Çıkan materyal: yiyecek, safra, köpük, kan
+- Kusma yemekle ilişkili mi, hemen sonrasında mı oluyor
+- Son haftalardaki kilo, iştah ve su tüketimi değişikliği
+- Dışkı düzeni ve rengi
+- Aşı ve parazit uygulama tarihleri, kullanılan ilaçlar
+- Eve yeni giren yiyecek, bitki, oyuncak ya da temizlik ürünü
+- Mümkünse kusma anının kısa videosu
+
+Video özellikle işe yarıyor: kusma ile çıkarma arasındaki farkı, tarif etmeye çalışmak yerine görüntü üzerinden ayırmak çok daha kolay. Bu kayıtların uygulama üzerinde tutulması, aynı bilgilerin sonraki muayenede de elde olması anlamına geliyor.
+
+
+## Kusma uzarsa ne değişir
+
+Üç dört günü aşan kusmada soru "neden kustu" olmaktan çıkıp "hangi sistem bunu üretiyor" hâline geliyor. MSD bu noktada incelemenin derinleştiğini söylüyor: endoskopi, biyopsi, ultrason, tomografi ya da manyetik rezonans devreye girebiliyor. Bunlar rutin tetkikler değil, önceki basamaklar cevap vermediğinde isteniyor.
+
+Sahip tarafında ise iş değişmiyor: kayıt tutmak. Kronik tabloda kilo eğrisi, kusma sıklığı ve mama değişikliklerinin tarihleri, tek bir muayenenin veremeyeceği bilgiyi veriyor. Kilo yönetimi ayrı bir başlık; köpeğim fazla kilolu mu (https://veterito.com/blog/kopegim-fazla-kilolu-mu) yazısı bu kısmı anlatıyor.
+
+Tetkiklerin sırası da rastgele değil. Önce ucuz ve hızlı basamaklar deneniyor: fizik muayene, röntgen, kan ve idrar tahlili, dışkı incelemesi. Bu basamaklar hem yabancı cisim gibi acil durumları dışlıyor hem de böbrek, karaciğer ve pankreas kaynaklı sebepleri gösteriyor. İleri görüntüleme ancak bu aşamadan sonra gündeme geliyor. Sahip açısından bunun anlamı şu: ilk muayenede her şeyin cevabı çıkmayabilir ve bu, eksik bir değerlendirme olduğu anlamına gelmiyor.
+
+
+## Riski azaltan iki basit değişiklik
+
+Aynı çalışmanın işaret ettiği iki etken evde doğrudan değiştirilebiliyor: **hızlı yeme** ve **yükseltilmiş mama kabı**. Yavaşlatıcı kap kullanmak ve mama kabını yerde tutmak, büyük ırklarda tartışılan ilk iki başlık. Kilo yönetimi için köpeğim fazla kilolu mu (https://veterito.com/blog/kopegim-fazla-kilolu-mu) yazısına bakabilirsiniz.
+
+## Sıkça sorulan sorular
+
+**Köpeğim bir kez kustu, hemen gitmeli miyim?**
+Tek seferlik kusmadan sonra köpek neşeliyse, su içebiliyorsa ve karnı normal görünüyorsa gözlem makul. Kusma gün içinde tekrarlıyorsa, kusmukta kan varsa, halsizlik eklenirse ya da köpek yavruysa aynı gün başvurulur; öğürüp çıkaramama tablosunda ise beklenmez.
+
+**Kusma ile çıkarma arasındaki fark ne?**
+Kusmada karın kasları çalışıyor, öncesinde öğürme ve salya artışı oluyor. Çıkarmada çaba yok; materyal sindirilmemiş ve çoğu zaman silindirik. İkisi farklı sebepleri düşündürüyor, bu yüzden hekime hangisi olduğunu tarif etmek önemli.
+
+**Öğürüp hiçbir şey çıkaramıyor, ne yapmalıyım?**
+Beklemeden başvurun. Bu tablo büyük ve dev ırklarda mide dilatasyonu-volvulus belirtisi olabiliyor ve saatler içinde hayati risk taşıyor. Karnın gergin görünmesi, huzursuzluk ve salya artışı eşlik ediyorsa gece olması da beklemek için sebep değil; nöbetçi kliniğe gidilir.
+
+**Mama kabını yükseltmek iyi değil mi?**
+2000 tarihli çalışmada yükseltilmiş mama kabı, GDV riskini artıran etkenler arasında sayıldı; dev ırklardaki vakaların yaklaşık yarısı bu etkene atfedildi. Kabın yüksekliği hekimle konuşulmadan değiştirilmemeli.
+
+**Evde aç bırakmak gerekir mi?**
+Aç bırakma ve su kısıtlaması, sıvı desteğiyle birlikte planlanan tıbbi bir karar; MSD bu uygulamayı hekim gözetiminde tarif ediyor. Evde kendi başına uygulanması, özellikle küçük ırklarda ve yavrularda kan şekeri ve sıvı dengesi açısından risk oluşturuyor.
+
+## Kaynaklar
+
+- MSD (Merck) Veterinary Manual · Pet Owner Version · Vomiting in Dogs · https://www.merckvetmanual.com/dog-owners/digestive-disorders-of-dogs/vomiting-in-dogs
+- American Veterinary Medical Association · Non-dietary risk factors for gastric dilatation-volvulus in large and giant breed dogs · Glickman LT, Glickman NW, Schellenberg DB, Raghavan M, Lee T · Journal of the American Veterinary Medical Association · 2000 · 217(10):1492-1499 · DOI: 10.2460/javma.2000.217.1492 · https://pubmed.ncbi.nlm.nih.gov/11128539/
 
 ---
 

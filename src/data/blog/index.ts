@@ -39,6 +39,10 @@ import { veterinerHekimMaaslari } from './veteriner-hekim-maaslari';
 import { veterinerTeknikeriMaaslari } from './veteriner-teknikeri-maaslari';
 import { veterinerUcretleri } from './veteriner-ucretleri';
 import { kedimKusuyor } from './kedim-kusuyor';
+import { kediIdrarindaKan } from './kedi-idrarinda-kan';
+import { kedilerIcinZehirliBitkiler } from './kediler-icin-zehirli-bitkiler';
+import { kedilerdeGozAkintisi } from './kedilerde-goz-akintisi';
+import { kopegimKusuyor } from './kopegim-kusuyor';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -57,7 +61,8 @@ const TUM_YAZILAR: BlogYazi[] = [
   veterinerHekimTeknikerFarki, muayenehanePoliklinikHastaneFarki,
   asgariUcretTarifesiNedir, veterinerTeknikeriNeIsYapar,
   veterinerHekimMaaslari, veterinerTeknikeriMaaslari, veterinerUcretleri,
-  kedimKusuyor,
+  kedimKusuyor, kediIdrarindaKan, kedilerIcinZehirliBitkiler,
+  kedilerdeGozAkintisi, kopegimKusuyor,
 ];
 
 /**

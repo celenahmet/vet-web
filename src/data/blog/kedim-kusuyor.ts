@@ -25,7 +25,7 @@ export const kedimKusuyor: BlogYazi = {
   kapakAlt:
     'Kedilerde kusma konulu yazının kapak görseli; kusma sıklığı, kırmızı bayraklar ve veterinere başvuru zamanı',
   kategori: 'Kedi',
-  tarih: '2026-09-17',
+  tarih: '2026-09-16',
   bloklar: [
     { kind: 'paragraf', metin: 'Kedi sahiplerinin en sık sorduğu şeylerden biri: “kustu, önemli mi?” Cevap tek bir kusmada değil, **desende** saklı. Ne sıklıkta olduğu, ne kadar sürdüğü ve yanında başka bulgu olup olmadığı, evde beklenecek bir tabloyla hekime götürülecek bir tabloyu ayırıyor.' },
     { kind: 'paragraf', metin: 'Bu yazı üç şeyi ayırıyor: hangi kusma beklenebilir, hangi bulgu aynı gün başvuru gerektirir ve “kedi zaten kusar” cümlesi neden çoğu zaman yanlış.' },
@@ -83,8 +83,32 @@ export const kedimKusuyor: BlogYazi = {
       ['İp ya da cisim yuttuğundan şüphe var', 'Aynı gün başvurulur, beklenmez'],
     ] },
 
+    { kind: 'baslik', metin: 'Kusma mı, çıkarma mı' },
+    { kind: 'paragraf', metin: 'Sahibin gördüğü iki olay birbirine benziyor ama aynı yeri işaret etmiyor. Kusmada karın kasları çalışıyor: kedi öncesinde huzursuzlanıyor, salyası artıyor, öğürme sesi duyuluyor ve içerik güçle dışarı atılıyor. Çıkarmada yani regürjitasyonda böyle bir çaba yok; kedi başını eğiyor ve sindirilmemiş, çoğu zaman silindir biçiminde bir materyal ağzından geliyor.' },
+    { kind: 'paragraf', metin: 'Ayrım önemli çünkü ikisi farklı organları düşündürüyor. Kusma mideyi ve ötesini, çıkarma ise yemek borusunu akla getiriyor. Muayenede hekimin ilk sorduğu şeylerden biri bu ve cevabı yalnızca olayı gören kişi verebiliyor. Hekime "kusuyor" demekle "yediğini olduğu gibi çıkarıyor" demek aynı bilgi değil.' },
+
+    { kind: 'baslik', metin: 'Kronik kusmada kayıt tutmak' },
+    { kind: 'paragraf', metin: 'Tek seferlik kusmada kayıt gerekmiyor; tekrarlayan kusmada ise tanıyı hızlandıran şey çoğu zaman sahibin tuttuğu kayıt oluyor. Kronik tabloda muayene anındaki tek fotoğraf yetmiyor, hekim haftalar içindeki eğilimi görmek istiyor. Kilo kaybının sinsi ilerlediği bu tablolarda eğilim, tek bir tartımdan çok daha fazlasını söylüyor.' },
+    { kind: 'liste', maddeler: [
+      'Tarih ve saat: kusma yemekten hemen sonra mı, aç karnına mı',
+      'İçerik: yiyecek, köpük, safra, tüy, kan',
+      'Kilo: aynı terazide, mümkünse haftada bir ve aynı saatte',
+      'İştah ve su tüketimindeki değişiklik',
+      'Dışkı düzeni: kıvam, sıklık, renk',
+      'Mama değişikliği, yeni bir ödül maması ya da eve yeni giren bir bitki',
+    ] },
+    { kind: 'paragraf', metin: 'Bu kayıtları telefon notunda tutmak da işe yarıyor; tartım ve not aynı yerde biriktiğinde muayenede tek ekrandan gösterilebiliyor. İştahın kesilmesi ayrı bir başlık; [[kedim-yemek-yemiyor|kedim yemek yemiyor]] yazısı oradan devam ediyor. Yeni giren bitki başlığı için [[kediler-icin-zehirli-bitkiler|kediler için zehirli bitkiler]] listesine bakabilirsiniz.' },
+
     { kind: 'baslik', metin: 'Eve dönerken' },
     { kind: 'paragraf', metin: 'Kusma kedilerde sık görülüyor, bu doğru. Ama sık görülmesi onu normal yapmıyor. Karar verirken bakılacak üç şey var: sıklık, süre ve eşlik eden bulgular. Üçünden biri sınırı geçtiğinde beklemek, kazanılan zamanı değil kaybedilen zamanı büyütüyor.' },
+  ],
+  kontrolListesi: [
+    'Haftada kaç kez kustuğunu not edin',
+    'Ne çıktığını yazın: tüy, safra, kan',
+    'Haftada bir aynı terazide tartın',
+    'Kusma anının kısa videosunu çekin',
+    'Aç bırakma kararını hekime bırakın',
+    'Eve yeni giren bitkiyi kontrol edin',
   ],
   sss: [
     {
@@ -105,7 +129,7 @@ export const kedimKusuyor: BlogYazi = {
     },
     {
       soru: 'Muayeneye giderken ne götürmeliyim?',
-      cevap: 'Kusmanın tarihleri ve sıklığı, ne çıktığı, kilo değişimi, mama ve parazit uygulama geçmişi. Mümkünse kusma anının kısa videosu. Bu bilgiler tanı basamaklarını kısaltıyor.',
+      cevap: 'Kusmanın tarihleri ve sıklığı, her seferinde ne çıktığı, son haftalardaki kilo değişimi, kullanılan mama ile parazit ve aşı geçmişi işe yarıyor. Mümkünse kusma anının kısa bir videosunu çekin: hekim kusmayla çıkarmayı bu görüntüden ayırabiliyor. Bu bilgiler tanı basamaklarını belirgin biçimde kısaltıyor.',
     },
   ],
   kaynaklar: [

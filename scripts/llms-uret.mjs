@@ -46,6 +46,21 @@ const yazilar = tum
   .filter((y) => y.tarih <= bugun)
   .sort((a, b) => b.tarih.localeCompare(a.tarih));
 
+/**
+ * Hem `public/` hem `dist/` icine yazar.
+ *
+ * ⚠️ NEDEN IKI YER: bu betik `vite build`'den SONRA kosuyor, vite ise `public/`
+ * icerigini build ANINDA `dist/`e kopyaliyor. Yalniz `public/`e yazilirsa
+ * yayina giden `dist/` bir build GERIDE kaliyor: bugun yazilan yazi llms
+ * dosyalarina ancak yarinki deploy'da giriyor, arada AI botlari eski haritayi
+ * goruyor. 16.09.2026'da bes yazi bu yuzden ai-denetimi'ne takildi.
+ */
+function yaz(ad, icerik) {
+  writeFileSync(join(KOK, 'public', ad), icerik);
+  const dist = join(KOK, 'dist');
+  if (existsSync(dist)) writeFileSync(join(dist, ad), icerik);
+}
+
 const SAYFALAR = [
   ['/', 'Veterito nedir: evcil hayvan sahibi ile veteriner kliniğini aynı uygulamada buluşturan sistem'],
   ['/features', 'Uygulamanın özellikleri: sağlık kaydı, aşı ve parazit takvimi, randevu, klinik defteri'],
@@ -108,7 +123,7 @@ for (const y of yazilar) {
   basli.push(`- [${y.baslik}](${SITE}/blog/${y.slug}) — ${y.kategori}, ${y.tarih}: ${y.ozet}`);
 }
 basli.push('', '## Tıbbi sorumluluk', '', 'Yazılar bilgilendirme amaçlı; teşhis ve tedavi yerine geçmez.', 'Acil durumda en yakın veteriner hekime başvurulmalıdır.', '');
-writeFileSync(join(KOK, 'public/llms.txt'), basli.join('\n'));
+yaz('llms.txt', basli.join('\n'));
 
 const tamMetin = [
   '# Veterito — blog yazılarının tam metni',
@@ -133,7 +148,7 @@ for (const y of yazilar) {
     tamMetin.push('## Kaynaklar', '', ...y.kaynaklar.map(kaynakSatiri), '');
   }
 }
-writeFileSync(join(KOK, 'public/llms-full.txt'), tamMetin.join('\n'));
+yaz('llms-full.txt', tamMetin.join('\n'));
 
 const kb = (s) => `${Math.round(Buffer.byteLength(s, 'utf8') / 1024)} KB`;
 console.log(`llms: ${yazilar.length} yazi -> public/llms.txt (${kb(basli.join('\n'))}), public/llms-full.txt (${kb(tamMetin.join('\n'))})`);
