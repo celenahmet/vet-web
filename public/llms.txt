@@ -1,0 +1,58 @@
+# Veterito
+
+> Evcil hayvan sahibi ile veteriner kliniğini aynı uygulamada buluşturan Türkiye
+> merkezli sistem. Sahip dostunun aşı, parazit, kilo ve ziyaret kaydını tutar;
+> klinik randevu, hasta defteri ve hatırlatmalarını yürütür.
+
+Bu dosya yapay zekâ araçları içindir: sitede ne olduğunu düz metinle bildirir.
+Blog yazılarının kaynak künyeleri de burada: bilgiyi kim yayımlamış, hangi dergide,
+hangi yıl, DOI'si ne — hepsi doğrulanabilir.
+
+## Sayfalar
+
+- [/](https://veterito.com/): Veterito nedir: evcil hayvan sahibi ile veteriner kliniğini aynı uygulamada buluşturan sistem
+- [/features](https://veterito.com/features): Uygulamanın özellikleri: sağlık kaydı, aşı ve parazit takvimi, randevu, klinik defteri
+- [/clinics](https://veterito.com/clinics): Klinik dizini: Veterito üzerinde sayfası olan veteriner klinikleri
+- [/pricing](https://veterito.com/pricing): Klinik hesabı ve hizmetler
+- [/download](https://veterito.com/download): Uygulamayı indirme: App Store, Google Play, AppGallery
+- [/about](https://veterito.com/about): Veterito hakkında
+- [/contact](https://veterito.com/contact): İletişim
+
+## Blog
+
+28 yazı yayında. Her yazının altında en az iki kaynak var; genelde biri
+uluslararası üniversite ya da hakemli dergi (Cornell, AAHA/AAFP, WSAVA gibi).
+
+- [Evcil Hayvanlarda Kan Tahlili Neden Yapılır?](https://veterito.com/blog/evcil-hayvanlarda-kan-tahlili) — Sağlık, 2026-08-31: Kan tahlili her ziyaretin zorunlu parçası değil ama gözle görülmeyeni gösterebilen tek araç. Ne zaman gerçekten fark yarattığına bakıyoruz.
+- [Köpeklerde Zehirlenme Nasıl Anlaşılır?](https://veterito.com/blog/kopeklerde-zehirlenme) — Köpek, 2026-08-31: Zehirlenmede en kritik bilgi belirti değil, zaman. Belirti çıkmasını beklemek çoğu maddede müdahale penceresini kapatıyor.
+- [Veteriner Muayenehanesi, Poliklinik ve Hayvan Hastanesi Arasındaki Fark Nedir?](https://veterito.com/blog/muayenehane-poliklinik-hastane-farki) — Klinik Yönetimi, 2026-08-31: Tabeladaki isim tesadüf değil. Her biri farklı bir ruhsata, farklı bir kadroya ve farklı bir hizmet kapsamına karşılık geliyor.
+- [Veteriner Hekim Maaşları: Kamu ve Özel Klinik Nasıl Farklılaşıyor?](https://veterito.com/blog/veteriner-hekim-maaslari) — Klinik Yönetimi, 2026-08-31: Tek bir veteriner hekim maaşı yok. Kamuda maaş formülle, özelde ciroyla oluşuyor; ikisini aynı tabloda karşılaştırmak yanıltıyor.
+- [Veteriner Teknikeri Maaşları: Kazanç Neye Göre Değişiyor?](https://veterito.com/blog/veteriner-teknikeri-maaslari) — Klinik Yönetimi, 2026-08-31: Aynı diplomayla çok farklı ücretler görülüyor. Farkı yaratan diploma değil; kadro, çalışma saati ve üstlenilen sorumluluk.
+- [Veteriner Teknikeri Ne İş Yapar? Görevleri ve Çalışma Alanları](https://veterito.com/blog/veteriner-teknikeri-ne-is-yapar) — Klinik Yönetimi, 2026-08-31: Kliniğin görünmeyen yükünü büyük ölçüde tekniker taşıyor. Ama yetki sınırı net: karar hekimin, uygulama ekibin.
+- [2026 Veteriner Ücretleri: Muayene, Aşı ve Kısırlaştırma](https://veterito.com/blog/veteriner-ucretleri) — Pet Sahipleri, 2026-08-31: Muayene, aşı ve kısırlaştırma için 2026 alt sınır ücretleri, üstüne nelerin eklendiği ve faturayı okumanın yolu.
+- [Veteriner Hekim Odası Asgari Ücret Tarifesi Nedir, Klinikler Nasıl Uygular?](https://veterito.com/blog/asgari-ucret-tarifesi-nedir) — Klinik Yönetimi, 2026-08-30: Tarife bir fiyat listesi değil, alt sınır. Aynı işlem için kliniklerin farklı ücret istemesi bu yüzden aykırılık değil.
+- [Kedi ve Köpeklerde Check-Up Ne Zaman Yapılmalı?](https://veterito.com/blog/kedi-kopek-check-up-ne-zaman) — Sağlık, 2026-08-30: Hasta olmayan bir hayvanı kliniğe götürmek gereksiz gelebiliyor. Oysa kontrolün amacı hastalığı tedavi etmek değil, adı konmadan önce yakalamak.
+- [Veteriner Hekim ile Veteriner Teknikeri Arasındaki Fark Nedir?](https://veterito.com/blog/veteriner-hekim-tekniker-farki) — Klinik Yönetimi, 2026-08-30: İkisi de kliniğin içinde, önlükleri benzer. Ama teşhis koyma, reçete yazma ve ameliyat yetkisi yalnız birinde.
+- [Kediler Ne Zaman Kısırlaştırılmalı?](https://veterito.com/blog/kediler-ne-zaman-kisirlastirilmali) — Sağlık, 2026-08-25: Erken kısırlaştırma büyümeyi durdurmuyor. Ama kısırlaştırma sonrası kilo, hangi ayda yapılırsa yapılsın takip gerektiriyor.
+- [Kedilerde Kabızlık: Ne Zaman Beklenir, Ne Zaman Gidilir?](https://veterito.com/blog/kedilerde-kabizlik) — Kedi, 2026-08-25: Kum kabına girip çıkan ama çıkaramayan kedi bekletilmiyor. Kabızlık ihmal edildiğinde geri dönüşü zor bir tabloya ilerleyebiliyor.
+- [Kedilerde Pire Nasıl Anlaşılır?](https://veterito.com/blog/kedilerde-pire-nasil-anlasilir) — Sağlık, 2026-08-25: Pire görmeden de pire olabilir. Kaşıntıdan önce bakılacak yer tüyün dibi, aranacak şey ise pirenin kendisi değil bıraktığı iz.
+- [Klinikte Aşı Hatırlatma Sistemi Nasıl Kurulur?](https://veterito.com/blog/kliniklerde-asi-hatirlatma) — Klinik Yönetimi, 2026-08-25: Hatırlatma göndermek kolay, doğru kişiye doğru zamanda göndermek zor. İşin tamamı mesajda değil, kaydın nasıl tutulduğunda.
+- [Köpeklerde Ayrılık Kaygısı Nasıl Anlaşılır?](https://veterito.com/blog/kopeklerde-ayrilik-kaygisi) — Köpek, 2026-08-25: Yalnız kalınca havlayan her köpekte kaygı yok, kaygısı olan her köpek de havlamıyor. Ayrımı yapan şey davranışın kendisi değil, ne zaman başladığı.
+- [Köpeklerde Kulak Enfeksiyonu Nasıl Anlaşılır?](https://veterito.com/blog/kopeklerde-kulak-enfeksiyonu) — Köpek, 2026-08-25: Kulak kaşıma her zaman enfeksiyon değil, enfeksiyon da her zaman aynı şey değil. Bakteri mi maya mı sorusunun cevabı tedaviyi baştan belirliyor.
+- [Köpeklere Zararlı Yiyecekler Nelerdir?](https://veterito.com/blog/kopeklere-zararli-yiyecekler) — Beslenme, 2026-08-25: Mutfaktaki en sıradan şeyler listede: çikolata, soğan, üzüm, şekersiz sakız. Zehirlenmelerin çoğu kötü niyetten değil, bu ürünlerin riskinin bilinmemesinden oluyor.
+- [Mikroçip Nedir, Ne İşe Yarar?](https://veterito.com/blog/mikrocip-nedir) — Pet Sahipleri, 2026-08-25: Mikroçip takip cihazı değil, bir kimlik numarası. Kaybolan hayvanı bulmuyor; bulunduğunda kime ait olduğunu söylüyor.
+- [Kedilere İç ve Dış Parazit Ne Zaman Yapılır?](https://veterito.com/blog/kedilerde-ic-ve-dis-parazit) — Sağlık, 2026-08-24: Parazit uygulamasının sıklığı takvimle değil kedinin yaşam biçimiyle belirleniyor. Ev kedisi ile dışarı çıkan kedide risk aynı değil, program da aynı olmuyor.
+- [Veteriner Kliniğinde Randevu Yönetimi Nasıl Kurulur?](https://veterito.com/blog/klinikte-randevu-yonetimi) — Klinik Yönetimi, 2026-08-24: Randevu defteri dolu görünüp gün boşa geçiyorsa sorun talepte değil akışta. Klinikte randevu düzenini kurmanın adımları ve en sık yapılan hatalar.
+- [Köpeğim Fazla Kilolu mu? Kaburga Testi ve Porsiyon](https://veterito.com/blog/kopegim-fazla-kilolu-mu) — Beslenme, 2026-08-24: Kilonun ölçüsü terazi değil kaburga. Evde iki dakikada yapılan testle köpeğinizin fazla kilolu olup olmadığını anlayın, porsiyonu buna göre ayarlayın.
+- [Veteriner Kliniği Nasıl Seçilir? Sorulacak Sorular](https://veterito.com/blog/veteriner-klinigi-nasil-secilir) — Pet Sahipleri, 2026-08-24: Klinik seçimi fiyat listesiyle değil, acil durumda ulaşabilmekle başlıyor. İlk ziyaret öncesi sorulacaklar ve kliniği değiştirmeniz gereken işaretler.
+- [Kedi Aşı Takvimi Nasıl Olmalı? Yavru ve Yetişkin Kedide Aşılar](https://veterito.com/blog/kedi-asi-takvimi) — Kedi, 2026-08-23: Yavru kedide karma aşı 8-9 haftada başlar, 3-4 hafta arayla tekrarlanır. Kuduz 12. haftadan sonra yapılır. Tam takvim ve sık yapılan hatalar.
+- [Kedi Yaşı Nasıl Hesaplanır? İnsan Yaşına Çevirme Tablosu](https://veterito.com/blog/kedi-yasi-nasil-hesaplanir) — Kedi, 2026-08-23: Kedi yaşını yedi ile çarpmak yanlış. İlk yıl 15, ikinci yıl 9, sonrası yılda 4 insan yılı. Sokaktan alınan kedide yaşın nasıl tahmin edildiği de burada.
+- [Kediler Kaç Yıl Yaşar? Ev Kedisi ve Sokak Kedisi Ömrü](https://veterito.com/blog/kediler-kac-yil-yasar) — Kedi, 2026-08-23: Ev kedileri ortalama 13-17 yıl yaşar, sokakta bu süre üçte birine kadar düşer. Farkı yaratan ırk değil, kedinin nerede yaşadığı ve neyin ne zaman fark edildiği.
+- [Kedim Yemek Yemiyor, Ne Yapmalıyım?](https://veterito.com/blog/kedim-yemek-yemiyor) — Kedi, 2026-08-23: Kedilerde iştahsızlık köpeklerdeki gibi beklenebilecek bir durum değil. 24 saati aşan açlık karaciğer için gerçek risk. Ne zaman beklenir, ne zaman gidilir.
+- [Köpek Aşı Takvimi Nasıl Olmalı? Yavru ve Yetişkin Köpekte Aşılar](https://veterito.com/blog/kopek-asi-takvimi) — Köpek, 2026-08-23: Yavru köpekte karma aşı 6-8 haftada başlar ve 16. haftaya kadar 3-4 hafta arayla tekrarlanır. Kuduz 12. haftadan sonra yapılır. Tam takvim ve sosyalleşme ikilemi.
+- [Köpekler Kaç Yıl Yaşar? Irka ve Boya Göre Ömür](https://veterito.com/blog/kopekler-kac-yil-yasar) — Köpek, 2026-08-23: Köpeklerde ömrü belirleyen en güçlü etken boy. Küçük ırklar 12-16 yıl yaşarken dev ırklarda bu süre 6-10 yıla iniyor. Sebebi ve sizin elinizde olan kısmı.
+
+## Tıbbi sorumluluk
+
+Yazılar bilgilendirme amaçlı; teşhis ve tedavi yerine geçmez.
+Acil durumda en yakın veteriner hekime başvurulmalıdır.

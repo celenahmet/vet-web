@@ -290,6 +290,34 @@ for (const y of yazilar) {
       logo: { '@type': 'ImageObject', url: `${SITE}/icon-512.png` },
     },
     mainEntityOfPage: adres,
+    inLanguage: 'tr-TR',
+    isAccessibleForFree: true,
+    /*
+     * ⚠️ KAYNAKLAR YAPISAL VERIYE DE GIRIYOR (16.09.2026).
+     *
+     * Yazilarin en guclu tarafi kaynak kunyesi: kurum, yazarlar, dergi, yil,
+     * cilt/sayi, DOI. Bugune kadar bu yalniz EKRANDA duruyordu; arama motoru ve
+     * dil modelleri icin gorunmezdi. `citation` alani, "bu yazinin arkasinda
+     * hakemli calisma var" bilgisini makineye soyleyen tek standart yol.
+     *
+     * Ahmet (16.09): *"bazi yazilari da uzmanligimizi google a kanitlamak icin
+     * yazmaliyiz"* — kanitin makine tarafi burasi. Hicbir alan uydurulmuyor;
+     * veride ne varsa o yaziliyor, olmayan alan hic basilmiyor.
+     */
+    ...(y.kaynaklar?.length
+      ? {
+          citation: y.kaynaklar.map((k) => ({
+            '@type': k.dergi ? 'ScholarlyArticle' : 'CreativeWork',
+            name: k.baslik,
+            ...(k.yazarlar ? { author: { '@type': 'Person', name: k.yazarlar } } : {}),
+            ...(k.dergi ? { isPartOf: { '@type': 'Periodical', name: k.dergi } } : {}),
+            ...(k.yil ? { datePublished: String(k.yil) } : {}),
+            ...(k.doi ? { identifier: `https://doi.org/${String(k.doi).replace(/^https?:\/\/doi\.org\//, '')}` } : {}),
+            ...(k.adres ? { url: k.adres } : {}),
+            publisher: { '@type': 'Organization', name: k.kurum },
+          })),
+        }
+      : {}),
   };
   const sss = y.sss?.length
     ? [{
