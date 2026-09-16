@@ -38,19 +38,10 @@
   font-size: 1.35rem; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 20px;
 }
 .yazar-ilkeler h2 svg { color: var(--color-vet-secondary); }
-.yazar-ilkeler ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: ilke; }
+.yazar-ilkeler ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 .yazar-ilkeler li {
-  position: relative; padding: 18px 20px 18px 62px; border-radius: 14px;
+  padding: 18px 20px; border-radius: 14px;
   border: 1px solid var(--color-border, rgba(0,0,0,0.08)); background: var(--color-surface);
-  counter-increment: ilke;
-}
-/* Numara ICERIGIN sirasi degil, kural sayisi: okuyucu "alti kural var" diye
-   sayabilsin. */
-.yazar-ilkeler li::before {
-  content: counter(ilke, decimal-leading-zero);
-  position: absolute; left: 20px; top: 19px;
-  font-size: 0.82rem; font-weight: 800; color: var(--color-vet-secondary);
-  font-variant-numeric: tabular-nums;
 }
 .yazar-ilkeler h3 { font-size: 1.02rem; font-weight: 700; margin: 0 0 6px; }
 .yazar-ilkeler p { margin: 0; font-size: 0.95rem; line-height: 1.65; color: var(--color-text-muted); font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
@@ -84,8 +75,6 @@
   .yazar-kimlik h1 { font-size: 1.6rem; }
   .yazar-avatar { width: 56px; height: 56px; }
   .yazar-sayilar > div { flex: 1 1 calc(33% - 8px); min-width: 0; padding: 10px 12px; }
-  .yazar-ilkeler li { padding-left: 52px; }
-  .yazar-ilkeler li::before { left: 16px; }
   .yazar-liste img, .yazar-liste .kapak-yedek { width: 76px; height: 50px; }
 }
 @media (prefers-reduced-motion: reduce) { .yazar-liste a { transition: none; } }

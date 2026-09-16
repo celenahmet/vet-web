@@ -79,14 +79,15 @@ export default function Yazar() {
 
       <section className="container yazar-ilkeler" aria-labelledby="ilkeler-baslik">
         <h2 id="ilkeler-baslik"><BookOpenCheck size={20} />Yazılar nasıl hazırlanıyor</h2>
-        <ol>
+        {/* Numara yok: ilkelerin sirasi bilgi tasimiyor (UniConnectly ile ayni karar, 16.09). */}
+        <ul>
           {YAZAR.ilkeler.map((i) => (
             <li key={i.baslik}>
               <h3>{i.baslik}</h3>
               <p>{i.metin}</p>
             </li>
           ))}
-        </ol>
+        </ul>
         <p className="yazar-iletisim">
           <Mail size={16} />
           Bir hata ya da eskimiş bilgi gördüyseniz:{' '}
