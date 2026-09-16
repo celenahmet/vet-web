@@ -494,11 +494,58 @@ const listeKart = (y) => {
     + `</div></a>`;
 };
 
+/**
+ * ⚠️ URETILEN KART SAYISI REACT'INKIYLE AYNI OLMALI (16.09.2026).
+ *
+ * Liste sayfasi ilk 12 yaziyi gosterip gerisini "Daha fazla goster" ile
+ * aciyor. Prerender 33 kart basarsa, JS baglandigi anda 21 kart EKRANDAN
+ * KAYBOLUYOR: okuyucu kaydirirken sayfa altindan cekiliyor. Sayi tek yerde.
+ */
+const LISTE_ILK = 12;
+
+/*
+ * ⚠️ GERI KALAN 21 YAZI KAYBOLMUYOR. Statik HTML'de gorunmeseler de
+ * asagidaki `ItemList` kunyesi 33 yazinin TAMAMINI adresleriyle veriyor;
+ * ayrica `sitemap.xml` ve `llms-full.txt` hepsini tasiyor. Tarama yollari
+ * acik, gorunen liste ile React'inki ayni.
+ */
+const listeItemList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Veterito Blog yazıları',
+  numberOfItems: yazilar.length,
+  itemListElement: yazilar.map((y, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `${SITE}/blog/${y.slug}`,
+    name: y.baslik,
+  })),
+};
+
+const listeBlog = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  '@id': `${SITE}/blog`,
+  name: 'Veterito Blog',
+  description: 'Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine veteriner hekim gözünden yazılar.',
+  inLanguage: 'tr-TR',
+  publisher: { '@type': 'Organization', name: 'Veterito', url: SITE },
+};
+
 const listeGovde = [
   '<div class="blog-sayfa">',
   '<section class="container"><h1>Veterito Blog</h1>',
   '<p>Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine yazılar.</p></section>',
-  `<section class="container blog-izgara">${yazilar.map(listeKart).join('')}</section>`,
+  /* ⚠️ Iki sutunlu kabuk BURADA da kuruluyor: ilk boyamada akis sutunu tam
+     genislikte cizilip JS baglaninca daralsaydi, butun kartlar yanlara
+     ziplardi. */
+  '<div class="container blog-duzen">',
+  '<main class="blog-akis">',
+  `<header class="blog-akis-baslik"><h2>Tüm Yazılar<em class="blog-sayac">${yazilar.length}</em></h2></header>`,
+  `<div class="blog-izgara">${yazilar.slice(0, LISTE_ILK).map(listeKart).join('')}</div>`,
+  '</main>',
+  '<aside class="blog-yan"></aside>',
+  '</div>',
   '</div>',
 ].join('\n');
 
@@ -510,7 +557,7 @@ yaz(
       aciklama: 'Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine veteriner hekim gözünden yazılar.',
       adres: `${SITE}/blog`,
       tip: 'website',
-      jsonLd: [],
+      jsonLd: [listeBlog, listeItemList],
       onYukle: LISTE_ON_YUKLEME,
     }),
     listeGovde,

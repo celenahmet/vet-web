@@ -9,6 +9,7 @@ import { Megaphone, ArrowUpRight } from 'lucide-react';
  * digeri secilseydi kelimenin yarisi gorunmezdi.
  */
 import uniconnectlyLogo from '../assets/uniconnectly.webp';
+import './ReklamKutusu.css';
 
 /**
  * KENAR CUBUGU REKLAM ALANI (İSTEK: Ahmet, 25.08.2026)
@@ -38,11 +39,27 @@ import uniconnectlyLogo from '../assets/uniconnectly.webp';
 
 const ARALIK_MS = 20_000;
 
+/**
+ * ENVANTER KARTI ACIK MI? (Ahmet, 16.09.2026: *"reklam alanlari da olacak ama
+ * bos reklam donmesin simdilik"*.)
+ *
+ * `false` iken yuvada YALNIZ gercek reklam (UniConnectly) duruyor; "burada yer
+ * alin" cagrisi ve 20 saniyelik donme calismiyor. Gerekce: doldurulmamis bir
+ * yuvayi dolu gostermek, okuyucuya reklamla icerik arasinda olmayan bir
+ * yogunluk hissi veriyor.
+ *
+ * ⚠️ BU BIR ANAHTAR, SILINMIS KOD DEGIL. Envanter satilmaya baslandiginda
+ * `true` yapmak yetiyor; kart metni ve donme mantigi yerinde duruyor.
+ */
+const ENVANTER_KARTI_ACIK = false;
+
 export default function ReklamKutusu() {
   const { t } = useTranslation();
   const [ikinci, setIkinci] = useState(false);
 
   useEffect(() => {
+    /* Envanter kapaliyken donecek ikinci kart yok. */
+    if (!ENVANTER_KARTI_ACIK) return;
     /* Hareketi azalt: donme hic baslamiyor. */
     const azalt = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
     if (azalt) return;
@@ -52,12 +69,12 @@ export default function ReklamKutusu() {
   }, []);
 
   return (
-    <section className="kenar-kutu kenar-reklam" aria-label="Reklam alanı">
+    <section className={`kenar-kutu kenar-reklam${ENVANTER_KARTI_ACIK ? ' kenar-reklam-donen' : ''}`} aria-label="Reklam alanı">
       {/* ⚠️ Etiket her iki kartta da duruyor: hangisi gorunurse gorunsun
           okuyucu bunun reklam alani oldugunu biliyor. */}
       <p className="reklam-etiket">{t('ad_label')}</p>
 
-      {!ikinci ? (
+      {ENVANTER_KARTI_ACIK && !ikinci ? (
         <div className="reklam-kart">
           <span className="reklam-ikon" aria-hidden="true"><Megaphone size={21} /></span>
           <p className="reklam-baslik">{t('ad_title_1')}</p>

@@ -48,7 +48,7 @@
  */
 .blog-sayfa .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   margin-inline: auto;
   padding: 0 24px;
 }
@@ -89,7 +89,6 @@
   max-width: 46ch;
 }
 .one-cikan-dugme,
-.klinik-bandi-dugme,
 .bulten-dugme {
   display: inline-flex;
   align-items: center;
@@ -103,7 +102,6 @@
   transition: transform 0.15s ease, opacity 0.15s ease;
 }
 .one-cikan-dugme:hover,
-.klinik-bandi-dugme:hover,
 .bulten-dugme:hover { transform: translateY(-1px); opacity: 0.94; }
 /* Afislerde baslik gorselin icinde: kirpma yok, dogal oran. */
 .one-cikan-gorsel img {
@@ -149,13 +147,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 20px 12px;
+  gap: 8px;
+  padding: 20px 9px;
   background: var(--color-surface);
   color: var(--color-text);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   transition: background 0.15s ease;
 }
 /* Etiket satir ortasindan kirilmasin; kirilirsa serit yukselip zipliyor. */
@@ -166,7 +164,10 @@
 /* --- Kart izgarasi --- */
 .blog-izgara {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* ⚠️ UC SUTUN, DORT DEGIL: izgara artik tam genislikte degil, kenar
+     cubugunun yanindaki akis sutununda. Dort sutun 200 px'lik kartlar
+     uretiyordu ve basliklar bes satira kiriliyordu. */
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 .blog-kart {
@@ -209,59 +210,6 @@
   color: var(--color-text-muted);
 }
 .blog-kart-alt span { display: inline-flex; align-items: center; gap: 5px; }
-
-/* --- One cikan yazilar listesi --- */
-.blog-liste-baslik {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-.blog-liste-baslik h2 {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.35rem;
-  margin: 0;
-}
-.blog-liste-baslik h2 svg { color: #F5A524; }
-.blog-liste-baslik a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--color-vet-secondary);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-.blog-liste { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.blog-liste-kart {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border, rgba(0,0,0,0.07));
-  border-radius: 14px;
-  padding: 12px;
-  transition: background 0.15s ease;
-}
-.blog-liste-kart:hover { background: var(--color-vet-accent-light); }
-.blog-liste-kart img {
-  width: 84px;
-  height: 64px;
-  object-fit: cover;
-  border-radius: 10px;
-  flex-shrink: 0;
-}
-.blog-liste-kart h4 { font-size: 0.9rem; line-height: 1.35; margin: 0 0 8px; }
-.blog-liste-alt {
-  display: flex;
-  gap: 12px;
-  font-size: 0.74rem;
-  color: var(--color-text-muted);
-}
 
 /* ══════════════════════════════════════════════════════════════════════════
  * TUM YAZILAR AKISI + "DAHA FAZLA" (16.09.2026)
@@ -310,32 +258,217 @@
   .blog-daha button { transition: none; }
 }
 
-/* ⚠️ Serit TEK SATIR kalmali: `.blog-liste` dort sutun, icine dort kart
-   veriliyor. Sayi kodda (`slice(0, 4)`) ve burada AYNI; biri degisirse oteki
-   de degismeli, yoksa satir yarim kalir ya da tasar. */
 
-/* --- Klinik bandi --- */
-.klinik-bandi {
+/* ══════════════════════════════════════════════════════════════════════════
+ * ARAC SERIDI (kategori suzgeci + arama) · 16.09.2026
+ * ══════════════════════════════════════════════════════════════════════════ */
+.blog-araclar {
   display: flex;
-  gap: 28px;
-  align-items: center;
-  background: var(--color-vet-accent-light);
-  border-radius: 20px;
-  padding: 36px 40px;
+  align-items: stretch;
+  gap: 16px;
 }
-.klinik-bandi-ikon {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: var(--color-vet-secondary);
-  color: #fff;
+/* Serit esnek, arama sabit: arama kutusu daraldiginda yazilamaz hale gelir. */
+.blog-araclar .kategori-seridi { flex: 1 1 auto; min-width: 0; }
+
+.blog-arama {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
+  /* ⚠️ 260 px'ten 220'ye indi: arama kutusu serite yer birakmayinca "Pet
+     Sahipleri" alt satira dusuyor ve kutu iki satir boyunca uzuyordu. */
+  flex: 0 0 220px;
+  padding: 0 16px;
+  border: 1px solid var(--color-border, rgba(0,0,0,0.08));
+  border-radius: 16px;
+  background: var(--color-surface);
+  transition: border-color 0.15s ease;
+}
+.blog-arama:focus-within { border-color: var(--color-vet-secondary); }
+.blog-arama svg { color: var(--color-text-muted); flex-shrink: 0; }
+.blog-arama input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font-size: 0.93rem;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  /* ⚠️ 16px alti, iOS Safari'de odaklaninca sayfayi ZORLA yakinlastiriyor ve
+     duzen bozuluyor. Telefonda taban 16px'e cikiyor (asagidaki medya sorgusu). */
+  padding: 14px 0;
+}
+.blog-arama input::-webkit-search-cancel-button { cursor: pointer; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * IKI SUTUNLU DUZEN: akis + kenar cubugu (UniConnectly modeli)
+ * ══════════════════════════════════════════════════════════════════════════ */
+.blog-duzen {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+/* ⚠️ `minmax(0, 1fr)`: duz `1fr` grid ogesinin taban genisligini ICERIGE
+   gore hesaplar ve uzun bir baslik sutunu sisirip kenar cubugunu ekran
+   disina iter. Tasma bu tek satirla kapaniyor. */
+
+.blog-akis { min-width: 0; }
+
+.blog-akis-baslik {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.blog-akis-baslik h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+/* Ekran okuyucuya var, goze yok. `display:none` ekran okuyucudan da siler. */
+.gorunmez-metin {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.blog-siralama select {
+  appearance: none;
+  padding: 11px 38px 11px 16px;
+  border: 1px solid var(--color-border, rgba(0,0,0,0.1));
+  border-radius: 12px;
+  background: var(--color-surface);
+  color: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  cursor: pointer;
+  /* Ok isareti gomulu SVG: ayri bir istek acmiyor. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2364748b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+.blog-siralama select:focus-visible {
+  outline: 2px solid var(--color-vet-secondary);
+  outline-offset: 2px;
+}
+
+.blog-sonuc-yok {
+  text-align: center;
+  padding: 48px 20px;
+  border: 1px dashed var(--color-border, rgba(0,0,0,0.12));
+  border-radius: 16px;
+}
+.blog-sonuc-yok p { margin: 0 0 16px; color: var(--color-text-muted); }
+.blog-sonuc-yok button {
+  padding: 11px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--color-vet-secondary);
+  background: transparent;
+  color: var(--color-vet-secondary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ── Kenar cubugu ───────────────────────────────────────────────────────── */
+.blog-yan {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.blog-yan-kutu {
+  border: 1px solid var(--color-border, rgba(0,0,0,0.08));
+  border-radius: 16px;
+  padding: 20px;
+  background: var(--color-surface);
+}
+.blog-yan-kutu > h2 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
+}
+.blog-yan-kutu > h2 svg { color: #F5A524; }
+
+.blog-yan-liste { list-style: none; margin: 0; padding: 0; }
+.blog-yan-liste li + li {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border, rgba(0,0,0,0.07));
+}
+.blog-yan-liste a {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+.blog-yan-liste img,
+.blog-yan-liste .kapak-yedek {
+  width: 68px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 9px;
   flex-shrink: 0;
 }
-.klinik-bandi-metin h2 { font-size: 1.5rem; margin: 0 0 10px; color: var(--color-vet-accent); }
-.klinik-bandi-metin p { margin: 0 0 20px; color: var(--color-text-muted); max-width: 62ch; }
+.blog-yan-liste h3 {
+  font-size: 0.87rem;
+  line-height: 1.35;
+  font-weight: 600;
+  margin: 0 0 5px;
+  overflow-wrap: anywhere;
+}
+.blog-yan-liste span {
+  font-size: 0.73rem;
+  color: var(--color-text-muted);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+.blog-yan-liste a:hover h3 { color: var(--color-vet-secondary); }
+
+/* Klinik karti: sayfanin altindaki genis bandin yerini aldi. */
+.blog-yan-klinik { display: flex; flex-direction: column; align-items: flex-start; }
+.blog-yan-ikon {
+  width: 42px; height: 42px; border-radius: 12px;
+  display: grid; place-items: center;
+  margin-bottom: 12px;
+  background: var(--color-vet-accent-light);
+  color: var(--color-vet-secondary);
+}
+.blog-yan-klinik h2 { font-size: 1.02rem; font-weight: 700; margin: 0 0 8px; line-height: 1.35; }
+.blog-yan-klinik p {
+  margin: 0 0 16px;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+.blog-yan-klinik a {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--color-vet-secondary);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+}
 
 /* --- Bulten bandi --- */
 .bulten-bandi {
@@ -364,12 +497,45 @@
 
 /* Uzun baslik dar ekranda tasmasin */
 .one-cikan-metin h1,
-.blog-kart-govde h3,
-.blog-liste-kart h4 { overflow-wrap: anywhere; }
+.blog-kart-govde h3 { overflow-wrap: anywhere; }
+
+/* ── Genis masaustu: kenar cubugu yapiskan ──────────────────────────────
+   ⚠️ YALNIZ 1200 PX USTU. Altinda kenar cubugu akisin ALTINA dusuyor ve
+   yapiskanlik anlamsiz. `max-height` + `overflow-y` sart: cubuk ekrandan
+   uzunsa yapisik kalip alt kartlari ERISILEMEZ birakiyor. */
+@media (min-width: 1200px) {
+  .blog-yan {
+    position: sticky;
+    top: 92px;
+    max-height: calc(100vh - 112px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    padding-right: 4px;
+  }
+}
+
+/* ── Kucuk masaustu / yatay tablet ─────────────────────────────────────── */
+@media (max-width: 1199px) {
+  .blog-duzen { grid-template-columns: minmax(0, 1fr) 280px; gap: 24px; }
+  .blog-izgara { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Tablet (dikey) ve alti: kenar cubugu akisin altina ────────────────── */
+@media (max-width: 1023px) {
+  .blog-duzen { grid-template-columns: 1fr; gap: 28px; }
+  /* ⚠️ 16 PX TABAN, YALNIZ TELEFONDA DEGIL. iOS Safari 16 px'in altindaki bir
+     alana odaklaninca sayfayi ZORLA yakinlastiriyor; iPad dikey 768-834 px
+     araliginda ve eski esik 700 px oldugu icin tablette hala kuculuyordu.
+     Dokunmatik klavye acilan her genislikte 16 px. */
+  .blog-arama input,
+  .blog-siralama select { font-size: 16px; }
+  /* Cubuk alta dusunce tek uzun sutun olmasin: kartlar yan yana. */
+  .blog-yan { display: grid; grid-template-columns: repeat(2, 1fr); align-items: start; }
+  .blog-araclar { flex-wrap: wrap; }
+  .blog-arama { flex: 1 1 100%; order: -1; }
+}
 
 @media (max-width: 1180px) {
-  .blog-izgara { grid-template-columns: repeat(2, 1fr); }
-  .blog-liste { grid-template-columns: repeat(2, 1fr); }
   /* Serit kendi sariyor; sutun sayisi yazmak orta genisliklerde tek basina
      kalan dugme uretiyordu. Yalniz taban genislik daraltiliyor. */
   .kategori-oge { padding: 18px 10px; }
@@ -382,22 +548,23 @@
   .one-cikan-metin p { max-width: none; }
   .one-cikan-gorsel img,
   .one-cikan-gorsel .kapak-yedek { aspect-ratio: 16 / 9; }
-  .klinik-bandi { padding: 30px 28px; }
   .bulten-bandi { padding: 28px 28px; }
 }
 
 @media (max-width: 700px) {
   .blog-sayfa { padding: calc(88px + 16px) 0 56px; }
   .blog-sayfa section { margin-bottom: 32px; }
+  .blog-duzen { margin-bottom: 32px; }
+  .blog-yan { grid-template-columns: 1fr; }
+  .blog-akis-baslik { flex-wrap: wrap; gap: 12px; }
+  .blog-siralama, .blog-siralama select { width: 100%; }
+  .blog-arama input { padding: 13px 0; }
   .one-cikan-metin h1 { font-size: 1.7rem; }
   .one-cikan-metin p { font-size: 0.98rem; }
-  .blog-izgara, .blog-liste { grid-template-columns: 1fr; }
+  .blog-izgara { grid-template-columns: 1fr; }
   /* Telefonda iki dugme yan yana kalsin: taban genislik veriliyor ki
      `flex-wrap` satir basina ikiden fazlasini sikistirmasin. */
   .kategori-oge { flex-basis: 38%; padding: 16px 10px; font-size: 0.9rem; }
-  .blog-liste-baslik h2 { font-size: 1.15rem; }
-  .klinik-bandi { flex-direction: column; align-items: flex-start; gap: 18px; padding: 26px 20px; }
-  .klinik-bandi-metin h2 { font-size: 1.2rem; }
   .bulten-bandi { flex-direction: column; align-items: flex-start; gap: 20px; padding: 26px 20px; }
   .bulten-metin { align-items: flex-start; }
   .bulten-dugme { width: 100%; justify-content: center; }
@@ -419,7 +586,6 @@
 }
 .one-cikan-gorsel .kapak-yedek { aspect-ratio: 16 / 11; border-radius: 20px; }
 .blog-kart-gorsel .kapak-yedek { aspect-ratio: 16 / 10; }
-.blog-liste-kart .kapak-yedek { width: 84px; height: 64px; border-radius: 10px; flex-shrink: 0; }
 .kapak-yedek svg { opacity: 0.9; }
 
 
@@ -472,29 +638,15 @@
 /* Saydam degil dolgu rengi: saydamlik seridin ayirac rengini altindan gosterir. */
 .kategori-oge.bos:hover { background: var(--color-surface); }
 
-.blog-bos { text-align: center; padding: 32px 0; }
-.blog-bos p { color: var(--text-muted, #475569); margin: 0 0 14px; }
-.blog-bos button {
-  background: var(--color-vet-secondary); color: #fff; border: none;
-  padding: 10px 22px; border-radius: 999px; font-weight: 600; cursor: pointer;
-  font-family: inherit;
-}
-
 /* Ayni sebep: Tailwind preflight basliklarin kalinligini sifirliyor (bkz. BlogPost.css). */
 .one-cikan-metin h1 { font-weight: 800; letter-spacing: -0.02em; }
 .blog-kart-govde h3 { font-weight: 700; }
-.blog-liste-baslik h2 { font-weight: 700; }
-.blog-liste-kart h4 { font-weight: 700; }
-.klinik-bandi-metin h2, .bulten-metin h2 { font-weight: 700; }
+.bulten-metin h2 { font-weight: 700; }
 
 /* Govde metni Inter, basliklar Outfit (bkz. BlogPost.css). */
 .one-cikan-metin p,
 .blog-kart-alt,
-.blog-liste-alt,
-.klinik-bandi-metin p,
 .bulten-metin p { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
-
-/* --- Son eklenenler seridi (24.08.2026) --- */
 
 /* --- Donen kahraman kutusunun gostergeleri (24.08.2026) --- */
 /*

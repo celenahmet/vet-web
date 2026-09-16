@@ -1,0 +1,78 @@
+/*
+ * REKLAM KUTUSU — KENDI STILINI TASIYOR (16.09.2026).
+ *
+ * ⚠️ NEDEN AYRI DOSYA: bu kurallar `BlogKenarCubugu.css` icindeydi ve o dosya
+ * yalniz YAZI SAYFASININ kenar cubugu bileseni tarafindan import ediliyordu.
+ * Kutu 16.09'da BLOG LISTE sayfasinin kenar cubuguna da girince, rota
+ * bolunmesi CSS'i o sayfaya tasimayabilirdi: reklam kutusu bicimsiz cikardi.
+ * Bilesen kendi stilini kendisi getiriyor, kimseye bagli degil.
+ */
+
+/* ⚠️ Kutu govdesi BURADA da yazili. Yazi sayfasinda `.kenar-kutu` ile ayni
+   degerleri tasiyor; liste sayfasinda `.kenar-kutu` YOK ve kutu yine de
+   kutu gibi gorunmeli. */
+.kenar-reklam {
+  border: 1px dashed var(--color-border, rgba(0,0,0,0.18));
+  border-radius: 16px;
+  padding: 22px;
+  background: var(--bg-surface, var(--color-surface, #fff));
+  display: flex;
+  flex-direction: column;
+}
+
+/* ⚠️ SABIT YUKSEKLIK YALNIZ DONERKEN. Iki kart farkli uzunlukta; her 20
+   saniyede kutu buyuyup kucululseydi altindaki her sey ziplardi. Envanter
+   karti kapaliyken (16.09.2026) donecek ikinci kart yok, sabit yukseklik de
+   gereksiz bosluk demek — o yuzden ayri sinifta. */
+.kenar-reklam-donen { min-height: 264px; }
+
+.reklam-etiket {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, currentColor 45%, transparent);
+}
+
+.reklam-kart { display: flex; flex-direction: column; gap: 9px; flex: 1; }
+
+.reklam-ikon {
+  width: 42px; height: 42px; border-radius: 12px;
+  display: grid; place-items: center;
+  background: color-mix(in srgb, var(--primary-color, #0F6B57) 12%, transparent);
+  color: var(--primary-color, #0F6B57);
+}
+.reklam-ikon-mor {
+  background: color-mix(in srgb, #6366F1 13%, transparent);
+  color: #4F46E5;
+}
+
+.reklam-baslik { margin: 2px 0 0; font-size: 16.5px; font-weight: 700; line-height: 1.3; }
+.reklam-metin { margin: 0; font-size: 14px; line-height: 1.55; opacity: .78; }
+
+.reklam-dugme {
+  margin-top: auto;
+  display: inline-flex; align-items: center; gap: 5px; align-self: flex-start;
+  padding: 9px 15px; border-radius: 9px;
+  font-size: 13.5px; font-weight: 600; text-decoration: none;
+  background: color-mix(in srgb, currentColor 7%, transparent);
+  color: inherit;
+  transition: background .12s ease;
+}
+.reklam-dugme:hover { background: color-mix(in srgb, currentColor 13%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reklam-dugme { transition: none; }
+}
+
+/* ⚠️ Logo, ikon kutusunun yerini aliyor; genislik sinirli, yukseklik oranli.
+   `width`/`height` yazili: olcusuz gorsel yer ayirmiyor ve indiginde satiri
+   asagi itiyor. */
+.reklam-logo {
+  width: 190px;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  margin-bottom: 2px;
+}
