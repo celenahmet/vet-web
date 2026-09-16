@@ -323,6 +323,16 @@ for (const y of yazilar) {
         }
       : {}),
   };
+  const kirinti = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: `${SITE}/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog` },
+      { '@type': 'ListItem', position: 3, name: y.baslik, item: adres },
+    ],
+  };
+
   const sss = y.sss?.length
     ? [{
         '@context': 'https://schema.org',
@@ -351,13 +361,18 @@ for (const y of yazilar) {
    * gozle gorulur bir degisim olmuyor.
    */
   const govde = [
-    `<article class="yazi-sayfa"><div class="container yazi-duzen"><div class="yazi-ana">`,
-    `<header class="yazi-basi">`,
-    `<div class="yazi-ust-satir"><a class="yazi-geri" href="/blog">Bloga dön</a><span class="yazi-kategori">${kac(y.kategori.toLocaleUpperCase('tr-TR'))}</span></div>`,
+    /* ⚠️ BASLIK BANDI SUTUNLARIN USTUNDE, React'teki yapiyla BIREBIR
+       (16.09.2026). Kapak artik sol sutunun ILK ogesi; band tam genislikte.
+       Ayrisirsa React baglaninca sayfa ziplar. */
+    `<article class="yazi-sayfa">`,
+    `<header class="yazi-basi-bandi"><div class="container yazi-basi">`,
+    `<nav class="yazi-kirinti" aria-label="Sayfa yolu"><a href="/">Ana Sayfa</a><span aria-hidden="true">›</span><a href="/blog">Blog</a><span aria-hidden="true">›</span><span aria-current="page">${kac(y.baslik)}</span></nav>`,
+    `<span class="yazi-kategori">${kac(y.kategori.toLocaleUpperCase('tr-TR'))}</span>`,
     `<h1>${kac(y.baslik)}</h1>`,
     `<p class="yazi-ozet">${kac(y.ozet)}</p>`,
-    `<div class="yazi-kunye"><span class="yazi-yazar">Veterito Editör</span><span>${kac(tarihiYaz(y.tarih))}</span><span>${dakika} dk okuma</span></div>`,
-    `</header>`,
+    `<div class="yazi-kunye"><span class="yazi-yazar"><span class="yazi-yazar-avatar" aria-hidden="true"></span>Veterito Editör</span><span>${kac(tarihiYaz(y.tarih))}</span><span>${dakika} dk okuma</span></div>`,
+    `</div></header>`,
+    `<div class="container yazi-duzen"><div class="yazi-ana">`,
     /*
      * ⚠️ KAPAK GORSELI PRERENDER GOVDESINE DE KONUYOR (24.08.2026).
      *
@@ -441,7 +456,7 @@ for (const y of yazilar) {
       aciklama: y.ozet,
       adres,
       tip: 'article',
-      jsonLd: [makale, ...sss],
+      jsonLd: [makale, kirinti, ...sss],
       onYukle: YAZI_ON_YUKLEME,
       gorsel: kapak?.asil,
       kapakAlt: y.kapakAlt,

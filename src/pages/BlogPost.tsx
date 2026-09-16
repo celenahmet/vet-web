@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { ArrowLeft, ArrowRight, Clock, CalendarDays, AlertTriangle, CircleAlert, CheckCircle2, Eye } from 'lucide-react';
+import { ChevronRight, UserRound, ArrowRight, Clock, CalendarDays, AlertTriangle, CircleAlert, CheckCircle2, Eye } from 'lucide-react';
 import { useOncedenUretilmisVeriyiDevral } from '../yapisal-veri';
 import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -206,6 +206,18 @@ export default function BlogPost() {
     mainEntityOfPage: adres,
   };
 
+  /* Kirinti kunyesi: arama sonucunda "veterito.com › Blog › Başlık" yolu
+     gorunur; Google bunu BreadcrumbList'ten okuyor. */
+  const kirintiVerisi = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t('nav_home'), item: 'https://veterito.com/' },
+      { '@type': 'ListItem', position: 2, name: t('nav_blog'), item: 'https://veterito.com/blog' },
+      { '@type': 'ListItem', position: 3, name: yazi.baslik, item: adres },
+    ],
+  };
+
   const sssVerisi = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -221,6 +233,7 @@ export default function BlogPost() {
       <SEO title={yazi.baslik} description={yazi.ozet} url={adres} type="article" />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(makaleVerisi)}</script>
+        <script type="application/ld+json">{JSON.stringify(kirintiVerisi)}</script>
         {yazi.sss.length ? <script type="application/ld+json">{JSON.stringify(sssVerisi)}</script> : null}
       </Helmet>
 
@@ -233,26 +246,52 @@ export default function BlogPost() {
         Artik baslik, kapak ve govde AYNI sol sutunda; kenar cubugu en bastan sagda
         ve tek bir sol kenar cizgisi var.
       */}
+      {/*
+        BASLIK BANDI SUTUNLARIN USTUNDE (Ahmet, 16.09.2026: *"yazi kisminda
+        gorsel yukarda olmaliydi… uniconnectly'de boyle yapmisiz, tam boyle
+        degil, referans al uyarla"*).
+
+        Onceden baslik, ozet ve kunye SOL SUTUNUN icindeydi; kenar cubugu
+        sayfanin en tepesinden basliyor, kapak gorseli ise basligin altina,
+        ilk ekranin disina dusuyordu. Simdi band tam genislikte, iki sutun
+        onun altinda basliyor: kapak, kenar cubugunun ilk kutusuyla AYNI
+        cizgide. UniConnectly'deki duzenin Veterito diline uyarlanmis hali.
+
+        ⚠️ TEK OLCU KURALI BOZULMADI: bandin ici de `.container` ile 1160'ta,
+        sol kenar izgarayla ayni cizgide (24.08'deki "denge" dersi).
+        ⚠️ prerender.mjs AYNI yapiyi uretiyor; ayrisirsa React baglaninca
+        sayfa ziplar.
+      */}
+      <header className="yazi-basi-bandi">
+        <div className="container yazi-basi">
+          <nav className="yazi-kirinti" aria-label={t('post_breadcrumb')}>
+            <Link to="/">{t('nav_home')}</Link>
+            <ChevronRight size={14} aria-hidden="true" />
+            <Link to="/blog">{t('nav_blog')}</Link>
+            <ChevronRight size={14} aria-hidden="true" />
+            <span aria-current="page">{yazi.baslik}</span>
+          </nav>
+          <span className="yazi-kategori">{yazi.kategori.toLocaleUpperCase('tr-TR')}</span>
+          <h1>{yazi.baslik}</h1>
+          <p className="yazi-ozet">{yazi.ozet}</p>
+          <div className="yazi-kunye">
+            <span className="yazi-yazar">
+              <span className="yazi-yazar-avatar" aria-hidden="true"><UserRound size={18} /></span>
+              {t('post_author')}
+            </span>
+            <span><CalendarDays size={14} /> {tarihiYaz(yazi.tarih)}</span>
+            <span><Clock size={14} /> {dakika} {t('post_read_time')}</span>
+            {/* Sayac gelene kadar hic gosterilmiyor: "0 goruntulenme" yazmak,
+                hic yazmamaktan kotu. */}
+            {goruntulenme !== null ? (
+              <span><Eye size={14} /> {sayiyiKisalt(goruntulenme)} {t('post_views')}</span>
+            ) : null}
+          </div>
+        </div>
+      </header>
+
       <div className="container yazi-duzen">
         <div className="yazi-ana">
-          <header className="yazi-basi">
-            <div className="yazi-ust-satir">
-              <Link to="/blog" className="yazi-geri"><ArrowLeft size={16} />{t('post_back_to_blog')}</Link>
-              <span className="yazi-kategori">{yazi.kategori.toLocaleUpperCase('tr-TR')}</span>
-            </div>
-            <h1>{yazi.baslik}</h1>
-            <p className="yazi-ozet">{yazi.ozet}</p>
-            <div className="yazi-kunye">
-              <span className="yazi-yazar">{t('post_author')}</span>
-              <span><CalendarDays size={14} /> {tarihiYaz(yazi.tarih)}</span>
-              <span><Clock size={14} /> {dakika} {t('post_read_time')}</span>
-              {/* Sayac gelene kadar hic gosterilmiyor: "0 goruntulenme" yazmak,
-                  hic yazmamaktan kotu. */}
-              {goruntulenme !== null ? (
-                <span><Eye size={14} /> {sayiyiKisalt(goruntulenme)} {t('post_views')}</span>
-              ) : null}
-            </div>
-          </header>
 
           <div className="yazi-kapak">
             <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={72} olcu="yazi" oncelikli />
