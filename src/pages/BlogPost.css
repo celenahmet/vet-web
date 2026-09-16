@@ -42,11 +42,14 @@
  * ⚠️ Renk TOKEN'dan: koyu temada band zemini de birlikte donuyor.
  * ══════════════════════════════════════════════════════════════════════════ */
 .yazi-basi-bandi {
-  /* Sayfa ust dolgusu bandin ICINE alindi ki band navbara kadar uzansin. */
-  margin-top: calc(-1 * (88px + 24px));
-  padding: calc(88px + 28px) 0 30px;
-  margin-bottom: 36px;
-  background: color-mix(in srgb, var(--color-vet-accent-light) 55%, var(--color-surface));
+  /* ⚠️ ZEMIN YOK, YALNIZ ALT CIZGI (16.09.2026, Ahmet: *"yukari cok kotu
+     gozukuyor olmamis"*). Ilk surum tonlu zemini navbarin altina kadar
+     uzatiyordu: navbar + band tek bir yesilimsi blok olmus, 560 px'lik bos
+     bir alan gibi duruyordu. Referanstaki (UniConnectly) band da zaten
+     neredeyse beyaz; band fikri ZEMINDEN degil, basligin sutunlarin ustunde
+     durmasindan geliyor. */
+  padding: 0 0 24px;
+  margin-bottom: 32px;
   border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.08));
 }
 
@@ -54,7 +57,7 @@
    iki satira sarsaydi band yukselip zipliyordu. */
 .yazi-kirinti {
   display: flex; align-items: center; gap: 8px;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
   font-size: 0.86rem; color: var(--color-text-muted);
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   min-width: 0;
@@ -73,10 +76,12 @@
   display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em;
   color: var(--color-vet-secondary); background: var(--color-vet-accent-light);
   padding: 6px 12px; border-radius: 999px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
-.yazi-basi h1 { font-size: 2.4rem; line-height: 1.2; margin: 0 0 16px; max-width: 26ch; }
-.yazi-ozet { font-size: 1.1rem; line-height: 1.65; color: var(--color-text-muted); margin: 0 0 22px; }
+/* Baslik tam genislik: 26ch siniri uzun basliklari gereksiz yere iki satira
+   boluyor, bandi yukseltiyordu. Okuma olcusu ozet ve govdede korunuyor. */
+.yazi-basi h1 { font-size: 2.4rem; line-height: 1.2; margin: 0 0 12px; }
+.yazi-ozet { font-size: 1.1rem; line-height: 1.65; color: var(--color-text-muted); margin: 0 0 18px; max-width: 72ch; }
 
 .yazi-kunye {
   display: flex; flex-wrap: wrap; gap: 18px; align-items: center;
@@ -209,7 +214,7 @@
 
 @media (max-width: 700px) {
   .yazi-sayfa { padding: calc(88px + 12px) 0 56px; }
-  .yazi-basi-bandi { margin-top: calc(-1 * (88px + 12px)); padding: calc(88px + 16px) 0 22px; margin-bottom: 24px; }
+  .yazi-basi-bandi { padding: 0 0 20px; margin-bottom: 24px; }
   .yazi-basi h1 { font-size: 1.65rem; }
   .yazi-yazar { padding-right: 0; border-right: 0; }
   .yazi-ozet { font-size: 1rem; }
@@ -429,7 +434,7 @@
 
 @media (max-width: 700px) {
   .yazi-sayfa { padding: calc(88px + 12px) 0 56px; }
-  .yazi-basi-bandi { margin-top: calc(-1 * (88px + 12px)); padding: calc(88px + 16px) 0 22px; margin-bottom: 24px; }
+  .yazi-basi-bandi { padding: 0 0 20px; margin-bottom: 24px; }
   .yazi-basi h1 { font-size: 1.65rem; }
   .yazi-yazar { padding-right: 0; border-right: 0; }
   .yazi-ozet { font-size: 1rem; }
