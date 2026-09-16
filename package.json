@@ -22,7 +22,8 @@
     "magaza-denetimi": "node --experimental-strip-types scripts/magaza-baglanti-denetimi.mjs",
     "blog-besleme": "node --experimental-strip-types scripts/blog-besleme.mjs",
     "llms": "node --experimental-strip-types scripts/llms-uret.mjs",
-    "ai-denetimi": "node --experimental-strip-types scripts/ai-denetimi.mjs"
+    "ai-denetimi": "node --experimental-strip-types scripts/ai-denetimi.mjs",
+    "indexnow": "node scripts/indexnow-bildir.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.4",
