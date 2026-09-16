@@ -16,6 +16,8 @@ export const veterinerUcretleri: BlogYazi = {
   slug: 'veteriner-ucretleri',
   baslik: '2026 Veteriner Ücretleri: Muayene, Aşı ve Kısırlaştırma',
   ozet: 'Muayene, aşı ve kısırlaştırma için 2026 alt sınır ücretleri, üstüne nelerin eklendiği ve faturayı okumanın yolu.',
+  kapakAlt:
+    '2026 veteriner ücretleri konulu yazının kapak görseli; muayene, aşı ve kısırlaştırma maliyet kalemleri',
   kategori: 'Pet Sahipleri',
   tarih: '2026-08-31',
   bloklar: [

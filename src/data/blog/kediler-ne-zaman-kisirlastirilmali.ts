@@ -16,6 +16,8 @@ export const kedilerNeZamanKisirlastirilmali: BlogYazi = {
   slug: 'kediler-ne-zaman-kisirlastirilmali',
   baslik: 'Kediler Ne Zaman Kısırlaştırılmalı?',
   ozet: 'Erken kısırlaştırma büyümeyi durdurmuyor. Ama kısırlaştırma sonrası kilo, hangi ayda yapılırsa yapılsın takip gerektiriyor.',
+  kapakAlt:
+    'Kedilerde kısırlaştırma zamanı konulu yazının kapak görseli; erken kısırlaştırma ve dişi-erkek farkı',
   kategori: 'Sağlık',
   tarih: '2026-08-25',
   bloklar: [

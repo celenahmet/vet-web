@@ -10,6 +10,8 @@ export const kopeklerdeKulakEnfeksiyonu: BlogYazi = {
   slug: 'kopeklerde-kulak-enfeksiyonu',
   baslik: 'Köpeklerde Kulak Enfeksiyonu Nasıl Anlaşılır?',
   ozet: 'Kulak kaşıma her zaman enfeksiyon değil, enfeksiyon da her zaman aynı şey değil. Bakteri mi maya mı sorusunun cevabı tedaviyi baştan belirliyor.',
+  kapakAlt:
+    'Köpeklerde kulak enfeksiyonu konulu yazının kapak görseli; kulak kaşıma, koku ve akıntı bulguları',
   kategori: 'Köpek',
   tarih: '2026-08-25',
   bloklar: [

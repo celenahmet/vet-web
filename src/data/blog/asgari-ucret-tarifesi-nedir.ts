@@ -10,6 +10,8 @@ export const asgariUcretTarifesiNedir: BlogYazi = {
   slug: 'asgari-ucret-tarifesi-nedir',
   baslik: 'Veteriner Hekim Odası Asgari Ücret Tarifesi Nedir, Klinikler Nasıl Uygular?',
   ozet: 'Tarife bir fiyat listesi değil, alt sınır. Aynı işlem için kliniklerin farklı ücret istemesi bu yüzden aykırılık değil.',
+  kapakAlt:
+    'Veteriner hekim odası asgari ücret tarifesi konulu yazının kapak görseli; tarifenin taban olması ve kliniklerin uygulaması',
   kategori: 'Klinik Yönetimi',
   tarih: '2026-08-30',
   bloklar: [

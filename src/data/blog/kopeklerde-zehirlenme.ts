@@ -9,6 +9,8 @@ export const kopeklerdeZehirlenme: BlogYazi = {
   slug: 'kopeklerde-zehirlenme',
   baslik: 'Köpeklerde Zehirlenme Nasıl Anlaşılır?',
   ozet: 'Zehirlenmede en kritik bilgi belirti değil, zaman. Belirti çıkmasını beklemek çoğu maddede müdahale penceresini kapatıyor.',
+  kapakAlt:
+    'Köpeklerde zehirlenme konulu yazının kapak görseli; zehirlenme belirtileri ve acil başvuru',
   kategori: 'Köpek',
   tarih: '2026-08-31',
   bloklar: [

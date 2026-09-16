@@ -4,6 +4,8 @@ export const kopeklerKacYilYasar: BlogYazi = {
   slug: 'kopekler-kac-yil-yasar',
   baslik: 'Köpekler Kaç Yıl Yaşar? Irka ve Boya Göre Ömür',
   ozet: 'Köpeklerde ömrü belirleyen en güçlü etken boy. Küçük ırklar 12-16 yıl yaşarken dev ırklarda bu süre 6-10 yıla iniyor. Sebebi ve sizin elinizde olan kısmı.',
+  kapakAlt:
+    'Köpeklerde yaşam süresi konulu yazının kapak görseli; ırk ve vücut büyüklüğüne göre ömür farkı',
   kategori: 'Köpek',
   tarih: '2026-08-23',
   bloklar: [

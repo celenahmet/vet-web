@@ -4,6 +4,8 @@ export const kediAsiTakvimi: BlogYazi = {
   slug: 'kedi-asi-takvimi',
   baslik: 'Kedi Aşı Takvimi Nasıl Olmalı? Yavru ve Yetişkin Kedide Aşılar',
   ozet: 'Yavru kedide karma aşı 8-9 haftada başlar, 3-4 hafta arayla tekrarlanır. Kuduz 12. haftadan sonra yapılır. Tam takvim ve sık yapılan hatalar.',
+  kapakAlt:
+    'Kedi aşı takvimi konulu yazının kapak görseli; yavru ve yetişkin kedide aşı sırası ve tekrar aralıkları',
   kategori: 'Kedi',
   tarih: '2026-08-23',
   bloklar: [

@@ -98,6 +98,26 @@ for (const y of yayinda) {
   not(makale.inLanguage === 'tr-TR', `Article inLanguage eksik -> ${y.slug}`);
   not(Array.isArray(makale.image) && makale.image.length > 0, `Article image eksik -> ${y.slug}`);
 
+  /*
+   * ⚠️ GORSEL ALT METNI (16.09.2026, Ahmet: *"gorsellere alt metin seo odakli
+   * ciddi calisma"* + *"yaziya uygun gorsel ciksin, baska baslik baska gorsel
+   * cikmasin"*). Uc sey birden olculuyor:
+   *   1. alt metin var, bos degil ve BASLIGIN KOPYASI degil,
+   *   2. sayfadaki `og:image` o yazinin KENDI kapagini gosteriyor (slug eslesmesi),
+   *   3. `og:image:alt` basilmis.
+   * Ucuncu madde paylasimda ve gorsel aramasinda gorselin ne oldugunu soyleyen
+   * tek alan; ikincisi UniConnectly'de yasanan "baska yazinin kapagi" hatasinin
+   * bu depodaki tekrarini engelliyor.
+   */
+  not(typeof y.kapakAlt === 'string' && y.kapakAlt.trim().length >= 30,
+    `kapakAlt eksik ya da cok kisa -> ${y.slug}`);
+  not(y.kapakAlt !== y.baslik, `kapakAlt basligin kopyasi -> ${y.slug}`);
+  const ogGorsel = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1] ?? '';
+  not(ogGorsel.includes(y.slug), `og:image baska yazinin kapagini gosteriyor -> ${y.slug} (${ogGorsel.slice(-40)})`);
+  not(/<meta property="og:image:alt" content="[^"]{20,}"/.test(html), `og:image:alt eksik -> ${y.slug}`);
+  const imgAlt = html.match(/class="yazi-kapak"><img[^>]*alt="([^"]*)"/)?.[1] ?? '';
+  not(imgAlt.length >= 30, `statik kapak img alt metni eksik -> ${y.slug}`);
+
   if (y.kaynaklar?.length) {
     not(Array.isArray(makale.citation) && makale.citation.length === y.kaynaklar.length,
       `citation sayisi kaynak sayisiyla tutmuyor -> ${y.slug} (${makale.citation?.length ?? 0}/${y.kaynaklar.length})`);

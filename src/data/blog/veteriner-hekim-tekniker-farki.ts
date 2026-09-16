@@ -9,6 +9,8 @@ export const veterinerHekimTeknikerFarki: BlogYazi = {
   slug: 'veteriner-hekim-tekniker-farki',
   baslik: 'Veteriner Hekim ile Veteriner Teknikeri Arasındaki Fark Nedir?',
   ozet: 'İkisi de kliniğin içinde, önlükleri benzer. Ama teşhis koyma, reçete yazma ve ameliyat yetkisi yalnız birinde.',
+  kapakAlt:
+    'Veteriner hekim ile veteriner teknikeri farkı konulu yazının kapak görseli; eğitim süresi ve yetki sınırı',
   kategori: 'Klinik Yönetimi',
   tarih: '2026-08-30',
   bloklar: [

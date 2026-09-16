@@ -4,6 +4,8 @@ export const kediYasiNasilHesaplanir: BlogYazi = {
   slug: 'kedi-yasi-nasil-hesaplanir',
   baslik: 'Kedi Yaşı Nasıl Hesaplanır? İnsan Yaşına Çevirme Tablosu',
   ozet: 'Kedi yaşını yedi ile çarpmak yanlış. İlk yıl 15, ikinci yıl 9, sonrası yılda 4 insan yılı. Sokaktan alınan kedide yaşın nasıl tahmin edildiği de burada.',
+  kapakAlt:
+    'Kedi yaşı hesaplama konulu yazının kapak görseli; kedi yaşının insan yaşına çevrilmesi',
   kategori: 'Kedi',
   tarih: '2026-08-23',
   bloklar: [

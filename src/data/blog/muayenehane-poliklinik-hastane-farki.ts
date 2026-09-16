@@ -9,6 +9,8 @@ export const muayenehanePoliklinikHastaneFarki: BlogYazi = {
   slug: 'muayenehane-poliklinik-hastane-farki',
   baslik: 'Veteriner Muayenehanesi, Poliklinik ve Hayvan Hastanesi Arasındaki Fark Nedir?',
   ozet: 'Tabeladaki isim tesadüf değil. Her biri farklı bir ruhsata, farklı bir kadroya ve farklı bir hizmet kapsamına karşılık geliyor.',
+  kapakAlt:
+    'Veteriner muayenehanesi, poliklinik ve hayvan hastanesi farkı konulu yazının kapak görseli; kuruluş türleri ve yetkileri',
   kategori: 'Klinik Yönetimi',
   tarih: '2026-08-31',
   bloklar: [

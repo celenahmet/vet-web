@@ -9,6 +9,8 @@ export const kediKopekCheckUpNeZaman: BlogYazi = {
   slug: 'kedi-kopek-check-up-ne-zaman',
   baslik: 'Kedi ve Köpeklerde Check-Up Ne Zaman Yapılmalı?',
   ozet: 'Hasta olmayan bir hayvanı kliniğe götürmek gereksiz gelebiliyor. Oysa kontrolün amacı hastalığı tedavi etmek değil, adı konmadan önce yakalamak.',
+  kapakAlt:
+    'Kedi ve köpeklerde check-up konulu yazının kapak görseli; yaşa göre kontrol sıklığı ve yapılan testler',
   kategori: 'Sağlık',
   tarih: '2026-08-30',
   bloklar: [

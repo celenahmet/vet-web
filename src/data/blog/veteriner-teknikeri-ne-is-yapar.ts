@@ -9,6 +9,8 @@ export const veterinerTeknikeriNeIsYapar: BlogYazi = {
   slug: 'veteriner-teknikeri-ne-is-yapar',
   baslik: 'Veteriner Teknikeri Ne İş Yapar? Görevleri ve Çalışma Alanları',
   ozet: 'Kliniğin görünmeyen yükünü büyük ölçüde tekniker taşıyor. Ama yetki sınırı net: karar hekimin, uygulama ekibin.',
+  kapakAlt:
+    'Veteriner teknikeri görevleri konulu yazının kapak görseli; klinikte çalışma alanları ve sorumluluklar',
   kategori: 'Klinik Yönetimi',
   tarih: '2026-08-31',
   bloklar: [

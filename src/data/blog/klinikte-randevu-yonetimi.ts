@@ -14,6 +14,8 @@ export const klinikteRandevuYonetimi: BlogYazi = {
   slug: 'klinikte-randevu-yonetimi',
   baslik: 'Veteriner Kliniğinde Randevu Yönetimi Nasıl Kurulur?',
   ozet: 'Randevu defteri dolu görünüp gün boşa geçiyorsa sorun talepte değil akışta. Klinikte randevu düzenini kurmanın adımları ve en sık yapılan hatalar.',
+  kapakAlt:
+    'Veteriner kliniğinde randevu yönetimi konulu yazının kapak görseli; randevu akışı ve bekleme süresi',
   kategori: 'Klinik Yönetimi',
   tarih: '2026-08-24',
   bloklar: [

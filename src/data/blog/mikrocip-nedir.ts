@@ -10,6 +10,8 @@ export const mikrocipNedir: BlogYazi = {
   slug: 'mikrocip-nedir',
   baslik: 'Mikroçip Nedir, Ne İşe Yarar?',
   ozet: 'Mikroçip takip cihazı değil, bir kimlik numarası. Kaybolan hayvanı bulmuyor; bulunduğunda kime ait olduğunu söylüyor.',
+  kapakAlt:
+    'Mikroçip konulu yazının kapak görseli; kayıt sistemi, okutma ve kayıp hayvanın bulunması',
   kategori: 'Pet Sahipleri',
   tarih: '2026-08-25',
   bloklar: [

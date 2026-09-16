@@ -176,7 +176,7 @@ export default function Blog() {
             {/* ⚠️ Yalniz ILK yazi oncelikli. Donen butun gorselleri "oncelikli"
                 isaretlemek onceligi anlamsizlastirir ve hepsini birden
                 indirtir. */}
-            <BlogKapak slug={oneCikan.slug} kategori={oneCikan.kategori} alt={oneCikan.baslik} boyut={64} olcu="yazi" oncelikli={guvenliSira === 0} />
+            <BlogKapak slug={oneCikan.slug} kategori={oneCikan.kategori} alt={oneCikan.kapakAlt} boyut={64} olcu="yazi" oncelikli={guvenliSira === 0} />
           </div>
         </section>
       ) : null}
@@ -216,7 +216,7 @@ export default function Blog() {
           {izgara.map((yazi) => (
             <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-kart">
               <div className="blog-kart-gorsel">
-                <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.baslik} boyut={40} olcu="kart" />
+                <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={40} olcu="kart" />
               </div>
               <div className="blog-kart-govde">
                 <span className="blog-kart-kategori">{t('blog_cat_' + yazi.kategori, yazi.kategori).toLocaleUpperCase()}</span>
@@ -240,7 +240,7 @@ export default function Blog() {
           <div className="blog-liste">
             {liste.map((yazi) => (
               <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-liste-kart">
-                <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.baslik} boyut={24} olcu="kucuk" />
+                <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={24} olcu="kucuk" />
                 <div>
                   <h4>{yazi.baslik}</h4>
                   <div className="blog-liste-alt">
@@ -275,7 +275,7 @@ export default function Blog() {
           <div className="blog-liste">
             {sonEklenenler.map((yazi) => (
               <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-liste-kart">
-                <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.baslik} boyut={24} olcu="kucuk" />
+                <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={24} olcu="kucuk" />
                 <div>
                   <h4>{yazi.baslik}</h4>
                   <div className="blog-liste-alt">

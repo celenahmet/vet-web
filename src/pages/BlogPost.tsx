@@ -177,7 +177,7 @@ export default function BlogPost() {
             <div className="yazi-ilgili-liste">
               {oneriler.map((y) => (
                 <Link key={y.slug} to={`/blog/${y.slug}`} className="yazi-ilgili-kart">
-                  <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.baslik} boyut={36} olcu="kart" />
+                  <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.kapakAlt} boyut={36} olcu="kart" />
                   <div>
                     <span>{y.kategori}</span>
                     <h3>{y.baslik}</h3>
@@ -255,7 +255,7 @@ export default function BlogPost() {
           </header>
 
           <div className="yazi-kapak">
-            <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.baslik} boyut={72} olcu="yazi" oncelikli />
+            <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={72} olcu="yazi" oncelikli />
           </div>
 
           <div className="yazi-govde">
@@ -379,7 +379,7 @@ export default function BlogPost() {
           <div className="yazi-ilgili-liste">
             {ilgili.map((y) => (
               <Link key={y.slug} to={`/blog/${y.slug}`} className="yazi-ilgili-kart">
-                <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.baslik} boyut={36} olcu="kart" />
+                <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.kapakAlt} boyut={36} olcu="kart" />
                 <div>
                   <span>{y.kategori}</span>
                   <h3>{y.baslik}</h3>

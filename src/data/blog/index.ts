@@ -38,6 +38,7 @@ import { veterinerTeknikeriNeIsYapar } from './veteriner-teknikeri-ne-is-yapar';
 import { veterinerHekimMaaslari } from './veteriner-hekim-maaslari';
 import { veterinerTeknikeriMaaslari } from './veteriner-teknikeri-maaslari';
 import { veterinerUcretleri } from './veteriner-ucretleri';
+import { kedimKusuyor } from './kedim-kusuyor';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -56,6 +57,7 @@ const TUM_YAZILAR: BlogYazi[] = [
   veterinerHekimTeknikerFarki, muayenehanePoliklinikHastaneFarki,
   asgariUcretTarifesiNedir, veterinerTeknikeriNeIsYapar,
   veterinerHekimMaaslari, veterinerTeknikeriMaaslari, veterinerUcretleri,
+  kedimKusuyor,
 ];
 
 /**

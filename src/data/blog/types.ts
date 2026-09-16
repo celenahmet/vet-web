@@ -88,6 +88,20 @@ export type BlogYazi = {
   baslik: string;
   /** Meta aciklama ve kart ozeti. 150-160 karakter hedefi. */
   ozet: string;
+  /**
+   * KAPAK GORSELININ ALT METNI.
+   *
+   * ⚠️ NEDEN AYRI ALAN (16.09.2026, Ahmet: *"gorsellere alt metin seo odakli
+   * ciddi calisma"*): bugune kadar alt metin YAZININ BASLIGIYDI. Baslik alt
+   * metin degildir — gorseli tarif etmez, ekran okuyucuya bir sey anlatmaz ve
+   * gorsel aramasinda ayirt edici bir sinyal uretmez. Ayni baslik hem sayfa
+   * basliginda hem alt metinde tekrar edince Google icin yeni bilgi de olmuyor.
+   *
+   * KURAL: gorselin NE GOSTERDIGINI yazar, basligi tekrar etmez, anahtar
+   * kelimeyi zorlamaz. Denetim (`blog-seo-denetimi`) bos birakilmasini ve
+   * basligin aynen kopyalanmasini engelliyor.
+   */
+  kapakAlt: string;
   kategori: BlogKategori;
   /** ISO tarih, ornek 2026-08-23 */
   tarih: string;

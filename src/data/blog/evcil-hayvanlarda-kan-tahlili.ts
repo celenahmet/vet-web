@@ -10,6 +10,8 @@ export const evcilHayvanlardaKanTahlili: BlogYazi = {
   slug: 'evcil-hayvanlarda-kan-tahlili',
   baslik: 'Evcil Hayvanlarda Kan Tahlili Neden Yapılır?',
   ozet: 'Kan tahlili her ziyaretin zorunlu parçası değil ama gözle görülmeyeni gösterebilen tek araç. Ne zaman gerçekten fark yarattığına bakıyoruz.',
+  kapakAlt:
+    'Evcil hayvanlarda kan tahlili konulu yazının kapak görseli; hangi değerlere bakıldığı ve tahlilin ne zaman istendiği',
   kategori: 'Sağlık',
   tarih: '2026-08-31',
   bloklar: [

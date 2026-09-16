@@ -10,6 +10,8 @@ export const kliniklerdeAsiHatirlatma: BlogYazi = {
   slug: 'kliniklerde-asi-hatirlatma',
   baslik: 'Klinikte Aşı Hatırlatma Sistemi Nasıl Kurulur?',
   ozet: 'Hatırlatma göndermek kolay, doğru kişiye doğru zamanda göndermek zor. İşin tamamı mesajda değil, kaydın nasıl tutulduğunda.',
+  kapakAlt:
+    'Klinikte aşı hatırlatma sistemi konulu yazının kapak görseli; hatırlatma kurgusu ve randevuya dönüş oranı',
   kategori: 'Klinik Yönetimi',
   tarih: '2026-08-25',
   bloklar: [

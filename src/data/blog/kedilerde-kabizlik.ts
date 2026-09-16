@@ -10,6 +10,8 @@ export const kedilerdeKabizlik: BlogYazi = {
   slug: 'kedilerde-kabizlik',
   baslik: 'Kedilerde Kabızlık: Ne Zaman Beklenir, Ne Zaman Gidilir?',
   ozet: 'Kum kabına girip çıkan ama çıkaramayan kedi bekletilmiyor. Kabızlık ihmal edildiğinde geri dönüşü zor bir tabloya ilerleyebiliyor.',
+  kapakAlt:
+    'Kedilerde kabızlık konulu yazının kapak görseli; kum kabında zorlanma ve ne zaman hekime başvurulacağı',
   kategori: 'Kedi',
   tarih: '2026-08-25',
   bloklar: [

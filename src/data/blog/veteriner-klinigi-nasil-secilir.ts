@@ -15,6 +15,8 @@ export const veterinerKliniginNasilSecilir: BlogYazi = {
   slug: 'veteriner-klinigi-nasil-secilir',
   baslik: 'Veteriner Kliniği Nasıl Seçilir? Sorulacak Sorular',
   ozet: 'Klinik seçimi fiyat listesiyle değil, acil durumda ulaşabilmekle başlıyor. İlk ziyaret öncesi sorulacaklar ve kliniği değiştirmeniz gereken işaretler.',
+  kapakAlt:
+    'Veteriner kliniği seçimi konulu yazının kapak görseli; klinikte sorulacak sorular ve dikkat edilecek başlıklar',
   kategori: 'Pet Sahipleri',
   tarih: '2026-08-24',
   bloklar: [

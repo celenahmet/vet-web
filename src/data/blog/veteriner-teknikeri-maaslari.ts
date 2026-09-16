@@ -9,6 +9,8 @@ export const veterinerTeknikeriMaaslari: BlogYazi = {
   slug: 'veteriner-teknikeri-maaslari',
   baslik: 'Veteriner Teknikeri Maaşları: Kazanç Neye Göre Değişiyor?',
   ozet: 'Aynı diplomayla çok farklı ücretler görülüyor. Farkı yaratan diploma değil; kadro, çalışma saati ve üstlenilen sorumluluk.',
+  kapakAlt:
+    'Veteriner teknikeri maaşları konulu yazının kapak görseli; deneyim ve klinik türüne göre kazanç',
   kategori: 'Klinik Yönetimi',
   tarih: '2026-08-31',
   bloklar: [

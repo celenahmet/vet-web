@@ -9,6 +9,8 @@ export const kedilerdeIcVeDisParazit: BlogYazi = {
   slug: 'kedilerde-ic-ve-dis-parazit',
   baslik: 'Kedilere İç ve Dış Parazit Ne Zaman Yapılır?',
   ozet: 'Parazit uygulamasının sıklığı takvimle değil kedinin yaşam biçimiyle belirleniyor. Ev kedisi ile dışarı çıkan kedide risk aynı değil, program da aynı olmuyor.',
+  kapakAlt:
+    'Kedilerde iç ve dış parazit uygulaması konulu yazının kapak görseli; uygulama sıklığı ve mevsim etkisi',
   kategori: 'Sağlık',
   tarih: '2026-08-24',
   bloklar: [

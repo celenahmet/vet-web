@@ -11,6 +11,8 @@ export const kedilerdePireNasilAnlasilir: BlogYazi = {
   slug: 'kedilerde-pire-nasil-anlasilir',
   baslik: 'Kedilerde Pire Nasıl Anlaşılır?',
   ozet: 'Pire görmeden de pire olabilir. Kaşıntıdan önce bakılacak yer tüyün dibi, aranacak şey ise pirenin kendisi değil bıraktığı iz.',
+  kapakAlt:
+    'Kedilerde pire belirtileri konulu yazının kapak görseli; tüy dibinde pire kiri ve kaşıntı bulguları',
   kategori: 'Sağlık',
   tarih: '2026-08-25',
   bloklar: [

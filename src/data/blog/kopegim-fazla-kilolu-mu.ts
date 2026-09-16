@@ -9,6 +9,8 @@ export const kopegimFazlaKiloluMu: BlogYazi = {
   slug: 'kopegim-fazla-kilolu-mu',
   baslik: 'Köpeğim Fazla Kilolu mu? Kaburga Testi ve Porsiyon',
   ozet: 'Kilonun ölçüsü terazi değil kaburga. Evde iki dakikada yapılan testle köpeğinizin fazla kilolu olup olmadığını anlayın, porsiyonu buna göre ayarlayın.',
+  kapakAlt:
+    'Köpeklerde fazla kilo konulu yazının kapak görseli; kaburga testi ve porsiyon ayarı',
   kategori: 'Beslenme',
   tarih: '2026-08-24',
   bloklar: [

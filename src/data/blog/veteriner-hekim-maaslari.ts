@@ -14,6 +14,8 @@ export const veterinerHekimMaaslari: BlogYazi = {
   slug: 'veteriner-hekim-maaslari',
   baslik: 'Veteriner Hekim Maaşları: Kamu ve Özel Klinik Nasıl Farklılaşıyor?',
   ozet: 'Tek bir veteriner hekim maaşı yok. Kamuda maaş formülle, özelde ciroyla oluşuyor; ikisini aynı tabloda karşılaştırmak yanıltıyor.',
+  kapakAlt:
+    'Veteriner hekim maaşları konulu yazının kapak görseli; kamu ve özel klinik arasındaki kazanç farkı',
   kategori: 'Klinik Yönetimi',
   tarih: '2026-08-31',
   bloklar: [

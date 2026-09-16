@@ -12,6 +12,8 @@ export const kopeklereZararliYiyecekler: BlogYazi = {
   slug: 'kopeklere-zararli-yiyecekler',
   baslik: 'Köpeklere Zararlı Yiyecekler Nelerdir?',
   ozet: 'Mutfaktaki en sıradan şeyler listede: çikolata, soğan, üzüm, şekersiz sakız. Zehirlenmelerin çoğu kötü niyetten değil, bu ürünlerin riskinin bilinmemesinden oluyor.',
+  kapakAlt:
+    'Köpeklere zararlı yiyecekler konulu yazının kapak görseli; çikolata, üzüm ve soğan gibi riskli besinler',
   kategori: 'Beslenme',
   tarih: '2026-08-25',
   bloklar: [

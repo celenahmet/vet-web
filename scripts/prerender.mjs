@@ -74,7 +74,7 @@ function blokHtml(b) {
   }
 }
 
-function kafaDegistir(sablon, { baslik, aciklama, adres, tip, jsonLd, onYukle, gorsel, ekBaglantilar }) {
+function kafaDegistir(sablon, { baslik, aciklama, adres, tip, jsonLd, onYukle, gorsel, kapakAlt, ekBaglantilar }) {
   let html = sablon;
   /*
    * ⚠️ VARSAYILAN og ETIKETLERI ONCE SOKULUYOR. `index.html` her sayfa icin taban
@@ -105,6 +105,10 @@ function kafaDegistir(sablon, { baslik, aciklama, adres, tip, jsonLd, onYukle, g
     gorsel ? `<meta property="og:image" content="${SITE}${gorsel}" />` : '',
     gorsel ? `<meta property="og:image:width" content="1200" />` : '',
     gorsel ? `<meta property="og:image:height" content="675" />` : '',
+    /* ⚠️ `og:image:alt` (16.09.2026): paylasimda ve gorsel aramasinda gorselin
+       NE OLDUGUNU soyleyen tek alan. Yoktu; gorsel baslikla eslesiyordu. */
+    gorsel && kapakAlt ? `<meta property="og:image:alt" content="${kac(kapakAlt)}" />` : '',
+    gorsel && kapakAlt ? `<meta name="twitter:image:alt" content="${kac(kapakAlt)}" />` : '',
     gorsel ? `<meta name="twitter:image" content="${SITE}${gorsel}" />` : '',
     `<meta name="twitter:card" content="summary_large_image" />`,
     ekBaglantilar ?? '',
@@ -368,7 +372,7 @@ for (const y of yazilar) {
      * baglandiginda yeniden yerlesir.
      */
     kapak
-      ? `<div class="yazi-kapak"><img src="${kapak.asil}" srcset="${kac(kapak.srcset)}" sizes="(max-width: 700px) 100vw, (max-width: 1080px) 780px, 784px" width="1200" height="675" alt="${kac(y.baslik)}" fetchpriority="high" decoding="sync"></div>`
+      ? `<div class="yazi-kapak"><img src="${kapak.asil}" srcset="${kac(kapak.srcset)}" sizes="(max-width: 700px) 100vw, (max-width: 1080px) 780px, 784px" width="1200" height="675" alt="${kac(y.kapakAlt)}" fetchpriority="high" decoding="sync"></div>`
       : '',
     `<div class="yazi-govde">`,
     ...y.bloklar.map(blokHtml),
@@ -440,6 +444,7 @@ for (const y of yazilar) {
       jsonLd: [makale, ...sss],
       onYukle: YAZI_ON_YUKLEME,
       gorsel: kapak?.asil,
+      kapakAlt: y.kapakAlt,
       /*
        * ⚠️ EN BUYUK GORSEL ON YUKLENIYOR. Lighthouse "prioritize-lcp-image"
        * basliginda 2250 ms kazanc gosteriyordu: kapak, React acilip bileseni

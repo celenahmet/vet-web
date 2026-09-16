@@ -4,6 +4,8 @@ export const kedilerKacYilYasar: BlogYazi = {
   slug: 'kediler-kac-yil-yasar',
   baslik: 'Kediler Kaç Yıl Yaşar? Ev Kedisi ve Sokak Kedisi Ömrü',
   ozet: 'Ev kedileri ortalama 13-17 yıl yaşar, sokakta bu süre üçte birine kadar düşer. Farkı yaratan ırk değil, kedinin nerede yaşadığı ve neyin ne zaman fark edildiği.',
+  kapakAlt:
+    'Kedilerde yaşam süresi konulu yazının kapak görseli; ev kedisi ile sokak kedisi ömrü arasındaki fark',
   kategori: 'Kedi',
   tarih: '2026-08-23',
   bloklar: [

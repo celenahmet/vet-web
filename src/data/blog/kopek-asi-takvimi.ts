@@ -4,6 +4,8 @@ export const kopekAsiTakvimi: BlogYazi = {
   slug: 'kopek-asi-takvimi',
   baslik: 'Köpek Aşı Takvimi Nasıl Olmalı? Yavru ve Yetişkin Köpekte Aşılar',
   ozet: 'Yavru köpekte karma aşı 6-8 haftada başlar ve 16. haftaya kadar 3-4 hafta arayla tekrarlanır. Kuduz 12. haftadan sonra yapılır. Tam takvim ve sosyalleşme ikilemi.',
+  kapakAlt:
+    'Köpek aşı takvimi konulu yazının kapak görseli; yavru ve yetişkin köpekte aşı sırası ve kuduz aşısı',
   kategori: 'Köpek',
   tarih: '2026-08-23',
   bloklar: [

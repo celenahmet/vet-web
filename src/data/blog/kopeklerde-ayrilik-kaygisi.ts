@@ -11,6 +11,8 @@ export const kopeklerdeAyrilikKaygisi: BlogYazi = {
   slug: 'kopeklerde-ayrilik-kaygisi',
   baslik: 'Köpeklerde Ayrılık Kaygısı Nasıl Anlaşılır?',
   ozet: 'Yalnız kalınca havlayan her köpekte kaygı yok, kaygısı olan her köpek de havlamıyor. Ayrımı yapan şey davranışın kendisi değil, ne zaman başladığı.',
+  kapakAlt:
+    'Köpeklerde ayrılık kaygısı konulu yazının kapak görseli; yalnız kalınca ortaya çıkan davranış bulguları',
   kategori: 'Köpek',
   tarih: '2026-08-25',
   bloklar: [
