@@ -111,6 +111,14 @@
 }
 .one-cikan-dugme:hover,
 .bulten-dugme:hover { transform: translateY(-1px); opacity: 0.94; }
+/* Kapak baglantisi: gorselin kendisi hedef; odak halkasi gorselin
+   koselerini izliyor. */
+.one-cikan-gorsel-baglanti { display: block; border-radius: 20px; }
+.one-cikan-gorsel-baglanti:focus-visible {
+  outline: 2px solid var(--color-vet-secondary);
+  outline-offset: 4px;
+}
+
 /* Afislerde baslik gorselin icinde: kirpma yok, dogal oran. */
 .one-cikan-gorsel img {
   width: 100%;

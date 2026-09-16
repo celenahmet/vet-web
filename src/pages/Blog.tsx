@@ -265,10 +265,18 @@ export default function Blog() {
             ) : null}
           </div>
           <div className="one-cikan-gorsel belir gecikmeli" key={`${oneCikan.slug}-gorsel`}>
-            {/* ⚠️ Yalniz ILK yazi oncelikli. Donen butun gorselleri "oncelikli"
-                isaretlemek onceligi anlamsizlastirir ve hepsini birden
-                indirtir. */}
-            <BlogKapak slug={oneCikan.slug} kategori={oneCikan.kategori} alt={oneCikan.kapakAlt} boyut={64} olcu="yazi" oncelikli={guvenliSira === 0} />
+            {/* KAPAK DA BAGLANTI (Ahmet, 16.09.2026: *"gorsellere tiklayinca
+                da gitsin en ustte kisimda"*). Okuyucu buyuk gorsele tikliyor
+                ve hicbir sey olmuyordu; dugme kucuk, gorsel buyuk hedef.
+                ⚠️ `aria-label` yaziyor: baglantinin adi gorselin alt metni
+                degil yazinin basligi olmali, ekran okuyucu "Kediler icin
+                zehirli bitkiler yazisi" duymali, kapak tarifini degil. */}
+            <Link to={`/blog/${oneCikan.slug}`} className="one-cikan-gorsel-baglanti" aria-label={oneCikan.baslik}>
+              {/* ⚠️ Yalniz ILK yazi oncelikli. Donen butun gorselleri "oncelikli"
+                  isaretlemek onceligi anlamsizlastirir ve hepsini birden
+                  indirtir. */}
+              <BlogKapak slug={oneCikan.slug} kategori={oneCikan.kategori} alt={oneCikan.kapakAlt} boyut={64} olcu="yazi" oncelikli={guvenliSira === 0} />
+            </Link>
           </div>
         </section>
       ) : null}
