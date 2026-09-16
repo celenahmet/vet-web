@@ -68,6 +68,7 @@ const SAYFALAR = [
   ['/pricing', 'Klinik hesabı ve hizmetler'],
   ['/download', 'Uygulamayı indirme: App Store, Google Play, AppGallery'],
   ['/about', 'Veterito hakkında'],
+  ['/author', 'Veterito Editör: blog yazılarını kim hazırlıyor, hangi kaynak kurallarıyla'],
   ['/contact', 'İletişim'],
 ];
 

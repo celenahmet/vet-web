@@ -21,6 +21,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://veterito.com/author</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://veterito.com/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

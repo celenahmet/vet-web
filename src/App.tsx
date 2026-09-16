@@ -19,6 +19,7 @@ const Features = lazy(() => import('./pages/Features'));
 const Pets = lazy(() => import('./pages/Pets'));
 const About = lazy(() => import('./pages/About'));
 const Blog = lazy(() => import('./pages/Blog'));
+const Yazar = lazy(() => import('./pages/Yazar'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Clinics = lazy(() => import('./pages/Clinics'));
 const Pricing = lazy(() => import('./pages/Pricing'));
@@ -122,6 +123,10 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            {/* Yazar sayfasi: yazi kunyesindeki "Veterito Editör" buraya gidiyor.
+                /yazar Turkce takma ad, /contact-/iletisim ciftiyle ayni desen. */}
+            <Route path="/author" element={<Yazar />} />
+            <Route path="/yazar" element={<Yazar />} />
             <Route path="/clinics" element={<Clinics />} />
             <Route path="/pricing" element={<Pricing />} />
             {/* HUKUKİ SAYFALAR (22.08.2026)

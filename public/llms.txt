@@ -16,6 +16,7 @@ hangi yıl, DOI'si ne — hepsi doğrulanabilir.
 - [/pricing](https://veterito.com/pricing): Klinik hesabı ve hizmetler
 - [/download](https://veterito.com/download): Uygulamayı indirme: App Store, Google Play, AppGallery
 - [/about](https://veterito.com/about): Veterito hakkında
+- [/author](https://veterito.com/author): Veterito Editör: blog yazılarını kim hazırlıyor, hangi kaynak kurallarıyla
 - [/contact](https://veterito.com/contact): İletişim
 
 ## Blog

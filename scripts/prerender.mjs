@@ -164,6 +164,8 @@ for (const d of dosyalar) {
  * yanlislikla yayindan cikarirdi.
  */
 const KAPAK_KLASORU = join(KOK, 'src/assets/blog');
+/* Yazar sayfasi verisi: React ile AYNI dosya (src/data/yazar.ts). */
+const { YAZAR } = await import(pathToFileURL(join(KOK, 'src/data/yazar.ts')).href);
 const kapakliMi = (slug) => existsSync(join(KAPAK_KLASORU, `${slug}.webp`));
 
 /**
@@ -287,7 +289,7 @@ for (const y of yazilar) {
     dateModified: y.tarih,
     /* ⚠️ `image` Article zengin sonucu icin Google'in ISTEDIGI alan. Yoktu. */
     ...(kapak ? { image: [`${SITE}${kapak.asil}`] } : {}),
-    author: { '@type': 'Organization', name: 'Veterito' },
+    author: { '@type': 'Organization', name: YAZAR.ad, url: `${SITE}${YAZAR.yol}` },
     publisher: {
       '@type': 'Organization',
       name: 'Veterito',
@@ -370,7 +372,7 @@ for (const y of yazilar) {
     `<span class="yazi-kategori">${kac(y.kategori.toLocaleUpperCase('tr-TR'))}</span>`,
     `<h1>${kac(y.baslik)}</h1>`,
     `<p class="yazi-ozet">${kac(y.ozet)}</p>`,
-    `<div class="yazi-kunye"><span class="yazi-yazar"><span class="yazi-yazar-avatar" aria-hidden="true"></span>Veterito Editör</span><span>${kac(tarihiYaz(y.tarih))}</span><span>${dakika} dk okuma</span></div>`,
+    `<div class="yazi-kunye"><a class="yazi-yazar" href="${YAZAR.yol}"><span class="yazi-yazar-avatar" aria-hidden="true"></span>${kac(YAZAR.ad)}</a><span>${kac(tarihiYaz(y.tarih))}</span><span>${dakika} dk okuma</span></div>`,
     `</div></header>`,
     `<div class="container yazi-duzen"><div class="yazi-ana">`,
     /*
@@ -703,6 +705,65 @@ for (const yol of hukuki.ALL_LEGAL_PATHS) {
   hukukiSayi += 1;
 }
 
+// --- Yazar sayfasi (/author) ---
+/*
+ * ⚠️ NEDEN PRERENDER EDILIYOR: yazar sayfasi arama motorunun "bu yazilari kim
+ * yaziyor" sorusuna baktigi yer (E-E-A-T). Yalniz istemcide cizilseydi bot bos
+ * kabuk gorurdu. Metin ve ilkeler React ile AYNI kaynaktan (src/data/yazar.ts);
+ * sayilar buradaki `yazilar` listesinden hesaplaniyor, React'te YAZILAR'dan —
+ * ikisi ayni suzgecten geciyor (tarih kapisi), sayi ayni.
+ */
+{
+  const yazarAdres = `${SITE}${YAZAR.yol}`;
+  const tumKaynak = yazilar.flatMap((y) => y.kaynaklar ?? []);
+  const hakemli = tumKaynak.filter((k) => Boolean(k.yazarlar || k.dergi)).length;
+  const profil = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    mainEntity: {
+      '@type': 'Organization',
+      '@id': `${yazarAdres}#editor`,
+      name: YAZAR.ad,
+      description: YAZAR.ozet,
+      url: yazarAdres,
+      email: YAZAR.eposta,
+      parentOrganization: { '@type': 'Organization', name: 'Veterito', url: SITE },
+    },
+  };
+  const yazarGovde = [
+    '<div class="yazar-sayfa">',
+    '<header class="container yazar-basi">',
+    `<nav class="yazi-kirinti" aria-label="Sayfa yolu"><a href="/">Ana Sayfa</a><span aria-hidden="true">›</span><a href="/blog">Blog</a><span aria-hidden="true">›</span><span aria-current="page">${kac(YAZAR.ad)}</span></nav>`,
+    `<div class="yazar-kimlik"><span class="yazar-avatar" aria-hidden="true"></span><div><h1>${kac(YAZAR.ad)}</h1><p class="yazar-rol">${kac(YAZAR.rol)}</p></div></div>`,
+    `<p class="yazar-ozet">${kac(YAZAR.ozet)}</p>`,
+    `<dl class="yazar-sayilar"><div><dt>Yazı</dt><dd>${yazilar.length}</dd></div><div><dt>Kaynak</dt><dd>${tumKaynak.length}</dd></div><div><dt>Hakemli çalışma</dt><dd>${hakemli}</dd></div></dl>`,
+    '</header>',
+    '<section class="container yazar-ilkeler"><h2>Yazılar nasıl hazırlanıyor</h2><ol>',
+    ...YAZAR.ilkeler.map((i) => `<li><h3>${kac(i.baslik)}</h3><p>${kac(i.metin)}</p></li>`),
+    '</ol>',
+    `<p class="yazar-iletisim">Bir hata ya da eskimiş bilgi gördüyseniz: <a href="mailto:${YAZAR.eposta}">${YAZAR.eposta}</a></p>`,
+    '</section>',
+    `<section class="container yazar-yazilar"><h2>Bu ekibin yazıları <em>${yazilar.length}</em></h2><ul class="yazar-liste">`,
+    ...yazilar.map((y) => `<li><a href="/blog/${y.slug}"><div><span class="yazar-liste-kategori">${kac(y.kategori)}</span><h3>${kac(y.baslik)}</h3><span class="yazar-liste-alt">${okumaSuresi(y)} dk okuma · ${kac(tarihiYaz(y.tarih))}</span></div></a></li>`),
+    '</ul></section>',
+    '</div>',
+  ].join('\n');
+  yaz(
+    join(KOK, 'dist/author/index.html'),
+    govdeDegistir(
+      kafaDegistir(sablon, {
+        baslik: `${YAZAR.ad} · Yazılar nasıl hazırlanıyor | Veterito`,
+        aciklama: YAZAR.ozet,
+        adres: yazarAdres,
+        tip: 'profile',
+        jsonLd: [profil],
+        onYukle: onYuklemeler(['Yazar-']),
+      }),
+      yazarGovde,
+    ),
+  );
+}
+
 // --- Sitemap ---
 const sitemapYolu = join(KOK, 'dist/sitemap.xml');
 if (existsSync(sitemapYolu)) {
@@ -716,5 +777,5 @@ if (existsSync(sitemapYolu)) {
 }
 
 console.log(
-  `prerender: ${yazilar.length} yazi + liste sayfasi + ${hukukiSayi} hukuki sayfa uretildi`,
+  `prerender: ${yazilar.length} yazi + liste sayfasi + yazar sayfasi + ${hukukiSayi} hukuki sayfa uretildi`,
 );

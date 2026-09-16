@@ -53,24 +53,9 @@
   border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.08));
 }
 
-/* Kirinti: Ana Sayfa › Blog › Baslik. Baslik tek satirda kesiliyor;
-   iki satira sarsaydi band yukselip zipliyordu. */
-.yazi-kirinti {
-  display: flex; align-items: center; gap: 8px;
-  margin-bottom: 18px;
-  font-size: 0.86rem; color: var(--color-text-muted);
-  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  min-width: 0;
-}
-.yazi-kirinti a { color: inherit; text-decoration: none; flex-shrink: 0; }
-.yazi-kirinti a:hover { color: var(--color-vet-secondary); }
-.yazi-kirinti svg { flex-shrink: 0; opacity: .6; }
-.yazi-kirinti > span[aria-hidden] { flex-shrink: 0; opacity: .6; }
-.yazi-kirinti [aria-current] {
-  color: var(--color-text);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  min-width: 0;
-}
+/* Kirinti (.yazi-kirinti) stilleri ORTAK dosyada: src/styles/kirinti.css — yazar
+   sayfasi da kullaniyor, rotalar lazy yuklendigi icin burada kalsaydi orada
+   bicimsiz cikardi (ReklamKutusu ile ayni ders, 16.09). */
 
 .yazi-kategori {
   display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em;
@@ -88,7 +73,8 @@
   font-size: 0.86rem; color: var(--color-text-muted);
 }
 .yazi-kunye span { display: inline-flex; align-items: center; gap: 6px; }
-.yazi-yazar { font-weight: 700; color: var(--color-text); gap: 10px; }
+.yazi-yazar { font-weight: 700; color: var(--color-text); gap: 10px; text-decoration: none; }
+.yazi-yazar:hover { color: var(--color-vet-secondary); }
 /* Yazar avatari: referanstaki daire, Veterito renginde. */
 .yazi-yazar-avatar {
   width: 34px; height: 34px; border-radius: 50%;

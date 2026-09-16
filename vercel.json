@@ -35,7 +35,7 @@
   ],
   "rewrites": [
     {
-      "source": "/(features|pets|about|blog|clinics|pricing|contact|iletisim|legal|privacy|kvkk|consent|terms|service-agreement|cookies|account-deletion|child-safety|deletion|account-deletion-request|download|panel)",
+      "source": "/(features|pets|about|blog|clinics|pricing|contact|iletisim|legal|privacy|kvkk|consent|terms|service-agreement|cookies|account-deletion|child-safety|deletion|account-deletion-request|download|panel|author|yazar)",
       "destination": "/"
     },
     {

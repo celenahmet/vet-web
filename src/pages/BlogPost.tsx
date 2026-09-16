@@ -7,12 +7,14 @@ import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 import SEO from '../components/SEO';
+import { YAZAR } from '../data/yazar';
 import { YAZILAR, yaziBul, okumaSuresi, tarihiYaz } from '../data/blog';
 import type { BlogBlock } from '../data/blog';
 import BlogKapak from '../components/BlogKapak';
 import BlogKenarCubugu from '../components/BlogKenarCubugu';
 import { goruntulenmeArtir, sayiyiKisalt } from '../lib/blogGoruntulenme';
 import './BlogPost.css';
+import '../styles/kirinti.css';
 
 /**
  * TEK YAZI SAYFASI
@@ -201,7 +203,9 @@ export default function BlogPost() {
     headline: yazi.baslik,
     description: yazi.ozet,
     datePublished: yazi.tarih,
-    author: { '@type': 'Organization', name: 'Veterito' },
+    /* Yazar kunyesi yazar SAYFASINA isaret ediyor: arama motoru "kim yazdi"
+       sorusuna tiklanabilir bir cevap buluyor. */
+    author: { '@type': 'Organization', name: YAZAR.ad, url: `https://veterito.com${YAZAR.yol}` },
     publisher: { '@type': 'Organization', name: 'Veterito' },
     mainEntityOfPage: adres,
   };
@@ -275,10 +279,12 @@ export default function BlogPost() {
           <h1>{yazi.baslik}</h1>
           <p className="yazi-ozet">{yazi.ozet}</p>
           <div className="yazi-kunye">
-            <span className="yazi-yazar">
+            {/* Yazar BAGLANTI (Ahmet, 16.09: *"veterito editör tıklanabilir ve
+                yazar sayfası olmalı, güven artırma için"*). */}
+            <Link to={YAZAR.yol} className="yazi-yazar">
               <span className="yazi-yazar-avatar" aria-hidden="true"><UserRound size={18} /></span>
               {t('post_author')}
-            </span>
+            </Link>
             <span><CalendarDays size={14} /> {tarihiYaz(yazi.tarih)}</span>
             <span><Clock size={14} /> {dakika} {t('post_read_time')}</span>
             {/* Sayac gelene kadar hic gosterilmiyor: "0 goruntulenme" yazmak,

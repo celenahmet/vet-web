@@ -1,0 +1,91 @@
+/* Yazar sayfasi — blog ailesinin dilinde: ayni kapsayici, ayni token'lar. */
+.yazar-sayfa { padding: calc(88px + 24px) 0 72px; }
+.yazar-sayfa .container { width: 100%; max-width: 860px; margin-inline: auto; padding: 0 24px; }
+@media (max-width: 760px) { .yazar-sayfa .container { padding: 0 16px; } }
+
+.yazar-basi { position: relative; padding-bottom: 28px; margin-bottom: 40px; }
+/* Ayrac cizgisi ICERIK genisliginde: .container'in kendi kenarligi dolguyu da
+   kapsayip metinden 24 px tasiyordu. */
+.yazar-basi::after {
+  content: ''; position: absolute; left: 24px; right: 24px; bottom: 0; height: 1px;
+  background: var(--color-border, rgba(0,0,0,0.08));
+}
+@media (max-width: 760px) { .yazar-basi::after { left: 16px; right: 16px; } }
+.yazar-basi .yazi-kirinti { margin-bottom: 24px; }
+
+.yazar-kimlik { display: flex; align-items: center; gap: 18px; margin-bottom: 18px; }
+.yazar-avatar {
+  width: 72px; height: 72px; border-radius: 50%; flex-shrink: 0;
+  display: grid; place-items: center;
+  background: var(--color-vet-secondary); color: #fff;
+}
+.yazar-kimlik h1 { font-size: 2rem; line-height: 1.15; margin: 0 0 4px; font-weight: 800; letter-spacing: -0.02em; }
+.yazar-rol { margin: 0; color: var(--color-text-muted); font-size: 0.95rem; font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+.yazar-ozet { font-size: 1.08rem; line-height: 1.7; color: var(--color-text-muted); margin: 0 0 22px; max-width: 68ch; font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+
+.yazar-sayilar { display: flex; gap: 12px; margin: 0; flex-wrap: wrap; }
+.yazar-sayilar > div {
+  display: flex; flex-direction: column-reverse; gap: 2px;
+  padding: 12px 18px; border-radius: 14px;
+  border: 1px solid var(--color-border, rgba(0,0,0,0.08)); background: var(--color-surface);
+  min-width: 120px;
+}
+.yazar-sayilar dt { font-size: 0.78rem; color: var(--color-text-muted); font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+.yazar-sayilar dd { margin: 0; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+
+.yazar-ilkeler h2, .yazar-yazilar h2 {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 1.35rem; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 20px;
+}
+.yazar-ilkeler h2 svg { color: var(--color-vet-secondary); }
+.yazar-ilkeler ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: ilke; }
+.yazar-ilkeler li {
+  position: relative; padding: 18px 20px 18px 62px; border-radius: 14px;
+  border: 1px solid var(--color-border, rgba(0,0,0,0.08)); background: var(--color-surface);
+  counter-increment: ilke;
+}
+/* Numara ICERIGIN sirasi degil, kural sayisi: okuyucu "alti kural var" diye
+   sayabilsin. */
+.yazar-ilkeler li::before {
+  content: counter(ilke, decimal-leading-zero);
+  position: absolute; left: 20px; top: 19px;
+  font-size: 0.82rem; font-weight: 800; color: var(--color-vet-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.yazar-ilkeler h3 { font-size: 1.02rem; font-weight: 700; margin: 0 0 6px; }
+.yazar-ilkeler p { margin: 0; font-size: 0.95rem; line-height: 1.65; color: var(--color-text-muted); font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+.yazar-iletisim {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin: 22px 0 48px; font-size: 0.92rem; color: var(--color-text-muted);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+.yazar-iletisim svg { color: var(--color-vet-secondary); }
+.yazar-iletisim a { color: var(--color-vet-secondary); font-weight: 600; text-decoration: none; }
+
+.yazar-yazilar h2 em {
+  font-style: normal; font-size: 0.78rem; font-weight: 700; padding: 3px 9px; border-radius: 999px;
+  background: var(--color-vet-accent-light); color: var(--color-vet-secondary);
+}
+.yazar-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.yazar-liste a {
+  display: flex; gap: 14px; align-items: center; text-decoration: none; color: inherit;
+  padding: 12px; border-radius: 14px;
+  border: 1px solid var(--color-border, rgba(0,0,0,0.07)); background: var(--color-surface);
+  transition: background 0.15s ease;
+}
+.yazar-liste a:hover { background: var(--color-vet-accent-light); }
+.yazar-liste img, .yazar-liste .kapak-yedek { width: 96px; height: 60px; object-fit: cover; border-radius: 9px; flex-shrink: 0; }
+.yazar-liste-kategori { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-vet-secondary); }
+.yazar-liste h3 { font-size: 0.95rem; font-weight: 700; line-height: 1.35; margin: 3px 0 4px; overflow-wrap: anywhere; }
+.yazar-liste-alt { display: inline-flex; align-items: center; gap: 5px; font-size: 0.76rem; color: var(--color-text-muted); font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+
+@media (max-width: 700px) {
+  .yazar-sayfa { padding: calc(88px + 12px) 0 56px; }
+  .yazar-kimlik h1 { font-size: 1.6rem; }
+  .yazar-avatar { width: 56px; height: 56px; }
+  .yazar-sayilar > div { flex: 1 1 calc(33% - 8px); min-width: 0; padding: 10px 12px; }
+  .yazar-ilkeler li { padding-left: 52px; }
+  .yazar-ilkeler li::before { left: 16px; }
+  .yazar-liste img, .yazar-liste .kapak-yedek { width: 76px; height: 50px; }
+}
+@media (prefers-reduced-motion: reduce) { .yazar-liste a { transition: none; } }
