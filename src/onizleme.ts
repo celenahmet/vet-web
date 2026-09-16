@@ -12,7 +12,11 @@
  * TEMIZLIYOR; okuma o cagridan once olmak zorunda. Bu dosya `main.tsx` icinde
  * `createRoot`tan ONCE import edildigi surece dogru sirada calisiyor.
  */
-const kok = document.getElementById('root');
+/* ⚠️ `typeof document` kontrolu (16.09.2026): bu modul artik SUNUCUDA da
+   yukleniyor (scripts/ssr-giris.tsx pazarlama sayfalarini Node'da ciziyor).
+   Orada `document` yok; kontrolsuz erisim SSR paketini daha ilk satirda
+   dusuruyordu. Tarayicida davranis ayni. */
+const kok = typeof document !== 'undefined' ? document.getElementById('root') : null;
 
 /**
  * Prerender'in urettigi HTML. Prerender edilmemis sayfalarda bos dize.

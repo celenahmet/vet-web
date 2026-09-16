@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0F6B57" />
     <meta name="color-scheme" content="only light" />
-    <meta name="description" content="Veterito, hayvanseverlerin sosyal platformu. Dostunuzun sağlık geçmişini tutun, klinikten randevu alın, hayvanseverlerle buluşun." />
+    <meta data-onceden="1" name="description" content="Veterito, hayvanseverlerin sosyal platformu. Dostunuzun sağlık geçmişini tutun, klinikten randevu alın, hayvanseverlerle buluşun." />
 
     <!--
       YAZI TIPLERI — iki asamada duzeldi (24.08.2026).
@@ -77,17 +77,17 @@
       ⚠️ Gorsel yeni tasarim degil: Play magazasi icin onaylanmis ozellik
       grafiginin 1200x630 tuvale alinmis hali.
     -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Veterito" />
-    <meta property="og:title" content="Veterito" />
-    <meta property="og:description" content="Veterito, hayvanseverlerin sosyal platformu. Dostunuzun sağlık geçmişini tutun, klinikten randevu alın, hayvanseverlerle buluşun." />
-    <meta property="og:url" content="https://veterito.com/" />
-    <meta property="og:image" content="https://veterito.com/paylasim-gorseli.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="tr_TR" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://veterito.com/paylasim-gorseli.png" />
+    <meta data-onceden="1" property="og:type" content="website" />
+    <meta data-onceden="1" property="og:site_name" content="Veterito" />
+    <meta data-onceden="1" property="og:title" content="Veterito" />
+    <meta data-onceden="1" property="og:description" content="Veterito, hayvanseverlerin sosyal platformu. Dostunuzun sağlık geçmişini tutun, klinikten randevu alın, hayvanseverlerle buluşun." />
+    <meta data-onceden="1" property="og:url" content="https://veterito.com/" />
+    <meta data-onceden="1" property="og:image" content="https://veterito.com/paylasim-gorseli.png" />
+    <meta data-onceden="1" property="og:image:width" content="1200" />
+    <meta data-onceden="1" property="og:image:height" content="630" />
+    <meta data-onceden="1" property="og:locale" content="tr_TR" />
+    <meta data-onceden="1" name="twitter:card" content="summary_large_image" />
+    <meta data-onceden="1" name="twitter:image" content="https://veterito.com/paylasim-gorseli.png" />
 
     <!--
       KURUM VE SITE SEMASI.
@@ -144,7 +144,10 @@
       }
     </script>
 
-    <title>Veterito</title>
+    <!-- data-onceden="1": bu varsayilan kafa etiketleri React yerlesince kaldiriliyor
+         (src/yapisal-veri.ts). React 19 <title>/<meta>'yi kendisi <head>'e tasiyor;
+         isaretsiz kalsalar her sayfada iki <title>, iki og:title olurdu (olculdu 16.09). -->
+    <title data-onceden="1">Veterito</title>
   </head>
   <!--
     ⚠️ ZEMIN RENGI SINIFTAN DEGIL DEGISKENDEN (24.08.2026). Burada

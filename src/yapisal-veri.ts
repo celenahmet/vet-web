@@ -26,7 +26,10 @@ import { useEffect } from 'react';
 
 export function useOncedenUretilmisVeriyiDevral(): void {
   useEffect(() => {
-    for (const el of document.querySelectorAll('script[type="application/ld+json"][data-onceden]')) {
+    /* 16.09.2026: yalniz ld+json degil, prerender/SSR'in bastigi <title>,
+       <meta>, <link> de kaldiriliyor — React kendi kopyasini basti. Olculdu:
+       kaldirilmayinca her sayfada iki <title>, iki canonical, iki og:title. */
+    for (const el of document.querySelectorAll('head [data-onceden]')) {
       el.remove();
     }
   });

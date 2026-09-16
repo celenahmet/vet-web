@@ -31,7 +31,12 @@ const Navbar = () => {
   const location = useLocation();
   
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    return localStorage.getItem('theme') === 'dark';
+    /* ⚠️ Iki koruma (16.09.2026): (1) `typeof window` — bu bilesen artik
+       SUNUCUDA da ciziliyor (SSR, scripts/ssr-giris.tsx), orada depolama yok;
+       (2) try/catch — gizli sekmede ve depolamayi kapatan tarayicilarda
+       `localStorage` erisimi FIRLATIYOR, ilk cizimde navbar cokuyordu. */
+    if (typeof window === 'undefined') return false;
+    try { return localStorage.getItem('theme') === 'dark'; } catch { return false; }
   });
   const { t, i18n } = useTranslation();
 

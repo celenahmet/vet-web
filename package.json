@@ -7,7 +7,7 @@
     "predev": "node scripts/ocr-varliklarini-hazirla.mjs",
     "dev": "vite",
     "prebuild": "node scripts/ocr-varliklarini-hazirla.mjs",
-    "build": "npm run rota-denetimi && npm run kaynak-denetimi && npm run blog-ceviri && npm run panel-denetimi && npm run hukuki-denetimi && npm run magaza-denetimi && tsc -b && vite build && npm run prerender && npm run blog-besleme && npm run llms && npm run ai-denetimi",
+    "build": "npm run rota-denetimi && npm run kaynak-denetimi && npm run blog-ceviri && npm run panel-denetimi && npm run hukuki-denetimi && npm run magaza-denetimi && tsc -b && vite build && npm run prerender && npm run ssr && npm run blog-besleme && npm run llms && npm run ai-denetimi",
     "lint": "oxlint",
     "test:operasyon": "node --experimental-strip-types scripts/panel-operasyon-birim-test.mjs",
     "preview": "vite preview",
@@ -23,7 +23,8 @@
     "blog-besleme": "node --experimental-strip-types scripts/blog-besleme.mjs",
     "llms": "node --experimental-strip-types scripts/llms-uret.mjs",
     "ai-denetimi": "node --experimental-strip-types scripts/ai-denetimi.mjs",
-    "indexnow": "node scripts/indexnow-bildir.mjs"
+    "indexnow": "node scripts/indexnow-bildir.mjs",
+    "ssr": "vite build --ssr scripts/ssr-giris.tsx --outDir dist-ssr && node scripts/ssr-uret.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.4",

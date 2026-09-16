@@ -103,7 +103,16 @@ const yonlendirmeler = vercel.redirects ?? [];
 const uygulamaYonlendirmeleri = yonlendirmeler.filter((y) =>
   !y.has?.some((kosul) => kosul.type === 'host') && !/^https:\/\//.test(y.destination),
 );
-const kirikHedef = uygulamaYonlendirmeleri.filter((y) => !rotalar.includes(y.destination));
+/*
+ * ⚠️ `/kabuk.html` (16.09.2026): uygulama kabugunun kendisi, App.tsx'te rota
+ * degil. `dist/index.html` artik SSR ile cizilmis ANA SAYFA; uygulama rotalari
+ * (/panel, /@klinik) temiz kabuga gitmek zorunda, yoksa klinik sayfasi
+ * acilirken bir an ana sayfa metni gorunur. Kabugu `scripts/ssr-uret.mjs`
+ * uretiyor; o betik kosmadan bu hedef 404 verir — derleme zinciri bunu garanti
+ * ediyor (prerender -> ssr).
+ */
+const KABUK = '/kabuk.html';
+const kirikHedef = uygulamaYonlendirmeleri.filter((y) => y.destination !== KABUK && !rotalar.includes(y.destination));
 const golgeliKaynak = uygulamaYonlendirmeleri.filter((y) => rotalar.includes(y.source));
 
 if (kirikHedef.length || golgeliKaynak.length) {

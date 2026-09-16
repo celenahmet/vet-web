@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
+# Uygulama kabugu (16.09.2026): /panel ve /@klinik gibi rotalarin JS'siz iskeleti.
+# Kendi basina bir sayfa degil; taranirsa ana sayfanin bos bir kopyasi gibi gorunur.
+Disallow: /kabuk.html
 
 Sitemap: https://veterito.com/sitemap.xml
 

@@ -3,6 +3,7 @@ import { Suspense, lazy, useEffect, type ReactNode } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { ONCEDEN_URETILMIS } from './onizleme';
+import { useOncedenUretilmisVeriyiDevral } from './yapisal-veri';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -93,6 +94,8 @@ function Yedek() {
 }
 
 function App() {
+  /* Prerender/SSR kafa kopyalarini React yerlesince kaldir (her rotada). */
+  useOncedenUretilmisVeriyiDevral();
   return (
     <div className="app-container">
       <ScrollToTop />

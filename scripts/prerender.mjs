@@ -83,20 +83,24 @@ function kafaDegistir(sablon, { baslik, aciklama, adres, tip, jsonLd, onYukle, g
    * gore degisir. Sessiz bir tutarsizlik olurdu.
    */
   html = html.replace(
-    /\n?\s*<meta (?:property="og:(?:type|title|description|url|image|image:width|image:height)"|name="twitter:(?:card|image)") content="[^"]*" \/>/g,
+    /\n?\s*<meta[^>]*(?:property="og:(?:type|title|description|url|image|image:width|image:height)"|name="twitter:(?:card|image)")[^>]*\/>/g,
     '',
   );
-  html = html.replace(/<title>[^<]*<\/title>/, `<title>${kac(baslik)}</title>`);
+  /* ⚠️ `data-onceden` (16.09.2026): React (Helmet / React 19 hoisting) bu
+     etiketlerin kendi kopyasini basiyor; isaretli olanlar yerlesince
+     kaldiriliyor (src/yapisal-veri.ts). Olculdu: isaretsizken tarayicida iki
+     <title>, iki canonical, iki og:title kaliyordu. */
+  html = html.replace(/<title[^>]*>[^<]*<\/title>/, `<title data-onceden="1">${kac(baslik)}</title>`);
   html = html.replace(
-    /<meta name="description" content="[^"]*" \/>/,
-    `<meta name="description" content="${kac(aciklama)}" />`,
+    /<meta[^>]*name="description"[^>]*\/>/,
+    `<meta data-onceden="1" name="description" content="${kac(aciklama)}" />`,
   );
   const ek = [
-    `<link rel="canonical" href="${adres}" />`,
-    `<meta property="og:type" content="${tip}" />`,
-    `<meta property="og:title" content="${kac(baslik)}" />`,
-    `<meta property="og:description" content="${kac(aciklama)}" />`,
-    `<meta property="og:url" content="${adres}" />`,
+    `<link data-onceden="1" rel="canonical" href="${adres}" />`,
+    `<meta data-onceden="1" property="og:type" content="${tip}" />`,
+    `<meta data-onceden="1" property="og:title" content="${kac(baslik)}" />`,
+    `<meta data-onceden="1" property="og:description" content="${kac(aciklama)}" />`,
+    `<meta data-onceden="1" property="og:url" content="${adres}" />`,
     /*
      * ⚠️ `og:image` YOKTU (duzeltme 24.08.2026). `twitter:card` "buyuk gorsel"
      * diyordu ama gosterecek gorsel verilmiyordu: paylasimlarda kart bos
@@ -110,7 +114,7 @@ function kafaDegistir(sablon, { baslik, aciklama, adres, tip, jsonLd, onYukle, g
     gorsel && kapakAlt ? `<meta property="og:image:alt" content="${kac(kapakAlt)}" />` : '',
     gorsel && kapakAlt ? `<meta name="twitter:image:alt" content="${kac(kapakAlt)}" />` : '',
     gorsel ? `<meta name="twitter:image" content="${SITE}${gorsel}" />` : '',
-    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta data-onceden="1" name="twitter:card" content="summary_large_image" />`,
     ekBaglantilar ?? '',
     /*
      * ⚠️ `data-onceden` ISARETI SUS DEGIL (24.08.2026). Olculdu: yazi sayfasinin
