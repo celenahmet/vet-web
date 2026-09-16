@@ -387,6 +387,14 @@ export default function Blog() {
         </main>
 
         <aside className="blog-yan">
+          {/* ⚠️ REKLAM YUVASI EN USTTE. Ahmet (16.09): *"reklam kismi
+              kategorilerin ustunde kalacakti"* — kural yazi sayfasinda
+              konulmustu, liste sayfasinda da ayni: reklam kenar cubugunun ILK
+              kutusu. Iki sayfanin kenar cubugu ayni sirayi izliyor.
+              Ayrica *"bos reklam donmesin simdilik"*: yuva duzende duruyor,
+              envanteri olmayan kart donmuyor. */}
+          <ReklamKutusu />
+
           {enCokOkunanlar.length ? (
             <section className="blog-yan-kutu">
               <h2><Flame size={18} />{t('blog_most_read')}</h2>
@@ -405,11 +413,6 @@ export default function Blog() {
               </ul>
             </section>
           ) : null}
-
-          {/* ⚠️ REKLAM YUVASI, DOLUYSA CIZILIYOR. Ahmet (16.09): *"reklam
-              alanlari da olacak ama bos reklam donmesin simdilik"* — yuva
-              duzende duruyor, envanteri olmayan kart donmuyor. */}
-          <ReklamKutusu />
 
           {/* Klinik bandi buraya tasindi: sayfanin en altinda tek seferlik
               gorulen genis bir bant yerine, akis boyunca yapiskan duran bir

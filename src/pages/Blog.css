@@ -53,9 +53,17 @@
   padding: 0 24px;
 }
 @media (max-width: 760px) { .blog-sayfa .container { padding: 0 16px; } }
-.blog-sayfa section { margin-bottom: 40px; }
+/*
+ * ⚠️ `>` ZORUNLU (16.09.2026). Kural once `.blog-sayfa section` idi ve
+ * SAYFANIN HER YERINDEKI section'a biniyordu — kenar cubugundaki kartlar da
+ * <section>. Kartlar arasinda 20 px'lik `gap`in ustune 40 px margin ekleniyor,
+ * "En Cok Okunanlar" ile reklam kutusu arasinda 60 px'lik bir bosluk
+ * aciliyordu. Kural yalniz SAYFA BOLUMLERI icin yazilmisti; secici artik
+ * bunu soyluyor.
+ */
+.blog-sayfa > section { margin-bottom: 40px; }
 /* Son bolumun altinda `.blog-sayfa` zaten 72px tasiyor; ustune 40px binmesin. */
-.blog-sayfa section:last-child { margin-bottom: 0; }
+.blog-sayfa > section:last-child { margin-bottom: 0; }
 
 /* --- One cikan yazi --- */
 .blog-one-cikan {
@@ -553,7 +561,7 @@
 
 @media (max-width: 700px) {
   .blog-sayfa { padding: calc(88px + 16px) 0 56px; }
-  .blog-sayfa section { margin-bottom: 32px; }
+  .blog-sayfa > section { margin-bottom: 32px; }
   .blog-duzen { margin-bottom: 32px; }
   .blog-yan { grid-template-columns: 1fr; }
   .blog-akis-baslik { flex-wrap: wrap; gap: 12px; }
