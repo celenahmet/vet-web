@@ -95,6 +95,15 @@ export default function BlogKenarCubugu({
 
   return (
     <aside className="blog-kenar">
+      {/* ⚠️ REKLAM EN USTE ALINDI (Ahmet, 16.09.2026: *"bu reklam alanini
+          kategorilerin ustune alalim"*).
+          Onceki yerlesim kategorilerin ALTINDAYDI ve gerekcesi *"okuyucunun
+          aradigi seyle reklami ic ice koymamak"*ti. O gerekce bu duzende de
+          ayakta: reklam kategori listesinin ICINE girmiyor, ONUNDE duruyor ve
+          kesikli cerceve + "Reklam" etiketiyle icerikten ayri okunuyor.
+          Sira degisti, ayrim degismedi. */}
+      <ReklamKutusu />
+
       <section className="kenar-kutu">
         <h2>{t('sidebar_categories')}</h2>
         <ul className="kenar-kategori">
@@ -117,11 +126,6 @@ export default function BlogKenarCubugu({
           })}
         </ul>
       </section>
-
-      {/* ⚠️ Reklam, kategorilerin ve populer yazilarin ARASINDA degil ALTINDA:
-          okuyucunun aradigi seyle (kategori, yazi) reklami ic ice koymak,
-          ikisini de degersizlestirir. */}
-      <ReklamKutusu />
 
       {populerYazilar.length ? (
         <section className="kenar-kutu">

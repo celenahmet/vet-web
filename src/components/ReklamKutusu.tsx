@@ -59,10 +59,10 @@ export default function ReklamKutusu() {
 
       {!ikinci ? (
         <div className="reklam-kart">
-          <span className="reklam-ikon" aria-hidden="true"><Megaphone size={18} /></span>
+          <span className="reklam-ikon" aria-hidden="true"><Megaphone size={21} /></span>
           <p className="reklam-baslik">{t('ad_title_1')}</p>
           <p className="reklam-metin">{t('ad_desc_1')}</p>
-          <a className="reklam-dugme" href="mailto:info@veterito.com?subject=Blog%20reklam">{t('ad_btn_1')}<ArrowUpRight size={14} />
+          <a className="reklam-dugme" href="mailto:info@veterito.com?subject=Blog%20reklam">{t('ad_btn_1')}<ArrowUpRight size={15} />
           </a>
         </div>
       ) : (
@@ -73,8 +73,8 @@ export default function ReklamKutusu() {
           <img
             src={uniconnectlyLogo}
             alt="UniConnectly"
-            width={160}
-            height={57}
+            width={190}
+            height={68}
             className="reklam-logo"
           />
           <p className="reklam-metin">
@@ -85,7 +85,7 @@ export default function ReklamKutusu() {
             className="reklam-dugme"
             href="https://uniconnectly.com"
             target="_blank"
-            rel="sponsored noopener noreferrer">{t('ad_btn_2')}<ArrowUpRight size={14} />
+            rel="sponsored noopener noreferrer">{t('ad_btn_2')}<ArrowUpRight size={15} />
           </a>
         </div>
       )}
