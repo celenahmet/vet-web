@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import {
-  ArrowRight, BarChart3, Cat, Clock, Dog, HeartPulse, Mail,  Star, Users, Utensils, Building2 } from 'lucide-react';
+  ArrowRight, BarChart3, Cat, Clock, Dog, Flame, HeartPulse, Mail, Users, Utensils, Building2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import SEO from '../components/SEO';
 import { YAZILAR, okumaSuresi, tarihiYaz } from '../data/blog';
 import BlogKapak from '../components/BlogKapak';
+import { goruntulenmeOku } from '../lib/blogGoruntulenme';
 import './Blog.css';
 
 /**
@@ -25,6 +26,29 @@ import './Blog.css';
 
 /** Kahraman kutusundaki yazinin degisme araligi. Ahmet: "15 olabilir bu degisebilir". */
 const DONME_SURESI = 15000;
+
+/**
+ * Ana izgarada bir seferde acilan kart sayisi ve "daha fazla" adimi.
+ *
+ * ⚠️ NEDEN SAYFALAMA VAR (Ahmet, 16.09.2026: *"bu kadar degil tek satir olmali
+ * bunlar"*). Blog 33 yaziya cikinca sayfa 24 kartlik bir duvara donmustu.
+ * Kartlari kesip atmak da cozum degil: kesilen yaziya hicbir yerden
+ * ulasilamazdi. Cozum, akisi sayfalamak.
+ */
+const IZGARA_ADIM = 12;
+
+/**
+ * "En cok okunanlar" seridi ne zaman aciliyor?
+ *
+ * ⚠️ AYNI ESIK KENAR CUBUGUNDA DA VAR (`BlogKenarCubugu.tsx` · POPULER_ESIGI).
+ * Gerekce orada yazili: iki-uc goruntulenmeyle yapilan siralama siralama degil
+ * gurultudur. Esik tutmuyorsa serit HIC cizilmiyor; yerine "son eklenenler"i
+ * koyup basligini "en cok okunan" birakmak dogrudan yanlis bilgi olurdu.
+ *
+ * ⚠️ Iki yerde duran esik, ikisinden biri degistiginde otekinin unutulmasi
+ * demek. Ayni sayiyi tasiyorlar ve ikisi de birbirine isaret ediyor.
+ */
+const OKUNMA_ESIGI = { toplam: 50, enAzKacYazi: 3 };
 
 const KATEGORI_IKON = {
   'Kedi': Cat,
@@ -100,27 +124,71 @@ export default function Blog() {
   const oneCikan = suzuluyor ? undefined : donenler[guvenliSira];
 
   /**
-   * ⚠️ "ONE CIKAN YAZILAR" BOLUMU ARTIK ARTAN KART ICIN ACILMIYOR (Ahmet,
-   * 24.08.2026: "one cikan yazilar kucuk kalmis").
+   * ANA AKIS = TUM YAZILAR, SAYFALANMIS (16.09.2026 duzenlemesi).
    *
-   * Eskiden izgara 4 kartla siniriydi ve 5. yazidan itibarasi ayri baslikli bir
-   * bolume dusuyordu. Alti yazi varken bu bolum TEK kart iceriyordu: dort
-   * sutunluk satirda tek basina duran kucuk bir kart ve yaninda ucte uc bosluk.
+   * ⚠️ ONCEDEN UC AYRI LISTE VARDI ve ucu de ayni yazilari gosteriyordu:
+   * izgara ilk sekizi, "One Cikan Yazilar" basligi altindaki bolum GERIYE
+   * KALAN HER SEYI (33 yazida 24 kart), "Son eklenenler" de en yeni dordu.
+   * 33 yazi ekranda 37 kez geciyordu.
    *
-   * Simdi izgara arta kalanin tamamini aliyor (iki tam satira kadar). Ikinci
-   * satirin eksik kalmasi sorun degil, kart izgaralarinda beklenen davranis bu;
-   * sorun olan, tek kart icin AYRI BASLIKLI bir bolum acmakti.
+   * ⚠️ USTELIK O BASLIK YANLISTI. `slice(9)` listenin EN ESKI yazilarini
+   * veriyordu; onlara "one cikan" demek, olcmedigimiz seye ad takmakti —
+   * kenar cubugunda "populer" demekten kacinma gerekcesinin aynisi.
+   *
+   * Simdi tek akis var: yazilar tarihe gore siralı, `IZGARA_ADIM` kadari acik,
+   * gerisi "daha fazla" dugmesiyle geliyor. Hicbir yazi erisilemez kalmiyor.
+   *
+   * ⚠️ AKIS KAHRAMAN YAZISINI DA ICERIYOR (`slice(1)` YOK). Eskiden ilk yazi
+   * disarida birakiliyordu, cunku izgara "kalanlar" demekti. Artik basligi
+   * "Tum yazilar" ve yaninda sayi var: 32 yazip 33 kart saymak ya da tersi,
+   * Ahmet'in 24.08'de bildirdigi hatanin (*"kedilerde 4 sayi var ama 3 yazi
+   * gorunuyor"*) aynisi olurdu. Serit rozeti, baslik sayisi ve ekrandaki kart
+   * sayisi artik ucu de ayni.
    */
-  const izgara = suzuluyor ? suzulmus : suzulmus.slice(1, 9);
+  const tumIzgara = suzulmus;
+  const [gosterilen, setGosterilen] = useState(IZGARA_ADIM);
+
+  /* Kategori degisince akis basa donuyor; yoksa iki yazilik kategoride
+     "daha fazla" dugmesi acik kalmis gibi gorunurdu. */
+  useEffect(() => { setGosterilen(IZGARA_ADIM); }, [secili]);
+
+  const izgara = tumIzgara.slice(0, gosterilen);
+  const kalan = tumIzgara.length - izgara.length;
 
   /**
-   * Klinik bandinin ustundeki "Son eklenenler" seridi. En yeni dort yazi, ama
-   * o an kahraman kutusunda duran HARIC.
-   * ⚠️ Kaynak `YAZILAR` (tarihe gore sirali), `suzulmus` degil: bolum yalnizca
-   * suzme kapaliyken gorunuyor, orada ikisi zaten ayni.
+   * ⚠️ SESSIZCE BASARISIZ OLUR. Sayac okunamazsa serit hic cizilmiyor; bir
+   * siralama yuzunden blogun acilmasini bozmuyoruz.
    */
-  const sonEklenenler = YAZILAR.filter((y) => y.slug !== oneCikan?.slug).slice(0, 4);
-  const liste = suzuluyor ? [] : suzulmus.slice(9);
+  const [gorulenler, setGorulenler] = useState<Map<string, number> | null>(null);
+  useEffect(() => {
+    let iptal = false;
+    void goruntulenmeOku(YAZILAR.map((y) => y.slug)).then((satirlar) => {
+      if (iptal || !satirlar) return;
+      setGorulenler(new Map(satirlar.map((r) => [r.slug, r.goruntulenme])));
+    });
+    return () => { iptal = true; };
+  }, []);
+
+  /**
+   * EN COK OKUNANLAR — TEK SATIR (Ahmet, 16.09.2026: *"tek satir olmali
+   * bunlar"*). Dort kart, gercek sayactan. Suzme aciksa gorunmuyor: orada
+   * zaten butun sonuclar tek izgarada.
+   *
+   * ⚠️ KAHRAMAN YAZISI ELENMIYOR. Elenseydi serit, kahraman kutusu her 15
+   * saniyede donerken birlikte YENIDEN SIRALANIRDI: okuyucu tam tiklarken
+   * kartlar kayardi. Siralama sabit kaliyor, tekrar riskine tercih edilir.
+   */
+  const enCokOkunanlar = (() => {
+    if (suzuluyor || !gorulenler) return [];
+    const sayilar = [...gorulenler.values()];
+    const toplam = sayilar.reduce((a, b) => a + b, 0);
+    const okunanYazi = sayilar.filter((n) => n > 0).length;
+    if (toplam < OKUNMA_ESIGI.toplam || okunanYazi < OKUNMA_ESIGI.enAzKacYazi) return [];
+    return YAZILAR
+      .filter((y) => (gorulenler.get(y.slug) ?? 0) > 0)
+      .sort((a, b) => (gorulenler.get(b.slug) ?? 0) - (gorulenler.get(a.slug) ?? 0))
+      .slice(0, 4);
+  })();
 
   const kategoriSayisi = new Map<string, number>();
   for (const y of YAZILAR) kategoriSayisi.set(y.kategori, (kategoriSayisi.get(y.kategori) ?? 0) + 1);
@@ -211,34 +279,16 @@ export default function Blog() {
         </nav>
       </section>
 
-      {izgara.length ? (
-        <section className="container blog-izgara">
-          {izgara.map((yazi) => (
-            <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-kart">
-              <div className="blog-kart-gorsel">
-                <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={40} olcu="kart" />
-              </div>
-              <div className="blog-kart-govde">
-                <span className="blog-kart-kategori">{t('blog_cat_' + yazi.kategori, yazi.kategori).toLocaleUpperCase()}</span>
-                <h3>{yazi.baslik}</h3>
-                <div className="blog-kart-alt">
-                  <span><Clock size={14} /> {okumaSuresi(yazi)} {t('blog_read_time')}</span>
-                  <span>{tarihiYaz(yazi.tarih)}</span>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </section>
-      ) : null}
-
-      {liste.length ? (
-        <section className="container blog-liste-bolum">
+      {/* EN COK OKUNANLAR — TEK SATIR. Kompakt kart bilerek: hemen altindaki
+          ana akis buyuk kartlarla cizildigi icin ayni dokuyu iki kez
+          koymuyoruz; serit bir kesif seridi, akisin kopyasi degil. */}
+      {enCokOkunanlar.length ? (
+        <section className="container blog-cok-okunan">
           <header className="blog-liste-baslik">
-            <h2><Star size={20} />{t('blog_featured_title')}</h2>
-            <Link to="/blog">{t('blog_view_all')}<ArrowRight size={16} /></Link>
+            <h2><Flame size={20} />{t('blog_most_read')}</h2>
           </header>
           <div className="blog-liste">
-            {liste.map((yazi) => (
+            {enCokOkunanlar.map((yazi) => (
               <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-liste-kart">
                 <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={24} olcu="kucuk" />
                 <div>
@@ -251,43 +301,60 @@ export default function Blog() {
               </Link>
             ))}
           </div>
+        </section>
+      ) : null}
+
+      {izgara.length ? (
+        <section className="container blog-tum-yazilar">
+          <header className="blog-liste-baslik">
+            <h2>
+              {secili ? t('blog_cat_' + secili, secili) : t('blog_all_posts')}
+              <em className="blog-sayac">{tumIzgara.length}</em>
+            </h2>
+          </header>
+          <div className="blog-izgara">
+            {izgara.map((yazi) => (
+              <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-kart">
+                <div className="blog-kart-gorsel">
+                  <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={40} olcu="kart" />
+                </div>
+                <div className="blog-kart-govde">
+                  <span className="blog-kart-kategori">{t('blog_cat_' + yazi.kategori, yazi.kategori).toLocaleUpperCase()}</span>
+                  <h3>{yazi.baslik}</h3>
+                  <div className="blog-kart-alt">
+                    <span><Clock size={14} /> {okumaSuresi(yazi)} {t('blog_read_time')}</span>
+                    <span>{tarihiYaz(yazi.tarih)}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* ⚠️ BAGLANTI DEGIL DUGME. Eski basligin yanindaki "Tumunu Gor"
+              zaten bulundugun sayfaya (/blog) gidiyordu: calismayan bir
+              baglanti, olmayan bir ozellikten kotudur. Burada gercek bir is
+              yapan dugme var ve kac yazi kaldigini soyluyor. */}
+          {kalan > 0 ? (
+            <div className="blog-daha">
+              <button type="button" onClick={() => setGosterilen((n) => n + IZGARA_ADIM)}>{t('blog_load_more')} ({kalan})
+              </button>
+            </div>
+          ) : null}
         </section>
       ) : null}
 
       {/*
-        ⚠️ BOS DURAN ALAN DOLDURULDU (Ahmet, 24.08.2026: "Blog ana sayfa cok bos
-        duruyor... klinik bandinin ustunde en yeni yazilar veya yaziya uygun
-        yazi onerileri olabilir").
+        ⚠️ "SON EKLENENLER" BOLUMU KALDIRILDI (16.09.2026).
 
-        Bolum SUZME ACIKKEN gizleniyor: orada zaten butun sonuclar izgarada ve
-        ayni kartlari ikinci kez gostermek sayfayi doldurmaz, tekrar eder.
+        24.08.2026'da Ahmet'in istegiyle eklenmisti: *"blog ana sayfa cok bos
+        duruyor, klinik bandinin ustunde en yeni yazilar olabilir"*. O gun blog
+        alti yaziydi ve sayfa gercekten bostu.
 
-        ⚠️ Kahraman kutusundaki yazi HARIC tutuluyor. O yazi ekranin en ustunde
-        buyuk kutuda duruyor; hemen altinda kucuk kart olarak tekrar gostermek
-        "blog bos, ayni seyi iki kez koyduk" izlenimi verirdi.
+        Bugun ana izgara zaten TARIHE GORE sirali ve en yeni yazilarla
+        basliyor; bolum, hemen ustundeki dort karti ikinci kez gosteriyordu.
+        Sayfayi doldurmuyor, tekrar ediyordu. Istegin gerekcesi (boslugu
+        doldurmak) 33 yaziyla ortadan kalkti.
       */}
-      {!suzuluyor && sonEklenenler.length ? (
-        <section className="container blog-son-eklenenler">
-          <header className="blog-liste-baslik">
-            <h2>{t('blog_recent_added')}</h2>
-            <Link to="/blog">{t('blog_all_posts')}<ArrowRight size={16} /></Link>
-          </header>
-          <div className="blog-liste">
-            {sonEklenenler.map((yazi) => (
-              <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-liste-kart">
-                <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={24} olcu="kucuk" />
-                <div>
-                  <h4>{yazi.baslik}</h4>
-                  <div className="blog-liste-alt">
-                    <span>{t('blog_cat_' + yazi.kategori, yazi.kategori)}</span>
-                    <span>{okumaSuresi(yazi)} {t('blog_read_time')}</span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      ) : null}
 
       <section className="container">
         <div className="klinik-bandi">

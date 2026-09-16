@@ -263,6 +263,57 @@
   color: var(--color-text-muted);
 }
 
+/* ══════════════════════════════════════════════════════════════════════════
+ * TUM YAZILAR AKISI + "DAHA FAZLA" (16.09.2026)
+ * Ahmet: "bu kadar degil tek satir olmali bunlar" · "bu veterito sayfasi bloga
+ * tam benzememis". Uc ayri liste yerine tek akis: baslik + sayi + sayfalama.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+/* Baslik yanindaki sayi. Kategori seridindeki rozetle AYNI dili konusuyor:
+   okuyucu ayni sayiyi iki yerde gorup ayni seyi anliyor. */
+.blog-sayac {
+  font-style: normal;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--color-vet-accent-light);
+  color: var(--color-vet-secondary);
+}
+
+.blog-daha { display: flex; justify-content: center; margin-top: 28px; }
+.blog-daha button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border, rgba(0,0,0,0.12));
+  background: var(--color-surface);
+  color: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.blog-daha button:hover {
+  background: var(--color-vet-accent-light);
+  border-color: var(--color-vet-secondary);
+}
+/* Klavyeyle gezenin dugmeyi kaybetmemesi icin gorunur odak. */
+.blog-daha button:focus-visible {
+  outline: 2px solid var(--color-vet-secondary);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-daha button { transition: none; }
+}
+
+/* ⚠️ Serit TEK SATIR kalmali: `.blog-liste` dort sutun, icine dort kart
+   veriliyor. Sayi kodda (`slice(0, 4)`) ve burada AYNI; biri degisirse oteki
+   de degismeli, yoksa satir yarim kalir ya da tasar. */
+
 /* --- Klinik bandi --- */
 .klinik-bandi {
   display: flex;
@@ -444,12 +495,6 @@
 .bulten-metin p { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
 
 /* --- Son eklenenler seridi (24.08.2026) --- */
-/*
- * ⚠️ Kart bicimini `.blog-liste` ile PAYLASIYOR, yeni bir kart tasarimi
- * uretilmedi: sayfada ucuncu bir kart dili acmak, doldurmak istedigimiz bosluk
- * sorununu gorsel dagInIkliga cevirirdi.
- */
-.blog-son-eklenenler .blog-liste-baslik h2 svg { color: var(--color-vet-secondary); }
 
 /* --- Donen kahraman kutusunun gostergeleri (24.08.2026) --- */
 /*
