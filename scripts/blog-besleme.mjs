@@ -52,8 +52,13 @@ for (const d of readdirSync(YAZI_KLASORU).filter((f) => f.endsWith('.ts') && !HA
  */
 const KAPAK_KLASORU = join(KOK, 'src/assets/blog');
 const kapakliMi = (slug) => existsSync(join(KAPAK_KLASORU, `${slug}.webp`));
+/** ⚠️ Tarihi gelmeyen yazi beslemeye de girmiyor (16.09.2026; ayni kural
+ *  index.ts ve prerender'da). Uygulama beslemeyi okuyor: burada erken cikan bir
+ *  yazi, sitede gorunmeden uygulamada gorunurdu. */
+const bugunIstanbul = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Istanbul' }).format(new Date());
 const YAZILAR = tumYazilar
   .filter((y) => kapakliMi(y.slug))
+  .filter((y) => y.tarih <= bugunIstanbul)
   .sort((a, b) => b.tarih.localeCompare(a.tarih));
 
 /**

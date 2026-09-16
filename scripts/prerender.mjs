@@ -162,8 +162,22 @@ for (const d of dosyalar) {
 const KAPAK_KLASORU = join(KOK, 'src/assets/blog');
 const kapakliMi = (slug) => existsSync(join(KAPAK_KLASORU, `${slug}.webp`));
 
+/**
+ * ⚠️ TARIHI GELMEYEN YAZI DA YAYINLANMAZ (16.09.2026). Kural `index.ts`'te de
+ * var ama bu betik `index.ts`'i ICE AKTARAMIYOR (gorsel.ts'teki
+ * `import.meta.glob` Vite disinda calismaz), listeyi kendisi kuruyor. Bu yuzden
+ * ayni kural UC yerde ayri ayri yaziliyor: index.ts, prerender, blog-besleme.
+ * Biri unutulursa yazi "sitede yok ama statik sayfasi var" haline gelir —
+ * arama motoru onu yine bulur.
+ */
+const bugun = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Istanbul' }).format(new Date());
 const kapaksizlar = yazilar.filter((y) => !kapakliMi(y.slug));
-const yayindakiler = yazilar.filter((y) => kapakliMi(y.slug));
+const beklemedekiler = yazilar.filter((y) => kapakliMi(y.slug) && y.tarih > bugun);
+const yayindakiler = yazilar.filter((y) => kapakliMi(y.slug) && y.tarih <= bugun);
+
+if (beklemedekiler.length) {
+  console.log(`prerender: TARIHI GELMEYEN ${beklemedekiler.length} yazi bekliyor -> ${beklemedekiler.map((y) => `${y.slug} (${y.tarih})`).join(', ')}`);
+}
 
 if (kapaksizlar.length) {
   /*

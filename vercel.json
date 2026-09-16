@@ -1,4 +1,10 @@
 {
+  "crons": [
+    {
+      "path": "/api/gunluk-yayin",
+      "schedule": "20 6 * * *"
+    }
+  ],
   "redirects": [
     {
       "source": "/:path*",

@@ -77,8 +77,35 @@ const TUM_YAZILAR: BlogYazi[] = [
  */
 export const YAYINDA_OLMAYANLAR: BlogYazi[] = TUM_YAZILAR.filter((y) => !kapakGorseli(y.slug));
 
+/**
+ * TARIHI GELMEYEN YAZI YAYINLANMAZ (16.09.2026).
+ *
+ * Ahmet: *"yayın mekanizmasını da kuralım"*. Bugune kadar bir yaziyi ileri
+ * tarihe yazmanin karsiligi yoktu: dosya eklendigi an yayina giriyordu. Yani
+ * "hafta boyu her gun bir yazi" ancak elle, her sabah commit atarak olurdu.
+ *
+ * Artik olcut TARIH: `tarih` bugunden ileriyse yazi listelerde, site
+ * haritasinda ve beslemede YOK; adresi de 404 (kapak kuralinda oldugu gibi,
+ * yayinda olmayanin adresi acik birakilmaz).
+ *
+ * ⚠️ SITE STATIK: tarihi gelen yazinin kendiliginden cikmasi icin o gun yeni
+ * bir build gerekiyor. Bunun icin `api/gunluk-yayin` + Vercel Cron kuruldu
+ * (UniConnectly'de calisan desen). Cron olmazsa yazi bir sonraki deploy'da
+ * cikar; veri kaybi yok, yalnizca gecikme olur.
+ *
+ * ⚠️ SAAT DILIMI: kiyas Istanbul gunu uzerinden ("sv-SE" biciminde YYYY-MM-DD).
+ * UTC ile kiyaslamak, gece yarisindan sonra yazilan bir yaziyi bir gun erken
+ * yayina sokardi.
+ */
+export function bugunIstanbul(): string {
+  return new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Istanbul' }).format(new Date());
+}
+
+export const TARIHI_GELMEYENLER: BlogYazi[] = TUM_YAZILAR.filter((y) => y.tarih > bugunIstanbul());
+
 export const YAZILAR: BlogYazi[] = TUM_YAZILAR
   .filter((y) => Boolean(kapakGorseli(y.slug)))
+  .filter((y) => y.tarih <= bugunIstanbul())
   .sort((a, b) => b.tarih.localeCompare(a.tarih));
 
 export function yaziBul(slug: string | undefined): BlogYazi | undefined {
