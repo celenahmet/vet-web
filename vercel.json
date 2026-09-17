@@ -7,6 +7,17 @@
   ],
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.veterito.com"
+        }
+      ],
+      "destination": "https://veterito.com/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {

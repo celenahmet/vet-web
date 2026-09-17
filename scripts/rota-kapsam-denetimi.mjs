@@ -7,6 +7,11 @@
  * (24.08.2026; commit gitti, GitHub'a dustu, siteye cikmadi). Yani o dosyaya
  * yalniz semanin tanidigi alanlar yazilabilir; gerekce buraya yazilir.
  *
+ * ⚠️ www.veterito.com (17.09.2026): kullanilmiyor, yalniz apex'e kalici yonleniyor.
+ *   Iki kural var: `/` ve `/:path*`, ikisi de `has: host=www.veterito.com`.
+ *   Tek `/:path*` kurali KOKU yakalamadi: www/ adresi 200 ile onbellekteki ana
+ *   sayfayi verdi, alt yollar 308 aldi. Kok icin ayri kural sart.
+ *
  * `vercel.json` NE YAPIYOR:
  *   Eskiden { source: '/(.*)', destination: '/' } vardi, yani HER ADRES
  *   uygulamaya gidiyordu. Olculdu: /bu-sayfa-kesinlikle-yok, /blog/olmayan-yazi,
