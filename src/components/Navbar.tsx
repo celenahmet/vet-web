@@ -218,7 +218,7 @@ const Navbar = () => {
       */}
       {(isMenuOpen || kapaniyor) && (
           <div
-            className={`${kapaniyor ? 'mobil-menu kapaniyor' : 'mobil-menu'} absolute top-full left-0 right-0 bg-white dark:bg-transparent border-t border-[var(--border-color)] p-6 flex flex-col gap-4 shadow-xl md:hidden z-[100] h-screen overflow-y-auto pb-32`}
+            className={`${kapaniyor ? 'mobil-menu kapaniyor' : 'mobil-menu'} absolute top-full left-0 right-0 bg-white dark:bg-zinc-950 border-t border-[var(--border-color)] p-6 flex flex-col gap-4 shadow-xl md:hidden z-[100] h-screen overflow-y-auto pb-32`}
           >
             {navLinks.map((link) => (
               <Link 
