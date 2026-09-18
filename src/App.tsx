@@ -25,6 +25,7 @@ const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Clinics = lazy(() => import('./pages/Clinics'));
 const Pricing = lazy(() => import('./pages/Pricing'));
 const Contact = lazy(() => import('./pages/Contact'));
+const FAQ = lazy(() => import('./pages/FAQ'));
 const LegalHub = lazy(() => import('./pages/LegalHub'));
 const LegalDocument = lazy(() => import('./pages/LegalDocument'));
 const NotFound = lazy(() => import('./pages/NotFound'));
@@ -147,6 +148,7 @@ function App() {
                 /iletisim eski/Turkce adres olarak ayni sayfaya gidiyor. */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/iletisim" element={<Contact />} />
+            <Route path="/sss" element={<FAQ />} />
             <Route path="/legal" element={<LegalHub />} />
             <Route path="/privacy" element={<LegalDocument />} />
             <Route path="/kvkk" element={<LegalDocument />} />

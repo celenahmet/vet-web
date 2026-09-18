@@ -71,6 +71,7 @@ const Navbar = () => {
     { to: "/clinics", label: "nav_clinics" },
     { to: "/pricing", label: "nav_pricing" },
     { to: "/about", label: "nav_about" },
+    { to: "/contact", label: "nav_contact" },
     { to: "/blog", label: "nav_blog" }
   ];
 

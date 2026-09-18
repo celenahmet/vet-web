@@ -77,6 +77,7 @@ const Footer = () => {
               <Link to="/pets" className="text-sm hover:text-emerald-600 transition-colors">{t('nav_pets')}</Link>
               <Link to="/clinics" className="text-sm hover:text-emerald-600 transition-colors">{t('nav_clinics')}</Link>
               <Link to="/about" className="text-sm hover:text-emerald-600 transition-colors">{t('nav_about')}</Link>
+              <Link to="/contact" className="text-sm hover:text-emerald-600 transition-colors">{t('nav_contact')}</Link>
               <Link to="/blog" className="text-sm hover:text-emerald-600 transition-colors">{t('nav_blog')}</Link>
             </div>
             <div className="flex flex-col gap-3">
@@ -88,7 +89,8 @@ const Footer = () => {
             <div className="flex flex-col gap-3">
               <h3 className="font-semibold text-[15px] text-slate-900 dark:text-white mb-2">{t('footer_contact')}</h3>
             <Link to="/contact" className="text-sm hover:text-emerald-600 transition-colors">{t('contact_title')}</Link>
-              <a href={`mailto:${brandConfig.social.contactEmail}`} className="text-sm hover:text-emerald-600 transition-colors">{brandConfig.social.contactEmail}</a>
+            <Link to="/sss" className="text-sm hover:text-emerald-600 transition-colors">{t('footer_link_faq')}</Link>
+            <a href={`mailto:${brandConfig.social.contactEmail}`} className="text-sm hover:text-emerald-600 transition-colors">{brandConfig.social.contactEmail}</a>
             </div>
 
             <div className="flex flex-col gap-3">
