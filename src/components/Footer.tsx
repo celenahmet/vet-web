@@ -98,34 +98,34 @@ const Footer = () => {
               
               <div className="flex flex-col gap-3">
                 {/* App Store */}
-                <a href={brandConfig.appStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-4 py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[160px]">
+                <a href={brandConfig.appStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-3 py-1.5 md:px-4 md:py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[145px] md:w-[160px]">
                   <div className="flex items-center justify-center gap-3 w-full">
-                    <img src="/apple-logo.png" alt="App Store" className="w-7 h-7 object-contain shrink-0 invert" />
+                    <img src="/apple-logo.png" alt="App Store" className="w-6 h-6 md:w-7 md:h-7 object-contain shrink-0 invert" />
                     <div className="flex flex-col items-start leading-none pt-0.5 text-white">
-                      <div className="text-[8px] font-semibold tracking-[0.08em] text-white">Download on the</div>
-                      <div className="text-[18px] font-bold tracking-tight mt-0.5 text-white">App Store</div>
+                      <div className="text-[7px] md:text-[8px] font-semibold tracking-[0.08em] text-white">Download on the</div>
+                      <div className="text-[15px] md:text-[18px] font-bold tracking-tight mt-0.5 text-white">App Store</div>
                     </div>
                   </div>
                 </a>
 
                 {/* Google Play */}
-                <a href={brandConfig.playStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-4 py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[160px]">
+                <a href={brandConfig.playStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-3 py-1.5 md:px-4 md:py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[145px] md:w-[160px]">
                   <div className="flex items-center justify-center gap-3 w-full">
-                    <img src="/google-play-logo.png" alt="Play Store" className="w-7 h-7 object-contain shrink-0" />
+                    <img src="/google-play-logo.png" alt="Play Store" className="w-6 h-6 md:w-7 md:h-7 object-contain shrink-0" />
                     <div className="flex flex-col items-start leading-none pt-0.5 text-white">
-                      <div className="text-[8px] font-semibold tracking-wide text-white">GET IT ON</div>
-                      <div className="text-[16px] font-bold tracking-tight mt-0.5 text-white">Google Play</div>
+                      <div className="text-[7px] md:text-[8px] font-semibold tracking-wide text-white">GET IT ON</div>
+                      <div className="text-[15px] md:text-[16px] font-bold tracking-tight mt-0.5 text-white">Google Play</div>
                     </div>
                   </div>
                 </a>
 
                 {/* AppGallery */}
-                <a href={brandConfig.appGalleryUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-4 py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[160px]">
+                <a href={brandConfig.appGalleryUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-3 py-1.5 md:px-4 md:py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[145px] md:w-[160px]">
                   <div className="flex items-center justify-center gap-3 w-full">
-                    <img src="/appgallery-logo.png" alt="AppGallery" className="w-7 h-7 object-contain shrink-0" />
+                    <img src="/appgallery-logo.png" alt="AppGallery" className="w-6 h-6 md:w-7 md:h-7 object-contain shrink-0" />
                     <div className="flex flex-col items-start leading-none pt-0.5 text-white">
-                      <div className="text-[8px] font-semibold tracking-wide text-white">EXPLORE IT ON</div>
-                      <div className="text-[16px] font-bold tracking-tight mt-0.5 text-white">AppGallery</div>
+                      <div className="text-[7px] md:text-[8px] font-semibold tracking-wide text-white">EXPLORE IT ON</div>
+                      <div className="text-[15px] md:text-[16px] font-bold tracking-tight mt-0.5 text-white">AppGallery</div>
                     </div>
                   </div>
                 </a>
