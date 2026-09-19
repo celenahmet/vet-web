@@ -52,7 +52,7 @@ export default function Home() {
             <div className="flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-12 w-full">
               
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="flex flex-col items-start z-10 w-full lg:w-1/2">
-                <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent text-indigo-600 dark:text-indigo-400 text-xs md:text-sm font-bold shadow-sm mb-6 bg-white dark:bg-transparent backdrop-blur-sm">{t('home_badge_new')}</motion.div>
+                <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent text-indigo-600 dark:text-indigo-400 text-xs md:text-sm font-bold shadow-sm mb-6 mt-6 md:mt-0 bg-white dark:bg-transparent backdrop-blur-sm self-center md:self-start">{t('home_badge_new')}</motion.div>
                 
                 <motion.h1 variants={fadeInUp} className="text-center md:text-left w-full font-extrabold leading-[1.1] tracking-tight mb-6 text-[var(--text-main)]">
                   <span className="text-3xl md:text-4xl lg:text-5xl leading-tight">
@@ -213,11 +213,11 @@ export default function Home() {
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 text-center">
             
             {/* Heading */}
-            <h2 className="text-3xl md:text-5xl lg:text-[3.25rem] font-extrabold text-[var(--text-main)] leading-tight mb-8 -mt-8">{t('home_dl_title1')}<span className="sm:hidden"> </span><br className="hidden sm:block" />{t('home_dl_title2')}</h2>
+            <h2 className="text-3xl md:text-5xl lg:text-[3.25rem] font-extrabold text-[var(--text-main)] leading-tight mb-8 -mt-8">{t('home_dl_title1')}<br />{t('home_dl_title2')}</h2>
             
             {/* Description */}
             <div className="flex flex-col items-center justify-center w-full px-4 mb-12">
-              <p className="text-lg md:text-2xl text-[var(--color-vet-primary)] font-bold mb-4">{t('home_dl_subtitle1')}</p>
+              <p className="text-[15px] sm:text-lg md:text-2xl text-[var(--color-vet-primary)] font-bold mb-4">{t('home_dl_subtitle1')}</p>
               <p className="text-base md:text-xl text-[var(--text-muted)] max-w-xl lg:max-w-2xl font-medium leading-relaxed">
                 <span className="block md:inline">{t('home_dl_subtitle2_a')}</span>
                 <span className="hidden md:inline"> </span>
