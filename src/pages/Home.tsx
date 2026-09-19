@@ -54,7 +54,7 @@ export default function Home() {
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="flex flex-col items-start z-10 w-full lg:w-1/2">
                 <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent text-indigo-600 dark:text-indigo-400 text-xs md:text-sm font-bold shadow-sm mb-6 bg-white dark:bg-transparent backdrop-blur-sm">{t('home_badge_new')}</motion.div>
                 
-                <motion.h1 variants={fadeInUp} className="font-extrabold leading-[1.1] tracking-tight mb-6 text-[var(--text-main)]">
+                <motion.h1 variants={fadeInUp} className="text-center md:text-left w-full font-extrabold leading-[1.1] tracking-tight mb-6 text-[var(--text-main)]">
                   <span className="text-3xl md:text-4xl lg:text-5xl leading-tight">
                     <span className="block md:inline">{t('home_title_1_a')}</span>
                     <span className="hidden md:inline"> </span>
@@ -64,7 +64,7 @@ export default function Home() {
                   <span className="text-4xl md:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-[#038d91] to-[#33c8c2]">{t('home_title_2')}</span> 
                 </motion.h1>
                 
-                <motion.p variants={fadeInUp} className="text-base md:text-lg lg:text-xl text-[var(--text-muted)] mb-10 max-w-xl leading-relaxed font-medium">{t('home_subtitle_new')}</motion.p>
+                <motion.p variants={fadeInUp} className="text-center md:text-left w-full text-base md:text-lg lg:text-xl text-[var(--text-muted)] mb-10 max-w-xl md:mx-0 mx-auto leading-relaxed font-medium">{t('home_subtitle_new')}</motion.p>
                 
                 <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-2">
                   <Link to="/features" className="group flex items-center justify-center gap-3 px-6 py-3 md:px-8 md:py-4 text-sm md:text-base rounded-3xl font-bold text-white bg-slate-900 dark:bg-white dark:text-slate-900 hover:scale-105 transition-transform shadow-xl">{t('home_btn_pet')}<PawPrint size={20} className="group-hover:rotate-12 transition-transform" />
