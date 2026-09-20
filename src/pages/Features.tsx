@@ -13,15 +13,6 @@ export default function Features() {
   const [activeTab, setActiveTab] = useState('owners');
 
 
-  // Sayfaya özel Snap Scroll (Tam Ekran Kaydırma) Efekti
-  useEffect(() => {
-    // Sayfa yüklendiğinde global html etiketine snap özelliklerini ekle
-    document.documentElement.classList.add('snap-y', 'snap-proximity', 'scroll-smooth');
-    return () => {
-      // Sayfadan çıkıldığında eski haline döndür
-      document.documentElement.classList.remove('snap-y', 'snap-proximity', 'scroll-smooth');
-    };
-  }, []);
 
   return (
     <div className="w-full relative bg-[var(--bg-main)] overflow-x-hidden">
@@ -31,7 +22,7 @@ export default function Features() {
       {/* 2. INTERACTIVE APP SHOWCASE (Snap Section 2) */}
       <section
         id="app-showcase"
-        className="w-full snap-start snap-always relative z-10 flex flex-col items-center justify-center overflow-hidden py-16 lg:py-24 bg-white dark:bg-[#060A08]"
+        className="w-full relative z-10 flex flex-col items-center justify-center overflow-hidden py-16 lg:py-24 bg-white dark:bg-[#060A08]"
         style={{ minHeight: '100dvh' }}
       >
         {/* ── ANA YUVARLAK KAPSAYICI (Island Window) ── */}
@@ -249,7 +240,7 @@ export default function Features() {
 
                           <div className="flex justify-between px-2 mb-8">
                             <div className="flex flex-col items-center gap-2">
-                              <div className="w-[52px] h-[52px] rounded-full bg-white border border-slate-100 shadow-[0_4px_15px_rgb(0,0,0,0.03)] flex items-center justify-center text-emerald-700"><Activity size={24} /></div>
+                              <div className="w-[52px] h-[52px] rounded-full bg-white border border-slate-100 shadow-[0_4px_15px_rgb(0,0,0,0.03)] flex items-center justify-center text-emerald-700"><Activity className="w-5 h-5 md:w-6 md:h-6" /></div>
                               <span className="text-[10px] font-bold text-emerald-800">{t('feat_s1_summary_title')}</span>
                             </div>
                             <div className="flex flex-col items-center gap-2 opacity-60">
@@ -689,9 +680,9 @@ export default function Features() {
       </section>{/* =========================================
             1. BÖLÜM: Sol Metin, Sağ Dashboard
             ========================================= */}
-      <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start py-20 lg:py-0 flex items-center bg-[var(--bg-secondary)]">
+      <section className="min-h-0 lg:min-h-[100dvh] h-auto lg:h-[100dvh] py-10 lg:py-0 flex items-center bg-[var(--bg-secondary)]">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
 
             {/* Sol Kısım: Metinler ve Maddeler */}
             <div className="flex-1 space-y-8 w-full">
@@ -699,10 +690,10 @@ export default function Features() {
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-transparent text-emerald-600 dark:text-emerald-400 text-sm font-bold shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent">
                   <Activity size={16} /> {t('feat_s1_badge')}
                 </div>
-                <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] leading-tight tracking-tight whitespace-pre-line">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] leading-tight tracking-tight whitespace-pre-line">
                   {t('feat_new_s1_title')}
                 </h2>
-                <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+                <p className="text-base md:text-lg text-[var(--text-muted)] font-medium leading-relaxed">
                   {t('feat_new_s1_desc')}
                 </p>
               </div>
@@ -710,28 +701,28 @@ export default function Features() {
               <div className="space-y-6 pt-4">
                 {/* Madde 1 */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-100/50 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center shrink-0">
-                    <Activity size={24} />
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] md:rounded-xl bg-emerald-100/50 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center shrink-0">
+                    <Activity className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
-                  <div className="mt-3 text-base font-bold text-slate-800 dark:text-white">
+                  <div className="mt-2.5 md:mt-3 text-sm md:text-base font-bold text-slate-800 dark:text-white">
                     {t('feat_new_s1_li1')}
                   </div>
                 </div>
                 {/* Madde 2 */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-100/50 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center shrink-0">
-                    <Heart size={24} />
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] md:rounded-xl bg-emerald-100/50 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center shrink-0">
+                    <Heart className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
-                  <div className="mt-3 text-base font-bold text-slate-800 dark:text-white">
+                  <div className="mt-2.5 md:mt-3 text-sm md:text-base font-bold text-slate-800 dark:text-white">
                     {t('feat_new_s1_li2')}
                   </div>
                 </div>
                 {/* Madde 3 */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-100/50 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center shrink-0">
-                    <ShieldCheck size={24} />
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] md:rounded-xl bg-emerald-100/50 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
-                  <div className="mt-3 text-base font-bold text-slate-800 dark:text-white">
+                  <div className="mt-2.5 md:mt-3 text-sm md:text-base font-bold text-slate-800 dark:text-white">
                     {t('feat_new_s1_li3')}
                   </div>
                 </div>
@@ -873,9 +864,9 @@ export default function Features() {
         </div>
       </section>
 
-      <section className="min-h-[100dvh] h-auto lg:h-[100dvh] snap-start snap-always py-20 lg:py-0 flex items-center bg-[var(--bg-main)]">
+      <section className="min-h-0 lg:min-h-[100dvh] h-auto lg:h-[100dvh] py-10 lg:py-0 flex items-center bg-[var(--bg-main)]">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
 
             {/* Left: Dynamic Dashboard Visual (3-Card Stack) */}
             <motion.div
@@ -970,7 +961,7 @@ export default function Features() {
                   </div>
 
                   {/* Mock Chart */}
-                  <div className="relative h-20 w-full mt-2">
+                  <div className="relative h-24 w-[90%] mx-auto md:h-20 md:w-full md:mx-0 mt-4 md:mt-2">
                     <svg className="w-full h-full overflow-visible" viewBox="0 0 100 40" preserveAspectRatio="none">
                       <motion.path
                         d="M 5,35 L 25,25 L 50,30 L 75,15 L 95,5"
@@ -1044,35 +1035,35 @@ export default function Features() {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-transparent text-rose-500 dark:text-rose-400 text-sm font-bold shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent">
                 <Bell size={16} /> {t('feat_s2_badge')}
               </div>
-              <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] leading-tight whitespace-pre-line">{t('feat_new_s2_title')}</h2>
-              <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] leading-tight whitespace-pre-line">{t('feat_new_s2_title')}</h2>
+              <p className="text-base md:text-lg text-[var(--text-muted)] font-medium leading-relaxed">
                 {t('feat_new_s2_desc')}
               </p>
 
               <div className="flex flex-col gap-4 pt-4">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-rose-100/50 dark:bg-rose-900/30 text-rose-500 dark:text-rose-400 flex items-center justify-center shrink-0">
-                    <Bell size={24} />
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] md:rounded-xl bg-rose-100/50 dark:bg-rose-900/30 text-rose-500 dark:text-rose-400 flex items-center justify-center shrink-0">
+                    <Bell className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
-                  <div className="mt-3 text-base font-bold text-slate-800 dark:text-white">
+                  <div className="mt-2.5 md:mt-3 text-sm md:text-base font-bold text-slate-800 dark:text-white">
                     {t('feat_new_s2_li1')}
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-rose-100/50 dark:bg-rose-900/30 text-rose-500 dark:text-rose-400 flex items-center justify-center shrink-0">
-                    <Activity size={24} />
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] md:rounded-xl bg-rose-100/50 dark:bg-rose-900/30 text-rose-500 dark:text-rose-400 flex items-center justify-center shrink-0">
+                    <Activity className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
-                  <div className="mt-3 text-base font-bold text-slate-800 dark:text-white">
+                  <div className="mt-2.5 md:mt-3 text-sm md:text-base font-bold text-slate-800 dark:text-white">
                     {t('feat_new_s2_li2')}
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-rose-100/50 dark:bg-rose-900/30 text-rose-500 dark:text-rose-400 flex items-center justify-center shrink-0">
-                    <AlertTriangle size={24} />
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] md:rounded-xl bg-rose-100/50 dark:bg-rose-900/30 text-rose-500 dark:text-rose-400 flex items-center justify-center shrink-0">
+                    <AlertTriangle className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
-                  <div className="mt-3 text-base font-bold text-slate-800 dark:text-white">
+                  <div className="mt-2.5 md:mt-3 text-sm md:text-base font-bold text-slate-800 dark:text-white">
                     {t('feat_new_s2_li3')}
                   </div>
                 </div>
@@ -1083,59 +1074,59 @@ export default function Features() {
         </div>
       </section>
 
-      <section className="min-h-[100dvh] h-auto lg:min-h-[100dvh] lg:h-auto snap-start py-20 snap-always flex items-center bg-[var(--bg-main)]">
+      <section className="min-h-0 lg:min-h-[100dvh] h-auto lg:h-auto py-10 lg:py-0 flex items-center bg-[var(--bg-main)]">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
 
             {/* Left: Text */}
             <div className="flex-1 space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-transparent text-orange-500 dark:text-orange-400 text-sm font-bold shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent">
                 <Search size={16} /> {t('feat_new_s3_title')}
               </div>
-              <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] leading-tight">{t('feat_new_s3_title')}</h2>
-              <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] leading-tight">{t('feat_new_s3_title')}</h2>
+              <p className="text-base md:text-lg text-[var(--text-muted)] font-medium leading-relaxed">
                 {t('feat_new_s3_desc')}
               </p>
 
               <div className="flex flex-col gap-4 pt-4">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-orange-100/50 dark:bg-orange-900/30 text-orange-500 dark:text-orange-400 flex items-center justify-center shrink-0">
-                    <Search size={24} />
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] md:rounded-xl bg-orange-100/50 dark:bg-orange-900/30 text-orange-500 dark:text-orange-400 flex items-center justify-center shrink-0">
+                    <Search className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
-                  <div className="mt-3 text-base font-bold text-slate-800 dark:text-white">
+                  <div className="mt-2.5 md:mt-3 text-sm md:text-base font-bold text-slate-800 dark:text-white">
                     {t('feat_new_s3_li1')}
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-orange-100/50 dark:bg-orange-900/30 text-orange-500 dark:text-orange-400 flex items-center justify-center shrink-0">
-                    <CheckCircle2 size={24} />
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] md:rounded-xl bg-orange-100/50 dark:bg-orange-900/30 text-orange-500 dark:text-orange-400 flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
-                  <div className="mt-3 text-base font-bold text-slate-800 dark:text-white">
+                  <div className="mt-2.5 md:mt-3 text-sm md:text-base font-bold text-slate-800 dark:text-white">
                     {t('feat_new_s3_li2')}
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-orange-100/50 dark:bg-orange-900/30 text-orange-500 dark:text-orange-400 flex items-center justify-center shrink-0">
-                    <Send size={24} />
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] md:rounded-xl bg-orange-100/50 dark:bg-orange-900/30 text-orange-500 dark:text-orange-400 flex items-center justify-center shrink-0">
+                    <Send className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
-                  <div className="mt-3 text-base font-bold text-slate-800 dark:text-white">
+                  <div className="mt-2.5 md:mt-3 text-sm md:text-base font-bold text-slate-800 dark:text-white">
                     {t('feat_new_s3_li3')}
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right: Dynamic Visual */}
+            {/* Right: Interactive Maps / Directory Visual */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="flex-1 w-full flex justify-center lg:justify-end relative"
+              className="flex-1 w-full relative h-auto sm:h-[450px] lg:h-[550px] max-w-xl mx-auto flex flex-col sm:flex-row justify-center lg:justify-end items-center mt-8 sm:mt-0"
             >
-              <div className="w-full max-w-[380px] relative lg:ml-8 mt-12 lg:mt-0 flex flex-col items-center justify-center mb-24 lg:mb-0">
+              <div className="w-full max-w-[380px] relative lg:ml-8 -mt-4 lg:mt-0 flex flex-col items-center justify-center mb-6 lg:mb-0">
 
                 {/* Main Card: Clinic List */}
                 <div className="w-full bg-[#FAF8F5] dark:bg-zinc-900 rounded-[2.5rem] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-slate-100 dark:border-zinc-800 z-10 flex flex-col gap-4 relative">
@@ -1210,7 +1201,6 @@ export default function Features() {
                       </div>
                     </div>
                   </div>
-                </div>
 
                 {/* Floating Chat Bubble (Left/Bottom) */}
                 <motion.div
@@ -1218,7 +1208,7 @@ export default function Features() {
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                  className="absolute -left-8 -bottom-16 lg:-left-68 lg:-bottom-24 w-[320px] bg-[#FAF8F5] dark:bg-zinc-900 rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-slate-100 dark:border-zinc-800 z-30 hidden sm:block"
+                  className="relative mt-4 sm:mt-0 sm:absolute sm:-left-8 sm:-bottom-16 lg:-left-68 lg:-bottom-24 w-full sm:w-[320px] bg-white sm:bg-[#FAF8F5] dark:bg-zinc-900 rounded-[2rem] shadow-sm sm:shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-slate-100 dark:border-zinc-800 z-30 block"
                 >
                   {/* Header */}
                   <div className="flex items-center justify-between p-3 pb-2 border-b border-slate-200 dark:border-zinc-800">
@@ -1259,6 +1249,7 @@ export default function Features() {
                     </div>
                   </div>
                 </motion.div>
+                </div>
 
                 {/* Floating Rating Card (Right/Bottom) */}
                 <motion.div
@@ -1298,9 +1289,9 @@ export default function Features() {
         </div>
       </section>
 
-      <section className="min-h-[100dvh] h-auto lg:min-h-[100dvh] lg:h-auto snap-start py-20 snap-always flex items-center bg-[var(--bg-secondary)]">
+      <section className="min-h-0 lg:min-h-[100dvh] h-auto lg:h-auto py-10 lg:py-0 flex items-center bg-[var(--bg-secondary)]">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
 
             {/* Left: Dynamic Dashboard Visual (Bento Grid) */}
             <motion.div
@@ -1446,7 +1437,7 @@ export default function Features() {
                     initial={{ opacity: 0, y: 20, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ delay: 1.2, duration: 0.5 }}
-                    className="absolute -bottom-10 -right-8 lg:-bottom-12 lg:-right-12 bg-white dark:bg-zinc-800 rounded-2xl p-3.5 shadow-xl border border-slate-100 dark:border-zinc-700 w-64 md:w-[17rem] z-10 hidden sm:block"
+                    className="relative mt-4 sm:mt-0 sm:absolute sm:-bottom-10 sm:-right-8 lg:-bottom-12 lg:-right-12 bg-white dark:bg-zinc-800 rounded-2xl p-3.5 shadow-md sm:shadow-xl border border-slate-100 dark:border-zinc-700 w-full sm:w-64 md:w-[17rem] z-10"
                   >
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-700 pb-2 mb-2.5">
@@ -1482,39 +1473,39 @@ export default function Features() {
             </motion.div>
 
             {/* Right: Text */}
-            <div className="flex-1 space-y-6 lg:order-2 order-1 lg:pl-12">
+            <div className="flex-1 space-y-6 lg:order-2 order-1 lg:pl-12 -mt-6 lg:mt-0 relative z-20">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-transparent text-fuchsia-500 dark:text-fuchsia-400 text-sm font-bold shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent">
                 <Users size={16} /> {t("feat_community_badge")}
               </div>
-              <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] leading-tight whitespace-pre-line">{t("feat_community_title")}</h2>
-              <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] leading-tight whitespace-pre-line">{t("feat_community_title")}</h2>
+              <p className="text-base md:text-lg text-[var(--text-muted)] font-medium leading-relaxed">
                 {t("feat_community_desc")}
               </p>
 
               <div className="flex flex-col gap-4 pt-4">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-fuchsia-100/50 dark:bg-fuchsia-900/30 text-fuchsia-500 flex items-center justify-center shrink-0">
-                    <Search size={24} />
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] md:rounded-xl bg-fuchsia-100/50 dark:bg-fuchsia-900/30 text-fuchsia-500 flex items-center justify-center shrink-0">
+                    <Search className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
-                  <div className="mt-3 text-base font-bold text-slate-800 dark:text-white">
+                  <div className="mt-2.5 md:mt-3 text-sm md:text-base font-bold text-slate-800 dark:text-white">
                     {t("feat_community_li1")}
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-fuchsia-100/50 dark:bg-fuchsia-900/30 text-fuchsia-500 flex items-center justify-center shrink-0">
-                    <FileText size={24} />
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] md:rounded-xl bg-fuchsia-100/50 dark:bg-fuchsia-900/30 text-fuchsia-500 flex items-center justify-center shrink-0">
+                    <FileText className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
-                  <div className="mt-3 text-base font-bold text-slate-800 dark:text-white">
+                  <div className="mt-2.5 md:mt-3 text-sm md:text-base font-bold text-slate-800 dark:text-white">
                     {t("feat_community_li2")}
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-fuchsia-100/50 dark:bg-fuchsia-900/30 text-fuchsia-500 flex items-center justify-center shrink-0">
-                    <Home size={24} />
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-[10px] md:rounded-xl bg-fuchsia-100/50 dark:bg-fuchsia-900/30 text-fuchsia-500 flex items-center justify-center shrink-0">
+                    <Home className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
-                  <div className="mt-3 text-base font-bold text-slate-800 dark:text-white">
+                  <div className="mt-2.5 md:mt-3 text-sm md:text-base font-bold text-slate-800 dark:text-white">
                     {t("feat_community_li3")}
                   </div>
                 </div>
@@ -1527,7 +1518,7 @@ export default function Features() {
 
 
       {/* 5. Bölüm: Veteriner Klinikleri İçin Yönlendirme */}
-      <section className="min-h-[100dvh] h-auto overflow-x-hidden snap-start flex flex-col bg-[#FAF9F6] dark:bg-zinc-950 relative pt-12 lg:pt-20">
+      <section className="min-h-[100dvh] h-auto overflow-x-hidden flex flex-col bg-[#FAF9F6] dark:bg-zinc-950 relative pt-12 lg:pt-40">
         <div className="w-full max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center flex-1 pb-12 lg:pb-20">
 
           {/* Header Text & CTA */}
