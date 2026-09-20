@@ -576,15 +576,19 @@ export default function Features() {
                   >
                     {/* 1. Kutu: Dikey Açıklama (Başlığın altında solda) */}
                     <div className={`absolute -left-[4px] w-[50%] ${activeTab === 'owners' ? '-top-[313px]' : activeTab === 'community' ? '-top-[313px]' : '-top-[293px]'}`}>
-                      <div className="bg-white/40 dark:bg-black/40 backdrop-blur-[45px] p-4 rounded-3xl border border-white/60 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full">
-                        <p className="text-[13px] text-slate-700 dark:text-slate-200 font-medium leading-relaxed">
-                          {activeTab === 'owners' ? t('feat_own_desc') : activeTab === 'pets' ? t('feat_pet_desc') : t('feat_com_desc')}
+                      <div className="bg-white/40 dark:bg-black/40 backdrop-blur-[45px] px-3 py-4 rounded-3xl border border-white/60 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full">
+                        <p className="text-[12px] text-slate-700 dark:text-slate-200 font-medium leading-relaxed">
+                          {activeTab === 'owners' ? t('feat_own_desc') : activeTab === 'pets' ? (
+                            <>
+                              {t('feat_pet_desc').split('. Acil')[0]}. <br />Acil{t('feat_pet_desc').split('. Acil')[1].replace('ile dostunuz', 'ile\u00A0dostunuz')}
+                            </>
+                          ) : t('feat_com_desc')}
                         </p>
                       </div>
                     </div>
 
                     {/* 2. Kutu: Özellik Maddeleri (Telefonun altında yatay tam genişlik) */}
-                    <div className="bg-white/40 dark:bg-black/40 backdrop-blur-[45px] p-5 lg:p-6 rounded-3xl border border-white/60 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full flex flex-col items-start">
+                    <div className="-mt-1 bg-white/40 dark:bg-black/40 backdrop-blur-[45px] p-5 lg:p-6 rounded-3xl border border-white/60 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full flex flex-col items-start">
                       <div className="space-y-6 w-full">
                         {/* Madde 1 */}
                         <div className="flex flex-col gap-1.5">
