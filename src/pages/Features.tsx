@@ -114,7 +114,7 @@ export default function Features() {
             <div className="relative flex-1 w-full h-full">
 
               {/* 3. TELEFON MOCKUP (Tam Merkezde Kaydırılabilir) */}
-              <div className="absolute right-[-10px] -top-[146px] lg:top-auto lg:right-auto lg:absolute lg:left-1/2 lg:-translate-x-1/2 bottom-auto lg:bottom-6 z-10 flex justify-center items-center lg:items-end h-auto lg:h-full w-full">
+              <div className="absolute right-[-14px] -top-[146px] lg:top-auto lg:right-auto lg:absolute lg:left-1/2 lg:-translate-x-1/2 bottom-auto lg:bottom-6 z-10 flex justify-center items-center lg:items-end h-auto lg:h-full w-full">
                 <AnimatePresence mode="wait">
 
                   {activeTab === 'owners' && (
@@ -575,7 +575,7 @@ export default function Features() {
                     className="flex flex-col w-full relative pointer-events-auto"
                   >
                     {/* 1. Kutu: Dikey Açıklama (Başlığın altında solda) */}
-                    <div className="absolute -top-[293px] left-0 w-[50%]">
+                    <div className={`absolute -left-[4px] w-[50%] ${activeTab === 'owners' ? '-top-[313px]' : activeTab === 'community' ? '-top-[313px]' : '-top-[293px]'}`}>
                       <div className="bg-white/40 dark:bg-black/40 backdrop-blur-[45px] p-4 rounded-3xl border border-white/60 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full">
                         <p className="text-[13px] text-slate-700 dark:text-slate-200 font-medium leading-relaxed">
                           {activeTab === 'owners' ? t('feat_own_desc') : activeTab === 'pets' ? t('feat_pet_desc') : t('feat_com_desc')}
@@ -590,11 +590,11 @@ export default function Features() {
                         <div className="flex flex-col gap-1.5">
                           <div className="flex items-center gap-2 text-amber-500">
                             <Bell size={18} className="shrink-0" />
-                            <span className="font-bold text-slate-900 dark:text-white text-[14px]">
+                            <span className="font-bold text-slate-900 dark:text-white text-[13px]">
                               {activeTab === 'owners' ? t('feat_own_f1_title') : activeTab === 'pets' ? t('feat_pet_f1_title') : t('feat_com_f1_title')}
                             </span>
                           </div>
-                          <p className="text-[11px] text-slate-800 dark:text-slate-200 font-medium pl-6 leading-snug">
+                          <p className="text-[10px] text-slate-800 dark:text-slate-200 font-medium pl-6 leading-snug">
                             {activeTab === 'owners' ? t('feat_own_f1_desc') : activeTab === 'pets' ? t('feat_pet_f1_desc') : t('feat_com_f1_desc')}
                           </p>
                         </div>
@@ -603,11 +603,11 @@ export default function Features() {
                         <div className="flex flex-col gap-1.5">
                           <div className="flex items-center gap-2 text-rose-500">
                             <Users size={18} className="shrink-0" />
-                            <span className="font-bold text-slate-900 dark:text-white text-[14px]">
+                            <span className="font-bold text-slate-900 dark:text-white text-[13px]">
                               {activeTab === 'owners' ? t('feat_own_f2_title') : activeTab === 'pets' ? t('feat_pet_f2_title') : t('feat_com_f2_title')}
                             </span>
                           </div>
-                          <p className="text-[11px] text-slate-800 dark:text-slate-200 font-medium pl-6 leading-snug">
+                          <p className="text-[10px] text-slate-800 dark:text-slate-200 font-medium pl-6 leading-snug">
                             {activeTab === 'owners' ? t('feat_own_f2_desc') : activeTab === 'pets' ? t('feat_pet_f2_desc') : t('feat_com_f2_desc')}
                           </p>
                         </div>
@@ -616,11 +616,11 @@ export default function Features() {
                         <div className="flex flex-col gap-1.5">
                           <div className="flex items-center gap-2 text-sky-500">
                             <FileText size={18} className="shrink-0" />
-                            <span className="font-bold text-slate-900 dark:text-white text-[14px]">
+                            <span className="font-bold text-slate-900 dark:text-white text-[13px]">
                               {activeTab === 'owners' ? t('feat_own_f3_title') : activeTab === 'pets' ? t('feat_pet_f3_title') : t('feat_com_f3_title')}
                             </span>
                           </div>
-                          <p className="text-[11px] text-slate-800 dark:text-slate-200 font-medium pl-6 leading-snug">
+                          <p className="text-[10px] text-slate-800 dark:text-slate-200 font-medium pl-6 leading-snug">
                             {activeTab === 'owners' ? t('feat_own_f3_desc') : activeTab === 'pets' ? t('feat_pet_f3_desc') : t('feat_com_f3_desc')}
                           </p>
                         </div>
