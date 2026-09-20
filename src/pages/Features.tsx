@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Activity, AlertTriangle, ArrowLeft, ArrowRight, Bell, Bookmark, Building2, Calendar, CalendarDays, Camera, CheckCircle2, ChevronDown, ChevronRight, ChevronUp, ChevronsUpDown, FileText, Heart, Home, LayoutDashboard, LogOut, MapPin, MessageCircle, MoreHorizontal, PawPrint, Phone, Plus, Search, Send, Share2, ShieldCheck, Star, StarHalf, Stethoscope, User, Users } from 'lucide-react';
 import SEO from '../components/SEO';
