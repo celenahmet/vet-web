@@ -225,7 +225,7 @@ const Navbar = () => {
                 key={link.to}
                 to={link.to}
                 onClick={menuKapat} 
-                className={`block text-2xl font-bold ${location.pathname === link.to ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-main)]'}`}
+                className={`block text-[22px] font-bold ${location.pathname === link.to ? 'text-[var(--color-vet-primary)]' : 'text-[var(--text-main)]'}`}
               >
                 {t(link.label)}
               </Link>

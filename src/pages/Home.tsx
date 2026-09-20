@@ -16,10 +16,10 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // Enable snap scrolling for Home page
-    document.documentElement.classList.add('snap-y', 'snap-mandatory', 'scroll-smooth');
+    // Enable smooth scrolling for Home page
+    document.documentElement.classList.add('scroll-smooth');
     return () => {
-      document.documentElement.classList.remove('snap-y', 'snap-mandatory', 'scroll-smooth');
+      document.documentElement.classList.remove('scroll-smooth');
     };
   }, []);
 
@@ -47,7 +47,7 @@ export default function Home() {
         {/* =========================================
             1. HERO SECTION
             ========================================= */}
-                <section className="min-h-[100dvh] h-auto lg:h-[100dvh] w-full snap-start snap-always relative flex items-center justify-center pt-20 border-b border-[var(--border-color)] bg-[var(--bg-main)] overflow-hidden">
+                <section className="min-h-[100dvh] h-auto lg:h-[100dvh] w-full relative flex items-center justify-center pt-20 bg-[var(--bg-main)] overflow-hidden">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
             <div className="flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-12 w-full">
               
@@ -93,7 +93,7 @@ export default function Home() {
             1.5. HIGHLIGHTS (Neden Veterito'yu İndirmelisiniz?)
             ========================================= */}
         
-        <section className="min-h-screen h-auto lg:h-screen snap-always snap-start py-24 lg:py-0 flex flex-col justify-center bg-[var(--bg-main)]">
+        <section className="min-h-screen h-auto lg:h-screen pt-20 pb-8 md:py-24 lg:py-0 flex flex-col justify-center bg-[var(--bg-main)]">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
             <div className="text-center max-w-2xl lg:max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-6">{t('home_why_title')}</h2>
@@ -164,11 +164,11 @@ export default function Home() {
         {/* =========================================
             5.5. APP SHOWCASE / MOCKUP GALLERY
             ========================================= */}
-        <section className="w-full h-auto md:h-[100dvh] min-h-[600px] snap-start snap-always bg-[var(--bg-secondary)] pt-16 pb-12 md:pb-4 flex flex-col border-b border-[var(--border-color)] overflow-hidden">
+        <section className="w-full h-auto md:h-[100dvh] min-h-[600px] bg-[var(--bg-secondary)] pt-12 md:pt-16 pb-6 md:pb-4 flex flex-col overflow-hidden">
            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col h-full items-center">
              
              {/* Title Area */}
-             <div className="text-center w-full max-w-4xl mx-auto mt-6 lg:mt-8 mb-0 shrink-0 flex flex-col items-center">
+             <div className="text-center w-full max-w-4xl mx-auto mt-2 md:mt-6 lg:mt-8 mb-0 shrink-0 flex flex-col items-center">
                <h2 className="text-2xl sm:text-3xl md:text-4xl leading-tight font-extrabold text-[var(--text-main)] mb-3">{t('home_mockup_title')}</h2>
                <p className="text-sm sm:text-base md:text-lg text-[var(--text-muted)] font-medium max-w-3xl mx-auto px-4 leading-relaxed mb-2">{t('home_mockup_subtitle')}</p>
              </div>
@@ -178,7 +178,7 @@ export default function Home() {
                <MockupGallery />
                
                {/* Mobile Button */}
-               <div className="mt-4 mb-8 md:hidden z-40 flex justify-center w-full">
+                <div className="mt-4 mb-8 md:hidden z-40 flex justify-center w-full">
                  <Link to="/features" className="group inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[var(--color-vet-primary)] hover:bg-[var(--color-vet-secondary)] text-white font-semibold rounded-full transition-all shadow-sm hover:shadow-md">{t('home_mockup_btn')}<ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                  </Link>
                </div>
@@ -196,7 +196,7 @@ export default function Home() {
         {/* =========================================
             6. PRICING & FOOTER
             ========================================= */}
-        <section className="relative w-full h-[100dvh] snap-start snap-always bg-[var(--bg-main)] py-16 flex flex-col justify-center items-center overflow-hidden">
+        <section className="relative w-full h-auto md:h-[100dvh] bg-[var(--bg-main)] pt-16 pb-16 md:py-16 flex flex-col justify-center items-center overflow-hidden">
           
           {/* Animated Wavy Background Lines */}
           <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden hidden md:flex items-center justify-center opacity-60">

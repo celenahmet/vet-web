@@ -24,7 +24,7 @@ export default function Features() {
   }, []);
 
   return (
-    <div className="w-full relative bg-[var(--bg-main)]">
+    <div className="w-full relative bg-[var(--bg-main)] overflow-x-hidden">
       <SEO title={t('seo_title_features')} description={t('seo_desc_features2')} />
 
 
@@ -36,14 +36,14 @@ export default function Features() {
       >
         {/* ── ANA YUVARLAK KAPSAYICI (Island Window) ── */}
         <div
-          className="relative z-10 w-[96%] lg:max-w-[1150px] mx-auto h-[85vh] min-h-[700px] max-h-[800px] rounded-[3rem] lg:rounded-[4rem] border-[6px] border-white dark:border-white/10 shadow-2xl flex flex-col bg-[url('/showcase-bg-final.jpg')] dark:bg-[url('/showcase-bg-dark.jpg')] bg-cover bg-center overflow-hidden"
+          className="relative z-10 w-[96%] lg:max-w-[1150px] mx-auto h-auto lg:h-[85vh] min-h-[700px] lg:max-h-[800px] rounded-[3rem] lg:rounded-[4rem] border-[6px] border-white dark:border-white/10 shadow-2xl flex flex-col bg-[url('/showcase-bg-final.jpg')] dark:bg-[url('/showcase-bg-dark.jpg')] bg-cover bg-center overflow-hidden"
         >
           {/* Pencere İçi İnce Gölge / Işık */}
           <div className="absolute inset-0 rounded-[3rem] lg:rounded-[4rem] bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 dark:to-transparent pointer-events-none"></div>
 
           <div className="relative z-20 flex flex-col h-full">
-            {/* 1. ÜSTTE 3'LÜ TAB MENÜSÜ (Notch Design) */}
-            <div className="absolute -top-[6px] left-1/2 -translate-x-1/2 z-50 flex justify-center">
+            {/* 1. ÜSTTE 3'LÜ TAB MENÜSÜ (Notch Design on Desktop, Floating Pill on Mobile) */}
+            <div className="absolute -top-[6px] left-1/2 -translate-x-1/2 z-50 flex justify-center w-full">
               <div className="bg-white dark:bg-[#060A08] px-3 py-3 rounded-b-[40px] shadow-[0_20px_40px_rgba(0,0,0,0.06)] border-b border-l border-r border-slate-200/50 dark:border-white/5 flex gap-2 items-center relative">
 
                 {/* Sol Ters Köşe (Inverted Corner) */}
@@ -57,10 +57,10 @@ export default function Features() {
                 </svg>
 
                 {/* İçerideki Tablar */}
-                <div className="flex gap-2 bg-slate-100/60 dark:bg-white/5 p-1.5 rounded-[2rem] border border-slate-200/50 dark:border-white/5 relative z-10">
+                <div className="flex gap-1 md:gap-2 bg-slate-100/60 dark:bg-white/5 p-1 md:p-1.5 rounded-[2rem] border border-slate-200/50 dark:border-white/5 relative z-10 w-full max-w-[90vw] overflow-x-auto no-scrollbar justify-start md:justify-center">
                   <button
                     onClick={() => setActiveTab('owners')}
-                    className={`px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 ${activeTab === 'owners'
+                    className={`whitespace-nowrap px-3 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs md:text-sm transition-all duration-300 ${activeTab === 'owners'
                       ? 'bg-white dark:bg-[#113123] text-emerald-900 dark:text-[#6ee7b7] shadow-md'
                       : 'text-slate-600 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-white'}`}
                   >
@@ -68,7 +68,7 @@ export default function Features() {
                   </button>
                   <button
                     onClick={() => setActiveTab('pets')}
-                    className={`px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 ${activeTab === 'pets'
+                    className={`whitespace-nowrap px-3 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs md:text-sm transition-all duration-300 ${activeTab === 'pets'
                       ? 'bg-white dark:bg-[#113123] text-emerald-900 dark:text-[#6ee7b7] shadow-md'
                       : 'text-slate-600 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-white'}`}
                   >
@@ -76,7 +76,7 @@ export default function Features() {
                   </button>
                   <button
                     onClick={() => setActiveTab('community')}
-                    className={`px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 ${activeTab === 'community'
+                    className={`whitespace-nowrap px-3 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-xs md:text-sm transition-all duration-300 ${activeTab === 'community'
                       ? 'bg-white dark:bg-[#113123] text-emerald-900 dark:text-[#6ee7b7] shadow-md'
                       : 'text-slate-600 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-white'}`}
                   >
@@ -87,23 +87,23 @@ export default function Features() {
             </div>
 
             {/* Üst Kısım: Başlık */}
-            <div className="pt-32 lg:pt-40 px-8 lg:px-12">
+            <div className="pt-20 lg:pt-40 px-8 lg:px-12">
               {/* 2. ANA BAŞLIK (Sola Hizalı ve Siyah Renkli) */}
-              <div className="w-full max-w-[350px] lg:max-w-[450px] xl:max-w-[550px] relative z-30">
+              <div className="w-[65%] lg:w-full max-w-[350px] lg:max-w-[450px] xl:max-w-[550px] relative z-30 min-h-[150px] lg:min-h-0 flex items-start">
                 <AnimatePresence mode="wait">
                   {activeTab === 'owners' && (
-                    <motion.h2 key="title-owners" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="text-[26px] lg:text-[2.25rem] xl:text-[2.75rem] font-black leading-tight tracking-normal text-emerald-950 dark:text-emerald-50">
+                    <motion.h2 key="title-owners" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="text-[18px] lg:text-[2.25rem] xl:text-[2.75rem] font-black leading-tight tracking-normal text-emerald-950 dark:text-emerald-50">
                       {t('feat_own_title1')}<br />{t('feat_own_title2')}<br />{t('feat_own_title3')}
                     </motion.h2>
                   )}
                   {activeTab === 'pets' && (
-                    <motion.h2 key="title-pets" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="text-[26px] lg:text-[2.25rem] xl:text-[2.75rem] font-black leading-tight tracking-normal text-emerald-950 dark:text-emerald-50">
+                    <motion.h2 key="title-pets" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="text-[18px] lg:text-[2.25rem] xl:text-[2.75rem] font-black leading-tight tracking-normal text-emerald-950 dark:text-emerald-50">
                       {t('feat_pet_title1')}<br />{t('feat_pet_title2')}<br />{t('feat_pet_title3')}<br />{t('feat_pet_title4')}
                     </motion.h2>
                   )}
                   {activeTab === 'community' && (
-                    <motion.h2 key="title-community" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="text-[26px] lg:text-[2.25rem] xl:text-[2.75rem] font-black leading-tight tracking-normal text-emerald-950 dark:text-emerald-50 pr-8 lg:pr-12 xl:pr-24">
-                      {t('feat_com_title1')}<br />{t('feat_com_title2')} {t('feat_com_title3')}
+                    <motion.h2 key="title-community" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="text-[18px] lg:text-[2.25rem] xl:text-[2.75rem] font-black leading-tight tracking-normal text-emerald-950 dark:text-emerald-50 pr-4 lg:pr-12 xl:pr-24">
+                      {t('feat_com_title1')}<br />{t('feat_com_title2')} <br className="md:hidden" /><span className="hidden md:inline"> </span>{t('feat_com_title3')}
                     </motion.h2>
                   )}
                 </AnimatePresence>
@@ -114,11 +114,11 @@ export default function Features() {
             <div className="relative flex-1 w-full h-full">
 
               {/* 3. TELEFON MOCKUP (Tam Merkezde Kaydırılabilir) */}
-              <div className="absolute left-1/2 -translate-x-1/2 bottom-2 lg:bottom-6 z-10 flex justify-center items-end h-full">
+              <div className="absolute right-[-10px] -top-[146px] lg:top-auto lg:right-auto lg:absolute lg:left-1/2 lg:-translate-x-1/2 bottom-auto lg:bottom-6 z-10 flex justify-center items-center lg:items-end h-auto lg:h-full w-full">
                 <AnimatePresence mode="wait">
 
                   {activeTab === 'owners' && (
-                    <motion.div key="mockup-owners" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }} className="origin-bottom scale-[0.80] lg:scale-[0.90] relative">
+                    <motion.div key="mockup-owners" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }} className="origin-top-right lg:origin-bottom scale-[0.60] lg:scale-[0.90] relative">
 
 
 
@@ -219,7 +219,7 @@ export default function Features() {
                   )}
 
                   {activeTab === 'pets' && (
-                    <motion.div key="mockup-pets" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }} className="origin-bottom scale-[0.80] lg:scale-[0.90] relative">
+                    <motion.div key="mockup-pets" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }} className="origin-top-right lg:origin-bottom scale-[0.60] lg:scale-[0.90] relative">
 
 
 
@@ -349,7 +349,7 @@ export default function Features() {
                   )}
 
                   {activeTab === 'community' && (
-                    <motion.div key="mockup-community" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }} className="origin-bottom scale-[0.80] lg:scale-[0.90] relative">
+                    <motion.div key="mockup-community" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }} className="origin-top-right lg:origin-bottom scale-[0.60] lg:scale-[0.90] relative">
 
 
 
@@ -564,7 +564,7 @@ export default function Features() {
               </div>
 
               {/* MOBİL İÇİN ALT KUTULAR */}
-              <div className="md:hidden mt-[500px] flex flex-col gap-4 z-20 w-full relative pb-4 px-4">
+              <div className="md:hidden mt-[261px] flex flex-col z-20 w-full relative pb-[17px] px-4">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={`mobile-${activeTab}`}
@@ -572,30 +572,59 @@ export default function Features() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 20 }}
                     transition={{ duration: 0.3 }}
-                    className="flex flex-col gap-4 pointer-events-auto"
+                    className="flex flex-col w-full relative pointer-events-auto"
                   >
-                    <div className="bg-white dark:bg-[#111A15] p-6 rounded-3xl border border-slate-200/50 dark:border-white/5 shadow-xl w-full">
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                        {activeTab === 'owners' ? t('feat_own_title1') : activeTab === 'pets' ? t('feat_pet_title1') : t('feat_com_title1')}
-                      </h3>
-                      <p className="text-sm text-slate-600 dark:text-slate-200 font-medium">
-                        {activeTab === 'owners' ? t('feat_own_desc') : activeTab === 'pets' ? t('feat_pet_desc') : t('feat_com_desc')}
-                      </p>
+                    {/* 1. Kutu: Dikey Açıklama (Başlığın altında solda) */}
+                    <div className="absolute -top-[293px] left-0 w-[50%]">
+                      <div className="bg-white/40 dark:bg-black/40 backdrop-blur-[45px] p-4 rounded-3xl border border-white/60 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full">
+                        <p className="text-[13px] text-slate-700 dark:text-slate-200 font-medium leading-relaxed">
+                          {activeTab === 'owners' ? t('feat_own_desc') : activeTab === 'pets' ? t('feat_pet_desc') : t('feat_com_desc')}
+                        </p>
+                      </div>
                     </div>
-                    <div className="bg-white/70 dark:bg-black/50 backdrop-blur-xl p-6 rounded-3xl border border-white/60 dark:border-white/5 shadow-xl w-full flex justify-between items-end">
-                      <ul className="space-y-3">
-                        {(activeTab === 'owners'
-                          ? [t('feat_own_f1_title'), t('feat_own_f2_title'), t('feat_own_f3_title')]
-                          : activeTab === 'pets'
-                            ? [t('feat_pet_f1_title'), t('feat_pet_f2_title'), t('feat_pet_f3_title')]
-                            : [t('feat_com_f1_title'), t('feat_com_f2_title'), t('feat_com_f3_title')]
-                        ).map((item, i) => (
-                          <li key={i} className="flex items-start gap-2.5">
-                            <div className={`mt-1.5 w-2 h-2 rounded-full flex items-center justify-center shrink-0 ${activeTab === 'owners' ? 'bg-emerald-500' : activeTab === 'pets' ? 'bg-sky-500' : 'bg-rose-500'}`}></div>
-                            <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+
+                    {/* 2. Kutu: Özellik Maddeleri (Telefonun altında yatay tam genişlik) */}
+                    <div className="bg-white/40 dark:bg-black/40 backdrop-blur-[45px] p-5 lg:p-6 rounded-3xl border border-white/60 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full flex flex-col items-start">
+                      <div className="space-y-6 w-full">
+                        {/* Madde 1 */}
+                        <div className="flex flex-col gap-1.5">
+                          <div className="flex items-center gap-2 text-amber-500">
+                            <Bell size={18} className="shrink-0" />
+                            <span className="font-bold text-slate-900 dark:text-white text-[14px]">
+                              {activeTab === 'owners' ? t('feat_own_f1_title') : activeTab === 'pets' ? t('feat_pet_f1_title') : t('feat_com_f1_title')}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-slate-800 dark:text-slate-200 font-medium pl-6 leading-snug">
+                            {activeTab === 'owners' ? t('feat_own_f1_desc') : activeTab === 'pets' ? t('feat_pet_f1_desc') : t('feat_com_f1_desc')}
+                          </p>
+                        </div>
+
+                        {/* Madde 2 */}
+                        <div className="flex flex-col gap-1.5">
+                          <div className="flex items-center gap-2 text-rose-500">
+                            <Users size={18} className="shrink-0" />
+                            <span className="font-bold text-slate-900 dark:text-white text-[14px]">
+                              {activeTab === 'owners' ? t('feat_own_f2_title') : activeTab === 'pets' ? t('feat_pet_f2_title') : t('feat_com_f2_title')}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-slate-800 dark:text-slate-200 font-medium pl-6 leading-snug">
+                            {activeTab === 'owners' ? t('feat_own_f2_desc') : activeTab === 'pets' ? t('feat_pet_f2_desc') : t('feat_com_f2_desc')}
+                          </p>
+                        </div>
+
+                        {/* Madde 3 */}
+                        <div className="flex flex-col gap-1.5">
+                          <div className="flex items-center gap-2 text-sky-500">
+                            <FileText size={18} className="shrink-0" />
+                            <span className="font-bold text-slate-900 dark:text-white text-[14px]">
+                              {activeTab === 'owners' ? t('feat_own_f3_title') : activeTab === 'pets' ? t('feat_pet_f3_title') : t('feat_com_f3_title')}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-slate-800 dark:text-slate-200 font-medium pl-6 leading-snug">
+                            {activeTab === 'owners' ? t('feat_own_f3_desc') : activeTab === 'pets' ? t('feat_pet_f3_desc') : t('feat_com_f3_desc')}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 </AnimatePresence>
