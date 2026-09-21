@@ -128,7 +128,7 @@ export default function Clinics() {
         </section>
 
         {/* Section 1: Hero */}
-        <section className="min-h-[100dvh] py-24 lg:pt-32 lg:pb-16 flex flex-col justify-center">
+        <section className="min-h-0 h-auto lg:min-h-[100dvh] py-10 lg:pt-32 lg:pb-16 flex flex-col justify-center">
           <div className="flex flex-col xl:flex-row items-center xl:items-stretch justify-between gap-10 xl:gap-16 w-full">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full xl:w-[48%] space-y-6 lg:space-y-8 xl:-translate-x-4 2xl:-translate-x-8">
               <div className="inline-flex items-center gap-2 bg-white dark:bg-transparent text-indigo-600 dark:text-indigo-400 px-4 py-2 rounded-full font-bold text-sm shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent">
@@ -181,10 +181,10 @@ export default function Clinics() {
                     </div>
 
                     {/* Tab Navigation */}
-                    <div className="flex items-center justify-center gap-2 overflow-x-auto pb-1 scrollbar-hide mt-4">
-                      <button onClick={() => setDashboardTab('shortcuts')} className={`px-4 py-2 rounded-xl font-bold text-sm transition-all whitespace-nowrap shadow-sm ${dashboardTab === 'shortcuts' ? 'bg-teal-700 text-white shadow-teal-700/20' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-slate-800/50 dark:text-slate-300'}`}>Kısayollar</button>
-                      <button onClick={() => setDashboardTab('operations')} className={`px-4 py-2 rounded-xl font-bold text-sm transition-all whitespace-nowrap shadow-sm ${dashboardTab === 'operations' ? 'bg-teal-700 text-white shadow-teal-700/20' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-slate-800/50 dark:text-slate-300'}`}>Klinik Operasyonları</button>
-                      <button onClick={() => setDashboardTab('finance')} className={`px-4 py-2 rounded-xl font-bold text-sm transition-all whitespace-nowrap shadow-sm ${dashboardTab === 'finance' ? 'bg-teal-700 text-white shadow-teal-700/20' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-slate-800/50 dark:text-slate-300'}`}>Gelir / Gider</button>
+                    <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 scrollbar-hide mt-4 px-1">
+                      <button onClick={() => setDashboardTab('shortcuts')} className={`px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-xl font-bold text-[12px] sm:text-sm transition-all whitespace-nowrap shadow-sm ${dashboardTab === 'shortcuts' ? 'bg-teal-700 text-white shadow-teal-700/20' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-slate-800/50 dark:text-slate-300'}`}>Kısayollar</button>
+                      <button onClick={() => setDashboardTab('operations')} className={`px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-xl font-bold text-[12px] sm:text-sm transition-all whitespace-nowrap shadow-sm ${dashboardTab === 'operations' ? 'bg-teal-700 text-white shadow-teal-700/20' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-slate-800/50 dark:text-slate-300'}`}>Klinik Operasyonları</button>
+                      <button onClick={() => setDashboardTab('finance')} className={`px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-xl font-bold text-[12px] sm:text-sm transition-all whitespace-nowrap shadow-sm ${dashboardTab === 'finance' ? 'bg-teal-700 text-white shadow-teal-700/20' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-slate-800/50 dark:text-slate-300'}`}>Gelir / Gider</button>
                     </div>
                   </div>
 
@@ -315,7 +315,7 @@ export default function Clinics() {
         </section>
 
         {/* Section 2: Dijital Klinik Profili */}
-        <section className="min-h-screen h-auto lg:h-screen py-24 lg:py-0 flex flex-col-reverse lg:flex-row items-center justify-center gap-16">
+        <section className="min-h-0 h-auto lg:min-h-[100dvh] py-10 lg:py-0 flex flex-col-reverse lg:flex-row items-center justify-center gap-12 lg:gap-16">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex-1 w-full relative">
             <div className="bg-white dark:bg-zinc-950 rounded-[2rem] shadow-2xl border border-slate-100 dark:border-zinc-800 p-7 lg:p-8 relative w-full xl:min-w-[550px] mx-auto min-h-[480px]">
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
@@ -488,7 +488,7 @@ export default function Clinics() {
 
 
         {/* Section 3.5: Hasta ve Müşteri Yönetimi (Düzen ve Esneklik) */}
-        <section className="min-h-[100dvh] py-24 lg:py-32 flex flex-col lg:flex-row items-center justify-center gap-8 xl:gap-12">
+        <section className="min-h-0 h-auto lg:min-h-[100dvh] py-10 lg:py-32 flex flex-col lg:flex-row items-center justify-center gap-8 xl:gap-12">
           {/* Left: Text Content */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full xl:w-[45%] space-y-4 lg:space-y-6 flex flex-col justify-center">
             <div className="inline-flex items-center gap-2 bg-white dark:bg-transparent text-emerald-600 dark:text-emerald-400 px-4 py-2 rounded-full font-bold text-sm shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent w-fit">
@@ -543,7 +543,7 @@ export default function Clinics() {
         </section>
 
         {/* Section 5: İnovasyon (Laboratuvar ve Stok) */}
-        <section className="min-h-[100dvh] py-24 lg:py-32 flex flex-col lg:flex-row items-center justify-center gap-8 xl:gap-12">
+        <section className="min-h-0 h-auto lg:min-h-[100dvh] py-10 lg:py-32 flex flex-col lg:flex-row items-center justify-center gap-8 xl:gap-12">
           
           {/* Left: UI Mockup */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full xl:w-[52%] relative h-[650px] xl:-translate-x-6 2xl:-translate-x-10 mt-12 xl:mt-0 order-2 lg:order-1">

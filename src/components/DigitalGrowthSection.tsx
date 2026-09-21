@@ -49,12 +49,19 @@ const DigitalGrowthSection = () => {
   };
 
   return (
-    <section className="snap-always snap-start py-24 lg:py-32 w-full relative bg-[var(--bg-main)]">
+    <section className="snap-always snap-start w-full relative bg-[var(--bg-main)] pb-8 lg:pb-32">
 
+      {/* Invisible Scroll Trackers */}
+      <div className="absolute inset-x-0 top-0 w-full pointer-events-none">
+        <div id="f1" ref={f1Ref} className="absolute top-[45vh] h-[25vh] w-full" />
+        <div id="f2" ref={f2Ref} className="absolute top-[70vh] h-[25vh] w-full" />
+        <div id="f3" ref={f3Ref} className="absolute top-[95vh] h-[25vh] w-full" />
+      </div>
 
+      <div className="sticky top-16 lg:top-20 w-full h-fit flex flex-col pt-4 lg:pt-8 pb-4 lg:pb-8 z-10">
 
       {/* Independent Top Left Title Block */}
-      <div className="w-full px-4 md:px-8 lg:px-12 mb-8 lg:mb-12 lg:sticky lg:top-24 z-20 pointer-events-none">
+      <div className="w-full px-4 md:px-8 lg:px-12 mb-4 lg:mb-6 z-20 pointer-events-none">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -76,8 +83,8 @@ const DigitalGrowthSection = () => {
 
       {/* Grid for Left Menu and Right Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-16 relative w-full px-4 md:px-8 lg:px-12">
-        {/* Left Column: Sticky Sidebar with Menu Only */}
-        <div className="lg:col-span-3 xl:col-span-3 lg:sticky lg:top-[45vh] h-fit pr-0 xl:pr-4 pt-4 lg:pt-0">
+        {/* Left Column: Sidebar with Menu Only */}
+        <div className="lg:col-span-3 xl:col-span-3 h-fit pr-0 xl:pr-4 pt-4 lg:pt-0">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -85,7 +92,7 @@ const DigitalGrowthSection = () => {
             className="flex flex-col gap-6 lg:gap-8"
           >
 
-            <nav className="flex flex-col gap-6 mt-0 border-l-2 border-slate-100 dark:border-zinc-800 pl-6 relative">
+            <nav className="flex flex-col gap-2 md:gap-4 mt-0 border-l-2 border-slate-100 dark:border-zinc-800 pl-4 md:pl-6 relative">
               {[
                 { id: 'f1', icon: Globe, title: t('clinics_s6_f1_title') },
                 { id: 'f2', icon: MessageCircle, title: t('clinics_s6_f2_title') },
@@ -96,7 +103,7 @@ const DigitalGrowthSection = () => {
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`text-left py-4 transition-all flex items-center gap-4 text-lg ${
+                    className={`text-left py-2 md:py-3 transition-all flex items-center gap-3 md:gap-4 text-sm md:text-base lg:text-lg ${
                       isActive ? 'text-teal-600 dark:text-teal-400 font-bold scale-[1.03] origin-left' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 font-medium'
                     }`}
                   >
@@ -121,16 +128,8 @@ const DigitalGrowthSection = () => {
         {/* Right Column: Scrollable Stacking Cards */}
         <div className="lg:col-span-9 xl:col-span-9 w-full relative">
 
-          {/* Invisible Scroll Trackers */}
-          <div className="absolute inset-x-0 top-0 w-full pointer-events-none">
-            {/* The distance between trackers is exactly how much you must scroll to get the next card */}
-            <div id="f1" ref={f1Ref} className="absolute top-[45vh] h-[25vh] w-full" />
-            <div id="f2" ref={f2Ref} className="absolute top-[70vh] h-[25vh] w-full" />
-            <div id="f3" ref={f3Ref} className="absolute top-[95vh] h-[25vh] w-full" />
-          </div>
-
-          {/* Sticky Visual Container */}
-          <div className="sticky top-[45vh] w-full pointer-events-none" style={{ height: '350px' }}>
+          {/* Visual Container */}
+          <div className="w-full pointer-events-none relative min-h-[240px] md:min-h-[280px]">
             {/* Card 1: SEO Page */}
             <div 
               className="absolute inset-x-0 top-0 w-full z-10 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] origin-top pointer-events-auto"
@@ -139,7 +138,7 @@ const DigitalGrowthSection = () => {
               }}
             >
             <div
-              className={`border rounded-[2.5rem] p-6 lg:p-8 xl:p-10 shadow-lg transition-all duration-500 relative overflow-hidden group min-h-[220px] flex items-center bg-[#edf6f1] dark:bg-[#0c1a14] border-[#d1e8db] dark:border-teal-900/40`}
+              className={`border rounded-3xl lg:rounded-[2.5rem] p-4 sm:p-6 lg:p-8 xl:p-10 shadow-lg transition-all duration-500 relative overflow-hidden group min-h-[220px] flex items-center bg-[#edf6f1] dark:bg-[#0c1a14] border-[#d1e8db] dark:border-teal-900/40`}
             >
               {/* Fade Overlay for Stacking Effect */}
               <div className={`absolute inset-0 bg-white/70 dark:bg-black/70 z-50 pointer-events-none transition-opacity duration-700 ${activeSection === 'f2' || activeSection === 'f3' ? 'opacity-100' : 'opacity-0'}`} />
@@ -147,58 +146,58 @@ const DigitalGrowthSection = () => {
               {/* Background gradient blob */}
               
 
-              <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 xl:gap-12">
-                <div className="w-full lg:w-1/2">
-                  <div className="w-12 h-12 rounded-2xl bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 flex items-center justify-center mb-6 border border-teal-200/50 dark:border-teal-800/30 shadow-sm">
-                    <Globe size={24} strokeWidth={1.5} />
+              <div className="relative z-10 flex flex-row items-center gap-3 md:gap-8 xl:gap-12">
+                <div className="w-1/2">
+                  <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 flex items-center justify-center mb-3 md:mb-6 border border-teal-200/50 dark:border-teal-800/30 shadow-sm">
+                    <Globe size={24} strokeWidth={1.5} className="w-4 h-4 md:w-6 md:h-6" />
                   </div>
 
-                  <h3 className="text-2xl xl:text-3xl font-bold text-slate-800 dark:text-slate-100 mb-4 leading-tight">
+                  <h3 className="text-[13px] md:text-2xl xl:text-3xl font-bold text-slate-800 dark:text-slate-100 mb-2 md:mb-4 leading-tight">
                     {t('clinics_s6_f1_title')}
                   </h3>
 
-                  <p className="text-slate-600 dark:text-slate-400 text-base xl:text-lg leading-relaxed mb-0">
+                  <p className="text-slate-600 dark:text-slate-400 text-[10px] md:text-base xl:text-lg leading-relaxed mb-0">
                     {t('clinics_s6_f1_desc')}
                   </p>
                 </div>
 
                 {/* Mini UI Mockup */}
-                <div className="w-full lg:w-1/2 relative mt-4 lg:mt-0">
+                <div className="w-1/2 relative mt-0">
                   {/* Floating SEO Badge */}
                   <motion.div 
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="absolute -top-4 -left-4 lg:-top-6 lg:-left-6 z-20 bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 shadow-lg rounded-xl py-2.5 px-4 flex items-center gap-2"
+                    className="absolute -top-3 -left-3 md:-top-6 md:-left-6 z-20 bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 shadow-lg rounded-lg md:rounded-xl py-1.5 px-2 md:py-2.5 md:px-4 flex items-center gap-1 md:gap-2"
                   >
-                    <Search size={16} className="text-teal-600" strokeWidth={2.5} />
-                    <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">Bölgedeki en iyi klinik</span>
+                    <Search size={16} className="text-teal-600 w-3 h-3 md:w-4 md:h-4" strokeWidth={2.5} />
+                    <span className="text-[9px] md:text-xs font-semibold text-slate-700 dark:text-slate-200">Bölgedeki en iyi klinik</span>
                   </motion.div>
 
-                  <div className="w-full bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm border border-white/50 dark:border-zinc-800 rounded-[1.5rem] p-6 lg:p-8 shadow-md">
-                    <div className="flex items-center gap-4 border-b border-slate-200/60 dark:border-zinc-800 pb-4 mb-5">
-                      <div className="flex gap-2">
-                        <div className="w-3 h-3 rounded-full bg-red-400/80"></div>
-                        <div className="w-3 h-3 rounded-full bg-amber-400/80"></div>
-                        <div className="w-3 h-3 rounded-full bg-emerald-400/80"></div>
+                  <div className="w-full bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm border border-white/50 dark:border-zinc-800 rounded-xl md:rounded-[1.5rem] p-3 md:p-6 lg:p-8 shadow-md">
+                    <div className="flex items-center gap-2 md:gap-4 border-b border-slate-200/60 dark:border-zinc-800 pb-2 md:pb-4 mb-3 md:mb-5">
+                      <div className="flex gap-1 md:gap-2">
+                        <div className="w-1.5 h-1.5 md:w-3 md:h-3 rounded-full bg-red-400/80"></div>
+                        <div className="w-1.5 h-1.5 md:w-3 md:h-3 rounded-full bg-amber-400/80"></div>
+                        <div className="w-1.5 h-1.5 md:w-3 md:h-3 rounded-full bg-emerald-400/80"></div>
                       </div>
-                      <div className="flex-1 bg-white/90 dark:bg-zinc-800/80 border border-slate-200/60 dark:border-zinc-700 rounded-lg py-1.5 px-3 flex items-center gap-2 text-xs text-slate-400">
-                        <LinkIcon size={12} />
-                        <span className="truncate">veterito.com/klinik/sizin-kliniginiz</span>
+                      <div className="flex-1 bg-white/90 dark:bg-zinc-800/80 border border-slate-200/60 dark:border-zinc-700 rounded block py-1 px-1.5 md:py-1.5 md:px-3 flex items-center gap-1 md:gap-2 text-[8px] md:text-xs text-slate-400">
+                        <LinkIcon size={12} className="w-2 h-2 md:w-3 md:h-3 shrink-0" />
+                        <span className="truncate">veterito.com/klinik</span>
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-5">
-                      <div className="w-16 h-16 rounded-2xl bg-teal-100/80 dark:bg-teal-900/40 shrink-0"></div>
-                      <div className="flex-1 space-y-3 mt-1.5">
-                        <div className="h-4 w-1/3 bg-slate-200/80 dark:bg-zinc-800 rounded-md"></div>
-                        <div className="h-2.5 w-1/2 bg-slate-100 dark:bg-zinc-800/50 rounded-md"></div>
-                        <div className="flex gap-2.5 pt-2">
-                          <div className="h-8 px-3 bg-[#25D366]/10 border border-[#25D366]/30 rounded-full flex items-center gap-1.5">
-                            <img src="/whatsapp.webp" alt="WhatsApp" className="w-4 h-4 object-contain" />
-                            <div className="h-2 w-8 bg-[#25D366]/50 rounded-md"></div>
+                    <div className="flex items-start gap-2 md:gap-5">
+                      <div className="w-8 h-8 md:w-16 md:h-16 rounded-lg md:rounded-2xl bg-teal-100/80 dark:bg-teal-900/40 shrink-0"></div>
+                      <div className="flex-1 space-y-1.5 md:space-y-3 mt-0.5 md:mt-1.5">
+                        <div className="h-2 md:h-4 w-1/3 bg-slate-200/80 dark:bg-zinc-800 rounded-sm md:rounded-md"></div>
+                        <div className="h-1.5 md:h-2.5 w-1/2 bg-slate-100 dark:bg-zinc-800/50 rounded-sm md:rounded-md"></div>
+                        <div className="flex gap-1.5 md:gap-2.5 pt-1 md:pt-2">
+                          <div className="h-5 md:h-8 px-1.5 md:px-3 bg-[#25D366]/10 border border-[#25D366]/30 rounded-full flex items-center gap-1 md:gap-1.5">
+                            <img src="/whatsapp.webp" alt="WhatsApp" className="w-2.5 h-2.5 md:w-4 md:h-4 object-contain" />
+                            <div className="h-1.5 md:h-2 w-4 md:w-8 bg-[#25D366]/50 rounded-sm md:rounded-md"></div>
                           </div>
-                          <div className="h-8 w-20 bg-slate-200/70 dark:bg-zinc-800 rounded-full"></div>
+                          <div className="h-5 md:h-8 w-10 md:w-20 bg-slate-200/70 dark:bg-zinc-800 rounded-full"></div>
                         </div>
                       </div>
                     </div>
@@ -218,42 +217,42 @@ const DigitalGrowthSection = () => {
               }}
             >
             <div
-              className={`border rounded-[2.5rem] p-6 lg:p-8 xl:p-10 shadow-lg transition-all duration-500 relative overflow-hidden group min-h-[220px] flex items-center bg-[#edf6f1] dark:bg-[#0c1a14] border-[#d1e8db] dark:border-teal-900/40`}
+              className={`border rounded-3xl lg:rounded-[2.5rem] p-4 sm:p-6 lg:p-8 xl:p-10 shadow-lg transition-all duration-500 relative overflow-hidden group min-h-[220px] flex items-center bg-[#edf6f1] dark:bg-[#0c1a14] border-[#d1e8db] dark:border-teal-900/40`}
             >
               {/* Fade Overlay for Stacking Effect */}
               <div className={`absolute inset-0 bg-white/70 dark:bg-black/70 z-50 pointer-events-none transition-opacity duration-700 ${activeSection === 'f3' ? 'opacity-100' : 'opacity-0'}`} />
               
 
-              <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 xl:gap-12">
-                <div className="w-full lg:w-1/2">
-                  <div className="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 flex items-center justify-center mb-6 border border-blue-200/50 dark:border-blue-800/30 shadow-sm">
-                    <MessageCircle size={24} strokeWidth={1.5} />
+              <div className="relative z-10 flex flex-row items-center gap-3 md:gap-8 xl:gap-12">
+                <div className="w-1/2">
+                  <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 flex items-center justify-center mb-3 md:mb-6 border border-blue-200/50 dark:border-blue-800/30 shadow-sm">
+                    <MessageCircle size={24} strokeWidth={1.5} className="w-4 h-4 md:w-6 md:h-6" />
                   </div>
 
-                  <h3 className="text-2xl xl:text-3xl font-bold text-slate-800 dark:text-slate-100 mb-4 leading-tight">
+                  <h3 className="text-[13px] md:text-2xl xl:text-3xl font-bold text-slate-800 dark:text-slate-100 mb-2 md:mb-4 leading-tight">
                     {t('clinics_s6_f2_title')}
                   </h3>
 
-                  <p className="text-slate-600 dark:text-slate-400 text-base xl:text-lg leading-relaxed mb-0">
+                  <p className="text-slate-600 dark:text-slate-400 text-[10px] md:text-base xl:text-lg leading-relaxed mb-0">
                     {t('clinics_s6_f2_desc')}
                   </p>
                 </div>
 
                 {/* Mini UI Mockup */}
-                <div className="w-full lg:w-1/2">
-                  <div className="w-full bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm border border-white/50 dark:border-zinc-800 rounded-2xl p-5 shadow-sm space-y-3 relative">
+                <div className="w-1/2">
+                  <div className="w-full bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm border border-white/50 dark:border-zinc-800 rounded-xl md:rounded-2xl p-2.5 md:p-5 shadow-sm space-y-1.5 md:space-y-3 relative">
 
                     {/* WhatsApp - Outgoing (Clinic) */}
                     <motion.div
                       initial={{ opacity: 0, x: 10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      className="bg-[#e6f4ea] dark:bg-[#132c1e] border border-[#c4e3d0] dark:border-green-800/30 p-3 rounded-2xl rounded-tr-sm shadow-sm max-w-[90%] ml-auto"
+                      className="bg-[#e6f4ea] dark:bg-[#132c1e] border border-[#c4e3d0] dark:border-green-800/30 p-1.5 md:p-3 rounded-xl md:rounded-2xl rounded-tr-sm shadow-sm max-w-[90%] ml-auto"
                     >
-                      <div className="flex justify-end items-center gap-1.5 text-[10px] text-green-600/80 dark:text-green-400/70 mb-1.5 font-medium">
-                        Klinik <CheckCircle2 size={12} className="text-green-500" />
+                      <div className="flex justify-end items-center gap-1 md:gap-1.5 text-[7px] md:text-[10px] text-green-600/80 dark:text-green-400/70 mb-1 md:mb-1.5 font-medium">
+                        Klinik <CheckCircle2 size={12} className="text-green-500 w-2 h-2 md:w-3 md:h-3" />
                       </div>
-                      <p className="text-[12px] leading-snug text-green-900 dark:text-green-300">
+                      <p className="text-[8px] md:text-[12px] leading-snug text-green-900 dark:text-green-300">
                         Sayın hasta sahibimiz, Leo'nun laboratuvar sonuçları temiz çıkmıştır. Yarınki karma aşı randevusunda görüşmek üzere! 🐾
                       </p>
                     </motion.div>
@@ -264,12 +263,12 @@ const DigitalGrowthSection = () => {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.5 }}
-                      className="bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 p-3 rounded-2xl rounded-tl-sm shadow-sm max-w-[90%] mt-3"
+                      className="bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 p-1.5 md:p-3 rounded-xl md:rounded-2xl rounded-tl-sm shadow-sm max-w-[90%] mt-1.5 md:mt-3"
                     >
-                      <div className="flex items-center gap-1.5 text-[10px] text-slate-400 mb-1.5 font-medium">
+                      <div className="flex items-center gap-1 md:gap-1.5 text-[7px] md:text-[10px] text-slate-400 mb-1 md:mb-1.5 font-medium">
                         Hasta Sahibi (Leo)
                       </div>
-                      <p className="text-[12px] leading-snug text-slate-700 dark:text-slate-300">
+                      <p className="text-[8px] md:text-[12px] leading-snug text-slate-700 dark:text-slate-300">
                         Harika haber! Çok sevindik, yarın 14:00'te oradayız. Teşekkürler 😊
                       </p>
                     </motion.div>
@@ -286,84 +285,84 @@ const DigitalGrowthSection = () => {
               }`}
             >
             <div
-              className={`border rounded-[2.5rem] p-6 lg:p-8 xl:p-10 shadow-lg transition-all duration-500 relative overflow-hidden group min-h-[220px] flex items-center bg-[#edf6f1] dark:bg-[#0c1a14] border-[#d1e8db] dark:border-teal-900/40`}
+              className={`border rounded-3xl lg:rounded-[2.5rem] p-4 sm:p-6 lg:p-8 xl:p-10 shadow-lg transition-all duration-500 relative overflow-hidden group min-h-[220px] flex items-center bg-[#edf6f1] dark:bg-[#0c1a14] border-[#d1e8db] dark:border-teal-900/40`}
             >
               
 
-              <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 xl:gap-12">
-                <div className="w-full lg:w-1/2">
-                  <div className="w-12 h-12 rounded-2xl bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 flex items-center justify-center mb-6 border border-orange-200/50 dark:border-orange-800/30 shadow-sm">
-                    <ShieldCheck size={24} strokeWidth={1.5} />
+              <div className="relative z-10 flex flex-row items-center gap-3 md:gap-8 xl:gap-12">
+                <div className="w-1/2">
+                  <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 flex items-center justify-center mb-3 md:mb-6 border border-orange-200/50 dark:border-orange-800/30 shadow-sm">
+                    <ShieldCheck size={24} strokeWidth={1.5} className="w-4 h-4 md:w-6 md:h-6" />
                   </div>
 
-                  <h3 className="text-2xl xl:text-3xl font-bold text-slate-800 dark:text-slate-100 mb-4 leading-tight">
+                  <h3 className="text-[13px] md:text-2xl xl:text-3xl font-bold text-slate-800 dark:text-slate-100 mb-2 md:mb-4 leading-tight">
                     {t('clinics_s6_f3_title')}
                   </h3>
 
-                  <p className="text-slate-600 dark:text-slate-400 text-base xl:text-lg leading-relaxed mb-0">
+                  <p className="text-slate-600 dark:text-slate-400 text-[10px] md:text-base xl:text-lg leading-relaxed mb-0">
                     {t('clinics_s6_f3_desc')}
                   </p>
                 </div>
 
                 {/* Mini UI Mockup */}
-                <div className="w-full lg:w-1/2 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm border border-white/50 dark:border-zinc-800 rounded-2xl p-4 lg:p-5 shadow-sm">
-                  <div className="flex flex-col gap-2">
+                <div className="w-1/2 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm border border-white/50 dark:border-zinc-800 rounded-xl md:rounded-2xl p-2 md:p-4 lg:p-5 shadow-sm">
+                  <div className="flex flex-col gap-1.5 md:gap-2">
                     {/* Item 1: KVKK */}
-                    <div className="bg-white/90 dark:bg-zinc-800 border border-slate-200/60 dark:border-zinc-700 p-2.5 rounded-xl flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-[#e6f4ea] dark:bg-green-900/30 text-green-700">
-                          <FileText size={14} />
+                    <div className="bg-white/90 dark:bg-zinc-800 border border-slate-200/60 dark:border-zinc-700 p-1.5 md:p-2.5 rounded-lg md:rounded-xl flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 md:gap-3">
+                        <div className="w-5 h-5 md:w-8 md:h-8 rounded-full flex items-center justify-center shrink-0 bg-[#e6f4ea] dark:bg-green-900/30 text-green-700">
+                          <FileText size={14} className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" />
                         </div>
                         <div>
-                          <div className="font-bold text-[12px] text-slate-800 dark:text-slate-200">
+                          <div className="font-bold text-[7px] md:text-[12px] text-slate-800 dark:text-slate-200">
                             KVKK Aydınlatma Metni
                           </div>
-                          <div className="text-[10px] text-slate-500">
+                          <div className="text-[6px] md:text-[10px] text-slate-500">
                             IP Log: 192.168.1.42
                           </div>
                         </div>
                       </div>
-                      <div className="px-2 py-0.5 bg-[#e6f4ea] dark:bg-green-900/20 text-green-700 dark:text-green-400 text-[9px] font-bold rounded-full">
+                      <div className="px-1 md:px-2 py-0 md:py-0.5 bg-[#e6f4ea] dark:bg-green-900/20 text-green-700 dark:text-green-400 text-[6px] md:text-[9px] font-bold rounded-full">
                         ARŞİVLENDİ
                       </div>
                     </div>
 
                     {/* Item 2: Iletisim */}
-                    <div className="bg-white/90 dark:bg-zinc-800 border border-slate-200/60 dark:border-zinc-700 p-2.5 rounded-xl flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-[#e6f4ea] dark:bg-green-900/30 text-green-700">
-                          <FileText size={14} />
+                    <div className="bg-white/90 dark:bg-zinc-800 border border-slate-200/60 dark:border-zinc-700 p-1.5 md:p-2.5 rounded-lg md:rounded-xl flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 md:gap-3">
+                        <div className="w-5 h-5 md:w-8 md:h-8 rounded-full flex items-center justify-center shrink-0 bg-[#e6f4ea] dark:bg-green-900/30 text-green-700">
+                          <FileText size={14} className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" />
                         </div>
                         <div>
-                          <div className="font-bold text-[12px] text-slate-800 dark:text-slate-200">
+                          <div className="font-bold text-[7px] md:text-[12px] text-slate-800 dark:text-slate-200">
                             Dijital İletişim İzni
                           </div>
-                          <div className="text-[10px] text-slate-500">
+                          <div className="text-[6px] md:text-[10px] text-slate-500">
                             SMS & WhatsApp (Onaylı)
                           </div>
                         </div>
                       </div>
-                      <div className="px-2 py-0.5 bg-[#e6f4ea] dark:bg-green-900/20 text-green-700 dark:text-green-400 text-[9px] font-bold rounded-full">
+                      <div className="px-1 md:px-2 py-0 md:py-0.5 bg-[#e6f4ea] dark:bg-green-900/20 text-green-700 dark:text-green-400 text-[6px] md:text-[9px] font-bold rounded-full">
                         ONAYLI
                       </div>
                     </div>
 
                     {/* Item 3: Bekleyen */}
-                    <div className="bg-white/90 dark:bg-zinc-800 border border-slate-200/60 dark:border-zinc-700 p-2.5 rounded-xl flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-orange-50 dark:bg-orange-900/20 text-orange-500">
-                          <FileText size={14} />
+                    <div className="bg-white/90 dark:bg-zinc-800 border border-slate-200/60 dark:border-zinc-700 p-1.5 md:p-2.5 rounded-lg md:rounded-xl flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 md:gap-3">
+                        <div className="w-5 h-5 md:w-8 md:h-8 rounded-full flex items-center justify-center shrink-0 bg-orange-50 dark:bg-orange-900/20 text-orange-500">
+                          <FileText size={14} className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" />
                         </div>
                         <div>
-                          <div className="font-bold text-[12px] text-slate-800 dark:text-slate-200">
+                          <div className="font-bold text-[7px] md:text-[12px] text-slate-800 dark:text-slate-200">
                             Operasyon Muvafakatnamesi
                           </div>
-                          <div className="text-[10px] text-slate-500">
+                          <div className="text-[6px] md:text-[10px] text-slate-500">
                             Bekliyor... SMS Gönderildi
                           </div>
                         </div>
                       </div>
-                      <div className="px-2 py-0.5 bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 text-[9px] font-bold rounded-full">
+                      <div className="px-1 md:px-2 py-0 md:py-0.5 bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 text-[6px] md:text-[9px] font-bold rounded-full">
                         BEKLİYOR
                       </div>
                     </div>
@@ -374,12 +373,14 @@ const DigitalGrowthSection = () => {
             </div>
 
           </div>
-
-          {/* Total physical height of the column to allow scrolling so the sticky container can slide down */}
-          <div className="w-full" style={{ height: '140vh' }}></div>
-
         </div>
       </div>
+      
+      </div>
+
+      {/* Total physical height of the column to allow scrolling so the sticky container can slide down */}
+      <div className="w-full pointer-events-none" style={{ height: '140vh' }}></div>
+
     </section>
   );
 };
