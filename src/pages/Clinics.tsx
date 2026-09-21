@@ -137,21 +137,21 @@ export default function Clinics() {
               </h1>
               <p className="text-[16px] lg:text-[17px] text-[var(--text-muted)] font-medium leading-[1.8] max-w-xl">{t('clinics_hero_desc')}</p>
               <ul className="space-y-6 pt-2">
-                <li className="flex items-center gap-6 text-slate-800 dark:text-slate-200 font-bold text-[14px] lg:text-[17px]">
-                  <div className="w-14 h-14 rounded-2xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center shrink-0">
-                    <Calendar className="text-indigo-500 dark:text-indigo-400" size={26} />
+                <li className="flex items-center gap-4 lg:gap-6 text-slate-800 dark:text-slate-200 font-bold text-[14px] lg:text-[17px]">
+                  <div className="w-10 h-10 lg:w-14 lg:h-14 rounded-xl lg:rounded-2xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center shrink-0">
+                    <Calendar className="w-5 h-5 lg:w-[26px] lg:h-[26px] text-indigo-500 dark:text-indigo-400" />
                   </div>
                   {t('clinics_hero_li1')}
                 </li>
-                <li className="flex items-center gap-6 text-slate-800 dark:text-slate-200 font-bold text-[14px] lg:text-[17px]">
-                  <div className="w-14 h-14 rounded-2xl bg-teal-50 dark:bg-teal-900/30 flex items-center justify-center shrink-0">
-                    <Archive className="text-teal-500 dark:text-teal-400" size={26} />
+                <li className="flex items-center gap-4 lg:gap-6 text-slate-800 dark:text-slate-200 font-bold text-[14px] lg:text-[17px]">
+                  <div className="w-10 h-10 lg:w-14 lg:h-14 rounded-xl lg:rounded-2xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center shrink-0">
+                    <Archive className="w-5 h-5 lg:w-[26px] lg:h-[26px] text-indigo-500 dark:text-indigo-400" />
                   </div>
                   {t('clinics_hero_li2')}
                 </li>
-                <li className="flex items-center gap-6 text-slate-800 dark:text-slate-200 font-bold text-[14px] lg:text-[17px]">
-                  <div className="w-14 h-14 rounded-2xl bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center shrink-0">
-                    <Megaphone className="text-amber-500 dark:text-amber-400" size={26} />
+                <li className="flex items-center gap-4 lg:gap-6 text-slate-800 dark:text-slate-200 font-bold text-[14px] lg:text-[17px]">
+                  <div className="w-10 h-10 lg:w-14 lg:h-14 rounded-xl lg:rounded-2xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center shrink-0">
+                    <Megaphone className="w-5 h-5 lg:w-[26px] lg:h-[26px] text-indigo-500 dark:text-indigo-400" />
                   </div>
                   {t('clinics_hero_li3')}
                 </li>
@@ -453,30 +453,34 @@ export default function Clinics() {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex-1 space-y-8">
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex-1 space-y-4 lg:space-y-6 flex flex-col justify-center">
+            <div className="inline-flex items-center gap-2 bg-white dark:bg-transparent text-rose-600 dark:text-rose-400 px-4 py-2 rounded-full font-bold text-sm shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent w-fit">
+              <Building2 size={16} /> {t('clinics_s2_badge')}
+            </div>
+            
             <h2 className="text-[30px] lg:text-5xl font-extrabold text-[var(--text-main)] leading-tight">{t('clinics_prof_sec_title')}</h2>
             <p className="text-[16px] lg:text-lg text-[var(--text-muted)] font-medium leading-relaxed max-w-xl">{t('clinics_prof_sec_desc')}</p>
             <div className="flex flex-col gap-3 mt-4 relative">
               <div className="text-left p-3 lg:p-4 rounded-2xl border-2 border-transparent hover:bg-white/50 dark:hover:bg-zinc-900/50 transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                    <Stethoscope size={24} />
+                <div className="flex items-center gap-3 lg:gap-4">
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center shrink-0 bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400">
+                    <Stethoscope className="w-5 h-5 lg:w-6 lg:h-6" />
                   </div>
                   <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_prof_sec_f1')}</h3>
                 </div>
               </div>
               <div className="text-left p-3 lg:p-4 rounded-2xl border-2 border-transparent hover:bg-white/50 dark:hover:bg-zinc-900/50 transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400">
-                    <MapPin size={24} />
+                <div className="flex items-center gap-3 lg:gap-4">
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center shrink-0 bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400">
+                    <MapPin className="w-5 h-5 lg:w-6 lg:h-6" />
                   </div>
                   <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_prof_sec_f2')}</h3>
                 </div>
               </div>
               <div className="text-left p-3 lg:p-4 rounded-2xl border-2 border-transparent hover:bg-white/50 dark:hover:bg-zinc-900/50 transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">
-                    <Award size={24} />
+                <div className="flex items-center gap-3 lg:gap-4">
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center shrink-0 bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400">
+                    <Award className="w-5 h-5 lg:w-6 lg:h-6" />
                   </div>
                   <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_prof_sec_f3')}</h3>
                 </div>
@@ -506,9 +510,9 @@ export default function Clinics() {
             <div className="flex flex-col gap-3 mt-4 relative">
               {/* Feature 1 */}
               <div className="text-left p-3 lg:p-4 rounded-2xl border-2 border-transparent hover:bg-white/50 dark:hover:bg-zinc-900/50 transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                    <Users size={24} />
+                <div className="flex items-center gap-3 lg:gap-4">
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center shrink-0 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">
+                    <Users className="w-5 h-5 lg:w-6 lg:h-6" />
                   </div>
                   <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_s4_t1_title')}</h3>
                 </div>
@@ -516,9 +520,9 @@ export default function Clinics() {
 
               {/* Feature 2 */}
               <div className="text-left p-3 lg:p-4 rounded-2xl border-2 border-transparent hover:bg-white/50 dark:hover:bg-zinc-900/50 transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">
-                    <Grid size={24} />
+                <div className="flex items-center gap-3 lg:gap-4">
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center shrink-0 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">
+                    <Grid className="w-5 h-5 lg:w-6 lg:h-6" />
                   </div>
                   <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_s4_t2_title')}</h3>
                 </div>
@@ -526,9 +530,9 @@ export default function Clinics() {
 
               {/* Feature 3 */}
               <div className="text-left p-3 lg:p-4 rounded-2xl border-2 border-transparent hover:bg-white/50 dark:hover:bg-zinc-900/50 transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">
-                    <Activity size={24} />
+                <div className="flex items-center gap-3 lg:gap-4">
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center shrink-0 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">
+                    <Activity className="w-5 h-5 lg:w-6 lg:h-6" />
                   </div>
                   <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_s4_t3_title')}</h3>
                 </div>
@@ -552,7 +556,7 @@ export default function Clinics() {
 
           {/* Right: Text Content */}
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full xl:w-[45%] space-y-4 lg:space-y-6 flex flex-col justify-center order-1 lg:order-2">
-            <div className="inline-flex items-center gap-2 bg-white dark:bg-transparent text-emerald-600 dark:text-emerald-400 px-4 py-2 rounded-full font-bold text-sm shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent w-fit">
+            <div className="inline-flex items-center gap-2 bg-white dark:bg-transparent text-orange-600 dark:text-orange-400 px-4 py-2 rounded-full font-bold text-sm shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent w-fit">
               <Scan size={16} /> {t('clinics_s5_badge')}
             </div>
             
@@ -566,27 +570,27 @@ export default function Clinics() {
             
             <div className="flex flex-col gap-3 mt-4 relative">
               <div className="text-left p-3 lg:p-4 rounded-2xl border-2 border-transparent hover:bg-white/50 dark:hover:bg-zinc-900/50 transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                    <Scan size={24} />
+                <div className="flex items-center gap-3 lg:gap-4">
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center shrink-0 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400">
+                    <Scan className="w-5 h-5 lg:w-6 lg:h-6" />
                   </div>
                   <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_s5_f1')}</h3>
                 </div>
               </div>
 
               <div className="text-left p-3 lg:p-4 rounded-2xl border-2 border-transparent hover:bg-white/50 dark:hover:bg-zinc-900/50 transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">
-                    <Barcode size={24} />
+                <div className="flex items-center gap-3 lg:gap-4">
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center shrink-0 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400">
+                    <Barcode className="w-5 h-5 lg:w-6 lg:h-6" />
                   </div>
                   <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_s5_f2')}</h3>
                 </div>
               </div>
 
               <div className="text-left p-3 lg:p-4 rounded-2xl border-2 border-transparent hover:bg-white/50 dark:hover:bg-zinc-900/50 transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">
-                    <BookOpen size={24} />
+                <div className="flex items-center gap-3 lg:gap-4">
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center shrink-0 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400">
+                    <BookOpen className="w-5 h-5 lg:w-6 lg:h-6" />
                   </div>
                   <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_s5_f3')}</h3>
                 </div>
