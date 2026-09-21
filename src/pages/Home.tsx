@@ -81,7 +81,7 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 className="relative flex justify-center items-center w-full lg:w-1/2 h-[500px] lg:h-[700px] -mt-4 md:mt-12 lg:mt-0"
               >
-                 <img src="/ana-sayfa.png?v=2" alt="Veterito Ana Sayfa" className="h-[90%] lg:h-[100%] w-auto object-contain drop-shadow-2xl z-20 scale-x-[1.08]" />
+                 <img src="/ana-sayfa.webp?v=2" alt="Veterito Ana Sayfa" className="h-[90%] lg:h-[100%] w-auto object-contain drop-shadow-2xl z-20 scale-x-[1.08]" />
                  
                  
               </motion.div>
@@ -235,7 +235,7 @@ export default function Home() {
               {/* App Store */}
               <a href={brandConfig.appStoreUrl} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-5 py-2 md:px-6 md:py-2.5 rounded-2xl hover:scale-105 transition-all shadow-xl flex items-center sm:w-auto min-w-[190px] md:min-w-[210px]">
                 <div className="flex items-center justify-center gap-3 w-full">
-                  <img src="/apple-logo.png" alt="App Store" className="w-8 h-8 md:w-10 md:h-10 object-contain shrink-0 invert" />
+                  <img src="/apple-logo.webp" alt="App Store" className="w-8 h-8 md:w-10 md:h-10 object-contain shrink-0 invert" />
                   <div className="flex flex-col items-start leading-none pt-0.5 text-white">
                     <div className="text-[10px] md:text-[11px] font-medium tracking-[0.08em] -mb-1 text-white">Download on the</div>
                     <div className="text-xl md:text-2xl font-semibold tracking-tight text-white">App Store</div>
@@ -246,7 +246,7 @@ export default function Home() {
               {/* Google Play */}
               <a href={brandConfig.playStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-5 py-2 md:px-6 md:py-2.5 rounded-2xl hover:scale-105 transition-all shadow-xl flex items-center sm:w-auto min-w-[190px] md:min-w-[210px]">
                 <div className="flex items-center justify-center gap-3 w-full">
-                  <img src="/google-play-logo.png" alt="Play Store" className="w-8 h-8 md:w-10 md:h-10 object-contain shrink-0 scale-[1.15]" />
+                  <img src="/google-play-logo.webp" alt="Play Store" className="w-8 h-8 md:w-10 md:h-10 object-contain shrink-0 scale-[1.15]" />
                   <div className="flex flex-col items-start leading-none pt-0.5 text-white">
                     <div className="text-[10px] md:text-[11px] font-medium tracking-wide text-white">GET IT ON</div>
                     <div className="text-xl md:text-[22px] md:leading-none font-semibold tracking-tight text-white">Google Play</div>
@@ -257,7 +257,7 @@ export default function Home() {
               {/* AppGallery */}
               <a href={brandConfig.appGalleryUrl} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-5 py-2 md:px-6 md:py-2.5 rounded-2xl hover:scale-105 transition-all shadow-xl flex items-center sm:w-auto min-w-[190px] md:min-w-[210px]">
                 <div className="flex items-center justify-center gap-3 w-full">
-                  <img src="/appgallery-logo.png" alt="AppGallery" className="w-8 h-8 md:w-10 md:h-10 object-contain shrink-0" />
+                  <img src="/appgallery-logo.webp" alt="AppGallery" className="w-8 h-8 md:w-10 md:h-10 object-contain shrink-0" />
                   <div className="flex flex-col items-start leading-none pt-0.5 text-white">
                     <div className="text-[10px] md:text-[11px] font-medium tracking-wide text-white">EXPLORE IT ON</div>
                     <div className="text-xl md:text-[22px] md:leading-none font-semibold tracking-tight text-white">AppGallery</div>

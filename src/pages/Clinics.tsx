@@ -27,7 +27,7 @@ export default function Clinics() {
   const [dashboardTab, setDashboardTab] = useState('shortcuts');
 
   return (
-    <div className="fixed inset-0 z-[45] overflow-y-auto overflow-x-hidden snap-y snap-mandatory scroll-smooth bg-[var(--bg-main)]">
+    <div className="fixed inset-0 z-[45] overflow-y-auto overflow-x-hidden scroll-smooth bg-[var(--bg-main)]">
       <SEO title={t('seo_title_clinics2')} description={t('seo_desc_clinics2')} />
 
       {/* Fake Navbar Background for visibility since we are full screen */}
@@ -42,49 +42,49 @@ export default function Clinics() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
 
         {/* Section 0: New Macbook Hero */}
-        <section className="min-h-[100dvh] snap-always snap-start py-24 lg:pt-32 lg:pb-16 flex flex-col justify-center relative">
+        <section className="min-h-[100dvh] py-24 lg:pt-32 lg:pb-16 flex flex-col justify-center relative">
           <div className="flex flex-col xl:flex-row items-center xl:items-stretch justify-between gap-10 xl:gap-16 w-full">
             {/* Left: Text Area */}
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full xl:w-[40%] space-y-6 lg:space-y-8 flex flex-col justify-center z-10">
               <div className="self-start inline-flex items-center gap-2 bg-white dark:bg-transparent text-teal-600 dark:text-teal-400 px-4 py-2 rounded-full font-bold text-sm shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent">
                 <CheckCircle2 size={16} /> {t('clinics_hero_badge')}
               </div>
-              <h1 className="text-3xl lg:text-[38px] xl:text-[44px] font-extrabold text-[var(--text-main)] leading-[1.2] tracking-tight">
+              <h1 className="text-[30px] lg:text-[38px] xl:text-[44px] font-extrabold text-[var(--text-main)] leading-[1.2] tracking-tight">
                 <span className="2xl:whitespace-nowrap">{t('clinics_hero_title1')}</span><br />
                 <span className="text-teal-600 dark:text-teal-400 whitespace-nowrap">{t('clinics_hero_title2')}</span>
               </h1>
-              <p className="text-[18px] text-[var(--text-muted)] font-medium leading-[1.7] max-w-xl">
+              <p className="text-[16px] lg:text-[18px] text-[var(--text-muted)] font-medium leading-[1.7] max-w-xl">
                 {t('clinics_hero_desc')}
               </p>
             </motion.div>
 
             {/* Right: Macbook Mockup */}
-            <motion.div initial={{ opacity: 0, scale: 0.95, rotateX: 15, y: 40 }} whileInView={{ opacity: 1, scale: 1, rotateX: 0, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} style={{ perspective: 2000 }} className="w-full xl:w-[60%] relative flex justify-center items-center z-10 px-4 md:px-8 xl:px-10">
+            <motion.div initial={{ opacity: 0, scale: 0.95, rotateX: 15, y: 40 }} whileInView={{ opacity: 1, scale: 1, rotateX: 0, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} style={{ perspective: 2000 }} className="w-full xl:w-[60%] relative flex justify-center items-center z-10 pl-8 pr-[60px] sm:pl-10 sm:pr-[76px] md:px-8 xl:px-10">
 
               {/* Sleek CSS Macbook Pro Mockup (Silver) */}
               <div className="relative w-full max-w-[900px] aspect-[1.46] mt-4 xl:mt-0">
 
                 {/* Screen Lid (Ultra-thin Silver Outer Edge) */}
-                <div className="absolute inset-0 bg-gradient-to-b from-[#e3e5e8] to-[#c7c9cc] dark:from-[#d1d3d6] dark:to-[#a9acb0] rounded-[18px] rounded-b-[8px] p-[1.5px] shadow-2xl flex flex-col items-center border-b border-[#a9acb0] dark:border-[#838588] z-10">
+                <div className="absolute inset-0 bg-gradient-to-b from-[#e3e5e8] to-[#c7c9cc] dark:from-[#d1d3d6] dark:to-[#a9acb0] rounded-[8px] sm:rounded-[18px] rounded-b-[4px] sm:rounded-b-[8px] p-[1px] sm:p-[1.5px] shadow-2xl flex flex-col items-center border-b border-[#a9acb0] dark:border-[#838588] z-10">
 
                   {/* Black Bezel (Ultra-thin sides and top, slight chin) */}
-                  <div className="w-full h-full bg-[#0a0a0a] rounded-[16px] rounded-b-[6px] p-[5px] pb-[12px] relative overflow-hidden flex flex-col border border-[#222]">
+                  <div className="w-full h-full bg-[#0a0a0a] rounded-[7px] sm:rounded-[16px] rounded-b-[3px] sm:rounded-b-[6px] p-[2px] sm:p-[5px] pb-[6px] sm:pb-[12px] relative overflow-hidden flex flex-col border border-[#222]">
 
                     {/* Sleek Camera Notch */}
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100px] h-[20px] bg-[#0a0a0a] rounded-b-[6px] z-20 flex items-center justify-center">
-                      <div className="w-[5px] h-[5px] bg-[#111] rounded-full border border-[#222] shadow-inner flex items-center justify-center">
-                        <div className="w-[2px] h-[2px] bg-[#055c4d] rounded-full"></div>
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[45px] sm:w-[100px] h-[10px] sm:h-[20px] bg-[#0a0a0a] rounded-b-[3px] sm:rounded-b-[6px] z-20 flex items-center justify-center">
+                      <div className="w-[3px] sm:w-[5px] h-[3px] sm:h-[5px] bg-[#111] rounded-full border border-[#222] shadow-inner flex items-center justify-center">
+                        <div className="w-[1.5px] sm:w-[2px] h-[1.5px] sm:h-[2px] bg-[#055c4d] rounded-full"></div>
                       </div>
                     </div>
 
                     {/* Actual Screen Area for Dashboard Image */}
-                    <div className="flex-1 bg-zinc-950 rounded-[10px] overflow-hidden relative">
+                    <div className="flex-1 bg-zinc-950 rounded-[5px] sm:rounded-[10px] overflow-hidden relative">
                       <img
-                        src="/dashboard-mockup.png"
+                        src="/dashboard-mockup.webp"
                         alt="Klinik Paneli Dashboard"
                         className="w-full h-full object-cover"
                         onError={(e) => {
-                          (e.target as HTMLImageElement).src = 'https://placehold.co/1200x800/0f3e36/ffffff?text=Dashboard+Gorseli+(dashboard-mockup.png)';
+                          (e.target as HTMLImageElement).src = 'https://placehold.co/1200x800/0f3e36/ffffff?text=Dashboard+Gorseli+(dashboard-mockup.webp)';
                         }}
                       />
                     </div>
@@ -92,15 +92,15 @@ export default function Clinics() {
                 </div>
 
                 {/* Keyboard Base (Realistic Silver) */}
-                <div className="absolute -bottom-[16px] left-[-32px] right-[-32px] h-[16px] bg-gradient-to-b from-[#e3e5e8] via-[#c7c9cc] to-[#a0a3a8] dark:from-[#909398] dark:via-[#73767a] dark:to-[#5a5d61] rounded-t-[2px] rounded-b-[14px] shadow-[0_20px_40px_rgba(0,0,0,0.6)] flex justify-center border-t border-[#fff] dark:border-[#a9acb0] z-0">
+                <div className="absolute -bottom-[8px] sm:-bottom-[16px] left-[-14px] sm:left-[-32px] right-[-14px] sm:right-[-32px] h-[8px] sm:h-[16px] bg-gradient-to-b from-[#e3e5e8] via-[#c7c9cc] to-[#a0a3a8] dark:from-[#909398] dark:via-[#73767a] dark:to-[#5a5d61] rounded-t-[1px] sm:rounded-t-[2px] rounded-b-[6px] sm:rounded-b-[14px] shadow-[0_20px_40px_rgba(0,0,0,0.6)] flex justify-center border-t border-[#fff] dark:border-[#a9acb0] z-0">
                   {/* Trackpad indentation */}
-                  <div className="w-[120px] h-[4px] bg-[#b0b3b8] dark:bg-[#4a4d51] rounded-b-[4px] shadow-inner mt-[1px]"></div>
+                  <div className="w-[50px] sm:w-[120px] h-[2px] sm:h-[4px] bg-[#b0b3b8] dark:bg-[#4a4d51] rounded-b-[2px] sm:rounded-b-[4px] shadow-inner mt-[1px]"></div>
 
                   {/* Left Rubber Foot */}
-                  <div className="absolute -bottom-[2px] left-[30px] w-[36px] h-[3px] bg-[#888] dark:bg-[#333] rounded-b-[4px]"></div>
+                  <div className="absolute -bottom-[1px] sm:-bottom-[2px] left-[15px] sm:left-[30px] w-[16px] sm:w-[36px] h-[1.5px] sm:h-[3px] bg-[#888] dark:bg-[#333] rounded-b-[2px] sm:rounded-b-[4px]"></div>
 
                   {/* Right Rubber Foot */}
-                  <div className="absolute -bottom-[2px] right-[30px] w-[36px] h-[3px] bg-[#888] dark:bg-[#333] rounded-b-[4px]"></div>
+                  <div className="absolute -bottom-[1px] sm:-bottom-[2px] right-[15px] sm:right-[30px] w-[16px] sm:w-[36px] h-[1.5px] sm:h-[3px] bg-[#888] dark:bg-[#333] rounded-b-[2px] sm:rounded-b-[4px]"></div>
                 </div>
 
                 {/* Mobile Phone Mockup Image (Overlapping right edge) */}
@@ -109,14 +109,14 @@ export default function Clinics() {
                   whileInView={{ scale: 1, rotateX: 0, y: 0 }} 
                   viewport={{once:true}} 
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-                  className="absolute z-30 bottom-[-10px] lg:bottom-[-20px] right-[-68px] sm:right-[-88px] md:right-[-104px] lg:right-[-123px] w-[136px] sm:w-[176px] md:w-[208px] lg:w-[246px] drop-shadow-2xl"
+                  className="absolute z-30 bottom-[-10px] lg:bottom-[-20px] right-[-60px] sm:right-[-76px] md:right-[-104px] lg:right-[-123px] w-[136px] sm:w-[176px] md:w-[208px] lg:w-[246px] drop-shadow-2xl"
                 >
                   <img 
-                    src="/mobile-mockup.png" 
+                    src="/mobile-mockup.webp" 
                     alt="Mobil Uygulama Görünümü" 
                     className="w-full h-auto object-contain"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://placehold.co/600x1200/transparent/333333?text=mobile-mockup.png';
+                      (e.target as HTMLImageElement).src = 'https://placehold.co/600x1200/transparent/333333?text=mobile-mockup.webp';
                     }}
                   />
                 </motion.div>
@@ -128,28 +128,28 @@ export default function Clinics() {
         </section>
 
         {/* Section 1: Hero */}
-        <section className="min-h-[100dvh] snap-always snap-start py-24 lg:pt-32 lg:pb-16 flex flex-col justify-center">
+        <section className="min-h-[100dvh] py-24 lg:pt-32 lg:pb-16 flex flex-col justify-center">
           <div className="flex flex-col xl:flex-row items-center xl:items-stretch justify-between gap-10 xl:gap-16 w-full">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full xl:w-[48%] space-y-6 lg:space-y-8 xl:-translate-x-4 2xl:-translate-x-8">
               <div className="inline-flex items-center gap-2 bg-white dark:bg-transparent text-indigo-600 dark:text-indigo-400 px-4 py-2 rounded-full font-bold text-sm shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent">
                 <Building2 size={16} />{t('clinics_hero_badge')}</div>
-              <h1 className="text-[32px] lg:text-[42px] font-extrabold text-[var(--text-main)] leading-tight">{t('clinics_hero_title1')} <span className="text-inherit">{t('clinics_hero_title2')}</span>
+              <h1 className="text-[30px] lg:text-[42px] font-extrabold text-[var(--text-main)] leading-tight">{t('clinics_hero_title1')} <span className="text-inherit">{t('clinics_hero_title2')}</span>
               </h1>
-              <p className="text-[17px] text-[var(--text-muted)] font-medium leading-[1.8] max-w-xl">{t('clinics_hero_desc')}</p>
+              <p className="text-[16px] lg:text-[17px] text-[var(--text-muted)] font-medium leading-[1.8] max-w-xl">{t('clinics_hero_desc')}</p>
               <ul className="space-y-6 pt-2">
-                <li className="flex items-center gap-6 text-slate-800 dark:text-slate-200 font-bold text-[17px]">
+                <li className="flex items-center gap-6 text-slate-800 dark:text-slate-200 font-bold text-[14px] lg:text-[17px]">
                   <div className="w-14 h-14 rounded-2xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center shrink-0">
                     <Calendar className="text-indigo-500 dark:text-indigo-400" size={26} />
                   </div>
                   {t('clinics_hero_li1')}
                 </li>
-                <li className="flex items-center gap-6 text-slate-800 dark:text-slate-200 font-bold text-[17px]">
+                <li className="flex items-center gap-6 text-slate-800 dark:text-slate-200 font-bold text-[14px] lg:text-[17px]">
                   <div className="w-14 h-14 rounded-2xl bg-teal-50 dark:bg-teal-900/30 flex items-center justify-center shrink-0">
                     <Archive className="text-teal-500 dark:text-teal-400" size={26} />
                   </div>
                   {t('clinics_hero_li2')}
                 </li>
-                <li className="flex items-center gap-6 text-slate-800 dark:text-slate-200 font-bold text-[17px]">
+                <li className="flex items-center gap-6 text-slate-800 dark:text-slate-200 font-bold text-[14px] lg:text-[17px]">
                   <div className="w-14 h-14 rounded-2xl bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center shrink-0">
                     <Megaphone className="text-amber-500 dark:text-amber-400" size={26} />
                   </div>
@@ -315,7 +315,7 @@ export default function Clinics() {
         </section>
 
         {/* Section 2: Dijital Klinik Profili */}
-        <section className="min-h-screen h-auto lg:h-screen snap-always snap-start py-24 lg:py-0 flex flex-col-reverse lg:flex-row items-center justify-center gap-16">
+        <section className="min-h-screen h-auto lg:h-screen py-24 lg:py-0 flex flex-col-reverse lg:flex-row items-center justify-center gap-16">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex-1 w-full relative">
             <div className="bg-white dark:bg-zinc-950 rounded-[2rem] shadow-2xl border border-slate-100 dark:border-zinc-800 p-7 lg:p-8 relative w-full xl:min-w-[550px] mx-auto min-h-[480px]">
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
@@ -328,7 +328,7 @@ export default function Clinics() {
                 </div>
 
                 <div className="border border-[#25D366]/20 bg-[#25D366]/5 dark:bg-[#25D366]/10 rounded-xl p-3 flex items-center gap-3">
-                  <img src="/whatsapp.png" alt="WhatsApp" className="w-6 h-6 object-contain" />
+                  <img src="/whatsapp.webp" alt="WhatsApp" className="w-6 h-6 object-contain" />
                   <div>
                     <div className="text-[10px] font-bold text-slate-500 uppercase">{t('clinics_prof_wp')}</div>
                     <div className="text-xs font-bold text-[var(--text-main)] dark:text-white">+90 532 111 2233</div>
@@ -402,7 +402,7 @@ export default function Clinics() {
                     {/* Person 1 */}
                     <div className="flex flex-col items-center text-center group cursor-pointer">
                       <div className="w-[72px] h-[72px] rounded-full mb-3 overflow-hidden border-2 border-transparent group-hover:border-teal-500 transition-colors shadow-sm">
-                        <img src="/team-1.jpg" alt={t('clinics_prof_team_1')} className="w-full h-full object-cover" />
+                        <img src="/team-1.webp" alt={t('clinics_prof_team_1')} className="w-full h-full object-cover" />
                       </div>
                       <div className="font-medium text-[var(--text-main)] dark:text-white text-[13px] leading-tight mb-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">{t('clinics_prof_team_1')}</div>
                       <div className="text-xs text-slate-500 dark:text-slate-400 leading-snug"><span dangerouslySetInnerHTML={{ __html: t('clinics_prof_team_1_role') }} /></div>
@@ -410,7 +410,7 @@ export default function Clinics() {
                     {/* Person 2 */}
                     <div className="flex flex-col items-center text-center group cursor-pointer">
                       <div className="w-[72px] h-[72px] rounded-full mb-3 overflow-hidden border-2 border-transparent group-hover:border-teal-500 transition-colors shadow-sm">
-                        <img src="/team-2.jpg" alt={t('clinics_prof_team_2')} className="w-full h-full object-cover" />
+                        <img src="/team-2.webp" alt={t('clinics_prof_team_2')} className="w-full h-full object-cover" />
                       </div>
                       <div className="font-medium text-[var(--text-main)] dark:text-white text-[13px] leading-tight mb-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">{t('clinics_prof_team_2')}</div>
                       <div className="text-xs text-slate-500 dark:text-slate-400 leading-snug"><span dangerouslySetInnerHTML={{ __html: t('clinics_prof_team_2_role') }} /></div>
@@ -418,7 +418,7 @@ export default function Clinics() {
                     {/* Person 3 */}
                     <div className="flex flex-col items-center text-center group cursor-pointer">
                       <div className="w-[72px] h-[72px] rounded-full mb-3 overflow-hidden border-2 border-transparent group-hover:border-teal-500 transition-colors shadow-sm">
-                        <img src="/team-3.jpg" alt={t('clinics_prof_team_3')} className="w-full h-full object-cover" />
+                        <img src="/team-3.webp" alt={t('clinics_prof_team_3')} className="w-full h-full object-cover" />
                       </div>
                       <div className="font-medium text-[var(--text-main)] dark:text-white text-[13px] leading-tight mb-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">{t('clinics_prof_team_3')}</div>
                       <div className="text-xs text-slate-500 dark:text-slate-400 leading-snug"><span dangerouslySetInnerHTML={{ __html: t('clinics_prof_team_3_role') }} /></div>
@@ -426,7 +426,7 @@ export default function Clinics() {
                     {/* Person 4 */}
                     <div className="flex flex-col items-center text-center group cursor-pointer">
                       <div className="w-[72px] h-[72px] rounded-full mb-3 overflow-hidden border-2 border-transparent group-hover:border-teal-500 transition-colors shadow-sm">
-                        <img src="/team-4.jpg" alt={t('clinics_prof_team_4')} className="w-full h-full object-cover object-[70%_center]" />
+                        <img src="/team-4.webp" alt={t('clinics_prof_team_4')} className="w-full h-full object-cover object-[70%_center]" />
                       </div>
                       <div className="font-medium text-[var(--text-main)] dark:text-white text-[13px] leading-tight mb-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">{t('clinics_prof_team_4')}</div>
                       <div className="text-xs text-slate-500 dark:text-slate-400 leading-snug"><span dangerouslySetInnerHTML={{ __html: t('clinics_prof_team_4_role') }} /></div>
@@ -434,7 +434,7 @@ export default function Clinics() {
                     {/* Person 5 */}
                     <div className="flex flex-col items-center text-center group cursor-pointer">
                       <div className="w-[72px] h-[72px] rounded-full mb-3 overflow-hidden border-2 border-transparent group-hover:border-teal-500 transition-colors shadow-sm">
-                        <img src="/team-5.jpg" alt={t('clinics_prof_team_5')} className="w-full h-full object-cover" />
+                        <img src="/team-5.webp" alt={t('clinics_prof_team_5')} className="w-full h-full object-cover" />
                       </div>
                       <div className="font-medium text-[var(--text-main)] dark:text-white text-[13px] leading-tight mb-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">{t('clinics_prof_team_5')}</div>
                       <div className="text-xs text-slate-500 dark:text-slate-400 leading-snug"><span dangerouslySetInnerHTML={{ __html: t('clinics_prof_team_5_role') }} /></div>
@@ -442,7 +442,7 @@ export default function Clinics() {
                     {/* Person 6 */}
                     <div className="flex flex-col items-center text-center group cursor-pointer">
                       <div className="w-[72px] h-[72px] rounded-full mb-3 overflow-hidden border-2 border-transparent group-hover:border-teal-500 transition-colors shadow-sm">
-                        <img src="/team-6.jpg" alt={t('clinics_prof_team_6')} className="w-full h-full object-cover" />
+                        <img src="/team-6.webp" alt={t('clinics_prof_team_6')} className="w-full h-full object-cover" />
                       </div>
                       <div className="font-medium text-[var(--text-main)] dark:text-white text-[13px] leading-tight mb-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">{t('clinics_prof_team_6')}</div>
                       <div className="text-xs text-slate-500 dark:text-slate-400 leading-snug"><span dangerouslySetInnerHTML={{ __html: t('clinics_prof_team_6_role') }} /></div>
@@ -454,15 +454,15 @@ export default function Clinics() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex-1 space-y-8">
-            <h2 className="text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] leading-tight">{t('clinics_prof_sec_title')}</h2>
-            <p className="text-lg text-[var(--text-muted)] font-medium leading-relaxed max-w-xl">{t('clinics_prof_sec_desc')}</p>
+            <h2 className="text-[30px] lg:text-5xl font-extrabold text-[var(--text-main)] leading-tight">{t('clinics_prof_sec_title')}</h2>
+            <p className="text-[16px] lg:text-lg text-[var(--text-muted)] font-medium leading-relaxed max-w-xl">{t('clinics_prof_sec_desc')}</p>
             <div className="flex flex-col gap-3 mt-4 relative">
               <div className="text-left p-3 lg:p-4 rounded-2xl border-2 border-transparent hover:bg-white/50 dark:hover:bg-zinc-900/50 transition-colors">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
                     <Stethoscope size={24} />
                   </div>
-                  <h3 className="font-bold text-lg text-[var(--text-main)]">{t('clinics_prof_sec_f1')}</h3>
+                  <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_prof_sec_f1')}</h3>
                 </div>
               </div>
               <div className="text-left p-3 lg:p-4 rounded-2xl border-2 border-transparent hover:bg-white/50 dark:hover:bg-zinc-900/50 transition-colors">
@@ -470,7 +470,7 @@ export default function Clinics() {
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400">
                     <MapPin size={24} />
                   </div>
-                  <h3 className="font-bold text-lg text-[var(--text-main)]">{t('clinics_prof_sec_f2')}</h3>
+                  <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_prof_sec_f2')}</h3>
                 </div>
               </div>
               <div className="text-left p-3 lg:p-4 rounded-2xl border-2 border-transparent hover:bg-white/50 dark:hover:bg-zinc-900/50 transition-colors">
@@ -478,7 +478,7 @@ export default function Clinics() {
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">
                     <Award size={24} />
                   </div>
-                  <h3 className="font-bold text-lg text-[var(--text-main)]">{t('clinics_prof_sec_f3')}</h3>
+                  <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_prof_sec_f3')}</h3>
                 </div>
               </div>
             </div>
@@ -488,14 +488,14 @@ export default function Clinics() {
 
 
         {/* Section 3.5: Hasta ve Müşteri Yönetimi (Düzen ve Esneklik) */}
-        <section className="min-h-[100dvh] snap-always snap-start py-24 lg:py-32 flex flex-col lg:flex-row items-center justify-center gap-8 xl:gap-12">
+        <section className="min-h-[100dvh] py-24 lg:py-32 flex flex-col lg:flex-row items-center justify-center gap-8 xl:gap-12">
           {/* Left: Text Content */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full xl:w-[45%] space-y-4 lg:space-y-6 flex flex-col justify-center">
             <div className="inline-flex items-center gap-2 bg-white dark:bg-transparent text-emerald-600 dark:text-emerald-400 px-4 py-2 rounded-full font-bold text-sm shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent w-fit">
               <Users size={16} /> {t('clinics_s4_badge')}
             </div>
             
-            <h2 className="text-[32px] lg:text-[42px] font-extrabold text-[var(--text-main)] leading-[1.15] tracking-tight">
+            <h2 className="text-[30px] lg:text-[42px] font-extrabold text-[var(--text-main)] leading-[1.15] tracking-tight">
               {t('clinics_s4_title')}
             </h2>
             
@@ -510,7 +510,7 @@ export default function Clinics() {
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
                     <Users size={24} />
                   </div>
-                  <h3 className="font-bold text-lg text-[var(--text-main)]">{t('clinics_s4_t1_title')}</h3>
+                  <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_s4_t1_title')}</h3>
                 </div>
               </div>
 
@@ -520,7 +520,7 @@ export default function Clinics() {
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">
                     <Grid size={24} />
                   </div>
-                  <h3 className="font-bold text-lg text-[var(--text-main)]">{t('clinics_s4_t2_title')}</h3>
+                  <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_s4_t2_title')}</h3>
                 </div>
               </div>
 
@@ -530,7 +530,7 @@ export default function Clinics() {
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">
                     <Activity size={24} />
                   </div>
-                  <h3 className="font-bold text-lg text-[var(--text-main)]">{t('clinics_s4_t3_title')}</h3>
+                  <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_s4_t3_title')}</h3>
                 </div>
               </div>
             </div>
@@ -543,7 +543,7 @@ export default function Clinics() {
         </section>
 
         {/* Section 5: İnovasyon (Laboratuvar ve Stok) */}
-        <section className="min-h-[100dvh] snap-always snap-start py-24 lg:py-32 flex flex-col lg:flex-row items-center justify-center gap-8 xl:gap-12">
+        <section className="min-h-[100dvh] py-24 lg:py-32 flex flex-col lg:flex-row items-center justify-center gap-8 xl:gap-12">
           
           {/* Left: UI Mockup */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full xl:w-[52%] relative h-[650px] xl:-translate-x-6 2xl:-translate-x-10 mt-12 xl:mt-0 order-2 lg:order-1">
@@ -556,7 +556,7 @@ export default function Clinics() {
               <Scan size={16} /> {t('clinics_s5_badge')}
             </div>
             
-            <h2 className="text-[32px] lg:text-[42px] font-extrabold text-[var(--text-main)] leading-[1.15] tracking-tight">
+            <h2 className="text-[30px] lg:text-[42px] font-extrabold text-[var(--text-main)] leading-[1.15] tracking-tight">
               {t('clinics_s5_title')}
             </h2>
             
@@ -570,7 +570,7 @@ export default function Clinics() {
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
                     <Scan size={24} />
                   </div>
-                  <h3 className="font-bold text-lg text-[var(--text-main)]">{t('clinics_s5_f1')}</h3>
+                  <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_s5_f1')}</h3>
                 </div>
               </div>
 
@@ -579,7 +579,7 @@ export default function Clinics() {
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">
                     <Barcode size={24} />
                   </div>
-                  <h3 className="font-bold text-lg text-[var(--text-main)]">{t('clinics_s5_f2')}</h3>
+                  <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_s5_f2')}</h3>
                 </div>
               </div>
 
@@ -588,7 +588,7 @@ export default function Clinics() {
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">
                     <BookOpen size={24} />
                   </div>
-                  <h3 className="font-bold text-lg text-[var(--text-main)]">{t('clinics_s5_f3')}</h3>
+                  <h3 className="font-bold text-[14px] lg:text-lg text-[var(--text-main)]">{t('clinics_s5_f3')}</h3>
                 </div>
               </div>
             </div>
@@ -606,7 +606,7 @@ export default function Clinics() {
       </div>
 
       {/* Footer Section - Outside of container but still part of scroll snap wrapper */}
-      <section className="snap-always snap-start flex flex-col justify-end min-h-[40vh] bg-[var(--bg-secondary)] w-full">
+      <section className="flex flex-col justify-end min-h-[40vh] bg-[var(--bg-secondary)] w-full">
         <Footer />
       </section>    </div>
   );

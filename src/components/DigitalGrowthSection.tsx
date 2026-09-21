@@ -65,7 +65,7 @@ const DigitalGrowthSection = () => {
             <div className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse"></div>
             Büyüme ve Kurumsallaşma
           </div>
-          <h2 className="text-[32px] lg:text-[42px] font-extrabold text-[var(--text-main)] leading-tight tracking-tight mb-6">
+          <h2 className="text-[30px] lg:text-[42px] font-extrabold text-[var(--text-main)] leading-tight tracking-tight mb-6">
             Kliniğinizin Dijital Yüzünü ve <span className="text-teal-600 dark:text-teal-400">İletişimini Güçlendirin</span>
           </h2>
           <p className="text-[16px] lg:text-[18px] text-[var(--text-muted)] leading-relaxed">
@@ -195,7 +195,7 @@ const DigitalGrowthSection = () => {
                         <div className="h-2.5 w-1/2 bg-slate-100 dark:bg-zinc-800/50 rounded-md"></div>
                         <div className="flex gap-2.5 pt-2">
                           <div className="h-8 px-3 bg-[#25D366]/10 border border-[#25D366]/30 rounded-full flex items-center gap-1.5">
-                            <img src="/whatsapp.png" alt="WhatsApp" className="w-4 h-4 object-contain" />
+                            <img src="/whatsapp.webp" alt="WhatsApp" className="w-4 h-4 object-contain" />
                             <div className="h-2 w-8 bg-[#25D366]/50 rounded-md"></div>
                           </div>
                           <div className="h-8 w-20 bg-slate-200/70 dark:bg-zinc-800 rounded-full"></div>

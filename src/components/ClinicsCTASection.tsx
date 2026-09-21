@@ -69,7 +69,7 @@ export default function ClinicsCTASection() {
               <div className="relative w-full max-w-[280px] lg:max-w-[320px] drop-shadow-2xl scale-105 lg:scale-105 xl:scale-110 origin-center lg:origin-right translate-x-2 lg:translate-x-3 transition-transform">
                 {/* Phone Image */}
                 <img 
-                  src="/phone-mockup.png" 
+                  src="/phone-mockup.webp" 
                   alt="Veterito Phone App Mockup" 
                   className="w-full h-auto object-contain" 
                 />

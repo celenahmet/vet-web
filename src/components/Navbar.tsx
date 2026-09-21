@@ -91,8 +91,8 @@ const Navbar = () => {
 {/*
               ⚠️ KOYU TEMADA AYRI LOGO (24.08.2026). Tek logo kullaniliyordu ve
               murekkebi KOYU; koyu zeminde neredeyse gorunmuyordu.
-              Olculdu: `veterito-yatay-acik.png` ortalama parlaklik 64/255 (koyu
-              murekkep, acik zemin icin), `veterito-yatay-koyu.png` 221/255 (acik
+              Olculdu: `veterito-yatay-acik.webp` ortalama parlaklik 64/255 (koyu
+              murekkep, acik zemin icin), `veterito-yatay-koyu.webp` 221/255 (acik
               murekkep, koyu zemin icin). Dosya adlari yanaltici, olcum karar verdi.
               ⚠️ Iki oran birbirinden farkli (acik 3.94, koyu 4.46), o yuzden
               yukseklik sabit tutulup genislik serbest birakildi.

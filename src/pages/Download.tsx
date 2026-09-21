@@ -77,11 +77,11 @@ export default function Download() {
             {/* App Store Card */}
             <div className="glass-card p-6 sm:p-8 rounded-[2rem] shadow-xl flex flex-col items-center justify-between border border-slate-100 dark:border-transparent gap-8">
               <div className="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 w-full flex justify-center">
-                <img src="/qr-code.svg" alt="App Store QR" className="w-40 h-40 object-contain" />
+                <img src="/qr-code.webp" alt="App Store QR" className="w-40 h-40 object-contain" />
               </div>
               <a href={brandConfig.appStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-4 py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[160px] mt-auto mx-auto">
                 <div className="flex items-center justify-center gap-3 w-full">
-                  <img src="/apple-logo.png" alt="App Store" className="w-7 h-7 object-contain shrink-0 invert" />
+                  <img src="/apple-logo.webp" alt="App Store" className="w-7 h-7 object-contain shrink-0 invert" />
                   <div className="flex flex-col items-start leading-none pt-0.5 text-white">
                     <div className="text-[8px] font-semibold tracking-[0.08em] text-white">Download on the</div>
                     <div className="text-[18px] font-bold tracking-tight mt-0.5 text-white">App Store</div>
@@ -93,11 +93,11 @@ export default function Download() {
             {/* Google Play Card */}
             <div className="glass-card p-6 sm:p-8 rounded-[2rem] shadow-xl flex flex-col items-center justify-between border border-slate-100 dark:border-transparent gap-8">
               <div className="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 w-full flex justify-center">
-                <img src="/qr-code-3.svg" alt="Google Play QR" className="w-40 h-40 object-contain" />
+                <img src="/qr-code-3.webp" alt="Google Play QR" className="w-40 h-40 object-contain" />
               </div>
               <a href={brandConfig.playStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-4 py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[160px] mt-auto mx-auto">
                 <div className="flex items-center justify-center gap-3 w-full">
-                  <img src="/google-play-logo.png" alt="Play Store" className="w-7 h-7 object-contain shrink-0" />
+                  <img src="/google-play-logo.webp" alt="Play Store" className="w-7 h-7 object-contain shrink-0" />
                   <div className="flex flex-col items-start leading-none pt-0.5 text-white">
                     <div className="text-[8px] font-semibold tracking-wide text-white">GET IT ON</div>
                     <div className="text-[16px] font-bold tracking-tight mt-0.5 text-white">Google Play</div>
@@ -109,11 +109,11 @@ export default function Download() {
             {/* AppGallery Card */}
             <div className="glass-card p-6 sm:p-8 rounded-[2rem] shadow-xl flex flex-col items-center justify-between border border-slate-100 dark:border-transparent gap-8">
               <div className="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 w-full flex justify-center">
-                <img src="/qr-code-2.svg" alt="AppGallery QR" className="w-40 h-40 object-contain" />
+                <img src="/qr-code-2.webp" alt="AppGallery QR" className="w-40 h-40 object-contain" />
               </div>
               <a href={brandConfig.appGalleryUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-4 py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[160px] mt-auto mx-auto">
                 <div className="flex items-center justify-center gap-3 w-full">
-                  <img src="/appgallery-logo.png" alt="AppGallery" className="w-7 h-7 object-contain shrink-0" />
+                  <img src="/appgallery-logo.webp" alt="AppGallery" className="w-7 h-7 object-contain shrink-0" />
                   <div className="flex flex-col items-start leading-none pt-0.5 text-white">
                     <div className="text-[8px] font-semibold tracking-wide text-white">EXPLORE IT ON</div>
                     <div className="text-[16px] font-bold tracking-tight mt-0.5 text-white">AppGallery</div>

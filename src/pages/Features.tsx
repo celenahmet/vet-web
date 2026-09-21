@@ -27,7 +27,7 @@ export default function Features() {
       >
         {/* ── ANA YUVARLAK KAPSAYICI (Island Window) ── */}
         <div
-          className="relative z-10 w-[96%] lg:max-w-[1150px] mx-auto h-auto lg:h-[85vh] min-h-[700px] lg:max-h-[800px] rounded-[3rem] lg:rounded-[4rem] border-[6px] border-white dark:border-white/10 shadow-2xl flex flex-col bg-[url('/showcase-bg-final.jpg')] dark:bg-[url('/showcase-bg-dark.jpg')] bg-cover bg-center overflow-hidden"
+          className="relative z-10 w-[96%] lg:max-w-[1150px] mx-auto h-auto lg:h-[85vh] min-h-[700px] lg:max-h-[800px] rounded-[3rem] lg:rounded-[4rem] border-[6px] border-white dark:border-white/10 shadow-2xl flex flex-col bg-[url('/showcase-bg-final.webp')] dark:bg-[url('/showcase-bg-dark.webp')] bg-cover bg-center overflow-hidden"
         >
           {/* Pencere İçi İnce Gölge / Işık */}
           <div className="absolute inset-0 rounded-[3rem] lg:rounded-[4rem] bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 dark:to-transparent pointer-events-none"></div>
@@ -139,7 +139,7 @@ export default function Features() {
                         <div className="flex-1 overflow-y-auto no-scrollbar px-5 pb-24 bg-white relative pt-4">
                           <div className="border border-slate-100 rounded-[24px] p-2 flex gap-4 items-center mb-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
                             <div className="w-[84px] h-[84px] rounded-[18px] overflow-hidden shrink-0">
-                              <img src="/pet1.jpg" alt="Senorita" className="w-full h-full object-cover" />
+                              <img src="/pet1.webp" alt="Senorita" className="w-full h-full object-cover" />
                             </div>
                             <div className="flex-1 py-1">
                               <h3 className="font-bold text-slate-900 text-base mb-1">Senorita 👑</h3>
@@ -229,7 +229,7 @@ export default function Features() {
                             <div className="relative">
                               <div className="w-[120px] h-[120px] rounded-full border-[3px] border-amber-400 bg-slate-200 overflow-hidden shadow-lg p-1">
                                 <div className="w-full h-full rounded-full overflow-hidden">
-                                  <img src="/pet1.jpg" alt="Senorita" className="w-full h-full object-cover" />
+                                  <img src="/pet1.webp" alt="Senorita" className="w-full h-full object-cover" />
                                 </div>
                               </div>
                               <div className="absolute bottom-0 right-0 w-8 h-8 bg-amber-500 rounded-full border-2 border-white flex items-center justify-center text-white shadow-sm">
@@ -370,7 +370,7 @@ export default function Features() {
                           <div className="bg-white m-3 rounded-2xl p-4 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
                             <div className="flex justify-between items-start mb-3">
                               <div className="flex gap-3 items-center">
-                                <img src="/pet1.jpg" alt="Defne & Misket" className="w-10 h-10 rounded-full object-cover" />
+                                <img src="/pet1.webp" alt="Defne & Misket" className="w-10 h-10 rounded-full object-cover" />
                                 <div>
                                   <div className="font-bold text-slate-900 text-sm">Defne & Misket</div>
                                   <div className="text-[10px] text-slate-400 font-medium">{t('feat_post1_time')}</div>
@@ -380,7 +380,7 @@ export default function Features() {
                             </div>
                             <p className="text-slate-700 text-[13px] mb-3">{t('feat_post1_text')}</p>
                             <div className="rounded-xl overflow-hidden mb-4">
-                              <img src="/pet1.jpg" alt="Post" className="w-full h-40 object-cover" />
+                              <img src="/pet1.webp" alt="Post" className="w-full h-40 object-cover" />
                             </div>
                             <div className="flex justify-between items-center pt-1 border-b border-slate-50 pb-4 mb-3">
                               <div className="flex items-center gap-4">
@@ -404,7 +404,7 @@ export default function Features() {
                           <div className="bg-white m-3 rounded-2xl p-4 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
                             <div className="flex justify-between items-start mb-3">
                               <div className="flex gap-3 items-center">
-                                <img src="/pet2.jpg" alt="Can & Pati" className="w-10 h-10 rounded-full object-cover" />
+                                <img src="/pet2.webp" alt="Can & Pati" className="w-10 h-10 rounded-full object-cover" />
                                 <div>
                                   <div className="font-bold text-slate-900 text-sm">Can & Pati</div>
                                   <div className="text-[10px] text-slate-400 font-medium">{t('feat_post2_time')}</div>
@@ -431,7 +431,7 @@ export default function Features() {
                           <div className="bg-white m-3 rounded-2xl p-4 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
                             <div className="flex justify-between items-start mb-3">
                               <div className="flex gap-3 items-center">
-                                <img src="/pet3.jpg" alt="Selin & Leo" className="w-10 h-10 rounded-full object-cover" />
+                                <img src="/pet3.webp" alt="Selin & Leo" className="w-10 h-10 rounded-full object-cover" />
                                 <div>
                                   <div className="font-bold text-slate-900 text-sm">Selin & Leo</div>
                                   <div className="text-[10px] text-slate-400 font-medium">{t('feat_post3_time')}</div>
@@ -441,7 +441,7 @@ export default function Features() {
                             </div>
                             <p className="text-slate-700 text-[13px] mb-3">{t('feat_post3_text')}</p>
                             <div className="rounded-xl overflow-hidden mb-4">
-                              <img src="/pet3.jpg" alt="Post" className="w-full h-40 object-cover" />
+                              <img src="/pet3.webp" alt="Post" className="w-full h-40 object-cover" />
                             </div>
                             <div className="flex justify-between items-center pt-3 border-t border-slate-50">
                               <div className="flex items-center gap-4">
@@ -797,7 +797,7 @@ export default function Features() {
                     <h3 className="font-bold text-slate-800 dark:text-white text-[15px] flex items-center gap-2">{t('feat_s1_em_title')}</h3>
                     <div className="flex items-center gap-3 bg-slate-50 dark:bg-zinc-900/50 p-2.5 rounded-xl border border-slate-100 dark:border-zinc-700/50">
                       <div className="w-14 h-14 rounded-xl overflow-hidden shrink-0">
-                        <img src="/duman.jpg" alt="Pet Profile" className="w-full h-full object-cover" />
+                        <img src="/duman.webp" alt="Pet Profile" className="w-full h-full object-cover" />
                       </div>
                       <div className="leading-tight">
                         <h4 className="text-[15px] font-bold text-slate-800 dark:text-white mb-0.5">Senorita</h4>
@@ -1409,7 +1409,7 @@ export default function Features() {
                   {/* Post Content */}
                   <div className="flex flex-col">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <img src="/moda-kedi.jpg" alt="User" className="w-7 h-7 rounded-full object-cover" />
+                      <img src="/moda-kedi.webp" alt="User" className="w-7 h-7 rounded-full object-cover" />
                       <div>
                         <div className="font-bold text-xs text-slate-800 dark:text-white leading-tight">{t("dashboard_post_author")}</div>
                         <div className="text-[9px] text-slate-400">{t("dashboard_post_time")}</div>
@@ -1423,7 +1423,7 @@ export default function Features() {
 
                     {/* Image below text */}
                     <div className="w-full rounded-xl overflow-hidden mb-2 h-[150px] md:h-[200px]">
-                      <img src="/moda-kedi.jpg" alt="Post" className="w-full h-full object-cover object-[80%_85%]" />
+                      <img src="/moda-kedi.webp" alt="Post" className="w-full h-full object-cover object-[80%_85%]" />
                     </div>
 
                     <div className="flex items-center gap-3 text-slate-500 text-xs font-medium">
@@ -1558,7 +1558,7 @@ export default function Features() {
             {/* Sidebar */}
             <div className="w-[220px] bg-[#0E3D35] text-white shrink-0 flex flex-col hidden lg:flex rounded-tl-2xl rounded-bl-2xl">
               <div className="p-4 pb-4 flex items-center">
-                <img src="/vet-logo-full.png" alt="Veterito Logo" className="h-8 w-auto object-contain" />
+                <img src="/vet-logo-full.webp" alt="Veterito Logo" className="h-8 w-auto object-contain" />
               </div>
 
               <div className="px-4 mb-2">

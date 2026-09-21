@@ -16,7 +16,7 @@ export default function DashboardMockup() {
             {/* Sidebar */}
             <div className="w-[220px] bg-[#0E3D35] text-white shrink-0 flex flex-col hidden lg:flex rounded-tl-2xl rounded-bl-2xl">
               <div className="p-4 pb-4 flex items-center">
-                <img src="/vet-logo-full.png" alt="Veterito Logo" className="h-8 w-auto object-contain" />
+                <img src="/vet-logo-full.webp" alt="Veterito Logo" className="h-8 w-auto object-contain" />
               </div>
 
               <div className="px-4 mb-2">

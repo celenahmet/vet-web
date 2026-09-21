@@ -126,7 +126,7 @@ const FAQ = () => {
           
           {/* Flue (Blurred) Logo Background */}
           <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none flex justify-end items-center -mr-32 opacity-30 blur-sm">
-            <img src="/vet-logo-v.png" alt="" className="w-[600px] h-auto object-contain transform -rotate-12" />
+            <img src="/vet-logo-v.webp" alt="" className="w-[600px] h-auto object-contain transform -rotate-12" />
           </div>
 
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">

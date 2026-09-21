@@ -28,8 +28,8 @@ const Footer = () => {
               {/*
               ⚠️ KOYU TEMADA AYRI LOGO (24.08.2026). Tek logo kullaniliyordu ve
               murekkebi KOYU; koyu zeminde neredeyse gorunmuyordu.
-              Olculdu: `veterito-yatay-acik.png` ortalama parlaklik 64/255 (koyu
-              murekkep, acik zemin icin), `veterito-yatay-koyu.png` 221/255 (acik
+              Olculdu: `veterito-yatay-acik.webp` ortalama parlaklik 64/255 (koyu
+              murekkep, acik zemin icin), `veterito-yatay-koyu.webp` 221/255 (acik
               murekkep, koyu zemin icin). Dosya adlari yanaltici, olcum karar verdi.
               ⚠️ Iki oran birbirinden farkli (acik 3.94, koyu 4.46), o yuzden
               yukseklik sabit tutulup genislik serbest birakildi.
@@ -100,7 +100,7 @@ const Footer = () => {
                 {/* App Store */}
                 <a href={brandConfig.appStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-3 py-1.5 md:px-4 md:py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[145px] md:w-[160px]">
                   <div className="flex items-center justify-center gap-3 w-full">
-                    <img src="/apple-logo.png" alt="App Store" className="w-6 h-6 md:w-7 md:h-7 object-contain shrink-0 invert" />
+                    <img src="/apple-logo.webp" alt="App Store" className="w-6 h-6 md:w-7 md:h-7 object-contain shrink-0 invert" />
                     <div className="flex flex-col items-start leading-none pt-0.5 text-white">
                       <div className="text-[7px] md:text-[8px] font-semibold tracking-[0.08em] text-white">Download on the</div>
                       <div className="text-[15px] md:text-[18px] font-bold tracking-tight mt-0.5 text-white">App Store</div>
@@ -111,7 +111,7 @@ const Footer = () => {
                 {/* Google Play */}
                 <a href={brandConfig.playStoreUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-3 py-1.5 md:px-4 md:py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[145px] md:w-[160px]">
                   <div className="flex items-center justify-center gap-3 w-full">
-                    <img src="/google-play-logo.png" alt="Play Store" className="w-6 h-6 md:w-7 md:h-7 object-contain shrink-0" />
+                    <img src="/google-play-logo.webp" alt="Play Store" className="w-6 h-6 md:w-7 md:h-7 object-contain shrink-0" />
                     <div className="flex flex-col items-start leading-none pt-0.5 text-white">
                       <div className="text-[7px] md:text-[8px] font-semibold tracking-wide text-white">GET IT ON</div>
                       <div className="text-[15px] md:text-[16px] font-bold tracking-tight mt-0.5 text-white">Google Play</div>
@@ -122,7 +122,7 @@ const Footer = () => {
                 {/* AppGallery */}
                 <a href={brandConfig.appGalleryUrl || undefined} target="_blank" rel="noopener noreferrer" className="bg-[#000000] hover:bg-[#1a1a1a] text-white px-3 py-1.5 md:px-4 md:py-2 rounded-2xl shadow-xl hover:scale-105 transition-all flex items-center w-[145px] md:w-[160px]">
                   <div className="flex items-center justify-center gap-3 w-full">
-                    <img src="/appgallery-logo.png" alt="AppGallery" className="w-6 h-6 md:w-7 md:h-7 object-contain shrink-0" />
+                    <img src="/appgallery-logo.webp" alt="AppGallery" className="w-6 h-6 md:w-7 md:h-7 object-contain shrink-0" />
                     <div className="flex flex-col items-start leading-none pt-0.5 text-white">
                       <div className="text-[7px] md:text-[8px] font-semibold tracking-wide text-white">EXPLORE IT ON</div>
                       <div className="text-[15px] md:text-[16px] font-bold tracking-tight mt-0.5 text-white">AppGallery</div>

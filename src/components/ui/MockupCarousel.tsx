@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const mockups = [
-  { id: 1, src: '/evcil-hayvan.png', alt: 'Evcil Hayvan' },
-  { id: 2, src: '/topluluk.png', alt: 'Topluluk' },
-  { id: 3, src: '/klinik.png', alt: 'Klinik' },
-  { id: 4, src: '/rehber.png', alt: 'Rehber' },
+  { id: 1, src: '/evcil-hayvan.webp', alt: 'Evcil Hayvan' },
+  { id: 2, src: '/topluluk.webp', alt: 'Topluluk' },
+  { id: 3, src: '/klinik.webp', alt: 'Klinik' },
+  { id: 4, src: '/rehber.webp', alt: 'Rehber' },
 ];
 
 export function MockupCarousel() {
