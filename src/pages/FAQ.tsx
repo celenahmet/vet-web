@@ -122,11 +122,11 @@ const FAQ = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* HERO SECTION - Colored Banner with Blurred Logo */}
-        <div className="relative bg-[#009689] rounded-3xl overflow-hidden mb-8 mt-4 pt-16 pb-32 px-4 sm:px-8 max-w-6xl mx-auto shadow-xl">
+        <div className="relative bg-[#009689] rounded-3xl overflow-hidden mb-8 mt-4 pt-10 pb-16 md:pt-16 md:pb-28 px-4 sm:px-8 max-w-6xl mx-auto shadow-xl">
           
           {/* Flue (Blurred) Logo Background */}
           <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none flex justify-end items-center -mr-32 opacity-30 blur-sm">
-            <img src="/vet-logo-v.webp" alt="" className="w-[600px] h-auto object-contain transform -rotate-12" />
+            <img src="/vet-logo-v.webp" alt="" className="w-[600px] h-auto object-contain transform -rotate-12 translate-y-6 md:translate-y-0" />
           </div>
 
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -134,17 +134,17 @@ const FAQ = () => {
           </div>
 
           <div className="relative z-10 w-full max-w-[940px] mx-auto">
-            <div className="text-left mb-16">
+            <div className="text-left mb-8 md:mb-16">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-white/90 text-sm font-semibold mb-6 backdrop-blur-sm border border-white/20">
                 <MessageCircle size={16} />
                 {t('faq_hero_badge')}
               </div>
               
-              <h1 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
+              <h1 className="text-[30px] md:text-5xl font-black text-white mb-6 tracking-tight leading-tight">
                 {t('contact_faq_title')}
               </h1>
               
-              <p className="text-lg text-white/80 leading-relaxed max-w-2xl whitespace-pre-line">
+              <p className="text-[16px] md:text-lg text-white/80 leading-relaxed max-w-2xl whitespace-pre-line">
                 {t('faq_hero_subtitle')}
               </p>
             </div>
@@ -173,18 +173,18 @@ const FAQ = () => {
             
             {/* Horizontal Tabs - Sola Yaslı */}
             {!isSearching && (
-              <div className="flex flex-row overflow-x-auto gap-3 justify-start mb-8 pb-4 snap-x no-scrollbar">
+              <div className="flex flex-row overflow-x-auto gap-2 md:gap-3 justify-start mb-8 pb-4 snap-x no-scrollbar">
                 {faqCategories.map((cat) => (
                   <button
                     key={cat.key}
                     onClick={() => { setActiveCategory(cat.key); setOpenFaq(null); }}
-                    className={`snap-center shrink-0 flex items-center gap-2 px-6 py-4 rounded-full text-sm font-bold transition-all duration-200 border shadow-sm ${
+                    className={`snap-center shrink-0 flex items-center gap-1 md:gap-2 px-3 py-2 md:px-6 md:py-4 rounded-full text-[11px] md:text-sm font-bold transition-all duration-200 border shadow-sm ${
                       activeCategory === cat.key 
                         ? cat.activeColor 
                         : cat.inactiveColor
                     }`}
                   >
-                    <cat.icon size={18} />
+                    <cat.icon className="w-3.5 h-3.5 md:w-[18px] md:h-[18px]" />
                     <span>{t(cat.titleKey)}</span>
                   </button>
                 ))}
@@ -223,7 +223,7 @@ const FAQ = () => {
                             <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-colors ${isOpen ? 'bg-[#009689]/10 text-[#009689]' : 'text-slate-400 bg-slate-50 dark:bg-zinc-800'}`}>
                               <Icon size={22} strokeWidth={2} />
                             </div>
-                            <span className="font-bold text-base text-slate-900 dark:text-white pr-4 flex items-center flex-wrap gap-2">
+                            <span className="font-bold text-sm md:text-base text-slate-900 dark:text-white pr-4 flex items-center flex-wrap gap-2">
                               <span><HighlightText text={t(`contact_faq_q_${key}`)} highlight={searchQuery} /></span>
                               {isSearching && !t(`contact_faq_q_${key}`).toLowerCase().includes(searchQuery.toLowerCase().trim()) && t(`contact_faq_a_${key}`).toLowerCase().includes(searchQuery.toLowerCase().trim()) && (
                                 <span className="text-[10px] font-bold bg-[#009689]/10 text-[#009689] px-2 py-0.5 rounded-full uppercase tracking-wider">{t('faq_match_in_answer', 'Cevapta Eşleşti')}</span>
@@ -244,7 +244,7 @@ const FAQ = () => {
                               transition={{ duration: 0.2 }}
                             >
                               <div className="px-6 pb-8 pt-0 pl-[5.5rem]">
-                                <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                                   <Trans 
                                     i18nKey={`contact_faq_a_${key}`} 
                                     components={{ 1: to ? <Link to={to} className="text-[#009689] hover:underline font-bold" /> : <span /> }} 

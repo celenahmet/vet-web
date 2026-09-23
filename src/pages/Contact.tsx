@@ -34,7 +34,7 @@ const Contact = () => {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-8 leading-tight tracking-tight"
+            className="text-[30px] lg:text-5xl font-extrabold text-[var(--text-main)] mb-8 leading-tight tracking-tight"
           >
             {t('contact_title')}
           </motion.h1>
@@ -42,7 +42,7 @@ const Contact = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-xl text-[var(--text-muted)] font-medium leading-relaxed"
+            className="text-[16px] lg:text-xl text-[var(--text-muted)] font-medium leading-relaxed"
           >
             {t('contact_desc')}
           </motion.p>
