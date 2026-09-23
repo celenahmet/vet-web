@@ -134,7 +134,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center justify-end gap-4 flex-1">
+          <div className="hidden md:flex items-center justify-end gap-4 flex-1 mr-4 lg:mr-0">
             <button 
               onClick={() => setIsDarkMode(!isDarkMode)} 
               className="flex items-center bg-slate-200 dark:bg-zinc-900 rounded-full p-1 relative shadow-inner w-[72px] h-[36px] overflow-hidden group cursor-pointer"
@@ -185,7 +185,7 @@ const Navbar = () => {
               yok. Olculdu, sitedeki HER sayfada "1 adsiz dugme" cikiyordu; ekran
               okuyucu "dugme" diye okuyup geciyordu. */}
           <button 
-            className="md:hidden p-2 text-[var(--text-main)] relative z-[110]"
+            className="lg:hidden p-2 text-[var(--text-main)] relative z-[110]"
             onClick={() => (isMenuOpen ? menuKapat() : setIsMenuOpen(true))}
             aria-label={isMenuOpen ? 'Menüyü kapat' : 'Menüyü aç'}
             aria-expanded={isMenuOpen}
@@ -218,7 +218,7 @@ const Navbar = () => {
       */}
       {(isMenuOpen || kapaniyor) && (
           <div
-            className={`${kapaniyor ? 'mobil-menu kapaniyor' : 'mobil-menu'} absolute top-full left-0 right-0 bg-white dark:bg-zinc-950 border-t border-[var(--border-color)] p-6 flex flex-col gap-4 shadow-xl md:hidden z-[100] h-screen overflow-y-auto pb-32`}
+            className={`${kapaniyor ? 'mobil-menu kapaniyor' : 'mobil-menu'} absolute top-full left-0 right-0 bg-white dark:bg-zinc-950 border-t border-[var(--border-color)] p-6 flex flex-col gap-4 shadow-xl lg:hidden z-[100] h-screen overflow-y-auto pb-32`}
           >
             {navLinks.map((link) => (
               <Link 

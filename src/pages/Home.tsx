@@ -47,11 +47,11 @@ export default function Home() {
         {/* =========================================
             1. HERO SECTION
             ========================================= */}
-                <section className="min-h-[100dvh] h-auto lg:h-[100dvh] w-full relative flex items-center justify-center pt-20 bg-[var(--bg-main)] overflow-hidden">
+                <section className="min-h-[100dvh] md:min-h-0 lg:min-h-[100dvh] h-auto lg:h-[100dvh] w-full relative flex items-center md:items-start lg:items-center justify-center pt-20 md:pt-32 lg:pt-20 md:pb-20 lg:pb-0 bg-[var(--bg-main)] overflow-hidden">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
-            <div className="flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-12 w-full">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 w-full">
               
-              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="flex flex-col items-start z-10 w-full lg:w-1/2">
+              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="flex flex-col items-start z-10 w-full md:w-1/2">
                 <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent text-indigo-600 dark:text-indigo-400 text-xs md:text-sm font-bold shadow-sm mb-6 mt-6 md:mt-0 bg-white dark:bg-transparent backdrop-blur-sm self-center md:self-start">{t('home_badge_new')}</motion.div>
                 
                 <motion.h1 variants={fadeInUp} className="text-center md:text-left w-full font-extrabold leading-[1.1] tracking-tight mb-6 text-[var(--text-main)]">
@@ -66,10 +66,10 @@ export default function Home() {
                 
                 <motion.p variants={fadeInUp} className="text-center md:text-left w-full text-base md:text-lg lg:text-xl text-[var(--text-muted)] mb-10 max-w-xl md:mx-0 mx-auto leading-relaxed font-medium">{t('home_subtitle_new')}</motion.p>
                 
-                <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-2">
-                  <Link to="/features" className="group flex items-center justify-center gap-3 px-6 py-3 md:px-8 md:py-4 text-sm md:text-base rounded-3xl font-bold text-white bg-slate-900 dark:bg-white dark:text-slate-900 hover:scale-105 transition-transform shadow-xl">{t('home_btn_pet')}<PawPrint size={20} className="group-hover:rotate-12 transition-transform" />
+                <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 w-full sm:w-auto mt-2">
+                  <Link to="/features" className="group flex items-center justify-center gap-3 px-6 py-3 md:px-8 md:py-4 text-sm md:text-base rounded-3xl font-bold text-white bg-slate-900 dark:bg-white dark:text-slate-900 hover:scale-105 transition-transform shadow-xl">{t('home_btn_pet')}<PawPrint className="w-5 h-5 md:w-7 md:h-7 lg:w-5 lg:h-5 group-hover:rotate-12 transition-transform" />
                   </Link>
-                  <Link to="/clinics" className="group flex items-center justify-center gap-3 px-6 py-3 md:px-8 md:py-4 text-sm md:text-base rounded-3xl font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 hover:scale-105 transition-transform shadow-sm">{t('home_btn_clinic')}<Stethoscope size={20} className="group-hover:rotate-12 transition-transform" />
+                  <Link to="/clinics" className="group flex items-center justify-center gap-3 px-6 py-3 md:px-8 md:py-4 text-sm md:text-base rounded-3xl font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 hover:scale-105 transition-transform shadow-sm">{t('home_btn_clinic')}<Stethoscope className="w-5 h-5 md:w-7 md:h-7 lg:w-5 lg:h-5 group-hover:rotate-12 transition-transform" />
                   </Link>
                 </motion.div>
               </motion.div>
@@ -79,7 +79,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }} 
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="relative flex justify-center items-center w-full lg:w-1/2 h-[500px] lg:h-[700px] -mt-4 md:mt-12 lg:mt-0"
+                className="relative flex justify-center items-center w-full md:w-1/2 h-[500px] lg:h-[700px] -mt-4 md:mt-0"
               >
                  <img src="/ana-sayfa.webp?v=2" alt="Veterito Ana Sayfa" className="h-[90%] lg:h-[100%] w-auto object-contain drop-shadow-2xl z-20 scale-x-[1.08]" />
                  
@@ -93,7 +93,7 @@ export default function Home() {
             1.5. HIGHLIGHTS (Neden Veterito'yu İndirmelisiniz?)
             ========================================= */}
         
-        <section className="min-h-screen h-auto lg:h-screen pt-20 pb-8 md:py-24 lg:py-0 flex flex-col justify-center bg-[var(--bg-main)]">
+        <section className="min-h-screen md:min-h-0 lg:min-h-screen h-auto lg:h-screen pt-20 pb-8 md:py-24 lg:py-0 flex flex-col justify-center bg-[var(--bg-main)]">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
             <div className="text-center max-w-2xl lg:max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mb-6">{t('home_why_title')}</h2>
@@ -164,27 +164,27 @@ export default function Home() {
         {/* =========================================
             5.5. APP SHOWCASE / MOCKUP GALLERY
             ========================================= */}
-        <section className="w-full h-auto md:h-[100dvh] min-h-[600px] bg-[var(--bg-secondary)] pt-12 md:pt-16 pb-6 md:pb-4 flex flex-col overflow-hidden">
+        <section className="w-full h-auto lg:h-[100dvh] min-h-[600px] bg-[var(--bg-secondary)] pt-12 lg:pt-16 pb-6 lg:pb-4 flex flex-col overflow-hidden">
            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col h-full items-center">
              
              {/* Title Area */}
-             <div className="text-center w-full max-w-4xl mx-auto mt-2 md:mt-6 lg:mt-8 mb-0 shrink-0 flex flex-col items-center">
+             <div className="text-center w-full max-w-4xl mx-auto mt-2 md:-mt-8 lg:mt-8 mb-0 shrink-0 flex flex-col items-center">
                <h2 className="text-2xl sm:text-3xl md:text-4xl leading-tight font-extrabold text-[var(--text-main)] mb-3">{t('home_mockup_title')}</h2>
-               <p className="text-sm sm:text-base md:text-lg text-[var(--text-muted)] font-medium max-w-3xl mx-auto px-4 leading-relaxed mb-2">{t('home_mockup_subtitle')}</p>
+               <p className="text-sm sm:text-base md:text-lg text-[var(--text-muted)] font-medium max-w-3xl mx-auto px-4 leading-relaxed mb-4">{t('home_mockup_subtitle')}</p>
              </div>
              
              {/* Gallery Area */}
              <div className="w-full flex-1 min-h-0 relative flex flex-col items-center justify-center">
                <MockupGallery />
-               
-               {/* Mobile Button */}
-                <div className="mt-4 mb-8 md:hidden z-40 flex justify-center w-full">
-                 <Link to="/features" className="group inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[var(--color-vet-primary)] hover:bg-[var(--color-vet-secondary)] text-white font-semibold rounded-full transition-all shadow-sm hover:shadow-md">{t('home_mockup_btn')}<ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                 </Link>
-               </div>
+                
+                {/* Mobile/Tablet Button */}
+                <div className="mt-4 mb-8 lg:hidden z-40 flex justify-center w-full">
+                  <Link to="/features" className="group inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-2.5 md:px-8 md:py-3 md:text-lg bg-[var(--color-vet-primary)] hover:bg-[var(--color-vet-secondary)] text-white font-semibold rounded-full transition-all shadow-sm hover:shadow-md">{t('home_mockup_btn')}<ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
 
                {/* Desktop Button */}
-               <div className="absolute right-0 md:right-1 lg:right-2 xl:right-4 top-1/2 -translate-y-1/2 z-40 hidden md:flex">
+               <div className="absolute right-0 md:right-1 lg:right-2 xl:right-4 top-1/2 -translate-y-1/2 z-40 hidden lg:flex">
                  <Link to="/features" className="group inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[var(--color-vet-primary)] hover:bg-[var(--color-vet-secondary)] text-white font-semibold rounded-full transition-all shadow-sm hover:shadow-md">{t('home_mockup_btn')}<ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                  </Link>
                </div>
