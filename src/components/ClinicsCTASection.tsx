@@ -7,18 +7,18 @@ export default function ClinicsCTASection() {
   const { t } = useTranslation();
 
   return (
-    <section className="min-h-[40vh] lg:min-h-screen h-auto snap-always snap-start py-12 lg:py-32 w-full flex items-center justify-center relative bg-[var(--bg-secondary)]">
-      <div className="container mx-auto px-4 md:px-8 lg:px-12 relative z-10">
+    <section className="min-h-0 md:min-h-[40vh] lg:min-h-screen h-auto snap-always snap-start pt-10 pb-0 md:py-12 lg:py-32 w-full flex items-center justify-center relative bg-[var(--bg-secondary)]">
+      <div className="container mx-auto px-0 md:px-8 lg:px-12 relative z-10 h-full">
         <div className="flex flex-col items-center justify-center">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.6 }}
-            className="w-full max-w-6xl mx-auto flex flex-row items-center justify-between px-4 sm:px-6 md:px-12 lg:px-16 py-4 md:py-2 lg:py-4 shadow-2xl shadow-teal-500/10 relative overflow-visible"
+            className="w-full max-w-6xl mx-auto flex flex-row items-center justify-between px-6 sm:px-8 md:px-12 lg:px-16 py-5 md:py-2 lg:py-4 shadow-2xl shadow-teal-500/10 relative overflow-visible"
           >
             {/* Background Layer (Handles overflow for inner glows and shapes) */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#115e59] to-[#0d4a46] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden -z-10 pointer-events-none shadow-inner">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#115e59] to-[#0d4a46] rounded-none md:rounded-[2.5rem] overflow-hidden -z-10 pointer-events-none shadow-inner">
               
               {/* Subtle glow effect inside the card */}
               <div className="absolute top-1/4 left-1/4 w-40 h-40 md:w-96 md:h-96 bg-white/10 blur-[50px] md:blur-[100px] rounded-full"></div>

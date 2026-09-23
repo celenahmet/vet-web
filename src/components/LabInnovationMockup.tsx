@@ -9,7 +9,7 @@ const LabInnovationMockup = () => {
 
   return (
     <div className="w-full h-full xl:absolute xl:inset-0 text-sm">
-      <div className="bg-white dark:bg-zinc-950 rounded-[2rem] shadow-2xl border border-slate-100 dark:border-zinc-800 p-6 xl:p-8 flex flex-col relative h-full overflow-hidden">
+      <div className="bg-white dark:bg-zinc-950 rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] border border-slate-100 dark:border-zinc-800 p-6 xl:p-8 flex flex-col relative h-full overflow-hidden">
 
       {/* Top Header */}
       <div className="flex justify-between items-center mb-5 shrink-0">

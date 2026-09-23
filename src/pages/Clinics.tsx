@@ -547,7 +547,7 @@ export default function Clinics() {
         </section>
 
         {/* Section 5: İnovasyon (Laboratuvar ve Stok) */}
-        <section className="min-h-0 h-auto lg:min-h-[100dvh] py-10 lg:py-32 flex flex-col lg:flex-row items-center justify-center gap-8 xl:gap-12">
+        <section className="min-h-0 h-auto lg:min-h-[100dvh] pt-10 pb-16 lg:py-32 flex flex-col lg:flex-row items-center justify-center gap-8 xl:gap-12 relative z-20">
           
           {/* Left: UI Mockup */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full xl:w-[52%] relative h-[650px] xl:-translate-x-6 2xl:-translate-x-10 mt-12 xl:mt-0 order-2 lg:order-1">
@@ -602,16 +602,15 @@ export default function Clinics() {
         {/* Section 6: İletişim ve Dijital Görünürlük (Scroll Spy Layout) */}
         <DigitalGrowthSection />
 
-        {/* Section 7: Closing CTA Section */}
-        <ClinicsCTASection />
-
-
-
       </div>
+
+      {/* Section 7: Closing CTA Section */}
+      <ClinicsCTASection />
 
       {/* Footer Section - Outside of container but still part of scroll snap wrapper */}
       <section className="flex flex-col justify-end min-h-[40vh] bg-[var(--bg-secondary)] w-full">
         <Footer />
-      </section>    </div>
+      </section>
+    </div>
   );
 }
