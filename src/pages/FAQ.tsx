@@ -156,7 +156,7 @@ const FAQ = () => {
               </div>
               <input
                 type="text"
-                className="block w-full pl-16 pr-6 py-5 rounded-2xl border-0 ring-4 ring-white/20 bg-white/95 backdrop-blur-sm text-slate-900 placeholder:text-slate-500 text-lg shadow-2xl focus:outline-none focus:border-transparent focus:ring-4 focus:ring-white/40 focus:bg-white transition-all"
+                className="block w-full pl-16 pr-6 py-3 md:py-5 rounded-2xl border-0 ring-4 ring-white/20 bg-white/95 backdrop-blur-sm text-slate-900 placeholder:text-slate-500 text-lg shadow-2xl focus:outline-none focus:border-transparent focus:ring-4 focus:ring-white/40 focus:bg-white transition-all"
                 placeholder={t('faq_search_placeholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -173,20 +173,21 @@ const FAQ = () => {
             
             {/* Horizontal Tabs - Sola Yaslı */}
             {!isSearching && (
-              <div className="flex flex-row overflow-x-auto gap-2 md:gap-3 justify-start mb-8 pb-4 snap-x no-scrollbar">
-                {faqCategories.map((cat) => (
-                  <button
-                    key={cat.key}
-                    onClick={() => { setActiveCategory(cat.key); setOpenFaq(null); }}
-                    className={`snap-center shrink-0 flex items-center gap-1 md:gap-2 px-3 py-2 md:px-6 md:py-4 rounded-full text-[11px] md:text-sm font-bold transition-all duration-200 border shadow-sm ${
-                      activeCategory === cat.key 
-                        ? cat.activeColor 
-                        : cat.inactiveColor
-                    }`}
-                  >
-                    <cat.icon className="w-3.5 h-3.5 md:w-[18px] md:h-[18px]" />
-                    <span>{t(cat.titleKey)}</span>
-                  </button>
+              <div className="flex flex-wrap justify-center md:justify-start gap-2 md:gap-3 mb-8 pb-4">
+                {faqCategories.map((cat, index) => (
+                  <div key={cat.key} className={`${index === 0 ? 'w-full flex justify-center md:w-auto md:block' : 'w-auto'}`}>
+                    <button
+                      onClick={() => { setActiveCategory(cat.key); setOpenFaq(null); }}
+                      className={`shrink-0 flex items-center justify-center gap-2 px-3.5 py-2.5 md:px-6 md:py-4 rounded-full text-[13px] md:text-sm font-bold transition-all duration-200 border shadow-sm ${
+                        activeCategory === cat.key 
+                          ? cat.activeColor 
+                          : cat.inactiveColor
+                      }`}
+                    >
+                      <cat.icon className="w-[18px] h-[18px]" />
+                      <span>{t(cat.titleKey)}</span>
+                    </button>
+                  </div>
                 ))}
               </div>
             )}
