@@ -22,12 +22,11 @@ export default function Features() {
       {/* 2. INTERACTIVE APP SHOWCASE (Snap Section 2) */}
       <section
         id="app-showcase"
-        className="w-full relative z-10 flex flex-col items-center justify-center overflow-hidden py-16 lg:py-24 bg-white dark:bg-[#060A08]"
-        style={{ minHeight: '100dvh' }}
+        className="w-full relative z-10 flex flex-col items-center justify-center md:justify-start lg:justify-center overflow-hidden py-16 md:pt-[140px] md:pb-16 lg:py-24 bg-white dark:bg-[#060A08] min-h-[100dvh] md:min-h-0 lg:min-h-[100dvh]"
       >
         {/* ── ANA YUVARLAK KAPSAYICI (Island Window) ── */}
         <div
-          className="relative z-10 w-[96%] lg:max-w-[1150px] mx-auto h-auto lg:h-[85vh] min-h-[700px] lg:max-h-[800px] rounded-[3rem] lg:rounded-[4rem] border-[6px] border-white dark:border-white/10 shadow-2xl flex flex-col bg-[url('/showcase-bg-final.webp')] dark:bg-[url('/showcase-bg-dark.webp')] bg-cover bg-center overflow-hidden"
+          className="relative z-10 w-[96%] lg:max-w-[1150px] mx-auto h-auto lg:h-[85vh] min-h-[700px] md:min-h-[600px] xl:min-h-[700px] lg:max-h-[1040px] xl:max-h-[800px] rounded-[3rem] lg:rounded-[4rem] border-[6px] border-white dark:border-white/10 shadow-2xl flex flex-col bg-[url('/showcase-bg-final.webp')] dark:bg-[url('/showcase-bg-dark.webp')] bg-cover bg-center overflow-hidden"
         >
           {/* Pencere İçi İnce Gölge / Işık */}
           <div className="absolute inset-0 rounded-[3rem] lg:rounded-[4rem] bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 dark:to-transparent pointer-events-none"></div>
@@ -80,21 +79,26 @@ export default function Features() {
             {/* Üst Kısım: Başlık */}
             <div className="pt-20 lg:pt-40 px-8 lg:px-12">
               {/* 2. ANA BAŞLIK (Sola Hizalı ve Siyah Renkli) */}
-              <div className="w-[65%] lg:w-full max-w-[350px] lg:max-w-[450px] xl:max-w-[550px] relative z-30 min-h-[150px] lg:min-h-0 flex items-start">
+              <div className="w-[85%] lg:w-full max-w-[350px] md:max-w-[380px] lg:max-w-[450px] xl:max-w-[550px] relative z-30 min-h-[150px] lg:min-h-0 flex items-start md:translate-x-[20px] md:translate-y-[82px] lg:translate-y-[7px] xl:translate-x-0 xl:translate-y-0">
                 <AnimatePresence mode="wait">
                   {activeTab === 'owners' && (
-                    <motion.h2 key="title-owners" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="text-[18px] lg:text-[2.25rem] xl:text-[2.75rem] font-black leading-tight tracking-normal text-emerald-950 dark:text-emerald-50">
+                    <motion.h2 key="title-owners" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="text-[18px] md:text-[28px] lg:text-[2.25rem] xl:text-[2.75rem] font-black leading-tight tracking-normal text-emerald-950 dark:text-emerald-50">
                       {t('feat_own_title1')}<br />{t('feat_own_title2')}<br />{t('feat_own_title3')}
                     </motion.h2>
                   )}
                   {activeTab === 'pets' && (
-                    <motion.h2 key="title-pets" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="text-[18px] lg:text-[2.25rem] xl:text-[2.75rem] font-black leading-tight tracking-normal text-emerald-950 dark:text-emerald-50">
-                      {t('feat_pet_title1')}<br />{t('feat_pet_title2')}<br />{t('feat_pet_title3')}<br />{t('feat_pet_title4')}
+                    <motion.h2 key="title-pets" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="text-[18px] md:text-[28px] lg:text-[2.25rem] xl:text-[2.75rem] font-black leading-tight tracking-normal text-emerald-950 dark:text-emerald-50">
+                      <span className="block md:hidden xl:block">
+                        {t('feat_pet_title1')}<br />{t('feat_pet_title2')}<br />{t('feat_pet_title3_ipad')}<br className="xl:hidden" /><span className="hidden xl:inline"> </span>{t('feat_pet_title4')}
+                      </span>
+                      <span className="hidden md:block xl:hidden">
+                        {t('feat_pet_title1')}<br />Güvenli {t('feat_pet_title2_ipad')}<br />{t('feat_pet_title3_ipad')} {t('feat_pet_title4_ipad')}
+                      </span>
                     </motion.h2>
                   )}
                   {activeTab === 'community' && (
-                    <motion.h2 key="title-community" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="text-[18px] lg:text-[2.25rem] xl:text-[2.75rem] font-black leading-tight tracking-normal text-emerald-950 dark:text-emerald-50 pr-4 lg:pr-12 xl:pr-24">
-                      {t('feat_com_title1')}<br />{t('feat_com_title2')} <br className="md:hidden" /><span className="hidden md:inline"> </span>{t('feat_com_title3')}
+                    <motion.h2 key="title-community" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="text-[18px] md:text-[28px] lg:text-[2.25rem] xl:text-[2.75rem] font-black leading-tight tracking-normal text-emerald-950 dark:text-emerald-50 pr-4 lg:pr-12 xl:pr-24">
+                      {t('feat_com_title1')}<br />{t('feat_com_title2')}<br />{t('feat_com_title3')}
                     </motion.h2>
                   )}
                 </AnimatePresence>
@@ -102,14 +106,14 @@ export default function Features() {
             </div>
 
             {/* ORTA & ALT KISIMLAR KAPSAYICISI (Mockup ve Kutular) */}
-            <div className="relative flex-1 w-full h-full">
+            <div className="relative flex-1 w-full h-full md:h-[330px] lg:h-full">
 
               {/* 3. TELEFON MOCKUP (Tam Merkezde Kaydırılabilir) */}
-              <div className="absolute right-[-14px] -top-[146px] lg:top-auto lg:right-auto lg:absolute lg:left-1/2 lg:-translate-x-1/2 bottom-auto lg:bottom-6 z-10 flex justify-center items-center lg:items-end h-auto lg:h-full w-full">
+              <div className="absolute right-[-14px] md:right-[60px] lg:right-auto lg:left-1/2 lg:-translate-x-1/2 -top-[146px] md:-top-[100px] lg:top-auto lg:bottom-6 xl:top-auto xl:right-auto xl:absolute xl:left-1/2 xl:-translate-x-1/2 bottom-auto xl:bottom-6 z-10 flex justify-center lg:justify-center xl:justify-center items-center lg:items-end h-auto lg:h-full w-full">
                 <AnimatePresence mode="wait">
 
                   {activeTab === 'owners' && (
-                    <motion.div key="mockup-owners" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }} className="origin-top-right lg:origin-bottom scale-[0.60] lg:scale-[0.90] relative">
+                    <motion.div key="mockup-owners" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }} className="origin-top-right lg:origin-bottom scale-[0.60] md:scale-[0.70] lg:scale-[0.90] relative">
 
 
 
@@ -210,7 +214,7 @@ export default function Features() {
                   )}
 
                   {activeTab === 'pets' && (
-                    <motion.div key="mockup-pets" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }} className="origin-top-right lg:origin-bottom scale-[0.60] lg:scale-[0.90] relative">
+                    <motion.div key="mockup-pets" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }} className="origin-top-right lg:origin-bottom scale-[0.60] md:scale-[0.70] lg:scale-[0.90] relative">
 
 
 
@@ -340,7 +344,7 @@ export default function Features() {
                   )}
 
                   {activeTab === 'community' && (
-                    <motion.div key="mockup-community" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }} className="origin-top-right lg:origin-bottom scale-[0.60] lg:scale-[0.90] relative">
+                    <motion.div key="mockup-community" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }} className="origin-top-right lg:origin-bottom scale-[0.60] md:scale-[0.70] lg:scale-[0.90] relative">
 
 
 
@@ -475,7 +479,7 @@ export default function Features() {
               </div>
 
               {/* 5. SAĞ ALT: Özellikler ve Logo */}
-              <div className="absolute bottom-8 right-8 z-20 hidden md:flex flex-col w-[320px] lg:w-[350px] pointer-events-none">
+              <div className="absolute hidden md:flex flex-col pointer-events-none md:z-0 md:-top-[80px] lg:top-auto lg:bottom-8 lg:left-auto lg:right-8 lg:w-[350px] md:bottom-auto md:left-auto md:right-4 md:w-[260px] xl:left-auto xl:right-8 xl:w-[350px] xl:bottom-8 xl:top-auto">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={`right-${activeTab}`}
@@ -483,7 +487,7 @@ export default function Features() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
                     transition={{ duration: 0.3 }}
-                    className="relative pointer-events-auto flex flex-col p-8 pb-10 h-full"
+                    className="relative pointer-events-auto flex flex-col p-8 pb-10 md:p-5 md:pb-7 lg:p-8 lg:pb-10 h-auto"
                   >
                     {/* Arka Plan ve İçe Göçük (Cutout) - Tiled Pure CSS Mask (Flawless 40px fillets) */}
                     <div
@@ -504,16 +508,16 @@ export default function Features() {
                     </div>
 
 
-                    <div className="relative z-10 space-y-6 pt-2 w-full pl-6 pb-12">
+                    <div className="relative z-10 pt-2 w-full pl-0 lg:pl-6 xl:pl-6 pb-12 flex flex-col space-y-6 md:space-y-4 lg:space-y-6 xl:space-y-6">
                       {/* Madde 1 */}
                       <div className="flex flex-col gap-1.5">
                         <div className="flex items-center gap-2 text-amber-500">
                           <Bell size={18} className="shrink-0" />
-                          <span className="font-bold text-slate-900 dark:text-white text-[16px]">
+                          <span className="font-bold text-slate-900 dark:text-white text-[16px] md:text-[14px] lg:text-[16px]">
                             {activeTab === 'owners' ? t('feat_own_f1_title') : activeTab === 'pets' ? t('feat_pet_f1_title') : t('feat_com_f1_title')}
                           </span>
                         </div>
-                        <p className="text-[13px] text-slate-800 dark:text-slate-200 font-medium pl-6 leading-snug">
+                        <p className="text-[13px] md:text-[11px] lg:text-[13px] text-slate-800 dark:text-slate-200 font-medium pl-6 leading-snug">
                           {activeTab === 'owners' ? t('feat_own_f1_desc') : activeTab === 'pets' ? t('feat_pet_f1_desc') : t('feat_com_f1_desc')}
                         </p>
                       </div>
@@ -522,11 +526,11 @@ export default function Features() {
                       <div className="flex flex-col gap-1.5">
                         <div className="flex items-center gap-2 text-rose-500">
                           <Users size={18} className="shrink-0" />
-                          <span className="font-bold text-slate-900 dark:text-white text-[16px]">
+                          <span className="font-bold text-slate-900 dark:text-white text-[16px] md:text-[14px] lg:text-[16px]">
                             {activeTab === 'owners' ? t('feat_own_f2_title') : activeTab === 'pets' ? t('feat_pet_f2_title') : t('feat_com_f2_title')}
                           </span>
                         </div>
-                        <p className="text-[13px] text-slate-800 dark:text-slate-200 font-medium pl-6 leading-snug">
+                        <p className="text-[13px] md:text-[11px] lg:text-[13px] text-slate-800 dark:text-slate-200 font-medium pl-6 leading-snug">
                           {activeTab === 'owners' ? t('feat_own_f2_desc') : activeTab === 'pets' ? t('feat_pet_f2_desc') : t('feat_com_f2_desc')}
                         </p>
                       </div>
@@ -535,11 +539,11 @@ export default function Features() {
                       <div className="flex flex-col gap-1.5">
                         <div className="flex items-center gap-2 text-sky-500">
                           <FileText size={18} className="shrink-0" />
-                          <span className="font-bold text-slate-900 dark:text-white text-[16px]">
+                          <span className="font-bold text-slate-900 dark:text-white text-[16px] md:text-[14px] lg:text-[16px]">
                             {activeTab === 'owners' ? t('feat_own_f3_title') : activeTab === 'pets' ? t('feat_pet_f3_title') : t('feat_com_f3_title')}
                           </span>
                         </div>
-                        <p className="text-[13px] text-slate-800 dark:text-slate-200 font-medium pl-6 leading-snug">
+                        <p className="text-[13px] md:text-[11px] lg:text-[13px] text-slate-800 dark:text-slate-200 font-medium pl-6 md:pl-10 lg:pl-6 leading-snug">
                           {activeTab === 'owners' ? t('feat_own_f3_desc') : activeTab === 'pets' ? t('feat_pet_f3_desc') : t('feat_com_f3_desc')}
                         </p>
                       </div>
@@ -627,8 +631,7 @@ export default function Features() {
 
             </div>
           </div>
-          {/* 4. SOL ALT: Açıklama Kutusu */}
-          <div className="absolute -bottom-[6px] -left-[6px] z-20 hidden md:flex flex-col w-[346px] lg:w-[386px] pointer-events-none">
+          <div className="absolute -bottom-[6px] md:-bottom-[6px] md:top-auto lg:top-auto lg:-bottom-[6px] xl:-bottom-[6px] xl:top-auto -left-[6px] md:left-[4px] lg:-left-[6px] z-20 hidden md:flex flex-col w-[346px] md:w-[250px] lg:w-[386px] pointer-events-none">
             <AnimatePresence mode="wait">
               <motion.div
                 key={`left-${activeTab}`}
@@ -636,13 +639,13 @@ export default function Features() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="pointer-events-auto relative p-10 pt-12 pl-[54px] pb-[46px] drop-shadow-[0_15px_40px_rgba(0,0,0,0.06)]"
+                className="pointer-events-auto relative p-10 md:p-8 lg:p-10 lg:pt-12 md:pl-[30px] lg:pl-[54px] lg:pb-[46px] drop-shadow-[0_15px_40px_rgba(0,0,0,0.06)]"
               >
                 {/* The unified frosted glass background (main box) - Matches Right Box Exactly */}
-                <div className="absolute inset-0 bg-white/40 dark:bg-black/40 backdrop-blur-[45px] rounded-tr-[45px] rounded-tl-[45px] rounded-bl-[3rem] lg:rounded-bl-[4rem] rounded-br-none border border-white/50 dark:border-white/5 overflow-hidden z-0" />
+                <div className="absolute inset-0 bg-white/40 dark:bg-black/40 backdrop-blur-[45px] rounded-t-[45px] rounded-bl-[3rem] lg:rounded-bl-[4rem] rounded-br-[3rem] lg:rounded-br-none border border-white/50 dark:border-white/5 overflow-hidden z-0" />
 
                 {/* İnce ve zarif kuyruk (Swoop Tail) Efekti - Tam Uyumlu Blurlu Versiyon */}
-                <div className="absolute bottom-[0px] right-[-120px] w-[120px] h-[35px] pointer-events-none z-0" style={{ transform: 'translateZ(0)' }}>
+                <div className="absolute bottom-[0px] right-[-120px] w-[120px] h-[35px] pointer-events-none z-0 hidden lg:block" style={{ transform: 'translateZ(0)' }}>
                   <div
                     className="w-full h-full bg-white/40 dark:bg-black/40 backdrop-blur-[45px]"
                     style={{
@@ -660,13 +663,13 @@ export default function Features() {
                 <div className="relative z-10">
                   {activeTab === 'owners' ? (
                     <>
-                      <p className="text-[15px] lg:text-[16px] text-slate-600 dark:text-slate-200 leading-relaxed font-medium">
+                      <p className="text-[15px] md:text-[13px] lg:text-[16px] text-slate-600 dark:text-slate-200 leading-relaxed font-medium">
                         {t('feat_own_desc')}
                       </p>
                     </>
                   ) : (
                     <>
-                      <p className="text-[15px] lg:text-[16px] text-slate-600 dark:text-slate-200 leading-relaxed font-medium">
+                      <p className="text-[15px] md:text-[13px] lg:text-[16px] text-slate-600 dark:text-slate-200 leading-relaxed font-medium">
                         {activeTab === 'pets' ? t('feat_pet_desc') : t('feat_com_desc')}
                       </p>
                     </>
@@ -876,7 +879,7 @@ export default function Features() {
               transition={{ duration: 0.8 }}
               className="flex-1 w-full flex justify-center lg:justify-start lg:order-1 order-2"
             >
-              <div className="w-full max-w-xl bg-[#FAF9F6] dark:bg-zinc-900/50 rounded-[2.5rem] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-none border border-slate-200/60 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-2 gap-4 relative overflow-hidden">
+              <div className="w-full md:max-w-full lg:max-w-xl bg-[#FAF9F6] dark:bg-zinc-900/50 rounded-[2.5rem] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-none border border-slate-200/60 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-2 gap-4 relative overflow-hidden">
 
                 {/* 1. Kişisel Hatırlatmalar */}
                 <div className="bg-white dark:bg-zinc-800/80 rounded-3xl p-5 shadow-sm border border-slate-100 dark:border-zinc-700/50 h-full flex flex-col">
@@ -961,7 +964,7 @@ export default function Features() {
                   </div>
 
                   {/* Mock Chart */}
-                  <div className="relative h-24 w-[90%] mx-auto md:h-20 md:w-full md:mx-0 mt-4 md:mt-2">
+                  <div className="relative h-24 w-[240px] mx-auto md:h-28 md:w-[280px] md:mx-auto lg:h-20 lg:w-full lg:mx-0 mt-4 md:mt-0 lg:mt-2">
                     <svg className="w-full h-full overflow-visible" viewBox="0 0 100 40" preserveAspectRatio="none">
                       <motion.path
                         d="M 5,35 L 25,25 L 50,30 L 75,15 L 95,5"
@@ -1074,7 +1077,7 @@ export default function Features() {
         </div>
       </section>
 
-      <section className="min-h-0 lg:min-h-[100dvh] h-auto lg:h-auto py-10 lg:py-0 flex items-center bg-[var(--bg-main)]">
+      <section className="min-h-0 lg:min-h-[100dvh] h-auto lg:h-auto pt-10 pb-24 md:pb-40 lg:pb-0 lg:py-0 flex items-center bg-[var(--bg-main)]">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
 
@@ -1201,6 +1204,7 @@ export default function Features() {
                       </div>
                     </div>
                   </div>
+                </div>
 
                 {/* Floating Chat Bubble (Left/Bottom) */}
                 <motion.div
@@ -1208,7 +1212,7 @@ export default function Features() {
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                  className="relative mt-4 sm:mt-0 sm:absolute sm:-left-8 sm:-bottom-16 lg:-left-68 lg:-bottom-24 w-full sm:w-[320px] bg-white sm:bg-[#FAF8F5] dark:bg-zinc-900 rounded-[2rem] shadow-sm sm:shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-slate-100 dark:border-zinc-800 z-30 block"
+                  className="relative mt-4 sm:mt-0 sm:absolute sm:-left-8 md:-left-52 sm:-bottom-16 md:-bottom-24 lg:-left-68 lg:-bottom-24 w-full sm:w-[320px] md:scale-[0.85] lg:scale-100 origin-center bg-white sm:bg-[#FAF8F5] dark:bg-zinc-900 rounded-[2rem] shadow-sm sm:shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-slate-100 dark:border-zinc-800 z-30 block"
                 >
                   {/* Header */}
                   <div className="flex items-center justify-between p-3 pb-2 border-b border-slate-200 dark:border-zinc-800">
@@ -1249,7 +1253,6 @@ export default function Features() {
                     </div>
                   </div>
                 </motion.div>
-                </div>
 
                 {/* Floating Rating Card (Right/Bottom) */}
                 <motion.div
@@ -1257,7 +1260,7 @@ export default function Features() {
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.5, duration: 0.6 }}
-                  className="absolute -right-8 -bottom-24 lg:-right-24 lg:-bottom-32 w-[300px] bg-white dark:bg-zinc-900 rounded-[2rem] p-4 shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-slate-100 dark:border-zinc-800 z-20 flex flex-col gap-3 hidden sm:flex"
+                  className="absolute -right-8 md:-right-40 lg:left-auto lg:-right-24 -bottom-24 md:-bottom-32 lg:-bottom-32 w-[300px] md:scale-[0.85] lg:scale-100 origin-center bg-white dark:bg-zinc-900 rounded-[2rem] p-4 shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-slate-100 dark:border-zinc-800 z-20 flex flex-col gap-3 hidden sm:flex"
                 >
                   <div className="font-bold text-slate-800 dark:text-white text-[15px]">{t('feat_s3_ui_rating_title')}</div>
 
@@ -1301,7 +1304,7 @@ export default function Features() {
               transition={{ duration: 0.8 }}
               className="flex-1 w-full flex justify-center lg:justify-start lg:order-1 order-2 lg:-ml-4 xl:-ml-8 mt-6"
             >
-              <div className="w-full max-w-4xl bg-[#FAF9F6] dark:bg-zinc-900/50 rounded-[2.5rem] p-4 lg:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-none border border-slate-200/60 dark:border-zinc-800 grid grid-cols-1 md:grid-cols-2 gap-4 relative">
+              <div className="w-full max-w-4xl bg-[#FAF9F6] dark:bg-zinc-900/50 rounded-[2.5rem] p-4 lg:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-none border border-slate-200/60 dark:border-zinc-800 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 relative">
 
                 {/* 1. Adoption Box (Top Left) */}
                 <div className="bg-white dark:bg-zinc-800/80 rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-zinc-700/50 h-full flex flex-col justify-between">
@@ -1384,7 +1387,7 @@ export default function Features() {
                 </div>
 
                 {/* 3. Post Box (Bottom, Spans 2 columns on desktop but restricted width) */}
-                <div className="bg-white dark:bg-zinc-800/80 rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-zinc-700/50 md:col-span-2 w-full max-w-lg mx-auto flex flex-col gap-2 relative">
+                <div className="bg-white dark:bg-zinc-800/80 rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-zinc-700/50 md:col-span-2 w-full max-w-lg md:max-w-none lg:max-w-lg mx-auto flex flex-col gap-2 relative">
 
                   {/* Header & Tabs */}
                   <div className="flex flex-col">
@@ -1768,7 +1771,7 @@ export default function Features() {
                 </div>
 
                 {/* Bottom Row */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
                   {/* Recent Patients */}
                   <div className="bg-white dark:bg-zinc-800 rounded-xl border border-slate-200 dark:border-zinc-700 shadow-sm flex flex-col overflow-hidden">
                     <div className="p-3 border-b border-slate-100 dark:border-zinc-700 flex justify-between items-start bg-slate-50/50 dark:bg-zinc-800/50">

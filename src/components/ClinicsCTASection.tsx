@@ -7,21 +7,20 @@ export default function ClinicsCTASection() {
   const { t } = useTranslation();
 
   return (
-    <section className="min-h-0 md:min-h-[40vh] lg:min-h-screen h-auto snap-always snap-start pt-10 pb-0 md:py-12 lg:py-32 w-full flex items-center justify-center relative bg-[var(--bg-secondary)]">
-      <div className="container mx-auto px-0 md:px-8 lg:px-12 relative z-10 h-full">
+    <section className="min-h-0 md:min-h-[40vh] lg:min-h-screen h-auto snap-always snap-start pt-10 pb-0 md:pt-40 md:pb-0 lg:py-32 w-full flex items-center justify-center relative bg-[var(--bg-secondary)]">
+      <div className="w-full lg:container mx-auto px-0 md:px-0 lg:px-12 relative z-10 h-full">
         <div className="flex flex-col items-center justify-center">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.6 }}
-            className="w-full max-w-6xl mx-auto flex flex-row items-center justify-between px-6 sm:px-8 md:px-12 lg:px-16 py-5 md:py-2 lg:py-4 shadow-2xl shadow-teal-500/10 relative overflow-visible"
+            className="w-full max-w-6xl mx-auto flex flex-row items-center justify-between px-6 sm:px-8 md:px-12 lg:px-16 py-5 md:pt-10 md:pb-4 lg:py-4 shadow-2xl shadow-teal-500/10 relative overflow-visible"
           >
             {/* Background Layer (Handles overflow for inner glows and shapes) */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#115e59] to-[#0d4a46] rounded-none md:rounded-[2.5rem] overflow-hidden -z-10 pointer-events-none shadow-inner">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#115e59] to-[#0d4a46] rounded-none md:rounded-none lg:rounded-[2.5rem] overflow-hidden -z-10 pointer-events-none shadow-inner">
               
-              {/* Subtle glow effect inside the card */}
-              <div className="absolute top-1/4 left-1/4 w-40 h-40 md:w-96 md:h-96 bg-white/10 blur-[50px] md:blur-[100px] rounded-full"></div>
+              {/* Subtle glow effect inside the card (Removed as requested) */}
 
               {/* Static Glass Sphere (Top Right) */}
               <div 
@@ -49,7 +48,8 @@ export default function ClinicsCTASection() {
             {/* Left Column: Text Content */}
             <div className="w-[55%] lg:w-[65%] xl:w-[65%] flex flex-col items-start text-left relative z-10">
               <h2 className="text-[14px] sm:text-[20px] md:text-[30px] lg:text-[32px] xl:text-[36px] font-extrabold text-white mb-2 md:mb-4 leading-[1.1] md:leading-tight uppercase tracking-tight max-w-4xl pr-1 md:pr-4">
-                Kliniğinizin Dijital Dönüşümü <br />
+                Kliniğinizin Dijital Dönüşümü{' '}
+                <br className="hidden xl:block" />
                 Sadece <br />
                 Bir Tık Uzağınızda
               </h2>
@@ -66,7 +66,7 @@ export default function ClinicsCTASection() {
 
             {/* Right Column: Phone Mockup with Interactive Overlay Button */}
             <div className="w-[45%] lg:w-[35%] xl:w-[35%] flex justify-end mt-0 relative z-20">
-              <div className="relative w-full max-w-[140px] sm:max-w-[200px] lg:max-w-[320px] drop-shadow-2xl scale-[1.15] sm:scale-110 lg:scale-105 xl:scale-110 origin-right translate-x-5 sm:translate-x-6 lg:translate-x-8 transition-transform">
+              <div className="relative w-full max-w-[140px] sm:max-w-[200px] md:max-w-[280px] lg:max-w-[320px] drop-shadow-2xl scale-[1.15] sm:scale-110 lg:scale-105 xl:scale-110 origin-right translate-x-5 sm:translate-x-6 lg:translate-x-8 transition-transform">
                 {/* Phone Image */}
                 <img 
                   src="/phone-mockup.webp" 
@@ -89,7 +89,7 @@ export default function ClinicsCTASection() {
                 `}</style>
                 <Link 
                   to="/pricing" 
-                  className="group absolute flex items-center justify-center bg-[#0d5e56] hover:bg-[#0a4943] text-white font-bold rounded-[4px] sm:rounded-[8px] md:rounded-[14px] transition-all duration-300 hover:scale-105 active:scale-95 text-center leading-tight whitespace-nowrap overflow-hidden text-[5px] sm:text-[7px] md:text-[11px]"
+                  className="group absolute flex items-center justify-center bg-[#0d5e56] hover:bg-[#0a4943] text-white font-bold rounded-[4px] sm:rounded-[8px] md:rounded-[14px] transition-all duration-300 hover:scale-105 active:scale-95 text-center leading-tight whitespace-nowrap overflow-hidden text-[5px] sm:text-[7px] md:text-[10px] xl:text-[11px]"
                   style={{ 
                     top: '59.5%', 
                     left: '19%', 

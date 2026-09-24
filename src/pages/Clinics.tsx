@@ -43,13 +43,13 @@ export default function Clinics() {
 
         {/* Section 0: New Macbook Hero */}
         <section className="min-h-[100dvh] py-24 lg:pt-32 lg:pb-16 flex flex-col justify-center relative">
-          <div className="flex flex-col xl:flex-row items-center xl:items-stretch justify-between gap-10 xl:gap-16 w-full">
+          <div className="flex flex-col lg:flex-row items-center lg:items-stretch justify-between gap-10 lg:gap-16 w-full">
             {/* Left: Text Area */}
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full xl:w-[40%] space-y-6 lg:space-y-8 flex flex-col justify-center z-10">
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full lg:w-[40%] space-y-6 lg:space-y-8 flex flex-col justify-center z-10">
               <div className="self-start inline-flex items-center gap-2 bg-white dark:bg-transparent text-teal-600 dark:text-teal-400 px-4 py-2 rounded-full font-bold text-sm shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent">
                 <CheckCircle2 size={16} /> {t('clinics_hero_badge')}
               </div>
-              <h1 className="text-[30px] lg:text-[38px] xl:text-[44px] font-extrabold text-[var(--text-main)] leading-[1.2] tracking-tight">
+              <h1 className="text-[30px] lg:text-[40px] xl:text-[44px] font-extrabold text-[var(--text-main)] leading-[1.2] tracking-tight">
                 <span className="2xl:whitespace-nowrap">{t('clinics_hero_title1')}</span><br />
                 <span className="text-teal-600 dark:text-teal-400 whitespace-nowrap">{t('clinics_hero_title2')}</span>
               </h1>
@@ -59,10 +59,10 @@ export default function Clinics() {
             </motion.div>
 
             {/* Right: Macbook Mockup */}
-            <motion.div initial={{ opacity: 0, scale: 0.95, rotateX: 15, y: 40 }} whileInView={{ opacity: 1, scale: 1, rotateX: 0, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} style={{ perspective: 2000 }} className="w-full xl:w-[60%] relative flex justify-center items-center z-10 pl-8 pr-[60px] sm:pl-10 sm:pr-[76px] md:px-8 xl:px-10">
+            <motion.div initial={{ opacity: 0, scale: 0.95, rotateX: 15, y: 40 }} whileInView={{ opacity: 1, scale: 1, rotateX: 0, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} style={{ perspective: 2000 }} className="w-full lg:w-[60%] relative flex justify-center items-center z-10 pl-8 pr-[60px] sm:pl-10 sm:pr-[76px] md:px-8 lg:px-10">
 
               {/* Sleek CSS Macbook Pro Mockup (Silver) */}
-              <div className="relative w-full max-w-[900px] aspect-[1.46] mt-4 xl:mt-0">
+              <div className="relative w-full max-w-[900px] aspect-[1.46] mt-4 md:-mt-12 lg:mt-0 md:scale-[0.75] lg:scale-100 origin-center">
 
                 {/* Screen Lid (Ultra-thin Silver Outer Edge) */}
                 <div className="absolute inset-0 bg-gradient-to-b from-[#e3e5e8] to-[#c7c9cc] dark:from-[#d1d3d6] dark:to-[#a9acb0] rounded-[8px] sm:rounded-[18px] rounded-b-[4px] sm:rounded-b-[8px] p-[1px] sm:p-[1.5px] shadow-2xl flex flex-col items-center border-b border-[#a9acb0] dark:border-[#838588] z-10">
@@ -109,7 +109,7 @@ export default function Clinics() {
                   whileInView={{ scale: 1, rotateX: 0, y: 0 }} 
                   viewport={{once:true}} 
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-                  className="absolute z-30 bottom-[-10px] lg:bottom-[-20px] right-[-60px] sm:right-[-76px] md:right-[-104px] lg:right-[-123px] w-[136px] sm:w-[176px] md:w-[208px] lg:w-[246px] drop-shadow-2xl"
+                  className="absolute z-30 bottom-[-10px] lg:bottom-[-20px] right-[-60px] sm:right-[-76px] md:right-[-150px] lg:right-[-123px] w-[136px] sm:w-[176px] md:w-[300px] lg:w-[246px] drop-shadow-2xl"
                 >
                   <img 
                     src="/mobile-mockup.webp" 
@@ -128,9 +128,9 @@ export default function Clinics() {
         </section>
 
         {/* Section 1: Hero */}
-        <section className="min-h-0 h-auto lg:min-h-[100dvh] py-10 lg:pt-32 lg:pb-16 flex flex-col justify-center">
-          <div className="flex flex-col xl:flex-row items-center xl:items-stretch justify-between gap-10 xl:gap-16 w-full">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full xl:w-[48%] space-y-6 lg:space-y-8 xl:-translate-x-4 2xl:-translate-x-8">
+        <section className="min-h-0 h-auto lg:min-h-[100dvh] py-10 md:-mt-40 lg:mt-0 lg:pt-32 lg:pb-16 flex flex-col justify-center">
+          <div className="flex flex-col lg:flex-row items-center lg:items-stretch justify-between gap-10 lg:gap-16 w-full">
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full lg:w-[48%] space-y-6 lg:space-y-8 lg:-translate-x-4 2xl:-translate-x-8">
               <div className="inline-flex items-center gap-2 bg-white dark:bg-transparent text-indigo-600 dark:text-indigo-400 px-4 py-2 rounded-full font-bold text-sm shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent">
                 <Building2 size={16} />{t('clinics_hero_badge')}</div>
               <h1 className="text-[30px] lg:text-[42px] font-extrabold text-[var(--text-main)] leading-tight">{t('clinics_hero_title1')} <span className="text-inherit">{t('clinics_hero_title2')}</span>
@@ -159,9 +159,9 @@ export default function Clinics() {
 
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full xl:w-[52%] relative min-h-[450px] xl:translate-x-6 2xl:translate-x-10">
-              <div className="w-full h-full xl:absolute xl:inset-0">
-                <div className="bg-white dark:bg-transparent rounded-[2rem] shadow-2xl border border-slate-100 dark:border-transparent p-6 xl:p-8 flex flex-col relative h-full">
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full lg:w-[52%] relative min-h-[620px] lg:translate-x-6 2xl:translate-x-10">
+              <div className="w-full h-full lg:absolute lg:inset-0">
+                <div className="bg-white dark:bg-transparent rounded-[2rem] shadow-2xl border border-slate-100 dark:border-transparent p-6 lg:p-8 flex flex-col relative h-full">
                   {/* Header & Tabs */}
                   <div className="flex flex-col gap-4 mb-6 relative z-20">
                     <div className="flex items-center justify-between">
@@ -189,7 +189,7 @@ export default function Clinics() {
                   </div>
 
                   {/* Content Area */}
-                  <div className="flex-1 overflow-y-auto pr-2 scrollbar-hide relative xl:min-h-0 min-h-[400px]">
+                  <div className="flex-1 overflow-y-auto pr-2 scrollbar-hide relative lg:min-h-0 min-h-[400px]">
                     <AnimatePresence mode="wait">
                       {dashboardTab === 'shortcuts' && (
                         <motion.div key="shortcuts" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }} className="space-y-4 h-full flex flex-col justify-between">
@@ -327,8 +327,8 @@ export default function Clinics() {
                   </div>
                 </div>
 
-                <div className="border border-[#25D366]/20 bg-[#25D366]/5 dark:bg-[#25D366]/10 rounded-xl p-3 flex items-center gap-3">
-                  <img src="/whatsapp.webp" alt="WhatsApp" className="w-6 h-6 object-contain" />
+                <div className="border border-[#25D366]/20 bg-[#25D366]/5 dark:bg-[#25D366]/10 rounded-xl p-3 lg:px-2 xl:px-3 flex items-center gap-3 lg:gap-1.5 xl:gap-3">
+                  <img src="/whatsapp.webp" alt="WhatsApp" className="w-6 h-6 lg:w-[18px] lg:h-[18px] xl:w-6 xl:h-6 object-contain shrink-0" />
                   <div>
                     <div className="text-[10px] font-bold text-slate-500 uppercase">{t('clinics_prof_wp')}</div>
                     <div className="text-xs font-bold text-[var(--text-main)] dark:text-white">+90 532 111 2233</div>
@@ -354,30 +354,32 @@ export default function Clinics() {
 
               <div className="flex flex-col lg:flex-row gap-8 h-full">
                 <div className="flex-1 space-y-6">
-                  <div>
-                    <h3 className="font-bold text-[var(--text-main)] dark:text-white text-sm mb-1.5">{t('clinics_prof_rating')}</h3>
-                    <div className="flex items-center gap-3">
-                      <div className="text-2xl font-black text-[var(--text-main)] dark:text-white">4.8</div>
-                      <div>
-                        <div className="flex text-amber-400 gap-0.5">
-                          <Star size={16} fill="currentColor" />
-                          <Star size={16} fill="currentColor" />
-                          <Star size={16} fill="currentColor" />
-                          <Star size={16} fill="currentColor" />
-                          <StarHalf size={16} fill="currentColor" />
+                  <div className="flex flex-col md:flex-row lg:flex-col gap-6">
+                    <div className="flex-1">
+                      <h3 className="font-bold text-[var(--text-main)] dark:text-white text-sm mb-1.5">{t('clinics_prof_rating')}</h3>
+                      <div className="flex items-center gap-3">
+                        <div className="text-2xl font-black text-[var(--text-main)] dark:text-white">4.8</div>
+                        <div>
+                          <div className="flex text-amber-400 gap-0.5">
+                            <Star size={16} fill="currentColor" />
+                            <Star size={16} fill="currentColor" />
+                            <Star size={16} fill="currentColor" />
+                            <Star size={16} fill="currentColor" />
+                            <StarHalf size={16} fill="currentColor" />
+                          </div>
+                          <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium mt-0.5">{t('clinics_prof_rating_desc')}</div>
                         </div>
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium mt-0.5">{t('clinics_prof_rating_desc')}</div>
                       </div>
                     </div>
-                  </div>
 
-                  <div>
-                    <h3 className="font-bold text-[var(--text-main)] dark:text-white text-sm mb-1.5">{t('clinics_prof_hours')}</h3>
-                    <div className="flex flex-col gap-1.5">
-                      <div className="flex items-center gap-1.5 text-[13px] font-medium text-slate-700 dark:text-slate-300">
-                        <Clock size={16} className="text-teal-500" />{t('clinics_prof_hours_wd')}</div>
-                      <div className="flex items-center gap-1.5 text-[13px] font-medium text-slate-500 dark:text-slate-400">
-                        <Clock size={16} className="text-slate-400" />{t('clinics_prof_hours_we')}</div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-[var(--text-main)] dark:text-white text-sm mb-1.5">{t('clinics_prof_hours')}</h3>
+                      <div className="flex flex-col gap-1.5">
+                        <div className="flex items-center gap-1.5 text-[13px] font-medium text-slate-700 dark:text-slate-300">
+                          <Clock size={16} className="text-teal-500" />{t('clinics_prof_hours_wd')}</div>
+                        <div className="flex items-center gap-1.5 text-[13px] font-medium text-slate-500 dark:text-slate-400">
+                          <Clock size={16} className="text-slate-400" />{t('clinics_prof_hours_we')}</div>
+                      </div>
                     </div>
                   </div>
 
@@ -453,7 +455,7 @@ export default function Clinics() {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex-1 space-y-4 lg:space-y-6 flex flex-col justify-center">
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="md:w-full lg:w-auto flex-1 space-y-4 lg:space-y-6 flex flex-col justify-center">
             <div className="inline-flex items-center gap-2 bg-white dark:bg-transparent text-rose-600 dark:text-rose-400 px-4 py-2 rounded-full font-bold text-sm shadow-md shadow-slate-200/50 dark:shadow-black/20 border border-slate-100/50 dark:border-transparent w-fit">
               <Building2 size={16} /> {t('clinics_s2_badge')}
             </div>
