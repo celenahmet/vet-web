@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { 
   Activity, AlertTriangle, Bell, Calendar, CheckCircle2, ChevronDown, 
