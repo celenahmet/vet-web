@@ -53,15 +53,15 @@ export default function About() {
                 {/* Step 1: Problem */}
                 <div className={`relative pl-8 pb-10 transition-all duration-300 ${activeStory === 1 ? 'opacity-100 translate-x-2' : 'opacity-40'}`}>
                   <div className={`absolute left-0 top-1.5 w-3 h-3 rounded-full z-10 transition-all duration-500 ${activeStory === 1 ? 'bg-teal-500 scale-125 shadow-[0_0_12px_rgba(20,184,166,0.6)]' : 'bg-slate-300 dark:bg-zinc-700'}`}></div>
-                  <h4 className={`text-lg font-bold transition-colors duration-300 ${activeStory === 1 ? 'text-teal-600 dark:text-teal-400' : 'text-[var(--text-main)]'}`}>Sorun</h4>
-                  <p className="text-sm text-[var(--text-muted)] mt-1 leading-relaxed">Kopuk iletişim, kaybolan veriler ve stresli evrak yükü.</p>
+                  <h4 className={`text-lg font-bold transition-colors duration-300 ${activeStory === 1 ? 'text-teal-600 dark:text-teal-400' : 'text-[var(--text-main)]'}`}>{t('about_story_problem', 'Sorun')}</h4>
+                  <p className="text-sm text-[var(--text-muted)] mt-1 leading-relaxed">{t('about_story_problem_desc', 'Kopuk iletişim, kaybolan veriler ve stresli evrak yükü.')}</p>
                 </div>
                 
                 {/* Step 2: Solution */}
                 <div className={`relative pl-8 transition-all duration-300 ${activeStory === 2 ? 'opacity-100 translate-x-2' : 'opacity-40'}`}>
                   <div className={`absolute left-0 top-1.5 w-3 h-3 rounded-full z-10 transition-all duration-500 ${activeStory === 2 ? 'bg-emerald-500 scale-125 shadow-[0_0_12px_rgba(16,185,129,0.6)]' : 'bg-slate-300 dark:bg-zinc-700'}`}></div>
-                  <h4 className={`text-lg font-bold transition-colors duration-300 ${activeStory === 2 ? 'text-emerald-600 dark:text-emerald-400' : 'text-[var(--text-main)]'}`}>Çözüm</h4>
-                  <p className="text-sm text-[var(--text-muted)] mt-1 leading-relaxed">Veteriner hekimler ve hayvanseverler için kusursuz dijital asistan.</p>
+                  <h4 className={`text-lg font-bold transition-colors duration-300 ${activeStory === 2 ? 'text-emerald-600 dark:text-emerald-400' : 'text-[var(--text-main)]'}`}>{t('about_story_solution', 'Çözüm')}</h4>
+                  <p className="text-sm text-[var(--text-muted)] mt-1 leading-relaxed">{t('about_story_solution_desc', 'Veteriner hekimler ve hayvanseverler için kusursuz dijital asistan.')}</p>
                 </div>
               </div>
 
@@ -75,15 +75,15 @@ export default function About() {
                 {/* Step 1: Problem */}
                 <div className={`flex-1 relative pt-6 pl-0 pr-4 pb-0 transition-all duration-300 ${activeStory === 1 ? 'opacity-100 translate-y-2' : 'opacity-40'}`}>
                   <div className={`absolute top-0 left-0 w-3 h-3 rounded-full z-10 transition-all duration-500 ${activeStory === 1 ? 'bg-teal-500 scale-125 shadow-[0_0_12px_rgba(20,184,166,0.6)]' : 'bg-slate-300 dark:bg-zinc-700'}`}></div>
-                  <h4 className={`text-base font-bold transition-colors duration-300 ${activeStory === 1 ? 'text-teal-600 dark:text-teal-400' : 'text-[var(--text-main)]'}`}>Sorun</h4>
-                  <p className="text-xs text-[var(--text-muted)] mt-2 leading-relaxed">Kopuk iletişim, kaybolan veriler ve stresli evrak yükü.</p>
+                  <h4 className={`text-base font-bold transition-colors duration-300 ${activeStory === 1 ? 'text-teal-600 dark:text-teal-400' : 'text-[var(--text-main)]'}`}>{t('about_story_problem', 'Sorun')}</h4>
+                  <p className="text-xs text-[var(--text-muted)] mt-2 leading-relaxed">{t('about_story_problem_desc', 'Kopuk iletişim, kaybolan veriler ve stresli evrak yükü.')}</p>
                 </div>
                 
                 {/* Step 2: Solution */}
                 <div className={`flex-1 relative pt-6 pl-0 pr-0 pb-0 transition-all duration-300 ${activeStory === 2 ? 'opacity-100 translate-y-2' : 'opacity-40'}`}>
                   <div className={`absolute top-0 left-0 w-3 h-3 rounded-full z-10 transition-all duration-500 ${activeStory === 2 ? 'bg-emerald-500 scale-125 shadow-[0_0_12px_rgba(16,185,129,0.6)]' : 'bg-slate-300 dark:bg-zinc-700'}`}></div>
-                  <h4 className={`text-base font-bold transition-colors duration-300 ${activeStory === 2 ? 'text-emerald-600 dark:text-emerald-400' : 'text-[var(--text-main)]'}`}>Çözüm</h4>
-                  <p className="text-xs text-[var(--text-muted)] mt-2 leading-relaxed">Veteriner hekimler ve hayvanseverler için kusursuz dijital asistan.</p>
+                  <h4 className={`text-base font-bold transition-colors duration-300 ${activeStory === 2 ? 'text-emerald-600 dark:text-emerald-400' : 'text-[var(--text-main)]'}`}>{t('about_story_solution', 'Çözüm')}</h4>
+                  <p className="text-xs text-[var(--text-muted)] mt-2 leading-relaxed">{t('about_story_solution_desc', 'Veteriner hekimler ve hayvanseverler için kusursuz dijital asistan.')}</p>
                 </div>
               </div>
             </div>

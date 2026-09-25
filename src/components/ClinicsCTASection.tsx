@@ -48,10 +48,10 @@ export default function ClinicsCTASection() {
             {/* Left Column: Text Content */}
             <div className="w-[55%] lg:w-[65%] xl:w-[65%] flex flex-col items-start text-left relative z-10">
               <h2 className="text-[14px] sm:text-[20px] md:text-[30px] lg:text-[32px] xl:text-[36px] font-extrabold text-white mb-2 md:mb-4 leading-[1.1] md:leading-tight uppercase tracking-tight max-w-4xl pr-1 md:pr-4">
-                Kliniğinizin Dijital Dönüşümü{' '}
+                {t('clinics_cta_title_1', 'Kliniğinizin Dijital Dönüşümü')}{' '}
                 <br className="hidden xl:block" />
-                Sadece <br />
-                Bir Tık Uzağınızda
+                {t('clinics_cta_title_2', 'Sadece')} <br />
+                {t('clinics_cta_title_3', 'Bir Tık Uzağınızda')}
               </h2>
               
               <p className="text-[9px] sm:text-[12px] md:text-[16px] lg:text-[18px] text-teal-50 mb-3 md:mb-6 leading-snug md:leading-relaxed max-w-2xl pr-1 md:pr-4">
@@ -60,7 +60,7 @@ export default function ClinicsCTASection() {
 
               <div className="mt-1 md:mt-4 inline-flex items-center gap-1 md:gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-2 sm:px-3 md:px-5 py-1.5 md:py-2.5 rounded-full text-white text-[8px] sm:text-[10px] md:text-sm font-medium shadow-lg">
                 <CheckCircle2 className="w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 text-teal-300" />
-                <span>Kredi kartı gerekmez</span>
+                <span>{t('clinics_cta_no_cc', 'Kredi kartı gerekmez')}</span>
               </div>
             </div>
 
@@ -96,13 +96,13 @@ export default function ClinicsCTASection() {
                     width: '62%', 
                     height: '5.5%'
                   }}
-                  title="Ücretsiz Premium Denemeyi Başlat"
+                  title={t('clinics_cta_button', 'Ücretsiz Premium Denemeyi Başlat')}
                 >
                   {/* Shimmer sweep effect (Option 2) */}
                   <div className="absolute inset-0 pointer-events-none">
                     <div className="absolute top-0 bottom-0 left-0 w-[40%] bg-gradient-to-r from-transparent via-white/40 to-transparent animate-btn-shimmer"></div>
                   </div>
-                  <span className="relative z-10">Ücretsiz Premium Denemeyi Başlat</span>
+                  <span className="relative z-10">{t('clinics_cta_button', 'Ücretsiz Premium Denemeyi Başlat')}</span>
                 </Link>
               </div>
             </div>

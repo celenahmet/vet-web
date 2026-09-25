@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Phone, Mail, Plus, ChevronRight, Search, CheckCircle2, Calendar, Hourglass, ArrowRightLeft, Clock } from 'lucide-react';
 
 
 
 export default function PatientMgmtMockup() {
   const [activeTab, setActiveTab] = useState('tab1');
+  const { t } = useTranslation();
 
   return (
     <div className="w-full h-full xl:absolute xl:inset-0">
@@ -17,21 +19,15 @@ export default function PatientMgmtMockup() {
           <button 
             onClick={() => setActiveTab('tab1')} 
             className={`px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-xl font-bold text-[12px] sm:text-sm transition-all whitespace-nowrap ${activeTab === 'tab1' ? 'bg-[#0a6d57] text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-zinc-900 dark:text-slate-400 dark:hover:bg-zinc-800'}`}
-          >
-            Müşteri Yönetimi
-          </button>
+          >{t('mockup_patient_mgmt', 'Müşteri Yönetimi')}</button>
           <button 
             onClick={() => setActiveTab('tab2')} 
             className={`px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-xl font-bold text-[12px] sm:text-sm transition-all whitespace-nowrap ${activeTab === 'tab2' ? 'bg-[#0a6d57] text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-zinc-900 dark:text-slate-400 dark:hover:bg-zinc-800'}`}
-          >
-            Dostlarımız
-          </button>
+          >{t('mockup_patient_pets', 'Dostlarımız')}</button>
           <button 
             onClick={() => setActiveTab('tab3')} 
             className={`px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-xl font-bold text-[12px] sm:text-sm transition-all whitespace-nowrap ${activeTab === 'tab3' ? 'bg-[#0a6d57] text-white shadow-sm' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-zinc-900 dark:text-slate-400 dark:hover:bg-zinc-800'}`}
-          >
-            Randevu Analizleri
-          </button>
+          >{t('mockup_patient_appointments', 'Randevu Analizleri')}</button>
         </div>
 
         <div className="flex-1 pr-2 relative xl:min-h-0 min-h-[550px] z-10 pt-1">
@@ -40,40 +36,40 @@ export default function PatientMgmtMockup() {
               <motion.div key="tab1" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="flex flex-col gap-4">
                 {/* Müşteri Ekle Form */}
                 <div className="bg-slate-50 dark:bg-zinc-900 rounded-xl p-4 border border-slate-100 dark:border-zinc-800">
-                  <h4 className="font-bold text-[13px] mb-3 text-[var(--text-main)]">Müşteri Ekle</h4>
+                  <h4 className="font-bold text-[13px] mb-3 text-[var(--text-main)]">{t('mockup_patient_add', 'Müşteri Ekle')}</h4>
                   <div className="space-y-3">
                     <div>
-                      <label className="text-[11px] font-semibold text-slate-500 mb-1.5 block">Müşteri Veterito kullanıyor mu?</label>
+                      <label className="text-[11px] font-semibold text-slate-500 mb-1.5 block">{t('mockup_patient_uses_veterito', 'Müşteri Veterito kullanıyor mu?')}</label>
                       <div className="flex gap-2">
-                        <button className="flex-1 bg-[#e8f8f5] dark:bg-[#0a6d57]/20 text-[#0a6d57] dark:text-[#0a6d57] py-1.5 rounded-lg text-xs font-bold border border-[#0a6d57]/20 dark:border-[#0a6d57]/30">Evet</button>
-                        <button className="flex-1 bg-white dark:bg-zinc-800 text-slate-600 dark:text-slate-300 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-zinc-700">Hayır</button>
+                        <button className="flex-1 bg-[#e8f8f5] dark:bg-[#0a6d57]/20 text-[#0a6d57] dark:text-[#0a6d57] py-1.5 rounded-lg text-xs font-bold border border-[#0a6d57]/20 dark:border-[#0a6d57]/30">{t('mockup_patient_yes', 'Evet')}</button>
+                        <button className="flex-1 bg-white dark:bg-zinc-800 text-slate-600 dark:text-slate-300 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-zinc-700">{t('mockup_patient_no', 'Hayır')}</button>
                       </div>
                     </div>
                     <div className="flex gap-2">
                       <div className="flex-1 bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-lg flex items-center px-2.5 py-1.5">
                         <Phone size={13} className="text-slate-400 mr-2" />
-                        <span className="text-[11px] text-slate-400">Telefon...</span>
+                        <span className="text-[11px] text-slate-400">{t('mockup_patient_phone', 'Telefon...')}</span>
                       </div>
                       <div className="flex-1 bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-lg flex items-center px-2.5 py-1.5">
                         <Mail size={13} className="text-slate-400 mr-2" />
-                        <span className="text-[11px] text-slate-400">E-posta...</span>
+                        <span className="text-[11px] text-slate-400">{t('mockup_patient_email', 'E-posta...')}</span>
                       </div>
                     </div>
                     <button className="w-full bg-[#0a6d57] hover:bg-[#085443] text-white font-bold text-[13px] py-2 rounded-lg flex items-center justify-center gap-1.5 transition-colors shadow-sm">
-                      <Plus size={15} /> Davet Gönder
+                      <Plus size={15} /> {t('mockup_patient_invite', 'Davet Gönder')}
                     </button>
                   </div>
                 </div>
 
                 {/* Deftere Yazılanlar */}
                 <div>
-                  <h4 className="font-bold text-[13px] mb-2.5 flex items-center justify-between text-[var(--text-main)]">Deftere yazılanlar <span className="text-[11px] font-medium text-slate-400 cursor-pointer hover:text-[#0a6d57]">Tümü</span></h4>
+                  <h4 className="font-bold text-[13px] mb-2.5 flex items-center justify-between text-[var(--text-main)]">{t('mockup_patient_ledger', 'Deftere yazılanlar')} <span className="text-[11px] font-medium text-slate-400 cursor-pointer hover:text-[#0a6d57]">{t('mockup_patient_all', 'Tümü')}</span></h4>
                   <div className="space-y-1.5">
                     {[
-                      { name: 'Dr. Kemal Yılmaz', status: 'Kayıtsız', color: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' },
-                      { name: 'Zeynep Arslan', status: 'Kayıtsız', color: 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400' },
-                      { name: 'Merve Çelik', status: 'Kayıtsız', color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' },
-                      { name: 'Burak Demir', status: 'Kayıtsız', color: 'bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-400' }
+                      { name: 'Dr. Kemal Yılmaz', status: t('mockup_patient_unregistered', 'Kayıtsız'), color: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' },
+                      { name: 'Zeynep Arslan', status: t('mockup_patient_unregistered', 'Kayıtsız'), color: 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400' },
+                      { name: 'Merve Çelik', status: t('mockup_patient_unregistered', 'Kayıtsız'), color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' },
+                      { name: 'Burak Demir', status: t('mockup_patient_unregistered', 'Kayıtsız'), color: 'bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-400' }
                     ].map((item, i) => (
                       <div key={i} className="flex items-center justify-between p-2.5 bg-white dark:bg-zinc-950 border border-slate-100 dark:border-zinc-800 rounded-xl hover:shadow-sm transition-all cursor-pointer">
                         <div className="flex items-center gap-2.5">
@@ -94,7 +90,7 @@ export default function PatientMgmtMockup() {
               <motion.div key="tab2" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="flex flex-col gap-4">
                 <div className="relative">
                   <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                  <input type="text" placeholder="İsim veya çip no ile ara..." className="w-full bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-xl pl-9 pr-3 py-2 text-[13px] focus:outline-none" disabled />
+                  <input type="text" placeholder={t('mockup_patient_search', 'İsim veya çip no ile ara...')} className="w-full bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-xl pl-9 pr-3 py-2 text-[13px] focus:outline-none" disabled />
                 </div>
                 <div className="space-y-2">
                   {[
@@ -129,36 +125,36 @@ export default function PatientMgmtMockup() {
                   <div className="flex flex-col items-center justify-center p-1">
                     <Calendar size={15} className="text-[#0a6d57] mb-0.5" />
                     <div className="font-extrabold text-[15px] text-[var(--text-main)]">24</div>
-                    <div className="text-[9px] font-medium text-slate-500">Bugün</div>
+                    <div className="text-[9px] font-medium text-slate-500">{t('mockup_patient_today', 'Bugün')}</div>
                   </div>
                   <div className="flex flex-col items-center justify-center p-1">
                     <Hourglass size={15} className="text-[#0a6d57] mb-0.5" />
                     <div className="font-extrabold text-[15px] text-[var(--text-main)]">7</div>
-                    <div className="text-[9px] font-medium text-slate-500">Talep</div>
+                    <div className="text-[9px] font-medium text-slate-500">{t('mockup_patient_request', 'Talep')}</div>
                   </div>
                   <div className="flex flex-col items-center justify-center p-1">
                     <ArrowRightLeft size={15} className="text-[#0a6d57] mb-0.5" />
                     <div className="font-extrabold text-[15px] text-[var(--text-main)]">4</div>
-                    <div className="text-[9px] font-medium text-slate-500 text-center leading-tight">Yanıt<br/>bekliyor</div>
+                    <div className="text-[9px] font-medium text-slate-500 text-center leading-tight">{t('mockup_patient_waiting_1', 'Yanıt')}<br/>{t('mockup_patient_waiting_2', 'bekliyor')}</div>
                   </div>
                   <div className="flex flex-col items-center justify-center p-1">
                     <CheckCircle2 size={15} className="text-[#0a6d57] mb-0.5" />
                     <div className="font-extrabold text-[15px] text-[var(--text-main)]">19</div>
-                    <div className="text-[9px] font-medium text-slate-500">Kesin</div>
+                    <div className="text-[9px] font-medium text-slate-500">{t('mockup_patient_confirmed', 'Kesin')}</div>
                   </div>
                 </div>
 
                 <div className="flex justify-center gap-1.5 mb-1 overflow-x-auto scrollbar-hide pb-1">
-                  <button className="bg-[#0a6d57] text-white px-3.5 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap shadow-sm">Aktif</button>
-                  <button className="bg-[#e8f8f5] dark:bg-[#0a6d57]/10 text-slate-500 dark:text-slate-400 px-3.5 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap hover:bg-[#d5f0e9] transition-colors">Talepler</button>
-                  <button className="bg-[#e8f8f5] dark:bg-[#0a6d57]/10 text-slate-500 dark:text-slate-400 px-3.5 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap hover:bg-[#d5f0e9] transition-colors">Yaklaşan</button>
-                  <button className="bg-[#e8f8f5] dark:bg-[#0a6d57]/10 text-slate-500 dark:text-slate-400 px-3.5 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap hover:bg-[#d5f0e9] transition-colors">Geçmiş</button>
+                  <button className="bg-[#0a6d57] text-white px-3.5 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap shadow-sm">{t('mockup_patient_active', 'Aktif')}</button>
+                  <button className="bg-[#e8f8f5] dark:bg-[#0a6d57]/10 text-slate-500 dark:text-slate-400 px-3.5 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap hover:bg-[#d5f0e9] transition-colors">{t('mockup_patient_requests', 'Talepler')}</button>
+                  <button className="bg-[#e8f8f5] dark:bg-[#0a6d57]/10 text-slate-500 dark:text-slate-400 px-3.5 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap hover:bg-[#d5f0e9] transition-colors">{t('mockup_patient_upcoming', 'Yaklaşan')}</button>
+                  <button className="bg-[#e8f8f5] dark:bg-[#0a6d57]/10 text-slate-500 dark:text-slate-400 px-3.5 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap hover:bg-[#d5f0e9] transition-colors">{t('mockup_patient_past', 'Geçmiş')}</button>
                 </div>
 
                 <div className="space-y-2">
                   {[
-                    { title: 'Karma ve Kuduz Aşısı', subtitle: 'Tarçın · Kemal Yılmaz', date: 'Bugün', time: '14:30', duration: '15 dk', note: 'Klinik notu: hastanın genel durumu kontrol edildikten sonra yıllık aşıları yenilenecek.' },
-                    { title: 'Ortopedi Kontrolü', subtitle: 'Luna · Zeynep Arslan', date: 'Bugün', time: '16:00', duration: '45 dk', note: 'Klinik notu: sağ arka bacakta topallama şikayeti var, röntgen için randevu aldı.' }
+                    { title: t('mockup_patient_vaccine', 'Karma ve Kuduz Aşısı'), subtitle: 'Tarçın · Kemal Yılmaz', date: t('mockup_patient_today', 'Bugün'), time: '14:30', duration: `15 ${t('mockup_patient_min', 'dk')}`, note: t('mockup_patient_note_1', 'Klinik notu: hastanın genel durumu kontrol edildikten sonra yıllık aşıları yenilenecek.') },
+                    { title: t('mockup_patient_ortho', 'Ortopedi Kontrolü'), subtitle: 'Luna · Zeynep Arslan', date: t('mockup_patient_today', 'Bugün'), time: '16:00', duration: `45 ${t('mockup_patient_min', 'dk')}`, note: t('mockup_patient_note_2', 'Klinik notu: sağ arka bacakta topallama şikayeti var, röntgen için randevu aldı.') }
                   ].map((item, i) => (
                     <div key={i} className="bg-white dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 rounded-2xl p-3 shadow-sm group hover:shadow-md transition-shadow">
                       <div className="flex justify-between items-start mb-1">
@@ -166,7 +162,7 @@ export default function PatientMgmtMockup() {
                           <h4 className="font-bold text-[14px] text-[var(--text-main)] leading-tight">{item.title}</h4>
                           <div className="text-[10px] font-medium text-slate-500 mt-0.5">{item.subtitle}</div>
                         </div>
-                        <span className="text-[9px] bg-[#e8f8f5] dark:bg-[#0a6d57]/20 text-[#0a6d57] dark:text-[#0a6d57] px-2 py-0.5 rounded font-bold tracking-wide">Onaylandı</span>
+                        <span className="text-[9px] bg-[#e8f8f5] dark:bg-[#0a6d57]/20 text-[#0a6d57] dark:text-[#0a6d57] px-2 py-0.5 rounded font-bold tracking-wide">{t('mockup_patient_approved', 'Onaylandı')}</span>
                       </div>
                       
                       <div className="bg-[#f0f9f6] dark:bg-zinc-900 rounded-lg px-2.5 py-1.5 mt-2 mb-2 flex items-center gap-1.5 text-[#0a6d57] dark:text-[#0a6d57]">
@@ -179,7 +175,7 @@ export default function PatientMgmtMockup() {
                       </div>
                       
                       <button className="text-[10px] font-bold text-[#0a6d57] dark:text-[#0a6d57] bg-[#e8f8f5] dark:bg-[#0a6d57]/10 px-3 py-1.5 rounded-lg transition-colors hover:bg-[#d5f0e9]">
-                        Tamamlandı işaretle
+                        {t('mockup_patient_mark_done', 'Tamamlandı işaretle')}
                       </button>
                     </div>
                   ))}

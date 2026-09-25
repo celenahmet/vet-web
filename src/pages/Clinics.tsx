@@ -171,7 +171,7 @@ export default function Clinics() {
                         </div>
                         <div>
                           <div className="font-bold text-[var(--text-main)] dark:text-white text-lg flex items-center gap-1.5">{t('clinics_hero_card_title')}<CheckCircle2 size={16} className="text-teal-600" /></div>
-                          <div className="text-sm text-slate-500 dark:text-slate-400 font-medium">{t('clinics_hero_card_loc')}</div>
+                          <div className="text-sm text-slate-500 dark:text-slate-400 font-medium">{t('clinics_hero_card_loc', 'Kadıköy, İstanbul')}</div>
                         </div>
                       </div>
                       <div className="relative cursor-pointer w-10 h-10 bg-slate-50 dark:bg-slate-800/50 rounded-full flex items-center justify-center border border-slate-100 dark:border-transparent hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
@@ -182,9 +182,9 @@ export default function Clinics() {
 
                     {/* Tab Navigation */}
                     <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 scrollbar-hide mt-4 px-1">
-                      <button onClick={() => setDashboardTab('shortcuts')} className={`px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-xl font-bold text-[12px] sm:text-sm transition-all whitespace-nowrap shadow-sm ${dashboardTab === 'shortcuts' ? 'bg-teal-700 text-white shadow-teal-700/20' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-slate-800/50 dark:text-slate-300'}`}>Kısayollar</button>
-                      <button onClick={() => setDashboardTab('operations')} className={`px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-xl font-bold text-[12px] sm:text-sm transition-all whitespace-nowrap shadow-sm ${dashboardTab === 'operations' ? 'bg-teal-700 text-white shadow-teal-700/20' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-slate-800/50 dark:text-slate-300'}`}>Klinik Operasyonları</button>
-                      <button onClick={() => setDashboardTab('finance')} className={`px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-xl font-bold text-[12px] sm:text-sm transition-all whitespace-nowrap shadow-sm ${dashboardTab === 'finance' ? 'bg-teal-700 text-white shadow-teal-700/20' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-slate-800/50 dark:text-slate-300'}`}>Gelir / Gider</button>
+                      <button onClick={() => setDashboardTab('shortcuts')} className={`px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-xl font-bold text-[12px] sm:text-sm transition-all whitespace-nowrap shadow-sm ${dashboardTab === 'shortcuts' ? 'bg-teal-700 text-white shadow-teal-700/20' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-slate-800/50 dark:text-slate-300'}`}>{t('clinics_mockup_shortcuts', 'Kısayollar')}</button>
+                      <button onClick={() => setDashboardTab('operations')} className={`px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-xl font-bold text-[12px] sm:text-sm transition-all whitespace-nowrap shadow-sm ${dashboardTab === 'operations' ? 'bg-teal-700 text-white shadow-teal-700/20' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-slate-800/50 dark:text-slate-300'}`}>{t('clinics_mockup_operations', 'Klinik Operasyonları')}</button>
+                      <button onClick={() => setDashboardTab('finance')} className={`px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-xl font-bold text-[12px] sm:text-sm transition-all whitespace-nowrap shadow-sm ${dashboardTab === 'finance' ? 'bg-teal-700 text-white shadow-teal-700/20' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:bg-slate-800/50 dark:text-slate-300'}`}>{t('clinics_mockup_finance', 'Gelir / Gider')}</button>
                     </div>
                   </div>
 
@@ -195,16 +195,16 @@ export default function Clinics() {
                         <motion.div key="shortcuts" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }} className="space-y-4 h-full flex flex-col justify-between">
                           <div className="grid grid-cols-2 gap-4">
                             {[
-                              { icon: Megaphone, label: 'Duyuru gönder' },
-                              { icon: Edit3, label: 'Gönderi paylaş' },
-                              { icon: Building2, label: 'Vitrini düzenle' },
-                              { icon: Archive, label: 'Sunduğum hizmetler' },
-                              { icon: Users, label: 'Ekip' },
-                              { icon: Globe, label: 'Web sayfam' },
-                              { icon: PieChart, label: 'Raporlar' },
-                              { icon: Wallet, label: 'Gelir / Gider' },
-                              { icon: Calendar, label: 'Randevular' },
-                              { icon: Activity, label: 'Klinik Operasyonları' },
+                              { icon: Megaphone, label: t('clinics_mockup_btn_announce', 'Duyuru gönder') },
+                              { icon: Edit3, label: t('clinics_mockup_btn_post', 'Gönderi paylaş') },
+                              { icon: Building2, label: t('clinics_mockup_btn_storefront', 'Vitrini düzenle') },
+                              { icon: Archive, label: t('clinics_mockup_btn_services', 'Sunduğum hizmetler') },
+                              { icon: Users, label: t('clinics_mockup_btn_team', 'Ekip') },
+                              { icon: Globe, label: t('clinics_mockup_btn_website', 'Web sayfam') },
+                              { icon: PieChart, label: t('clinics_mockup_btn_reports', 'Raporlar') },
+                              { icon: Wallet, label: t('clinics_mockup_btn_finance', 'Gelir / Gider') },
+                              { icon: Calendar, label: t('clinics_mockup_btn_appointments', 'Randevular') },
+                              { icon: Activity, label: t('clinics_mockup_btn_operations', 'Klinik Operasyonları') },
                             ].map((item, idx) => (
                               <div key={idx} className="bg-[#E8F3EF] dark:bg-teal-900/20 hover:bg-[#d8ebe4] dark:hover:bg-teal-900/40 transition-colors cursor-pointer rounded-xl p-4 flex items-center gap-3.5 border border-transparent dark:border-teal-800/30">
                                 <item.icon size={20} className="text-teal-800 dark:text-teal-400 shrink-0" />
@@ -213,7 +213,7 @@ export default function Clinics() {
                             ))}
                             <div className="col-span-2 bg-[#E8F3EF] dark:bg-teal-900/20 hover:bg-[#d8ebe4] dark:hover:bg-teal-900/40 transition-colors cursor-pointer rounded-xl p-4 flex items-center gap-3.5 border border-transparent dark:border-teal-800/30">
                               <Building2 size={20} className="text-teal-800 dark:text-teal-400 shrink-0" />
-                              <span className="font-bold text-teal-950 dark:text-teal-100 text-[13.5px] leading-tight">Klinik bilgileri</span>
+                              <span className="font-bold text-teal-950 dark:text-teal-100 text-[13.5px] leading-tight">{t('clinics_mockup_btn_clinic_info', 'Klinik bilgileri')}</span>
                             </div>
                           </div>
                         </motion.div>
@@ -221,13 +221,13 @@ export default function Clinics() {
 
                       {dashboardTab === 'operations' && (
                         <motion.div key="operations" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }} className="space-y-4 flex flex-col h-full justify-between pb-2">
-                          <p className="text-xs font-medium text-slate-500 mb-1">Stok, laboratuvar ve kurumsal entegrasyonlar</p>
+                          <p className="text-xs font-medium text-slate-500 mb-1">{t('clinics_mockup_op_subtitle', 'Stok, laboratuvar ve kurumsal entegrasyonlar')}</p>
                           <div className="space-y-3">
                             {[
-                              { icon: Archive, title: 'Ürün ve stok', desc: 'Lot, SKT, kritik seviye ve açıklanabilir hareket defteri', status: '1.452 ürün', color: 'text-teal-700 dark:text-teal-400' },
-                              { icon: Activity, title: 'Laboratuvar', desc: 'Kaynaklı istem, sonuç ve hekim inceleme akışı', status: '12 açık istem', color: 'text-teal-700 dark:text-teal-400' },
-                              { icon: MessageCircle, title: 'SMS ve WhatsApp', desc: 'Amaç bazlı izin kanıtları ve güvenli gönderim kuyruğu', status: '2 aktif kanal', color: 'text-teal-700 dark:text-teal-400' },
-                              { icon: Grid, title: 'Entegrasyon ayarları', desc: 'Tüm kurumsal sağlayıcı bağlantılarını tek yerden yönet', status: '4 bağlantı yapılandırıldı', color: 'text-teal-700 dark:text-teal-400' }
+                              { icon: Archive, title: t('clinics_mockup_op1_title', 'Ürün ve stok'), desc: t('clinics_mockup_op1_desc', 'Lot, SKT, kritik seviye ve açıklanabilir hareket defteri'), status: t('clinics_mockup_op1_status', '1.452 ürün'), color: 'text-teal-700 dark:text-teal-400' },
+                              { icon: Activity, title: t('clinics_mockup_op2_title', 'Laboratuvar'), desc: t('clinics_mockup_op2_desc', 'Kaynaklı istem, sonuç ve hekim inceleme akışı'), status: t('clinics_mockup_op2_status', '12 açık istem'), color: 'text-teal-700 dark:text-teal-400' },
+                              { icon: MessageCircle, title: t('clinics_mockup_op3_title', 'SMS ve WhatsApp'), desc: t('clinics_mockup_op3_desc', 'Amaç bazlı izin kanıtları ve güvenli gönderim kuyruğu'), status: t('clinics_mockup_op3_status', '2 aktif kanal'), color: 'text-teal-700 dark:text-teal-400' },
+                              { icon: Grid, title: t('clinics_mockup_op4_title', 'Entegrasyon ayarları'), desc: t('clinics_mockup_op4_desc', 'Tüm kurumsal sağlayıcı bağlantılarını tek yerden yönet'), status: t('clinics_mockup_op4_status', '4 bağlantı yapılandırıldı'), color: 'text-teal-700 dark:text-teal-400' }
                             ].map((item, idx) => (
                               <div key={idx} className="bg-white dark:bg-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all cursor-pointer rounded-xl p-4 flex items-center justify-between border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md group">
                                 <div className="flex items-center gap-3.5">
@@ -249,59 +249,59 @@ export default function Clinics() {
 
                       {dashboardTab === 'finance' && (
                         <motion.div key="finance" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }} className="space-y-3 flex flex-col h-full justify-between pb-2">
-                          <p className="text-[11px] font-medium text-slate-500 leading-normal max-w-sm">Bu defter kliniğin kendi kaydıdır. Platform üzerinden tahsilat yapılmaz, ödeme alınmaz; rakamlar kliniğin beyanıdır.</p>
+                          <p className="text-[11px] font-medium text-slate-500 leading-normal max-w-sm">{t('clinics_mockup_fin_desc', 'Bu defter kliniğin kendi kaydıdır. Platform üzerinden tahsilat yapılmaz, ödeme alınmaz; rakamlar kliniğin beyanıdır.')}</p>
 
                           <div className="flex gap-1.5">
-                            <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 font-semibold text-[10px] rounded-full cursor-pointer hover:bg-slate-200">Bu ay</span>
-                            <span className="px-2.5 py-1 bg-teal-600 text-white font-bold text-[10px] rounded-full shadow-md">Geçen ay</span>
-                            <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 font-semibold text-[10px] rounded-full cursor-pointer hover:bg-slate-200">Bu yıl</span>
-                            <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 font-semibold text-[10px] rounded-full cursor-pointer hover:bg-slate-200">Tümü</span>
+                            <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 font-semibold text-[10px] rounded-full cursor-pointer hover:bg-slate-200">{t('clinics_mockup_fin_this_month', 'Bu ay')}</span>
+                            <span className="px-2.5 py-1 bg-teal-600 text-white font-bold text-[10px] rounded-full shadow-md">{t('clinics_mockup_fin_last_month', 'Geçen ay')}</span>
+                            <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 font-semibold text-[10px] rounded-full cursor-pointer hover:bg-slate-200">{t('clinics_mockup_fin_this_year', 'Bu yıl')}</span>
+                            <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 font-semibold text-[10px] rounded-full cursor-pointer hover:bg-slate-200">{t('clinics_mockup_fin_all', 'Tümü')}</span>
                           </div>
 
                           <div className="bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-xl p-3 flex shadow-sm divide-x divide-slate-100 dark:divide-slate-700">
                             <div className="flex-1 text-center px-1">
                               <div className="text-sm font-bold text-teal-600">846.500,00</div>
-                              <div className="text-[10px] text-slate-500 font-medium mt-0.5">Gelir</div>
+                              <div className="text-[10px] text-slate-500 font-medium mt-0.5">{t('clinics_mockup_fin_income', 'Gelir')}</div>
                             </div>
                             <div className="flex-1 text-center px-1">
                               <div className="text-sm font-bold text-rose-500">423.250,00</div>
-                              <div className="text-[10px] text-slate-500 font-medium mt-0.5">Gider</div>
+                              <div className="text-[10px] text-slate-500 font-medium mt-0.5">{t('clinics_mockup_fin_expense', 'Gider')}</div>
                             </div>
                             <div className="flex-1 text-center px-1">
                               <div className="text-sm font-bold text-slate-800 dark:text-white">423.250,00</div>
-                              <div className="text-[10px] text-slate-500 font-medium mt-0.5">Fark</div>
+                              <div className="text-[10px] text-slate-500 font-medium mt-0.5">{t('clinics_mockup_fin_diff', 'Fark')}</div>
                             </div>
                           </div>
 
                           {/* Add Record Form */}
                           <div className="bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-xl p-3 shadow-sm mt-auto">
-                            <h4 className="font-bold text-slate-900 dark:text-white text-[11px] mb-2">Kayıt ekle</h4>
+                            <h4 className="font-bold text-slate-900 dark:text-white text-[11px] mb-2">{t('clinics_mockup_fin_add_record', 'Kayıt ekle')}</h4>
 
                             <div className="flex bg-slate-100 dark:bg-slate-800 rounded-lg p-1 mb-2">
-                              <div className="flex-1 bg-white dark:bg-slate-700 rounded-md text-teal-700 dark:text-teal-400 font-bold text-[10px] py-1 text-center shadow-sm cursor-pointer">Gelir</div>
-                              <div className="flex-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] py-1 text-center cursor-pointer hover:text-slate-700 dark:hover:text-slate-200">Gider</div>
+                              <div className="flex-1 bg-white dark:bg-slate-700 rounded-md text-teal-700 dark:text-teal-400 font-bold text-[10px] py-1 text-center shadow-sm cursor-pointer">{t('clinics_mockup_fin_income', 'Gelir')}</div>
+                              <div className="flex-1 text-slate-500 dark:text-slate-400 font-bold text-[10px] py-1 text-center cursor-pointer hover:text-slate-700 dark:hover:text-slate-200">{t('clinics_mockup_fin_expense', 'Gider')}</div>
                             </div>
 
                             <div className="space-y-2">
                               <div>
-                                <label className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 mb-0.5 block">Tutar (TL)</label>
+                                <label className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 mb-0.5 block">{t('clinics_mockup_fin_amount', 'Tutar (TL)')}</label>
                                 <input type="text" placeholder="1.250,00" className="w-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 rounded-lg px-2 py-1 text-[11px] outline-none focus:border-teal-500 transition-colors placeholder:text-slate-400 dark:text-white text-slate-800 font-medium" />
                               </div>
                               <div>
-                                <label className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 mb-0.5 block">Kategori</label>
+                                <label className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 mb-0.5 block">{t('clinics_mockup_fin_category', 'Kategori')}</label>
                                 <div className="w-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 rounded-lg px-2 py-1 text-[11px] flex items-center justify-between text-slate-800 dark:text-slate-200 font-medium cursor-pointer">
-                                  Muayene ve Tedavi <ChevronDown size={14} className="text-slate-400" />
+                                  {t('clinics_mockup_fin_cat_exam', 'Muayene ve Tedavi')} <ChevronDown size={14} className="text-slate-400" />
                                 </div>
                               </div>
                               <div>
-                                <label className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 mb-0.5 block">Ödeme yöntemi (isteğe bağlı)</label>
+                                <label className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 mb-0.5 block">{t('clinics_mockup_fin_payment_method', 'Ödeme yöntemi (isteğe bağlı)')}</label>
                                 <div className="flex flex-wrap gap-1">
-                                  {['Nakit', 'Kredi Kartı', 'Banka Kartı', 'Havale / EFT', 'FAST'].map((tag, i) => (
+                                  {[t('clinics_mockup_fin_pay_cash', 'Nakit'), t('clinics_mockup_fin_pay_cc', 'Kredi Kartı'), t('clinics_mockup_fin_pay_dc', 'Banka Kartı'), t('clinics_mockup_fin_pay_transfer', 'Havale / EFT'), 'FAST'].map((tag, i) => (
                                     <span key={i} className="px-1.5 py-0.5 bg-[#E8F3EF] dark:bg-teal-900/20 text-teal-800 dark:text-teal-400 rounded-full text-[9px] font-bold cursor-pointer hover:bg-teal-100">{tag}</span>
                                   ))}
                                 </div>
                               </div>
-                              <button className="w-full bg-[#94A9A0] hover:bg-[#7d9289] text-white font-bold text-[11px] py-1.5 rounded-xl transition-colors mt-1">Kaydet</button>
+                              <button className="w-full bg-[#94A9A0] hover:bg-[#7d9289] text-white font-bold text-[11px] py-1.5 rounded-xl transition-colors mt-1">{t('clinics_mockup_fin_save', 'Kaydet')}</button>
                             </div>
                           </div>
                         </motion.div>

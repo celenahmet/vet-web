@@ -194,7 +194,7 @@ const Contact = () => {
               className="relative overflow-hidden rounded-3xl bg-slate-900 dark:bg-zinc-950 p-6 text-white shadow-xl"
             >
               <div className="absolute -top-12 -right-12 w-28 h-28 bg-[#009689]/30 rounded-full blur-3xl"></div>
-              <h3 className="relative z-10 text-lg font-extrabold mb-2">{brandConfig.name} Destek</h3>
+              <h3 className="relative z-10 text-lg font-extrabold mb-2">{brandConfig.name} {t('contact_support_title', 'Destek')}</h3>
               <p className="relative z-10 text-[13px] text-slate-300 leading-relaxed whitespace-pre-line">
                 {t('contact_response')}
               </p>
@@ -235,11 +235,11 @@ const Contact = () => {
             <div className="flex flex-col items-center max-w-lg mx-auto">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#009689]/10 text-[#009689] text-xs font-bold mb-3">
                 <Heart size={14} className="fill-current" />
-                TAKİPTE KALIN
+                {t('contact_social_badge', 'TAKİPTE KALIN')}
               </div>
-              <h3 className="text-xl font-black text-slate-900 dark:text-white mb-2 tracking-tight">Bizi Takip Edin</h3>
+              <h3 className="text-xl font-black text-slate-900 dark:text-white mb-2 tracking-tight">{t('contact_social_title', 'Bizi Takip Edin')}</h3>
               <p className="text-[15px] text-slate-500 dark:text-slate-400 leading-relaxed">
-                Güncel gelişmelerden, yeni özelliklerden ve ipuçlarından haberdar olmak için sosyal medya hesaplarımızı takip edebilirsiniz.
+                {t('contact_social_desc', 'Güncel gelişmelerden, yeni özelliklerden ve ipuçlarından haberdar olmak için sosyal medya hesaplarımızı takip edebilirsiniz.')}
               </p>
             </div>
             

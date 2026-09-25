@@ -69,14 +69,12 @@ const DigitalGrowthSection = () => {
           className="max-w-3xl"
         >
           <div className="inline-flex items-center gap-2 bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 px-3 py-1.5 rounded-full font-semibold text-xs mb-4 border border-teal-100 dark:border-teal-800/30">
-            <div className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse"></div>
-            Büyüme ve Kurumsallaşma
-          </div>
+            <div className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse"></div>{t('clinics_s6_badge', 'Büyüme ve Kurumsallaşma')}</div>
           <h2 className="text-[30px] lg:text-[42px] font-extrabold text-[var(--text-main)] leading-tight tracking-tight mb-6">
-            Kliniğinizin Dijital Yüzünü ve <span className="text-teal-600 dark:text-teal-400">İletişimini Güçlendirin</span>
+            {t('clinics_s6_title_1', 'Kliniğinizin Dijital Yüzünü ve')} <span className="text-teal-600 dark:text-teal-400">{t('clinics_s6_title_2', 'İletişimini Güçlendirin')}</span>
           </h2>
           <p className="text-[16px] lg:text-[18px] text-[var(--text-muted)] leading-relaxed">
-            İnternetteki görünürlüğünüzü otomatik olarak artırın ve hastalarınızla en profesyonel kanallardan iletişim kurun. Resmi izinlerle güvence altında kalın.
+            {t('clinics_s6_desc', 'İnternetteki görünürlüğünüzü otomatik olarak artırın ve hastalarınızla en profesyonel kanallardan iletişim kurun. Resmi izinlerle güvence altında kalın.')}
           </p>
         </motion.div>
       </div>
@@ -171,7 +169,7 @@ const DigitalGrowthSection = () => {
                     className="absolute -top-3 -left-3 md:-top-6 md:-left-6 z-20 bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 shadow-lg rounded-lg md:rounded-xl py-1.5 px-2 md:py-2.5 md:px-4 flex items-center gap-1 md:gap-2"
                   >
                     <Search size={16} className="text-teal-600 w-3 h-3 md:w-4 md:h-4" strokeWidth={2.5} />
-                    <span className="text-[9px] md:text-xs font-semibold text-slate-700 dark:text-slate-200">Bölgedeki en iyi klinik</span>
+                    <span className="text-[9px] md:text-xs font-semibold text-slate-700 dark:text-slate-200">{t('clinics_s6_mockup_search', 'Bölgedeki en iyi klinik')}</span>
                   </motion.div>
 
                   <div className="w-full bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm border border-white/50 dark:border-zinc-800 rounded-xl md:rounded-[1.5rem] p-3 md:p-6 lg:p-8 shadow-md">
@@ -250,10 +248,10 @@ const DigitalGrowthSection = () => {
                       className="bg-[#e6f4ea] dark:bg-[#132c1e] border border-[#c4e3d0] dark:border-green-800/30 p-1.5 md:p-3 rounded-xl md:rounded-2xl rounded-tr-sm shadow-sm max-w-[90%] ml-auto"
                     >
                       <div className="flex justify-end items-center gap-1 md:gap-1.5 text-[7px] md:text-[10px] text-green-600/80 dark:text-green-400/70 mb-1 md:mb-1.5 font-medium">
-                        Klinik <CheckCircle2 size={12} className="text-green-500 w-2 h-2 md:w-3 md:h-3" />
+                        {t('clinics_s6_mockup_whatsapp_clinic', 'Klinik')} <CheckCircle2 size={12} className="text-green-500 w-2 h-2 md:w-3 md:h-3" />
                       </div>
                       <p className="text-[8px] md:text-[12px] leading-snug text-green-900 dark:text-green-300">
-                        Sayın hasta sahibimiz, Leo'nun laboratuvar sonuçları temiz çıkmıştır. Yarınki karma aşı randevusunda görüşmek üzere! 🐾
+                        {t('clinics_s6_mockup_whatsapp_1', 'Sayın hasta sahibimiz, Leo\'nun laboratuvar sonuçları temiz çıkmıştır. Yarınki karma aşı randevusunda görüşmek üzere! 🐾')}
                       </p>
                     </motion.div>
 
@@ -266,10 +264,10 @@ const DigitalGrowthSection = () => {
                       className="bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 p-1.5 md:p-3 rounded-xl md:rounded-2xl rounded-tl-sm shadow-sm max-w-[90%] mt-1.5 md:mt-3"
                     >
                       <div className="flex items-center gap-1 md:gap-1.5 text-[7px] md:text-[10px] text-slate-400 mb-1 md:mb-1.5 font-medium">
-                        Hasta Sahibi (Leo)
+                        {t('clinics_s6_mockup_whatsapp_owner', 'Hasta Sahibi (Leo)')}
                       </div>
                       <p className="text-[8px] md:text-[12px] leading-snug text-slate-700 dark:text-slate-300">
-                        Harika haber! Çok sevindik, yarın 14:00'te oradayız. Teşekkürler 😊
+                        {t('clinics_s6_mockup_whatsapp_2', 'Harika haber! Çok sevindik, yarın 14:00\'te oradayız. Teşekkürler 😊')}
                       </p>
                     </motion.div>
                   </div>
@@ -315,15 +313,15 @@ const DigitalGrowthSection = () => {
                         </div>
                         <div>
                           <div className="font-bold text-[7px] md:text-[12px] text-slate-800 dark:text-slate-200">
-                            KVKK Aydınlatma Metni
+                            {t('clinics_s6_mockup_doc_1', 'KVKK Aydınlatma Metni')}
                           </div>
                           <div className="text-[6px] md:text-[10px] text-slate-500">
-                            IP Log: 192.168.1.42
+                            {t('clinics_s6_mockup_doc_1_desc', 'IP Log: 192.168.1.42')}
                           </div>
                         </div>
                       </div>
                       <div className="px-1 md:px-2 py-0 md:py-0.5 bg-[#e6f4ea] dark:bg-green-900/20 text-green-700 dark:text-green-400 text-[6px] md:text-[9px] font-bold rounded-full">
-                        ARŞİVLENDİ
+                        {t('clinics_s6_mockup_doc_1_status', 'ARŞİVLENDİ')}
                       </div>
                     </div>
 
@@ -335,15 +333,15 @@ const DigitalGrowthSection = () => {
                         </div>
                         <div>
                           <div className="font-bold text-[7px] md:text-[12px] text-slate-800 dark:text-slate-200">
-                            Dijital İletişim İzni
+                            {t('clinics_s6_mockup_doc_2', 'Dijital İletişim İzni')}
                           </div>
                           <div className="text-[6px] md:text-[10px] text-slate-500">
-                            SMS & WhatsApp (Onaylı)
+                            {t('clinics_s6_mockup_doc_2_desc', 'SMS & WhatsApp (Onaylı)')}
                           </div>
                         </div>
                       </div>
                       <div className="px-1 md:px-2 py-0 md:py-0.5 bg-[#e6f4ea] dark:bg-green-900/20 text-green-700 dark:text-green-400 text-[6px] md:text-[9px] font-bold rounded-full">
-                        ONAYLI
+                        {t('clinics_s6_mockup_doc_2_status', 'ONAYLI')}
                       </div>
                     </div>
 
@@ -355,15 +353,15 @@ const DigitalGrowthSection = () => {
                         </div>
                         <div>
                           <div className="font-bold text-[7px] md:text-[12px] text-slate-800 dark:text-slate-200">
-                            Operasyon Muvafakatnamesi
+                            {t('clinics_s6_mockup_doc_3', 'Operasyon Muvafakatnamesi')}
                           </div>
                           <div className="text-[6px] md:text-[10px] text-slate-500">
-                            Bekliyor... SMS Gönderildi
+                            {t('clinics_s6_mockup_doc_3_desc', 'Bekliyor... SMS Gönderildi')}
                           </div>
                         </div>
                       </div>
                       <div className="px-1 md:px-2 py-0 md:py-0.5 bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 text-[6px] md:text-[9px] font-bold rounded-full">
-                        BEKLİYOR
+                        {t('clinics_s6_mockup_doc_3_status', 'BEKLİYOR')}
                       </div>
                     </div>
                   </div>

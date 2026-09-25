@@ -276,7 +276,7 @@ const FAQ = () => {
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{t('faq_info_1_title')}</h3>
               <p className="text-sm text-slate-500 dark:text-slate-400 mb-2 leading-relaxed">{t('faq_info_1_subtitle')}</p>
               <button onClick={() => navigate('/blog')} className="text-sm font-bold text-[#009689] flex items-center gap-1 hover:gap-2 transition-all mt-3 w-fit group">
-                YAZILARI OKU <ArrowRightLeft size={14} className="rotate-180 group-hover:translate-x-1 transition-transform" />
+                {t('faq_info_1_btn', 'YAZILARI OKU')} <ArrowRightLeft size={14} className="rotate-180 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
 
@@ -291,7 +291,7 @@ const FAQ = () => {
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{t('faq_info_2_title')}</h3>
               <p className="text-sm text-slate-500 dark:text-slate-400 mb-2 leading-relaxed">{t('faq_info_2_subtitle')}</p>
               <button onClick={() => navigate('/download')} className="text-sm font-bold text-[#009689] flex items-center gap-1 hover:gap-2 transition-all mt-3 w-fit group">
-                UYGULAMAYI İNDİR <ArrowRightLeft size={14} className="rotate-180 group-hover:translate-x-1 transition-transform" />
+                {t('faq_info_2_btn', 'UYGULAMAYI İNDİR')} <ArrowRightLeft size={14} className="rotate-180 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
 
@@ -307,7 +307,7 @@ const FAQ = () => {
               <h3 className="text-lg font-bold text-white mb-1 relative z-10">{t('faq_info_3_title')}</h3>
               <p className="text-sm text-slate-400 relative z-10 mb-2 leading-relaxed">{t('faq_info_3_subtitle')}</p>
               <button onClick={() => navigate('/contact')} className="text-sm font-bold text-[#009689] flex items-center gap-1 hover:gap-2 transition-all mt-3 w-fit group relative z-10">
-                DESTEK TALEBİ AÇ <ArrowRightLeft size={14} className="rotate-180 group-hover:translate-x-1 transition-transform" />
+                {t('faq_info_3_btn', 'DESTEK TALEBİ AÇ')} <ArrowRightLeft size={14} className="rotate-180 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
