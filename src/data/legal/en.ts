@@ -23,7 +23,7 @@ export const legalDocumentsEN: Record<LegalDocumentId, LegalDocument> = {
     slug: '/privacy',
     title: 'Privacy Policy',
     summary: 'A plain-language account of why and how we process your data. Formal detail lives in the Data Protection Notice.',
-    effectiveDate: EFFECTIVE,
+    effectiveDate: '28 September 2026',
     related: ['kvkk', 'consent', 'account-deletion'],
     required: true,
     intro: [
@@ -58,6 +58,7 @@ export const legalDocumentsEN: Record<LegalDocumentId, LegalDocument> = {
             ['Messages', 'Only the person you are writing to'],
             ['Appointments and clinic notes', 'You and the authorised staff of the clinic you booked'],
             ['Phone, date of birth, email address', 'Only you. Never shown to other users'],
+            ['Veterinarian application and your role at the clinic', 'Only you and the platform administrator reviewing the application'],
           ]},
           { kind: 'callout', value: 'These boundaries are not a matter of interface courtesy: access rules are enforced **row by row on the server**. Data hidden on screen is not returned by the server either.' },
         ],
@@ -108,7 +109,7 @@ export const legalDocumentsEN: Record<LegalDocumentId, LegalDocument> = {
     slug: '/kvkk',
     title: 'Data Protection Notice',
     summary: 'The formal notice under Turkish data protection law: what data, for what purpose, on what legal basis, transferred where, kept how long.',
-    effectiveDate: EFFECTIVE,
+    effectiveDate: '28 September 2026',
     related: ['privacy', 'consent', 'account-deletion'],
     required: true,
     intro: [
@@ -137,6 +138,7 @@ export const legalDocumentsEN: Record<LegalDocumentId, LegalDocument> = {
             ['Messaging', 'Message content, attached media, read status, message request state', 'Your usage'],
             ['Adoption', 'Listing content and your applications (message, contact phone)', 'You'],
             ['Clinic data (veterinarian role only)', 'Clinic details, team members, customer records, name/phone/email for customers who do not use the app, income and expense records', 'The clinic'],
+            ['Veterinarian application (veterinarian sign-up only)', 'Clinic name, address and province/district, phone, website username, services offered, founding year (optional), the applicant\'s role at the clinic', 'You'],
             ['Transaction security', 'Login IP address, device model, operating system and version, app version, platform', 'Automatic'],
             ['Notifications', 'Device notification token, platform, device model, app version; your notification preferences', 'Automatic and your preference'],
           ]},
@@ -382,7 +384,7 @@ export const legalDocumentsEN: Record<LegalDocumentId, LegalDocument> = {
     slug: '/service-agreement',
     title: 'Corporate Agreement',
     summary: 'Additional terms for veterinarians, clinics and corporate accounts: verification, responsibility for patient data, team management.',
-    effectiveDate: '15 September 2026',
+    effectiveDate: '28 September 2026',
     related: ['terms', 'kvkk', 'privacy'],
     required: true,
     intro: [
@@ -402,7 +404,7 @@ export const legalDocumentsEN: Record<LegalDocumentId, LegalDocument> = {
       {
         number: '2', title: 'Verification',
         blocks: [
-          { kind: 'text', value: 'Clinics join the platform as **unverified**, and this is shown clearly to users. Verification requires the clinic\'s name, address and contact details.' },
+          { kind: 'text', value: 'Clinics join the platform as **unverified**, and this is shown clearly to users. Verification requires the clinic\'s name, address, contact details and services, and the applicant\'s role at the clinic; the founding year is optional.' },
           { kind: 'text', value: '**Verification is not a quality certificate.** It indicates that the information declared by the clinic has been checked to a reasonable extent; it carries no guarantee about the veterinary care provided. Verification can be withdrawn.' },
         ],
       },

@@ -24,7 +24,7 @@ export const legalDocumentsTR: Record<LegalDocumentId, LegalDocument> = {
     title: 'Gizlilik Politikası',
     summary:
       'Verilerinizi neden ve nasıl işlediğimizin sade dille anlatımı. Resmî ayrıntılar Aydınlatma Metni’nde.',
-    effectiveDate: YURURLUK,
+    effectiveDate: '28 Eylül 2026',
     related: ['kvkk', 'consent', 'account-deletion'],
     required: true,
     intro: [
@@ -85,6 +85,7 @@ export const legalDocumentsTR: Record<LegalDocumentId, LegalDocument> = {
               ['Mesajlar', 'Yalnız yazıştığınız kişi'],
               ['Randevu ve klinik notları', 'Siz ve randevu aldığınız kliniğin yetkili personeli'],
               ['Telefon, doğum tarihi, e-posta', 'Yalnız siz. Başka kullanıcılara gösterilmez'],
+              ['Veteriner başvurusu ve klinikteki rolünüz', 'Yalnız siz ve başvuruyu inceleyen platform yöneticisi'],
             ],
           },
           {
@@ -194,7 +195,7 @@ export const legalDocumentsTR: Record<LegalDocumentId, LegalDocument> = {
     title: 'Aydınlatma Metni',
     summary:
       'KVKK Md. 10 kapsamında yasal bilgilendirme: hangi veri, hangi amaç, hangi hukuki sebep, nereye aktarılıyor, ne kadar saklanıyor.',
-    effectiveDate: YURURLUK,
+    effectiveDate: '28 Eylül 2026',
     related: ['privacy', 'consent', 'account-deletion'],
     required: true,
     intro: [
@@ -241,6 +242,7 @@ export const legalDocumentsTR: Record<LegalDocumentId, LegalDocument> = {
               ['Mesajlaşma', 'Mesaj içeriği, gönderilen medya, okundu bilgisi, mesaj isteği durumu', 'Kullanımınız'],
               ['Sahiplendirme', 'İlan içeriği ve başvurularınız (mesaj, iletişim telefonu)', 'Sizin girişiniz'],
               ['Klinik verisi (yalnız veteriner rolü)', 'Klinik bilgileri, ekip üyeleri, müşteri kayıtları, kliniğin uygulamayı kullanmayan müşterileri için ad/telefon/e-posta, gelir-gider kayıtları', 'Kliniğin girişi'],
+              ['Veteriner başvurusu (yalnız veteriner kaydında)', 'Klinik adı, adresi ve il/ilçesi, telefonu, vitrin kullanıcı adı, sunulan hizmetler, kuruluş yılı (opsiyonel), başvuranın klinikteki rolü', 'Sizin girişiniz'],
               ['İşlem güvenliği', 'Giriş IP adresi, cihaz modeli, işletim sistemi ve sürümü, uygulama sürümü, platform', 'Otomatik'],
               ['Bildirim', 'Cihaz bildirim jetonu, platform, cihaz modeli, uygulama sürümü; bildirim tercihleriniz', 'Otomatik + tercihiniz'],
             ],
@@ -708,7 +710,7 @@ export const legalDocumentsTR: Record<LegalDocumentId, LegalDocument> = {
     title: 'Kurumsal Sözleşme',
     summary:
       'Veteriner hekimler, klinikler ve kurumsal hesaplar için ek koşullar: doğrulama, hasta verisi sorumluluğu, ekip yönetimi.',
-    effectiveDate: '15 Eylül 2026',
+    effectiveDate: '28 Eylül 2026',
     related: ['terms', 'kvkk', 'privacy'],
     required: true,
     intro: [
@@ -745,7 +747,7 @@ export const legalDocumentsTR: Record<LegalDocumentId, LegalDocument> = {
           {
             kind: 'text',
             value:
-              'Klinikler platforma **doğrulanmamış** olarak katılır ve bu durum kullanıcılara açıkça gösterilir. Doğrulama başvurusunda kliniğin adı, adresi ve iletişim bilgileri istenir.',
+              'Klinikler platforma **doğrulanmamış** olarak katılır ve bu durum kullanıcılara açıkça gösterilir. Doğrulama başvurusunda kliniğin adı, adresi, iletişim bilgileri ve sunduğu hizmetler ile başvuranın klinikteki rolü istenir; kuruluş yılı isteğe bağlıdır.',
           },
           {
             kind: 'text',
