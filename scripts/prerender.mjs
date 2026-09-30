@@ -18,6 +18,7 @@
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { ilgiliYazilar } from '../src/lib/ilgiliYazilar.ts';
 
 /**
  * ⚠️ SURUM KAPISI: tip soyma (type stripping) Node 22.6+ istiyor. Daha eski bir
@@ -448,9 +449,7 @@ for (const y of yazilar) {
      * etkiliyor.
      */
     yazilar.length > 1
-      ? `<nav class="container yazi-ilgili" aria-label="Diğer yazılar"><h2>Diğer yazılar</h2><ul class="yazi-ilgili-liste">${yazilar
-          .filter((d) => d.slug !== y.slug)
-          .slice(0, 6)
+      ? `<nav class="container yazi-ilgili" aria-label="Diğer yazılar"><h2>Diğer yazılar</h2><ul class="yazi-ilgili-liste">${ilgiliYazilar(y, yazilar, 6)
           .map((d) => `<li><a href="/blog/${d.slug}">${kac(d.baslik)}</a></li>`)
           .join('')}</ul></nav></div></div></article>`
       : '</div></div></article>',
@@ -501,12 +500,12 @@ for (const y of yazilar) {
  * DONUYOR; prerender'a sabit bir yazi koymak, JS acilinca gorunur bir atlamaya
  * yol acardi. Liste, ilk yaziyi da normal kart olarak veriyor.
  */
-const listeKart = (y) => {
+const listeKart = (y, gizli = false) => {
   const kapak = kapakVarliklari(y.slug);
   const gorsel = kapak
     ? `<img src="${kapak.asil}" srcset="${kac(kapak.srcset)}" sizes="(max-width: 700px) 100vw, (max-width: 1180px) 46vw, 270px" width="1200" height="675" alt="${kac(y.baslik)}" loading="lazy" decoding="async">`
     : '';
-  return `<a class="blog-kart" href="/blog/${y.slug}">`
+  return `<a class="blog-kart" href="/blog/${y.slug}"${gizli ? ' style="display:none"' : ''}>`
     + `<div class="blog-kart-gorsel">${gorsel}</div>`
     + `<div class="blog-kart-govde">`
     + `<span class="blog-kart-kategori">${kac(y.kategori.toLocaleUpperCase('tr-TR'))}</span>`
@@ -519,8 +518,13 @@ const listeKart = (y) => {
  * ⚠️ URETILEN KART SAYISI REACT'INKIYLE AYNI OLMALI (16.09.2026).
  *
  * Liste sayfasi ilk 12 yaziyi gosterip gerisini "Daha fazla goster" ile
- * aciyor. Prerender 33 kart basarsa, JS baglandigi anda 21 kart EKRANDAN
+ * aciyor. Prerender 33 kart GORUNUR basarsa, JS baglandigi anda 21 kart EKRANDAN
  * KAYBOLUYOR: okuyucu kaydirirken sayfa altindan cekiliyor. Sayi tek yerde.
+ *
+ * ⚠️ 30.09.2026: BUTUN KARTLAR BASILIYOR, 12'den sonrasi display:none. Yalniz 12
+ * kart basildiginda 21 yaziya bu sayfadan baglanti yoktu; Search Console'da 32
+ * sayfa "Kesfedildi, dizine eklenmemis" kaliyordu. React de ayni kartlari ayni
+ * satir ici stille ciziyor (pages/Blog.tsx), JS baglaninca hicbir sey kaymiyor.
  */
 const LISTE_ILK = 12;
 
@@ -563,7 +567,7 @@ const listeGovde = [
   '<div class="container blog-duzen">',
   '<main class="blog-akis">',
   `<header class="blog-akis-baslik"><h2>Tüm Yazılar<em class="blog-sayac">${yazilar.length}</em></h2></header>`,
-  `<div class="blog-izgara">${yazilar.slice(0, LISTE_ILK).map(listeKart).join('')}</div>`,
+  `<div class="blog-izgara">${yazilar.map((y, sira) => listeKart(y, sira >= LISTE_ILK)).join('')}</div>`,
   '</main>',
   '<aside class="blog-yan"></aside>',
   '</div>',

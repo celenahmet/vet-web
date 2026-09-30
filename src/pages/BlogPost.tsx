@@ -13,6 +13,7 @@ import type { BlogBlock } from '../data/blog';
 import BlogKapak from '../components/BlogKapak';
 import BlogKenarCubugu from '../components/BlogKenarCubugu';
 import { goruntulenmeArtir, sayiyiKisalt } from '../lib/blogGoruntulenme';
+import { ilgiliYazilar } from '../lib/ilgiliYazilar';
 import './BlogPost.css';
 import '../styles/kirinti.css';
 
@@ -195,7 +196,8 @@ export default function BlogPost() {
 
   const adres = `https://veterito.com/blog/${yazi.slug}`;
   const dakika = okumaSuresi(yazi);
-  const ilgili = YAZILAR.filter((y) => y.slug !== yazi.slug).slice(0, 3);
+  // Ayni kategoriden, halka sirasiyla (gerekce: lib/ilgiliYazilar.ts). Eskiden hep en yeni 3 yazi.
+  const ilgili = ilgiliYazilar(yazi, YAZILAR);
 
   const makaleVerisi = {
     '@context': 'https://schema.org',

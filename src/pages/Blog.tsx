@@ -195,8 +195,7 @@ export default function Blog() {
      sonucta "daha fazla" dugmesi acik kalmis gibi gorunurdu. */
   useEffect(() => { setGosterilen(IZGARA_ADIM); }, [secili, sorgu, siralama]);
 
-  const izgara = tumIzgara.slice(0, gosterilen);
-  const kalan = tumIzgara.length - izgara.length;
+  const kalan = Math.max(0, tumIzgara.length - gosterilen);
 
   /**
    * EN COK OKUNANLAR — KENAR CUBUGUNDA (16.09.2026).
@@ -355,10 +354,16 @@ export default function Blog() {
             </label>
           </header>
 
-          {izgara.length ? (
+          {/* ⚠️ TUM KARTLAR HTML'DE (30.09.2026). Once yalniz ilk 12 kart ciziliyordu;
+              sunucu HTML'inde 33 yazinin 21'ine bu sayfadan baglanti yoktu ve Google
+              "daha fazla" dugmesine basmiyor. Search Console'da 32 sayfa "Kesfedildi,
+              dizine eklenmemis" kaliyordu. Artik hepsi ciziliyor, siradakiler
+              display:none (sinif degil satir ici: `hidden` ozniteligi .blog-kart'in
+              display:flex kuraliyla eziliyordu). Gorunum ve dugme ayni. */}
+          {tumIzgara.length ? (
             <div className="blog-izgara">
-              {izgara.map((yazi) => (
-                <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-kart">
+              {tumIzgara.map((yazi, sira) => (
+                <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-kart" style={sira >= gosterilen ? { display: 'none' } : undefined}>
                   <div className="blog-kart-gorsel">
                     <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={40} olcu="kart" />
                   </div>
