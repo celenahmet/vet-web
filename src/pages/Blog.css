@@ -180,10 +180,8 @@
 /* --- Kart izgarasi --- */
 .blog-izgara {
   display: grid;
-  /* ⚠️ UC SUTUN, DORT DEGIL: izgara artik tam genislikte degil, kenar
-     cubugunun yanindaki akis sutununda. Dort sutun 200 px'lik kartlar
-     uretiyordu ve basliklar bes satira kiriliyordu. */
-  grid-template-columns: repeat(3, 1fr);
+  /* ⚠️ KULLANICI ISTEGIYLE 2 SUTUNA INDIRILDI: Gorsellerin ve kartlarin genisligi artirildi */
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
 .blog-kart {
@@ -200,8 +198,8 @@
 .blog-kart:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
 .blog-kart-gorsel img {
   width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
   display: block;
 }
 .blog-kart-govde { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; }
@@ -601,7 +599,7 @@
   color: #fff;
 }
 .one-cikan-gorsel .kapak-yedek { aspect-ratio: 16 / 11; border-radius: 20px; }
-.blog-kart-gorsel .kapak-yedek { aspect-ratio: 16 / 10; }
+.blog-kart-gorsel .kapak-yedek { aspect-ratio: 16 / 9; }
 .kapak-yedek svg { opacity: 0.9; }
 
 
