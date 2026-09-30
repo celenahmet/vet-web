@@ -44,6 +44,7 @@ import { kedilerIcinZehirliBitkiler } from './kediler-icin-zehirli-bitkiler';
 import { kedilerdeGozAkintisi } from './kedilerde-goz-akintisi';
 import { kopegimKusuyor } from './kopegim-kusuyor';
 import { kopekNeZamanKisirlastirilmali } from './kopek-ne-zaman-kisirlastirilmali';
+import { kopeklerdeIcVeDisParazit } from './kopeklerde-ic-ve-dis-parazit';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -64,7 +65,7 @@ const TUM_YAZILAR: BlogYazi[] = [
   veterinerHekimMaaslari, veterinerTeknikeriMaaslari, veterinerUcretleri,
   kedimKusuyor, kediIdrarindaKan, kedilerIcinZehirliBitkiler,
   kedilerdeGozAkintisi, kopegimKusuyor,
-  kopekNeZamanKisirlastirilmali,
+  kopekNeZamanKisirlastirilmali, kopeklerdeIcVeDisParazit,
 ];
 
 /**
