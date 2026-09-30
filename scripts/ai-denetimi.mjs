@@ -30,10 +30,13 @@ const KAPAK_KLASORU = join(KOK, 'src/assets/blog');
 const HARIC = new Set(['index.ts', 'types.ts', 'gorsel.ts']);
 const bugun = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Istanbul' }).format(new Date());
 
+// 30.09.2026 (Ahmet): bilinen modellerin hepsi açık kalsın; listeden sessizce düşerse derleme durur.
 const BEKLENEN_BOTLAR = [
   'GPTBot', 'OAI-SearchBot', 'ChatGPT-User',
-  'ClaudeBot', 'Claude-SearchBot', 'anthropic-ai',
-  'Google-Extended', 'PerplexityBot', 'Applebot-Extended',
+  'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'anthropic-ai',
+  'Google-Extended', 'PerplexityBot', 'Perplexity-User', 'Applebot-Extended',
+  'Bingbot', 'meta-externalagent', 'DeepSeekBot', 'Grokbot', 'xAI-Bot',
+  'MistralAI-User', 'KimiBot', 'QwenBot', 'Cursor', 'CCBot',
 ];
 
 const hatalar = [];
