@@ -17,7 +17,7 @@ export const kopeklerdeIcVeDisParazit: BlogYazi = {
   kapakAlt:
     'Köpeklerde iç ve dış parazit uygulaması konulu yazının kapak görseli; yaşam biçimine göre uygulama sıklığı',
   kategori: 'Sağlık',
-  tarih: '2026-10-02',
+  tarih: '2026-09-30',
   bloklar: [
     { kind: 'paragraf', metin: 'Yavru köpekte iç parazit uygulaması **2 haftalıkken** başlıyor ve sütten kesildikten 2 hafta sonrasına kadar 2 haftada bir tekrarlanıyor; enfeksiyon riski sürüyorsa 6 aylığa kadar ayda bir devam ediyor. Yetişkin köpekte sıklığı yaşam biçimi belirliyor: Avrupa Evcil Hayvan Parazitleri Bilim Konseyi’nin (ESCCAP) 2025 kılavuzuna göre yalnız ev içinde yaşayan köpekte yılda 1-2 kez, düzenli dışarı çıkıp başka köpeklerle karşılaşan köpekte yılda 4 kez, avlanan ya da çiğ et, sakatat yiyen köpekte ayda bire kadar. Risk belirlenemiyorsa en az yılda 4 kez öneriliyor.' },
     { kind: 'paragraf', metin: 'Dış parazitte takvim mevsime değil eve bakıyor: pire yıl boyu görülebildiği için çoğu evde koruma kesintisiz sürüyor, kene mevsiminde ise korumanın arası açılmıyor. Aşağıdaki tablo kendi köpeğinizin satırını bulmanız için; sonraki bölümler her satırın nedenini ve Türkiye’de özellikle önemli olan sakatat konusunu açıyor.' },

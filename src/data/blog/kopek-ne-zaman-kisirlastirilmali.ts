@@ -17,7 +17,7 @@ export const kopekNeZamanKisirlastirilmali: BlogYazi = {
   kapakAlt:
     'Köpeklerde kısırlaştırma yaşı konulu yazının kapak görseli; ırk büyüklüğüne ve cinsiyete göre zamanlama',
   kategori: 'Köpek',
-  tarih: '2026-10-01',
+  tarih: '2026-09-30',
   bloklar: [
     { kind: 'paragraf', metin: 'Kısırlaştırma yaşını belirleyen şey köpeğin **yetişkinlikte ulaşacağı kilodur.** Amerikan Hayvan Hastaneleri Birliği’nin (AAHA) 2019 kılavuzuna göre yetişkinde 20 kilonun altında kalacak köpeklerde erkekler 6 aylıkken, dişiler ilk kızgınlıktan önce, yani 5-6 aylıkken kısırlaştırılabilmektedir. 20 kilo ve üzerine çıkacak büyük ırklarda erkekte büyümenin bitmesi, yaklaşık 9-15 ay bekleniyor; dişide ise 5 ile 15 ay arasındaki zaman veteriner hekimle birlikte seçiliyor.' },
     { kind: 'paragraf', metin: 'Kararı iki riskin dengesi belirliyor. Dişide erken kısırlaştırma meme tümörü riskini belirgin biçimde düşürüyor; büyük ırkta ise büyüme bitmeden yapılan ameliyat eklem sorunlarıyla ilişkili bulunuyor. Aşağıdaki bölümler bu dengeyi köpeğin büyüklüğüne ve cinsiyetine göre açıyor, sonra ameliyat günü ve sonrasına geçiyor.' },

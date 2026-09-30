@@ -18,7 +18,7 @@ export const yavruKediVeterinereNeZamanGoturulmeli: BlogYazi = {
   kapakAlt:
     'Yavru kedinin ilk veteriner ziyareti konulu yazının kapak görseli; ilk yılın muayene ve aşı takvimi',
   kategori: 'Kedi',
-  tarih: '2026-10-03',
+  tarih: '2026-09-30',
   bloklar: [
     { kind: 'paragraf', metin: 'Yavru kedinin ilk veteriner ziyareti, **eve geldikten sonra en kısa sürede** yapılıyor; kaç haftalık olduğu bunu değiştirmiyor. Kedi 6-8 haftalıksa bu ziyaret aşı programının da başlangıcı oluyor: Dünya Küçük Hayvan Veteriner Birliği’nin (WSAVA) 2024 kılavuzuna göre temel aşılar 6-8 haftada başlıyor, 16 haftalık olana kadar 2-4 haftada bir tekrarlanıyor ve 26. haftada ya da sonrasında bir doz daha yapılıyor.' },
     { kind: 'paragraf', metin: 'Yani yavru kedi ilk yılında çoğunlukla dört ile altı kez veteriner hekim görüyor. Aşağıda her ziyaretin ne için yapıldığı, evde başka kedi varsa neyin ertelenmediği ve aşı günü beklenmeden hekime ulaşılması gereken belirtiler var.' },

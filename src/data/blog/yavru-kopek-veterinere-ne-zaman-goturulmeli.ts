@@ -18,7 +18,7 @@ export const yavruKopekVeterinereNeZamanGoturulmeli: BlogYazi = {
   kapakAlt:
     'Yavru köpeğin ilk veteriner ziyareti konulu yazının kapak görseli; aşı dizisi ve ilk yılın kontrol takvimi',
   kategori: 'Köpek',
-  tarih: '2026-10-04',
+  tarih: '2026-09-30',
   bloklar: [
     { kind: 'paragraf', metin: 'Yavru köpeğin ilk veteriner ziyareti **eve geldikten sonra en kısa sürede** yapılıyor. Sonrasında Amerikan Hayvan Hastaneleri Birliği’nin (AAHA) 2019 kılavuzuna göre yavru dönemi boyunca kontroller **3-4 haftada bir** sürüyor. Dünya Küçük Hayvan Veteriner Birliği’ne (WSAVA) göre temel aşılar 6-8 haftada başlıyor, 16 haftalık olana kadar 2-4 haftada bir tekrarlanıyor ve 26. haftada ya da sonrasında bir doz daha yapılıyor.' },
     { kind: 'paragraf', metin: 'Yavru köpekte bu takvimi en çok iki şey belirliyor: aşı dizisi tamamlanana kadar süren parvovirüs riski ve aynı haftalara denk gelen sosyalleşme dönemi. İkisi birbirine ters yönde çekiyor; yazının ortasındaki bölüm bu dengenin nasıl kurulduğunu anlatıyor.' },
