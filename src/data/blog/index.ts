@@ -47,6 +47,7 @@ import { kopekNeZamanKisirlastirilmali } from './kopek-ne-zaman-kisirlastirilmal
 import { kopeklerdeIcVeDisParazit } from './kopeklerde-ic-ve-dis-parazit';
 import { yavruKediVeterinereNeZamanGoturulmeli } from './yavru-kedi-veterinere-ne-zaman-goturulmeli';
 import { yavruKopekVeterinereNeZamanGoturulmeli } from './yavru-kopek-veterinere-ne-zaman-goturulmeli';
+import { kedilerIcinYasMamaMiKuruMamaMi } from './kediler-icin-yas-mama-mi-kuru-mama-mi';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -69,6 +70,7 @@ const TUM_YAZILAR: BlogYazi[] = [
   kedilerdeGozAkintisi, kopegimKusuyor,
   kopekNeZamanKisirlastirilmali, kopeklerdeIcVeDisParazit,
   yavruKediVeterinereNeZamanGoturulmeli, yavruKopekVeterinereNeZamanGoturulmeli,
+  kedilerIcinYasMamaMiKuruMamaMi,
 ];
 
 /**
