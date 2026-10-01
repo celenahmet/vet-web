@@ -49,6 +49,7 @@ import { yavruKediVeterinereNeZamanGoturulmeli } from './yavru-kedi-veterinere-n
 import { yavruKopekVeterinereNeZamanGoturulmeli } from './yavru-kopek-veterinere-ne-zaman-goturulmeli';
 import { kedilerIcinYasMamaMiKuruMamaMi } from './kediler-icin-yas-mama-mi-kuru-mama-mi';
 import { yavruKediNeKadarMamaYemeli } from './yavru-kedi-ne-kadar-mama-yemeli';
+import { kedilerdeMaltNeIseYarar } from './kedilerde-malt-ne-ise-yarar';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -71,7 +72,7 @@ const TUM_YAZILAR: BlogYazi[] = [
   kedilerdeGozAkintisi, kopegimKusuyor,
   kopekNeZamanKisirlastirilmali, kopeklerdeIcVeDisParazit,
   yavruKediVeterinereNeZamanGoturulmeli, yavruKopekVeterinereNeZamanGoturulmeli,
-  kedilerIcinYasMamaMiKuruMamaMi, yavruKediNeKadarMamaYemeli,
+  kedilerIcinYasMamaMiKuruMamaMi, yavruKediNeKadarMamaYemeli, kedilerdeMaltNeIseYarar,
 ];
 
 /**
