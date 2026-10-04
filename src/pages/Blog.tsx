@@ -236,6 +236,15 @@ export default function Blog() {
         url="https://veterito.com/blog"
       />
 
+      {/* BLOG BASLIGI (04.10.2026, Ahmet: *"ben ordan bi blog vibe'i almiyorum blog degilmis
+          gibi"*). Sayfa urun tanitimi gibi aciliyordu; artik once blogun adi ve ne anlattigi.
+          Aciklama SEO aciklamasiyla ayni cumle (yeni metin yazilmadi). prerender.mjs de ayni
+          basligi basiyor: onceden yalniz statik HTML'de vardi ve React baglaninca kayboluyordu. */}
+      <header className="container blog-masthead">
+        <h1>{t('blog_h1')}</h1>
+        <p>Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine veteriner hekim gözünden yazılar.</p>
+      </header>
+
       {oneCikan ? (
         <section className="container blog-one-cikan" aria-live="polite">
           {/* `key` her degisimde bileseni yeniliyor, boylece belirme animasyonu
@@ -243,7 +252,7 @@ export default function Blog() {
               degistigi fark edilmezdi. */}
           <div className="one-cikan-metin belir" key={oneCikan.slug}>
             <span className="one-cikan-etiket">{t('blog_featured_badge')}</span>
-            <h1>{oneCikan.baslik}</h1>
+            <h2 className="one-cikan-baslik">{oneCikan.baslik}</h2>
             <p>{oneCikan.ozet}</p>
             <Link to={`/blog/${oneCikan.slug}`} className="one-cikan-dugme">{t('blog_read_post')}<ArrowRight size={18} />
             </Link>
@@ -274,7 +283,7 @@ export default function Blog() {
               {/* ⚠️ Yalniz ILK yazi oncelikli. Donen butun gorselleri "oncelikli"
                   isaretlemek onceligi anlamsizlastirir ve hepsini birden
                   indirtir. */}
-              <BlogKapak slug={oneCikan.slug} kategori={oneCikan.kategori} alt={oneCikan.kapakAlt} boyut={64} olcu="yazi" oncelikli={guvenliSira === 0} />
+              <BlogKapak slug={oneCikan.slug} kategori={oneCikan.kategori} alt={oneCikan.kapakAlt} boyut={64} olcu="foto" bicim="foto" oncelikli={guvenliSira === 0} />
             </Link>
           </div>
         </section>
@@ -365,11 +374,12 @@ export default function Blog() {
               {tumIzgara.map((yazi, sira) => (
                 <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-kart" style={sira >= gosterilen ? { display: 'none' } : undefined}>
                   <div className="blog-kart-gorsel">
-                    <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={40} olcu="kart" />
+                    <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={40} olcu="foto" bicim="foto" />
                   </div>
                   <div className="blog-kart-govde">
                     <span className="blog-kart-kategori">{t('blog_cat_' + yazi.kategori, yazi.kategori).toLocaleUpperCase()}</span>
                     <h3>{yazi.baslik}</h3>
+                    <p className="blog-kart-ozet">{yazi.ozet}</p>
                     <div className="blog-kart-alt">
                       <span><Clock size={14} /> {okumaSuresi(yazi)} {t('blog_read_time')}</span>
                       <span>{tarihiYaz(yazi.tarih)}</span>
@@ -415,7 +425,7 @@ export default function Blog() {
                 {enCokOkunanlar.map((yazi) => (
                   <li key={yazi.slug}>
                     <Link to={`/blog/${yazi.slug}`}>
-                      <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={24} olcu="kucuk" />
+                      <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={24} olcu="kucuk" bicim="foto" />
                       <div>
                         <h3>{yazi.baslik}</h3>
                         <span>{t('blog_cat_' + yazi.kategori, yazi.kategori)} · {okumaSuresi(yazi)} {t('blog_read_time')}</span>

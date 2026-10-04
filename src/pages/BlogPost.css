@@ -848,3 +848,34 @@
   .yazi-sayfa > .yazi-duzen > .yazi-ana,
   .yazi-sayfa > .yazi-duzen > .blog-kenar { padding-inline: 16px; }
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * FOTOGRAFLI BASLIK (04.10.2026, Ahmet: *"blog vibe'i almiyorum"*)
+ * Baslikli afis yazi sutunundan kalkti: ayni basligi baslik bandinin hemen altinda
+ * ikinci kez okutuyordu. Bandin sagina afisin fotograf kirpmasi (4:5) geldi.
+ * Telefonda fotograf ustte, genis ve kisa.
+ * ══════════════════════════════════════════════════════════════════════════ */
+.yazi-basi-fotolu {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  gap: 44px;
+  align-items: center;
+}
+.yazi-basi-metin { min-width: 0; }
+.yazi-basi-foto img.kapak-foto {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 18px;
+  display: block;
+}
+.yazi-basi-foto .kapak-yedek { aspect-ratio: 4 / 5; border-radius: 18px; }
+
+@media (max-width: 760px) {
+  .yazi-basi-fotolu { grid-template-columns: 1fr; gap: 16px; }
+  .yazi-basi-foto { order: -1; }
+  .yazi-basi-foto img.kapak-foto { aspect-ratio: 16 / 10; object-position: center 40%; border-radius: 14px; }
+  .yazi-basi-foto .kapak-yedek { aspect-ratio: 16 / 10; }
+}

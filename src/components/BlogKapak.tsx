@@ -1,7 +1,7 @@
 import { BarChart3, Cat, Dog, HeartPulse, PawPrint, Users, Utensils } from 'lucide-react';
 
 import type { BlogKategori } from '../data/blog';
-import { kapakGorseli } from '../data/blog/gorsel';
+import { FOTO_BOY, FOTO_EN, kapakFotografi, kapakGorseli } from '../data/blog/gorsel';
 
 /**
  * Yazi kapagi. Gorsel varsa gorseli, yoksa marka renginde kategori ikonunu gosterir.
@@ -33,6 +33,8 @@ const IKON: Record<BlogKategori, typeof Cat> = {
  */
 const OLCULER = {
   yazi: '(max-width: 700px) 100vw, (max-width: 1080px) 780px, 784px',
+  /* Fotograf kirpmasi tek olcu (430 px); `sizes` yalniz yer ayirma icin. */
+  foto: '(max-width: 700px) 40vw, 240px',
   kart: '(max-width: 700px) 100vw, (max-width: 1180px) 46vw, 270px',
   kucuk: '96px',
 } as const;
@@ -49,11 +51,31 @@ type Props = {
    * ⚠️ Birden fazla gorseli "oncelikli" isaretlemek onceligi anlamsizlastirir.
    */
   oncelikli?: boolean;
+  /**
+   * 'afis' (varsayilan): baslikli 16:9 kapak. 'foto': afisin yalniz fotograf kismi (4:5),
+   * liste ve kartlar icin (04.10.2026). Fotograf yoksa afise duser.
+   */
+  bicim?: 'afis' | 'foto';
 };
 
 export default function BlogKapak({
-  slug, kategori, alt, boyut = 44, olcu = 'kart', oncelikli = false,
+  slug, kategori, alt, boyut = 44, olcu = 'kart', oncelikli = false, bicim = 'afis',
 }: Props) {
+  const foto = bicim === 'foto' ? kapakFotografi(slug) : undefined;
+  if (foto) {
+    return (
+      <img
+        src={foto}
+        width={FOTO_EN}
+        height={FOTO_BOY}
+        alt={alt}
+        className="kapak-foto"
+        loading={oncelikli ? 'eager' : 'lazy'}
+        decoding={oncelikli ? 'sync' : 'async'}
+        fetchPriority={oncelikli ? 'high' : undefined}
+      />
+    );
+  }
   const kaynak = kapakGorseli(slug);
   if (kaynak) {
     return (

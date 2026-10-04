@@ -246,6 +246,12 @@ function onYuklemeler(desenler) {
  * ⚠️ Dar surumler ayni onekle basliyor (`<slug>-400-<hash>.webp`), o yuzden
  * eslesme sirasi onemli: once dar surumler ayiklaniyor, kalan asil dosya.
  */
+/** Fotograf kirpmasi (04.10.2026): `<slug>-foto-<karma>.webp`, 430x537. Yoksa null. */
+function fotoVarligi(slug) {
+  const dosya = readdirSync(join(KOK, 'dist/assets')).find((f) => f.startsWith(`${slug}-foto-`) && f.endsWith('.webp'));
+  return dosya ? `/assets/${dosya}` : null;
+}
+
 function kapakVarliklari(slug) {
   const hepsi = readdirSync(join(KOK, 'dist/assets')).filter((f) => f.endsWith('.webp'));
   const dar = {};
@@ -264,6 +270,9 @@ function kapakVarliklari(slug) {
    * eslestirebilirdi.
    */
   for (const dosya of hepsi) {
+    /* ⚠️ FOTOGRAF KIRPMASI AFIS SAYILMAZ (04.10.2026): `<slug>-foto-<karma>.webp` asagidaki
+       afis desenine de uyuyordu. */
+    if (dosya.startsWith(`${slug}-foto-`)) continue;
     const m = dosya.match(new RegExp(`^${slug}-(\\d+)-(.+)\\.webp$`));
     if (m) { dar[Number(m[1])] = `/assets/${dosya}`; continue; }
     if (new RegExp(`^${slug}-(.+)\\.webp$`).test(dosya)) asil = `/assets/${dosya}`;
@@ -282,6 +291,7 @@ for (const y of yazilar) {
   const adres = `${SITE}/blog/${y.slug}`;
   const dakika = okumaSuresi(y);
   const kapak = kapakVarliklari(y.slug);
+  const foto = fotoVarligi(y.slug);
   const makale = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -372,13 +382,14 @@ for (const y of yazilar) {
        (16.09.2026). Kapak artik sol sutunun ILK ogesi; band tam genislikte.
        Ayrisirsa React baglaninca sayfa ziplar. */
     `<article class="yazi-sayfa">`,
-    `<header class="yazi-basi-bandi"><div class="container yazi-basi">`,
+    /* FOTOGRAFLI BASLIK (04.10.2026): React'teki `yazi-basi-fotolu` yapisinin aynisi. */
+    `<header class="yazi-basi-bandi"><div class="container yazi-basi yazi-basi-fotolu"><div class="yazi-basi-metin">`,
     `<nav class="yazi-kirinti" aria-label="Sayfa yolu"><a href="/">Ana Sayfa</a><span aria-hidden="true">›</span><a href="/blog">Blog</a><span aria-hidden="true">›</span><span aria-current="page">${kac(y.baslik)}</span></nav>`,
     `<span class="yazi-kategori">${kac(y.kategori.toLocaleUpperCase('tr-TR'))}</span>`,
     `<h1>${kac(y.baslik)}</h1>`,
     `<p class="yazi-ozet">${kac(y.ozet)}</p>`,
     `<div class="yazi-kunye"><a class="yazi-yazar" href="${YAZAR.yol}"><span class="yazi-yazar-avatar" aria-hidden="true"></span>${kac(YAZAR.ad)}</a><span>${kac(tarihiYaz(y.tarih))}</span><span>${dakika} dk okuma</span></div>`,
-    `</div></header>`,
+    `</div>${foto ? `<div class="yazi-basi-foto"><img src="${foto}" width="430" height="537" alt="${kac(y.kapakAlt)}" class="kapak-foto" fetchpriority="high" decoding="sync"></div>` : ''}</div></header>`,
     `<div class="container yazi-duzen"><div class="yazi-ana">`,
     /*
      * ⚠️ KAPAK GORSELI PRERENDER GOVDESINE DE KONUYOR (24.08.2026).
@@ -393,9 +404,7 @@ for (const y of yazilar) {
      * olmali. Ayrisirsa tarayici iki farkli dosya indirir ve gorsel React
      * baglandiginda yeniden yerlesir.
      */
-    kapak
-      ? `<div class="yazi-kapak"><img src="${kapak.asil}" srcset="${kac(kapak.srcset)}" sizes="(max-width: 700px) 100vw, (max-width: 1080px) 780px, 784px" width="1200" height="675" alt="${kac(y.kapakAlt)}" fetchpriority="high" decoding="sync"></div>`
-      : '',
+    /* Baslikli afis yazi sutunundan kalkti (04.10.2026); fotografi baslik bandinda. */
     `<div class="yazi-govde">`,
     ...y.bloklar.map(blokHtml),
     `</div>`,
@@ -474,8 +483,9 @@ for (const y of yazilar) {
        * olmali; ayrisirsa tarayici iki farkli dosya indirir ve on yukleme
        * kazanc yerine kayip olur.
        */
-      ekBaglantilar: kapak
-        ? `<link rel="preload" as="image" fetchpriority="high" href="${kapak.asil}" imagesrcset="${kapak.srcset}" imagesizes="(max-width: 700px) 100vw, (max-width: 1080px) 780px, 784px" />`
+      /* 04.10.2026: en buyuk gorsel artik baslik bandindaki fotograf kirpmasi (tek olcu). */
+      ekBaglantilar: foto
+        ? `<link rel="preload" as="image" fetchpriority="high" href="${foto}" />`
         : '',
     }),
     govde,
@@ -501,15 +511,17 @@ for (const y of yazilar) {
  * yol acardi. Liste, ilk yaziyi da normal kart olarak veriyor.
  */
 const listeKart = (y, gizli = false) => {
-  const kapak = kapakVarliklari(y.slug);
-  const gorsel = kapak
-    ? `<img src="${kapak.asil}" srcset="${kac(kapak.srcset)}" sizes="(max-width: 700px) 100vw, (max-width: 1180px) 46vw, 270px" width="1200" height="675" alt="${kac(y.baslik)}" loading="lazy" decoding="async">`
+  /* 04.10.2026: kartta afis yerine fotograf kirpmasi + ozet (React'teki kartla ayni). */
+  const foto = fotoVarligi(y.slug);
+  const gorsel = foto
+    ? `<img src="${foto}" width="430" height="537" alt="${kac(y.kapakAlt)}" class="kapak-foto" loading="lazy" decoding="async">`
     : '';
   return `<a class="blog-kart" href="/blog/${y.slug}"${gizli ? ' style="display:none"' : ''}>`
     + `<div class="blog-kart-gorsel">${gorsel}</div>`
     + `<div class="blog-kart-govde">`
     + `<span class="blog-kart-kategori">${kac(y.kategori.toLocaleUpperCase('tr-TR'))}</span>`
     + `<h3>${kac(y.baslik)}</h3>`
+    + `<p class="blog-kart-ozet">${kac(y.ozet)}</p>`
     + `<div class="blog-kart-alt"><span>${okumaSuresi(y)} dk okuma</span><span>${kac(tarihiYaz(y.tarih))}</span></div>`
     + `</div></a>`;
 };
@@ -559,8 +571,9 @@ const listeBlog = {
 
 const listeGovde = [
   '<div class="blog-sayfa">',
-  '<section class="container"><h1>Veterito Blog</h1>',
-  '<p>Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine yazılar.</p></section>',
+  /* BLOG BASLIGI: React'teki `blog-masthead` ile ayni (04.10.2026); onceden yalniz burada vardi. */
+  '<header class="container blog-masthead"><h1>Veterito Blog</h1>',
+  '<p>Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine veteriner hekim gözünden yazılar.</p></header>',
   /* ⚠️ Iki sutunlu kabuk BURADA da kuruluyor: ilk boyamada akis sutunu tam
      genislikte cizilip JS baglaninca daralsaydi, butun kartlar yanlara
      ziplardi. */

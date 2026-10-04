@@ -678,3 +678,148 @@
 .one-cikan-noktalar .nokta:hover { background: var(--color-vet-primary); }
 .one-cikan-noktalar .nokta.secili { width: 26px; background: var(--color-vet-secondary); }
 .one-cikan-noktalar .nokta:focus-visible { outline: 2px solid var(--color-vet-secondary); outline-offset: 3px; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * BLOG GORUNUMU (04.10.2026)
+ * Ahmet: *"ben ordan bi blog vibe'i almiyorum blog degilmis gibi"*. Teshis: liste
+ * sayfasi urun tanitimi gibi aciliyordu (dev hap dugmeli kahraman kutusu) ve kartlar
+ * baslikli afislerden kuruluydu; ayni turkuaz sablon yan yana dizilince sayfa ilan
+ * duvarina donuyordu, baslik da iki kez okunuyordu. Uc degisiklik:
+ *   1. En ustte blogun adi ve ne anlattigi (`.blog-masthead`).
+ *   2. Gorsellerde afis yerine afisin FOTOGRAF kirpmasi (`.kapak-foto`, 4:5).
+ *   3. Kartlar dergi listesi gibi: solda fotograf, sagda kategori, baslik, ozet, kunye.
+ * Eski kurallar yerinde; bu blok onlari ezerek calisiyor (geri almak = bu blogu silmek).
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+/* 1. Blog basligi */
+.blog-masthead {
+  padding: 4px 0 24px;
+  border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.08));
+}
+.blog-sayfa > .blog-masthead { margin-bottom: 36px; }
+.blog-masthead h1 {
+  font-size: 2.6rem;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  margin: 0 0 10px;
+  color: var(--color-text);
+}
+.blog-masthead p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  max-width: 62ch;
+}
+
+/* 2. One cikan yazi: metin solda, dikey fotograf sagda */
+.blog-one-cikan { grid-template-columns: minmax(0, 1fr) 340px; gap: 44px; }
+.one-cikan-baslik {
+  font-size: 2.3rem;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  margin: 0 0 16px;
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+.one-cikan-gorsel img.kapak-foto {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+/* Hap dugme yerine yazi baglantisi: blogda okuyucuyu cagiran baslik, dugme degil. */
+.blog-one-cikan .one-cikan-dugme {
+  background: none;
+  color: var(--color-vet-secondary);
+  padding: 0;
+  border-radius: 0;
+  font-weight: 700;
+}
+.blog-one-cikan .one-cikan-dugme:hover {
+  transform: none;
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* 3. Dergi listesi */
+.blog-izgara { grid-template-columns: 1fr; gap: 18px; }
+.blog-kart { flex-direction: row; align-items: stretch; }
+.blog-kart:hover { transform: none; box-shadow: 0 10px 24px rgba(0,0,0,0.07); }
+/* Fotograf satirin yuksekligine uyuyor (metin belirliyor); kendi 4:5 oraniyla satiri
+   uzatmasin diye mutlak konumlu. */
+.blog-kart-gorsel { position: relative; flex: 0 0 236px; overflow: hidden; min-height: 178px; }
+.blog-kart-gorsel img.kapak-foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.blog-kart:hover .blog-kart-gorsel img.kapak-foto { transform: scale(1.03); }
+.blog-kart-gorsel .kapak-yedek { position: absolute; inset: 0; aspect-ratio: auto; }
+.blog-kart-govde { padding: 20px 22px; justify-content: center; }
+.blog-kart-govde h3 {
+  font-size: 1.22rem;
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+  flex: 0 0 auto;
+}
+.blog-kart:hover .blog-kart-govde h3 { color: var(--color-vet-secondary); }
+.blog-kart-ozet {
+  margin: 0 0 14px;
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.blog-kart-alt { justify-content: flex-start; gap: 16px; }
+
+/* Kenar cubugundaki kucuk gorseller de fotograf; oran zaten kirpiliyor. */
+.blog-yan-liste img.kapak-foto { object-position: center 35%; }
+
+@media (max-width: 1180px) {
+  .blog-masthead h1 { font-size: 2.3rem; }
+  .one-cikan-baslik { font-size: 2.05rem; }
+}
+
+@media (max-width: 980px) {
+  .blog-one-cikan { grid-template-columns: minmax(0, 1fr) 240px; gap: 28px; }
+}
+
+@media (max-width: 700px) {
+  .blog-masthead { padding-bottom: 18px; }
+  .blog-sayfa > .blog-masthead { margin-bottom: 24px; }
+  .blog-masthead h1 { font-size: 1.9rem; }
+  .blog-masthead p { font-size: 0.98rem; }
+  /* Telefonda fotograf ustte, genis ve kisa: dikey fotograf ekrani doldurmasin. */
+  .blog-one-cikan { grid-template-columns: 1fr; gap: 18px; }
+  .one-cikan-gorsel { order: -1; }
+  .one-cikan-gorsel img.kapak-foto { aspect-ratio: 16 / 10; object-position: center 40%; border-radius: 16px; }
+  .one-cikan-baslik { font-size: 1.6rem; }
+  /* Liste satiri telefonda da yatay; gorsel daraliyor, ozet tek satir. */
+  .blog-kart-gorsel { flex-basis: 112px; min-height: 132px; }
+  .blog-kart-govde { padding: 14px 14px 14px 16px; }
+  .blog-kart-govde h3 { font-size: 1.02rem; }
+  .blog-kart-ozet { -webkit-line-clamp: 2; font-size: 0.86rem; margin-bottom: 10px; }
+  .blog-kart-alt { font-size: 0.76rem; gap: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-kart-gorsel img.kapak-foto { transition: none; }
+  .blog-kart:hover .blog-kart-gorsel img.kapak-foto { transform: none; }
+}
