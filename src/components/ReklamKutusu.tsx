@@ -75,9 +75,20 @@ export default function ReklamKutusu() {
      (bote.web.tr yuvasiyla ayni davranis, WCAG 2.2.2). */
   const [durdu, setDurdu] = useState(false);
 
+  /*
+   * ⚠️ ACILISTA RASTGELE KART (04.10.2026). Ahmet: *"otosenior hic gelmiyor"*. Sebep olculdu:
+   * "Hareketi azalt" acik cihazda donme hic baslamiyor ve hep ilk kart (UniConnectly)
+   * kaliyordu. Artik her sayfa acilisinda kartlardan biri rastgele seciliyor; donme yine
+   * yalniz hareketi azalt KAPALIYKEN calisiyor. Sunucu ciktisi ilk karti basiyor, istemci
+   * ilk boyamadan hemen sonra degistiriyor (kutu sabit yukseklikte, sayfa kaymiyor).
+   */
+  useEffect(() => {
+    if (KARTLAR.length > 1) setSira(Math.floor(Math.random() * KARTLAR.length));
+  }, []);
+
   useEffect(() => {
     if (KARTLAR.length < 2 || durdu) return;
-    /* Hareketi azalt: donme hic baslamiyor, ilk kart sabit kaliyor. */
+    /* Hareketi azalt: donme hic baslamiyor, acilista secilen kart sabit kaliyor. */
     const azalt = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
     if (azalt) return;
 
@@ -108,9 +119,15 @@ export default function ReklamKutusu() {
           </a>
         </div>
       ) : kart === 'otosenior' ? (
-        <div className="reklam-kart">
+        <a
+          className="reklam-kart reklam-kart-baglanti"
+          href="https://otosenior.com"
+          target="_blank"
+          rel="sponsored noopener noreferrer">
           {/* OtoSenior: ayni kisinin otomobil rehberi sitesi. Metin Ahmet'in onayladigi kitle cumlesi
-              (04.10.2026); diger sitelerdeki kartla AYNI. Baglanti `rel="sponsored"`. */}
+              (04.10.2026); diger sitelerdeki kartla AYNI. Baglanti `rel="sponsored"`.
+              ⚠️ KARTIN TAMAMI BAGLANTI (Ahmet 04.10: "logosuna felan basinca da gitmiyor"):
+              logo, metin ve dugme tek <a> icinde; dugme artik <span>, ic ice baglanti yok. */}
           <img
             src={otoseniorLogo}
             alt="OtoSenior"
@@ -122,15 +139,14 @@ export default function ReklamKutusu() {
             Otomobil sahipleri, galericiler ve meraklıları için araç alım satımı, vergi, sigorta ve trafik
             kurallarında resmî kaynaklı rehberler.
           </p>
-          <a
-            className="reklam-dugme"
-            href="https://otosenior.com"
-            target="_blank"
-            rel="sponsored noopener noreferrer">Rehberleri oku<ArrowUpRight size={15} />
-          </a>
-        </div>
+          <span className="reklam-dugme">Rehberleri oku<ArrowUpRight size={15} /></span>
+        </a>
       ) : (
-        <div className="reklam-kart">
+        <a
+          className="reklam-kart reklam-kart-baglanti"
+          href="https://uniconnectly.com"
+          target="_blank"
+          rel="sponsored noopener noreferrer">
           {/* ⚠️ Logo METNIN YERINE GECIYOR, yanina eklenmiyor: marka adi zaten
               logonun icinde yaziyor, ikisini birlikte koymak ismi iki kez
               gostermek olurdu. `alt` metni ad taşıyor, ekran okuyucu okuyor. */}
@@ -145,13 +161,8 @@ export default function ReklamKutusu() {
             Üniversite toplulukları, etkinlikler ve şirketler tek uygulamada. App Store ve
             Google Play’de.
           </p>
-          <a
-            className="reklam-dugme"
-            href="https://uniconnectly.com"
-            target="_blank"
-            rel="sponsored noopener noreferrer">{t('ad_btn_2')}<ArrowUpRight size={15} />
-          </a>
-        </div>
+          <span className="reklam-dugme">{t('ad_btn_2')}<ArrowUpRight size={15} /></span>
+        </a>
       )}
     </section>
   );

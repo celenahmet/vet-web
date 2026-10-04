@@ -64,6 +64,13 @@
 }
 .reklam-dugme:hover { background: color-mix(in srgb, currentColor 13%, transparent); }
 
+/* KARTIN TAMAMI BAGLANTI (04.10.2026): logo ve metin de tiklanir. Baglanti gorunumu
+   kartin ICINE tasinmiyor; uzerine gelince yalniz dugme koyulasiyor, klavye odagi kartin
+   cevresinde gorunuyor. */
+.reklam-kart-baglanti { text-decoration: none; color: inherit; border-radius: 10px; }
+.reklam-kart-baglanti:hover .reklam-dugme { background: color-mix(in srgb, currentColor 13%, transparent); }
+.reklam-kart-baglanti:focus-visible { outline: 2px solid var(--primary-color, #0F6B57); outline-offset: 4px; }
+
 @media (prefers-reduced-motion: reduce) {
   .reklam-dugme { transition: none; }
 }
