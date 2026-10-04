@@ -51,6 +51,8 @@ import { kedilerIcinYasMamaMiKuruMamaMi } from './kediler-icin-yas-mama-mi-kuru-
 import { yavruKediNeKadarMamaYemeli } from './yavru-kedi-ne-kadar-mama-yemeli';
 import { kedilerdeMaltNeIseYarar } from './kedilerde-malt-ne-ise-yarar';
 import { kedilerinDisleriNasilTemizlenir } from './kedilerin-disleri-nasil-temizlenir';
+import { kedilerdeGozEnfeksiyonu } from './kedilerde-goz-enfeksiyonu';
+import { kedilerdeGozBoyamaTesti } from './kedilerde-goz-boyama-testi';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -74,7 +76,7 @@ const TUM_YAZILAR: BlogYazi[] = [
   kopekNeZamanKisirlastirilmali, kopeklerdeIcVeDisParazit,
   yavruKediVeterinereNeZamanGoturulmeli, yavruKopekVeterinereNeZamanGoturulmeli,
   kedilerIcinYasMamaMiKuruMamaMi, yavruKediNeKadarMamaYemeli, kedilerdeMaltNeIseYarar,
-  kedilerinDisleriNasilTemizlenir,
+  kedilerinDisleriNasilTemizlenir, kedilerdeGozEnfeksiyonu, kedilerdeGozBoyamaTesti,
 ];
 
 /**
