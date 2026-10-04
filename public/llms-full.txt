@@ -1,6 +1,6 @@
 # Veterito — blog yazılarının tam metni
 
-Üretim: 2026-10-04. 42 yazı. Kaynak künyeleri her yazının sonunda.
+Üretim: 2026-10-04. 43 yazı. Kaynak künyeleri her yazının sonunda.
 
 ---
 
@@ -46,7 +46,7 @@ Boya burun deliğinde görülüyor | Gözyaşı kanalı açık (Jones testi)
 
 Merck kornea ülserlerini derinliğe göre dörde ayırıyor: yüzeysel, derin, Descemet zarına kadar inen (desmetosel) ve delinmiş ülser. Derinliği doğru tahmin etmek için hekim büyütmeyi, yarık lamba ile odaklı ışığı ve floresein boyasını birlikte kullanıyor. Kornea delinmişse göz içi sıvısının sızıp sızmadığı yine floreseinle, Seidel testiyle kontrol ediliyor. Boyanın burun deliğinde görülmesi ise gözyaşı kanalının açık ve çalıştığını gösteriyor; Merck bunu Jones testi olarak tanımlıyor.
 
-Kedilerde ülserin en sık sebebi herpesvirüs. Cornell’den Thomas Kern en sık sebebin tekrarlayan herpes enfeksiyonu olduğunu söylüyor; Merck de kedilerde yavaş iyileşen ya da tekrarlayan yüzeysel ülserlerde herpesten şüphelenilmesi gerektiğini belirtiyor. ABCD kılavuzu, ağaç dalı biçimindeki ülseri bu enfeksiyon için tanı koydurucu sayıyor. Göz akıntısının sebeplerini ve ne zaman beklemeden gidileceğini kedilerde göz akıntısı (https://veterito.com/blog/kedilerde-goz-akintisi) yazısında anlattık.
+Kedilerde ülserin en sık sebebi herpesvirüs. Cornell’den Thomas Kern en sık sebebin tekrarlayan herpes enfeksiyonu olduğunu söylüyor; Merck de kedilerde yavaş iyileşen ya da tekrarlayan yüzeysel ülserlerde herpesten şüphelenilmesi gerektiğini belirtiyor. ABCD kılavuzu, ağaç dalı biçimindeki ülseri bu enfeksiyon için tanı koydurucu sayıyor. Herpesi ve diğer etkenleri kedilerde göz enfeksiyonu (https://veterito.com/blog/kedilerde-goz-enfeksiyonu), akıntının sebeplerini ve ne zaman beklemeden gidileceğini kedilerde göz akıntısı (https://veterito.com/blog/kedilerde-goz-akintisi) yazısında anlattık.
 
 YAYGIN YANILGI — "Boya tutmadıysa gözde sorun yoktur" yanılgısı: Negatif boyama yalnızca kornea yüzeyinin sağlam olduğunu gösteriyor, gözün sağlıklı olduğunu değil. Konjonktivit, göz içi iltihabı, göz tansiyonu ya da gözyaşı yetersizliği boya tutmadan da ağrı ve kızarıklık yapabiliyor; Merck’in rutin muayeneye gözyaşı ölçümünü ve göz içi basıncını da koymasının sebebi bu. Kediye özgü kornea sekestrumu da başlangıçta floreseinle çok zayıf boyanabiliyor.
 
@@ -119,6 +119,135 @@ Ağaç dalını andıran ince, kollara ayrılan çizgiler hâlinde görünüyor.
 - American College of Veterinary Ophthalmologists · Veterinary Ophthalmology · Spontaneous Superficial Ulcerative Keratitis in Client-Owned Cats: Risk Factors for Delayed Healing, Corneal Sequestration, or Corneal Stromal Vascularization · Reynolds BD, Whittaker CJ, Caruso KA, Smith JS, Weinstein W, McCarthy PG, Irving WM, Maggs DJ · Veterinary Ophthalmology · 2026 · 29(5):e70260 · DOI: 10.1111/vop.70260 · https://pubmed.ncbi.nlm.nih.gov/42669856/
 - European Advisory Board on Cat Diseases (ABCD) · Journal of Feline Medicine and Surgery · Feline herpesvirus infection. ABCD guidelines on prevention and management · Thiry E, Addie D, Belák S, Boucraut-Baralon C, Egberink H, Frymus T, Gruffydd-Jones T, Hartmann K, Hosie MJ, Lloret A, Lutz H, Marsilio F, Pennisi MG, Radford AD, Truyen U, Horzinek MC · Journal of Feline Medicine and Surgery · 2009 · 11(7):547-555 · DOI: 10.1016/j.jfms.2009.05.003 · https://pubmed.ncbi.nlm.nih.gov/19481034/
 - Merck Veterinary Manual · University of Florida College of Veterinary Medicine · The Conjunctiva in Animals · 2023 · https://www.merckvetmanual.com/eye-diseases-and-disorders/ophthalmology/the-conjunctiva-in-animals
+
+---
+
+# Kedilerde Göz Enfeksiyonu: Belirtileri, Sebepleri ve Tedavisi
+
+Adres: https://veterito.com/blog/kedilerde-goz-enfeksiyonu
+Kategori: Kedi · Yayın: 2026-10-04
+
+Kedilerde göz enfeksiyonunun arkasında çoğu zaman herpesvirüs, klamidya ya da mikoplazma var. Belirtiler, bulaşma, muayene, tedavi ve aşının rolü.
+
+Kedinin gözünde kızarıklık, akıntı ve kısma görüldüğünde akla ilk gelen enfeksiyon oluyor ve çoğu zaman bu tahmin doğru. Ama "göz enfeksiyonu" tek bir hastalık değil: arkasında farklı davranan birkaç etken var ve hangisinin olduğu **tedavinin süresini, bulaşma riskini ve tablonun tekrar edip etmeyeceğini** belirliyor.
+
+Akıntının rengine ve ne zaman beklenip ne zaman gidileceğine kedilerde göz akıntısı (https://veterito.com/blog/kedilerde-goz-akintisi) yazısında baktık. Bu yazı etkenlerin kendisine odaklanıyor: hangisi nasıl bulaşıyor, gözde neye yol açıyor ve muayenede nasıl ayırt ediliyor.
+
+
+## Üç etken öne çıkıyor
+
+Cornell Üniversitesi Kedi Sağlığı Merkezi konjonktiviti kedilerdeki en sık göz rahatsızlığı olarak tanımlıyor. Merck Veteriner El Kitabı kedilerde konjonktiviti üç etkenle ilişkilendiriyor: kedi herpesvirüsü 1 (FHV-1), mikoplazma ve klamidya. Üçünde de tablo tek gözde başlayıp iki göze yayılabiliyor ve göz zarında belirgin şişlik (kemozis) sık görülüyor.
+
+İspanya’da 358 kediyle yapılan çok merkezli bir çalışma bu etkenlerin ne kadar yaygın olduğunu gösteriyor. Konjonktiviti olan kedilerde ve sağlıklı kontrol kedilerinde PCR ile şu oranlar bulundu:
+
+Etken | Konjonktivitli | Sağlıklı
+Kalisivirüs (FCV) | %43,6 | %15,3
+Mycoplasma felis | %38,3 | %20,4
+Herpesvirüs (FHV-1) | %24,2 | %6,1
+Chlamydophila felis | %19,5 | %2,0
+
+Aynı çalışmada birden çok etkenin bir arada bulunması sıktı ve herpesvirüs, kalisivirüs ve klamidya konjonktivitle ilişkili çıktı. Tablonun son sütunu da önemli bir şey söylüyor: bazı etkenler sağlıklı görünen kedilerde de bulunabiliyor. Yani bir testin pozitif çıkması, gözdeki sorunun tek sebebi o etken demek değil; hekim sonucu muayene bulgularıyla birlikte yorumluyor.
+
+
+## Herpesvirüs: bir kez giren virüs kalıyor
+
+Avrupa Kedi Hastalıkları Danışma Kurulu’nun (ABCD) kılavuzuna göre hasta kedi virüsü ağız, burun ve göz salgılarıyla saçıyor; bu saçılım üç haftaya kadar sürebiliyor ve bulaşma için saçılım yapan bir kediyle doğrudan temas gerekiyor. Akut hastalık genellikle 10 ile 14 gün içinde geriliyor.
+
+Asıl mesele sonrası. Kılavuz, enfekte kedilerin **neredeyse tamamının virüsü ömür boyu taşıdığını** belirtiyor: virüs sinir hücrelerinde sessiz kalıyor, stres ya da kortizonlu tedavi onu yeniden harekete geçirebiliyor ve göz şikâyetleri aylar, hatta yıllar sonra geri gelebiliyor.
+
+Gözde en tipik bulgular konjonktivit ve kornea ülseri. ABCD, herpesvirüsün yol açtığı ağaç dalı biçimindeki (dendritik) kornea ülserini bu enfeksiyon için tanı koydurucu sayıyor. Gould’un 2011 tarihli derlemesine göre tekrarlayan ataklar korneada ilerleyici hasar bırakabiliyor ve bu hasar görme kaybına kadar gidebiliyor. Aynı derleme, bazı kedi topluluklarında virüsle karşılaşma oranının %97’ye ulaştığını, kalıcı enfekte kedilerin yaklaşık yarısının hayatının bir döneminde virüs saçtığını belirtiyor.
+
+Herpes korneanın ötesinde de iz bırakabiliyor. Florida Üniversitesi’nden Andrew’un derlemesi virüsle ilişkili göz bulguları arasında kuru göz, göz kapağının göz zarına yapışması (simblefaron), korneada koyu renkli doku ölümü (sekestrum), göz içi iltihabı ve yavru kedilerde göz kapakları açılmadan gelişen enfeksiyonu sayıyor.
+
+YAYGIN YANILGI — "Atak geçti, virüs gitti" yanılgısı: Herpes atağı geçtiğinde virüs vücuttan çıkmıyor; ABCD kılavuzuna göre enfekte kedilerin neredeyse tamamı ömür boyu taşıyıcı kalıyor ve hastalığı atlatan kedi sonraki ataklara karşı genellikle korunmuş olmuyor. Taşınma, pansiyon ya da eve yeni bir hayvan gelmesi gibi stres dönemlerinden sonra gözün yeniden kızarması bu yüzden şaşırtıcı değil. Her yeni atak, korneada iz bırakmadan önce muayene edilmeli.
+
+
+## Klamidya: genç kedilerin göz enfeksiyonu
+
+Chlamydophila felis bir bakteri ve birincil hedefi göz zarı. ABCD’nin klamidya kılavuzu onu konjonktivitle en sık ilişkilendirilen enfeksiyon etkeni olarak tanımlıyor; olguların çoğu bir yaşın altındaki kedilerde görülüyor. Bakteri vücut dışında yaşayamıyor; bulaşma için kedilerin yakın teması gerekiyor ve en önemli bulaştırıcı salgı göz akıntısı.
+
+Kuluçka süresi genellikle 2 ile 5 gün. Tablo çoğu zaman tek gözde başlıyor ve bir iki gün içinde iki göze geçiyor. Göz kapağının içi ve üçüncü göz kapağı belirgin biçimde kızarıyor, kedi gözünü kısıyor; akıntı önce sulu, sonra koyu ve irinli olabiliyor. Buna karşın kedilerin çoğu genel olarak iyi görünüyor ve yemeye devam ediyor; bu da tablonun hafife alınmasına yol açabiliyor.
+
+Tedavi edilmezse bakteri gözde uzun süre kalabiliyor. Kılavuza göre saçılım genellikle enfeksiyondan yaklaşık 60 gün sonra bitiyor, ama bazı kedilerde kalıcı enfeksiyon gelişiyor; deneysel enfeksiyonda bakteri 215 güne kadar gözden elde edilmiş. Tedavi antibiyotikle yapılıyor ve uzun sürüyor; kılavuz, enfeksiyonun yerleştiği kedi üretim yerlerinde bütün kedilerin **en az dört hafta** tedavi edilmesini öneriyor.
+
+İnsana bulaşma sorusu sık soruluyor. Kılavuz, bağışıklığı baskılanmış bir hastada tek bir olgu bildirildiğini, ama kedi klamidyasının insanlar için kayda değer bir risk oluşturduğuna dair epidemiyolojik kanıt bulunmadığını belirtiyor. Kedi herpesvirüsünün ise başka türlere geçtiği bilinmiyor.
+
+
+## Mikoplazma ve kalisivirüs
+
+Mikoplazmalar konjonktivitli kedilerde sık bulunuyor; ama sağlıklı kedilerde de görülebildikleri için tek başına saptanmaları tanı koydurmuyor. İspanya çalışmasında sağlıklı kedilerin %20,4’ünde mikoplazma bulundu. Kalisivirüs ise konjonktivitli kedilerde en sık bulunan etken oldu (%43,6), ama ağızla da yakından ilişkili: aynı çalışmada diş eti ve ağız iltihabı olan kedilerin %58,4’ünde saptandı. Gözde sık sık diğer etkenlerle birlikte bulunuyor.
+
+
+## Muayenede ne yapılıyor?
+
+Hekim önce göz kapaklarını, göz zarını ve korneayı inceliyor; ardından kornea yüzeyini boyalı muayeneyle değerlendiriyor. Floresein boyası korneada yüzey hasarı olan yeri gösteriyor ve ülser varsa tedavinin yönü değişiyor. Testin nasıl yapıldığını ve neyi gösterdiğini kedilerde göz boyama testi (https://veterito.com/blog/kedilerde-goz-boyama-testi) yazısında anlattık.
+
+Etkeni belirlemek için en sık kullanılan yöntem PCR. ABCD kılavuzları göz, kornea ya da ağız sürüntüsünden yapılan PCR’ı herpesvirüs ve klamidya için en kullanışlı yöntem olarak veriyor. Herpes kılavuzu bir uyarı da ekliyor: pozitif sonuç düşük düzeyde saçılım ya da sessiz taşıyıcılık nedeniyle de çıkabildiği için dikkatle yorumlanmalı ve yakın zamanda canlı aşı yapılmış kediden örnek alınmamalı.
+
+
+## Tedavi etkene göre değişiyor
+
+Cornell, konjonktivitin çoğu olguda ilaçsız gerilediğini belirtiyor; ama gözde belirgin rahatsızlık ve akıntı varsa daha ciddi bir göz sorununu dışlamak için hekime gidilmesini öneriyor. Tedavi gerektiğinde yön etkene göre çiziliyor: klamidyada antibiyotik haftalarca sürüyor; herpesin ağır göz tablolarında virüse karşı ilaçlar kullanılabiliyor ve ikincil bakteri enfeksiyonuna karşı antibiyotik ekleniyor.
+
+Bir ilaç grubunun özellikle dikkat istediği biliniyor: kortizon. Merck, kortizonlu damlanın ancak korneada ülser yoksa kullanılabileceğini belirtiyor; ABCD de kortizonlu tedavinin herpesvirüsü yeniden harekete geçirebildiğini yazıyor. Hangi damlanın kullanılacağına bu yüzden boyalı muayeneden sonra hekim karar veriyor.
+
+UYARI: Bu yazı bilgilendirme amaçlı; teşhis ve tedavinin yerine geçmez. Evde kalan ya da eczaneden alınan göz damlası kullanılmaz: kortizon içeren bir damla, ülserli gözde hasarı ağırlaştırabiliyor ve herpesvirüsü yeniden harekete geçirebiliyor.
+
+YAYGIN YANILGI — "Göz düzeldiyse damla bırakılabilir" yanılgısı: Klamidyada saçılım haftalarca sürebiliyor ve ABCD kılavuzu yerleşik enfeksiyonda en az dört haftalık tedavi öneriyor. Gözün birkaç günde düzelmiş görünmesi bakterinin gittiği anlamına gelmiyor. Süreyi hekim belirliyor; erken bırakılan tedavi tablonun geri gelmesine ve evdeki diğer kedilere bulaşmaya yol açabiliyor.
+
+
+## Korunma: aşı ve ayrı tutma
+
+ABCD, herpesvirüs aşısını her kediye önerilen temel aşılar arasında sayıyor. Aşı hastalığa karşı koruyor ama enfeksiyonu her zaman engellemiyor; enfeksiyon olursa virüs saçılımını azaltıyor. Klamidya aşısı ise temel aşılardan değil: kılavuz onu özellikle çok kedili ortamlarda ve daha önce klamidya görülmüş yerlerde öneriyor. Aşıların zamanlaması için kedi aşı takvimi (https://veterito.com/blog/kedi-asi-takvimi) yazısına bakabilirsiniz.
+
+Çok kedili yerler için kılavuzun önerisi net: barınağa yeni gelen kedi iki hafta ayrı tutulmalı. Aynı mantık eve yeni kedi alındığında da işe yarıyor. Herpesvirüs piyasadaki çoğu dezenfektan, antiseptik ve deterjanla etkisiz hâle geliyor; hasta kedinin mama ve su kaplarını, yatağını ayırmak ve onunla temastan sonra elleri yıkamak bulaşı azaltıyor.
+
+YAYGIN YANILGI — "Aşılı kediye göz enfeksiyonu bulaşmaz" yanılgısı: ABCD kılavuzuna göre herpesvirüs aşısı hastalığa karşı koruyor ama enfeksiyonu her zaman engellemiyor; klinik belirtilere karşı koruma tam değil. Aşılı bir kedide de göz enfeksiyonu görülebiliyor, ama aşı saçılımı azaltıyor ve tabloyu hafifletiyor. Yani aşı, muayene ve ayrı tutma gibi önlemlerin yerine geçmiyor; onlarla birlikte çalışıyor.
+
+
+## Beklemeden gidilmesi gereken durumlar
+
+- Göz tamamen kapalı ya da kedi gözünü açamıyor
+- Korneada bulanıklık, beyazlaşma ya da gözle görülür bir çukurluk var
+- Yavru kedide göz kapakları şiş ya da yapışık
+- Akıntı irinli ve kedinin genel durumu bozuluyor
+- Tedaviye rağmen birkaç gün içinde düzelme yok
+- Evdeki başka kedilerde de aynı belirtiler başladı
+
+
+## Özet
+
+Kedilerde göz enfeksiyonunun arkasında çoğu zaman herpesvirüs, klamidya, mikoplazma ya da kalisivirüs var ve bunlar sık sık bir arada bulunuyor. Herpes ömür boyu taşınıyor ve stresle geri gelebiliyor; klamidya genç kedilerde tek gözde başlayıp iki göze yayılıyor ve uzun tedavi istiyor. Doğru tedavi için önce etkenin ve korneanın durumunun bilinmesi gerekiyor; bu da evde değil, muayenede belirleniyor.
+
+## Sıkça sorulan sorular
+
+**Kedilerde göz enfeksiyonu kendiliğinden geçer mi?**
+Bazı hafif konjonktivitler ilaçsız geriliyor; Cornell çoğu olgunun kendiliğinden düzeldiğini belirtiyor. Ama hangisinin geçeceğini evden ayırt etmek mümkün değil: herpesvirüs korneada ülser bırakabiliyor, klamidya tedavi edilmezse haftalarca gözde kalabiliyor. Göz kısılıyorsa, akıntı koyulaşıyorsa ya da korneada bulanıklık varsa beklemek yerine muayene gerekiyor.
+
+**Kedi göz enfeksiyonu insana bulaşır mı?**
+Kayda değer bir risk görünmüyor. ABCD kılavuzu kedi klamidyasıyla ilişkili konjonktivitin bağışıklığı baskılanmış bir insanda tek bir olgu olarak bildirildiğini, ama insanlar için kayda değer bir risk oluşturduğuna dair epidemiyolojik kanıt olmadığını belirtiyor. Kedi herpesvirüsünün başka türlere geçtiği de bilinmiyor. Yine de akıntılı gözle temastan sonra elleri yıkamak iyi bir alışkanlık.
+
+**Evdeki diğer kedilere bulaşır mı?**
+Evet, bulaşabiliyor. Herpesvirüs saçılım yapan bir kediyle doğrudan temasla, klamidya ise yakın temasla ve en çok göz akıntısı yoluyla geçiyor. Hasta kediyi ayrı tutmak, mama ve su kaplarını ayırmak ve elleri yıkamak bulaşı azaltıyor. ABCD kılavuzu barınaklarda yeni gelen kedilerin iki hafta ayrı tutulmasını öneriyor; eve yeni kedi alındığında da aynı yol izlenebilir.
+
+**Herpes virüsü olan kedi iyileşir mi?**
+Atak genellikle 10 ile 14 gün içinde geriliyor, ama virüs vücuttan çıkmıyor. ABCD kılavuzuna göre enfekte kedilerin neredeyse tamamı ömür boyu taşıyıcı kalıyor ve stres ya da kortizonlu tedavi virüsü yeniden harekete geçirebiliyor. Bu yüzden amaç virüsü yok etmek değil, atakları zamanında ve doğru tedavi etmek ve stres dönemlerinde gözü yakından izlemek.
+
+**Göz enfeksiyonu tedavisi ne kadar sürer?**
+Süre etkene göre değişiyor. Herpes atağı genellikle iki hafta içinde sakinleşirken klamidyada tedavi haftalarca sürüyor; ABCD kılavuzu yerleşik klamidya enfeksiyonunda en az dört haftalık tedavi öneriyor. Göz birkaç günde düzelmiş görünse bile tedaviyi hekimin söylediği süreden önce bırakmak, tablonun geri gelmesine yol açabiliyor.
+
+**Aşılı kedide göz enfeksiyonu olur mu?**
+Olabilir, ama aşı tabloyu hafifletiyor. ABCD kılavuzu herpesvirüs aşısının hastalığa karşı koruduğunu, enfeksiyonu ise her zaman engellemediğini ve virüs saçılımını azalttığını belirtiyor. Klamidya aşısı temel aşılar arasında değil; çok kedili ortamlarda ve daha önce klamidya görülmüş yerlerde öneriliyor. Aşı programını kedinin yaşam koşullarına göre hekimle birlikte planlamak gerekiyor.
+
+## Kaynaklar
+
+- European Advisory Board on Cat Diseases (ABCD) · Journal of Feline Medicine and Surgery · Feline herpesvirus infection. ABCD guidelines on prevention and management · Thiry E, Addie D, Belák S, Boucraut-Baralon C, Egberink H, Frymus T, Gruffydd-Jones T, Hartmann K, Hosie MJ, Lloret A, Lutz H, Marsilio F, Pennisi MG, Radford AD, Truyen U, Horzinek MC · Journal of Feline Medicine and Surgery · 2009 · 11(7):547-555 · DOI: 10.1016/j.jfms.2009.05.003 · https://pubmed.ncbi.nlm.nih.gov/19481034/
+- European Advisory Board on Cat Diseases (ABCD) · Journal of Feline Medicine and Surgery · Chlamydophila felis infection. ABCD guidelines on prevention and management · Gruffydd-Jones T, Addie D, Belák S, Boucraut-Baralon C, Egberink H, Frymus T, Hartmann K, Hosie MJ, Lloret A, Lutz H, Marsilio F, Pennisi MG, Radford AD, Thiry E, Truyen U, Horzinek MC · Journal of Feline Medicine and Surgery · 2009 · 11(7):605-609 · DOI: 10.1016/j.jfms.2009.05.009 · https://pubmed.ncbi.nlm.nih.gov/19481040/
+- Universitat Autònoma de Barcelona · Journal of Feline Medicine and Surgery · Prevalence of feline herpesvirus-1, feline calicivirus, Chlamydophila felis and Mycoplasma felis DNA and associated risk factors in cats in Spain with upper respiratory tract disease, conjunctivitis and/or gingivostomatitis · Fernandez M, Manzanilla EG, Lloret A, León M, Thibault JC · Journal of Feline Medicine and Surgery · 2017 · 19(4):461-469 · DOI: 10.1177/1098612X16634387 · https://pubmed.ncbi.nlm.nih.gov/26919892/
+- ISFM · AAFP · Journal of Feline Medicine and Surgery · Feline herpesvirus-1: ocular manifestations, diagnosis and treatment options · Gould D · Journal of Feline Medicine and Surgery · 2011 · 13(5):333-346 · DOI: 10.1016/j.jfms.2011.03.010 · https://pubmed.ncbi.nlm.nih.gov/21515221/
+- University of Florida College of Veterinary Medicine · Journal of Feline Medicine and Surgery · Ocular manifestations of feline herpesvirus · Andrew SE · Journal of Feline Medicine and Surgery · 2001 · 3(1):9-16 · DOI: 10.1053/jfms.2001.0110 · https://pubmed.ncbi.nlm.nih.gov/11716625/
+- Merck Veterinary Manual · University of Florida College of Veterinary Medicine · The Conjunctiva in Animals · 2023 · https://www.merckvetmanual.com/eye-diseases-and-disorders/ophthalmology/the-conjunctiva-in-animals
+- Cornell University College of Veterinary Medicine · Cornell Feline Health Center · Conjunctivitis · https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/conjunctivitis
 
 ---
 
@@ -1341,7 +1470,7 @@ Chlamydophila felis | %56
 Mikoplazma türleri | %49
 Kedi herpesvirüsü (FHV) | %27
 
-Aynı çalışmada 22 kedide **birden çok etken birlikte** bulundu. Pratikteki karşılığı şu: "virüstür, geçer" ya da "damla yeterli" demek çoğu zaman tabloyu eksik okumak oluyor.
+Aynı çalışmada 22 kedide **birden çok etken birlikte** bulundu. Pratikteki karşılığı şu: "virüstür, geçer" ya da "damla yeterli" demek çoğu zaman tabloyu eksik okumak oluyor. Etkenleri tek tek kedilerde göz enfeksiyonu (https://veterito.com/blog/kedilerde-goz-enfeksiyonu) yazısında anlattık.
 
 YAYGIN YANILGI — "Tek gözde akıntı varsa önemsizdir" yanılgısı: Tek taraflı akıntı bazen yabancı cisim, tıkalı gözyaşı kanalı ya da kornea çiziği gibi mekanik bir sebebe işaret ediyor; bunlar kendiliğinden geçen tablolar değil. Çift taraflı akıntı ise daha çok bulaşıcı sebepleri düşündürüyor. Yani taraf sayısı ciddiyeti değil, aranacak yeri değiştiriyor.
 

@@ -46,7 +46,7 @@ export const kedilerdeGozAkintisi: BlogYazi = {
       ['Mikoplazma türleri', '%49'],
       ['Kedi herpesvirüsü (FHV)', '%27'],
     ] },
-    { kind: 'paragraf', metin: 'Aynı çalışmada 22 kedide **birden çok etken birlikte** bulundu. Pratikteki karşılığı şu: "virüstür, geçer" ya da "damla yeterli" demek çoğu zaman tabloyu eksik okumak oluyor.' },
+    { kind: 'paragraf', metin: 'Aynı çalışmada 22 kedide **birden çok etken birlikte** bulundu. Pratikteki karşılığı şu: "virüstür, geçer" ya da "damla yeterli" demek çoğu zaman tabloyu eksik okumak oluyor. Etkenleri tek tek [[kedilerde-goz-enfeksiyonu|kedilerde göz enfeksiyonu]] yazısında anlattık.' },
 
     { kind: 'yanilgi', baslik: '"Tek gözde akıntı varsa önemsizdir" yanılgısı', metin: 'Tek taraflı akıntı bazen yabancı cisim, tıkalı gözyaşı kanalı ya da kornea çiziği gibi mekanik bir sebebe işaret ediyor; bunlar kendiliğinden geçen tablolar değil. Çift taraflı akıntı ise daha çok bulaşıcı sebepleri düşündürüyor. Yani taraf sayısı ciddiyeti değil, aranacak yeri değiştiriyor.' },
 

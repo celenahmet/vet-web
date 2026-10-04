@@ -21,10 +21,11 @@ hangi yıl, DOI'si ne — hepsi doğrulanabilir.
 
 ## Blog
 
-42 yazı yayında. Her yazının altında en az iki kaynak var; genelde biri
+43 yazı yayında. Her yazının altında en az iki kaynak var; genelde biri
 uluslararası üniversite ya da hakemli dergi (Cornell, AAHA/AAFP, WSAVA gibi).
 
 - [Kedilerde Göz Boyama Testi Nasıl Yapılır? Teşhis ve Tedavi](https://veterito.com/blog/kedilerde-goz-boyama-testi) — Kedi, 2026-10-04: Göz boyama (floresein) testi, korneadaki ülseri birkaç dakikada görünür kılan ağrısız bir muayene. Nasıl yapılır, ne gösterir, tedaviyi nasıl yönlendirir?
+- [Kedilerde Göz Enfeksiyonu: Belirtileri, Sebepleri ve Tedavisi](https://veterito.com/blog/kedilerde-goz-enfeksiyonu) — Kedi, 2026-10-04: Kedilerde göz enfeksiyonunun arkasında çoğu zaman herpesvirüs, klamidya ya da mikoplazma var. Belirtiler, bulaşma, muayene, tedavi ve aşının rolü.
 - [Kedilerde Malt Ne İşe Yarar?](https://veterito.com/blog/kedilerde-malt-ne-ise-yarar) — Kedi, 2026-10-02: Malt, yutulan tüyün bağırsağa geçmesini kolaylaştıran kayganlaştırıcı bir macun; tüy yumağının nedenini çözmüyor. Ne zaman işe yarar, ne zaman bir işarettir.
 - [Kedilerin Dişleri Nasıl Temizlenir?](https://veterito.com/blog/kedilerin-disleri-nasil-temizlenir) — Kedi, 2026-10-02: Evde etkili yol günlük fırçalama; diş taşı ise yalnızca anestezi altında temizlenir. Hangi belirtiler hekim gerektirir, hangi ürünler işe yarar.
 - [Kediler İçin Yaş Mama mı Kuru Mama mı?](https://veterito.com/blog/kediler-icin-yas-mama-mi-kuru-mama-mi) — Beslenme, 2026-10-01: İkisi de tam ve dengeliyse ikisi de yeterli; asıl fark su. Kuru mamada su yüzde 6-10, konservede en az 75. Hangi kediye hangisinin uyduğu ve karışık besleme.

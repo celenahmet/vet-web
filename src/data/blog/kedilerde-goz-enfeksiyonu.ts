@@ -41,7 +41,7 @@ export const kedilerdeGozEnfeksiyonu: BlogYazi = {
   baslik: 'Kedilerde Göz Enfeksiyonu: Belirtileri, Sebepleri ve Tedavisi',
   ozet: 'Kedilerde göz enfeksiyonunun arkasında çoğu zaman herpesvirüs, klamidya ya da mikoplazma var. Belirtiler, bulaşma, muayene, tedavi ve aşının rolü.',
   kapakAlt:
-    'Gözü kızarık ve sulanan bir kediyi muayene eden veteriner hekim; konjonktivit ve kornea enfeksiyonu belirtileri',
+    'Muayene masasında gözü kızarık ve sulanan tekir yavru kedi, yanında veteriner hekimin eldivenli eli',
   kategori: 'Kedi',
   tarih: '2026-10-04',
   bloklar: [
