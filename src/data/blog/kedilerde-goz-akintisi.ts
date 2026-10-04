@@ -96,7 +96,7 @@ export const kedilerdeGozAkintisi: BlogYazi = {
     { kind: 'paragraf', metin: 'Nüksü tamamen engellemek her zaman mümkün olmuyor ama iki şey işe yarıyor: tedaviyi hekimin verdiği süre boyunca yarıda kesmemek ve stres kaynaklarını öngörülebilir hâle getirmek. Tekrarların tarihini kaydetmek de yardımcı oluyor; hekim böylece sıklığı ve tetikleyiciyi görebiliyor.' },
 
     { kind: 'baslik', metin: 'Eve dönerken' },
-    { kind: 'paragraf', metin: 'Göz akıntısı kedilerde sık, bu doğru. Ama sık olan şeyin ucuz atlatılacağı anlamına gelmiyor: kornea hasarı ve görme kaybı, geciken tabloların bilinen sonuçları. Bakılacak üç şey var: göz açılabiliyor mu, akıntı nasıl, ağrı var mı.' },
+    { kind: 'paragraf', metin: 'Göz akıntısı kedilerde sık, bu doğru. Ama sık olan şeyin ucuz atlatılacağı anlamına gelmiyor: kornea hasarı ve görme kaybı, geciken tabloların bilinen sonuçları. Bakılacak üç şey var: göz açılabiliyor mu, akıntı nasıl, ağrı var mı. Muayenede korneanın nasıl boyandığını [[kedilerde-goz-boyama-testi|kedilerde göz boyama testi]] yazısında anlattık.' },
   ],
   kontrolListesi: [
     'Hangi gözde başladığını not edin',

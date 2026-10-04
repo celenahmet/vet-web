@@ -36,10 +36,10 @@ import type { BlogYazi } from './types';
  */
 export const kedilerdeGozBoyamaTesti: BlogYazi = {
   slug: 'kedilerde-goz-boyama-testi',
-  baslik: 'Kedilerde Göz Boyama Testi: Kornea Ülseri Nasıl Anlaşılır?',
+  baslik: 'Kedilerde Göz Boyama Testi Nasıl Yapılır? Teşhis ve Tedavi',
   ozet: 'Göz boyama (floresein) testi, korneadaki ülseri birkaç dakikada görünür kılan ağrısız bir muayene. Nasıl yapılır, ne gösterir, tedaviyi nasıl yönlendirir?',
   kapakAlt:
-    'Veteriner hekimin kedinin gözüne boya şeridi dokundurduğu an ve ışık altında yeşil görünen kornea ülseri',
+    'Mavi ışıklı göz muayene aletiyle tekir kedinin gözüne bakan veteriner hekim; boyanan gözün yeşil parladığı muayene masası',
   kategori: 'Kedi',
   tarih: '2026-10-04',
   bloklar: [
@@ -47,7 +47,7 @@ export const kedilerdeGozBoyamaTesti: BlogYazi = {
     { kind: 'paragraf', metin: 'Bu yazı testin ne olduğunu, nasıl yapıldığını, sonucun neyi gösterdiğini ve tedavi sırasında neden tekrarlandığını anlatıyor.' },
 
     { kind: 'baslik', metin: 'Göz boyama testi nedir?' },
-    { kind: 'paragraf', metin: 'Testin adı kullanılan boyadan geliyor: floresein. Cornell Üniversitesi Kedi Sağlığı Merkezi’ne göre ülser şüphesi, floresein içeren bir göz damlasıyla doğrulanıyor: ülser varsa boya hasarlı dokuya bağlanıyor ve ülserli alanda açıkça görülen yeşilimsi bir renk bırakıyor. Sağlam kornea yüzeyi ise boyayı tutmuyor.' },
+    { kind: 'paragraf', metin: 'Testin adı kullanılan boyadan geliyor: floresein (flöresein diye de yazılıyor). Cornell Üniversitesi Kedi Sağlığı Merkezi’ne göre ülser şüphesi, floresein içeren bir göz damlasıyla doğrulanıyor: ülser varsa boya hasarlı dokuya bağlanıyor ve ülserli alanda açıkça görülen yeşilimsi bir renk bırakıyor. Sağlam kornea yüzeyi ise boyayı tutmuyor.' },
     { kind: 'paragraf', metin: 'Merck Veteriner El Kitabı floresein boyamasını göz muayenesinin rutin temel testleri arasında, gözyaşı miktarının ölçümü (Schirmer testi) ve göz içi basıncının ölçümüyle birlikte sayıyor. Kedi sahiplerine yönelik bölümü de aynı şeyi sade bir dille söylüyor: küçük ülserleri saptamak için hekim göze özel bir boyanın damlalarını koyabilir.' },
 
     { kind: 'baslik', metin: 'Test nasıl yapılıyor?' },
@@ -70,7 +70,7 @@ export const kedilerdeGozBoyamaTesti: BlogYazi = {
       ['Boya burun deliğinde görülüyor', 'Gözyaşı kanalı açık (Jones testi)'],
     ] },
     { kind: 'paragraf', metin: 'Merck kornea ülserlerini derinliğe göre dörde ayırıyor: yüzeysel, derin, Descemet zarına kadar inen (desmetosel) ve delinmiş ülser. Derinliği doğru tahmin etmek için hekim büyütmeyi, yarık lamba ile odaklı ışığı ve floresein boyasını birlikte kullanıyor. Kornea delinmişse göz içi sıvısının sızıp sızmadığı yine floreseinle, Seidel testiyle kontrol ediliyor. Boyanın burun deliğinde görülmesi ise gözyaşı kanalının açık ve çalıştığını gösteriyor; Merck bunu Jones testi olarak tanımlıyor.' },
-    { kind: 'paragraf', metin: 'Kedilerde ülserin en sık sebebi herpesvirüs. Cornell’den Thomas Kern en sık sebebin tekrarlayan herpes enfeksiyonu olduğunu söylüyor; Merck de kedilerde yavaş iyileşen ya da tekrarlayan yüzeysel ülserlerde herpesten şüphelenilmesi gerektiğini belirtiyor. ABCD kılavuzu, ağaç dalı biçimindeki ülseri bu enfeksiyon için tanı koydurucu sayıyor. Herpes ve diğer etkenleri [[kedilerde-goz-enfeksiyonu|kedilerde göz enfeksiyonu]] yazısında anlattık.' },
+    { kind: 'paragraf', metin: 'Kedilerde ülserin en sık sebebi herpesvirüs. Cornell’den Thomas Kern en sık sebebin tekrarlayan herpes enfeksiyonu olduğunu söylüyor; Merck de kedilerde yavaş iyileşen ya da tekrarlayan yüzeysel ülserlerde herpesten şüphelenilmesi gerektiğini belirtiyor. ABCD kılavuzu, ağaç dalı biçimindeki ülseri bu enfeksiyon için tanı koydurucu sayıyor. Göz akıntısının sebeplerini ve ne zaman beklemeden gidileceğini [[kedilerde-goz-akintisi|kedilerde göz akıntısı]] yazısında anlattık.' },
     { kind: 'yanilgi', baslik: '"Boya tutmadıysa gözde sorun yoktur" yanılgısı', metin: 'Negatif boyama yalnızca kornea yüzeyinin sağlam olduğunu gösteriyor, gözün sağlıklı olduğunu değil. Konjonktivit, göz içi iltihabı, göz tansiyonu ya da gözyaşı yetersizliği boya tutmadan da ağrı ve kızarıklık yapabiliyor; Merck’in rutin muayeneye gözyaşı ölçümünü ve göz içi basıncını da koymasının sebebi bu. Kediye özgü kornea sekestrumu da başlangıçta floreseinle çok zayıf boyanabiliyor.' },
 
     { kind: 'baslik', metin: 'Tedavide boyamanın yeri' },

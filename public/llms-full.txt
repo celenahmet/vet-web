@@ -1,6 +1,1058 @@
 # Veterito — blog yazılarının tam metni
 
-Üretim: 2026-09-25. 33 yazı. Kaynak künyeleri her yazının sonunda.
+Üretim: 2026-10-04. 42 yazı. Kaynak künyeleri her yazının sonunda.
+
+---
+
+# Kedilerde Göz Boyama Testi Nasıl Yapılır? Teşhis ve Tedavi
+
+Adres: https://veterito.com/blog/kedilerde-goz-boyama-testi
+Kategori: Kedi · Yayın: 2026-10-04
+
+Göz boyama (floresein) testi, korneadaki ülseri birkaç dakikada görünür kılan ağrısız bir muayene. Nasıl yapılır, ne gösterir, tedaviyi nasıl yönlendirir?
+
+Kedinin gözü sulanıyor, kısılıyor ya da kedi gözünü patisiyle ovuyorsa hekimin ilk yaptığı işlerden biri gözü boyamak oluyor. Bu basit test, korneada çıplak gözle görülemeyecek kadar küçük bir yarayı (ülseri) bile **birkaç dakika içinde görünür kılıyor** ve tedavinin yönünü belirliyor.
+
+Bu yazı testin ne olduğunu, nasıl yapıldığını, sonucun neyi gösterdiğini ve tedavi sırasında neden tekrarlandığını anlatıyor.
+
+
+## Göz boyama testi nedir?
+
+Testin adı kullanılan boyadan geliyor: floresein (flöresein diye de yazılıyor). Cornell Üniversitesi Kedi Sağlığı Merkezi’ne göre ülser şüphesi, floresein içeren bir göz damlasıyla doğrulanıyor: ülser varsa boya hasarlı dokuya bağlanıyor ve ülserli alanda açıkça görülen yeşilimsi bir renk bırakıyor. Sağlam kornea yüzeyi ise boyayı tutmuyor.
+
+Merck Veteriner El Kitabı floresein boyamasını göz muayenesinin rutin temel testleri arasında, gözyaşı miktarının ölçümü (Schirmer testi) ve göz içi basıncının ölçümüyle birlikte sayıyor. Kedi sahiplerine yönelik bölümü de aynı şeyi sade bir dille söylüyor: küçük ülserleri saptamak için hekim göze özel bir boyanın damlalarını koyabilir.
+
+
+## Test nasıl yapılıyor?
+
+- Önce gözyaşı ölçülüyor; Merck’e göre Schirmer testi göze herhangi bir damla konmadan önce yapılmalı.
+- Kültür ya da bazı laboratuvar örnekleri gerekiyorsa onlar da boyamadan önce alınıyor.
+- Boya, ıslatılmış bir şerit ya da damla olarak göze değdiriliyor ve göz kırpıldıkça korneaya yayılıyor.
+- Fazla boya yıkanıyor; hekim gözü büyütme ve odaklı ışık altında inceliyor.
+- Merck’e göre floresein boyaması için göze uyuşturucu damla bile gerekmiyor.
+
+Sıralamanın bir sebebi var. Merck, floresan antikor yöntemiyle incelenecek kornea ve göz zarı örneklerinin boyamadan önce alınmasını öneriyor, çünkü boya bu testte yanlış pozitif sonuca yol açabiliyor. ABCD’nin herpes kılavuzu da virüs izolasyonu örneklerinin boya kullanılmadan önce alınması gerektiğini belirtiyor; PCR için ise boyanın kullanılmış olması sorun oluşturmuyor.
+
+
+## Sonuç ne gösteriyor?
+
+Görülen | Anlamı
+Boya tutulmuyor | Kornea yüzeyi sağlam
+Sınırlı, boya tutan alan | Yüzeysel ülser
+Ağaç dalı gibi ince çizgiler | Herpese özgü dendritik ülser
+Derin, çukur görünen ülser | Derin ülser, acil değerlendirme
+Boya göz içi sıvısıyla seyreliyor | Kornea delinmiş olabilir (Seidel testi)
+Boya burun deliğinde görülüyor | Gözyaşı kanalı açık (Jones testi)
+
+Merck kornea ülserlerini derinliğe göre dörde ayırıyor: yüzeysel, derin, Descemet zarına kadar inen (desmetosel) ve delinmiş ülser. Derinliği doğru tahmin etmek için hekim büyütmeyi, yarık lamba ile odaklı ışığı ve floresein boyasını birlikte kullanıyor. Kornea delinmişse göz içi sıvısının sızıp sızmadığı yine floreseinle, Seidel testiyle kontrol ediliyor. Boyanın burun deliğinde görülmesi ise gözyaşı kanalının açık ve çalıştığını gösteriyor; Merck bunu Jones testi olarak tanımlıyor.
+
+Kedilerde ülserin en sık sebebi herpesvirüs. Cornell’den Thomas Kern en sık sebebin tekrarlayan herpes enfeksiyonu olduğunu söylüyor; Merck de kedilerde yavaş iyileşen ya da tekrarlayan yüzeysel ülserlerde herpesten şüphelenilmesi gerektiğini belirtiyor. ABCD kılavuzu, ağaç dalı biçimindeki ülseri bu enfeksiyon için tanı koydurucu sayıyor. Göz akıntısının sebeplerini ve ne zaman beklemeden gidileceğini kedilerde göz akıntısı (https://veterito.com/blog/kedilerde-goz-akintisi) yazısında anlattık.
+
+YAYGIN YANILGI — "Boya tutmadıysa gözde sorun yoktur" yanılgısı: Negatif boyama yalnızca kornea yüzeyinin sağlam olduğunu gösteriyor, gözün sağlıklı olduğunu değil. Konjonktivit, göz içi iltihabı, göz tansiyonu ya da gözyaşı yetersizliği boya tutmadan da ağrı ve kızarıklık yapabiliyor; Merck’in rutin muayeneye gözyaşı ölçümünü ve göz içi basıncını da koymasının sebebi bu. Kediye özgü kornea sekestrumu da başlangıçta floreseinle çok zayıf boyanabiliyor.
+
+
+## Tedavide boyamanın yeri
+
+Boyama yalnızca teşhis için değil, tedavinin takibi için de kullanılıyor. Merck, kornea iyileşmesinin sık aralıklı muayenelerle izlendiğini ve iyileşmenin, ülserin **boyayı tuttuğu alanın giderek küçülmesiyle** anlaşıldığını belirtiyor. Bu yüzden kontrol muayenesinde göz yeniden boyanıyor; boya artık tutulmuyorsa ülser kapanmış demek.
+
+Sonuç ilaç seçimini de değiştiriyor. Merck, kortizonlu damlanın ancak korneada ülser yoksa kullanılabileceğini belirtiyor; ABCD de kortizonlu tedavinin herpesvirüsü yeniden harekete geçirebildiğini yazıyor. Cornell, kedinin gözünü kaşıyarak ülseri ağırlaştırmaması için iyileşene kadar koruyucu yaka gerekebileceğini ekliyor.
+
+UYARI: Bu yazı bilgilendirme amaçlı; teşhis ve tedavinin yerine geçmez. Gözü kısılan, ovalanan ya da bulanık görünen kediye evde damla uygulanmaz: boyalı muayene yapılmadan hangi damlanın güvenli olduğu bilinemez ve kortizonlu bir damla ülserli gözde hasarı ağırlaştırabiliyor.
+
+
+## Kedilerde yüzeysel ülser neden dikkat istiyor?
+
+Cornell’e göre birçok ülser birkaç gün ile bir hafta içinde kendiliğinden kapanıyor; ama hepsi değil. Derin ülserler korneayı delip görme kaybına, hatta gözün kaybına yol açabiliyor. Kedilerde yüzeysel ülserler bile sorunsuz geçmeyebiliyor.
+
+Reynolds ve arkadaşlarının 2026’da yayımlanan çalışması 68 kedideki 71 yüzeysel kornea ülserini geriye dönük inceledi. Ülserlerin %11,3’ünde iyileşme gecikti, %28,2’sinde kornea sekestrumu gelişti ve %12,7’sinde iyileşmeden sonra korneada damarlanma kaldı. Ülser yüzeyinin pamuklu çubukla temizlenmesi sekestrum olasılığını yaklaşık dört kat artırdı; yazarlar kedilerde bu işlemin dikkatle uygulanması gerektiğini vurguladı.
+
+Merck de köpeklerde yavaş iyileşen ülserlerde kullanılan korneaya çentik atma yöntemlerinin (keratotomi), sekestruma yatkınlık yaratabileceği için kedilerde önerilmediğini belirtiyor. Yani kedinin ülseri köpeğinkiyle aynı yolla tedavi edilmiyor; kontrol boyamalarında görülen iyileşme hızı, tedavinin buna göre ayarlanmasını sağlıyor.
+
+YAYGIN YANILGI — "Küçük ülser kendiliğinden kapanır" yanılgısı: Birçok ülser kendiliğinden kapanıyor, ama hangisinin kapanacağı gözle anlaşılmıyor. 71 ülserlik seride her dokuz ülserden biri geç iyileşti ve her dört ülserden birinden fazlasında sekestrum gelişti. Ülserin gerçekten kapanıp kapanmadığı, kontrol muayenesinde gözün yeniden boyanmasıyla anlaşılıyor.
+
+YAYGIN YANILGI — "Boya gözü boyar, zarar verir" yanılgısı: Floresein boyaması göze zarar veren bir işlem değil. Merck’e göre bu test için uyuşturucu damla bile gerekmiyor ve boyanın fazlası muayenede yıkanıyor. Testten sonra burunda kısa süre görülen sarı yeşil renk de kaygı verici değil: boyanın gözyaşı kanalından buruna geçtiğini gösteriyor ve Jones testi tam da bu gözleme dayanıyor.
+
+
+## Ne zaman göz boyaması gerekir?
+
+Cornell’in saydığı ülser belirtileri, boyamanın ne zaman gerektiğini de gösteriyor: gözün çevresinde iltihap, akıntı, korneada bulanıklık ve parlak ışıktan rahatsız olma. Ülserin sebepleri arasında kavgada alınan tırmıklar, içe dönük kirpikler, göz kapağının altına kaçan bir toz parçası, yakıcı kimyasallar ve enfeksiyonlar var.
+
+- Kedi gözünü kısıyor ya da sık kırpıyor
+- Gözünü patisiyle ovuyor ya da yüzünü sürtüyor
+- Gözde sulanma, bulanıklık ya da beyaz leke var
+- Korneada kahverengi ya da siyah bir leke belirdi
+- Kavga, tırmalama ya da göze bir şey kaçma şüphesi var
+- Herpes geçmişi olan kedide göz şikâyeti tekrarladı
+
+
+## Özet
+
+Göz boyama testi, korneadaki yarayı görünür kılan, ağrısız ve birkaç dakikalık bir muayene. Ülserin yerini, büyüklüğünü ve derinliğini gösteriyor, herpese özgü dendritik ülseri ayırt ettiriyor ve kortizonlu bir damlanın güvenli olup olmadığına karar verdiriyor. Tedavi sırasında tekrarlanan boyama ise ülserin gerçekten kapanıp kapanmadığını gösteren en basit kontrol.
+
+## Sıkça sorulan sorular
+
+**Kedilerde göz boyama testi nedir?**
+Göz boyama testi, korneadaki yaraları floresein adlı boyayla görünür kılan muayenedir. Cornell’e göre ülser varsa boya hasarlı dokuya bağlanıyor ve ülserli alanda yeşilimsi bir renk bırakıyor; sağlam kornea boyayı tutmuyor. Merck bu testi, gözyaşı ölçümü ve göz içi basıncı ölçümüyle birlikte göz muayenesinin rutin temel testleri arasında sayıyor.
+
+**Göz boyama testi acıtır mı?**
+Hayır, test ağrısız. Merck’e göre floresein boyaması için göze uyuşturucu damla bile gerekmiyor. Boya ıslatılmış bir şeritle ya da damla olarak göze değdiriliyor, fazlası yıkanıyor ve sonuç birkaç dakika içinde görülüyor. Kedinin huzursuzluğu çoğu zaman testten değil, gözdeki ağrının kendisinden kaynaklanıyor.
+
+**Boyama testi neden tekrar yapılıyor?**
+İyileşmeyi izlemek için tekrarlanıyor. Merck, kornea iyileşmesinin ülserin boyayı tuttuğu alanın giderek küçülmesiyle anlaşıldığını belirtiyor. Kontrol muayenesinde göz yeniden boyanıyor; boya tutulmuyorsa ülser kapanmış demek. Kedilerde yüzeysel ülserler bile uzayabildiği ve sekestrum gelişebildiği için bu kontrol, tedavinin ne zaman bırakılacağını belirliyor.
+
+**Testten sonra kedimin burnunda sarı yeşil renk görmek normal mi?**
+Evet, bu beklenen bir durum. Boya gözyaşıyla birlikte gözyaşı kanalından buruna geçiyor. Merck’e göre boyamadan sonra boyanın burun deliğinde görülmesi, gözyaşı kanalının açık ve çalıştığını gösteriyor; hekimler bu gözlemi Jones testi olarak da kullanıyor. Renk kısa sürede kayboluyor.
+
+**Boya tutmadıysa göz sağlıklı mıdır?**
+Hayır, yalnızca kornea yüzeyinin sağlam olduğunu gösterir. Kızarıklık ve ağrı konjonktivit, göz içi iltihabı, göz tansiyonu ya da gözyaşı yetersizliği gibi boyanın göstermediği sebeplerden de kaynaklanabiliyor. Bu yüzden hekim boyamayla birlikte gözyaşı miktarını ve göz içi basıncını da ölçüyor; kediye özgü sekestrumun başlangıcı da floreseinle çok zayıf boyanabiliyor.
+
+**Herpes ülseri boyamada nasıl görünür?**
+Ağaç dalını andıran ince, kollara ayrılan çizgiler hâlinde görünüyor. Bu dendritik ülser, ABCD kılavuzuna göre kedi herpesvirüsü için tanı koydurucu sayılıyor. Merck de kedilerde yavaş iyileşen ya da tekrarlayan yüzeysel ülserlerde herpesten şüphelenilmesi gerektiğini belirtiyor. Bu ülserlerde tedavi virüsü de hesaba katıyor ve kortizonlu damlalardan kaçınılıyor.
+
+## Kaynaklar
+
+- Cornell University College of Veterinary Medicine · Cornell Feline Health Center · Corneal Ulcers · https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/corneal-ulcers
+- Merck Veterinary Manual · University of Florida College of Veterinary Medicine · Physical Examination of the Eye in Animals · 2023 · https://www.merckvetmanual.com/eye-diseases-and-disorders/ophthalmology/physical-examination-of-the-eye-in-animals
+- Merck Veterinary Manual · University of Florida College of Veterinary Medicine · The Cornea in Animals · 2023 · https://www.merckvetmanual.com/eye-diseases-and-disorders/ophthalmology/the-cornea-in-animals
+- Merck Veterinary Manual · University of California, Davis School of Veterinary Medicine · Deep Stromal Corneal Ulcers, Descemetocele, and Iris Prolapse in Small Animals · 2024 · https://www.merckvetmanual.com/emergency-medicine-and-critical-care/ophthalmic-emergencies-in-small-animals/deep-stromal-corneal-ulcers-descemetocele-and-iris-prolapse-in-small-animals
+- Merck Veterinary Manual · University of Florida College of Veterinary Medicine · Disorders of the Cornea in Cats · 2018 · https://www.merckvetmanual.com/cat-owners/eye-disorders-of-cats/disorders-of-the-cornea-in-cats
+- American College of Veterinary Ophthalmologists · Veterinary Ophthalmology · Spontaneous Superficial Ulcerative Keratitis in Client-Owned Cats: Risk Factors for Delayed Healing, Corneal Sequestration, or Corneal Stromal Vascularization · Reynolds BD, Whittaker CJ, Caruso KA, Smith JS, Weinstein W, McCarthy PG, Irving WM, Maggs DJ · Veterinary Ophthalmology · 2026 · 29(5):e70260 · DOI: 10.1111/vop.70260 · https://pubmed.ncbi.nlm.nih.gov/42669856/
+- European Advisory Board on Cat Diseases (ABCD) · Journal of Feline Medicine and Surgery · Feline herpesvirus infection. ABCD guidelines on prevention and management · Thiry E, Addie D, Belák S, Boucraut-Baralon C, Egberink H, Frymus T, Gruffydd-Jones T, Hartmann K, Hosie MJ, Lloret A, Lutz H, Marsilio F, Pennisi MG, Radford AD, Truyen U, Horzinek MC · Journal of Feline Medicine and Surgery · 2009 · 11(7):547-555 · DOI: 10.1016/j.jfms.2009.05.003 · https://pubmed.ncbi.nlm.nih.gov/19481034/
+- Merck Veterinary Manual · University of Florida College of Veterinary Medicine · The Conjunctiva in Animals · 2023 · https://www.merckvetmanual.com/eye-diseases-and-disorders/ophthalmology/the-conjunctiva-in-animals
+
+---
+
+# Kedilerde Malt Ne İşe Yarar?
+
+Adres: https://veterito.com/blog/kedilerde-malt-ne-ise-yarar
+Kategori: Kedi · Yayın: 2026-10-02
+
+Malt, yutulan tüyün bağırsağa geçmesini kolaylaştıran kayganlaştırıcı bir macun; tüy yumağının nedenini çözmüyor. Ne zaman işe yarar, ne zaman bir işarettir.
+
+Malt, kedinin tüylerini yalarken yuttuğu kılların mideden bağırsağa geçmesini kolaylaştıran **kayganlaştırıcı bir macundur.** Oxford Cat Clinic’ten Cannon’ın Journal of Feline Medicine and Surgery’de yayımlanan derlemesine göre parafin gibi etkisiz yağlar ya da aromalı parafin macunları, tüy tellerinin mideden ince bağırsağa geçip dışkıyla atılmasına, yani midede yumak hâline gelmemesine yardımcı olabiliyor.
+
+Malt tüy yumağının sonucunu hafifletiyor, nedenini çözmüyor. Aynı derleme, bu yöntemlerin ne kadar etkili olduğunu ölçen bir çalışma bulunmadığını da açıkça yazıyor. Bu yüzden asıl soru "malt verilsin mi" değil, kedinin neden bu kadar tüy yuttuğu. Aşağıdaki tablo kendi kedinizin durumunu bulmanız için.
+
+Durum | Bakılan şey
+Uzun tüylü kedi, ara sıra tüy yumağı | Düzenli tarama, gerekirse kayganlaştırıcı
+Kısa tüylü kedi, sık tüy yumağı | Altta yatan neden: kaşıntı, pire, sindirim sorunu
+Haftada birden sık kusma | Veteriner hekim değerlendirmesi
+Kusmaya çalışıp çıkaramama, iştahsızlık, halsizlik | Vakit kaybetmeden veteriner hekim
+
+
+## Malt tüyün yolunu kolaylaştırıyor, yutulan tüyü azaltmıyor
+
+Kedi kendini temizlerken dilindeki çıkıntılar ölü tüyü topluyor ve kedi bunu yutuyor. Cannon’ın aktardığı bir gözlem çalışmasında kediler günde ortalama **3,6 saat**, yani uyanık geçirdikleri zamanın yaklaşık dörtte birini kendilerini temizleyerek geçirdi. Tüyün çoğu sindirim yoluyla dışarı atılıyor; mideden çıkamayan kısım birikip yumak hâline geliyor.
+
+Malt bu noktada devreye giriyor: mide içeriğini kayganlaştırarak tüyün bağırsağa geçmesine yardım ediyor. Yutulan tüyün miktarını ise değiştirmiyor. Derlemeye göre piyasadaki tüy yumağı mamalarının etkinliği hakkında da kamuya açık nesnel bir veri yok.
+
+YAYGIN YANILGI — "Malt tüy yumağını önler" yanılgısı: Malt, yutulan tüyün yumak olmadan ilerlemesine yardım eden bir kayganlaştırıcı. Kedinin neden fazla tüy yuttuğuna dokunmuyor ve bu yöntemlerin etkinliğini ölçen bir çalışma bulunmuyor. Sık tüy yumağı olan kedide malt tek başına çözüm değildir.
+
+
+## Tüy yumağının ne zaman normal sayıldığı tartışmalı
+
+Bu konuda iki güçlü kaynak aynı şeyi söylemiyor. Cornell Üniversitesi Veteriner Fakültesi’nin kedi sağlığı merkezine göre bir kedinin haftada ya da iki haftada bir tüy yumağı çıkarması kalıcı bir sorun olmadan görülebiliyor. Cannon ise kısa tüylü kedilerin çoğunda sık tüy yumağının, kedinin fazla tüy yutmasına ya da sindirim hareketlerinin değişmesine yol açan kronik bir sorunun işareti olduğunu savunuyor.
+
+Cannon’ın kendi kliniğinde yaptığı yoklamaya göre sağlıklı görünen kısa tüylü kedilerin yaklaşık **yüzde 10’u** düzenli olarak, yılda iki ya da daha fazla tüy yumağı çıkarıyor; uzun tüylü kedilerde bu oran yaklaşık iki katı. İki görüşün ortak noktası şu: uzun tüylü kedide ara sıra görülen tüy yumağı daha az endişe verici, kısa tüylü kedide sık tüy yumağı ise sorgulanmayı hak ediyor.
+
+YAYGIN YANILGI — "Her kedi tüy yumağı kusar, bu normaldir" yanılgısı: Ara sıra görülen tüy yumağı sorun olmayabilir, ama "normal" sayılan sıklık tartışmalı. Kısa tüylü bir kedinin sık sık tüy yumağı çıkarması, Cannon’a göre çoğu zaman kaşıntı, pire ya da sindirim sorunu gibi altta yatan bir nedene işaret ediyor.
+
+
+## Sık tüy yumağının arkasında çoğunlukla üç neden var
+
+Cannon’ın derlemesi, sık tüy yumağı olan kedilerde gözden kaçırılmaması gereken üç yaygın katkıyı sayıyor:
+
+- Kaşıntılı deri hastalıkları: kaşınan kedi kendini daha çok yalıyor ve daha çok tüy yutuyor
+- Pire: pireli kedi hem kaşınıyor hem de pireyi yutarken şerit kapabiliyor
+- Mamaya tahammülsüzlük: derlemeye göre sağlıklı görünen kısa tüylü kedilerde tüy yumağı kusmanın yaygın nedenlerinden biri mamaya yanıt veren sindirim hastalığı
+
+Bu yüzden sık tüy yumağı görülen bir kedide önce pire ve deri kontrolü yapılıyor. Pirenin nasıl anlaşıldığı kedilerde pire nasıl anlaşılır (https://veterito.com/blog/kedilerde-pire-nasil-anlasilir) yazısında. Derlemenin ifadesiyle koruyucu tedavi, altta yatan neden bulunamadığında ya da ortadan kaldırılamadığında gündeme geliyor.
+
+
+## Malt güvenle nasıl verilir
+
+Aromalı malt macunları çoğu kedinin gönüllü olarak yaladığı ürünler; miktar ve sıklık ürün etiketine ve veteriner hekimin önerisine göre belirleniyor. İçerik markaya göre değiştiği için etiketin okunması gerekiyor.
+
+Sıvı parafin söz konusu olduğunda Cannon’ın uyarısı nettir: tatsız ve kokusuz olduğu için mamaya karıştırılarak çoğu kediye güvenle verilebiliyor, ama **şırıngayla kedinin ağzına verilmemeli.** Yanlışlıkla soluk yoluna kaçarsa ağır bir yağ zatürresine yol açabiliyor. Derleme bunun tamamen önlenebilir bir tehlike olduğunu vurguluyor.
+
+YAYGIN YANILGI — "Parafin şırıngayla ağza verilirse daha etkili olur" yanılgısı: Etkisi değişmiyor, riski büyüyor. Kokusuz ve tatsız olan parafin, kedi yutkunmadan soluk yoluna kaçabiliyor ve ağır bir yağ zatürresine yol açabiliyor. Mamaya karıştırılarak verilmesi hem yeterli hem güvenli.
+
+
+## Taramak maltan önce gelir
+
+Cannon’a göre dökülen tüyü her gün tarayarak almak, kedinin yuttuğu tüy miktarını azaltmaya yardımcı olabiliyor. Özellikle uzun tüylü kedilerde tarama, maltan önce başvurulan yöntemdir. Ağır durumlarda tüylerin kısaltılması da tüy uzunluğunu sindirim sisteminin kaldırabileceği ölçüye indirerek yardımcı olabiliyor.
+
+Aynı derleme küçük öğünlerin mideden daha hızlı boşaldığını, bu nedenle günün farklı saatlerine dağılmış küçük ve sık öğünlerin mide hareketlerini iyileştirip tüy yumağını azaltabileceğini aktarıyor. Öğünlerin güne nasıl bölündüğü yavru kedi ne kadar mama yemeli (https://veterito.com/blog/yavru-kedi-ne-kadar-mama-yemeli) yazısında anlatılıyor.
+
+
+## Bu belirtilerde malt değil, hekim
+
+Kusmayla atılamayan bir tüy yumağı, Cannon’a göre ince bağırsağa geçip kısmi ya da tam tıkanmaya yol açabiliyor ya da yemek borusunda takılabiliyor; bu durum ciddi hastalığa, nadiren de ölüme neden olabiliyor. Cornell ise haftada birden sık kusan ya da şu belirtileri gösteren kedinin hemen veteriner hekim tarafından değerlendirilmesini öneriyor:
+
+- Halsizlik ve güçsüzlük
+- İştahta azalma
+- Kusmukta kan
+- Su içmede ya da idrar miktarında değişiklik
+- Kusmayla birlikte ishal
+
+Kusmaya çalıştığı hâlde bir şey çıkaramayan, karnına dokunulmasından rahatsız olan kedi vakit kaybetmeden veteriner hekime ulaşılması gereken bir tablodadır. Kusmanın diğer nedenleri kedim kusuyor (https://veterito.com/blog/kedim-kusuyor) yazısında; tüyün bağırsağın sonuna kadar ilerleyip kabızlık yaptığı durumlar ise kedilerde kabızlık (https://veterito.com/blog/kedilerde-kabizlik) yazısında.
+
+UYARI: Bu içerik genel bilgidir, tıbbi tavsiye değildir. Sık tüy yumağı, tekrarlayan kusma ya da iştahsızlık görülen kedide nedeni veteriner hekim araştırır. Sıvı parafin şırıngayla kedinin ağzına verilmez.
+
+
+## Yaygın yanlışlar ve doğruları
+
+Yaygın yanlış | Doğrusu
+Malt tüy yumağını önler | Tüyün geçişini kolaylaştırır, nedenini çözmez
+Her kedi tüy yumağı kusar | Kısa tüylü kedide sık tüy yumağı bir işaret olabilir
+Parafin şırıngayla verilir | Mamaya karıştırılır; ağza şırınga zatürre yapabilir
+Tüy yumağı mamaları kesin çözer | Etkinlikleri hakkında nesnel veri yok
+Tüy yumağı zararsızdır | Atılamazsa bağırsak tıkanmasına yol açabilir
+
+## Sıkça sorulan sorular
+
+**Kedilerde malt ne işe yarar?**
+Malt, kedinin yuttuğu tüylerin mideden bağırsağa geçmesini kolaylaştıran kayganlaştırıcı bir macun. Cannon’ın derlemesine göre bu tür kayganlaştırıcılar tüyün dışkıyla atılmasına, midede yumak olmamasına yardımcı olabiliyor. Yutulan tüy miktarını azaltmıyor ve etkinliğini ölçen bir çalışma bulunmuyor.
+
+**Kediye malt ne sıklıkla verilir?**
+Kaynaklar belirli bir sıklık vermiyor; miktar ve sıklık ürün etiketine ve veteriner hekimin önerisine göre belirleniyor. Sık ihtiyaç duyulan bir kedide asıl yapılması gereken, fazla tüy yutmaya yol açan kaşıntı, pire ya da sindirim sorununun araştırılması ve düzenli tarama.
+
+**Kedi ne sıklıkla tüy yumağı kusabilir?**
+Cornell’e göre bir kedinin haftada ya da iki haftada bir tüy yumağı çıkarması kalıcı bir sorun olmadan görülebiliyor, ama haftada birden sık kusma hekim değerlendirmesi gerektiriyor. Cannon ise kısa tüylü kedide sık tüy yumağını çoğu zaman altta yatan bir sorunun işareti sayıyor.
+
+**Tüy yumağı kediye zarar verir mi?**
+Çoğu zaman kusmayla atılıyor, ama atılamayan tüy yumağı ince bağırsağa geçip tıkanmaya yol açabiliyor ya da yemek borusunda takılabiliyor. Cannon’a göre bu durum ciddi hastalığa, nadiren de ölüme neden olabiliyor. Kusmaya çalışıp bir şey çıkaramayan kedi hemen hekim görmeli.
+
+**Malt yerine ne yapılabilir?**
+Dökülen tüyün her gün taranması yutulan tüyü azaltmaya yardımcı olabiliyor ve özellikle uzun tüylü kedilerde ilk başvurulan yöntem. Küçük ve sık öğünler midenin daha hızlı boşalmasına yardım edebiliyor. Kaşıntı, pire ya da mamaya tahammülsüzlük varsa bunların tedavisi tüy yumağını da azaltıyor.
+
+**Sıvı parafin kediye nasıl verilir?**
+Cannon’ın derlemesine göre sıvı parafin tatsız ve kokusuz olduğu için mamaya karıştırılarak çoğu kediye güvenle verilebiliyor. Şırıngayla kedinin ağzına verilmemeli, çünkü soluk yoluna kaçarsa ağır bir yağ zatürresine yol açabiliyor. Miktarı veteriner hekim belirliyor.
+
+## Kaynaklar
+
+- Oxford Cat Clinic, Oxford, Birleşik Krallık · Hair balls in cats: a normal nuisance or a sign that something is wrong? · Cannon M · Journal of Feline Medicine and Surgery · 2013 · 15(1):21-29 · DOI: 10.1177/1098612X12470342 · https://pmc.ncbi.nlm.nih.gov/articles/PMC10816490/
+- Cornell University College of Veterinary Medicine, Cornell Feline Health Center · Vomiting · https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/vomiting
+
+---
+
+# Kedilerin Dişleri Nasıl Temizlenir?
+
+Adres: https://veterito.com/blog/kedilerin-disleri-nasil-temizlenir
+Kategori: Kedi · Yayın: 2026-10-02
+
+Evde etkili yol günlük fırçalama; diş taşı ise yalnızca anestezi altında temizlenir. Hangi belirtiler hekim gerektirir, hangi ürünler işe yarar.
+
+Kedinin dişlerini evde temizlemenin etkili yolu, kediye uygun bir fırça ve kediler için üretilmiş bir macunla **her gün fırçalamak.** Amerikan Hayvan Hastaneleri Birliği’nin (AAHA) 2019 diş rehberine göre fırçalamanın fayda sağlaması için günlük yapılması gerekiyor. Fırça, diş yüzeyinde biriken bakteri tabakasını, yani plağı temizliyor. Plak sertleşip diş taşına dönüştüğünde ise evde yapılabilecek bir şey kalmıyor: diş taşı yalnızca veteriner hekim tarafından anestezi altında temizleniyor.
+
+Konu kediler için sanıldığından yaygın. Kedi hekimlerinin meslek kuruluşu FelineVMA’nın 2025 kedi ağız ve diş sağlığı rehberinin derlediği verilere göre 2 yaşın üstündeki kedilerin **yüzde 80-85’inde** diş eti hastalığı görülüyor. Aşağıdaki tablo, kedinizin durumuna göre neyin öne çıktığını özetliyor.
+
+Kedinizin durumu | Öne çıkan adım
+Yavru, kalıcı dişleri çıkmış | Fırçalamaya alıştırma başlayabilir
+Yetişkin, diş eti pembe | Günlük fırçalama ya da silme
+Diş eti kırmızı ya da kanıyor | Önce veteriner hekim; fırça ağrıtabilir
+Dişlerde sarı-kahve taş | Anestezi altında profesyonel temizlik
+Tek taraftan çiğneme, yemek düşürme | Vakit kaybetmeden veteriner hekim
+
+
+## Fırçalama yalnızca her gün yapıldığında işe yarıyor
+
+AAHA rehberi bu konuda açık: fırçalamanın fayda sağlaması için her gün yapılması gerekiyor. Fırça yalnızca plağı alıyor; diş taşı fırçayla çıkmıyor. Rehber, her gün fırçalanan bir kedide bile anestezi altında yapılan muayene, röntgen ve tedavi ihtiyacının ortadan kalkmadığını da vurguluyor; insanlarda diş hekimi kontrolü neyse, kedide de durum benzer.
+
+FelineVMA rehberi evde bakımın fırçalama ya da silme ile plağın düzenli olarak alınması olduğunu yazıyor ve yalnızca güvenli ve etkinliği gösterilmiş ürünlerin önerilmesini istiyor. AAHA’ya göre diş silme mendilleri özellikle ön dişler ve köpek dişleri için ek bir seçenek. Fırçalanamayan kedide, plak ve taş birikimini yavaşlatmak için tasarlanmış mamalar da yardımcı olabiliyor.
+
+YAYGIN YANILGI — "Kuru mama dişleri kendiliğinden temizler" yanılgısı: Her kuru mama bu etkiyi göstermiyor. AAHA’ya göre bu iddiayı taşıyan çok ürün var, ama yalnızca Veteriner Ağız Sağlığı Konseyi’nin (VOHC) kabul ettiği ürünler belirli standartları karşıladığını kanıtlamış durumda. Mama seçiminin ayrıntıları yaş mama mı kuru mama mı (https://veterito.com/blog/kediler-icin-yas-mama-mi-kuru-mama-mi) yazısında.
+
+
+## Alıştırma sabır istiyor ve her kedi kabul etmeyebiliyor
+
+AAHA’ya göre evde ağız bakımına alıştırma, kalıcı dişler çıktıktan sonra başlayabiliyor. FelineVMA rehberi, kedinin bu sürece gönüllü katılmasını kolaylaştıran kademeli bir eğitimden söz ediyor ve bunun zaman ve emek gerektirdiğini kabul ediyor. Rehbere göre bu eğitim, kedinin ağız bakımına gönüllü katılmasını teşvik edebiliyor.
+
+Rehberin dürüst bir notu da var: korku ve kaygı yaşayan ya da ağrısı olan kedilerde evde bakım mümkün olmayabiliyor. Bu durumda ne yapılacağına veteriner hekimle birlikte karar veriliyor; AAHA’ya göre fırçalanamayan hayvanlarda plak ve taş birikimini yavaşlatmak için tasarlanmış mamalar özellikle yardımcı olabiliyor.
+
+
+## Kızarık diş etini fırçalamak ağrıtıyor
+
+AAHA rehberine göre iltihaplı diş eti olan bir hayvanın dişini fırçalamak **ağrıya ve fırçadan kaçmaya** yol açıyor. Kırmızı, şiş ya da kanayan diş eti, evde fırça ile çözülecek bir durum değil; önce veteriner hekim değerlendirmesi ve tedavisi geliyor. FelineVMA da evde bakımın, kedi anestezi altındaki diş tedavisinden iyileştikten sonra başlatılmasını öneriyor.
+
+
+## Diş taşı evde temizlenmiyor, anestezisiz temizlik de önerilmiyor
+
+Diş taşı, tükürükteki minerallerle sertleşmiş plaktır. AAHA rehberine göre profesyonel diş temizliği, diş eti üstündeki ve altındaki plak ile taşın temizlenmesini, dişlerin parlatılmasını ve ağız muayenesini kapsıyor ve **genel anestezi altında** yapılıyor. Rehber, yalnızca görünen taşın kazınmasının tamamen kozmetik olduğunu ve hastalığı tedavi etmediğini yazıyor; asıl sorun diş eti çizgisinin altında.
+
+İki rehber anestezisiz diş temizliği konusunda aynı noktada. AAHA’ya göre bu uygulamanın anestezi altındaki temizlik kadar güvenli ya da etkili olduğu gösterilmemiş ve kabul edilemez. FelineVMA da anestezisiz diş temizliğine karşı olduğunu açıkça belirtiyor; rehbere göre ağzın tam muayenesi ve diş röntgeni ancak anestezi altında yapılabiliyor.
+
+YAYGIN YANILGI — "Anestezisiz diş temizliği daha güvenli" yanılgısı: AAHA’ya göre anestezisiz temizliğin güvenli ya da eşdeğer olduğu gösterilmemiş. Görünen taşın kazınması dişi temiz gösteriyor, ama diş eti altındaki hastalık yerinde kalıyor. FelineVMA bu uygulamaya karşı.
+
+
+## Kediler ağrıyı saklıyor; iştah normal olsa bile sorun olabilir
+
+FelineVMA rehberine göre kediler hastalık ve ağrıyı saklama içgüdüsünü korumuş durumda. Bu yüzden ağız hastalığı çoğu zaman sessiz ilerliyor. Rehber, bakım verenlerin şu belirtilerde veteriner hekime başvurmasını öneriyor:
+
+- Beklenmedik ağız kokusu
+- Kırmızı ya da kanayan diş eti
+- Ağzın tek tarafıyla ya da başı yana eğerek çiğneme
+- Yemeği ağızdan düşürme
+- Patisiyle yüzünü sıvazlama, yüzde şişlik
+- Aşırı salya ya da ağızdan anormal akıntı
+- İştahsızlık
+
+Rehberin önemli bir uyarısı var: ağız ve diş hastalığı olan kedilerde iştah değişikliği nadir görülüyor. Yani normal yemek yemesi, kedinin ağzında sorun olmadığını göstermiyor. Yemeğe ilgisi azalan kedide diğer olası nedenler kedim yemek yemiyor (https://veterito.com/blog/kedim-yemek-yemiyor) yazısında.
+
+YAYGIN YANILGI — "Kedi yemek yiyorsa dişi ağrımıyordur" yanılgısı: FelineVMA’ya göre ağız hastalığı olan kedilerde iştah değişikliği nadir. Ağrısı olan bir kedi yemeye devam edebiliyor; değişiklik çoğu zaman çiğneme biçiminde, yemek düşürmede ya da ağız kokusunda kendini gösteriyor.
+
+
+## Diş erimesi kedilerde yaygın ve çoğu zaman evde fark edilmiyor
+
+Diş erimesi (rezorpsiyon), diş dokusunun vücut tarafından yıkıldığı ve kedilerde sık görülen bir hastalık. FelineVMA rehberinin derlediği röntgen çalışmalarında kedilerin **yüzde 29 ile 66’sında** görüldü; bir çalışmada 10 yaşın üstündeki kedilerde oran yüzde 83’e çıktı. En sık alt çenedeki küçük azı dişlerinde görülüyor.
+
+Rehbere göre ağrının işaretleri arasında çenede titreme, çiğneme biçiminin değişmesi, sert mamadan kaçınma ve yüzünü sürtme sayılıyor; ama çoğu zaman evde hiçbir değişiklik fark edilmiyor. Hastalık ilerleyici olduğu için tanı konan kedide başka dişlerde de yeni lezyonlar çıkabiliyor ve rehber ideal olarak **yılda bir röntgen kontrolü** öneriyor.
+
+
+## İlk profesyonel diş kontrolü 1 yaş civarında öneriliyor
+
+AAHA rehberi, kedilerde tam bir koruyucu diş temizliğinin (temizlik, parlatma ve ağız içi röntgen) **1 yaşına kadar** yapılmasını öneriyor. FelineVMA’ya göre diş eti iltihabı yavru kedilerde de başlayabiliyor: İngiltere’deki bir çalışmada 12 aylıktan küçük kedilerin yüzde 24,5’inde, 5-6 yaşındakilerin yüzde 56,3’ünde diş eti iltihabı görüldü. Erken başlayan diş eti iltihabı 6-8 aylık kedilerde görülebiliyor.
+
+Bu yüzden ağız muayenesi her veteriner ziyaretinin bir parçası. Yavru kedinin ilk ziyaretlerinde nelere bakıldığı yavru kedi veterinere ne zaman götürülmeli (https://veterito.com/blog/yavru-kedi-veterinere-ne-zaman-goturulmeli) yazısında.
+
+Yöntem | Ne yapar | Sınırı
+Günlük fırçalama | Plağı temizler | Diş taşını çıkarmaz
+Diş silme mendili | Ön dişlerde plağı azaltır | Fırçanın yerini tam tutmaz
+VOHC onaylı mama ya da ödül | Plak ve taş birikimini yavaşlatır | Fırçalanamayan kedide yardımcı
+Anestezi altında temizlik | Diş eti altını temizler, röntgen çekilir | Veteriner hekim kararıyla
+
+UYARI: Bu içerik genel bilgidir, tıbbi tavsiye değildir. Kırmızı ya da kanayan diş eti, ağız kokusu, yemeği ağızdan düşürme, tek taraftan çiğneme ya da yüzde şişlik görülen kedide veteriner hekim değerlendirmesi gerekir. Diş taşı evde kazınmaz.
+
+
+## Yaygın yanlışlar ve doğruları
+
+Yaygın yanlış | Doğrusu
+Haftada bir fırçalamak yeter | Fayda için her gün fırçalamak gerekir
+Kuru mama dişi temizler | Yalnızca VOHC onaylı ürünler kanıtlı
+Diş taşı evde kazınabilir | Diş taşı anestezi altında temizlenir
+Anestezisiz temizlik güvenlidir | İki rehber de bu uygulamaya karşı
+Yemek yiyorsa dişi ağrımıyordur | Ağrılı kedi de yemeye devam edebilir
+
+## Sıkça sorulan sorular
+
+**Kedinin dişleri ne sıklıkla fırçalanmalı?**
+AAHA’nın 2019 diş rehberine göre fırçalamanın fayda sağlaması için her gün yapılması gerekiyor. Fırça diş yüzeyindeki plağı alıyor ama sertleşmiş diş taşını çıkarmıyor. Her gün fırçalanan kedide de anestezi altında yapılan ağız muayenesi ve röntgen ihtiyacı ortadan kalkmıyor; ev bakımı profesyonel bakımın yerini tutmuyor.
+
+**Kedinin diş taşı evde temizlenir mi?**
+Hayır. Diş taşı, tükürükteki minerallerle sertleşmiş plaktır ve AAHA’ya göre profesyonel temizlik genel anestezi altında yapılıyor. Rehber, yalnızca görünen taşın kazınmasının kozmetik olduğunu, asıl hastalığın diş eti çizgisinin altında kaldığını belirtiyor. Bu yüzden diş taşı için veteriner hekime başvuruluyor.
+
+**Anestezisiz diş temizliği güvenli mi?**
+AAHA’ya göre anestezisiz diş temizliğinin anestezi altındaki temizlik kadar güvenli ya da etkili olduğu gösterilmemiş ve kabul edilemez. FelineVMA da bu uygulamaya açıkça karşı. Rehberlere göre ağzın tam muayenesi ve diş röntgeni ancak anestezi altında yapılabiliyor; görünen taşı kazımak diş eti altındaki hastalığı tedavi etmiyor.
+
+**Kedide diş ağrısı nasıl anlaşılır?**
+FelineVMA rehberine göre ağız kokusu, kırmızı ya da kanayan diş eti, tek taraftan ya da başı yana eğerek çiğneme, yemeği düşürme, yüzü patiyle sıvazlama, yüzde şişlik ve aşırı salya başlıca işaretler. İştah değişikliği nadir görülüyor; normal yemek yiyen bir kedide de ağız hastalığı olabiliyor.
+
+**Kedilerde diş erimesi ne kadar yaygın?**
+FelineVMA rehberinin derlediği röntgen çalışmalarında diş erimesi kedilerin yüzde 29 ile 66’sında görüldü; bir çalışmada 10 yaş üstü kedilerde oran yüzde 83’e çıktı. En sık alt çenedeki küçük azı dişlerinde görülüyor. Çoğu zaman evde fark edilmediği ve ilerleyici olduğu için rehber yılda bir röntgen kontrolü öneriyor.
+
+**Kedi ilk diş kontrolüne ne zaman götürülmeli?**
+AAHA rehberi, kedilerde temizlik, parlatma ve ağız içi röntgeni kapsayan ilk koruyucu diş işleminin 1 yaşına kadar yapılmasını öneriyor. Ağız muayenesi ise her veteriner ziyaretinin parçası. Diş eti iltihabı yavru kedilerde de görülebildiği için kontrolü ertelememek faydalı oluyor.
+
+## Kaynaklar
+
+- Feline Veterinary Medical Association (FelineVMA) · 2025 FelineVMA feline oral health and dental care guidelines · Lobprise H, St Denis K, Anderson JG, Hoyer N, Fiani N, Yaroslav J · Journal of Feline Medicine and Surgery · 2025 · 27(11):1098612X251398793 · DOI: 10.1177/1098612X251398793 · https://pmc.ncbi.nlm.nih.gov/articles/PMC12665832/
+- American Animal Hospital Association (AAHA) · 2019 AAHA Dental Care Guidelines for Dogs and Cats · Bellows J, Berg ML, Dennis S, Harvey R, Lobprise HB, Snyder CJ, Stone AES, Van de Wetering AG · Journal of the American Animal Hospital Association · 2019 · 55(2):49-69 · DOI: 10.5326/JAAHA-MS-6933 · https://pubmed.ncbi.nlm.nih.gov/30776257/
+
+---
+
+# Kediler İçin Yaş Mama mı Kuru Mama mı?
+
+Adres: https://veterito.com/blog/kediler-icin-yas-mama-mi-kuru-mama-mi
+Kategori: Beslenme · Yayın: 2026-10-01
+
+İkisi de tam ve dengeliyse ikisi de yeterli; asıl fark su. Kuru mamada su yüzde 6-10, konservede en az 75. Hangi kediye hangisinin uyduğu ve karışık besleme.
+
+İkisi de "tam ve dengeli" olduğu sürece yaş mama da kuru mama da bir kediyi tek başına besleyebilir. Cornell Üniversitesi Veteriner Fakültesi’nin kedi sağlığı merkezine göre bu noktadan sonra seçim büyük ölçüde kedinin tercihine kalıyor: bazı kediler konserveyi, bazıları kuru mamayı, bazıları ikisinin karışımını seviyor. İki tür arasındaki asıl fark **sudur**: kuru mamada su yüzde 6-10, konservede en az yüzde 75.
+
+Bu fark, az su içen, kilo alma eğilimi olan ya da idrar yolu sorunu geçirmiş kediler için seçimi anlamlı hâle getiriyor. Aşağıdaki tablo iki türü yan yana koyuyor; sonraki bölümler hangi kediye hangisinin daha çok yaradığını, diş konusundaki yaygın inancı ve iki mama arasında geçişin nasıl yapıldığını anlatıyor.
+
+Özellik | Kuru mama | Yaş mama (konserve)
+Su oranı | Yüzde 6-10 | En az yüzde 75
+Fiyat | Daha düşük | Genellikle en pahalı tür
+Lezzet | Bazı kedilere daha az çekici | Çoğu kedi için çok lezzetli
+Serbest besleme | Uygun, kabında bozulmuyor | Uygun değil, açıkta bozuluyor
+Saklama | Kapalı kapta, serin ve kuru yerde | Açılınca kalan kısım buzdolabında
+
+
+## Önce bakılan şey türü değil, "tam ve dengeli" ibaresi
+
+Kediler zorunlu etoburdur: bazı besin öğelerini yalnız hayvansal kaynaklardan alabiliyorlar. Cornell, ticari mamaların Amerikan Yem Kontrol Yetkilileri Birliği’nin (AAFCO) kedi besin profillerine göre üretildiğini ve karşılaştırmanın en iyi yolunun etiketi okumak olduğunu belirtiyor. Etikette mamanın kedinin yaşam dönemi için "tam ve dengeli" olduğu yazmalı; içerik listesinde et, et yan ürünleri ya da balık ilk sıralarda yer almalı.
+
+Bu şart sağlandıktan sonra yaş ya da kuru olması beslenme yeterliliğini değiştirmiyor. Tersine, "gurme" diye satılan bazı konservelerin besin açısından eksik olabileceğini de Cornell ayrıca uyarıyor; bu ürünlerde de aynı ibare aranıyor.
+
+YAYGIN YANILGI — "Pahalı konserve her zaman daha iyidir" yanılgısı: Fiyat, mamanın tam ve dengeli olduğunu göstermiyor. Cornell’e göre bazı gurme konserveler tek başına kediyi beslemeye yetecek besin içeriğine sahip değil. Karşılaştırma fiyatla değil etiketteki "tam ve dengeli" ibaresiyle yapılıyor.
+
+
+## Asıl fark su, ve bu idrarı değiştiriyor
+
+Kuru mamayla beslenen kedi günlük suyunun büyük kısmını kaptan içmek zorunda; yaş mamayla beslenen kedi ise suyun bir bölümünü yemekle alıyor. Altı kediyle yapılan kontrollü bir çalışmada aynı mama farklı oranlarda sulandırılarak verildi: su oranı yüzde 73 olan mamayı yiyen kediler, kaptan daha az içmelerine rağmen toplamda günde yaklaşık **145 ml** sıvı aldı. Yüzde 6 sulu kuru mamada bu miktar yaklaşık **103 ml** idi.
+
+Aynı çalışmada yaş mamada idrar belirgin biçimde daha seyreltik çıktı ve kalsiyum oksalat taşı oluşumuna yol açabilen doygunluk düzeyi yarı yarıya düştü. Çalışma küçük ve bir mama üreticisinin araştırma merkezinde yapıldı; yine de su alımının idrarı nasıl değiştirdiğini açıkça gösteriyor.
+
+
+## Az su içen ve idrar sorunu yaşamış kedide yaş mama bir araç
+
+Cornell’in alt idrar yolu hastalıkları sayfasına göre bu sorunlar en çok orta yaşlı, fazla kilolu, az hareket eden, ev içinde kum kabı kullanan, dışarı çıkamayan ve **az su içen** kedilerde görülüyor; erkek kediler daha yüksek risk taşıyabiliyor. Bu kedilerde yaş mama, su alımını artırmanın en kolay yollarından biri.
+
+Aynı sayfa önemli bir uyarı da yapıyor: idrar yolunun tıkanması, özellikle erkek kedilerde, **kesin bir acil durumdur.** Kum kabında ıkınıp idrar yapamayan kedi, vakit kaybetmeden veteriner hekime ulaşılması gereken bir tablodadır. İdrarda kan görüldüğünde neye bakıldığı kedinin idrarında kan (https://veterito.com/blog/kedi-idrarinda-kan) yazısında anlatılıyor.
+
+YAYGIN YANILGI — "Yaş mama yiyen kedinin su kabına gerek yok" yanılgısı: Yaş mama su alımını artırıyor ama su kabının yerini tutmuyor. Cornell’e göre kedinin her zaman temiz ve taze suya erişimi olmalı. Yaş mama yiyen kedi kaptan daha az içebilir; bu beklenen bir durumdur, suyun kaldırılması için bir gerekçe değildir.
+
+
+## Kilo kontrolünde bakılan kalori yoğunluğu
+
+Cornell’e göre kedilerde en sık görülen beslenme sorunu şişmanlık ve bu durum eklem hastalıkları ile diyabet riskini artırıyor. Suyu az olduğu için aynı ağırlıkta kuru mama çok daha fazla kalori taşıyor; bir avuç fazladan kuru mama, kâseye bakıldığında fark edilmeyen önemli bir kalori farkı demek.
+
+Kuru mamanın kapta bozulmaması serbest beslemeyi mümkün kılıyor ama kabın sürekli dolu tutulması, kedinin ne kadar yediğinin bilinmemesi anlamına geliyor. Kilo takibi yapılan kedilerde günlük miktar tartılarak ya da ölçülerek veriliyor; ideal kilonun nasıl değerlendirildiğini veteriner hekim gösteriyor.
+
+
+## Kuru mama dişleri temizlemiyor, diş maması ayrı bir ürün
+
+Kuru mamanın diş taşını önlediği sık duyulan bir inanç. Amerikan Hayvan Hastaneleri Birliği’nin (AAHA) 2019 diş bakımı kılavuzu, diş taşını azaltmak için tasarlanmış özel mamaların daha iri ya da özel dokulu taneleriyle mekanik ya da kimyasal olarak etki edebildiğini, ancak bu iddiayı taşıyan ürünlerden yalnız Veteriner Ağız Sağlığı Konseyi’nin (VOHC) onayladıklarının belirlenmiş ölçütleri karşıladığını belirtiyor.
+
+Yani sıradan bir kuru mama diş bakımı yerine geçmiyor. Aynı kılavuza göre fırçalama yalnız plağı temizliyor, oluşmuş diş taşını değil, ve fayda sağlaması için her gün yapılması gerekiyor.
+
+YAYGIN YANILGI — "Kuru mama kedinin dişlerini temizler" yanılgısı: Bu etkiyi yalnız özel olarak tasarlanmış ve VOHC onayı almış diş mamaları göstermiş durumda. AAHA’ya göre mekanik temizlik için tanenin boyutu ve dokusu buna göre tasarlanıyor; sıradan kuru mama bu amaçla üretilmiyor. Diş sağlığı mama türüyle değil, bakım ve kontrolle korunuyor.
+
+
+## Karışık besleme ve mamalar arası geçiş
+
+Cornell, yaş ve kuru mamanın birlikte verilmesini de geçerli bir seçenek olarak sayıyor: günün bir öğünü konserve, diğeri kuru mama olabilir. Bu düzen, kuru mamanın kolaylığını korurken su alımını artırıyor. Önemli olan iki mamanın toplam kalorisinin günlük ihtiyacı aşmaması.
+
+Mama türü ya da markası değiştirilirken 2021 AAHA ve AAFP kedi kılavuzu geçişin **7-10 güne** yayılmasını öneriyor: yeni mama eskisinin içine her gün biraz daha fazla karıştırılıyor. Ani değişiklik bazı kedilerde mamayı reddetmeye ya da sindirim sorunlarına yol açabiliyor. Kedi yeni mamayı hiç yemiyorsa bunun ne zaman endişe verici olduğu kedim yemek yemiyor (https://veterito.com/blog/kedim-yemek-yemiyor) yazısında.
+
+UYARI: Bu içerik genel bilgidir, tıbbi tavsiye değildir. İdrar yolu sorunu, böbrek hastalığı, diyabet ya da kilo sorunu olan kedilerin maması veteriner hekim tarafından belirlenir; tedavi amaçlı mamalar hekim önerisiyle kullanılır.
+
+
+## Yaygın yanlışlar ve doğruları
+
+Yaygın yanlış | Doğrusu
+Yaş mama kuru mamadan daha besleyicidir | Tam ve dengeliyse ikisi de yeterli, fark suda
+Kuru mama dişleri temizler | Bunu yalnız VOHC onaylı diş mamaları gösterdi
+Yaş mama yiyen kediye su gerekmez | Temiz su her zaman erişilebilir olmalı
+Pahalı konserve her zaman iyidir | Bazı gurme konserveler tek başına yetersiz
+Mama bir günde değiştirilebilir | Geçiş 7-10 güne yayılıyor
+
+## Sıkça sorulan sorular
+
+**Kediye yaş mama mı kuru mama mı verilmeli?**
+İkisi de "tam ve dengeli" olduğu sürece kediyi tek başına besleyebilir ve Cornell’e göre seçim çoğu zaman kedinin tercihine kalıyor. Fark sudadır: kuru mamada su yüzde 6-10, konservede en az yüzde 75. Az su içen, kilo alma eğilimi olan ya da idrar yolu sorunu geçirmiş kedilerde yaş mama avantaj sağlayabiliyor.
+
+**Yaş mama ve kuru mama birlikte verilebilir mi?**
+Evet, Cornell karışık beslemeyi geçerli bir seçenek olarak sayıyor. Örneğin bir öğün konserve, diğeri kuru mama olabilir; bu düzen su alımını artırırken kuru mamanın kolaylığını koruyor. Dikkat edilmesi gereken, iki mamanın toplam kalorisinin kedinin günlük ihtiyacını aşmaması.
+
+**Kuru mama kedinin dişlerini temizler mi?**
+Sıradan kuru mama dişleri temizlemiyor. AAHA’nın 2019 diş bakımı kılavuzuna göre diş taşını azaltma iddiasını yalnız özel olarak tasarlanmış ve Veteriner Ağız Sağlığı Konseyi (VOHC) onayı almış diş mamaları kanıtlamış durumda. Diş sağlığı için günlük fırçalama ve düzenli kontrol gerekiyor.
+
+**Kuru mamadan yaş mamaya nasıl geçilir?**
+2021 AAHA ve AAFP kedi kılavuzu mama değişikliğinin 7-10 güne yayılmasını öneriyor. Yeni mama eskisinin içine her gün biraz daha fazla karıştırılıyor ve eski mama kademeli olarak azaltılıyor. Ani değişiklik bazı kedilerde mamayı reddetmeye ya da sindirim sorunlarına yol açabiliyor.
+
+**Su içmeyen kediye yaş mama verilir mi?**
+Evet, yaş mama su alımını artırmanın en kolay yollarından biri. Altı kediyle yapılan bir çalışmada yüzde 73 su içeren mamayı yiyen kediler, kaptan daha az içmelerine rağmen toplamda günde yaklaşık 145 ml sıvı aldı; kuru mamada bu miktar yaklaşık 103 ml idi ve idrar daha yoğundu.
+
+**Açılan kedi konservesi nasıl saklanır?**
+Cornell, açılmış konservenin kullanılmayan kısmının kalitesini korumak ve bozulmayı önlemek için buzdolabında saklanmasını öneriyor; kesin bir süre vermiyor. Açık konserve serbest besleme için kapta bırakılmıyor. Kuru mama ise hava almayan kapta, serin ve kuru bir yerde, son kullanma tarihine dikkat edilerek saklanıyor.
+
+## Kaynaklar
+
+- Cornell University College of Veterinary Medicine, Cornell Feline Health Center · Feeding Your Cat · https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feeding-your-cat
+- Cornell University College of Veterinary Medicine, Cornell Feline Health Center · Feline Lower Urinary Tract Disease · https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-lower-urinary-tract-disease
+- WALTHAM Centre for Pet Nutrition · Effect of dietary water intake on urinary output, specific gravity and relative supersaturation for calcium oxalate and struvite in the cat · Buckley CM, Hawthorne A, Colyer A, Stevenson AE · British Journal of Nutrition · 2011 · 106 Suppl 1:S128-S130 · DOI: 10.1017/S0007114511001875 · https://pubmed.ncbi.nlm.nih.gov/22005408/
+- American Animal Hospital Association (AAHA) · 2019 AAHA Dental Care Guidelines for Dogs and Cats · Bellows J, Berg ML, Dennis S, Harvey R, Lobprise HB, Snyder CJ, Stone AES, Van de Wetering AG · Journal of the American Animal Hospital Association · 2019 · 55(2):49-69 · DOI: 10.5326/JAAHA-MS-6933 · https://pubmed.ncbi.nlm.nih.gov/30776257/
+- American Animal Hospital Association (AAHA), American Association of Feline Practitioners (AAFP) · 2021 AAHA/AAFP Feline Life Stage Guidelines · Quimby J, Gowland S, Carney HC, DePorter T, Plummer P, Westropp J · Journal of Feline Medicine and Surgery · 2021 · 23(3):211-233 · DOI: 10.1177/1098612X21993657 · https://pmc.ncbi.nlm.nih.gov/articles/PMC10812130/
+
+---
+
+# Yavru Kedi Ne Kadar Mama Yemeli?
+
+Adres: https://veterito.com/blog/yavru-kedi-ne-kadar-mama-yemeli
+Kategori: Beslenme · Yayın: 2026-10-01
+
+Yavru kedinin ihtiyacı gramla değil kaloriyle hesaplanıyor: 10 haftalıkta kilo başına günde 200 kcal, 10 aylıkta 80. Kendi mamanızla hesap ve öğün düzeni.
+
+Yavru kedinin ne kadar yemesi gerektiği gramla değil **kaloriyle** hesaplanıyor, çünkü mamaların kalorisi birbirinden çok farklı. 2021 AAHA ve AAFP kedi kılavuzuna göre 10 haftalık bir yavru vücut ağırlığının kilogramı başına günde yaklaşık **200 kilokalori** harcıyor; 10 aylık olduğunda bu ihtiyaç kilogram başına **80 kilokaloriye** iniyor.
+
+Yani 1 kilo gelen 10 haftalık bir yavru günde yaklaşık 200 kilokaloriye ihtiyaç duyuyor. Bunun kaç grama karşılık geldiğini mamanın kalorisi belirliyor. Aşağıdaki örnek hesap yöntemi gösteriyor; sonraki bölümler bu sayının vücut kondisyonuna göre nasıl ayarlandığını, öğünlerin nasıl bölündüğünü ve yavru mamasından ne zaman çıkıldığını anlatıyor.
+
+Örnek yavru | Günlük enerji | Kuru mama (örnek 4.000 kcal/kg) | Yaş mama (örnek 1.000 kcal/kg)
+10 haftalık, 1 kg | 200 × 1 = 200 kcal | Yaklaşık 50 g | Yaklaşık 200 g
+10 aylık, 3,5 kg | 80 × 3,5 = 280 kcal | Yaklaşık 70 g | Yaklaşık 280 g
+
+Tablodaki 4.000 ve 1.000 kcal/kg değerleri yalnız hesabı göstermek için seçilmiş örneklerdir. Kendi mamanızın kalorisi paketinde yazıyorsa aynı hesabı o değerle yapabilirsiniz: günlük kalori ihtiyacı, mamanın bir kilogramındaki kaloriye bölünüp 1.000 ile çarpılınca günlük gram çıkıyor.
+
+
+## İhtiyaç ilk aylarda en yüksek, sonra düşüyor
+
+Kılavuzdaki iki sayı arasındaki fark büyük: 10 haftada kilogram başına 200, 10 ayda 80 kilokalori. Yavru küçükken vücudu hem kendini sürdürüyor hem de hızla büyüyor; büyüme yavaşladıkça kilogram başına ihtiyaç düşüyor.
+
+Bu, günlük toplam mamanın hemen azalacağı anlamına gelmiyor. Yavru büyüdükçe kilosu arttığı için toplam kalori bir süre artmaya devam edebiliyor; azalan, her kilogram için gereken kalori. Bu yüzden porsiyon bir kez belirlenip bırakılmıyor, kilo değiştikçe yeniden hesaplanıyor.
+
+
+## Paketteki tablo başlangıç, vücut kondisyonu ayar
+
+Paketlerdeki besleme tabloları ortalama bir kediye göre hazırlanıyor. AAHA ve AAFP kılavuzuna göre enerji ihtiyacı yaş, vücut ve kas kondisyonu, kısırlaştırma durumu, sağlık ve hareket düzeyine göre değişiyor; bu yüzden verilen miktar, kedinin ideal vücut kondisyonunu koruyacak ya da ona ulaştıracak şekilde ayarlanıyor.
+
+Aynı kılavuz vücut kondisyon puanının her veteriner ziyaretinde kaydedilmesini öneriyor. Dokuzluk ölçekte **6-7 fazla kilolu, 8 ve üzeri şişman** kabul ediliyor. Kılavuz ayrıca değişimi izlemek için kedinin yukarıdan ve yandan fotoğrafının çekilmesini öneriyor; evde de aynı açıdan düzenli çekilen fotoğraflar, göz alıştığı için fark edilmeyen kilo alımını ortaya çıkarıyor.
+
+YAYGIN YANILGI — "Paketteki miktar her yavruya uyar" yanılgısı: Paket tablosu ortalamaya göre yazılıyor; aynı yaştaki iki yavrunun hareketi, yapısı ve büyüme hızı farklı. Tablo başlangıç noktasıdır, doğru miktarı yavrunun kilo seyri ve vücut kondisyonu gösteriyor.
+
+
+## Küçük ve sık öğün kedinin doğasına uygun
+
+Amerikan Kedi Hekimleri Birliği (AAFP) ve Uluslararası Kedi Tıbbı Derneği’nin (ISFM) ortak kılavuzuna göre kediler tek başına avlanan hayvanlar ve doğada günde **10-20 küçük av** yiyebiliyor. Kılavuz bu yüzden mamanın birkaç küçük öğüne bölünmesini, oyuncaklı ya da bulmacalı mama kaplarıyla sık ve küçük öğünlerin desteklenmesini öneriyor.
+
+Pratikte günlük miktar sabah bir kez tartılıyor ve gün içine bölünüyor. Kuru mamanın bir kısmı evin farklı yerlerine saklanabiliyor ya da yavrunun kovalayacağı şekilde atılabiliyor; bu hem av içgüdüsünü karşılıyor hem de mamanın tek seferde hızla yenmesini önlüyor. Kılavuz oyunda el ve ayakların kullanılmamasını da ayrıca vurguluyor.
+
+
+## Sütten mamaya geçiş 3-5. haftada başlıyor
+
+AAHA ve AAFP kılavuzuna göre yavrular 3-5 haftalıkken besin açısından dengeli ticari yavru mamasına geçmeye başlayabiliyor. Kılavuz yavrunun mama tercihlerinin annesinden büyük ölçüde etkilendiğini, bu tercihlerin ileride deneyimle değişebildiğini de aktarıyor.
+
+Bu dönemde hem yaş hem kuru mamayla tanışmak ileride iki türü de kabul eden bir kedi yetiştirmeyi kolaylaştırabiliyor. İki türün farkı ve karışık beslemenin nasıl kurulduğu kediler için yaş mama mı, kuru mama mı (https://veterito.com/blog/kediler-icin-yas-mama-mi-kuru-mama-mi) yazısında anlatılıyor.
+
+
+## Yavru maması yaşam dönemine göre seçiliyor
+
+Cornell Üniversitesi Veteriner Fakültesi’nin kedi sağlığı merkezine göre kedinin besin ihtiyaçları yaşam dönemlerine göre değişiyor ve mama etiketinde, mamanın hangi yaşam dönemi için tam ve dengeli olduğu yazıyor. Yavru döneminde "yavru" ya da "büyüme" dönemi için tam ve dengeli olan bir mama seçiliyor.
+
+AAHA ve AAFP kılavuzu yavru dönemini doğumdan 1 yaşına kadar tanımlıyor. Yetişkin mamasına geçişin zamanı çoğunlukla bu yaş civarında, kedinin büyümesi ve kondisyonu değerlendirilerek belirleniyor ve geçiş 7-10 güne yayılıyor.
+
+YAYGIN YANILGI — "Yavru istediği kadar yesin, nasılsa büyüyor" yanılgısı: Büyüme, sınırsız yeme gerekçesi değildir. Kılavuzlar yavru döneminde de verilen miktarın ideal vücut kondisyonuna göre ayarlanmasını öneriyor. Yavrulukta başlayan fazla kilo, yetişkinlikte en sık görülen beslenme sorununun, yani şişmanlığın başlangıcı olabiliyor.
+
+
+## Kısırlaştırmadan sonra porsiyon yeniden hesaplanıyor
+
+AAHA ve AAFP kılavuzu kısırlaştırma durumunu enerji ihtiyacını etkileyen etkenler arasında sayıyor. Kısırlaştırma çoğunlukla yavru döneminin sonuna denk geldiği için bu dönemde porsiyonun yeniden hesaplanması ve kilonun birkaç hafta yakından izlenmesi gerekiyor. Kısırlaştırma zamanı kediler ne zaman kısırlaştırılmalı (https://veterito.com/blog/kediler-ne-zaman-kisirlastirilmali) yazısında anlatılıyor.
+
+Yavru döneminin veteriner takvimi, yani aşılar, parazit uygulaması ve kontroller yavru kedi ne zaman veterinere götürülmeli (https://veterito.com/blog/yavru-kedi-veterinere-ne-zaman-goturulmeli) yazısında bir arada. Kontroller kilonun kayda geçtiği yer olduğu için beslenme sorularını bu ziyaretlere biriktirmek işe yarıyor.
+
+UYARI: Bu içerik genel bilgidir, tıbbi tavsiye değildir. Yavrunun günlük mama miktarı, kilo seyri ve vücut kondisyonu değerlendirilerek veteriner hekimle birlikte belirlenir. İştahsızlık, kusma ya da ishal görülen yavruda beklenmeden hekime başvurulması gerekiyor.
+
+
+## Yaygın yanlışlar ve doğruları
+
+Yaygın yanlış | Doğrusu
+Her yavruya aynı gram verilir | Miktar kaloriye ve kiloya göre hesaplanıyor
+Paketteki miktar kesin doğrudur | Tablo başlangıç, ayarı vücut kondisyonu yapıyor
+Yavru istediği kadar yemeli | Miktar ideal kondisyona göre ayarlanıyor
+Günde bir büyük öğün yeterli | Küçük ve sık öğün kedinin doğasına uygun
+Kısırlaştırma sonrası mama değişmez | Enerji ihtiyacı değiştiği için yeniden hesaplanıyor
+
+## Sıkça sorulan sorular
+
+**Yavru kedi günde kaç gram mama yemeli?**
+Tek bir gram değeri yok, çünkü mamaların kalorisi farklı. 2021 AAHA ve AAFP kılavuzuna göre 10 haftalık yavru kilogram başına günde yaklaşık 200 kilokalori harcıyor. Örneğin 1 kilo gelen yavru için bu, kilogramında 4.000 kilokalori olan bir kuru mamada yaklaşık 50 grama karşılık geliyor.
+
+**Yavru kedi günde kaç öğün yemeli?**
+Günlük miktarın birkaç küçük öğüne bölünmesi öneriliyor. AAFP ve ISFM kılavuzuna göre kediler doğada günde 10-20 küçük av yiyebiliyor ve kılavuz sık, küçük öğünleri bulmacalı mama kaplarıyla desteklemeyi öneriyor. Günlük miktar sabah tartılıp gün içine bölünebiliyor.
+
+**Yavru kedi mamaya ne zaman başlar?**
+AAHA ve AAFP kılavuzuna göre yavrular 3-5 haftalıkken besin açısından dengeli ticari yavru mamasına geçmeye başlayabiliyor. Yavrunun mama tercihleri annesinden büyük ölçüde etkileniyor; bu dönemde farklı dokularla tanışmak ileride hem yaş hem kuru mamayı kabul etmesini kolaylaştırabiliyor.
+
+**Yavru kedi maması ne zamana kadar verilir?**
+AAHA ve AAFP kılavuzu yavru dönemini doğumdan 1 yaşına kadar tanımlıyor ve yetişkin mamasına geçiş çoğunlukla bu yaş civarında yapılıyor. Zaman, kedinin büyümesi ve vücut kondisyonu değerlendirilerek veteriner hekimle belirleniyor; geçiş 7-10 güne yayılıyor.
+
+**Yavru kedinin fazla yediği nasıl anlaşılır?**
+En güvenilir ölçü, veteriner hekimin her ziyarette kaydettiği vücut kondisyon puanıdır. Dokuzluk ölçekte 6-7 fazla kilolu, 8 ve üzeri şişman sayılıyor. Evde kedinin yukarıdan ve yandan düzenli fotoğrafının çekilmesi, göz alıştığı için fark edilmeyen kilo alımını görmeyi kolaylaştırıyor.
+
+**Kısırlaştırılan kedinin maması azaltılır mı?**
+Kısırlaştırma enerji ihtiyacını etkileyen etkenlerden biri olduğu için porsiyonun yeniden hesaplanması gerekiyor. AAHA ve AAFP kılavuzu verilen miktarın ideal vücut kondisyonunu koruyacak şekilde ayarlanmasını öneriyor. Ameliyattan sonraki haftalarda kilonun yakından izlenmesi, gerekli ayarın zamanında yapılmasını sağlıyor.
+
+## Kaynaklar
+
+- American Animal Hospital Association (AAHA), American Association of Feline Practitioners (AAFP) · 2021 AAHA/AAFP Feline Life Stage Guidelines · Quimby J, Gowland S, Carney HC, DePorter T, Plummer P, Westropp J · Journal of Feline Medicine and Surgery · 2021 · 23(3):211-233 · DOI: 10.1177/1098612X21993657 · https://pmc.ncbi.nlm.nih.gov/articles/PMC10812130/
+- American Association of Feline Practitioners (AAFP), International Society of Feline Medicine (ISFM) · AAFP and ISFM feline environmental needs guidelines · Ellis SL, Rodan I, Carney HC, Heath S, Rochlitz I, Shearburn LD, Sundahl E, Westropp JL · Journal of Feline Medicine and Surgery · 2013 · 15(3):219-230 · DOI: 10.1177/1098612X13477537 · https://pmc.ncbi.nlm.nih.gov/articles/PMC11383066/
+- Cornell University College of Veterinary Medicine, Cornell Feline Health Center · Feeding Your Cat · https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feeding-your-cat
+
+---
+
+# Köpek Ne Zaman Kısırlaştırılmalı?
+
+Adres: https://veterito.com/blog/kopek-ne-zaman-kisirlastirilmali
+Kategori: Köpek · Yayın: 2026-09-30
+
+Küçük ırk köpekte 5-6 ay, büyük ırkta büyüme bitince. Doğru yaşı yetişkin kilo, cinsiyet ve ırk belirliyor; erken ve geç kararın bedeli farklı.
+
+Kısırlaştırma yaşını belirleyen şey köpeğin **yetişkinlikte ulaşacağı kilodur.** Amerikan Hayvan Hastaneleri Birliği’nin (AAHA) 2019 kılavuzuna göre yetişkinde 20 kilonun altında kalacak köpeklerde erkekler 6 aylıkken, dişiler ilk kızgınlıktan önce, yani 5-6 aylıkken kısırlaştırılabilmektedir. 20 kilo ve üzerine çıkacak büyük ırklarda erkekte büyümenin bitmesi, yaklaşık 9-15 ay bekleniyor; dişide ise 5 ile 15 ay arasındaki zaman veteriner hekimle birlikte seçiliyor.
+
+Kararı iki riskin dengesi belirliyor. Dişide erken kısırlaştırma meme tümörü riskini belirgin biçimde düşürüyor; büyük ırkta ise büyüme bitmeden yapılan ameliyat eklem sorunlarıyla ilişkili bulunuyor. Aşağıdaki bölümler bu dengeyi köpeğin büyüklüğüne ve cinsiyetine göre açıyor, sonra ameliyat günü ve sonrasına geçiyor.
+
+Yetişkin kilo | Erkek | Dişi
+20 kg altı (küçük ve orta ırk) | 6 ay | İlk kızgınlıktan önce, 5-6 ay
+20 kg ve üzeri (büyük ırk) | Büyüme bitince, yaklaşık 9-15 ay | 5-15 ay arası, hekimle birlikte karar
+
+
+## Belirleyici olan yaş değil, yetişkin kilo
+
+Küçük ve büyük ırklar aynı hızda olgunlaşmıyor. AAHA kılavuzu ilk kızgınlığın ırka göre **4 aylıktan 24 aylığa kadar** uzanan geniş bir aralıkta görülebildiğini ve büyük ırklarda genellikle daha geç geldiğini belirtiyor. Bu yüzden her köpeğe aynı yaşı söylemek, bazı küçük ırklarda ilk kızgınlığı kaçırmak, bazı büyük ırklarda ise büyüme bitmeden ameliyat etmek anlamına gelebiliyor.
+
+Kılavuz sınırı 45 libre, yani yaklaşık 20 kilo olarak çiziyor. Esas alınan, yavrunun bugünkü kilosu değil yetişkinde ulaşacağı kilodur. Safkan köpekte bu tahmin ırkın standart ölçülerinden, karma ırkta ise anne babanın boyutundan ve yavrunun büyüme hızından yapılıyor; emin olunamayan durumda tahmini veteriner hekim yapıyor.
+
+
+## Dişide erken kısırlaştırmanın getirisi meme tümöründe
+
+Dişi köpekte zamanlama tartışmasının ana sebebi meme tümörüdür. AAHA kılavuzunun aktardığı verilere göre bir kızgınlık geçirdikten sonra kısırlaştırılan dişilerde meme tümörü görülme sıklığı **yüzde 8**, iki kızgınlıktan sonra **yüzde 26** olarak bildiriliyor. Kılavuz meme tümörünü, zamanlamayla önlenmeye çalışılan diğer hastalıklara göre hem daha sık görülen hem de daha ağır seyreden bir hastalık olarak tanımlıyor.
+
+İkinci başlık rahim iltihabı, yani pyometradır. İsveç Tarım Bilimleri Üniversitesi’nin 200 binden fazla sigortalı köpeğin kaydıyla yaptığı çalışmada, kısırlaştırılmamış dişilerin ortalama **yüzde 23-24’ünün 10 yaşına kadar** pyometra geçirdiği hesaplandı; bu oran ırka göre yüzde 10 ile 54 arasında değişiyor.
+
+Kısırlaştırılmamış bir dişide kızgınlıktan sonraki haftalarda halsizlik, iştahsızlık, çok su içme ya da vajinal akıntı görülürse bu, vakit kaybetmeden veteriner hekime ulaşılması gereken bir tablodur.
+
+YAYGIN YANILGI — "Dişi köpek bir kez doğurmalı" yanılgısı: Bir kez doğurmanın köpeğe sağlık açısından gösterilmiş bir getirisi yoktur. Tersine, doğum için beklenen her kızgınlık döngüsü meme tümörü riskini artırıyor. AAHA da üretim amacı olmayan bütün köpeklerin kısırlaştırılmasını öneriyor.
+
+
+## Büyük ırkta erken ameliyatın bedeli eklemlerde
+
+Kaliforniya Üniversitesi Davis Veteriner Fakültesi’nden Hart ve arkadaşlarının karma ırk köpeklerle yaptığı çalışma, yetişkinde 20 kilo ve üzerine çıkan köpeklerde **1 yaşından önce** kısırlaştırmanın kalça displazisi, ön çapraz bağ yırtığı ve dirsek displazisi gibi eklem sorunlarının riskini, kısırlaştırılmamış köpeklere göre çoğunlukla **3 kata kadar** artırdığını gösterdi. Aynı çalışmada hiçbir kilo grubunda kısırlaştırmayla ilişkili bir kanser artışı görülmedi.
+
+Aynı ekibin daha önce golden retriever, labrador retriever ve Alman çoban köpeği üzerinde yaptığı çalışmalarda da 1 yaşından önce kısırlaştırma eklem sorunlarını 2 ila 4 kat artırmıştı ve artış özellikle **6 aydan önce** yapılan ameliyatlarda belirgindi. 20 kilo altındaki gruplarda ise eklem riski için benzer bir artış çıkmadı.
+
+Bu çalışmalar bir ilişki gösteriyor, neden sonucu değil. AAHA kılavuzu bu ayrımı özellikle vurguluyor: kısırlaştırma literatürünün büyük kısmı iki durumun birlikte görüldüğünü belgeliyor ama birinin diğerine yol açtığını kanıtlamıyor. Karar bu yüzden tek bir sayıya değil, köpeğin kendi risk tablosuna bakılarak veriliyor.
+
+YAYGIN YANILGI — "Erken kısırlaştırma her köpeğe zarar verir" yanılgısı: UC Davis çalışmalarında eklem riskindeki artış büyük ırklarda ve 20 kilonun üzerindeki karma ırklarda görüldü; küçük ırkların çoğunda böyle bir artış çıkmadı. Küçük ırk bir dişide ilk kızgınlıktan önce kısırlaştırma, meme tümörü riskini düşürmenin en etkili yolu olarak öneriliyor.
+
+
+## Irk farkı genel kuralı değiştirebiliyor
+
+UC Davis’in 35 ırkı ve üç kaniş çeşidini kapsayan çalışması, kısırlaştırmaya karşı hassasiyetin ırktan ırka **büyük farklar** gösterdiğini ortaya koydu. Küçük ırklardan yalnız Boston terrier ve shih tzu’da kısırlaştırmayla ilişkili anlamlı bir kanser artışı görüldü. Araştırmacılara göre çoğu durumda eklem ya da kanser riskini artırmayan bir kısırlaştırma yaşı seçilebiliyor; bu yüzden ırk ve cinsiyete göre ayrı yaş önerileri yayımladılar.
+
+AAHA kılavuzu da bir ırkta bulunan sonucun bütün ırklara genellenmemesi gerektiğini belirtiyor. Safkan bir köpekte karar o ırka ait veriye bakılarak veriliyor; karma ırkta ise yetişkin kilo en iyi rehberdir.
+
+
+## Karar dört bilgiyle netleşiyor
+
+AAHA, özellikle yetişkinde 20 kilonun üzerine çıkacak dişilerde zamanlamanın hekimin değerlendirmesi ve sahibin ayrıntılı bilgilendirilmesiyle kişiye özel belirlenmesini öneriyor. Görüşmede masaya gelen bilgiler şunlar:
+
+- Köpeğin yetişkinde ulaşacağı tahmini kilo
+- Cinsiyeti ve dişide ilk kızgınlığın beklenen zamanı
+- Irkın bilinen riskleri: eklem sorunları ve belirli kanserler
+- İstenmeyen yavru riski: bahçeye serbest çıkıyor mu, başka köpeklerle teması var mı
+
+Küçük ırk bir dişide bu dört bilgi genellikle aynı yöne, ilk kızgınlıktan önceye işaret ediyor. Büyük ırk bir dişide ise meme tümörü ile eklem riski ters yönlere çektiği için tarih, köpeğin gelişimi izlenerek belirleniyor.
+
+
+## Kısırlaştırma kilo aldırmaz, mama miktarı aldırır
+
+Kısırlaştırmadan sonra enerji ihtiyacı düşüyor; mama miktarı aynı kalırsa kilo alımı başlıyor. AAHA kılavuzu bu riskin kısırlaştırma kararında sahibe anlatılmasını öneriyor ve ideal kilosunu ömür boyu koruyan labradorların **ortalama yüzde 15 daha uzun** yaşadığını gösteren çalışmayı aktarıyor.
+
+Ameliyattan sonraki haftalarda kilo ve vücut kondisyonu izlenerek porsiyon yeniden ayarlanıyor. Terazi olmadan evde yapılabilecek ölçüm kaburga testi yazısında (https://veterito.com/blog/kopegim-fazla-kilolu-mu) anlatılıyor.
+
+YAYGIN YANILGI — "Kısırlaştırılan köpek mutlaka şişmanlar" yanılgısı: Şişmanlatan ameliyat değil, güncellenmeyen mama miktarıdır. Enerji ihtiyacı düşen köpeğe eski porsiyon verilmeye devam edildiğinde kilo alınıyor; porsiyon ayarlanıp kilo takip edildiğinde kilo alımı kaçınılmaz değildir.
+
+
+## Ameliyat günü ve iyileşme
+
+Kısırlaştırma genel anestezi altında yapılıyor. Anestezi öncesinde klinikler çoğunlukla kan tahlili istiyor; tahlilin neyi gösterdiği evcil hayvanlarda kan tahlili yazısında (https://veterito.com/blog/evcil-hayvanlarda-kan-tahlili) anlatılıyor. Ameliyat öncesi aç kalma süresini ve aşıların güncel olup olmadığını ameliyatı yapacak hekim kontrol ediyor; aşı zamanlaması için köpek aşı takvimine (https://veterito.com/blog/kopek-asi-takvimi) bakılabilir.
+
+Ameliyattan sonra köpeğin dikişi yalamaması için koruyucu yaka ya da ameliyat giysisi kullanılıyor. Dikiş kontrolü genellikle iki hafta civarında yapılıyor ve bu sürede koşma, zıplama ve banyo sınırlanıyor. Dikiş yerinde şişlik, akıntı ya da açılma görülmesi, ameliyatı yapan hekime haber verilmesi gereken bir durumdur.
+
+UYARI: Bu içerik genel bilgidir, tıbbi tavsiye değildir. Kısırlaştırma zamanı köpeğin ırkına, yetişkin kilosuna, cinsiyetine ve sağlık durumuna göre veteriner hekim tarafından belirlenir.
+
+
+## Yaygın yanlışlar ve doğruları
+
+Yaygın yanlış | Doğrusu
+Her köpek 6 aylıkken kısırlaştırılır | Yaş yetişkin kiloya ve cinsiyete göre değişiyor
+Dişi bir kez doğurmalı | Gösterilmiş bir getirisi yok; her kızgınlık riski artırıyor
+Erken kısırlaştırma her köpeğe zararlı | Eklem riski artışı büyük ırklarda görülüyor
+Kısırlaştırılan köpek mutlaka şişmanlar | Porsiyon ayarlanırsa kaçınılmaz değil
+Çalışmalar kesin neden gösteriyor | Çoğu çalışma ilişki gösteriyor, neden sonucu değil
+
+Kısırlaştırma ömrü tek başına belirlemiyor ama kilo, hastalık riskleri ve bakım düzeniyle birlikte tabloyu değiştiriyor. Ömrü etkileyen diğer başlıklar köpekler kaç yıl yaşar (https://veterito.com/blog/kopekler-kac-yil-yasar) yazısında bir arada; kediniz de varsa aynı sorunun kedilerdeki cevabı kediler ne zaman kısırlaştırılmalı (https://veterito.com/blog/kediler-ne-zaman-kisirlastirilmali) yazısında.
+
+## Sıkça sorulan sorular
+
+**Köpekler kaç aylıkken kısırlaştırılır?**
+Yetişkinde 20 kilonun altında kalacak köpeklerde erkekler 6 aylıkken, dişiler ilk kızgınlıktan önce, 5-6 aylıkken kısırlaştırılabilmektedir. 20 kilo ve üzerine çıkacak büyük ırklarda erkekte büyümenin bitmesi, yaklaşık 9-15 ay bekleniyor; dişide 5 ile 15 ay arasındaki zaman veteriner hekimle birlikte seçiliyor.
+
+**Dişi köpek ilk kızgınlıktan önce kısırlaştırılmalı mı?**
+Küçük ırk dişilerde ilk kızgınlıktan önce kısırlaştırma öneriliyor, çünkü meme tümörü riskini en çok bu zamanlama düşürüyor. AAHA’nın aktardığı verilere göre bir kızgınlıktan sonra kısırlaştırılan dişilerde meme tümörü sıklığı yüzde 8, iki kızgınlıktan sonra yüzde 26. Büyük ırk dişilerde karar eklem riskleriyle birlikte tartılıyor.
+
+**Büyük ırk köpek ne zaman kısırlaştırılır?**
+Yetişkinde 20 kilo ve üzerine çıkacak erkek köpeklerde büyümenin bitmesi, yani yaklaşık 9-15 aylık olması bekleniyor. UC Davis çalışmalarında bu gruptaki köpeklerde 1 yaşından önce kısırlaştırmanın eklem sorunlarının riskini çoğunlukla 3 kata kadar artırdığı görüldü. Dişilerde 5-15 ay arası zaman meme tümörü riskiyle birlikte değerlendiriliyor.
+
+**Kısırlaştırılan köpek kilo alır mı?**
+Kısırlaştırmadan sonra enerji ihtiyacı düştüğü için mama miktarı aynı kalırsa kilo alımı başlıyor. Porsiyon yeniden ayarlanıp kilo ve vücut kondisyonu takip edildiğinde kilo alımı kaçınılmaz değildir. AAHA kılavuzu, ideal kilosunu koruyan labradorların ortalama yüzde 15 daha uzun yaşadığını gösteren çalışmayı aktarıyor.
+
+**Kısırlaştırılmayan dişi köpekte hangi riskler var?**
+En bilinen iki risk meme tümörü ve rahim iltihabıdır (pyometra). İsveç’teki büyük bir sigorta verisi çalışmasında kısırlaştırılmamış dişilerin ortalama yüzde 23-24’ünün 10 yaşına kadar pyometra geçirdiği hesaplandı. Her kızgınlık döngüsü meme tümörü riskini de artırıyor; istenmeyen yavru ihtimali ise ayrı bir konudur.
+
+**Kısırlaştırma sonrası iyileşme ne kadar sürer?**
+Dikiş kontrolü genellikle iki hafta civarında yapılıyor ve bu sürede koşma, zıplama ve banyo sınırlanıyor. Köpeğin dikişi yalamasını önlemek için koruyucu yaka ya da ameliyat giysisi kullanılıyor. Dikiş yerinde şişlik, akıntı ya da açılma görülürse ameliyatı yapan hekime haber verilmesi gerekiyor.
+
+## Kaynaklar
+
+- American Animal Hospital Association (AAHA) · 2019 AAHA Canine Life Stage Guidelines · Creevy KE, Grady J, Little SE, Moore GE, Strickler BG, Thompson S, Webb JA · Journal of the American Animal Hospital Association · 2019 · 55(6):267-290 · DOI: 10.5326/JAAHA-MS-6999 · https://pubmed.ncbi.nlm.nih.gov/31622127/
+- University of California, Davis, School of Veterinary Medicine · Assisting Decision-Making on Age of Neutering for 35 Breeds of Dogs: Associated Joint Disorders, Cancers, and Urinary Incontinence · Hart BL, Hart LA, Thigpen AP, Willits NH · Frontiers in Veterinary Science · 2020 · 7:388 · DOI: 10.3389/fvets.2020.00388 · https://pubmed.ncbi.nlm.nih.gov/32733924/
+- University of California, Davis, School of Veterinary Medicine · Assisting Decision-Making on Age of Neutering for Mixed Breed Dogs of Five Weight Categories: Associated Joint Disorders and Cancers · Hart BL, Hart LA, Thigpen AP, Willits NH · Frontiers in Veterinary Science · 2020 · 7:472 · DOI: 10.3389/fvets.2020.00472 · https://pubmed.ncbi.nlm.nih.gov/32851043/
+- Swedish University of Agricultural Sciences (SLU) · Breed risk of pyometra in insured dogs in Sweden · Egenvall A, Hagman R, Bonnett BN, Hedhammar A, Olson P, Lagerstedt AS · Journal of Veterinary Internal Medicine · 2001 · 15(6):530-538 · DOI: 10.1892/0891-6640(2001)015<0530:bropii>2.3.co;2 · https://pubmed.ncbi.nlm.nih.gov/11817057/
+
+---
+
+# Köpeklere İç ve Dış Parazit Ne Zaman Yapılır?
+
+Adres: https://veterito.com/blog/kopeklerde-ic-ve-dis-parazit
+Kategori: Sağlık · Yayın: 2026-09-30
+
+Yavru köpekte program 2 haftalıkken başlıyor; yetişkinde sıklığı yaşam biçimi belirliyor. Evde yaşayan, dışarı çıkan ve sakatat yiyen köpeğin takvimi aynı değil.
+
+Yavru köpekte iç parazit uygulaması **2 haftalıkken** başlıyor ve sütten kesildikten 2 hafta sonrasına kadar 2 haftada bir tekrarlanıyor; enfeksiyon riski sürüyorsa 6 aylığa kadar ayda bir devam ediyor. Yetişkin köpekte sıklığı yaşam biçimi belirliyor: Avrupa Evcil Hayvan Parazitleri Bilim Konseyi’nin (ESCCAP) 2025 kılavuzuna göre yalnız ev içinde yaşayan köpekte yılda 1-2 kez, düzenli dışarı çıkıp başka köpeklerle karşılaşan köpekte yılda 4 kez, avlanan ya da çiğ et, sakatat yiyen köpekte ayda bire kadar. Risk belirlenemiyorsa en az yılda 4 kez öneriliyor.
+
+Dış parazitte takvim mevsime değil eve bakıyor: pire yıl boyu görülebildiği için çoğu evde koruma kesintisiz sürüyor, kene mevsiminde ise korumanın arası açılmıyor. Aşağıdaki tablo kendi köpeğinizin satırını bulmanız için; sonraki bölümler her satırın nedenini ve Türkiye’de özellikle önemli olan sakatat konusunu açıyor.
+
+Köpeğin durumu | İç parazit sıklığı (ESCCAP 2025)
+Yavru, 2 haftalıktan itibaren | 2 haftada bir, sütten kesildikten 2 hafta sonrasına kadar; risk sürüyorsa 6 aya kadar ayda bir
+Yalnız ev içinde, başka köpekle teması yok | Yılda 1-2 kez
+Düzenli dışarı çıkıyor, başka köpeklerle karşılaşıyor | Yılda 4 kez
+Avlanıyor, çiğ et, sakatat ya da salyangoz yiyor | Yılda 4-12 kez; şeride karşı ayda bire kadar
+Evde 5-6 yaşından küçük çocuk ya da bağışıklığı zayıf biri var | Ayda bir ya da ayda bir dışkı incelemesi
+Risk belirlenemiyor | En az yılda 4 kez
+
+
+## Yavru köpekte program ikinci haftada başlıyor
+
+Yavru köpek, dış dünyayla hiç karşılaşmadan da parazitli olabiliyor. ESCCAP’a göre gebe dişi, köpeklerin yuvarlak solucanı Toxocara canis’in larvalarını doğumdan önce yavruya, doğumdan sonra da sütle aktarabiliyor. Bu yüzden ilk uygulama 14. günde yapılıyor ve anne de yavrularla birlikte tedavi ediliyor.
+
+Sütten kesme döneminden sonra da risk sürüyorsa, örneğin yavru başka yavrularla aynı ortamda oynuyorsa, uygulama 6 aylığa kadar ayda bir tekrarlanıyor. Bu dönem aşı programıyla çakıştığı için ikisi çoğunlukla aynı ziyarette planlanıyor; aşıların sırası köpek aşı takvimi (https://veterito.com/blog/kopek-asi-takvimi) yazısında.
+
+
+## Yetişkin köpekte sıklığı yaşam biçimi belirliyor
+
+ESCCAP yetişkin köpekleri parazitle karşılaşma ihtimaline göre gruplara ayırıyor. Belirleyici olan köpeğin kendisi değil, gün içinde neye dokunduğu ve ne yediği: parkta başka köpeklerin dışkısıyla kirlenmiş toprak, avladığı kemirgen, bahçede yediği salyangoz ya da kendisine verilen çiğ et.
+
+- Yalnız ev içinde yaşayan, parka ve bahçeye çıkmayan, başka köpekle teması olmayan köpek en düşük risk grubunda
+- Düzenli dışarı çıkan, sahipsiz dolaşabilen ve başka köpeklerle karşılaşan köpek orta risk grubunda
+- Avlanan, leş ya da sakatat yiyen, çiğ etle beslenen köpek en yüksek risk grubunda
+- Salyangoz ve sümüklüböcek yeme eğilimi, akciğer kurdu riski nedeniyle aralığı ayrıca kısaltıyor
+
+Aynı kılavuz ilaç yerine dışkı incelemesini de geçerli bir yol olarak kabul ediyor: önerilen sıklıkta dışkı bakılıp sonuca göre tedavi edilebiliyor. Şerit için ise dışkı testinin güvenilirliği düşük olduğundan tedavi çoğunlukla takvimle sürdürülüyor.
+
+YAYGIN YANILGI — "Parazit görmüyorsam köpeğimde parazit yoktur" yanılgısı: Bağırsak parazitlerinin çoğu dışkıda gözle görülmüyor; görülenler genellikle şerit halkaları oluyor ve onlar da her zaman çıkmıyor. Belirti beklemek, bulaşın uzun süre fark edilmemesi demektir. ESCCAP programı belirtiye değil riske göre kuruyor.
+
+
+## Evde küçük çocuk varsa aralık kısalıyor
+
+Köpeklerin yuvarlak solucanı insana da geçebiliyor ve bulaş çoğunlukla kirlenmiş toprak, kum ya da ellerle oluyor. ESCCAP bu nedenle evde **5-6 yaşından küçük çocuk**, bağışıklığı baskılanmış ya da yaşlı biri varsa ayda bir parazit uygulaması ya da ayda bir dışkı incelemesi öneriyor.
+
+- Köpeğin dışkısı bahçede ve parkta hemen toplanıyor
+- Çocukların oynadığı kum havuzu kullanılmadığında kapalı tutuluyor
+- Köpekle oynadıktan sonra, özellikle yemekten önce eller yıkanıyor
+- Yeni gelen yavru, evdeki diğer hayvanlarla karışmadan önce kontrol ediliyor
+
+
+## Sakatat ve av, Türkiye’de şerit riskini büyütüyor
+
+Kist hidatik hastalığına yol açan köpek şeridi Echinococcus granulosus, köpek ile koyun arasında dolaşan bir döngüye sahip: köpek, parazitli organı yiyerek şerit kapıyor, dışkısıyla attığı yumurtalar da insana ve hayvanlara geçiyor. Ege Üniversitesi’nden Altıntaş’ın derlemesine göre hastalık Türkiye’nin her yerinde görülüyor; köpeklerde yaygınlık bölgeye göre yüzde 0,32 ile 40 arasında değişiyor ve Sağlık Bakanlığı kayıtlarında 1987-1994 arasında yılda ortalama yaklaşık 2663 kişi kist hidatik nedeniyle ameliyat edilmiş.
+
+ESCCAP bu şeridin görüldüğü bölgelerde sakatata ya da hayvan leşine erişimi olan köpeklerin **en az 6 haftada bir** bu parazite etkili bir ürünle tedavi edilmesini, beslenmenin ise hazır mama ya da pişmiş yemekle yapılmasını öneriyor. Kesim dönemlerinde, örneğin kurban bayramında, çiğ sakatatın köpeğe verilmemesi bu yüzden önemlidir.
+
+YAYGIN YANILGI — "Sakatat köpeğin doğal besinidir, zararı olmaz" yanılgısı: Çiğ sakatat, kist hidatik şeridinin köpeğe geçtiği başlıca yoldur. Köpek bu şeritle genellikle hasta görünmüyor ama yumurtaları çevreye ve insana yayabiliyor. Pişirilmiş ya da hazır mama tercih edildiğinde bu yol kapanıyor.
+
+
+## Pire yıl boyu, kene mevsimle ama kesintisiz
+
+ESCCAP’ın dış parazit kılavuzuna göre pire yaz ve sonbaharda artıyor ama yılın her döneminde görülebiliyor; bu nedenle yıl boyu koruma gerekebiliyor. Koruma başarısızlığının en sık iki nedeni evdeki bütün hayvanların aynı anda tedavi edilmemesi ve ürünün talimata uygun uygulanmamasıdır.
+
+Keneler sıcak iklimlerde ilkbahar ve yazın yoğunlaşıyor ama yıl boyu beslenebiliyor. Kene, köpeklerde babesiozis ve ehrlichiozis gibi kan parazitlerini taşıdığı için kene mevsiminde korumanın arası açılmıyor. Köpekte kene bulunduğunda ESCCAP, mevsimin geri kalanında o köpek ve birlikte yaşadığı bütün hayvanlar için korumanın sürdürülmesini öneriyor.
+
+Kalp kurdunun görüldüğü bölgelerde aynı kılavuz sivrisinek mevsimi boyunca aylık koruyucu ya da uzun etkili enjeksiyon öneriyor. Yaşadığınız bölgenin durumunu veteriner hekim biliyor; tatil için başka bir bölgeye gidilecekse programın buna göre güncellenmesi gerekiyor.
+
+YAYGIN YANILGI — "Kışın parazit ilacına gerek yok" yanılgısı: Isıtılan evlerde pire yıl boyu yaşayabiliyor ve keneler sıcak iklimlerde kışın da beslenebiliyor. Kışın korumayı bırakmak, baharda sorunun büyümüş olarak geri gelmesi demektir. Program mevsime göre değil, köpeğin ortamına göre kuruluyor.
+
+
+## Ürünler aynı şeyi kapsamıyor, kedili evde dikkat
+
+Damla, tablet ve tasma farklı etken maddeler taşıyor ve her biri farklı parazitleri kapsıyor. Bir ürünün pireye etkili olması keneye ya da iç parazite de etkili olduğu anlamına gelmiyor. Bu yüzden "parazit yapıldı" bilgisi tek başına yetmiyor; hangi ürünün hangi tarihte uygulandığı kayıt altında tutuluyor.
+
+ESCCAP, köpekler için onaylı bazı sentetik piretroit içeren ürünlerin kediler için zehirli olabileceğini ve kedi ile köpeğin birlikte yaşadığı evlerde bu ürünlerden kaçınılmasını ya da etiketine uygun dikkatle kullanılmasını belirtiyor. Kedinin programı ayrıca kuruluyor; ayrıntılar kedilerde iç ve dış parazit (https://veterito.com/blog/kedilerde-ic-ve-dis-parazit) yazısında.
+
+UYARI: Bu içerik genel bilgidir, tıbbi tavsiye değildir. Parazit ürünü ve uygulama aralığı, köpeği gören veteriner hekim tarafından yaşam biçimine ve bölgeye göre belirlenir. Köpek için üretilmiş dış parazit ürünleri kedilere uygulanmaz.
+
+
+## Yaygın yanlışlar ve doğruları
+
+Yaygın yanlış | Doğrusu
+Her köpeğe yılda bir kez yeter | Sıklık yaşam biçimine göre yılda 1 ile 12 arasında değişiyor
+Yavruya parazit aşılardan sonra başlar | İlk uygulama 14. günde yapılıyor
+Kışın dış parazite gerek yok | Pire yıl boyu görülebiliyor, kene kışın da beslenebiliyor
+Sakatat köpeğe zarar vermez | Çiğ sakatat kist hidatik şeridinin başlıca bulaş yolu
+Köpeğin ürünü kediye de olur | Bazı köpek ürünleri kediler için zehirli
+
+Dışkı incelemesi yıllık kontrolün doğal bir parçası; hangi yaşta hangi kontrollerin öne çıktığı check-up ne zaman yapılmalı (https://veterito.com/blog/kedi-kopek-check-up-ne-zaman) yazısında anlatılıyor.
+
+## Sıkça sorulan sorular
+
+**Köpeklere iç parazit kaç ayda bir yapılır?**
+Sıklığı köpeğin yaşam biçimi belirliyor. ESCCAP’ın 2025 kılavuzuna göre yalnız ev içinde yaşayan köpekte yılda 1-2 kez, düzenli dışarı çıkıp başka köpeklerle karşılaşan köpekte yılda 4 kez, avlanan ya da çiğ et yiyen köpekte ayda bire kadar uygulanıyor. Risk belirlenemiyorsa en az yılda 4 kez öneriliyor.
+
+**Yavru köpeğe ilk iç parazit ne zaman yapılır?**
+İlk uygulama yavru 14 günlükken yapılıyor ve sütten kesildikten 2 hafta sonrasına kadar 2 haftada bir tekrarlanıyor. Enfeksiyon riski sürüyorsa 6 aylığa kadar ayda bir devam ediliyor. Yuvarlak solucan anneden yavruya doğumdan önce ve sütle geçebildiği için anne de aynı dönemde tedavi ediliyor.
+
+**Köpeklere dış parazit kışın da yapılır mı?**
+Çoğu evde evet. ESCCAP’a göre pire yılın her döneminde görülebiliyor ve ısıtılan evlerde yıl boyu yaşayabiliyor; keneler de sıcak iklimlerde kışın beslenebiliyor. Bu yüzden koruma çoğunlukla yıl boyu sürüyor, kene mevsiminde ise arası kesinlikle açılmıyor.
+
+**Evde çocuk varsa köpeğe ne sıklıkla parazit yapılmalı?**
+ESCCAP, evde 5-6 yaşından küçük çocuk, bağışıklığı baskılanmış ya da yaşlı biri varsa ayda bir parazit uygulaması ya da ayda bir dışkı incelemesi öneriyor. Köpeklerin yuvarlak solucanı insana kirlenmiş toprak ve kum yoluyla geçebildiği için bu evlerde aralık kısalıyor; dışkının hemen toplanması da önemli.
+
+**Köpeğe çiğ sakatat verilir mi?**
+Verilmemesi öneriliyor. Çiğ sakatat, kist hidatik hastalığına yol açan köpek şeridinin başlıca bulaş yolu ve bu hastalık Türkiye’nin her bölgesinde görülüyor. ESCCAP beslenmenin hazır mama ya da pişmiş yemekle yapılmasını, sakatata erişimi olan köpeklerin ise en az 6 haftada bir tedavi edilmesini öneriyor.
+
+**Köpeğimin pire ilacını kediye kullanabilir miyim?**
+Hayır. ESCCAP’a göre köpekler için onaylı bazı sentetik piretroit içeren dış parazit ürünleri kediler için zehirli olabiliyor. Kedi ile köpeğin birlikte yaşadığı evlerde bu ürünlerden kaçınılması ya da etiketine uygun dikkatle kullanılması gerekiyor; her hayvana kendi türü için üretilmiş ürün uygulanıyor.
+
+## Kaynaklar
+
+- European Scientific Counsel Companion Animal Parasites (ESCCAP) · Worm Control in Dogs and Cats. ESCCAP Guideline 01, Seventh Edition · 2025 · https://www.esccap.org/uploads/docs/ag51r456_0778_ESCCAP_GL1__English_2026_v23.pdf
+- European Scientific Counsel Companion Animal Parasites (ESCCAP) · Control of Ectoparasites in Dogs and Cats. ESCCAP Guideline 03, Seventh Edition · 2022 · https://www.esccap.org/uploads/docs/cgqtqpf1_0720_ESCCAP_GL3__English_v19_1p.pdf
+- Ege Üniversitesi Tıp Fakültesi, Parazitoloji Anabilim Dalı · Past to present: echinococcosis in Turkey · Altintas N · Acta Tropica · 2003 · 85(2):105-112 · DOI: 10.1016/s0001-706x(02)00213-9 · https://pubmed.ncbi.nlm.nih.gov/12606087/
+
+---
+
+# Yavru Kedi Ne Zaman Veterinere Götürülmeli?
+
+Adres: https://veterito.com/blog/yavru-kedi-veterinere-ne-zaman-goturulmeli
+Kategori: Kedi · Yayın: 2026-09-30
+
+İlk muayene yavru eve gelir gelmez yapılıyor; aşılar 6-8 haftada başlayıp 16 haftaya kadar sürüyor. İlk yılın bütün ziyaretleri ve beklenmeyecek belirtiler.
+
+Yavru kedinin ilk veteriner ziyareti, **eve geldikten sonra en kısa sürede** yapılıyor; kaç haftalık olduğu bunu değiştirmiyor. Kedi 6-8 haftalıksa bu ziyaret aşı programının da başlangıcı oluyor: Dünya Küçük Hayvan Veteriner Birliği’nin (WSAVA) 2024 kılavuzuna göre temel aşılar 6-8 haftada başlıyor, 16 haftalık olana kadar 2-4 haftada bir tekrarlanıyor ve 26. haftada ya da sonrasında bir doz daha yapılıyor.
+
+Yani yavru kedi ilk yılında çoğunlukla dört ile altı kez veteriner hekim görüyor. Aşağıda her ziyaretin ne için yapıldığı, evde başka kedi varsa neyin ertelenmediği ve aşı günü beklenmeden hekime ulaşılması gereken belirtiler var.
+
+Zaman | Ziyaretin konusu
+Eve geldiği ilk günler | İlk muayene, parazit, FeLV ve FIV testi, beslenme ve davranış
+6-8 hafta | İlk temel aşı (panlökopeni, herpes, kalisi)
+16 haftaya kadar, 2-4 haftada bir | Temel aşı tekrarları, parazit uygulamasıyla birlikte
+8 haftadan itibaren | Risk varsa FeLV aşısı: 3-4 hafta arayla iki doz
+26 hafta ve sonrası (yaklaşık 6 ay) | Temel aşı tekrar dozu, kısırlaştırma görüşmesi
+1 yaş | Yıllık kontrol; bundan sonra en az yılda bir
+
+
+## İlk muayene aşı yaşını beklemiyor
+
+İlk ziyaretin amacı aşıdan önce yavrunun kendisini tanımak. AAHA ve Amerikan Kedi Hekimleri Birliği’nin (AAFP) 2021 kılavuzuna göre yavru kedi muayenesi özellikle doğuştan gelen sorunlara odaklanıyor: kalpte üfürüm, fıtık ve damak yarığı aranıyor, dişlenme ayrıntılı kontrol ediliyor.
+
+Aynı kılavuz hekimin yavrunun geçmişini sormasını öneriyor: nereden geldiği, akraba kedilerin sağlık durumu, üst solunum yolu ya da parazit belirtisi olup olmadığı, ne zaman sütten kesildiği ve nasıl beslendiği. Bu yüzden ilk ziyarete, yavruyu aldığınız yerden öğrenebildiğiniz her bilgiyle gitmek muayeneyi kısaltıyor.
+
+YAYGIN YANILGI — "Yavruyu aşı yaşına gelince götürürüm" yanılgısı: Aşı yaşı ilk ziyaretin tarihini belirlemiyor. Parazit, doğuştan gelen sorunlar ve bulaşıcı hastalık testi yavru eve gelir gelmez önemli; evde başka kedi varsa daha da önemli. 4 haftalık bir yavru da aşısız olarak muayene edilebiliyor.
+
+
+## Aşı takvimi annenin bıraktığı korumaya göre kuruluyor
+
+Yavru, anneden aldığı antikorlarla doğuyor ve bu antikorlar hem hastalığa karşı koruyor hem de aşının işe yaramasını engelliyor. WSAVA’ya göre bu koruma çoğu yavruda 8-12. haftalarda aşıya izin verecek düzeye iniyor, ama bazılarında 12. haftayı geçiyor. Hangi yavruda ne zaman indiği bilinmediği için aşı tek doz değil, 16. haftayı geçene kadar tekrarlanan bir dizi olarak yapılıyor.
+
+Aynı nedenle 26. haftadaki doz eski "bir yıl sonra rapel" alışkanlığının yerini alıyor: WSAVA, 16. haftada hâlâ anne antikoru taşıyan az sayıdaki yavrunun korunmasız kaldığı süreyi kısaltmak için bu dozu 12-16 aylığa bırakmak yerine 6 aylıkken öneriyor. Aşıların içeriği ve sırası kedi aşı takvimi (https://veterito.com/blog/kedi-asi-takvimi) yazısında ayrıntılı.
+
+
+## FeLV ve FIV testi evde başka kedi varsa ertelenmiyor
+
+AAFP’nin 2020 retrovirüs kılavuzuna göre kediler, sahiplenildikten sonra en kısa sürede kedi lösemisi virüsü (FeLV) ve kedi bağışıklık yetmezliği virüsü (FIV) için test ediliyor. FeLV’e en açık yaş grubu yavrular: yaşla birlikte direnç artıyor, yavrularda ise kalıcı enfeksiyon riski en yüksek. Evde başka kedi varsa yeni gelen yavru, test sonucu çıkana kadar diğerlerinden ayrı tutuluyor.
+
+Test tek seferde kesin sonuç vermeyebiliyor. Yakın zamanda bulaş olduysa virüs ya da antikor henüz ölçülebilir düzeye çıkmamış olabiliyor; bu durumda kılavuz en erken 60 gün sonra tekrar test öneriyor. FeLV aşısı yapılacaksa önce test ediliyor, aşı 8 haftadan itibaren 3-4 hafta arayla iki doz olarak uygulanıyor.
+
+YAYGIN YANILGI — "FIV testi pozitif çıkan yavru kesin taşıyıcıdır" yanılgısı: Yavru kedide FIV testi, virüsün kendisini değil antikoru arıyor ve anneden geçen antikorlar testi pozitif gösterebiliyor. AAFP’ye göre bu yavruların çoğu, anne antikorları kaybolduğunda negatife dönüyor; 6 aylıktan sonra hâlâ pozitif çıkan yavrunun gerçekten enfekte olma ihtimali yüksek.
+
+
+## Parazit programı ilk ziyarette başlıyor
+
+Yuvarlak solucan anneden yavruya sütle geçebildiği için yavru kedi, dışarıyla hiç karşılaşmadan da parazitli olabiliyor. AAHA ve AAFP kılavuzu hiç dışarı çıkmayan kedilerin de parazit açısından gerçek bir risk taşıdığını vurguluyor ve dışkı incelemesinin kedinin yaşam biçimine göre düzenli yapılmasını öneriyor.
+
+Parazit uygulaması aşı ziyaretleriyle aynı günlere denk getirilebiliyor. Yavruda ve yetişkinde sıklığın nasıl belirlendiği kedilerde iç ve dış parazit (https://veterito.com/blog/kedilerde-ic-ve-dis-parazit) yazısında anlatılıyor.
+
+
+## Bu belirtilerde aşı günü beklenmiyor
+
+Aşı dizisi tamamlanmamış yavru, en ağır yavru hastalıklarından biri olan panlökopeniye (kedi parvovirüsü) karşı henüz tam korunmuş sayılmıyor. Cornell Üniversitesi Veteriner Fakültesi’nin kedi sağlığı merkezine göre hastalanan kediler çoğunlukla bir yaşından küçük ve şu belirtiler görülüyor:
+
+- İshal ve kusma
+- Ateş, halsizlik ve iştahsızlık
+- Susuzluk: çökük gözler, kuru diş etleri
+- Karında ağrı
+- Ani ölüm, en çok 5 aylıktan küçük yavrularda
+
+Bu belirtilerden biri görülen yavru, bir sonraki aşı gününü beklemeden, vakit kaybetmeden veteriner hekime ulaşılması gereken bir tablodadır. Yavrular kilo ve sıvı kaybını yetişkinler kadar tolere edemiyor; yetişkinde bir gün beklenebilecek iştahsızlık yavruda beklenmiyor. Yetişkin kedide iştahsızlığın ne zaman acil olduğu kedim yemek yemiyor (https://veterito.com/blog/kedim-yemek-yemiyor) yazısında.
+
+YAYGIN YANILGI — "Ev kedisi dışarı çıkmıyorsa aşıya gerek yok" yanılgısı: Cornell’e göre panlökopeni virüsü çevrede o kadar yaygın ki kedilerin neredeyse tamamı hayatının bir döneminde onunla karşılaşıyor. Virüs uygun dezenfeksiyon yapılmazsa ev içinde aylarca, bir yıla kadar canlı kalabiliyor ve ayakkabıyla, eşyayla taşınabiliyor. Dışarı çıkmayan kedi de temel aşılara ihtiyaç duyuyor.
+
+
+## Kısırlaştırma ve kimlik ilk yılın gündeminde
+
+AAHA ve AAFP kılavuzu kısırlaştırma, mikroçip ve kimlik gibi konuların ilk görüşmelerde bir kez ele alınmasını öneriyor. Kısırlaştırma zamanı 26. hafta dozu civarında netleşiyor; ayrıntılar kediler ne zaman kısırlaştırılmalı (https://veterito.com/blog/kediler-ne-zaman-kisirlastirilmali) yazısında, mikroçipin ne işe yaradığı ise mikroçip nedir (https://veterito.com/blog/mikrocip-nedir) yazısında.
+
+
+## Veteriner ziyaretini kolaylaştıran alışkanlıklar bu dönemde kazanılıyor
+
+Kediyi ömür boyu veteriner hekime götürmenin kolay ya da zor olması büyük ölçüde yavruluk döneminde belirleniyor. AAHA ve AAFP kılavuzu bu dönemde şunların alıştırılmasını öneriyor:
+
+- Taşıma çantası evde açık duruyor, yavru içine kendi isteğiyle girip çıkıyor
+- Kısa araba yolculukları ziyaret günü dışında da yapılıyor
+- Tüy tarama, tırnak kesme ve ağız çevresine dokunma günlük oyuna katılıyor
+- Yavru farklı insanlar ve evdeki diğer hayvanlarla sakin ortamda tanıştırılıyor
+- Oyunda el ve ayak oyuncak olarak kullanılmıyor; bu alışkanlık ileride tırmalama ve ısırmaya dönüşebiliyor
+
+Kılavuza göre kedilerde birbiriyle oyun 12. hafta civarında zirve yapıyor ve yavru bu dönemde sert tutulursa ömür boyu sürebilecek korkular geliştirebiliyor. Muayene masasında sakin kalabilen bir kedi, ileride hem daha kolay muayene ediliyor hem de hastalık belirtileri daha erken fark ediliyor.
+
+UYARI: Bu içerik genel bilgidir, tıbbi tavsiye değildir. Aşı, test ve parazit programı yavruyu gören veteriner hekim tarafından yaşına, geçmişine ve evdeki diğer hayvanlara göre belirlenir.
+
+
+## Yaygın yanlışlar ve doğruları
+
+Yaygın yanlış | Doğrusu
+İlk ziyaret aşı yaşında yapılır | İlk ziyaret yavru eve gelir gelmez yapılıyor
+Tek doz aşı yeterli | Dizi 16. haftayı geçene kadar sürüyor, 26. haftada bir doz daha
+Ev kedisine aşı gerekmez | Panlökopeni virüsü eve ayakkabıyla girebiliyor
+FIV pozitif yavru kesin taşıyıcı | Anne antikoru testi yanıltabiliyor, 6 aydan sonra tekrar bakılıyor
+Yavru bir gün yemese de olur | Yavruda iştahsızlık beklenmiyor
+
+## Sıkça sorulan sorular
+
+**Yavru kedi ilk kez ne zaman veterinere götürülür?**
+Yavru kedi eve geldikten sonra en kısa sürede, kaç haftalık olduğundan bağımsız olarak ilk muayeneye götürülüyor. Bu ziyarette doğuştan gelen sorunlara bakılıyor, parazit programı başlıyor ve FeLV ile FIV testi yapılıyor. Yavru 6-8 haftalıksa ilk temel aşı da aynı ziyarette yapılabiliyor.
+
+**Yavru kedi aşıları kaç haftalıkken başlar?**
+WSAVA’nın 2024 kılavuzuna göre temel aşılar 6-8 haftalıkken başlıyor ve 16 haftalık olana kadar 2-4 haftada bir tekrarlanıyor. 26. haftada ya da sonrasında bir doz daha yapılıyor. Anneden geçen antikorlar aşının etkisini engellediği için tek doz yeterli olmuyor.
+
+**Yavru kedi ilk yılında kaç kez veterinere gider?**
+Çoğunlukla dört ile altı kez. İlk muayene, 16. haftaya kadar 2-4 haftada bir yapılan aşı ziyaretleri, 26. haftadaki tekrar dozu ve bir yaş kontrolü bu sayıyı oluşturuyor. Parazit uygulaması ve kısırlaştırma görüşmesi genellikle bu ziyaretlerle aynı günlere denk getiriliyor.
+
+**Sokaktan alınan yavru kedi ne zaman veterinere götürülmeli?**
+Eve alındıktan sonra en kısa sürede ve evde başka kedi varsa onlarla karışmadan önce. Sokaktan gelen yavruda parazit ve bulaşıcı hastalık ihtimali yüksek; AAFP yeni gelen kedinin FeLV ve FIV için test edilmesini ve sonuç çıkana kadar diğer kedilerden ayrı tutulmasını öneriyor.
+
+**Yavru kedide FeLV ve FIV testi ne zaman yapılır?**
+Sahiplenildikten sonra en kısa sürede yapılıyor. Yakın zamanda bulaş olduysa test henüz pozitife dönmemiş olabileceği için en erken 60 gün sonra tekrar önerilebiliyor. Yavrularda FIV testi anneden geçen antikorlar nedeniyle yanıltıcı olabiliyor; 6 aylıktan sonra hâlâ pozitif çıkan yavrunun enfekte olma ihtimali yüksek.
+
+**Aşısı tamamlanmayan yavru kedi dışarı çıkabilir mi?**
+Aşı dizisi tamamlanana kadar yavru panlökopeni gibi ağır hastalıklara karşı tam korunmuş sayılmıyor. Bu dönemde aşı durumu bilinmeyen kedilerle temasın ve dış ortamın sınırlanması öneriliyor. Virüs ayakkabı ve eşyayla da taşınabildiği için eve girişte temizliğe dikkat ediliyor.
+
+## Kaynaklar
+
+- World Small Animal Veterinary Association (WSAVA), Vaccination Guidelines Group · 2024 guidelines for the vaccination of dogs and cats - compiled by the Vaccination Guidelines Group (VGG) of the World Small Animal Veterinary Association (WSAVA) · Squires RA, Crawford C, Marcondes M, Whitley N · Journal of Small Animal Practice · 2024 · 65(5):277-316 · DOI: 10.1111/jsap.13718 · https://wsava.org/wp-content/uploads/2024/04/WSAVA-Vaccination-guidelines-2024.pdf
+- American Animal Hospital Association (AAHA), American Association of Feline Practitioners (AAFP) · 2021 AAHA/AAFP Feline Life Stage Guidelines · Quimby J, Gowland S, Carney HC, DePorter T, Plummer P, Westropp J · Journal of Feline Medicine and Surgery · 2021 · 23(3):211-233 · DOI: 10.1177/1098612X21993657 · https://pmc.ncbi.nlm.nih.gov/articles/PMC10812130/
+- American Association of Feline Practitioners (AAFP) · 2020 AAFP Feline Retrovirus Testing and Management Guidelines · Little S, Levy J, Hartmann K, Hofmann-Lehmann R, Hosie M, Olah G, Denis KS · Journal of Feline Medicine and Surgery · 2020 · 22(1):5-30 · DOI: 10.1177/1098612X19895940 · https://pmc.ncbi.nlm.nih.gov/articles/PMC11135720/
+- Cornell University College of Veterinary Medicine, Cornell Feline Health Center · Feline Panleukopenia Virus · https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-panleukopenia-virus
+
+---
+
+# Yavru Köpek Ne Zaman Veterinere Götürülmeli?
+
+Adres: https://veterito.com/blog/yavru-kopek-veterinere-ne-zaman-goturulmeli
+Kategori: Köpek · Yayın: 2026-09-30
+
+İlk muayene yavru eve gelir gelmez; sonra aşı dizisi boyunca 3-4 haftada bir. Parvovirüs riski ile sosyalleşme ihtiyacı arasındaki denge ve ilk yılın takvimi.
+
+Yavru köpeğin ilk veteriner ziyareti **eve geldikten sonra en kısa sürede** yapılıyor. Sonrasında Amerikan Hayvan Hastaneleri Birliği’nin (AAHA) 2019 kılavuzuna göre yavru dönemi boyunca kontroller **3-4 haftada bir** sürüyor. Dünya Küçük Hayvan Veteriner Birliği’ne (WSAVA) göre temel aşılar 6-8 haftada başlıyor, 16 haftalık olana kadar 2-4 haftada bir tekrarlanıyor ve 26. haftada ya da sonrasında bir doz daha yapılıyor.
+
+Yavru köpekte bu takvimi en çok iki şey belirliyor: aşı dizisi tamamlanana kadar süren parvovirüs riski ve aynı haftalara denk gelen sosyalleşme dönemi. İkisi birbirine ters yönde çekiyor; yazının ortasındaki bölüm bu dengenin nasıl kurulduğunu anlatıyor.
+
+Zaman | Ziyaretin konusu
+Eve geldiği ilk günler | İlk muayene, parazit, beslenme, süt dişleri, davranış
+6-8 hafta | İlk temel aşı: gençlik hastalığı, adenovirüs, parvovirüs
+16 haftaya kadar, 2-4 haftada bir | Temel aşı tekrarları; kontroller 3-4 haftada bir
+26 hafta ve sonrası (yaklaşık 6 ay) | Temel aşı tekrar dozu, kısırlaştırma zamanlaması
+6-9 ay (ırka göre) | Hızlı büyüme bitiyor, 6-12 ayda bir kontrole geçiliyor
+
+
+## Yavru dönemi büyüme bitene kadar sürüyor
+
+AAHA kılavuzu yavru dönemini doğumdan hızlı büyümenin bittiği zamana kadar tanımlıyor; bu da ırka ve büyüklüğe göre yaklaşık 6 ile 9 ay arası. Küçük ırk bir köpek yavru dönemini daha erken bitirirken büyük ırk bir köpek daha uzun süre yavru takvimiyle izleniyor. Kılavuz bu dönemde ziyaret sıklığını 3-4 haftada bir, sonraki yetişkinlik dönemlerinde 6-12 ayda bir olarak veriyor.
+
+İlk muayenede hekim yavrunun genel durumunun yanında AAHA’nın saydığı konulara bakıyor: süt dişlerinin durumu ve çene kapanışı, parazit programı, beslenme ve davranış. Kılavuz çiğ et ile beslemenin risklerinin de bu dönemde konuşulmasını öneriyor.
+
+
+## Aşı dizisi 16. haftayı geçene kadar sürüyor
+
+Yavru, anneden aldığı antikorlarla doğuyor ve bu antikorlar hem koruyor hem de aşının etkisini engelliyor. WSAVA’ya göre bu koruma çoğu yavruda 8-12. haftalarda aşıya izin verecek düzeye iniyor, ama bazılarında daha uzun sürüyor. Hangi yavruda ne zaman indiği bilinmediği için temel aşılar tek doz değil, 16. haftayı geçene kadar tekrarlanan bir dizi olarak yapılıyor.
+
+26. haftadaki doz, eski "bir yıl sonra rapel" alışkanlığının yerini alıyor: WSAVA, 16. haftada hâlâ anne antikoru taşıyan az sayıdaki yavrunun korunmasız kaldığı süreyi kısaltmak için bu dozu 6 aylıkken öneriyor. Kuduz ve leptospiroz aşılarının zamanı köpek aşı takvimi (https://veterito.com/blog/kopek-asi-takvimi) yazısında ayrıntılı.
+
+YAYGIN YANILGI — "Tek parvo aşısı yavruyu korur" yanılgısı: Anne antikoru yüksek olan yavruda erken yapılan aşı hiç yanıt oluşturmayabiliyor. Koruma, dizinin son dozu 16. haftayı geçtikten sonra güvenilir hâle geliyor. Bu yüzden ilk aşıdan sonra yavru tam korunmuş sayılmıyor.
+
+
+## Dizi tamamlanana kadar en büyük risk parvovirüs
+
+Merck Veteriner El Kitabı’na göre parvovirüs enteriti çok bulaşıcı ve en çok **6 hafta ile 6 ay** arasındaki, aşısız ya da aşı dizisi tamamlanmamış yavruları etkiliyor. Virüs dışkıyla ve dışkıyla kirlenmiş eşya, ayakkabı, ortam yoluyla bulaşıyor. Ev içinde oda sıcaklığında **en az 2 ay**, dışarıda güneş ve kurumadan korunduğunda aylarca, belki yıllarca canlı kalabiliyor ve birçok yaygın temizlik ürününe dayanıklı.
+
+Aynı kaynağa göre belirtiler iştahsızlık, halsizlik, kusma ve çoğu zaman kanlı ishal. Destek tedavisiyle köpeklerin yüzde 70-90’ı iyileşiyor; tedavinin erken başlaması bu yüzden belirleyici. Aşı dizisi tamamlanmamış bir yavruda bu belirtilerden biri görülmesi, vakit kaybetmeden veteriner hekime ulaşılması gereken bir tablodur. Yetişkin köpekte kusmanın ne zaman acil olduğu köpeğim kusuyor (https://veterito.com/blog/kopegim-kusuyor) yazısında.
+
+YAYGIN YANILGI — "Evden çıkmayan yavru parvo kapmaz" yanılgısı: Parvovirüs yavruya köpekten köpeğe olduğu kadar ayakkabı, eşya ve dışarıdan getirilen her şeyle de ulaşabiliyor ve ev içinde en az iki ay canlı kalabiliyor. Evden çıkmamak riski düşürüyor ama sıfırlamıyor; asıl koruma aşı dizisinin tamamlanması.
+
+
+## Sosyalleşme aşıların bitmesini beklemiyor
+
+Yavru köpeğin yeni insanlara, seslere, ortamlara ve köpeklere en kolay alıştığı dönem, aşı dizisiyle aynı haftalara denk geliyor. WSAVA 2024 kılavuzu bu duyarlı dönemde **dikkatli bir sosyalleşmenin aşı dizisi tamamlanmadan başlayabileceğini** açıkça yazıyor; AAHA da tutma ve alıştırmaya yenidoğan döneminden başlanmasını öneriyor.
+
+Parvovirüs riski ile sosyalleşme ihtiyacı arasındaki denge, ortamı seçerek kuruluyor:
+
+- Aşıları tam, sağlıklı olduğu bilinen köpeklerle, bilinen bir evde tanışma
+- Temizliğine dikkat edilen, aşı şartı arayan yavru sınıfları
+- Kucakta ya da taşıma çantasında şehir sesleri, araba, farklı zeminler
+- Aşı durumu bilinmeyen köpeklerin yoğun olduğu parklardan ve dışkı bulunan alanlardan dizi bitene kadar uzak durma
+
+Bu dönemde yalnız kalmaya kısa sürelerle alıştırmak da ileride ayrılık sorunlarını azaltmaya yardımcı olabiliyor; belirtileri ve yaklaşımı köpeklerde ayrılık kaygısı (https://veterito.com/blog/kopeklerde-ayrilik-kaygisi) yazısında.
+
+YAYGIN YANILGI — "Aşısı bitmeden yavru hiç dışarı çıkmamalı" yanılgısı: Tam yalıtım parvovirüs riskini düşürse de sosyalleşme dönemini kaçırmak, ömür boyu sürebilen korku ve davranış sorunlarına yol açabiliyor. WSAVA’nın önerisi yalıtım değil, dikkatli sosyalleşme: bilinen ve aşılı köpekler, temiz ortamlar, kucakta dış dünya.
+
+
+## Parazit programı ikinci haftada başlamış olmalı
+
+AAHA ve Avrupa Evcil Hayvan Parazitleri Bilim Konseyi (ESCCAP) yavru köpekte iç parazit uygulamasının 2 haftalıkken başlamasını ve 2 haftada bir tekrarlanmasını öneriyor; yuvarlak solucan anneden doğumdan önce ve sütle geçebiliyor. Yavru 8 haftalıkken sahiplenildiyse ilk ziyarette önceki uygulamalar soruluyor ve program oradan sürüyor.
+
+AAHA ilk yılda dışkı incelemesinin daha sık yapılmasını da öneriyor, çünkü yavrularda bağırsak parazitleri yaygın ve bir kısmı insana geçebiliyor. Sıklığın yaşam biçimine göre nasıl ayarlandığı köpeklerde iç ve dış parazit (https://veterito.com/blog/kopeklerde-ic-ve-dis-parazit) yazısında anlatılıyor.
+
+
+## Süt dişleri ve çene kapanışı bu dönemde izleniyor
+
+AAHA kılavuzu yavru muayenesinde süt dişlerinin, yerinde kalmış süt dişlerinin, eksik ya da fazla dişin ve çene kapanışının değerlendirilmesini öneriyor. Kalıcı diş çıktığı hâlde düşmeyen süt dişi, dişlerin yanlış yerleşmesine yol açabiliyor.
+
+Kılavuza göre yerinde kalmış süt dişleri, kısırlaştırma sırasında aynı anestezide alınabiliyor; bu da iki ayrı anesteziyi bire indiriyor. Kısırlaştırma zamanının köpeğin büyüklüğüne göre nasıl belirlendiği köpek ne zaman kısırlaştırılmalı (https://veterito.com/blog/kopek-ne-zaman-kisirlastirilmali) yazısında.
+
+
+## Kimlik ve ilk yılın diğer başlıkları
+
+Mikroçip, kaybolan köpeğin sahibine dönmesinin en güvenilir yolu ve genellikle yavru döneminde, aşı ziyaretlerinden birinde takılıyor; nasıl çalıştığı mikroçip nedir (https://veterito.com/blog/mikrocip-nedir) yazısında. AAHA kılavuzu ayrıca evcil hayvan sahiplerinin yaklaşık üçte birinin aşı olmasa köpeğini veteriner hekime hiç götürmeyeceğini aktarıyor ve yavru döneminden itibaren düzenli kontrolün önleme açısından değerinin konuşulmasını öneriyor.
+
+UYARI: Bu içerik genel bilgidir, tıbbi tavsiye değildir. Aşı, parazit ve kontrol programı yavruyu gören veteriner hekim tarafından yaşına, ırkına ve yaşadığı ortama göre belirlenir.
+
+
+## Yaygın yanlışlar ve doğruları
+
+Yaygın yanlış | Doğrusu
+İlk ziyaret aşı yaşında yapılır | İlk ziyaret yavru eve gelir gelmez yapılıyor
+Tek parvo aşısı korur | Dizi 16. haftayı geçene kadar sürüyor
+Evden çıkmayan yavru parvo kapmaz | Virüs ayakkabı ve eşyayla eve girebiliyor
+Aşı bitene kadar tam yalıtım gerekir | Dikkatli sosyalleşme dizi bitmeden başlayabiliyor
+Süt dişleri kendiliğinden düşer, bakılmaz | Yerinde kalan süt dişi muayenede izleniyor
+
+## Sıkça sorulan sorular
+
+**Yavru köpek ilk kez ne zaman veterinere götürülür?**
+Yavru köpek eve geldikten sonra en kısa sürede, kaç haftalık olduğundan bağımsız olarak ilk muayeneye götürülüyor. Bu ziyarette genel durum, süt dişleri, parazit programı ve beslenme değerlendiriliyor. Yavru 6-8 haftalıksa ilk temel aşı da aynı ziyarette yapılabiliyor.
+
+**Yavru köpek aşıları kaç haftalıkken başlar?**
+WSAVA’nın 2024 kılavuzuna göre gençlik hastalığı, adenovirüs ve parvovirüsü kapsayan temel aşılar 6-8 haftalıkken başlıyor ve 16 haftalık olana kadar 2-4 haftada bir tekrarlanıyor. 26. haftada ya da sonrasında bir doz daha yapılıyor. Anneden geçen antikorlar nedeniyle tek doz yeterli olmuyor.
+
+**Yavru köpek ne sıklıkla veterinere gider?**
+AAHA’nın 2019 kılavuzuna göre yavru dönemi boyunca kontroller 3-4 haftada bir yapılıyor. Yavru dönemi hızlı büyüme bitene kadar, ırka göre yaklaşık 6-9 ay sürüyor. Sonrasında sağlıklı bir yetişkin köpekte kontrol aralığı 6-12 aya çıkıyor.
+
+**Aşısı bitmeden yavru köpek dışarı çıkabilir mi?**
+Dikkatli bir şekilde evet. WSAVA, sosyalleşmenin aşı dizisi tamamlanmadan başlayabileceğini belirtiyor. Aşılı olduğu bilinen köpekler, temiz ortamlar ve kucakta dış dünya tercih ediliyor; aşı durumu bilinmeyen köpeklerin yoğun olduğu parklardan ve dışkı bulunan alanlardan dizi bitene kadar uzak duruluyor.
+
+**Yavru köpekte parvo belirtileri nelerdir?**
+Merck Veteriner El Kitabı’na göre başlıca belirtiler iştahsızlık, halsizlik, kusma ve çoğu zaman kanlı ishal. Hastalık en çok 6 hafta ile 6 ay arasındaki aşısız ya da aşısı tamamlanmamış yavrularda görülüyor. Bu belirtiler vakit kaybetmeden veteriner hekime ulaşılması gereken bir tablodur.
+
+**Parvo geçiren yavru köpek iyileşir mi?**
+Destek tedavisiyle köpeklerin yüzde 70-90’ı iyileşiyor. Merck Veteriner El Kitabı’na göre hastalığın ilk 3-4 gününü atlatan yavruların çoğu genellikle bir hafta içinde tamamen düzeliyor ve iyileşen köpeklerde uzun süreli, muhtemelen ömür boyu bağışıklık gelişiyor. Tedavinin erken başlaması bu yüzden belirleyici.
+
+## Kaynaklar
+
+- World Small Animal Veterinary Association (WSAVA), Vaccination Guidelines Group · 2024 guidelines for the vaccination of dogs and cats - compiled by the Vaccination Guidelines Group (VGG) of the World Small Animal Veterinary Association (WSAVA) · Squires RA, Crawford C, Marcondes M, Whitley N · Journal of Small Animal Practice · 2024 · 65(5):277-316 · DOI: 10.1111/jsap.13718 · https://wsava.org/wp-content/uploads/2024/04/WSAVA-Vaccination-guidelines-2024.pdf
+- American Animal Hospital Association (AAHA) · 2019 AAHA Canine Life Stage Guidelines · Creevy KE, Grady J, Little SE, Moore GE, Strickler BG, Thompson S, Webb JA · Journal of the American Animal Hospital Association · 2019 · 55(6):267-290 · DOI: 10.5326/JAAHA-MS-6999 · https://pubmed.ncbi.nlm.nih.gov/31622127/
+- Merck Veterinary Manual (Professional Version) · Canine Parvovirus Infection (Parvoviral Enteritis in Dogs) · 2025 · https://www.merckvetmanual.com/digestive-system/diseases-of-the-stomach-and-intestines-in-small-animals/canine-parvovirus
+- European Scientific Counsel Companion Animal Parasites (ESCCAP) · Worm Control in Dogs and Cats. ESCCAP Guideline 01, Seventh Edition · 2025 · https://www.esccap.org/uploads/docs/ag51r456_0778_ESCCAP_GL1__English_2026_v23.pdf
 
 ---
 
@@ -354,7 +1406,7 @@ Nüksü tamamen engellemek her zaman mümkün olmuyor ama iki şey işe yarıyor
 
 ## Eve dönerken
 
-Göz akıntısı kedilerde sık, bu doğru. Ama sık olan şeyin ucuz atlatılacağı anlamına gelmiyor: kornea hasarı ve görme kaybı, geciken tabloların bilinen sonuçları. Bakılacak üç şey var: göz açılabiliyor mu, akıntı nasıl, ağrı var mı.
+Göz akıntısı kedilerde sık, bu doğru. Ama sık olan şeyin ucuz atlatılacağı anlamına gelmiyor: kornea hasarı ve görme kaybı, geciken tabloların bilinen sonuçları. Bakılacak üç şey var: göz açılabiliyor mu, akıntı nasıl, ağrı var mı. Muayenede korneanın nasıl boyandığını kedilerde göz boyama testi (https://veterito.com/blog/kedilerde-goz-boyama-testi) yazısında anlattık.
 
 ## Sıkça sorulan sorular
 
