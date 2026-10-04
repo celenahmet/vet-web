@@ -68,6 +68,16 @@ const ENVANTER_KARTI_ACIK = false;
 type Kart = 'envanter' | 'uniconnectly' | 'otosenior';
 const KARTLAR: Kart[] = [...(ENVANTER_KARTI_ACIK ? (['envanter'] as Kart[]) : []), 'uniconnectly', 'otosenior'];
 
+/**
+ * KAYNAK ISARETI (Ahmet, 04.10.2026: *"reklam panolarinda sey yapcaz ref linki ile new tab"*).
+ *
+ * Kartlar yeni sekmede aciliyor ve `noreferrer` tasiyor; yani hedef site ziyaretin
+ * buradan geldigini tarayicidan OGRENEMIYOR. Kaynagi adresin kendisi soyluyor.
+ * Kalip diger sitelerdeki kartlarla ayni (otosenior, uniconnectly-web, bote,
+ * ahmetcelen.com.tr): `ref` + utm uclusu, kaynak bu sitenin alan adi.
+ */
+const KAYNAK = 'ref=veterito.com&utm_source=veterito.com&utm_medium=referral&utm_campaign=yan_reklam';
+
 export default function ReklamKutusu() {
   const { t } = useTranslation();
   const [sira, setSira] = useState(0);
@@ -121,7 +131,7 @@ export default function ReklamKutusu() {
       ) : kart === 'otosenior' ? (
         <a
           className="reklam-kart reklam-kart-baglanti"
-          href="https://otosenior.com"
+          href={`https://otosenior.com/?${KAYNAK}`}
           target="_blank"
           rel="sponsored noopener noreferrer">
           {/* OtoSenior: ayni kisinin otomobil rehberi sitesi. Metin Ahmet'in onayladigi kitle cumlesi
@@ -144,7 +154,7 @@ export default function ReklamKutusu() {
       ) : (
         <a
           className="reklam-kart reklam-kart-baglanti"
-          href="https://uniconnectly.com"
+          href={`https://uniconnectly.com/?${KAYNAK}`}
           target="_blank"
           rel="sponsored noopener noreferrer">
           {/* ⚠️ Logo METNIN YERINE GECIYOR, yanina eklenmiyor: marka adi zaten
