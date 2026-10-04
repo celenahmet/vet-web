@@ -22,8 +22,8 @@
   flex-direction: column;
 }
 
-/* ⚠️ SABIT YUKSEKLIK YALNIZ DONERKEN. Iki kart farkli uzunlukta; her 20
-   saniyede kutu buyuyup kucululseydi altindaki her sey ziplardi. Envanter
+/* ⚠️ SABIT YUKSEKLIK YALNIZ DONERKEN. Kartlar farkli uzunlukta; her donuste
+   (04.10.2026'dan beri 15 sn) kutu buyuyup kucululseydi altindaki her sey ziplardi. Envanter
    karti kapaliyken (16.09.2026) donecek ikinci kart yok, sabit yukseklik de
    gereksiz bosluk demek — o yuzden ayri sinifta. */
 .kenar-reklam-donen { min-height: 264px; }

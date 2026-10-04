@@ -9,6 +9,8 @@ import { Megaphone, ArrowUpRight } from 'lucide-react';
  * digeri secilseydi kelimenin yarisi gorunmezdi.
  */
 import uniconnectlyLogo from '../assets/uniconnectly.webp';
+/* OtoSenior logosu acik zemin surumu (bote.web.tr ve uniconnectly.com reklam yuvalarindakiyle ayni dosya). */
+import otoseniorLogo from '../assets/otosenior.webp';
 import './ReklamKutusu.css';
 
 /**
@@ -17,10 +19,11 @@ import './ReklamKutusu.css';
  * *"sağ tarafa kutucuğa da bi alan ayıralım, reklam verin yazsın, sonra 20
  * sn'de bir UniConnectly reklamı dönsün"*
  *
- * Iki kart 20 saniyede bir sirayla degisiyor: once "burada yer alin", sonra
- * UniConnectly tanitimi.
+ * Ilk surumde iki kart 20 saniyede bir donuyordu ("burada yer alin" ve UniConnectly).
+ * 04.10.2026'dan beri ev reklamlari donuyor: UniConnectly ve OtoSenior, 15 saniyede bir
+ * (asagida `KARTLAR` ve `ARALIK_MS`).
  *
- * ⚠️ ARALIK BIR SANIYELIK SAYAC DEGIL, 20 SANIYELIK TEK ZAMANLAYICI. Saniye
+ * ⚠️ ARALIK BIR SANIYELIK SAYAC DEGIL, TEK ZAMANLAYICI. Saniye
  * saniye guncellemek her saniye bir render demek olurdu ve ekranda degisen
  * hicbir sey yokken render etmek bos is.
  *
@@ -37,7 +40,12 @@ import './ReklamKutusu.css';
  * urunu. Metin bunu satis dili olmadan, ne oldugunu soyleyerek veriyor.
  */
 
-const ARALIK_MS = 20_000;
+/**
+ * DONME ARALIGI 15 SN (Ahmet, 04.10.2026: *"veterito bote uniconnectly de otosenior reklami
+ * ekleyelim blog sayfasinin reklam panosuna 15 sn donen kisimlar var ya onlara ekleyebiliriz"*,
+ * *"veterito blogta otosenior reklami donmuyor"*). Diger sitelerdeki yuvalarla ayni aralik.
+ */
+const ARALIK_MS = 15_000;
 
 /**
  * ENVANTER KARTI ACIK MI? (Ahmet, 16.09.2026: *"reklam alanlari da olacak ama
@@ -53,33 +61,72 @@ const ARALIK_MS = 20_000;
  */
 const ENVANTER_KARTI_ACIK = false;
 
+/**
+ * DONEN KARTLAR (04.10.2026). Envanter karti acilirsa basa giriyor; ev reklamlari
+ * (kendi urunlerimiz) sirayla donuyor. Yeni kart = bu listeye bir satir + asagida bir dal.
+ */
+type Kart = 'envanter' | 'uniconnectly' | 'otosenior';
+const KARTLAR: Kart[] = [...(ENVANTER_KARTI_ACIK ? (['envanter'] as Kart[]) : []), 'uniconnectly', 'otosenior'];
+
 export default function ReklamKutusu() {
   const { t } = useTranslation();
-  const [ikinci, setIkinci] = useState(false);
+  const [sira, setSira] = useState(0);
+  /* Uzerine gelince ya da klavyeyle odaklaninca DURUR: okunan kart elden kacmasin
+     (bote.web.tr yuvasiyla ayni davranis, WCAG 2.2.2). */
+  const [durdu, setDurdu] = useState(false);
 
   useEffect(() => {
-    /* Envanter kapaliyken donecek ikinci kart yok. */
-    if (!ENVANTER_KARTI_ACIK) return;
-    /* Hareketi azalt: donme hic baslamiyor. */
+    if (KARTLAR.length < 2 || durdu) return;
+    /* Hareketi azalt: donme hic baslamiyor, ilk kart sabit kaliyor. */
     const azalt = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
     if (azalt) return;
 
-    const sayac = window.setInterval(() => setIkinci((o) => !o), ARALIK_MS);
+    const sayac = window.setInterval(() => setSira((s) => (s + 1) % KARTLAR.length), ARALIK_MS);
     return () => window.clearInterval(sayac);
-  }, []);
+  }, [durdu]);
+
+  const kart = KARTLAR[sira] ?? 'uniconnectly';
 
   return (
-    <section className={`kenar-kutu kenar-reklam${ENVANTER_KARTI_ACIK ? ' kenar-reklam-donen' : ''}`} aria-label="Reklam alanı">
+    <section
+      className={`kenar-kutu kenar-reklam${KARTLAR.length > 1 ? ' kenar-reklam-donen' : ''}`}
+      aria-label="Reklam alanı"
+      onMouseEnter={() => setDurdu(true)}
+      onMouseLeave={() => setDurdu(false)}
+      onFocus={() => setDurdu(true)}
+      onBlur={() => setDurdu(false)}>
       {/* ⚠️ Etiket her iki kartta da duruyor: hangisi gorunurse gorunsun
           okuyucu bunun reklam alani oldugunu biliyor. */}
       <p className="reklam-etiket">{t('ad_label')}</p>
 
-      {ENVANTER_KARTI_ACIK && !ikinci ? (
+      {kart === 'envanter' ? (
         <div className="reklam-kart">
           <span className="reklam-ikon" aria-hidden="true"><Megaphone size={21} /></span>
           <p className="reklam-baslik">{t('ad_title_1')}</p>
           <p className="reklam-metin">{t('ad_desc_1')}</p>
           <a className="reklam-dugme" href="mailto:info@veterito.com?subject=Blog%20reklam">{t('ad_btn_1')}<ArrowUpRight size={15} />
+          </a>
+        </div>
+      ) : kart === 'otosenior' ? (
+        <div className="reklam-kart">
+          {/* OtoSenior: ayni kisinin otomobil rehberi sitesi. Metin Ahmet'in onayladigi kitle cumlesi
+              (04.10.2026); diger sitelerdeki kartla AYNI. Baglanti `rel="sponsored"`. */}
+          <img
+            src={otoseniorLogo}
+            alt="OtoSenior"
+            width={190}
+            height={35}
+            className="reklam-logo"
+          />
+          <p className="reklam-metin">
+            Otomobil sahipleri, galericiler ve meraklıları için araç alım satımı, vergi, sigorta ve trafik
+            kurallarında resmî kaynaklı rehberler.
+          </p>
+          <a
+            className="reklam-dugme"
+            href="https://otosenior.com"
+            target="_blank"
+            rel="sponsored noopener noreferrer">Rehberleri oku<ArrowUpRight size={15} />
           </a>
         </div>
       ) : (
