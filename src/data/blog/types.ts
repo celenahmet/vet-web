@@ -138,6 +138,22 @@ export function okumaSuresi(yazi: BlogYazi): number {
   return Math.max(1, Math.round(kelime / 200));
 }
 
+/**
+ * Yazilarin sirasi: yeni tarih once; AYNI GUN yayimlananlar slug'a gore.
+ *
+ * ⚠️ NEDEN IKINCI OLCUT VAR (04.10.2026, olculdu). Yalniz tarihe gore siralayinca
+ * ayni gunun yazilari "kaynaktaki sirayla" kaliyordu ve o sira iki yerde FARKLIYDI:
+ * tarayicida `index.ts` dizisindeki sira, prerender'da klasordeki dosya sirasi.
+ * 04.10'da iki yazi cikinca statik sayfa birini, React otekini ilk kart yapti:
+ * sayfa acilirken iki kart yer degistiriyor, on yuklenen kapak da yanlis yazinin
+ * kapagi oluyordu. Ustelik dosya sirasi isletim sistemine gore degisir.
+ * Kural tek yerde; `index.ts`, `scripts/prerender.mjs`, `blog-besleme.mjs` ve
+ * `llms-uret.mjs` ayni olcutu kullaniyor (`lib/ilgiliYazilar.ts` zaten boyleydi).
+ */
+export function yaziSirasi(a: BlogYazi, b: BlogYazi): number {
+  return b.tarih.localeCompare(a.tarih) || a.slug.localeCompare(b.slug);
+}
+
 /** Ekranda gosterilen tarih: 23 Ağustos 2026 */
 export function tarihiYaz(iso: string): string {
   const aylar = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];

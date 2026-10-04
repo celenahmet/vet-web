@@ -59,7 +59,8 @@ const bugunIstanbul = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Istan
 const YAZILAR = tumYazilar
   .filter((y) => kapakliMi(y.slug))
   .filter((y) => y.tarih <= bugunIstanbul)
-  .sort((a, b) => b.tarih.localeCompare(a.tarih));
+  /* Ayni gunun yazilari slug'a gore: sitedeki sirayla ayni (types.ts · yaziSirasi). */
+  .sort((a, b) => b.tarih.localeCompare(a.tarih) || a.slug.localeCompare(b.slug));
 
 /**
  * ⚠️ KAPAK ADRESI TAHMIN EDILMIYOR, DERLEME CIKTISINDAN OKUNUYOR. Ilk yazimda

@@ -144,7 +144,7 @@ function yaz(yol, icerik) {
 }
 
 // --- Yazilari yukle ---
-const { okumaSuresi, tarihiYaz } = await import(pathToFileURL(join(YAZI_KLASORU, 'types.ts')).href);
+const { okumaSuresi, tarihiYaz, yaziSirasi } = await import(pathToFileURL(join(YAZI_KLASORU, 'types.ts')).href);
 
 const dosyalar = readdirSync(YAZI_KLASORU).filter((f) => f.endsWith('.ts') && !HARIC.has(f));
 const yazilar = [];
@@ -201,7 +201,9 @@ if (kapaksizlar.length) {
 
 yazilar.length = 0;
 yazilar.push(...yayindakiler);
-yazilar.sort((a, b) => b.tarih.localeCompare(a.tarih));
+/* ⚠️ React ile AYNI siralama (types.ts · yaziSirasi): ayni gunun yazilari iki
+   tarafta farkli siralanirsa sayfa acilirken kartlar yer degistiriyor. */
+yazilar.sort(yaziSirasi);
 
 const sablonYolu = join(KOK, 'dist/index.html');
 if (!existsSync(sablonYolu)) {
@@ -246,12 +248,6 @@ function onYuklemeler(desenler) {
  * ⚠️ Dar surumler ayni onekle basliyor (`<slug>-400-<hash>.webp`), o yuzden
  * eslesme sirasi onemli: once dar surumler ayiklaniyor, kalan asil dosya.
  */
-/** Fotograf kirpmasi (04.10.2026): `<slug>-foto-<karma>.webp`, 430x537. Yoksa null. */
-function fotoVarligi(slug) {
-  const dosya = readdirSync(join(KOK, 'dist/assets')).find((f) => f.startsWith(`${slug}-foto-`) && f.endsWith('.webp'));
-  return dosya ? `/assets/${dosya}` : null;
-}
-
 function kapakVarliklari(slug) {
   const hepsi = readdirSync(join(KOK, 'dist/assets')).filter((f) => f.endsWith('.webp'));
   const dar = {};
@@ -270,9 +266,6 @@ function kapakVarliklari(slug) {
    * eslestirebilirdi.
    */
   for (const dosya of hepsi) {
-    /* ⚠️ FOTOGRAF KIRPMASI AFIS SAYILMAZ (04.10.2026): `<slug>-foto-<karma>.webp` asagidaki
-       afis desenine de uyuyordu. */
-    if (dosya.startsWith(`${slug}-foto-`)) continue;
     const m = dosya.match(new RegExp(`^${slug}-(\\d+)-(.+)\\.webp$`));
     if (m) { dar[Number(m[1])] = `/assets/${dosya}`; continue; }
     if (new RegExp(`^${slug}-(.+)\\.webp$`).test(dosya)) asil = `/assets/${dosya}`;
@@ -291,7 +284,6 @@ for (const y of yazilar) {
   const adres = `${SITE}/blog/${y.slug}`;
   const dakika = okumaSuresi(y);
   const kapak = kapakVarliklari(y.slug);
-  const foto = fotoVarligi(y.slug);
   const makale = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -382,14 +374,13 @@ for (const y of yazilar) {
        (16.09.2026). Kapak artik sol sutunun ILK ogesi; band tam genislikte.
        Ayrisirsa React baglaninca sayfa ziplar. */
     `<article class="yazi-sayfa">`,
-    /* FOTOGRAFLI BASLIK (04.10.2026): React'teki `yazi-basi-fotolu` yapisinin aynisi. */
-    `<header class="yazi-basi-bandi"><div class="container yazi-basi yazi-basi-fotolu"><div class="yazi-basi-metin">`,
+    `<header class="yazi-basi-bandi"><div class="container yazi-basi">`,
     `<nav class="yazi-kirinti" aria-label="Sayfa yolu"><a href="/">Ana Sayfa</a><span aria-hidden="true">›</span><a href="/blog">Blog</a><span aria-hidden="true">›</span><span aria-current="page">${kac(y.baslik)}</span></nav>`,
     `<span class="yazi-kategori">${kac(y.kategori.toLocaleUpperCase('tr-TR'))}</span>`,
     `<h1>${kac(y.baslik)}</h1>`,
     `<p class="yazi-ozet">${kac(y.ozet)}</p>`,
     `<div class="yazi-kunye"><a class="yazi-yazar" href="${YAZAR.yol}"><span class="yazi-yazar-avatar" aria-hidden="true"></span>${kac(YAZAR.ad)}</a><span>${kac(tarihiYaz(y.tarih))}</span><span>${dakika} dk okuma</span></div>`,
-    `</div>${foto ? `<div class="yazi-basi-foto"><img src="${foto}" width="430" height="537" alt="${kac(y.kapakAlt)}" class="kapak-foto" fetchpriority="high" decoding="sync"></div>` : ''}</div></header>`,
+    `</div></header>`,
     `<div class="container yazi-duzen"><div class="yazi-ana">`,
     /*
      * ⚠️ KAPAK GORSELI PRERENDER GOVDESINE DE KONUYOR (24.08.2026).
@@ -404,7 +395,9 @@ for (const y of yazilar) {
      * olmali. Ayrisirsa tarayici iki farkli dosya indirir ve gorsel React
      * baglandiginda yeniden yerlesir.
      */
-    /* Baslikli afis yazi sutunundan kalkti (04.10.2026); fotografi baslik bandinda. */
+    kapak
+      ? `<div class="yazi-kapak"><img src="${kapak.asil}" srcset="${kac(kapak.srcset)}" sizes="(max-width: 700px) 100vw, (max-width: 1080px) 780px, 784px" width="1200" height="675" alt="${kac(y.kapakAlt)}" fetchpriority="high" decoding="sync"></div>`
+      : '',
     `<div class="yazi-govde">`,
     ...y.bloklar.map(blokHtml),
     `</div>`,
@@ -483,9 +476,8 @@ for (const y of yazilar) {
        * olmali; ayrisirsa tarayici iki farkli dosya indirir ve on yukleme
        * kazanc yerine kayip olur.
        */
-      /* 04.10.2026: en buyuk gorsel artik baslik bandindaki fotograf kirpmasi (tek olcu). */
-      ekBaglantilar: foto
-        ? `<link rel="preload" as="image" fetchpriority="high" href="${foto}" />`
+      ekBaglantilar: kapak
+        ? `<link rel="preload" as="image" fetchpriority="high" href="${kapak.asil}" imagesrcset="${kapak.srcset}" imagesizes="(max-width: 700px) 100vw, (max-width: 1080px) 780px, 784px" />`
         : '',
     }),
     govde,
@@ -506,39 +498,59 @@ for (const y of yazilar) {
  * kapak gorseli, ayni kunye satiri. Ilk boyama zaten bitmis sayfa gibi
  * gorunuyor.
  *
- * ⚠️ Kahraman kutusu BURADA URETILMIYOR. React tarafinda o kutu 15 saniyede bir
- * DONUYOR; prerender'a sabit bir yazi koymak, JS acilinca gorunur bir atlamaya
- * yol acardi. Liste, ilk yaziyi da normal kart olarak veriyor.
+ * ⚠️ 04.10.2026: DONEN KAHRAMAN KUTUSU KALKTI (Ahmet: "burasi zaten bloga
+ * benzemeyen kisim"). React tarafinda sayfa artik blog basligi + arama, kategori
+ * seridi ve TEK SUTUNLU akisla aciliyor; buradaki govde ayni agaci basiyor.
+ * Onceden kutu burada uretilmedigi icin JS baglaninca akis 400 px asagi
+ * kayiyordu; simdi kayacak bir sey yok.
  */
-const listeKart = (y, gizli = false) => {
-  /* 04.10.2026: kartta afis yerine fotograf kirpmasi + ozet (React'teki kartla ayni). */
-  const foto = fotoVarligi(y.slug);
-  const gorsel = foto
-    ? `<img src="${foto}" width="430" height="537" alt="${kac(y.kapakAlt)}" class="kapak-foto" loading="lazy" decoding="async">`
+
+/** ⚠️ `pages/Blog.tsx` icindeki ACIKLAMA ile AYNI cumle. */
+const LISTE_ACIKLAMA = 'Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine veteriner hekim gözünden yazılar.';
+
+/**
+ * ⚠️ `components/BlogKapak.tsx` icindeki OLCULER.akis ile AYNI dize. Ayrisirsa
+ * tarayici prerender gorseli icin bir dosya, React gorseli icin baska bir dosya
+ * indirir.
+ */
+const AKIS_OLCU = '(max-width: 852px) 100vw, (max-width: 1023px) 820px, (max-width: 1199px) calc(100vw - 352px), 760px';
+
+const listeKart = (y, sira) => {
+  const kapak = kapakVarliklari(y.slug);
+  /* ⚠️ YALNIZ ILK KART oncelikli (React'te `oncelikli={sira === 0}`): sayfanin en
+     buyuk gorseli o. Gerisi tembel yukleniyor. */
+  const yukleme = sira === 0
+    ? 'loading="eager" decoding="sync" fetchpriority="high"'
+    : 'loading="lazy" decoding="async"';
+  const gorsel = kapak
+    ? `<img src="${kapak.asil}" srcset="${kac(kapak.srcset)}" sizes="${AKIS_OLCU}" width="1200" height="675" alt="${kac(y.baslik)}" ${yukleme}>`
     : '';
-  return `<a class="blog-kart" href="/blog/${y.slug}"${gizli ? ' style="display:none"' : ''}>`
+  return `<a class="blog-kart" href="/blog/${y.slug}"${sira >= LISTE_ILK ? ' style="display:none"' : ''}>`
     + `<div class="blog-kart-gorsel">${gorsel}</div>`
     + `<div class="blog-kart-govde">`
     + `<span class="blog-kart-kategori">${kac(y.kategori.toLocaleUpperCase('tr-TR'))}</span>`
     + `<h3>${kac(y.baslik)}</h3>`
     + `<p class="blog-kart-ozet">${kac(y.ozet)}</p>`
-    + `<div class="blog-kart-alt"><span>${okumaSuresi(y)} dk okuma</span><span>${kac(tarihiYaz(y.tarih))}</span></div>`
+    + `<div class="blog-kart-alt"><span><svg width="15" height="15" aria-hidden="true"></svg> ${okumaSuresi(y)} dk okuma</span><span>${kac(tarihiYaz(y.tarih))}</span></div>`
     + `</div></a>`;
 };
 
 /**
  * ⚠️ URETILEN KART SAYISI REACT'INKIYLE AYNI OLMALI (16.09.2026).
  *
- * Liste sayfasi ilk 12 yaziyi gosterip gerisini "Daha fazla goster" ile
+ * Liste sayfasi ilk yazilari gosterip gerisini "Daha fazla goster" ile
  * aciyor. Prerender 33 kart GORUNUR basarsa, JS baglandigi anda 21 kart EKRANDAN
  * KAYBOLUYOR: okuyucu kaydirirken sayfa altindan cekiliyor. Sayi tek yerde.
+ *
+ * ⚠️ 04.10.2026: 12'den 8'e indi; `pages/Blog.tsx` icindeki IZGARA_ADIM ile
+ * AYNI SAYI olmak zorunda (gerekcesi orada: tek sutunda kartlar uzadi).
  *
  * ⚠️ 30.09.2026: BUTUN KARTLAR BASILIYOR, 12'den sonrasi display:none. Yalniz 12
  * kart basildiginda 21 yaziya bu sayfadan baglanti yoktu; Search Console'da 32
  * sayfa "Kesfedildi, dizine eklenmemis" kaliyordu. React de ayni kartlari ayni
  * satir ici stille ciziyor (pages/Blog.tsx), JS baglaninca hicbir sey kaymiyor.
  */
-const LISTE_ILK = 12;
+const LISTE_ILK = 8;
 
 /*
  * ⚠️ GERI KALAN 21 YAZI KAYBOLMUYOR. Statik HTML'de gorunmeseler de
@@ -564,39 +576,73 @@ const listeBlog = {
   '@type': 'Blog',
   '@id': `${SITE}/blog`,
   name: 'Veterito Blog',
-  description: 'Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine veteriner hekim gözünden yazılar.',
+  description: LISTE_ACIKLAMA,
   inLanguage: 'tr-TR',
   publisher: { '@type': 'Organization', name: 'Veterito', url: SITE },
 };
 
+/*
+ * ⚠️ KATEGORI SERIDI DE BASILIYOR (04.10.2026). Dugmeler burada ISLEVSIZ bir yer
+ * tutucu: React baglaninca ayni yere kendi seridini ciziyor. Basilmasaydi serit
+ * sonradan belirir ve akisi 90 px asagi iterdi.
+ * ⚠️ Sira `pages/Blog.tsx` icindeki KATEGORI_IKON ile ayni. Ikonlar React'te
+ * geliyor; burada ayni olcude bos bir <svg> yer tutuyor.
+ */
+const KATEGORI_SIRASI = ['Kedi', 'Köpek', 'Beslenme', 'Sağlık', 'Klinik Yönetimi', 'Pet Sahipleri'];
+const kategoriAdedi = new Map();
+for (const y of yazilar) kategoriAdedi.set(y.kategori, (kategoriAdedi.get(y.kategori) ?? 0) + 1);
+const BOS_IKON = '<svg width="18" height="18" aria-hidden="true"></svg>';
+const listeSerit = [
+  '<nav class="kategori-seridi" aria-label="Kategoriler">',
+  `<button type="button" class="kategori-oge secili"><span>Tümü</span><em>${yazilar.length}</em></button>`,
+  ...KATEGORI_SIRASI.map((ad) => {
+    const adet = kategoriAdedi.get(ad) ?? 0;
+    return `<button type="button" class="kategori-oge${adet ? '' : ' bos'}"${adet ? '' : ' disabled'}>${BOS_IKON}<span>${kac(ad)}</span><em>${adet}</em></button>`;
+  }),
+  '</nav>',
+].join('');
+
 const listeGovde = [
   '<div class="blog-sayfa">',
-  /* BLOG BASLIGI: React'teki `blog-masthead` ile ayni (04.10.2026); onceden yalniz burada vardi. */
-  '<header class="container blog-masthead"><h1>Veterito Blog</h1>',
-  '<p>Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine veteriner hekim gözünden yazılar.</p></header>',
+  '<header class="container blog-masthead">',
+  `<div class="blog-masthead-metin"><h1>Veterito Blog</h1><p>${kac(LISTE_ACIKLAMA)}</p></div>`,
+  `<div class="blog-arama">${BOS_IKON}<input type="search" placeholder="Blog'da ara…" aria-label="Blog'da ara…"></div>`,
+  '</header>',
+  `<section class="container blog-araclar">${listeSerit}</section>`,
   /* ⚠️ Iki sutunlu kabuk BURADA da kuruluyor: ilk boyamada akis sutunu tam
      genislikte cizilip JS baglaninca daralsaydi, butun kartlar yanlara
      ziplardi. */
   '<div class="container blog-duzen">',
   '<main class="blog-akis">',
-  `<header class="blog-akis-baslik"><h2>Tüm Yazılar<em class="blog-sayac">${yazilar.length}</em></h2></header>`,
-  `<div class="blog-izgara">${yazilar.map((y, sira) => listeKart(y, sira >= LISTE_ILK)).join('')}</div>`,
+  '<header class="blog-akis-baslik">',
+  `<h2>Tüm Yazılar<em class="blog-sayac">${yazilar.length}</em></h2>`,
+  '<label class="blog-siralama"><span class="gorunmez-metin">Sıralama</span><select><option>En Yeni</option></select></label>',
+  '</header>',
+  `<div class="blog-izgara">${yazilar.map((y, sira) => listeKart(y, sira)).join('')}</div>`,
   '</main>',
   '<aside class="blog-yan"></aside>',
   '</div>',
   '</div>',
 ].join('\n');
 
+const listeIlkKapak = yazilar.length ? kapakVarliklari(yazilar[0].slug) : null;
+
 yaz(
   join(KOK, 'dist/blog/index.html'),
   govdeDegistir(
     kafaDegistir(sablon, {
       baslik: 'Blog | Veterito',
-      aciklama: 'Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine veteriner hekim gözünden yazılar.',
+      aciklama: LISTE_ACIKLAMA,
       adres: `${SITE}/blog`,
       tip: 'website',
       jsonLd: [listeBlog, listeItemList],
       onYukle: LISTE_ON_YUKLEME,
+      /* ⚠️ ILK KAPAK ON YUKLENIYOR (04.10.2026): kahraman kutusu kalkinca sayfanin
+         en buyuk gorseli akistaki ilk kapak oldu. `imagesrcset` ve `imagesizes`
+         <img> uzerindekiyle BIREBIR ayni (yazi sayfasindaki kuralin aynisi). */
+      ekBaglantilar: listeIlkKapak
+        ? `<link rel="preload" as="image" fetchpriority="high" href="${listeIlkKapak.asil}" imagesrcset="${listeIlkKapak.srcset}" imagesizes="${AKIS_OLCU}" />`
+        : '',
     }),
     listeGovde,
   ),

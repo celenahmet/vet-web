@@ -70,27 +70,3 @@ export function kapakGorseli(slug: string | undefined): KapakKaynagi | null {
 export function kapakSayisi(): number {
   return Object.keys(HARITA).length;
 }
-
-/**
- * KAPAGIN FOTOGRAF KIRPMASI (04.10.2026). `src/assets/blog/foto/<slug>-foto.webp`, 430x537 (4:5),
- * `npm run kapaklar` uretiyor (ayrinti `scripts/kapak-boyutlari.mjs`). Liste, kart ve kucuk
- * gorsellerde afis yerine bu kullaniliyor; afisin solundaki baslik ve ikonlar kartta tekrar
- * etmesin, sayfa ilan duvari gibi gorunmesin diye.
- */
-const FOTOLAR = import.meta.glob('../../assets/blog/foto/*.webp', {
-  eager: true,
-  import: 'default',
-}) as Record<string, string>;
-
-export const FOTO_EN = 430;
-export const FOTO_BOY = 537;
-
-const FOTO_HARITA: Record<string, string> = {};
-for (const [yol, kaynak] of Object.entries(FOTOLAR)) {
-  const ad = yol.split('/').pop()?.replace(/-foto\.webp$/, '');
-  if (ad) FOTO_HARITA[ad] = kaynak;
-}
-
-export function kapakFotografi(slug: string): string | undefined {
-  return FOTO_HARITA[slug];
-}

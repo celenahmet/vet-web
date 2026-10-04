@@ -44,7 +44,8 @@ for (const d of readdirSync(YAZI_KLASORU).filter((f) => f.endsWith('.ts') && !HA
 const yazilar = tum
   .filter((y) => existsSync(join(KAPAK_KLASORU, `${y.slug}.webp`)))
   .filter((y) => y.tarih <= bugun)
-  .sort((a, b) => b.tarih.localeCompare(a.tarih));
+  /* Ayni gunun yazilari slug'a gore: sitedeki sirayla ayni (types.ts · yaziSirasi). */
+  .sort((a, b) => b.tarih.localeCompare(a.tarih) || a.slug.localeCompare(b.slug));
 
 /**
  * Hem `public/` hem `dist/` icine yazar.

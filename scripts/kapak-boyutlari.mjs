@@ -15,7 +15,7 @@
  * elle kosulur). Derlemeye baglamadim cunku `sips` ve `cwebp` macOS/homebrew
  * araci; CI'da bulunmayabilir ve derlemeyi kirardi.
  */
-import { readdirSync, existsSync, statSync, mkdirSync } from 'node:fs';
+import { readdirSync, existsSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -57,32 +57,4 @@ for (const dosya of asillar) {
     uretilen++;
   }
 }
-/*
- * FOTOGRAF KIRPMASI (04.10.2026, Ahmet: *"ben ordan bi blog vibe'i almiyorum"*).
- *
- * Kapaklarin hepsi ayni sablonda: solda logo, baslik ve ikon sirasi, sagda fotograf.
- * Liste ve kartlarda bu afis yan yana dizilince sayfa ilan duvarina donuyordu ve baslik
- * iki kez okunuyordu (gorselde ve altinda). Listeler artik yalniz FOTOGRAF kismini
- * gosteriyor: 1200x675 afisten x=770, y=69 noktasindan 430x537 (4:5) kirpma.
- * Sinir 43 kapakta olculdu: %58 ve %60'ta bazi kapaklarin kosesinde ayracin turkuaz
- * kivrimi kaliyordu (kartta gorundu), %64 (x=770) temiz. Afis yine duruyor: paylasim gorseli (og:image) o.
- *
- * Cikti: src/assets/blog/foto/<slug>-foto.webp (alt klasor: yukaridaki 400/800 taramasina
- * ve gorsel.ts'teki afis taramasina karismaz). ⚠️ `-foto` EKI SART: Vite dosyayi
- * dist/assets'e `<slug>-foto-<karma>.webp` diye cikariyor; ek olmasa prerender'in afis
- * aramasi (`<slug>-<karma>.webp`) kirpmayi afis sanabilirdi.
- */
-const FOTO_KLASOR = join(KLASOR, 'foto');
-mkdirSync(FOTO_KLASOR, { recursive: true });
-const FOTO = { x: 770, y: 69, en: 430, boy: 537 };
-let foto = 0;
-for (const dosya of asillar) {
-  const slug = dosya.replace(/\.webp$/, '');
-  const hedef = join(FOTO_KLASOR, `${slug}-foto.webp`);
-  if (existsSync(hedef) && statSync(hedef).mtimeMs > statSync(join(KLASOR, dosya)).mtimeMs) continue;
-  execFileSync('cwebp', ['-q', '82', '-crop', String(FOTO.x), String(FOTO.y), String(FOTO.en), String(FOTO.boy),
-    join(KLASOR, dosya), '-o', hedef], { stdio: 'ignore' });
-  foto++;
-}
-
-console.log(`kapak boyutlari: ${asillar.length} asil gorsel, ${uretilen} yeni surum, ${foto} yeni fotograf kirpmasi uretildi.`);
+console.log(`kapak boyutlari: ${asillar.length} asil gorsel, ${uretilen} yeni surum uretildi.`);

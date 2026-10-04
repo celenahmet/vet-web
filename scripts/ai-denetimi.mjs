@@ -118,9 +118,7 @@ for (const y of yayinda) {
   const ogGorsel = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1] ?? '';
   not(ogGorsel.includes(y.slug), `og:image baska yazinin kapagini gosteriyor -> ${y.slug} (${ogGorsel.slice(-40)})`);
   not(/<meta property="og:image:alt" content="[^"]{20,}"/.test(html), `og:image:alt eksik -> ${y.slug}`);
-  /* 04.10.2026: baslikli afis yazi sutunundan kalkti; statik sayfadaki kapak artik baslik
-     bandindaki fotograf kirpmasi (`yazi-basi-foto`). Alt metin kurali ayni. */
-  const imgAlt = html.match(/class="yazi-basi-foto"><img[^>]*alt="([^"]*)"/)?.[1] ?? '';
+  const imgAlt = html.match(/class="yazi-kapak"><img[^>]*alt="([^"]*)"/)?.[1] ?? '';
   not(imgAlt.length >= 30, `statik kapak img alt metni eksik -> ${y.slug}`);
 
   if (y.kaynaklar?.length) {

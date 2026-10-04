@@ -1,4 +1,5 @@
-/* BLOG ANA SAYFASI — duzen Ahmet'in tasarim referansini izliyor. */
+/* BLOG ANA SAYFASI. 04.10.2026'dan beri: blog basligi + arama, kategori seridi,
+   tek sutunlu yazi akisi, sagda kenar cubugu. */
 
 /**
  * ⚠️ `.container` SITE GENELINDE TANIMLI DEGIL. Eski Blog.tsx onu kullaniyordu ama
@@ -30,7 +31,7 @@
  * ⚠️ `margin-inline` KULLANILIYOR, `margin: 0 auto` DEGIL (duzeltme 24.08.2026).
  *
  * Her bolum hem `container` hem kendi sinifini tasiyor:
- *   <section className="container blog-one-cikan">
+ *   <section className="container blog-araclar">
  *
  * Eskiden burada `margin: 0 auto` yaziyordu. Kisayol DORT kenari birden yaziyor,
  * yani alt kenar bosluguna da `0` basiyor. Ustelik `.blog-sayfa .container`
@@ -46,9 +47,15 @@
  * Ders: yatay ortalama icin kisayol yazma. `margin-inline` yalniz sag/solu
  * yaziyor, dikey boslugu baska bir kuralin yonetmesine izin veriyor.
  */
+/*
+ * ⚠️ 1280'DEN 1160'A INDI (04.10.2026): yazi sayfasinin genisligi (BlogPost.css,
+ * `.yazi-sayfa .container`). Akis tek sutuna inince 1280'de kapaklar 880 px'e
+ * cikiyor, her kart ekrani asiyordu. 1160'ta akis sutunu 760 px: okuyucu listeden
+ * yaziya gectiginde sutun yerinden oynamiyor.
+ */
 .blog-sayfa .container {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1160px;
   margin-inline: auto;
   padding: 0 24px;
 }
@@ -65,37 +72,41 @@
 /* Son bolumun altinda `.blog-sayfa` zaten 72px tasiyor; ustune 40px binmesin. */
 .blog-sayfa > section:last-child { margin-bottom: 0; }
 
-/* --- One cikan yazi --- */
-.blog-one-cikan {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: 48px;
-  align-items: center;
+/* --- Blog basligi (04.10.2026) --- */
+/*
+ * Donen kahraman kutusunun yerine geldi (Ahmet: "burasi zaten bloga benzemeyen
+ * kisim"). Solda blogun adi ve tek cumlelik tanimi, sagda arama. Susleme yok:
+ * hemen altindaki kategori seridi zaten cerceveli bir kutu.
+ *
+ * ⚠️ `header`, `section` DEGIL: `.blog-sayfa > section` kurali buraya islemiyor,
+ * alt boslugu kendi tasiyor.
+ */
+.blog-masthead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
 }
-.one-cikan-etiket {
-  display: inline-block;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  color: var(--color-vet-secondary);
-  background: var(--color-vet-accent-light);
-  padding: 6px 12px;
-  border-radius: 999px;
-  margin-bottom: 20px;
-}
-.one-cikan-metin h1 {
-  font-size: 2.75rem;
+.blog-masthead-metin { flex: 1 1 auto; min-width: 0; }
+.blog-masthead h1 {
+  font-size: 2.4rem;
   line-height: 1.15;
-  margin: 0 0 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
   color: var(--color-text);
 }
-.one-cikan-metin p {
-  font-size: 1.05rem;
-  line-height: 1.7;
+.blog-masthead p {
+  margin: 0;
+  max-width: 58ch;
+  font-size: 1.08rem;
+  line-height: 1.6;
   color: var(--color-text-muted);
-  margin: 0 0 28px;
-  max-width: 46ch;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
+
+/* Ortak dugme: bulten bandi ve "yazi bulunamadi" ekrani (BlogPost.tsx) kullaniyor. */
 .one-cikan-dugme,
 .bulten-dugme {
   display: inline-flex;
@@ -111,21 +122,6 @@
 }
 .one-cikan-dugme:hover,
 .bulten-dugme:hover { transform: translateY(-1px); opacity: 0.94; }
-/* Kapak baglantisi: gorselin kendisi hedef; odak halkasi gorselin
-   koselerini izliyor. */
-.one-cikan-gorsel-baglanti { display: block; border-radius: 20px; }
-.one-cikan-gorsel-baglanti:focus-visible {
-  outline: 2px solid var(--color-vet-secondary);
-  outline-offset: 4px;
-}
-
-/* Afislerde baslik gorselin icinde: kirpma yok, dogal oran. */
-.one-cikan-gorsel img {
-  width: 100%;
-  height: auto;
-  border-radius: 20px;
-  display: block;
-}
 
 /* --- Kategori seridi --- */
 
@@ -177,53 +173,78 @@
 .kategori-oge:hover { background: var(--color-vet-accent-light); }
 .kategori-oge svg { color: var(--color-vet-secondary); flex-shrink: 0; }
 
-/* --- Kart izgarasi --- */
+/* --- Yazi akisi: tek sutun (04.10.2026) --- */
+/*
+ * Ahmet: "tekliye indirmek daha iyiydi cunku goz yoruyo genelde bu bloglari
+ * okuyanlar da +30 yas kisiler olur". Iki sutunlu izgara kalkti; yazilar alt
+ * alta, kapak sutunun tam genisliginde, metin buyuk.
+ *
+ * ⚠️ PUNTOLAR BILEREK BUYUK: baslik 24 px, ozet 17 px, kunye 15 px. Eski kartta
+ * baslik 16.8, kunye 12.8 px idi; 30 yas ustu okuyucu icin kucuktu.
+ *
+ * ⚠️ `object-fit: contain` KALIYOR: afisler 16:9 ve basligi icinde tasiyor.
+ * `cover` ya da baska bir oran, kenardaki yaziyi keser. Ayni gun denenen
+ * kirpma duzeni icin Ahmet: "fotograflar da yatay oldugu icin olmamis".
+ */
 .blog-izgara {
   display: grid;
-  /* ⚠️ KULLANICI ISTEGIYLE 2 SUTUNA INDIRILDI: Gorsellerin ve kartlarin genisligi artirildi */
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
 }
 .blog-kart {
   display: flex;
   flex-direction: column;
   background: var(--color-surface);
   border: 1px solid var(--color-border, rgba(0,0,0,0.07));
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transition: box-shadow 0.18s ease, border-color 0.18s ease;
 }
-.blog-kart:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
+/* Kart sutun genisliginde: yukari ziplatmak yerine golge ve baslik rengi. */
+.blog-kart:hover { box-shadow: 0 12px 28px rgba(0,0,0,0.08); border-color: var(--color-vet-primary); }
+.blog-kart:hover h3 { color: var(--color-vet-secondary); }
+.blog-kart:focus-visible { outline: 2px solid var(--color-vet-secondary); outline-offset: 3px; }
 .blog-kart-gorsel img {
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 9;
   object-fit: contain;
   display: block;
 }
-.blog-kart-govde { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; }
+.blog-kart-govde { padding: 22px 26px 24px; display: flex; flex-direction: column; flex: 1; }
 .blog-kart-kategori {
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.07em;
   color: var(--color-vet-secondary);
   margin-bottom: 10px;
 }
 .blog-kart-govde h3 {
-  font-size: 1.05rem;
-  line-height: 1.4;
-  margin: 0 0 16px;
-  flex: 1;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin: 0 0 10px;
+  transition: color 0.15s ease;
+}
+.blog-kart-ozet {
+  margin: 0 0 18px;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 .blog-kart-alt {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
-  font-size: 0.8rem;
+  gap: 6px 20px;
+  margin-top: auto;
+  font-size: 0.94rem;
   color: var(--color-text-muted);
 }
-.blog-kart-alt span { display: inline-flex; align-items: center; gap: 5px; }
+.blog-kart-alt span { display: inline-flex; align-items: center; gap: 6px; }
 
 /* ══════════════════════════════════════════════════════════════════════════
  * TUM YAZILAR AKISI + "DAHA FAZLA" (16.09.2026)
@@ -274,23 +295,19 @@
 
 
 /* ══════════════════════════════════════════════════════════════════════════
- * ARAC SERIDI (kategori suzgeci + arama) · 16.09.2026
+ * KATEGORI SERIDI + ARAMA · 16.09.2026
+ * ⚠️ 04.10.2026: arama kutusu blog basliginin sagina tasindi (`.blog-masthead`).
+ * Sayfa 1160'a inince serit ile arama ayni satira sigmiyor, "Pet Sahipleri"
+ * alt satira dusuyordu. `.blog-araclar` artik yalniz seridi tasiyor.
  * ══════════════════════════════════════════════════════════════════════════ */
-.blog-araclar {
-  display: flex;
-  align-items: stretch;
-  gap: 16px;
-}
-/* Serit esnek, arama sabit: arama kutusu daraldiginda yazilamaz hale gelir. */
-.blog-araclar .kategori-seridi { flex: 1 1 auto; min-width: 0; }
+.blog-sayfa > section.blog-araclar { margin-bottom: 32px; }
 
 .blog-arama {
   display: flex;
   align-items: center;
   gap: 10px;
-  /* ⚠️ 260 px'ten 220'ye indi: arama kutusu serite yer birakmayinca "Pet
-     Sahipleri" alt satira dusuyor ve kutu iki satir boyunca uzuyordu. */
-  flex: 0 0 220px;
+  /* Sabit genislik: arama kutusu daraldiginda yazilamaz hale gelir. */
+  flex: 0 0 280px;
   padding: 0 16px;
   border: 1px solid var(--color-border, rgba(0,0,0,0.08));
   border-radius: 16px;
@@ -341,7 +358,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   margin: 0;
@@ -504,13 +521,13 @@
 
 /*
  * Kirilma noktalari icerige gore secildi, cihaz adina gore degil:
- *  1180 -> izgara 4 sutunda sikisiyor
- *   980 -> one cikan yazinin iki sutunu dar geliyor, baslik kiriliyor
- *   700 -> kartlar tek sutuna dusuyor, bantlar diklesiyor
+ *  1199 -> kenar cubugu daraliyor
+ *  1023 -> kenar cubugu akisin altina dusuyor, sayfa 820 px'te sinirlaniyor
+ *   700 -> baslik ile arama alt alta, bantlar diklesiyor, puntolar bir kademe iniyor
  */
 
 /* Uzun baslik dar ekranda tasmasin */
-.one-cikan-metin h1,
+.blog-masthead h1,
 .blog-kart-govde h3 { overflow-wrap: anywhere; }
 
 /* ── Genis masaustu: kenar cubugu yapiskan ──────────────────────────────
@@ -531,7 +548,6 @@
 /* ── Kucuk masaustu / yatay tablet ─────────────────────────────────────── */
 @media (max-width: 1199px) {
   .blog-duzen { grid-template-columns: minmax(0, 1fr) 280px; gap: 24px; }
-  .blog-izgara { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ── Tablet (dikey) ve alti: kenar cubugu akisin altina ────────────────── */
@@ -545,23 +561,22 @@
   .blog-siralama select { font-size: 16px; }
   /* Cubuk alta dusunce tek uzun sutun olmasin: kartlar yan yana. */
   .blog-yan { display: grid; grid-template-columns: repeat(2, 1fr); align-items: start; }
-  .blog-araclar { flex-wrap: wrap; }
-  .blog-arama { flex: 1 1 100%; order: -1; }
+  /* ⚠️ Kenar cubugu gidince akis sayfanin tamamina yayiliyor (975 px'e kadar)
+     ve kapaklar ekrani asiyor. Yazi sayfasi ayni genislikte 820 px'te
+     sinirlaniyor (BlogPost.css). Burada YALNIZ akis degil butun sayfa
+     sinirlaniyor (820 + iki yanda 24 px dolgu): yalniz akis daralinca baslik
+     ve kategori seridi 16 px disarida kaliyor, kenarlar hizalanmiyordu. */
+  .blog-sayfa .container { max-width: 868px; }
 }
 
 @media (max-width: 1180px) {
   /* Serit kendi sariyor; sutun sayisi yazmak orta genisliklerde tek basina
      kalan dugme uretiyordu. Yalniz taban genislik daraltiliyor. */
   .kategori-oge { padding: 18px 10px; }
-  .one-cikan-metin h1 { font-size: 2.35rem; }
 }
 
 @media (max-width: 980px) {
-  .blog-one-cikan { grid-template-columns: 1fr; gap: 28px; }
-  .one-cikan-metin h1 { font-size: 2.1rem; }
-  .one-cikan-metin p { max-width: none; }
-  .one-cikan-gorsel img,
-  .one-cikan-gorsel .kapak-yedek { aspect-ratio: 16 / 9; }
+  .blog-masthead h1 { font-size: 2.1rem; }
   .bulten-bandi { padding: 28px 28px; }
 }
 
@@ -573,9 +588,19 @@
   .blog-akis-baslik { flex-wrap: wrap; gap: 12px; }
   .blog-siralama, .blog-siralama select { width: 100%; }
   .blog-arama input { padding: 13px 0; }
-  .one-cikan-metin h1 { font-size: 1.7rem; }
-  .one-cikan-metin p { font-size: 0.98rem; }
-  .blog-izgara { grid-template-columns: 1fr; }
+  /* Baslik ile arama alt alta; arama tam genislik. */
+  .blog-masthead { flex-direction: column; align-items: stretch; gap: 18px; margin-bottom: 20px; }
+  .blog-arama { flex: 0 0 auto; }
+  .blog-masthead h1 { font-size: 1.85rem; margin-bottom: 8px; }
+  .blog-masthead p { font-size: 1rem; }
+  .blog-sayfa > section.blog-araclar { margin-bottom: 24px; }
+  /* Telefonda da buyuk punto: ozet 16 px'in altina inmiyor. */
+  .blog-izgara { gap: 20px; }
+  .blog-kart { border-radius: 16px; }
+  .blog-kart-govde { padding: 18px 18px 20px; }
+  .blog-kart-govde h3 { font-size: 1.28rem; }
+  .blog-kart-ozet { font-size: 1rem; line-height: 1.6; margin-bottom: 16px; }
+  .blog-kart-alt { font-size: 0.9rem; }
   /* Telefonda iki dugme yan yana kalsin: taban genislik veriliyor ki
      `flex-wrap` satir basina ikiden fazlasini sikistirmasin. */
   .kategori-oge { flex-basis: 38%; padding: 16px 10px; font-size: 0.9rem; }
@@ -598,25 +623,9 @@
   background: linear-gradient(135deg, var(--color-vet-primary), var(--color-vet-accent));
   color: #fff;
 }
-.one-cikan-gorsel .kapak-yedek { aspect-ratio: 16 / 11; border-radius: 20px; }
 .blog-kart-gorsel .kapak-yedek { aspect-ratio: 16 / 9; }
 .kapak-yedek svg { opacity: 0.9; }
 
-
-/*
- * ⚠️ FRAMER-MOTION KALDIRILDI (23.08.2026). Blog sayfasi yalniz iki solma
- * animasyonu icin 120 kB'lik bir kutuphane cekiyordu. Ayni etki CSS ile bedelsiz.
- * Hareket azaltma tercihi olan kullanicida animasyon hic calismiyor.
- */
-.belir { animation: belir 0.4s ease both; }
-.belir.gecikmeli { animation-delay: 0.1s; }
-@keyframes belir {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .belir { animation: none; }
-}
 
 /* --- Kategori seridi: dugme oldu, sayili ve secilebilir --- */
 
@@ -653,173 +662,9 @@
 .kategori-oge.bos:hover { background: var(--color-surface); }
 
 /* Ayni sebep: Tailwind preflight basliklarin kalinligini sifirliyor (bkz. BlogPost.css). */
-.one-cikan-metin h1 { font-weight: 800; letter-spacing: -0.02em; }
 .blog-kart-govde h3 { font-weight: 700; }
 .bulten-metin h2 { font-weight: 700; }
 
 /* Govde metni Inter, basliklar Outfit (bkz. BlogPost.css). */
-.one-cikan-metin p,
 .blog-kart-alt,
 .bulten-metin p { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
-
-/* --- Donen kahraman kutusunun gostergeleri (24.08.2026) --- */
-/*
- * ⚠️ Nokta yalniz bir gosterge degil DUGME: tiklanabilir olmasi, donmeyi
- * beklemek istemeyen okuyucuya kontrol veriyor. Ekran okuyucuya `role="tab"` ve
- * yazinin basligi `aria-label` olarak gidiyor.
- */
-.one-cikan-noktalar { display: flex; gap: 8px; margin-top: 24px; }
-.one-cikan-noktalar .nokta {
-  width: 9px; height: 9px; padding: 0;
-  border: none; border-radius: 999px; cursor: pointer;
-  background: var(--color-border, rgba(0,0,0,0.18));
-  transition: width 0.2s ease, background 0.2s ease;
-}
-.one-cikan-noktalar .nokta:hover { background: var(--color-vet-primary); }
-.one-cikan-noktalar .nokta.secili { width: 26px; background: var(--color-vet-secondary); }
-.one-cikan-noktalar .nokta:focus-visible { outline: 2px solid var(--color-vet-secondary); outline-offset: 3px; }
-
-
-/* ══════════════════════════════════════════════════════════════════════════
- * BLOG GORUNUMU (04.10.2026)
- * Ahmet: *"ben ordan bi blog vibe'i almiyorum blog degilmis gibi"*. Teshis: liste
- * sayfasi urun tanitimi gibi aciliyordu (dev hap dugmeli kahraman kutusu) ve kartlar
- * baslikli afislerden kuruluydu; ayni turkuaz sablon yan yana dizilince sayfa ilan
- * duvarina donuyordu, baslik da iki kez okunuyordu. Uc degisiklik:
- *   1. En ustte blogun adi ve ne anlattigi (`.blog-masthead`).
- *   2. Gorsellerde afis yerine afisin FOTOGRAF kirpmasi (`.kapak-foto`, 4:5).
- *   3. Kartlar dergi listesi gibi: solda fotograf, sagda kategori, baslik, ozet, kunye.
- * Eski kurallar yerinde; bu blok onlari ezerek calisiyor (geri almak = bu blogu silmek).
- * ══════════════════════════════════════════════════════════════════════════ */
-
-/* 1. Blog basligi */
-.blog-masthead {
-  padding: 4px 0 24px;
-  border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.08));
-}
-.blog-sayfa > .blog-masthead { margin-bottom: 36px; }
-.blog-masthead h1 {
-  font-size: 2.6rem;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  font-weight: 800;
-  margin: 0 0 10px;
-  color: var(--color-text);
-}
-.blog-masthead p {
-  margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: var(--color-text-muted);
-  max-width: 62ch;
-}
-
-/* 2. One cikan yazi: metin solda, dikey fotograf sagda */
-.blog-one-cikan { grid-template-columns: minmax(0, 1fr) 340px; gap: 44px; }
-.one-cikan-baslik {
-  font-size: 2.3rem;
-  line-height: 1.18;
-  letter-spacing: -0.02em;
-  font-weight: 800;
-  margin: 0 0 16px;
-  color: var(--color-text);
-  overflow-wrap: anywhere;
-}
-.one-cikan-gorsel img.kapak-foto {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  border-radius: 20px;
-  display: block;
-}
-/* Hap dugme yerine yazi baglantisi: blogda okuyucuyu cagiran baslik, dugme degil. */
-.blog-one-cikan .one-cikan-dugme {
-  background: none;
-  color: var(--color-vet-secondary);
-  padding: 0;
-  border-radius: 0;
-  font-weight: 700;
-}
-.blog-one-cikan .one-cikan-dugme:hover {
-  transform: none;
-  opacity: 1;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-/* 3. Dergi listesi */
-.blog-izgara { grid-template-columns: 1fr; gap: 18px; }
-.blog-kart { flex-direction: row; align-items: stretch; }
-.blog-kart:hover { transform: none; box-shadow: 0 10px 24px rgba(0,0,0,0.07); }
-/* Fotograf satirin yuksekligine uyuyor (metin belirliyor); kendi 4:5 oraniyla satiri
-   uzatmasin diye mutlak konumlu. */
-.blog-kart-gorsel { position: relative; flex: 0 0 236px; overflow: hidden; min-height: 178px; }
-.blog-kart-gorsel img.kapak-foto {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  aspect-ratio: auto;
-  object-fit: cover;
-  object-position: center 40%;
-  display: block;
-  transition: transform 0.35s ease;
-}
-.blog-kart:hover .blog-kart-gorsel img.kapak-foto { transform: scale(1.03); }
-.blog-kart-gorsel .kapak-yedek { position: absolute; inset: 0; aspect-ratio: auto; }
-.blog-kart-govde { padding: 20px 22px; justify-content: center; }
-.blog-kart-govde h3 {
-  font-size: 1.22rem;
-  line-height: 1.32;
-  letter-spacing: -0.01em;
-  margin: 0 0 8px;
-  flex: 0 0 auto;
-}
-.blog-kart:hover .blog-kart-govde h3 { color: var(--color-vet-secondary); }
-.blog-kart-ozet {
-  margin: 0 0 14px;
-  font-size: 0.93rem;
-  line-height: 1.6;
-  color: var(--color-text-muted);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.blog-kart-alt { justify-content: flex-start; gap: 16px; }
-
-/* Kenar cubugundaki kucuk gorseller de fotograf; oran zaten kirpiliyor. */
-.blog-yan-liste img.kapak-foto { object-position: center 35%; }
-
-@media (max-width: 1180px) {
-  .blog-masthead h1 { font-size: 2.3rem; }
-  .one-cikan-baslik { font-size: 2.05rem; }
-}
-
-@media (max-width: 980px) {
-  .blog-one-cikan { grid-template-columns: minmax(0, 1fr) 240px; gap: 28px; }
-}
-
-@media (max-width: 700px) {
-  .blog-masthead { padding-bottom: 18px; }
-  .blog-sayfa > .blog-masthead { margin-bottom: 24px; }
-  .blog-masthead h1 { font-size: 1.9rem; }
-  .blog-masthead p { font-size: 0.98rem; }
-  /* Telefonda fotograf ustte, genis ve kisa: dikey fotograf ekrani doldurmasin. */
-  .blog-one-cikan { grid-template-columns: 1fr; gap: 18px; }
-  .one-cikan-gorsel { order: -1; }
-  .one-cikan-gorsel img.kapak-foto { aspect-ratio: 16 / 10; object-position: center 40%; border-radius: 16px; }
-  .one-cikan-baslik { font-size: 1.6rem; }
-  /* Liste satiri telefonda da yatay; gorsel daraliyor, ozet tek satir. */
-  .blog-kart-gorsel { flex-basis: 112px; min-height: 132px; }
-  .blog-kart-govde { padding: 14px 14px 14px 16px; }
-  .blog-kart-govde h3 { font-size: 1.02rem; }
-  .blog-kart-ozet { -webkit-line-clamp: 2; font-size: 0.86rem; margin-bottom: 10px; }
-  .blog-kart-alt { font-size: 0.76rem; gap: 10px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .blog-kart-gorsel img.kapak-foto { transition: none; }
-  .blog-kart:hover .blog-kart-gorsel img.kapak-foto { transform: none; }
-}

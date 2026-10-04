@@ -9,6 +9,7 @@
  * blogu varmis gibi gosterir.
  */
 import type { BlogYazi } from './types';
+import { yaziSirasi } from './types';
 import { kapakGorseli } from './gorsel';
 import { kedilerKacYilYasar } from './kediler-kac-yil-yasar';
 import { kopeklerKacYilYasar } from './kopekler-kac-yil-yasar';
@@ -127,7 +128,7 @@ export const TARIHI_GELMEYENLER: BlogYazi[] = TUM_YAZILAR.filter((y) => y.tarih 
 export const YAZILAR: BlogYazi[] = TUM_YAZILAR
   .filter((y) => Boolean(kapakGorseli(y.slug)))
   .filter((y) => y.tarih <= bugunIstanbul())
-  .sort((a, b) => b.tarih.localeCompare(a.tarih));
+  .sort(yaziSirasi);
 
 export function yaziBul(slug: string | undefined): BlogYazi | undefined {
   return YAZILAR.find((y) => y.slug === slug);
@@ -135,7 +136,7 @@ export function yaziBul(slug: string | undefined): BlogYazi | undefined {
 
 /** Denetim betikleri icin: yazilmis her sey, yayin durumundan bagimsiz. */
 export function tumYazilar(): BlogYazi[] {
-  return [...TUM_YAZILAR].sort((a, b) => b.tarih.localeCompare(a.tarih));
+  return [...TUM_YAZILAR].sort(yaziSirasi);
 }
 
 export const KATEGORILER = [

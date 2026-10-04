@@ -180,7 +180,7 @@ export default function BlogPost() {
             <div className="yazi-ilgili-liste">
               {oneriler.map((y) => (
                 <Link key={y.slug} to={`/blog/${y.slug}`} className="yazi-ilgili-kart">
-                  <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.kapakAlt} boyut={36} olcu="foto" bicim="foto" />
+                  <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.kapakAlt} boyut={36} olcu="kart" />
                   <div>
                     <span>{y.kategori}</span>
                     <h3>{y.baslik}</h3>
@@ -269,12 +269,7 @@ export default function BlogPost() {
         sayfa ziplar.
       */}
       <header className="yazi-basi-bandi">
-        {/* FOTOGRAFLI BASLIK (04.10.2026, Ahmet: *"blog vibe'i almiyorum"*). Baslik bandinin
-            yaninda afisin fotograf kirpmasi; baslikli afis yazi sutunundan kalkti, cunku ayni
-            basligi ikinci kez okutuyordu. Afis paylasim gorseli (og:image) olarak duruyor.
-            ⚠️ prerender.mjs AYNI yapiyi uretiyor. */}
-        <div className="container yazi-basi yazi-basi-fotolu">
-          <div className="yazi-basi-metin">
+        <div className="container yazi-basi">
           <nav className="yazi-kirinti" aria-label={t('post_breadcrumb')}>
             <Link to="/">{t('nav_home')}</Link>
             <ChevronRight size={14} aria-hidden="true" />
@@ -300,15 +295,15 @@ export default function BlogPost() {
               <span><Eye size={14} /> {sayiyiKisalt(goruntulenme)} {t('post_views')}</span>
             ) : null}
           </div>
-          </div>
-          <div className="yazi-basi-foto">
-            <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={72} olcu="foto" bicim="foto" oncelikli />
-          </div>
         </div>
       </header>
 
       <div className="container yazi-duzen">
         <div className="yazi-ana">
+
+          <div className="yazi-kapak">
+            <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={72} olcu="yazi" oncelikli />
+          </div>
 
           <div className="yazi-govde">
             {yazi.bloklar.map((b, i) => <Blok key={i} blok={b} />)}
@@ -431,7 +426,7 @@ export default function BlogPost() {
           <div className="yazi-ilgili-liste">
             {ilgili.map((y) => (
               <Link key={y.slug} to={`/blog/${y.slug}`} className="yazi-ilgili-kart">
-                <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.kapakAlt} boyut={36} olcu="foto" bicim="foto" />
+                <BlogKapak slug={y.slug} kategori={y.kategori} alt={y.kapakAlt} boyut={36} olcu="kart" />
                 <div>
                   <span>{y.kategori}</span>
                   <h3>{y.baslik}</h3>

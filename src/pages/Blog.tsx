@@ -15,8 +15,9 @@ import './Blog.css';
 /**
  * BLOG ANA SAYFASI
  *
- * Duzen Ahmet'in gonderdigi tasarim referansini izliyor: one cikan yazi, kategori
- * seridi, kart izgarasi, one cikan yazilar listesi, klinik bandi, bulten bandi.
+ * Duzen (04.10.2026): blog basligi + arama, kategori seridi, TEK SUTUNLU yazi akisi,
+ * sagda kenar cubugu, altta bulten bandi. Donen kahraman kutusu ve iki sutunlu kart
+ * izgarasi kalkti; gerekceleri asagida, kaldirildiklari yerde yazili.
  *
  * ⚠️ SITE BASLIGI VE ALT BILGISI BURADA YENIDEN KURULMUYOR. Ikisi de ortak bilesen
  * (`components/Navbar`, `components/Footer`) ve web deposunda baska biri de
@@ -26,18 +27,27 @@ import './Blog.css';
  * gizleniyor. Sahte kartla doldurmak, olmayan bir blogu varmis gibi gosterirdi.
  */
 
-/** Kahraman kutusundaki yazinin degisme araligi. Ahmet: "15 olabilir bu degisebilir". */
-const DONME_SURESI = 15000;
+/**
+ * Blogun tek cumlelik tanimi. Arama sonucundaki aciklama ile sayfanin basindaki cumle
+ * AYNI kaynaktan: ikisi ayri yazilirsa biri guncellenir, oteki eski kalir.
+ * ⚠️ `scripts/prerender.mjs` ayni cumleyi kendi sabitinde tasiyor (LISTE_ACIKLAMA).
+ */
+const ACIKLAMA = 'Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine veteriner hekim gözünden yazılar.';
 
 /**
- * Ana izgarada bir seferde acilan kart sayisi ve "daha fazla" adimi.
+ * Akista bir seferde acilan kart sayisi ve "daha fazla" adimi.
  *
  * ⚠️ NEDEN SAYFALAMA VAR (Ahmet, 16.09.2026: *"bu kadar degil tek satir olmali
  * bunlar"*). Blog 33 yaziya cikinca sayfa 24 kartlik bir duvara donmustu.
  * Kartlari kesip atmak da cozum degil: kesilen yaziya hicbir yerden
  * ulasilamazdi. Cozum, akisi sayfalamak.
+ *
+ * ⚠️ 12'DEN 8'E INDI (04.10.2026). Akis tek sutuna inince her kart bir ekran
+ * boyuna yaklasti; 12 kartlik ilk sayfa, kenar cubugu coktan bitmisken
+ * uzayip giden bir sutun demekti.
+ * ⚠️ `scripts/prerender.mjs` icindeki LISTE_ILK AYNI SAYI olmak zorunda.
  */
-const IZGARA_ADIM = 12;
+const IZGARA_ADIM = 8;
 
 /**
  * "En cok okunanlar" seridi ne zaman aciliyor?
@@ -93,57 +103,13 @@ export default function Blog() {
     .filter((y) => trEslesiyor(`${y.baslik} ${y.ozet} ${y.kategori}`, sorgu)),
   [secili, sorgu]);
 
-  /**
-   * ⚠️ SUZME ACIKKEN KAHRAMAN KUTUSU YOK (duzeltme 24.08.2026, Ahmet bildirdi:
-   * "kedilerde 4 sayi var diyor ama 3 yazi gorunuyor").
-   *
-   * Sayac dogruydu, gosterim yaniltiyordu. Kategori secilince ilk sonuc en uste
-   * "ÖNE ÇIKAN YAZI" etiketiyle buyuk kutuya aliniyor, ızgarada N-1 kart
-   * kaliyordu. Kedi'de rozet 4 diyor, goz 3 sayiyor. Terfi eden yazi bir SONUC
-   * ama sonuc gibi durmuyor, ustelik etiketi de yanlis: suzulmus listenin en
-   * yenisi "one cikan" degil.
-   *
-   * Kural: kahraman kutusu yalniz SUZULMEMIS listede. Kategori secildiginde
-   * butun sonuclar ayni izgarada, rozetteki sayi ile ekrandaki kart sayisi
-   * birebir esit.
+  /*
+   * ⚠️ DONEN KAHRAMAN KUTUSU KALDIRILDI (04.10.2026). 24.08'de Ahmet'in istegiyle eklenmisti
+   * ("one cikan yazilar 15 saniyede bir donsun"); 04.10'da ayni kutu icin "burasi zaten bloga
+   * benzemeyen kisim" dedi. En yeni yazi artik akisin ilk karti. Kutu ayri bir liste
+   * olmadigi icin sayac, rozet ve ekrandaki kart sayisi yine birebir ayni; 24.08'de
+   * bildirilen "4 sayi var ama 3 yazi gorunuyor" hatasinin kosulu da ortadan kalkti.
    */
-  const suzuluyor = Boolean(secili) || aramaVar;
-
-  /**
-   * DONEN KAHRAMAN KUTUSU (İSTEK: Ahmet, 24.08.2026 — "one cikan yazilar belli
-   * saniye araliklariyla 15 olabilir bu degisebilir 5 tanesi donup durur").
-   *
-   * ⚠️ Sure tek yerde: `DONME_SURESI`. Ahmet "degisebilir" dedigi icin sabit
-   * bir sayi metnin icine gomulmedi.
-   *
-   * ⚠️ SUZME ACIKKEN DONMUYOR. Kategori secilince kahraman kutusu zaten
-   * gorunmuyor (rozetteki sayi ile kart sayisi tutsun diye); orada donecek bir
-   * sey de yok.
-   *
-   * ⚠️ Hareket azaltma tercihi acikken donme DURUYOR. Kendiliginden degisen
-   * icerik, vestibuler duyarliligi olan ve ekran okuyucu kullanan kullanicilar
-   * icin rahatsiz edici; ilk yazida sabit kaliyor.
-   *
-   * ⚠️ Zamanlayici sekmede degil de arka planda da calisir; tarayici zaten
-   * arka planda araligi seyreltiyor, ayrica durdurmaya gerek yok. Ama bilesen
-   * kalkarken temizleniyor, yoksa gezinme sonrasi sizinti olur.
-   */
-  const donenler = suzulmus.slice(0, 5);
-  const [donenSira, setDonenSira] = useState(0);
-
-  useEffect(() => {
-    if (suzuluyor || donenler.length < 2) return;
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
-    const sayac = setInterval(
-      () => setDonenSira((o) => (o + 1) % donenler.length),
-      DONME_SURESI,
-    );
-    return () => clearInterval(sayac);
-  }, [suzuluyor, donenler.length]);
-
-  // Yazi sayisi azalirsa sira disarida kalmasin.
-  const guvenliSira = donenSira < donenler.length ? donenSira : 0;
-  const oneCikan = suzuluyor ? undefined : donenler[guvenliSira];
 
   /**
    * ⚠️ SESSIZCE BASARISIZ OLUR. Sayac okunamazsa "en cok okunanlar" serit hic
@@ -169,10 +135,10 @@ export default function Blog() {
    * 33 yazi ekranda 37 kez geciyordu ve o basliktaki iddia da yanlisti:
    * `slice(9)` listenin EN ESKI yazilarini veriyordu.
    *
-   * ⚠️ AKIS KAHRAMAN YAZISINI DA ICERIYOR. Baslik sayaci, kategori seridi
-   * rozeti ve ekrandaki kart sayisi ucu de ayni olmali; ayrisma, Ahmet'in
-   * 24.08'de bildirdigi hatanin (*"kedilerde 4 sayi var ama 3 yazi
-   * gorunuyor"*) aynisi olurdu.
+   * ⚠️ AKIS BUTUN YAZILARI ICERIYOR, hicbiri baska bir kutuya ayrilmiyor.
+   * Baslik sayaci, kategori seridi rozeti ve ekrandaki kart sayisi ucu de
+   * ayni olmali; ayrisma, Ahmet'in 24.08'de bildirdigi hatanin (*"kedilerde
+   * 4 sayi var ama 3 yazi gorunuyor"*) aynisi olurdu.
    */
   const tumIzgara = useMemo(() => {
     const liste = [...suzulmus];
@@ -203,10 +169,6 @@ export default function Blog() {
    * Gercek sayactan geliyor. Esik kenar cubugundakinin (POPULER_ESIGI) aynisi;
    * tutmuyorsa kutu HIC cizilmiyor. Yerine "son eklenenler"i koyup basligini
    * "en cok okunan" birakmak dogrudan yanlis bilgi olurdu.
-   *
-   * ⚠️ KAHRAMAN YAZISI ELENMIYOR. Elenseydi liste, kahraman kutusu her 15
-   * saniyede donerken birlikte YENIDEN SIRALANIRDI: okuyucu tam tiklarken
-   * satirlar kayardi.
    */
   const enCokOkunanlar = useMemo(() => {
     if (!gorulenler) return [];
@@ -232,64 +194,36 @@ export default function Blog() {
     <div className="blog-sayfa">
       <SEO
         title="Blog"
-        description="Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine veteriner hekim gözünden yazılar."
+        description={ACIKLAMA}
         url="https://veterito.com/blog"
       />
 
-      {/* BLOG BASLIGI (04.10.2026, Ahmet: *"ben ordan bi blog vibe'i almiyorum blog degilmis
-          gibi"*). Sayfa urun tanitimi gibi aciliyordu; artik once blogun adi ve ne anlattigi.
-          Aciklama SEO aciklamasiyla ayni cumle (yeni metin yazilmadi). prerender.mjs de ayni
-          basligi basiyor: onceden yalniz statik HTML'de vardi ve React baglaninca kayboluyordu. */}
+      {/* BLOG BASLIGI (04.10.2026). Ahmet: *"ben ordan bi blog vibe'i almiyorum blog degilmis
+          gibi"*, sonra ekran goruntusuyle: *"burasi zaten bloga benzemeyen kisim"* (donen kahraman
+          kutusu: dev baslik, dugme, noktalar). O kutu KALKTI; sayfa blogun adi ve ne anlattigiyla
+          aciliyor, hemen altinda yazilar.
+          ⚠️ ARAMA BURAYA TASINDI. Sayfa yazi sayfasinin genisligine (1160) inince arama kutusu
+          kategori seridine yer birakmiyor, "Pet Sahipleri" alt satira dusuyordu. Baslik satirinin
+          sagi zaten bostu.
+          prerender.mjs ayni basligi basiyor. */}
       <header className="container blog-masthead">
-        <h1>{t('blog_h1')}</h1>
-        <p>Kedi ve köpek sağlığı, aşı takvimi, beslenme ve klinik yönetimi üzerine veteriner hekim gözünden yazılar.</p>
+        <div className="blog-masthead-metin">
+          <h1>{t('blog_h1')}</h1>
+          <p>{ACIKLAMA}</p>
+        </div>
+        <div className="blog-arama">
+          <Search size={18} aria-hidden="true" />
+          <input
+            type="search"
+            value={sorgu}
+            onChange={(e) => setSorgu(e.target.value)}
+            placeholder={t('blog_search_placeholder')}
+            aria-label={t('blog_search_placeholder')}
+          />
+        </div>
       </header>
 
-      {oneCikan ? (
-        <section className="container blog-one-cikan" aria-live="polite">
-          {/* `key` her degisimde bileseni yeniliyor, boylece belirme animasyonu
-              her yazida yeniden kosuyor. Olmasaydi metin sessizce degisirdi ve
-              degistigi fark edilmezdi. */}
-          <div className="one-cikan-metin belir" key={oneCikan.slug}>
-            <span className="one-cikan-etiket">{t('blog_featured_badge')}</span>
-            <h2 className="one-cikan-baslik">{oneCikan.baslik}</h2>
-            <p>{oneCikan.ozet}</p>
-            <Link to={`/blog/${oneCikan.slug}`} className="one-cikan-dugme">{t('blog_read_post')}<ArrowRight size={18} />
-            </Link>
-            {donenler.length > 1 ? (
-              <div className="one-cikan-noktalar" role="tablist" aria-label="Öne çıkan yazılar">
-                {donenler.map((y, i) => (
-                  <button
-                    key={y.slug}
-                    type="button"
-                    role="tab"
-                    aria-selected={i === guvenliSira}
-                    aria-label={y.baslik}
-                    className={i === guvenliSira ? 'nokta secili' : 'nokta'}
-                    onClick={() => setDonenSira(i)}
-                  />
-                ))}
-              </div>
-            ) : null}
-          </div>
-          <div className="one-cikan-gorsel belir gecikmeli" key={`${oneCikan.slug}-gorsel`}>
-            {/* KAPAK DA BAGLANTI (Ahmet, 16.09.2026: *"gorsellere tiklayinca
-                da gitsin en ustte kisimda"*). Okuyucu buyuk gorsele tikliyor
-                ve hicbir sey olmuyordu; dugme kucuk, gorsel buyuk hedef.
-                ⚠️ `aria-label` yaziyor: baglantinin adi gorselin alt metni
-                degil yazinin basligi olmali, ekran okuyucu "Kediler icin
-                zehirli bitkiler yazisi" duymali, kapak tarifini degil. */}
-            <Link to={`/blog/${oneCikan.slug}`} className="one-cikan-gorsel-baglanti" aria-label={oneCikan.baslik}>
-              {/* ⚠️ Yalniz ILK yazi oncelikli. Donen butun gorselleri "oncelikli"
-                  isaretlemek onceligi anlamsizlastirir ve hepsini birden
-                  indirtir. */}
-              <BlogKapak slug={oneCikan.slug} kategori={oneCikan.kategori} alt={oneCikan.kapakAlt} boyut={64} olcu="foto" bicim="foto" oncelikli={guvenliSira === 0} />
-            </Link>
-          </div>
-        </section>
-      ) : null}
-
-      {/* ── ARAC SERIDI: kategori suzgeci + arama ─────────────────────────
+      {/* ── KATEGORI SERIDI ───────────────────────────────────────────────
           ⚠️ SERIT YUKARIDA KALIYOR, kenar cubuguna tasinmadi. Telefonda kenar
           cubugu akisin ALTINA duser; suzgeci oraya koymak, suzmek isteyen
           kullaniciya once butun listeyi kaydirtirdi. */}
@@ -321,24 +255,12 @@ export default function Blog() {
             );
           })}
         </nav>
-
-        <div className="blog-arama">
-          <Search size={18} aria-hidden="true" />
-          <input
-            type="search"
-            value={sorgu}
-            onChange={(e) => setSorgu(e.target.value)}
-            placeholder={t('blog_search_placeholder')}
-            aria-label={t('blog_search_placeholder')}
-          />
-        </div>
       </section>
 
       {/* ── AKIS + KENAR CUBUGU ───────────────────────────────────────────
           UniConnectly blogunun duzeni (Ahmet, 16.09.2026: *"ana sayfa bence
           uniconnectly gibi olsun"*): solda tek akis, sagda yapiskan kenar
-          cubugu. Kahraman kutusu Veterito'nunki olarak kaldi (*"yukari kapak
-          veteritodaki biraz daha iyi"*). */}
+          cubugu. */}
       <div className="container blog-duzen">
         <main className="blog-akis">
           <header className="blog-akis-baslik">
@@ -371,17 +293,26 @@ export default function Blog() {
               display:flex kuraliyla eziliyordu). Gorunum ve dugme ayni. */}
           {tumIzgara.length ? (
             <div className="blog-izgara">
+              {/* ⚠️ TEK SUTUN, KAPAK YATAY VE BUTUN (04.10.2026). Ahmet: *"tekliye indirmek daha
+                  iyiydi cunku goz yoruyo genelde bu bloglari okuyanlar da +30 yas kisiler olur"*.
+                  Iki sutunda goz saga sola gidip geliyordu; simdi yazilar alt alta, kapak
+                  sutunun tam genisliginde, baslik ve ozet buyuk puntoyla altinda.
+                  ⚠️ KAPAK KIRPILMIYOR. Ayni gun denenen "afisten fotograf kirp, satira koy"
+                  duzeni icin Ahmet: *"fotograflar da yatay oldugu icin olmamis"*. Afisler 16:9
+                  ve basligi icinde tasiyor; kirpilinca ne fotograf kaliyor ne afis.
+                  ⚠️ YALNIZ ILK KART oncelikli: kahraman kutusu kalkinca sayfanin en buyuk
+                  gorseli o oldu. Hepsini isaretlemek onceligi anlamsizlastirir. */}
               {tumIzgara.map((yazi, sira) => (
                 <Link key={yazi.slug} to={`/blog/${yazi.slug}`} className="blog-kart" style={sira >= gosterilen ? { display: 'none' } : undefined}>
                   <div className="blog-kart-gorsel">
-                    <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={40} olcu="foto" bicim="foto" />
+                    <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={56} olcu="akis" oncelikli={sira === 0} />
                   </div>
                   <div className="blog-kart-govde">
                     <span className="blog-kart-kategori">{t('blog_cat_' + yazi.kategori, yazi.kategori).toLocaleUpperCase()}</span>
                     <h3>{yazi.baslik}</h3>
                     <p className="blog-kart-ozet">{yazi.ozet}</p>
                     <div className="blog-kart-alt">
-                      <span><Clock size={14} /> {okumaSuresi(yazi)} {t('blog_read_time')}</span>
+                      <span><Clock size={15} /> {okumaSuresi(yazi)} {t('blog_read_time')}</span>
                       <span>{tarihiYaz(yazi.tarih)}</span>
                     </div>
                   </div>
@@ -425,7 +356,7 @@ export default function Blog() {
                 {enCokOkunanlar.map((yazi) => (
                   <li key={yazi.slug}>
                     <Link to={`/blog/${yazi.slug}`}>
-                      <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={24} olcu="kucuk" bicim="foto" />
+                      <BlogKapak slug={yazi.slug} kategori={yazi.kategori} alt={yazi.kapakAlt} boyut={24} olcu="kucuk" />
                       <div>
                         <h3>{yazi.baslik}</h3>
                         <span>{t('blog_cat_' + yazi.kategori, yazi.kategori)} · {okumaSuresi(yazi)} {t('blog_read_time')}</span>
