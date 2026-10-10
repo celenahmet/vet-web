@@ -40,6 +40,37 @@ import { ilgiliYazilar } from '../src/lib/ilgiliYazilar.ts';
 
 const KOK = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://veterito.com';
+
+/*
+ * SABIT ALTBILGI (10.10). React altbilgisi yalniz JS calisinca geliyor; botun
+ * gordugu hazir HTML'de (blog yazilari, blog listesi, hukuki belgeler) hic
+ * altbilgi yoktu. Search Console 10.10: hukuki sayfalar (cerez, acik riza,
+ * cocuk guvenligi, hesap silme, /legal) hicbir sayfadan baglanti almiyordu,
+ * "Kesfedildi, dizine eklenmedi". Her hazir sayfanin sonuna site ve hukuki
+ * baglantilar eklenir; createRoot acilista koku temizledigi icin kullanici iki
+ * altbilgi gormez. Belge adresleri ve adlari kayittan (src/data/legal), elle yok.
+ */
+const hukukiKayit = await import(pathToFileURL(join(KOK, 'src/data/legal/index.ts')).href);
+const hukukiBelgeler = hukukiKayit.LEGAL_DOCUMENT_ORDER.map((id) => hukukiKayit.getLegalDocument(id, 'tr'));
+const ALTBILGI = [
+  '<footer class="statik-altbilgi" aria-label="Site bağlantıları">',
+  '<nav aria-label="Keşfet"><ul>',
+  ...[
+    ['/', 'Ana Sayfa'],
+    ['/features', 'Özellikler'],
+    ['/pets', 'Evcil Hayvanlar'],
+    ['/clinics', 'Klinikler'],
+    ['/about', 'Hakkımızda'],
+    ['/blog', 'Blog'],
+    ['/contact', 'İletişim'],
+  ].map(([h, ad]) => `<li><a href="${h}">${ad}</a></li>`),
+  '</ul></nav>',
+  '<nav aria-label="Yasal"><ul>',
+  ...hukukiBelgeler.map((d) => `<li><a href="${d.slug}">${d.title}</a></li>`),
+  '<li><a href="/legal">Tüm yasal belgeler</a></li>',
+  '</ul></nav>',
+  '</footer>',
+].join('');
 const YAZI_KLASORU = join(KOK, 'src/data/blog');
 const HARIC = new Set(['index.ts', 'types.ts', 'gorsel.ts']);
 
@@ -135,7 +166,7 @@ function kafaDegistir(sablon, { baslik, aciklama, adres, tip, jsonLd, onYukle, g
 }
 
 function govdeDegistir(html, icerik) {
-  return html.replace('<div id="root"></div>', `<div id="root">${icerik}</div>`);
+  return html.replace('<div id="root"></div>', `<div id="root">${icerik}${ALTBILGI}</div>`);
 }
 
 function yaz(yol, icerik) {
@@ -711,6 +742,30 @@ for (const yol of hukuki.ALL_LEGAL_PATHS) {
 
   yaz(join(KOK, 'dist', yol.replace(/^\//, ''), 'index.html'), govdeDegistir(html, govde));
   hukukiSayi += 1;
+}
+
+// --- Yasal belgeler sayfasi (/legal) ---
+// 10.10: /legal hazir HTML olarak uretilmiyordu; bos kabuk ve canonical'siz
+// donuyordu (Search Console: Kesfedildi). Belgelerin listesi ve ozetleri.
+{
+  const govde = [
+    '<article>',
+    '<h1>Yasal belgeler</h1>',
+    '<p>Veterito’nun gizlilik, kişisel veriler, kullanım koşulları ve hesap işlemleriyle ilgili bütün belgeleri.</p>',
+    '<ul>',
+    ...hukukiBelgeler.map((d) => `<li><a href="${d.slug}"><strong>${kac(d.title)}</strong></a>: ${kac(d.summary)}</li>`),
+    '</ul>',
+    '</article>',
+  ].join('\n');
+  const html = kafaDegistir(sablon, {
+    baslik: 'Yasal Belgeler | Veterito',
+    aciklama: 'Veterito gizlilik politikası, KVKK aydınlatma metni, kullanım koşulları, çerez bildirimi ve hesap silme belgeleri tek sayfada.',
+    adres: `${SITE}/legal`,
+    tip: 'website',
+    jsonLd: [],
+    onYukle: onYuklemeler(['LegalHub-']),
+  });
+  yaz(join(KOK, 'dist/legal/index.html'), govdeDegistir(html, govde));
 }
 
 // --- Yazar sayfasi (/author) ---

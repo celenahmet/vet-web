@@ -84,7 +84,11 @@ const Footer = () => {
               <h3 className="font-semibold text-[15px] text-slate-900 dark:text-white mb-2">{t('footer_legal')}</h3>
               <Link to="/privacy" className="text-sm hover:text-emerald-600 transition-colors">{t('footer_privacy')}</Link>
               <Link to="/terms" className="text-sm hover:text-emerald-600 transition-colors">{t('footer_terms')}</Link>
-              <Link to="/deletion" className="text-sm hover:text-emerald-600 transition-colors">{t('footer_deletion')}</Link>
+              <Link to="/kvkk" className="text-sm hover:text-emerald-600 transition-colors">{t('footer_kvkk')}</Link>
+              <Link to="/cookies" className="text-sm hover:text-emerald-600 transition-colors">{t('footer_cookies')}</Link>
+              {/* Asil adres: /deletion yalniz magazaya beyan edilmis eski adres (canonical'i buraya). */}
+              <Link to="/account-deletion" className="text-sm hover:text-emerald-600 transition-colors">{t('footer_deletion')}</Link>
+              <Link to="/legal" className="text-sm hover:text-emerald-600 transition-colors">{t('footer_all_legal')}</Link>
             </div>
             <div className="flex flex-col gap-3">
               <h3 className="font-semibold text-[15px] text-slate-900 dark:text-white mb-2">{t('footer_contact')}</h3>
