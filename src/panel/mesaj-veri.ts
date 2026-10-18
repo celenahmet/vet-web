@@ -18,6 +18,14 @@ export type Konusma = {
 export type MesajIstegi = Pick<Konusma,
   'id' | 'last_message_at' | 'peer_id' | 'peer_name' | 'peer_avatar_url' | 'last_body' | 'last_has_media'>;
 
+export const MESAJ_TEPKILERI = ['heart', 'laugh', 'wow', 'think', 'fire'] as const;
+export type MesajTepkisi = (typeof MESAJ_TEPKILERI)[number];
+export type MesajTepkiOzeti = {
+  reaction: MesajTepkisi;
+  count: number;
+  reacted_by_me: boolean;
+};
+
 export type KonusmaMesaji = {
   id: string;
   conversation_id: string;
@@ -31,6 +39,11 @@ export type KonusmaMesaji = {
   media_count: number;
   first_media_key: string | null;
   first_media_type: 'image' | 'video' | null;
+  reply_to_message_id: string | null;
+  reply_to_body: string | null;
+  reply_to_sender_name: string | null;
+  reply_to_is_mine: boolean | null;
+  reactions: MesajTepkiOzeti[];
 };
 
 async function guvenli<T>(yuzey: string, islem: () => PromiseLike<{ data: T | null; error: unknown }>): Promise<T> {
@@ -57,23 +70,69 @@ export async function mesajIsteginiYanitla(konusma: string, kabul: boolean): Pro
 }
 
 export async function konusmaMesajlariniOku(konusma: string): Promise<KonusmaMesaji[]> {
-  return (await guvenli<KonusmaMesaji[]>('message_list', () => istemci
+  const satirlar = (await guvenli<Record<string, unknown>[]>('message_list', () => istemci
     .from('message_list').select('*').eq('conversation_id', konusma).order('created_at'))) ?? [];
+  // Web ve veritabani farkli dakikalarda yayinlanabilir. Eski gorunum yeni
+  // alanlari dondurmese de mevcut sohbet akisi calismaya devam eder.
+  return satirlar.map((satir) => ({
+    ...satir,
+    reply_to_message_id: satir.reply_to_message_id ?? null,
+    reply_to_body: satir.reply_to_body ?? null,
+    reply_to_sender_name: satir.reply_to_sender_name ?? null,
+    reply_to_is_mine: satir.reply_to_is_mine ?? null,
+    reactions: Array.isArray(satir.reactions)
+      ? satir.reactions.filter((tepki): tepki is MesajTepkiOzeti => {
+        if (!tepki || typeof tepki !== 'object') return false;
+        const aday = tepki as Partial<MesajTepkiOzeti>;
+        return MESAJ_TEPKILERI.includes(aday.reaction as MesajTepkisi)
+          && Number.isInteger(aday.count) && Number(aday.count) > 0
+          && typeof aday.reacted_by_me === 'boolean';
+      })
+      : [],
+  })) as KonusmaMesaji[];
+}
+
+/** 0239 yayina alinmadan yeni denetimleri gostermeyip normal mesaji korur. */
+export async function mesajGelismeleriHazirMi(): Promise<boolean> {
+  const { error } = await istemci.from('message_list')
+    .select('reply_to_message_id,reactions')
+    .limit(1);
+  // Bu yalniz istege bagli bir yetenek probudur. Eski sema, geciken PostgREST
+  // onbellegi veya gecici ag hatasi normal mesaj okuma/yazma akisini dusurmez;
+  // yeni eylemler fail-closed kalir ve sonraki sohbet acilisinda tekrar denenir.
+  return !error;
 }
 
 export async function konusmaAc(kisi: string): Promise<string> {
   return guvenli<string>('open_direct_conversation', () => istemci.rpc('open_direct_conversation', { p_other: kisi }));
 }
 
-export async function mesajYaz(konusma: string, metin: string): Promise<string> {
+export async function mesajYaz(konusma: string, metin: string, yanitlanan?: string | null): Promise<string> {
   const { data: kullanici } = await istemci.auth.getUser();
   if (!kullanici.user) throw new Error('Mesaj göndermek için yeniden giriş yapın.');
-  const satir = await guvenli<{ id: string }>('messages.insert', () => istemci.from('messages').insert({
+  const yeniMesaj: {
+    conversation_id: string;
+    sender_id: string;
+    body: string;
+    reply_to_message_id?: string;
+  } = {
     conversation_id: konusma,
     sender_id: kullanici.user.id,
     body: metin.trim(),
-  }).select('id').single());
+  };
+  // Yeni kolon yalniz gercekten yanit verilirken gonderilir. Boylece migration
+  // oncesinde siradan mesajlar bilinmeyen kolon nedeniyle kirilmaz.
+  if (yanitlanan) yeniMesaj.reply_to_message_id = yanitlanan;
+  const satir = await guvenli<{ id: string }>('messages.insert', () => istemci.from('messages').insert(yeniMesaj).select('id').single());
   return satir.id;
+}
+
+/** Reaksiyon yazimi yalniz dar sunucu RPC'sinden gecer; null mevcut tepkiyi siler. */
+export async function mesajaTepkiVer(mesaj: string, tepki: MesajTepkisi | null): Promise<void> {
+  await guvenli('set_message_reaction', () => istemci.rpc('set_message_reaction', {
+    p_message: mesaj,
+    p_reaction: tepki,
+  }));
 }
 
 export async function mesajaGorselEkle(mesaj: string, key: string): Promise<void> {

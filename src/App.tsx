@@ -30,6 +30,7 @@ const LegalDocument = lazy(() => import('./pages/LegalDocument'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Download = lazy(() => import('./pages/Download'));
 const ClinicPage = lazy(() => import('./pages/ClinicPage'));
+const AppContinue = lazy(() => import('./pages/AppContinue'));
 /**
  * ⚠️ PANEL AYRI PARCA. `@supabase/supabase-js` yalniz bu agactan import
  * ediliyor; `lazy()` sayesinde pazarlama sayfalarinin paketine girmiyor.
@@ -159,6 +160,7 @@ function App() {
             <Route path="/deletion" element={<LegalDocument />} />
             <Route path="/account-deletion-request" element={<LegalDocument />} />
             <Route path="/download" element={<Download />} />
+            <Route path="/app/:kind/:id" element={<AppContinue />} />
             {/* KLINIK WEB PANELI (Ahmet, 24.08.2026). Oturum arkasinda, noindex,
                 site haritasinda yok. Yetki sunucuda: klinik RPC'leri anon'a
                 kapali ve govdelerinde `is_clinic_member()` kontrolu var. */}

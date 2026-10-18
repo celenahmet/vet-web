@@ -1228,5 +1228,12 @@
   "pricing_enterprise_addon_label": "Klinik hesabındaki özelliklere ek olarak:",
   "pricing_clinic_includes": "Uygulamadaki klinik özelliklerini içerir",
   "pricing_clinic_desc": "Kliniğinizin günlük işleyişi, hastaları ve görünürlüğü için tek hesap.",
-  "pricing_clinic_name": "Veterito Klinik"
+  "pricing_clinic_name": "Veterito Klinik",
+  "app_continue_title": "Veterito ile devam et",
+  "app_continue_description": "Bu içeriği Veterito uygulamasında güvenle açın.",
+  "app_continue_button": "Veterito'da aç",
+  "app_continue_download": "Uygulama henüz cihazınızda yok mu?",
+  "app_continue_ios": "App Store'dan indir",
+  "app_continue_android": "Google Play'den indir",
+  "app_continue_invalid": "Bu bağlantı geçersiz veya artık desteklenmiyor."
 }

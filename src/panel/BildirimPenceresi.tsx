@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Bell, ArrowRight, CheckCheck } from 'lucide-react';
 
-import { bildirimleriOku, bildirimleriOkunduIsaretle, type Bildirim } from './veri';
+import { bildirimKonusmaId, bildirimleriOku, bildirimleriOkunduIsaretle, type Bildirim } from './veri';
 import { tarihYaz } from './sozluk';
 
 /**
@@ -27,11 +27,12 @@ import { tarihYaz } from './sozluk';
  * BAGLI hale geldi. Uzun listeyi kucuk pencerede okutmak da dogru degil.
  */
 export default function BildirimPenceresi({
-  okunmamis, sayiyiTazele, tumunuGor,
+  okunmamis, sayiyiTazele, tumunuGor, sohbeteGit,
 }: {
   okunmamis: number;
   sayiyiTazele: () => void;
   tumunuGor: () => void;
+  sohbeteGit: (konusmaId: string) => void;
 }) {
   const [acik, setAcik] = useState(false);
   const [liste, setListe] = useState<Bildirim[] | null>(null);
@@ -118,6 +119,14 @@ export default function BildirimPenceresi({
                       </p>
                       {b.body ? <p className="pnl-zil-metin">{b.body}</p> : null}
                       <p className="pnl-zil-zaman">{tarihYaz(b.created_at)}</p>
+                      {bildirimKonusmaId(b) ? (
+                        <button type="button" className="pnl-zil-sohbet" onClick={() => {
+                          const id = bildirimKonusmaId(b);
+                          if (!id) return;
+                          setAcik(false);
+                          sohbeteGit(id);
+                        }}>Sohbeti aç <ArrowRight size={13} aria-hidden="true" /></button>
+                      ) : null}
                     </div>
                   </li>
                 ))}

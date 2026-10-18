@@ -1,4 +1,4 @@
-import { CalendarDays, FileText, Syringe, MessagesSquare, Heart, Settings, Clock, Megaphone, Stethoscope, Bell, Star, Plus, Trash2, Search, MapPin, Images, UsersRound, BarChart3, Send, ImageIcon, ChevronRight, Eye, Pencil, CircleCheck, Archive, KeyRound, LogOut } from 'lucide-react';
+import { ArrowRight, CalendarDays, FileText, Syringe, MessagesSquare, Heart, Settings, Clock, Megaphone, Stethoscope, Bell, Star, Plus, Trash2, Search, MapPin, Images, UsersRound, BarChart3, Send, ImageIcon, ChevronRight, Eye, Pencil, CircleCheck, Archive, KeyRound, LogOut } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
 import {
@@ -12,6 +12,7 @@ import {
   ozelCalismaGunleriniOku,
   hizmetAdlariniOku,
   bildirimleriOku,
+  bildirimKonusmaId,
   degerlendirmeleriOku,
   duyuruOlusturVeGonder,
   ilanOlustur,
@@ -1288,13 +1289,26 @@ const BILDIRIM_TURU: Record<string, string> = {
   appointment: 'Randevu',
   announcement: 'Duyuru',
   message: 'Mesaj',
+  direct_message: 'Mesaj',
+  message_reaction: 'Mesaj tepkisi',
+  clinic_message: 'Klinik mesajı',
+  clinic_staff_invite: 'Ekip daveti',
+  clinic_customer_invite: 'Müşteri daveti',
+  platform: 'Platform',
+  health_reminder: 'Sağlık hatırlatması',
+  post_like: 'Gönderi beğenisi',
+  post_comment: 'Gönderi yorumu',
+  comment_reply: 'Yorum yanıtı',
+  comment_like: 'Yorum beğenisi',
+  new_follower: 'Yeni takipçi',
+  follow_request: 'Takip isteği',
   staff_invitation: 'Ekip daveti',
   customer_invitation: 'Müşteri daveti',
   record: 'Sağlık kaydı',
   system: 'Sistem',
 };
 
-export function PanelBildirimler() {
+export function PanelBildirimler({ sohbeteGit }: { sohbeteGit: (konusmaId: string) => void }) {
   return (
     <PanelListe
       baslik="Bildirimler"
@@ -1318,6 +1332,10 @@ export function PanelBildirimler() {
             {b.kind ? <p className="pnl-kisi-rol">{BILDIRIM_TURU[b.kind] ?? b.kind}</p> : null}
             {b.body ? <p className="pnl-kisi-anlam">{b.body}</p> : null}
             <p className="pnl-kisi-ek pnl-soluk">{tarihYaz(b.created_at)}</p>
+            {bildirimKonusmaId(b) ? <button type="button" className="pnl-dugme pnl-dugme-sade pnl-bildirim-sohbet" onClick={() => {
+              const id = bildirimKonusmaId(b);
+              if (id) sohbeteGit(id);
+            }}>Sohbeti aç <ArrowRight size={14} aria-hidden="true" /></button> : null}
           </div>
         </>
       )}

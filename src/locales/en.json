@@ -1281,5 +1281,12 @@
   "pricing_enterprise_addon_label": "In addition to the clinic account features:",
   "pricing_clinic_includes": "Includes the clinic features in the app",
   "pricing_clinic_desc": "One account for your clinic's daily operations, patients and visibility.",
-  "pricing_clinic_name": "Veterito Clinic"
+  "pricing_clinic_name": "Veterito Clinic",
+  "app_continue_title": "Continue in Veterito",
+  "app_continue_description": "Open this content securely in the Veterito app.",
+  "app_continue_button": "Open Veterito",
+  "app_continue_download": "Don't have the app yet?",
+  "app_continue_ios": "Download on the App Store",
+  "app_continue_android": "Get it on Google Play",
+  "app_continue_invalid": "This link is invalid or no longer supported."
 }

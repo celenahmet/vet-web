@@ -941,9 +941,18 @@ export type Bildirim = {
   title: string | null;
   body: string | null;
   kind: string | null;
+  reference_kind: string | null;
+  reference_id: string | null;
   read_at: string | null;
   created_at: string;
 };
+
+/** Yalnız sohbet bildirimleri panel içindeki bir konuşmaya yönlenebilir. */
+export function bildirimKonusmaId(bildirim: Bildirim): string | null {
+  if (!['direct_message', 'message_reaction'].includes(bildirim.kind ?? '') || bildirim.reference_kind !== 'conversation') return null;
+  const id = bildirim.reference_id;
+  return id && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id) ? id : null;
+}
 
 export type CevrimdisiMusteri = {
   id: string;
@@ -967,7 +976,7 @@ export type CevrimdisiMusteri = {
 export async function bildirimleriOku(): Promise<Bildirim[]> {
   const { data, error } = await istemci
     .from('notifications')
-    .select('id, title, body, kind, read_at, created_at')
+    .select('id, title, body, kind, reference_kind, reference_id, read_at, created_at')
     .order('created_at', { ascending: false })
     .limit(60);
   if (error) throw error;

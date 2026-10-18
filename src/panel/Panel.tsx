@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { LogOut, Building2, Menu, X, ChevronDown } from 'lucide-react';
 import type { Session } from '@supabase/supabase-js';
 
@@ -70,6 +70,8 @@ export default function Panel() {
   const [klinikler, setKlinikler] = useState<KlinikUyeligi[] | null>(null);
   const [seciliId, setSeciliId] = useState<string | null>(seciliKlinigiOku());
   const [bolum, setBolum] = useState<Bolum>('pano');
+  const [hedefKonusma, setHedefKonusma] = useState<{ id: string; sira: number } | null>(null);
+  const hedefKonusmaSirasi = useRef(0);
   const [acikMenuGrubu, setAcikMenuGrubu] = useState<BolumGrubu | null>('daily');
   const [menuAcik, setMenuAcik] = useState(false);
   /*
@@ -117,6 +119,7 @@ export default function Panel() {
   }, [oturum, bolum]);
 
   function bolumeGit(b: Bolum) {
+    setHedefKonusma(null);
     setBolum(b);
     const hedefGrup = BOLUMLER.find((bolum2) => bolum2.anahtar === b)?.grup;
     if (hedefGrup) setAcikMenuGrubu(hedefGrup);
@@ -124,6 +127,11 @@ export default function Panel() {
     /* ⚠️ Bolum degisince yukari cikiyoruz: uzun bir listeden kisa bir bolume
        gecince kullanici sayfanin ortasinda kaliyordu ve ekran bos sanilıyordu. */
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function sohbeteGit(konusmaId: string) {
+    bolumeGit('mesajlar');
+    setHedefKonusma({ id: konusmaId, sira: ++hedefKonusmaSirasi.current });
   }
 
   /* ── GIRIS YAPILMAMIS: panelin kendi giris ekrani, kabuk yok ── */
@@ -196,10 +204,10 @@ export default function Panel() {
       case 'iletisim': return <PanelEntegrasyonlar klinik={secili.clinic_id} sahip={secili.role === 'owner'} gorunum="communications" git={bolumeGit} />;
       case 'profil': return <PanelProfil klinik={secili.clinic_id} />;
       case 'topluluk': return <PanelTopluluk klinik={secili.clinic_id} />;
-      case 'mesajlar': return <PanelMesajlar klinik={secili.clinic_id} />;
+      case 'mesajlar': return <PanelMesajlar klinik={secili.clinic_id} hedefKonusma={hedefKonusma} />;
       case 'sahiplendirme': return <PanelSahiplendirme />;
       case 'duyurular': return <PanelDuyurular klinik={secili.clinic_id} />;
-      case 'bildirimler': return <PanelBildirimler />;
+      case 'bildirimler': return <PanelBildirimler sohbeteGit={sohbeteGit} />;
       case 'degerlendirmeler': return <PanelDegerlendirmeler klinik={secili.clinic_id} />;
       case 'defter': return <PanelDefter klinik={secili.clinic_id} />;
       case 'ekip': return <PanelEkip klinik={secili.clinic_id} />;
@@ -339,6 +347,7 @@ export default function Panel() {
             okunmamis={okunmamis}
             sayiyiTazele={() => okunmamisBildirimSayisi().then(setOkunmamis).catch(() => {})}
             tumunuGor={() => bolumeGit('bildirimler')}
+            sohbeteGit={sohbeteGit}
           />
 
           <div className="pnl-kullanici-kutu">

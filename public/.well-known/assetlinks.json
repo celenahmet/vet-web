@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.veterito.app",
+      "sha256_cert_fingerprints": [
+        "BA:D9:B4:6B:3A:9D:CB:AB:49:B8:CD:43:B7:D5:61:B3:61:6D:38:3C:DF:FA:84:61:AA:A0:58:39:03:F7:16:34"
+      ]
+    }
+  }
+]
