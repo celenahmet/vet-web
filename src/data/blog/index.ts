@@ -15,6 +15,7 @@ import { kopeklerKacYilYasar } from './kopekler-kac-yil-yasar';
 import { kediYasiNasilHesaplanir } from './kedi-yasi-nasil-hesaplanir';
 import { kedimYemekYemiyor } from './kedim-yemek-yemiyor';
 import { kediAsiTakvimi } from './kedi-asi-takvimi';
+import { kedilereKuduzAsisi } from './kedilere-kuduz-asisi';
 import { kopekAsiTakvimi } from './kopek-asi-takvimi';
 import { kopegimFazlaKiloluMu } from './kopegim-fazla-kilolu-mu';
 import { kedilerdeIcVeDisParazit } from './kedilerde-ic-ve-dis-parazit';
@@ -77,6 +78,7 @@ const TUM_YAZILAR: BlogYazi[] = [
   yavruKediVeterinereNeZamanGoturulmeli, yavruKopekVeterinereNeZamanGoturulmeli,
   kedilerIcinYasMamaMiKuruMamaMi, yavruKediNeKadarMamaYemeli, kedilerdeMaltNeIseYarar,
   kedilerinDisleriNasilTemizlenir, kedilerdeGozEnfeksiyonu, kedilerdeGozBoyamaTesti,
+  kedilereKuduzAsisi,
 ];
 
 /**
