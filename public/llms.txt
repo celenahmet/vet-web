@@ -21,9 +21,14 @@ hangi yıl, DOI'si ne — hepsi doğrulanabilir.
 
 ## Blog
 
-43 yazı yayında. Her yazının altında en az iki kaynak var; genelde biri
+48 yazı yayında. Her yazının altında en az iki kaynak var; genelde biri
 uluslararası üniversite ya da hakemli dergi (Cornell, AAHA/AAFP, WSAVA gibi).
 
+- [5199 Sayılı Hayvanları Koruma Kanunu: Sahiplenme, Yükümlülükler ve Cezalar](https://veterito.com/blog/5199-sayili-kanun) — Pet Sahipleri, 2026-10-20: 5199 sayılı kanun ve 2024 tarihli uygulama yönetmeliği hayvan sahiplerine ne yüklüyor? Barınaktan sahiplenme şartları, sahibin yükümlülükleri ve 2026 idari para cezaları tek tabloda.
+- [Evcil Hayvan Pasaportu Nasıl Alınır? Yurt Dışına Kedi Köpek Götürmek](https://veterito.com/blog/evcil-hayvan-pasaportu) — Pet Sahipleri, 2026-10-20: Pasaport PETVET kaydıyla birlikte düzenleniyor ama yurt dışı için tek başına yetmiyor. Kuduz aşısı, antikor testi, sağlık sertifikası ve AB için 90 günlük bekleme adım adım.
+- [Kedilere Kuduz Aşısı Ne Zaman Yapılır, Ne Sıklıkla Tekrarlanır?](https://veterito.com/blog/kedilere-kuduz-asisi) — Kedi, 2026-10-20: Kuduz aşısı üç aydan büyük kedilerde yasal zorunluluk. İlk doz, 21 gün sonra rapel, sonra yılda bir. Ev kedisi de dahil; nerede yapılır, kayda nasıl işlenir.
+- [PETVET Kaydı Nasıl Yapılır? Sahipli Hayvan Kayıt Zorunluluğu](https://veterito.com/blog/petvet-kayit) — Pet Sahipleri, 2026-10-20: Sahipli kedi ve köpeklerin mikroçiple PETVET'e kaydı zorunlu ve son tarih 31 Aralık 2025'te doldu. Kayıt nerede yapılır, yavruda ne zaman, ceza ne kadar, sonra neler bildirilir.
+- [Veteriner Kliniği Açmak İçin Gerekenler: Şartlar ve Belgeler](https://veterito.com/blog/veteriner-klinigi-acmak) — Klinik Yönetimi, 2026-10-20: Muayenehane ya da poliklinik açmak için il müdürlüğüne hangi belgelerle başvurulur, oda ölçüleri ne olmalı, poliklinikte kaç hekim gerekir? Yönetmelik maddeleriyle adım adım.
 - [Kedilerde Göz Boyama Testi Nasıl Yapılır? Teşhis ve Tedavi](https://veterito.com/blog/kedilerde-goz-boyama-testi) — Kedi, 2026-10-04: Göz boyama (floresein) testi, korneadaki ülseri birkaç dakikada görünür kılan ağrısız bir muayene. Nasıl yapılır, ne gösterir, tedaviyi nasıl yönlendirir?
 - [Kedilerde Göz Enfeksiyonu: Belirtileri, Sebepleri ve Tedavisi](https://veterito.com/blog/kedilerde-goz-enfeksiyonu) — Kedi, 2026-10-04: Kedilerde göz enfeksiyonunun arkasında çoğu zaman herpesvirüs, klamidya ya da mikoplazma var. Belirtiler, bulaşma, muayene, tedavi ve aşının rolü.
 - [Kedilerde Malt Ne İşe Yarar?](https://veterito.com/blog/kedilerde-malt-ne-ise-yarar) — Kedi, 2026-10-02: Malt, yutulan tüyün bağırsağa geçmesini kolaylaştıran kayganlaştırıcı bir macun; tüy yumağının nedenini çözmüyor. Ne zaman işe yarar, ne zaman bir işarettir.

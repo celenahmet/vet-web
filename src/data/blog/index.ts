@@ -16,6 +16,15 @@ import { kediYasiNasilHesaplanir } from './kedi-yasi-nasil-hesaplanir';
 import { kedimYemekYemiyor } from './kedim-yemek-yemiyor';
 import { kediAsiTakvimi } from './kedi-asi-takvimi';
 import { kedilereKuduzAsisi } from './kedilere-kuduz-asisi';
+import { petvetKayit } from './petvet-kayit';
+import { kanun5199 } from './5199-sayili-kanun';
+import { kopekGezdirmeKurallari } from './kopek-gezdirme-kurallari';
+import { evcilHayvanPasaportu } from './evcil-hayvan-pasaportu';
+import { veterinerKlinigiAcmak } from './veteriner-klinigi-acmak';
+import { kopeklerdeKene } from './kopeklerde-kene';
+import { yavruKediBakimi } from './yavru-kedi-bakimi';
+import { kediTuyDokumu } from './kedi-tuy-dokumu';
+import { evcilHayvanlaUcakYolculugu } from './evcil-hayvanla-ucak-yolculugu';
 import { kopekAsiTakvimi } from './kopek-asi-takvimi';
 import { kopegimFazlaKiloluMu } from './kopegim-fazla-kilolu-mu';
 import { kedilerdeIcVeDisParazit } from './kedilerde-ic-ve-dis-parazit';
@@ -78,7 +87,8 @@ const TUM_YAZILAR: BlogYazi[] = [
   yavruKediVeterinereNeZamanGoturulmeli, yavruKopekVeterinereNeZamanGoturulmeli,
   kedilerIcinYasMamaMiKuruMamaMi, yavruKediNeKadarMamaYemeli, kedilerdeMaltNeIseYarar,
   kedilerinDisleriNasilTemizlenir, kedilerdeGozEnfeksiyonu, kedilerdeGozBoyamaTesti,
-  kedilereKuduzAsisi,
+  kedilereKuduzAsisi, petvetKayit, kanun5199, kopekGezdirmeKurallari, evcilHayvanPasaportu,
+  veterinerKlinigiAcmak, kopeklerdeKene, yavruKediBakimi, kediTuyDokumu, evcilHayvanlaUcakYolculugu,
 ];
 
 /**

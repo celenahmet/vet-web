@@ -1,6 +1,534 @@
 # Veterito — blog yazılarının tam metni
 
-Üretim: 2026-10-04. 43 yazı. Kaynak künyeleri her yazının sonunda.
+Üretim: 2026-10-20. 48 yazı. Kaynak künyeleri her yazının sonunda.
+
+---
+
+# 5199 Sayılı Hayvanları Koruma Kanunu: Sahiplenme, Yükümlülükler ve Cezalar
+
+Adres: https://veterito.com/blog/5199-sayili-kanun
+Kategori: Pet Sahipleri · Yayın: 2026-10-20
+
+5199 sayılı kanun ve 2024 tarihli uygulama yönetmeliği hayvan sahiplerine ne yüklüyor? Barınaktan sahiplenme şartları, sahibin yükümlülükleri ve 2026 idari para cezaları tek tabloda.
+
+Türkiye'de hayvan sahiplenmenin, bakımın ve sahipsiz hayvanlarla ilgili işlerin temel kanunu **5199 sayılı Hayvanları Koruma Kanunu.** Son kapsamlı değişikliği **7527 sayılı Kanun** yaptı; değişiklik **2 Ağustos 2024**'te yürürlüğe girdi. Ayrıntıları ise **13 Aralık 2024**'te Resmî Gazete'de yayımlanan **Hayvanların Korunması Hakkında Uygulama Yönetmeliği** düzenliyor.
+
+Aşağıda bir kedi ya da köpek sahibinin bilmesi gerekenleri madde numaralarıyla topladık: barınaktan sahiplenme şartları, sahibin yükümlülükleri ve bunlara uyulmadığında uygulanan cezalar. Bu yazı bilgilendirme amaçlı; somut bir uyuşmazlıkta il veya ilçe tarım ve orman müdürlüğüne ya da bir hukukçuya danışın.
+
+
+## 5199 sayılı kanun neyi düzenler?
+
+- **Sahipli hayvanlar:** Sahibin bakım, barınma ve sağlık yükümlülükleri, kayıt zorunluluğu, terk yasağı (madde 4, 5, 14).
+- **Sahipsiz hayvanlar:** Belediyelerin bakımevi kurma, toplama, rehabilitasyon ve sahiplendirme görevleri (madde 6, ek madde 1).
+- **Yasaklar:** Kasıtlı kötü davranmak, terk, 16 yaşından küçüklere ev hayvanı satmak, Bakanlıkça belirlenen tehlikeli hayvanları sahiplenmek ve üretmek gibi fiiller (madde 14).
+- **Yaptırımlar:** İdari para cezaları (madde 28) ve hayvan öldürmeye hapis cezası (madde 28/A).
+
+
+## Barınaktan hayvan sahiplenme şartları nelerdir?
+
+Kanun, sahiplenme şartlarını yönetmeliğe bırakıyor (madde 5). 2024 tarihli uygulama yönetmeliğine göre bakımevinden sahiplenmede şu kurallar geçerli:
+
+- **Ücretsiz:** Bakımevleri sahiplendirme için bağış ya da ücret isteyemiyor.
+- **Form ve hekim onayı:** Sahipsiz Hayvan Edinme Formu dolduruluyor, formu bakımevinin sorumlu veteriner hekimi onaylıyor; hayvan Bakanlık sistemine kaydedilip pasaportu oluşturuluyor.
+- **Hayvan hazır teslim ediliyor:** Sahiplendirmeden önce hayvanın kimliklendirmesi, aşıları ve tedavileri yapılıyor.
+- **Altı aydan küçük yavru:** Kısırlaştırılmadan verilen altı aydan küçük hayvanı sahibi, taahhüt ettiği tarihte kısırlaştırmak zorunda.
+- **Köpek için apartman izni:** Kat mülkiyetine tabi bir binada oturan kişiden, yönetim planı ve bağımsız bölümde köpek bulundurulabileceğini gösteren yönetici izni isteniyor.
+- **Sayı sınırı:** Bir kişinin bakımevinden kaç hayvan sahiplenebileceğini il hayvanları koruma kurulu belirliyor.
+- **Üç yıl yasak:** Sahiplendiği hayvanı terk ettiği için ceza alan ya da bir takvim yılında birden fazla hayvan kaybeden kişi üç yıl boyunca bakımevinden hayvan sahiplenemiyor.
+
+Yaş tarafında kimliklendirme yönetmeliği ev hayvanı sahibini **16 yaş ve üzeri** kişi olarak tanımlıyor; sahip 16 ile 18 yaş arasındaysa sorumluluk veli ya da vasiye ait. Kanun da ev hayvanlarını 16 yaşından küçüklere satmayı yasaklıyor. Bakanlıkça tehlikeli sayılan ırklar ise hiç sahiplenilemiyor.
+
+
+## Hayvan sahibinin yükümlülükleri nelerdir?
+
+Kanunun 5. maddesi ve yönetmeliğin 10. maddesi sahibin yükümlülüklerini sayıyor:
+
+- **Kayıt:** Kedi ve köpeği mikroçiple kimliklendirip Bakanlık sistemine kaydettirmek. Kanunun verdiği son tarih 31 Aralık 2025'ti; adımları PETVET kaydı (https://veterito.com/blog/petvet-kayit) yazımızda anlattık.
+- **Bakım ve sağlık:** Hayvanı türüne uygun barındırmak ve beslemek, aşı ve tedavilerini veteriner hekime yaptırmak.
+- **Üreme kontrolü:** Kontrolsüz üremeyi önlemek için hayvanı kısırlaştırmak; yavrulatılırsa doğan yavruları kayda aldırmak.
+- **Halka açık yerde:** Köpeği tasmayla kontrol altında dolaştırmak, pasaportunu yanında bulundurmak ve dışkısını temizlemek.
+- **Zarar önleme:** Hayvanın çevreye ve insanlara verebileceği zarar ve rahatsızlığı önlemek; yeterli önlem alınmadığı için doğan zararı tazmin etmek.
+- **Bildirim:** Hayvanın ölümünü il veya ilçe tarım ve orman müdürlüğüne bildirmek.
+
+YAYGIN YANILGI — "Bakamıyorsam sokağa bırakabilirim": Ev hayvanını terk etmek kanunda en ağır idari para cezası öngörülen fiillerden biri. Yönetmelik bakamayan sahibe iki yol gösteriyor: hayvanı yeniden sahiplendirmek ya da bir hayvan bakımevine teslim etmek.
+
+
+## 5199 sayılı kanun idari para cezaları 2026
+
+Kanunun 28. maddesindeki tutarlar, maddeye yazıldıkları yılın tutarları. Kabahatler Kanunu'nun 17. maddesi gereği idari para cezaları her yıl başında, o yıl için ilan edilen yeniden değerleme oranıyla artırılarak uygulanıyor. 2026'da bu oran **%25,49.** Aşağıdaki 2026 tutarlarını bu kuralla hesapladık; Bakanlığın 2023 için açıkladığı iki tutar (kayıt için 3.642 TL, terk için 6.072 TL) da aynı hesapla birebir tutuyor.
+
+Fiil | Kanundaki tutar | 2026 tutarı
+Kedi ve köpeği kayıt altına aldırmamak (28/a) | Hayvan başına 1.200 TL | 10.423 TL
+Bakım ve zarar önleme yükümlülüklerine uymamak (28/b) | Hayvan başına 1.000 TL | 8.687 TL
+Kasıtlı kötü davranmak, aç ve susuz bırakmak, bakımı ihmal etmek (28/j) | Hayvan başına 1.500 TL | 13.032 TL
+16 yaşından küçüğe ev hayvanı satmak (28/j) | 2.000 TL | 17.376 TL
+Tehlikeli ırk üretmek, sahiplenmek, satmak (28/j) | Hayvan başına 11.000 TL | 95.589 TL
+Belediye adına toplanan sahipsiz hayvanları bakımevi dışına bırakmak (28/j) | Hayvan başına 50.000 TL | 90.308 TL
+Ev hayvanını terk etmek (28/j) | Hayvan başına 60.000 TL | 108.370 TL
+
+Kanun bazı durumlarda cezayı ağırlaştırıyor: fiili veteriner hekim, veteriner teknikeri ya da hayvanların bakımıyla görevli biri işlerse ceza **iki kat** uygulanıyor. Aynı kabahatin tekrarında da ceza artırılıyor. Somut bir olayda esas olan, denetim elemanının düzenlediği idari yaptırım karar tutanağındaki tutar.
+
+
+## Hayvan öldürmenin cezası nedir?
+
+Kanunun 28/A maddesi, kanundaki istisnalar dışında bir ev hayvanını ya da evcil hayvanı kasten öldürmeyi **suç** sayıyor ve **altı aydan dört yıla kadar hapis cezası** öngörüyor. Bu hayvanlara işkence etmek ya da acımasız ve zalimce davranmak da altı aydan üç yıla kadar hapis gerektiriyor. Suç birden fazla hayvana karşı işlenirse ceza yarı oranında artıyor.
+
+Bu suçlarda soruşturma kural olarak **Tarım ve Orman Bakanlığı il veya ilçe müdürlüğünün cumhuriyet başsavcılığına yazılı başvurusuyla** başlıyor; kanun bu başvuruyu muhakeme şartı sayıyor. Suçüstü hâlinde genel hükümler uygulanıyor. Sahipli bir hayvana sahibinden başkası zarar verdiyse sahibinin şikâyeti de soruşturmayı başlatabiliyor.
+
+
+## Denetimi kim yapar, şikâyet nereye yapılır?
+
+Yönetmeliğe göre kanuna uyulup uyulmadığını denetleme yetkisi **Tarım ve Orman Bakanlığı'nda;** Bakanlık bu yetkiyi mahallin en büyük mülki amirine devredebiliyor. Kayıtsız hayvan, terk ya da bakım ihmali gibi idari konularda il veya ilçe tarım ve orman müdürlüğüne başvurulabiliyor. Hayvana karşı suç niteliğindeki olaylarda da müdürlüğe bildirim önemli, çünkü savcılığa yazılı başvuruyu müdürlük yapıyor; suçüstü hâlinde kolluğa haber verilebiliyor.
+
+UYARI: Bir hayvana şiddet uygulandığını görüyorsanız kendinizi tehlikeye atmadan, olayın yerini ve saatini not ederek kolluğa bildirin. Yaralı hayvan için en yakın veteriner kliniğine ulaşın.
+
+## Sıkça sorulan sorular
+
+**5199 sayılı kanun nedir?**
+Türkiye'de hayvanların korunmasını, sahiplenmeyi ve sahipsiz hayvanlarla ilgili görevleri düzenleyen Hayvanları Koruma Kanunu.
+
+**5199 sayılı kanunun son hali ne zaman yürürlüğe girdi?**
+Son kapsamlı değişiklik 7527 sayılı Kanunla 2 Ağustos 2024'te yürürlüğe girdi.
+
+**Barınaktan hayvan sahiplenmek ücretli mi?**
+Hayır; uygulama yönetmeliğine göre bakımevleri sahiplendirme için bağış ya da ücret isteyemiyor.
+
+**Apartmanda köpek sahiplenmek için izin gerekir mi?**
+Bakımevinden köpek sahiplenirken kat mülkiyeti yönetim planı ve yöneticinin izin belgesi isteniyor.
+
+**Hayvan terk etmenin cezası 2026'da ne kadar?**
+Kanundaki tutar hayvan başına 60.000 TL; yeniden değerlemeyle 2026 tutarı hayvan başına 108.370 TL.
+
+**5199 sayılı kanun 28/a nedir?**
+Kedi ve köpeğini kayıt altına aldırmayana hayvan başına idari para cezası öngören bent; 2026 tutarı 10.423 TL.
+
+**Hayvan öldürmenin cezası nedir?**
+Kanunun 28/A maddesine göre ev hayvanını ya da evcil hayvanı kasten öldürmenin cezası altı aydan dört yıla kadar hapis.
+
+## Kaynaklar
+
+- T.C. Cumhurbaşkanlığı Mevzuat Bilgi Sistemi · 5199 sayılı Hayvanları Koruma Kanunu · https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=1&MevzuatNo=5199&MevzuatTertip=5
+- T.C. Resmî Gazete · Hayvanların Korunması Hakkında Uygulama Yönetmeliği (13.12.2024, sayı 32751) · https://www.resmigazete.gov.tr/eskiler/2024/12/20241213-3.htm
+- T.C. Tarım ve Orman Bakanlığı · Kedi, Köpek ve Gelinciklerin Kimliklendirilmesi ve Kayıt Altına Alınmasına Dair Yönetmelik · https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=7&MevzuatNo=24414&MevzuatTertip=5
+- T.C. Tarım ve Orman Bakanlığı · Sahipli Hayvanların Dijital Kimliklendirilmesi (kamuoyu bilgilendirmesi, 27.12.2022) · https://www.tarimorman.gov.tr/Haber/5652/Sahipli-Hayvanlarin-Dijital-Kimliklendirilmesi
+- T.C. Cumhurbaşkanlığı Mevzuat Bilgi Sistemi · 5326 sayılı Kabahatler Kanunu (madde 17, yeniden değerleme) · https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=1&MevzuatNo=5326&MevzuatTertip=5
+
+---
+
+# Evcil Hayvan Pasaportu Nasıl Alınır? Yurt Dışına Kedi Köpek Götürmek
+
+Adres: https://veterito.com/blog/evcil-hayvan-pasaportu
+Kategori: Pet Sahipleri · Yayın: 2026-10-20
+
+Pasaport PETVET kaydıyla birlikte düzenleniyor ama yurt dışı için tek başına yetmiyor. Kuduz aşısı, antikor testi, sağlık sertifikası ve AB için 90 günlük bekleme adım adım.
+
+Türkiye'de kedi ve köpeğin pasaportu, hayvan **mikroçiple PETVET'e kaydedilirken** veteriner hekim ya da il veya ilçe tarım ve orman müdürlüğü tarafından düzenleniyor. Ancak yurt dışına çıkışta pasaport **tek başına yetmiyor:** hayvanın kuduz aşısının geçerli olması, gidilen ülke istiyorsa kuduz antikor testinin yapılmış olması ve çıkıştan önce **resmî veteriner hekimin düzenlediği veteriner sağlık sertifikasının** alınması gerekiyor.
+
+AB ülkelerine gidecekseniz en uzun adım antikor testi: kan örneği alındıktan sonra sertifika için **en az 90 gün** beklemek gerekiyor. Aşağıda Tarım ve Orman Bakanlığı'nın yurt dışı çıkış talimatını ve Avrupa Komisyonu'nun giriş kurallarını adım adım anlatıyoruz.
+
+
+## Evcil hayvan pasaportu nasıl alınır?
+
+- **Başvuru:** Serbest çalışan bir veteriner hekime ya da il veya ilçe tarım ve orman müdürlüğüne başvuruluyor.
+- **Mikroçip:** Hayvana 15 haneli numara taşıyan mikroçip takılıyor.
+- **Kayıt ve pasaport:** Hayvan PETVET'e kaydediliyor ve pasaportu düzenleniyor; yönetmelik bunun için en çok 15 gün tanıyor.
+
+Yurt içinde başka bir şehre götürürken de pasaportun yanınızda olması gerekiyor. Pasaport kaybolur ya da çalınırsa **60 gün içinde** il veya ilçe müdürlüğüne bildirilip yenisi düzenletiliyor. Mikroçipin nasıl çalıştığını mikroçip nedir (https://veterito.com/blog/mikrocip-nedir) yazımızda anlattık.
+
+
+## Yurt dışına kedi köpek götürmek için gerekenler
+
+- **Mikroçip, PETVET kaydı ve pasaport:** Yurt dışına çıkışın ön şartı.
+- **Geçerli kuduz aşısı:** Aşı tarihi pasaporta işlenmiş, aşıyı yapan hekimin kaşesi ve imzası olmalı. Aşı, prospektüste farklı bir talimat yoksa hayvan **en erken 12 haftalıkken** yapılmış olmalı ve **mikroçiple aynı gün ya da ondan sonra** yapılmış olmalı.
+- **Kuduz antikor (titre) testi:** Gidilen ülke istiyorsa zorunlu. AB ülkeleri istiyor.
+- **Veteriner sağlık sertifikası:** İkamet ettiğiniz il veya ilçe tarım ve orman müdürlüğü, **çıkışa en erken 48 saat kala** düzenliyor. Bu sertifika olmadan hiçbir kedi ve köpek yurt dışına çıkarılamıyor.
+
+Aşı zamanlamasını kedi aşı takvimi (https://veterito.com/blog/kedi-asi-takvimi) ve köpek aşı takvimi (https://veterito.com/blog/kopek-asi-takvimi) yazılarımızda anlattık. Yurt dışı planınız varsa bunu ilk kuduz aşısında hekiminize söyleyin; mikroçipin aşıdan önce ya da aynı gün takılmış olması şart.
+
+
+## Kuduz antikor testi nedir, nasıl yapılır?
+
+Kuduz antikor titrasyon testi (FAVN), aşının hayvanda yeterli bağışıklık oluşturduğunu kandan ölçüyor. Bakanlık talimatına göre süreç şöyle işliyor:
+
+- **Kan örneği:** Kuduz aşısından **en erken 30 gün sonra** veteriner hekim alıyor.
+- **Laboratuvar:** Örnek, Ankara'daki **Etlik Veteriner Kontrol Merkez Araştırma Enstitüsü**'ne gönderiliyor. Örneğin alındıktan sonra en geç 5 gün içinde enstitüye ulaşması gerekiyor; ulaşmayan örnek işleme alınmıyor.
+- **Hekimin bildirimi:** Kanı alacak serbest veteriner hekim, öncesinde il veya ilçe müdürlüğündeki resmî veteriner hekime haber veriyor.
+- **Geçerlilik:** Aşılar zamanında tekrarlandığı sürece test raporu hayvanın **ömrü boyunca** geçerli. Bir aşı geciktirilirse sonraki aşı "ilk aşı" sayılıyor ve test yeniden yapılıyor.
+
+Etlik'teki enstitü, Avrupa Komisyonu'nun kuduz antikor testi için onayladığı laboratuvarlar listesinde yer alıyor; raporu AB ülkelerinde kabul ediliyor.
+
+YAYGIN YANILGI — "Kuduz aşısı varsa test gereksiz": AB ve bazı ülkeler aşının yanında aşının işe yaradığının kanıtını da istiyor. Aşı kartı bunu göstermiyor; ancak antikor testi gösteriyor. Test sonucu ve sertifika yoksa hayvan sınırdan geri çevrilebiliyor.
+
+
+## AB ülkelerine kedi köpek götürmek: hesaplanması gereken süreler
+
+Türkiye, AB'nin antikor testinden muaf tuttuğu ülkeler listesinde değil. Bu yüzden Türkiye'den AB'ye giden kedi ve köpekte test zorunlu ve sonucun **en az 0,5 IU/ml** çıkması gerekiyor. Avrupa Komisyonu'nun kurallarına göre takvim şöyle kuruluyor:
+
+Adım | Ne zaman | Kural
+Mikroçip ve kuduz aşısı | Hayvan en az 12 haftalıkken | Aşı mikroçipten sonra ya da aynı gün
+Antikor testi için kan örneği | Aşıdan en az 30 gün sonra | Onaylı laboratuvarda, en az 0,5 IU/ml
+Veteriner sağlık sertifikası | Kan örneğinden en az 90 gün sonra | Türkiye'de çıkışa en erken 48 saat kala
+AB'ye giriş | Sertifika tarihinden itibaren 10 gün içinde | Belirlenmiş yolcu giriş noktasından
+
+Yani ilk kuduz aşısından AB'ye çıkışa kadar **en az dört ay** hesaplamak gerekiyor. Sertifika, AB içinde sonraki seyahatler için 6 ay ya da kuduz aşısının geçerliliği bitene kadar (hangisi önceyse) kullanılabiliyor. Ticari olmayan harekette bir araçta en çok **5 hayvan** olabiliyor ve sahibin, hayvanın satılmayacağına dair yazılı beyanı isteniyor. AB, 1 Ekim 2026'dan itibaren düzenlenen sertifikalar için yeni bir sertifika modeline geçti; modeli müdürlük düzenliyor.
+
+
+## Hangi durumlar ticari sayılır?
+
+Bakanlık talimatına göre hayvan sahibiyle ya da sahibinin yetkilendirdiği kişiyle birlikte gidiyorsa **yolcu beraberi** sertifika düzenleniyor. Şu durumlar ise ticari sayılıyor ve ticari sertifika gerekiyor:
+
+- Hayvan, sahibinin yolculuğundan **5 günden daha önce ya da sonra** gidiyorsa (örneğin kargoyla ayrı gönderiliyorsa).
+- Hayvan sahiplendirilmek ya da üretim için götürülüyorsa.
+- Taşıma ücret karşılığında bir nakliye şirketi aracılığıyla yapılıyorsa.
+
+
+## Yurt dışına çıkışı izne bağlı ırklar
+
+Gen kaynakları koruma altındaki şu ırkların yurt dışına çıkışı **ön izne** bağlı: Kangal, Akbaş ve Kars çoban köpekleri, Çatal Burun av köpeği, Zağar İnci köpeği, Ankara kedisi ve Van kedisi. Pasaportunda ırk ya da renk yalnız "melez" veya "karışık" diye yazılmış hayvanlarda çıkış işlemi yapılmıyor; önce pasaporta en yakın ırk ve renk yazdırılması gerekiyor.
+
+Bakanlıkça tehlike arz eden sayılan ırklardan sahipli ve kayıtlı köpekler, alıcı ülke kabul ederse sahipleriyle yurt dışına çıkabiliyor ama **Türkiye'ye yeniden giremiyor.**
+
+UYARI: Ülkelerin giriş kuralları ve havayollarının hayvan taşıma şartları değişebiliyor. Bilet almadan önce gideceğiniz ülkenin resmî makamının ve havayolunun güncel kurallarına bakın, sertifika için de il veya ilçe müdürlüğüyle erkenden görüşün.
+
+## Sıkça sorulan sorular
+
+**Evcil hayvan pasaportu nereden alınır?**
+Mikroçip ve PETVET kaydıyla birlikte veteriner hekimde ya da il veya ilçe tarım ve orman müdürlüğünde düzenleniyor.
+
+**Yurt dışına çıkmak için pasaport yeterli mi?**
+Hayır; geçerli kuduz aşısı, gerekiyorsa antikor testi ve çıkışa en erken 48 saat kala alınan veteriner sağlık sertifikası da gerekiyor.
+
+**Kuduz antikor testi ne zaman yapılır?**
+Kuduz aşısından en erken 30 gün sonra alınan kanla, Ankara Etlik'teki enstitüde yapılıyor.
+
+**AB'ye kedi köpek götürmek için ne kadar beklemek gerekir?**
+Kan örneğinden en az 90 gün sonra sertifika alınabiliyor; aşıdan itibaren en az dört ay hesaplayın.
+
+**Antikor testi her seyahatte tekrarlanır mı?**
+Hayır; kuduz aşıları zamanında tekrarlandığı sürece rapor ömür boyu geçerli.
+
+**Veteriner sağlık sertifikası nereden alınır?**
+İkamet ettiğiniz il veya ilçe tarım ve orman müdürlüğünden, çıkışa en erken 48 saat kala.
+
+**Kangal yurt dışına çıkarılabilir mi?**
+Koruma altındaki ırklardan olduğu için çıkışı Bakanlığın ön iznine bağlı.
+
+## Kaynaklar
+
+- T.C. Tarım ve Orman Bakanlığı · Kedi ve Köpeklerin Yurt Dışına Yolcu Beraberi ve Ticari Sevklerine İlişkin Uygulama Talimatı (21.10.2022, sayı 7455140) · https://vskn.tarimorman.gov.tr/tekirdag/Belgeler/D%C3%96K%C3%9CMAN/Kedi%20Ve%20K%C3%B6peklerin%20Yurt%20D%C4%B1%C5%9F%C4%B1na%20Yolcu%20Beraberi%20Ve%20Ticari%20Sevklerine%20%C4%B0li%C5%9Fkin%20Uygulama%20Talimat%C4%B1.pdf
+- T.C. Tarım ve Orman Bakanlığı · Kedi, Köpek ve Gelinciklerin Kimliklendirilmesi ve Kayıt Altına Alınmasına Dair Yönetmelik · https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=7&MevzuatNo=24414&MevzuatTertip=5
+- European Commission, Food Safety · Bringing a pet into the EU from a non-EU country · https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/bringing-pet-eu-non-eu-country_en
+- European Commission, Food Safety · Listing of territories and non-EU countries · https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/listing-territories-and-non-eu-countries_en
+- European Commission, Food Safety · Designated laboratories performing rabies antibody titration tests: non-EU countries · https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/designated-laboratories-performing-rabies-antibody-titration-tests/non-eu-countries_en
+
+---
+
+# Kedilere Kuduz Aşısı Ne Zaman Yapılır, Ne Sıklıkla Tekrarlanır?
+
+Adres: https://veterito.com/blog/kedilere-kuduz-asisi
+Kategori: Kedi · Yayın: 2026-10-20
+
+Kuduz aşısı üç aydan büyük kedilerde yasal zorunluluk. İlk doz, 21 gün sonra rapel, sonra yılda bir. Ev kedisi de dahil; nerede yapılır, kayda nasıl işlenir.
+
+Türkiye'de **üç aydan büyük her kedinin kuduz aşısı yaptırılması yasal bir yükümlülük.** Kuduz yönetmeliğine göre ilk dozdan sonra rapel (pekiştirme) dozu yapılıyor, ardından aşı **yılda bir** tekrarlanıyor. Kedinin hiç dışarı çıkmaması bu yükümlülüğü kaldırmıyor.
+
+Aşağıda aşının ne zaman yapıldığını, ne sıklıkla tekrarlandığını, nerede yaptırıldığını ve aşıdan sonra nelere dikkat edileceğini yönetmelik maddeleri ve uluslararası kedi aşı rehberiyle anlatıyoruz. Kedinize özel takvimi her zaman veteriner hekiminiz belirler.
+
+
+## Kedilere kuduz aşısı ne zaman yapılır?
+
+Aşama | Zaman | Dayanak
+İlk doz | Kedi üç aylıktan büyükken | Kuduz yönetmeliği, madde 9
+Rapel (pekiştirme) dozu | İlk dozdan 21 gün sonra | Üretici farklı süre belirtmemişse
+Tekrar | Yılda bir | Üretici farklı süre belirtmemişse
+
+Uluslararası rehber de ilk dozun **12 haftalıktan önce yapılmamasını** öneriyor. Bunun sebebi yavrunun anneden aldığı bağışıklığın aşının etkisini azaltabilmesi. Yani yavru kedide kuduz aşısı genellikle karma aşı serisi başladıktan sonra, üç aylıkken ya da biraz sonra takvime giriyor. Karma aşıyla birlikte tüm takvimi kedi aşı takvimi (https://veterito.com/blog/kedi-asi-takvimi) yazımızda anlattık.
+
+
+## Kuduz aşısı ne sıklıkla tekrarlanır?
+
+Yönetmelikteki genel kural **yılda bir kez.** Metin, üreticinin farklı bir süre belirttiği durumları ayrıca saklı tutuyor. Uluslararası rehber bazı kuduz aşılarının etiketinde üç yıllık koruma süresi bulunduğunu belirtiyor. Ancak Türkiye'de yükümlülük yönetmelikteki yıllık düzene göre işliyor. Hangi aşının kullanıldığını ve bir sonraki tarihi kedinin kimlik belgesinde görebilirsiniz.
+
+Yönetmelik, evcil hayvanlarda kuduza karşı **yalnızca inaktif (ölü virüs) aşıların** kullanılmasını şart koşuyor.
+
+
+## Kuduz aşısı zorunlu mu? Ev kedisi için de geçerli mi?
+
+Evet. Kuduz Hastalığından Korunma ve Kuduz Hastalığı ile Mücadele Yönetmeliği'nin 9. maddesi, **üç aydan büyük köpek ve kedi sahiplerini hayvanlarını yılda bir defa aşılatmakla yükümlü** tutuyor. Maddede ev kedisi ya da dışarı çıkmayan kedi için bir istisna yok.
+
+YAYGIN YANILGI — "Kedim hiç dışarı çıkmıyor, kuduz aşısı gereksiz": Yasal yükümlülük kedinin yaşam biçiminden bağımsız. Ayrıca ev kedileri de kaçabiliyor, taşınmada ya da pansiyonda başka hayvanlarla karşılaşabiliyor. Seyahat ve pansiyon için de güncel kuduz aşısı isteniyor.
+
+Aynı yönetmeliğin 8. maddesi, **altı aydan büyük kedilerin** kayıt altına alınmasını da zorunlu tutuyor. Kedi mikroçiple kimliklendiriliyor ve bilgileri Bakanlığın veri tabanına giriliyor; adımları PETVET kaydı (https://veterito.com/blog/petvet-kayit) yazımızda anlattık.
+
+
+## Kuduz aşısı nerede yapılır?
+
+- **Özel veteriner klinikleri:** Serbest veteriner hekimler kuduz aşısı uyguluyor. Sahipli kediler için en yaygın yol bu.
+- **Resmi ve belediye veteriner hekimleri:** Yönetmelik aşıyı uygulayabilecek hekimler arasında onları da sayıyor. Belediyeler sahipsiz kedi ve köpekleri de yılda bir aşılıyor.
+
+Aşıyı yapan hekim, uygulamanın bilgilerini ve **bir sonraki aşı tarihini** kedinin kimlik belgesine işlemek ve Bakanlık veri tabanındaki kaydı güncellemekle yükümlü. Aşı sonrasında belgenin güncellendiğini kontrol edin; seyahatte ve pansiyonda bu belge isteniyor.
+
+
+## Kuduz aşısı fiyatı ne kadar?
+
+Fiyat klinikten kliniğe ve şehirden şehre değişiyor. Muayene, aşının kendisi ve kimlik belgesi işlemleri ayrı kalemler olabiliyor. Fiyatların nasıl oluştuğunu ve meslek odalarının belirlediği tabanı veteriner ücretleri (https://veterito.com/blog/veteriner-ucretleri) ve asgari ücret tarifesi (https://veterito.com/blog/asgari-ucret-tarifesi-nedir) yazılarımızda anlattık.
+
+
+## Aşıdan sonra ne beklenir?
+
+- **Normal kabul edilenler:** Bir iki gün süren hafif halsizlik, iştahta azalma, aşı yerinde hassasiyet.
+- **Hemen kliniğe dönülmesi gerekenler:** Yüzde şişlik, kusma, yaygın kaşıntı, nefes almada güçlük, bayılma.
+- **Hekime gösterilmesi gerekenler:** Aşı yerinde **üç aydan uzun süren, 2 santimetreden büyük ya da aşıdan bir ay sonra hâlâ büyüyen** şişlik. Kedi aşı rehberi bu durumda şişliğin incelenmesini öneriyor.
+
+UYARI: Kediniz birini ısırdıysa ya da kuduz şüphesi varsa vakit kaybetmeden hem bir sağlık kuruluşuna hem veteriner hekime başvurun. Isırılan kişinin tedavisine sağlık kuruluşu karar verir.
+
+## Sıkça sorulan sorular
+
+**Kedilere kuduz aşısı ne zaman yapılır?**
+Kedi üç aylıktan büyükken ilk doz yapılıyor; üretici farklı süre belirtmemişse 21 gün sonra rapel dozu, sonra yılda bir tekrar.
+
+**Kuduz aşısı ne sıklıkla yapılır?**
+Türkiye'de yönetmeliğe göre yılda bir kez; üreticinin farklı süre belirttiği aşılarda o süre uygulanıyor.
+
+**Kediye kuduz aşısı yaptırmak zorunlu mu?**
+Evet; kuduz yönetmeliğinin 9. maddesi üç aydan büyük kedi ve köpek sahiplerini yılda bir aşılatmakla yükümlü tutuyor.
+
+**Hiç dışarı çıkmayan ev kedisine kuduz aşısı gerekli mi?**
+Evet; yönetmelikte ev kedisi için istisna yok ve seyahat ile pansiyon için de güncel aşı isteniyor.
+
+**Kuduz aşısı nerede yapılır?**
+Özel veteriner kliniklerinde; resmi ve belediye veteriner hekimleri de uygulayabiliyor ve bilgiyi kimlik belgesine işliyor.
+
+**Kuduz aşısını geciktirdim, ne yapmalıyım?**
+Kliniğinizi arayıp son aşı tarihini söyleyin; gecikmenin süresine göre hekim nasıl devam edileceğine karar verir.
+
+**Kuduz ve karma aşı aynı gün yapılır mı?**
+Hekim uygun görürse aynı ziyarette yapılabiliyor; kedinin yaşı ve sağlık durumuna göre karar veriliyor.
+
+## Kaynaklar
+
+- T.C. Tarım ve Orman Bakanlığı · Kuduz Hastalığından Korunma ve Kuduz Hastalığı ile Mücadele Yönetmeliği · https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=7&MevzuatNo=15800&MevzuatTertip=5
+- American Animal Hospital Association · American Association of Feline Practitioners · 2020 AAHA/AAFP Feline Vaccination Guidelines · Stone AE, Brummet GO, Carozza EM, Kass PH ve ark. · Journal of Feline Medicine and Surgery · 2020 · 22(9):813-830 · DOI: 10.1177/1098612X20941784
+
+---
+
+# PETVET Kaydı Nasıl Yapılır? Sahipli Hayvan Kayıt Zorunluluğu
+
+Adres: https://veterito.com/blog/petvet-kayit
+Kategori: Pet Sahipleri · Yayın: 2026-10-20
+
+Sahipli kedi ve köpeklerin mikroçiple PETVET'e kaydı zorunlu ve son tarih 31 Aralık 2025'te doldu. Kayıt nerede yapılır, yavruda ne zaman, ceza ne kadar, sonra neler bildirilir.
+
+**Sahipli kedi ve köpeklerin mikroçiple kimliklendirilip PETVET'e kaydettirilmesi yasal bir zorunluluk.** 5199 sayılı Hayvanları Koruma Kanunu, sahiplere bunun için **31 Aralık 2025**'e kadar süre vermişti; bu süre doldu. Bugün kaydı olmayan bir kedi ya da köpek için sahibine idari para cezası uygulanabiliyor.
+
+Kayıt bir klinik ziyaretiyle yapılıyor: mikroçip takılıyor, hayvan sisteme işleniyor ve pasaportu düzenleniyor. Aşağıda kaydın nerede ve nasıl yapıldığını, yavru hayvanda ne zaman gerektiğini, cezanın nasıl hesaplandığını ve kayıttan sonra hangi değişikliklerin kaç gün içinde bildirilmesi gerektiğini kanun ve yönetmelik maddeleriyle anlatıyoruz.
+
+
+## PETVET nedir?
+
+PETVET, Tarım ve Orman Bakanlığı'nın **Ev Hayvanı Kayıt Sistemi.** Mikroçip numarasıyla açılan kayıtta hayvanın adı, pasaport numarası, türü, ırkı, cinsiyeti, rengi ve doğum tarihi; sahibinin adı ve adresi ile acil durumda ulaşılacak kişi yer alıyor. Aşılar, sahip değişikliği, kayıp ve yapılan operasyonlar da aynı kayda işleniyor.
+
+Kayıt, sokakta bulunan bir hayvanın sahibine ulaşmayı sağlıyor: hayvan bir okuyucuyla okutulduğunda numaradan sahibi bulunuyor. Mikroçipin nasıl çalıştığını mikroçip nedir (https://veterito.com/blog/mikrocip-nedir) yazımızda ayrıca anlattık.
+
+
+## Kayıt zorunlu mu, son tarih neydi?
+
+Evet. Kanunun 4. maddesi kedi ve köpek sahiplerini **hayvanlarını dijital kimliklendirme yöntemleriyle kayıt altına aldırmakla yükümlü** tutuyor. Geçici 4. madde bu yükümlülük için son tarihi **31 Aralık 2025** olarak belirlemişti. Gelincik sahipleri de kimliklendirme yönetmeliğinin kapsamında.
+
+YAYGIN YANILGI — "Kedim evden hiç çıkmıyor, kayda gerek yok": Yükümlülük hayvanın yaşam biçimine bakmıyor; kanun bütün sahipli kedi ve köpekleri kapsıyor. Ev kedileri de kaçabiliyor; kayıtlı bir kedinin sahibine numarasından ulaşılabiliyor.
+
+
+## PETVET kaydı nasıl yapılır?
+
+- **Başvuru yeri:** Serbest çalışan bir veteriner hekime (kliniğe) ya da il veya ilçe tarım ve orman müdürlüğüne başvuruluyor.
+- **Mikroçip:** 15 haneli numara taşıyan mikroçip, veteriner hekim tarafından ya da hekim gözetiminde deri altına uygulanıyor. Genel yer iki kürek kemiğinin arası ya da boynun sol tarafında kulağa yakın bölge. Omurga hastalığına yatkın ırklarda arka bacak ya da göğüs kemiği bölgesi de kullanılabiliyor.
+- **Sisteme kayıt:** Yetkili veteriner hekim hayvanı ve sahibini PETVET'e işliyor.
+- **Pasaport:** Hayvan adına pasaport düzenleniyor. Yönetmelik pasaportun düzenlenmesi ve kaydın veri tabanına girilmesi için en çok 15 gün tanıyor.
+
+Kayıt için hayvanın kendisi ve sahibinin kimlik bilgileri gerekiyor. Yönetmelik ev hayvanı sahibini **16 yaş ve üzeri** kişi olarak tanımlıyor; sahip 16 ile 18 yaş arasındaysa sorumluluk veli ya da vasiye ait.
+
+
+## Yavru kedi ve köpek ne zaman kaydedilir?
+
+Yeni doğan bir hayvan için sahibi, **doğum tarihinden itibaren en geç altı ay içinde** başvurmak zorunda. Kuduz yönetmeliği ise köpeklerin üç aylıktan, kedilerin altı aylıktan itibaren kayıt altında olmasını istiyor. Bu yüzden köpek yavrusunu ilk kuduz aşısıyla aynı ziyarette çipletmek pratik bir yol. Aşı zamanlarını kedi aşı takvimi (https://veterito.com/blog/kedi-asi-takvimi) ve köpek aşı takvimi (https://veterito.com/blog/kopek-asi-takvimi) yazılarımızda anlattık.
+
+
+## PETVET kayıt ücreti ne kadar?
+
+Yönetmeliğe göre kimliklendirme masraflarını hayvan sahibi karşılıyor ve uygulama ücretini Bakanlık belirliyor. Klinikte muayene ya da aşı gibi başka işlemler de yapılıyorsa bunlar ayrı kalem olabiliyor. Klinik fiyatlarının nasıl oluştuğunu veteriner ücretleri (https://veterito.com/blog/veteriner-ucretleri) yazımızda anlattık.
+
+
+## Kayıt yaptırmamanın cezası ne kadar?
+
+Kanunun 28. maddesi, kedi ve köpeğini kayıt altına aldırmayana **hayvan başına 1.200 TL** idari para cezası öngörüyor. Bu tutar kanunda sabit kalsa da Kabahatler Kanunu'nun 17. maddesi gereği idari para cezaları her yıl başında yeniden değerleme oranıyla artırılıyor. Bakanlık 2023 için bu cezayı **3.642 TL** olarak duyurmuştu. Aynı kuralla ve her yıl açıklanan oranlarla hesaplanan tutarlar şöyle:
+
+Yıl | Hayvan başına ceza | Dayanak
+2023 | 3.642 TL | Bakanlık duyurusu
+2024 | 5.771 TL | %58,46 yeniden değerleme oranıyla
+2025 | 8.306 TL | %43,93 yeniden değerleme oranıyla
+2026 | 10.423 TL | %25,49 yeniden değerleme oranıyla
+
+Cezayı il ve ilçe tarım ve orman müdürlükleri ile doğa koruma ve milli parklar şube müdürlükleri uyguluyor. Ceza kesildikten sonra hayvan yine çiplenip kaydediliyor; yani ceza, kayıt yükümlülüğünü ortadan kaldırmıyor. Hayvanını terk etmenin cezası çok daha ağır: kanundaki tutar hayvan başına 60.000 TL.
+
+
+## Kayıttan sonra neyi kaç gün içinde bildirmelisiniz?
+
+Durum | Bildirim süresi | Nereye
+Hayvan kayboldu | 7 gün | İl veya ilçe müdürlüğü
+Hayvan öldü | 30 gün (pasaport teslim edilir) | İl veya ilçe müdürlüğü
+Hayvan başkasına geçti | 60 gün (yeni sahip başvurur) | İl veya ilçe müdürlüğü
+Pasaport kayboldu, çalındı | 60 gün | İl veya ilçe müdürlüğü
+
+Kayıp bildirilen hayvan PETVET'te **kayıp** olarak işaretleniyor ve sistemi kullanan hekimler bunu görebiliyor. Sahip değişikliğinde **Ev Hayvanı Sahip Değişikliği Belgesi** kullanılıyor; kayıt ve pasaport yeni sahip adına güncelleniyor.
+
+
+## Sokaktan ya da barınaktan sahiplenilen hayvan nasıl kaydedilir?
+
+Sahipsiz hayvanların kimliklendirilmesi yerel yönetimlerin görevi. Barınaktan sahiplenilen kedi ve köpeği barınağın sorumlu veteriner hekimi sisteme kaydediyor ve pasaportunu oluşturuyor. Sokaktan sahiplenilen hayvan için beyannameyle başvuruluyor; Bakanlık bu hayvanların cezasız kaydedildiğini duyurmuştu.
+
+
+## Kayıt nasıl sorgulanır?
+
+En kısa yol hayvanın **pasaportu:** mikroçip numarası ve kayıt bilgileri orada yazıyor. Pasaport elinizde değilse herhangi bir veteriner kliniğinde hayvanı okuyucuyla okutup numarayı öğrenebilir, kaydın durumunu il veya ilçe müdürlüğüne sorabilirsiniz. Adres ya da telefon değiştiğinde bilgileri güncel tutmak kaydın asıl işlevi: kaybolan hayvanın sahibine bu bilgilerle ulaşılıyor.
+
+UYARI: Yurt içinde başka bir şehre taşırken hayvanın pasaportunun yanınızda olması gerekiyor. Yurt dışına çıkışta mikroçip, pasaport ve PETVET kaydı birlikte isteniyor; ülkeye göre ek aşı ve test şartları da var.
+
+## Sıkça sorulan sorular
+
+**PETVET nedir?**
+Tarım ve Orman Bakanlığı'nın Ev Hayvanı Kayıt Sistemi; mikroçip numarasıyla hayvanın ve sahibinin bilgilerini tutuyor.
+
+**PETVET kaydı zorunlu mu?**
+Evet; 5199 sayılı kanun sahipli kedi ve köpeklerin kaydını zorunlu tutuyor ve son tarih 31 Aralık 2025'ti.
+
+**PETVET kaydı nerede yapılır?**
+Serbest çalışan veteriner hekimlerde ya da il ve ilçe tarım ve orman müdürlüklerinde.
+
+**Yavru kediyi ne zaman kaydettirmeliyim?**
+Doğumdan itibaren en geç altı ay içinde; köpek yavrularında kuduz yönetmeliği üç aylıktan itibaren kayıt istiyor.
+
+**Kayıt yaptırmamanın cezası ne kadar?**
+Kanundaki tutar hayvan başına 1.200 TL; yıllık yeniden değerlemeyle 2026 tutarı hayvan başına 10.423 TL'ye ulaşıyor.
+
+**Hayvanım kaybolursa ne yapmalıyım?**
+7 gün içinde il veya ilçe müdürlüğüne bildirin; hayvan PETVET'te kayıp olarak işaretlenir.
+
+**Sahiplendiğim hayvanın kaydını nasıl üzerime alırım?**
+Sahip değişikliği belgesiyle 60 gün içinde il veya ilçe müdürlüğüne başvurursunuz.
+
+## Kaynaklar
+
+- T.C. Cumhurbaşkanlığı Mevzuat Bilgi Sistemi · 5199 sayılı Hayvanları Koruma Kanunu (madde 4, 28 ve geçici madde 4) · https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=1&MevzuatNo=5199&MevzuatTertip=5
+- T.C. Tarım ve Orman Bakanlığı · Kedi, Köpek ve Gelinciklerin Kimliklendirilmesi ve Kayıt Altına Alınmasına Dair Yönetmelik · https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=7&MevzuatNo=24414&MevzuatTertip=5
+- T.C. Tarım ve Orman Bakanlığı · Sahipli Hayvanların Dijital Kimliklendirilmesi (kamuoyu bilgilendirmesi, 27.12.2022) · https://www.tarimorman.gov.tr/Haber/5652/Sahipli-Hayvanlarin-Dijital-Kimliklendirilmesi
+- T.C. Cumhurbaşkanlığı Mevzuat Bilgi Sistemi · 5326 sayılı Kabahatler Kanunu (madde 17, yeniden değerleme) · https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=1&MevzuatNo=5326&MevzuatTertip=5
+
+---
+
+# Veteriner Kliniği Açmak İçin Gerekenler: Şartlar ve Belgeler
+
+Adres: https://veterito.com/blog/veteriner-klinigi-acmak
+Kategori: Klinik Yönetimi · Yayın: 2026-10-20
+
+Muayenehane ya da poliklinik açmak için il müdürlüğüne hangi belgelerle başvurulur, oda ölçüleri ne olmalı, poliklinikte kaç hekim gerekir? Yönetmelik maddeleriyle adım adım.
+
+Türkiye'de veteriner kliniği açmak için **il tarım ve orman müdürlüğünden ruhsat** almak gerekiyor. Şartları **Veteriner Hekim Muayenehane ve Poliklinik Yönetmeliği** belirliyor: tek hekimin çalıştığı yer **muayenehane**, en az dört hekimin birlikte çalıştığı yer **poliklinik.** Başvuru dilekçe ve belgelerle yapılıyor, il müdürlüğü yeri yerinde inceliyor ve uygun bulursa ruhsatı ve çalışma izinlerini veriyor.
+
+Aşağıda başvuruda istenen belgeleri, odaların asgari ölçülerini ve açıldıktan sonra bildirilmesi gereken değişiklikleri yönetmelik maddeleriyle topladık. İki kuruluş türü arasındaki farkı muayenehane, poliklinik ve hastane farkı (https://veterito.com/blog/muayenehane-poliklinik-hastane-farki) yazımızda ayrıca anlattık.
+
+
+## Muayenehane mi, poliklinik mi?
+
+ | Muayenehane | Poliklinik
+Hekim sayısı | Tek hekim (sorumlu veteriner hekim) | En az dört veteriner hekim
+Sorumlu kişi | Sorumlu veteriner hekim | Sorumlu yönetici
+Muayene odası | Bir, en az 6 m² | İki, her biri en az 6 m²
+Tuvalet ve duş | Yönetmelikte ayrı şart yok | Hijyenik tuvalet ve duş kabini
+
+Polikliniği tek bir hekim de açabiliyor; bu durumda kendisi sorumlu olmak şartıyla en az üç hekimle iş sözleşmesi yapması gerekiyor. Poliklinik bir şirket olarak da kurulabiliyor; sorumlu yönetici görevini şirket müdürü üstlenebiliyor.
+
+
+## Veteriner kliniği açmak için hangi belgeler gerekir?
+
+Başvuru il müdürlüğüne ıslak ya da elektronik imzalı dilekçeyle yapılıyor. **Muayenehane** için istenenler:
+
+- Diploma ya da mezuniyet belgesinin aslı veya onaylı sureti, varsa uzmanlık belgesi
+- T.C. kimlik numarası ve ikametgâh beyanı
+- İki fotoğraf
+- Teknik resim kurallarına uygun yerleşim planı ve adres
+- Bölge veteriner hekimler odası kayıt belgesi
+
+**Poliklinikte** bunlara ek olarak polikliniğin adı ve adresiyle sorumlu yöneticinin dilekçesi, hekimlerle yapılan sözleşmeler ya da adi ortaklık belgesi, şirketse şirket sözleşmesi ve ticaret sicil bilgileri ile sorumlu yönetici olacak kişinin sözleşmesi isteniyor.
+
+
+## Klinik için asgari fiziki şartlar
+
+- **Hekim odası:** Hekim başına en az 6 m².
+- **Muayene odası:** En az 6 m², müstakil ve soğutucu dolaplı. Muayene masası paslanmaz ya da metal olmalı.
+- **Malzeme odası:** En az 4 m², müstakil, raflı ve hasta girişine kapalı.
+- **Laboratuvar ya da röntgen odası (poliklinikte, varsa):** En az 4 m².
+- **Lavabo:** Belediye su şebekesine ve kanalizasyona bağlı.
+- **Zemin ve duvar:** Zemin düz ve temizlenebilir, duvarlar açık renkli ve dezenfekte edilebilir; bölmeler tabandan tavana kadar.
+- **Güvenlik ve hijyen:** Yeterli aydınlatma ve havalandırma, yangın söndürme cihazı, her bölümde çöp kutusu.
+- **Tıbbi atık:** Üzerinde "DİKKAT TIBBİ ATIK" yazan kırmızı torbada toplanıyor ve toplama aracı gelmeden dışarı çıkarılmıyor.
+
+Poliklinikte bütün bölümlerin aynı binada, bitişik ya da aynı binanın katlarında olması gerekiyor. Alet ve ekipmanın asgari listesini yönetmelik değil, Bakanlık belirliyor; başvurudan önce il müdürlüğünden güncel listeyi istemek zaman kazandırır.
+
+YAYGIN YANILGI — "Önce yeri açarım, ruhsatı sonra alırım": Ruhsat, yerin yönetmelikteki şartlara uygun olduğu yerinde görüldükten sonra veriliyor. Kira sözleşmesi ve tadilat öncesinde planı ölçülere göre çizdirip il müdürlüğüyle görüşmek, sonradan duvar yıkmaktan ucuz.
+
+
+## Ruhsat ve çalışma izni nasıl alınır?
+
+Başvuruyu il müdürlüğünün hayvan sağlığı birimi inceliyor ve yeri yerinde kontrol ediyor. Uygun bulunursa il müdürlüğü şu belgeleri veriyor:
+
+- Kuruluşun ruhsatı
+- Sorumlu veteriner hekim belgesi
+- Klinikte çalışacak her hekim için çalışma izni
+- Yardımcı sağlık personeli için çalışma izni
+
+Ruhsat ve belgeler hayvan sahiplerinin görebileceği bir yere asılıyor. Dış tabelada kliniğin adı, telefonu, hekimin adı, unvanı ve uzmanlığı yazılabiliyor; yanıltıcı ifadeler ve yabancı dilde unvan yasak, ruhsattaki ad dışında bir ad da kullanılamıyor.
+
+
+## Açıldıktan sonra neler bildirilir?
+
+Değişiklik | Ne yapılır
+Adres değişikliği | İl müdürlüğünün izniyle; yeni adrese göre belgeler hazırlanıp yeni ruhsat isteniyor
+Sorumlu hekimin ayrılması | Bir hafta önceden bildiriliyor; çalışma izni bir hafta içinde iade ediliyor
+Şirket ortaklarının değişmesi | 15 gün içinde il müdürlüğüne bildiriliyor
+Kapatma | Dilekçe ve ruhsatın aslıyla il müdürlüğüne bildiriliyor
+Ruhsatın kaybı | Kayıp ilanıyla ya da yıpranmış ruhsatın aslıyla yeniden başvuruluyor
+
+
+## Açılıştan sonra ilk kurulacak düzen
+
+Ruhsat kliniği açar ama kliniği yaşatan, hastanın geri gelmesi. Randevu, aşı hatırlatma ve hasta kayıtlarını ilk günden düzenli tutmak, sonradan kâğıt yığınını sisteme taşımaktan kolay. Bu konuları klinikte randevu yönetimi (https://veterito.com/blog/klinikte-randevu-yonetimi) ve kliniklerde aşı hatırlatma (https://veterito.com/blog/kliniklerde-asi-hatirlatma) yazılarımızda anlattık. Fiyatlandırmada meslek odasının belirlediği tabanı asgari ücret tarifesi (https://veterito.com/blog/asgari-ucret-tarifesi-nedir) yazısında bulabilirsiniz.
+
+UYARI: Bu yazı yönetmeliğin özetidir. Vergi kaydı, belediye işlemleri ve kira sözleşmesi gibi konular için bir mali müşavirle, güncel ekipman listesi ve inceleme takvimi için il tarım ve orman müdürlüğüyle görüşün.
+
+## Sıkça sorulan sorular
+
+**Veteriner kliniği açmak için ruhsatı kim verir?**
+İl tarım ve orman müdürlüğü, yeri yerinde inceledikten sonra verir.
+
+**Muayenehane ile poliklinik arasındaki fark nedir?**
+Muayenehanede tek sorumlu hekim çalışır; poliklinikte en az dört veteriner hekim bulunur.
+
+**Veteriner muayene odası kaç metrekare olmalı?**
+Yönetmeliğe göre en az 6 m², müstakil ve soğutucu dolaplı.
+
+**Veteriner kliniği açmak için hangi belgeler gerekir?**
+Diploma, kimlik ve ikametgâh beyanı, iki fotoğraf, yerleşim planı ve veteriner hekimler odası kayıt belgesi.
+
+**Tek hekim poliklinik açabilir mi?**
+Evet; sorumlu olmak şartıyla en az üç hekimle iş sözleşmesi yapması gerekir.
+
+**Klinik adresi değişirse ne yapılır?**
+İl müdürlüğünün izni alınır ve yeni adres için yeni ruhsat istenir.
+
+## Kaynaklar
+
+- T.C. Resmî Gazete · Veteriner Hekim Muayenehane ve Poliklinik Yönetmeliği · 2011 · https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=15393&MevzuatTur=7&MevzuatTertip=5
+- T.C. Cumhurbaşkanlığı Mevzuat Bilgi Sistemi · 6343 sayılı Veteriner Hekimliği Mesleğinin İcrasına, Türk Veteriner Hekimleri Birliği ile Odalarının Teşekkül Tarz ve Mesai Şekillerine Dair Kanun · https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=1&MevzuatNo=6343&MevzuatTertip=3
 
 ---
 

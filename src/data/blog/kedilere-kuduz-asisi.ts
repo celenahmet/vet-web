@@ -27,7 +27,7 @@ export const kedilereKuduzAsisi: BlogYazi = {
     { kind: 'baslik', metin: 'Kuduz aşısı zorunlu mu? Ev kedisi için de geçerli mi?' },
     { kind: 'paragraf', metin: 'Evet. Kuduz Hastalığından Korunma ve Kuduz Hastalığı ile Mücadele Yönetmeliği\'nin 9. maddesi, **üç aydan büyük köpek ve kedi sahiplerini hayvanlarını yılda bir defa aşılatmakla yükümlü** tutuyor. Maddede ev kedisi ya da dışarı çıkmayan kedi için bir istisna yok.' },
     { kind: 'yanilgi', baslik: '"Kedim hiç dışarı çıkmıyor, kuduz aşısı gereksiz"', metin: 'Yasal yükümlülük kedinin yaşam biçiminden bağımsız. Ayrıca ev kedileri de kaçabiliyor, taşınmada ya da pansiyonda başka hayvanlarla karşılaşabiliyor. Seyahat ve pansiyon için de güncel kuduz aşısı isteniyor.' },
-    { kind: 'paragraf', metin: 'Aynı yönetmeliğin 8. maddesi, **altı aydan büyük kedilerin** kayıt altına alınmasını da zorunlu tutuyor. Kedi mikroçiple kimliklendiriliyor ve bilgileri Bakanlığın veri tabanına giriliyor.' },
+    { kind: 'paragraf', metin: 'Aynı yönetmeliğin 8. maddesi, **altı aydan büyük kedilerin** kayıt altına alınmasını da zorunlu tutuyor. Kedi mikroçiple kimliklendiriliyor ve bilgileri Bakanlığın veri tabanına giriliyor; adımları [[petvet-kayit|PETVET kaydı]] yazımızda anlattık.' },
 
     { kind: 'baslik', metin: 'Kuduz aşısı nerede yapılır?' },
     { kind: 'liste', maddeler: [
