@@ -21,9 +21,14 @@ hangi yıl, DOI'si ne — hepsi doğrulanabilir.
 
 ## Blog
 
-48 yazı yayında. Her yazının altında en az iki kaynak var; genelde biri
+53 yazı yayında. Her yazının altında en az iki kaynak var; genelde biri
 uluslararası üniversite ya da hakemli dergi (Cornell, AAHA/AAFP, WSAVA gibi).
 
+- [Evcil Hayvanla Uçak Yolculuğu: Kabin, Kargo ve Gerekli Belgeler](https://veterito.com/blog/evcil-hayvanla-ucak-yolculugu) — Pet Sahipleri, 2026-10-21: Kedi ya da köpekle uçmak için kabinde 8 kiloluk sınır, çanta ölçüsü, uçuş başına kontenjan ve belgeler var. Türk Hava Yolları ve Pegasus kurallarıyla adım adım.
+- [Kedi Tüy Dökümü: Ne Zaman Normal, Nasıl Azaltılır?](https://veterito.com/blog/kedi-tuy-dokumu) — Kedi, 2026-10-21: Kedilerde tüy dökümü mevsim geçişlerinde artar ve çoğu zaman normaldir. Normal dökülme ile tüy kaybı nasıl ayırt edilir, tüy dökümü nasıl azaltılır, ne zaman hekime gidilir?
+- [Tasmasız Köpek Gezdirmek Yasak mı? Köpek Gezdirme Kuralları](https://veterito.com/blog/kopek-gezdirme-kurallari) — Köpek, 2026-10-21: Evet, halka açık yerde köpeği tasmayla gezdirmek ve dışkısını toplamak yönetmelikle zorunlu. Ağızlık kimlere şart, cezası ne, köpek birine zarar verirse sorumluluk kimde.
+- [Köpeklerde Kene: Nasıl Temizlenir, Hangi Hastalıkları Taşır?](https://veterito.com/blog/kopeklerde-kene) — Köpek, 2026-10-21: Köpekte kene görünce yapılacak ilk şey onu doğru yöntemle, hemen çıkarmak. Kene nasıl çıkarılır, neler yapılmaz, hangi hastalıkları taşır ve korunma yıl boyu mu sürer?
+- [Yavru Kedi Bakımı: İlk Haftalardan İki Aylığa Kadar Rehber](https://veterito.com/blog/yavru-kedi-bakimi) — Kedi, 2026-10-21: Yavru kedinin ilk iki ayı beslenme, sosyalleşme ve ilk veteriner ziyareti açısından en kritik dönem. Haftalara göre neler değişir, mamaya ne zaman geçilir, nasıl alıştırılır?
 - [5199 Sayılı Hayvanları Koruma Kanunu: Sahiplenme, Yükümlülükler ve Cezalar](https://veterito.com/blog/5199-sayili-kanun) — Pet Sahipleri, 2026-10-20: 5199 sayılı kanun ve 2024 tarihli uygulama yönetmeliği hayvan sahiplerine ne yüklüyor? Barınaktan sahiplenme şartları, sahibin yükümlülükleri ve 2026 idari para cezaları tek tabloda.
 - [Evcil Hayvan Pasaportu Nasıl Alınır? Yurt Dışına Kedi Köpek Götürmek](https://veterito.com/blog/evcil-hayvan-pasaportu) — Pet Sahipleri, 2026-10-20: Pasaport PETVET kaydıyla birlikte düzenleniyor ama yurt dışı için tek başına yetmiyor. Kuduz aşısı, antikor testi, sağlık sertifikası ve AB için 90 günlük bekleme adım adım.
 - [Kedilere Kuduz Aşısı Ne Zaman Yapılır, Ne Sıklıkla Tekrarlanır?](https://veterito.com/blog/kedilere-kuduz-asisi) — Kedi, 2026-10-20: Kuduz aşısı üç aydan büyük kedilerde yasal zorunluluk. İlk doz, 21 gün sonra rapel, sonra yılda bir. Ev kedisi de dahil; nerede yapılır, kayda nasıl işlenir.

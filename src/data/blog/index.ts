@@ -25,6 +25,11 @@ import { kopeklerdeKene } from './kopeklerde-kene';
 import { yavruKediBakimi } from './yavru-kedi-bakimi';
 import { kediTuyDokumu } from './kedi-tuy-dokumu';
 import { evcilHayvanlaUcakYolculugu } from './evcil-hayvanla-ucak-yolculugu';
+import { apartmandaKediKopekBeslemek } from './apartmanda-kedi-kopek-beslemek';
+import { kediTirmalamasiKuduzYaparMi } from './kedi-tirmalamasi-kuduz-yapar-mi';
+import { yasakliKopekIrklari } from './yasakli-kopek-irklari';
+import { barinaktanKopekSahiplenme } from './barinaktan-kopek-sahiplenme';
+import { veterinerHekimNasilOlunur } from './veteriner-hekim-nasil-olunur';
 import { kopekAsiTakvimi } from './kopek-asi-takvimi';
 import { kopegimFazlaKiloluMu } from './kopegim-fazla-kilolu-mu';
 import { kedilerdeIcVeDisParazit } from './kedilerde-ic-ve-dis-parazit';
@@ -89,6 +94,8 @@ const TUM_YAZILAR: BlogYazi[] = [
   kedilerinDisleriNasilTemizlenir, kedilerdeGozEnfeksiyonu, kedilerdeGozBoyamaTesti,
   kedilereKuduzAsisi, petvetKayit, kanun5199, kopekGezdirmeKurallari, evcilHayvanPasaportu,
   veterinerKlinigiAcmak, kopeklerdeKene, yavruKediBakimi, kediTuyDokumu, evcilHayvanlaUcakYolculugu,
+  apartmandaKediKopekBeslemek, kediTirmalamasiKuduzYaparMi, yasakliKopekIrklari, barinaktanKopekSahiplenme,
+  veterinerHekimNasilOlunur,
 ];
 
 /**

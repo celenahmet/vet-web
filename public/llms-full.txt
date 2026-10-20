@@ -1,6 +1,454 @@
 # Veterito — blog yazılarının tam metni
 
-Üretim: 2026-10-20. 48 yazı. Kaynak künyeleri her yazının sonunda.
+Üretim: 2026-10-21. 53 yazı. Kaynak künyeleri her yazının sonunda.
+
+---
+
+# Evcil Hayvanla Uçak Yolculuğu: Kabin, Kargo ve Gerekli Belgeler
+
+Adres: https://veterito.com/blog/evcil-hayvanla-ucak-yolculugu
+Kategori: Pet Sahipleri · Yayın: 2026-10-21
+
+Kedi ya da köpekle uçmak için kabinde 8 kiloluk sınır, çanta ölçüsü, uçuş başına kontenjan ve belgeler var. Türk Hava Yolları ve Pegasus kurallarıyla adım adım.
+
+Kedi ya da köpekle uçak yolculuğunda iki seçenek var: **kabinde** ya da **uçak altında (bagaj bölümünde).** Türk Hava Yolları ve Pegasus'ta kabinde taşınabilmek için hayvanın **çantasıyla birlikte en çok 8 kilo** olması gerekiyor. Evcil hayvan ücretsiz bagaj hakkına dahil değil, ayrıca ücretlendiriliyor ve uçuş başına kontenjan sınırlı; bu yüzden hayvanı bilet alırken ya da hemen sonrasında rezervasyona eklemek gerekiyor.
+
+Aşağıda havayollarının kendi kurallarını, yurt içi ve yurt dışı için gereken belgeleri ve yolculuk öncesi hazırlığı anlatıyoruz. Kurallar ve ücretler değişebildiği için uçmadan önce havayolunun güncel sayfasına mutlaka bakın.
+
+
+## Evcil hayvanla uçak yolculuğu için gerekenler
+
+- **Rezervasyona ekleme:** Hayvan kontenjanı sınırlı. Pegasus'ta evcil hayvan yalnız çağrı merkezi ya da seyahat acentası üzerinden ekleniyor.
+- **Uygun taşıma çantası:** Kabin için ölçüleri havayolunun sınırına uyan, yumuşak ve kapalı çanta.
+- **Yaş ve aşı:** Pegasus uçuş tarihinde üç aydan küçük ve aşısı tamamlanmamış hayvanları kabul etmiyor.
+- **Belgeler:** Yurt içinde pasaport; yurt dışında pasaportun yanında veteriner sağlık sertifikası ve gidilen ülkenin istediği diğer belgeler.
+
+
+## Kabinde evcil hayvan taşıma kuralları
+
+ | Türk Hava Yolları | Pegasus
+Kabinde kabul edilen | Kedi, köpek ve küçük kuşlar | İç hatta kedi, köpek, kuş; dış hatta kedi ve köpek
+Ağırlık sınırı | Hayvan ve çanta birlikte en çok 8 kg | Hayvan ve kafes birlikte en çok 8 kg
+Çanta ölçüsü | En çok 23 x 30 x 40 cm | En çok 32 x 32 x 50 cm
+Sınır | Yolcu başına kabinde bir çanta | Uçuş başına en çok 3; bir kafeste en çok 2 hayvan
+
+THY'de çanta yolculuk boyunca kapalı kalıyor ve öndeki koltuğun altına yerleştiriliyor. Pegasus'ta kabinde hayvanla uçan yolcular acil çıkış sıralarında ve en ön sırada oturamıyor; 12 yaş ve altındaki refakatsiz çocuklar da hayvanla seyahat edemiyor.
+
+
+## Uçak altında (kargo bölümünde) taşıma
+
+Kabin sınırını aşan hayvanlar uçak altındaki bölümde taşınıyor. THY'de bu bölümde hayvan ve kafes birlikte en çok 50 kg, kafes en çok 75 x 75 x 125 cm olabiliyor; daha büyük kafesler Turkish Cargo ile gönderiliyor. Pegasus'ta uçak altı taşıma **yalnız iç hat** uçuşlarında ve yalnız kedi ve köpek için var; kafesin sağlam, kilitli ve hayvanın içinde yatıp dönebileceği büyüklükte olması isteniyor.
+
+YAYGIN YANILGI — "Yolculukta sakinleştirici vermek en iyisi": THY sakinleştirici verilmiş hayvanları uçuşa kabul etmiyor. Hayvanınız yolculukta çok stresleniyorsa ne yapılabileceğini önceden veteriner hekiminizle konuşun; kendi başınıza ilaç vermeyin.
+
+
+## Kabul edilmeyen ırklar ve hatlar
+
+Havayolları uçuş güvenliği açısından bazı köpek ırklarını kabul etmiyor. Pegasus'un listesinde Pit Bull, Japanese Tosa, Dogo Argentino, Fila Brasileiro, American Staffordshire Terrier, Presa Canario, Rottweiler, Doberman, Mastiff, American Bulldog, Kafkas çoban köpeği, Napoliten mastif ve Chow Chow gibi ırklar var. Pegasus ayrıca Bahreyn, Birleşik Arap Emirlikleri ve Katar'a; Suudi Arabistan, İrlanda ve İngiltere'ye ve bu ülkelerden kalkan uçuşlarda evcil hayvan kabul etmiyor.
+
+
+## Uçakta kedi ve köpek taşımak için gerekli belgeler
+
+- **Yurt içi:** Tarım ve Orman Bakanlığı'na göre yurt içi nakilde hayvanın pasaportunun yanınızda olması zorunlu. Aşı kayıtları pasaportta bulunuyor.
+- **Yurt dışı:** Mikroçip, PETVET kaydı, pasaport ve il veya ilçe tarım ve orman müdürlüğünden çıkışa en erken 48 saat kala alınan veteriner sağlık sertifikası gerekiyor. Gidilen ülke istiyorsa kuduz antikor testi de şart.
+- **KKTC:** Pegasus'a göre KKTC'ye gidişte kuduz aşısı ve yolculuktan en az üç ay önce yapılmış kuduz antikor testi gerekiyor; ayrıca KKTC Veteriner Dairesi'nden ithal izni alınması gerekiyor.
+
+Yurt dışı için sürelerin nasıl hesaplandığını, özellikle AB ülkelerinde antikor testinden sonraki 90 günlük beklemeyi evcil hayvan pasaportu (https://veterito.com/blog/evcil-hayvan-pasaportu) yazımızda adım adım anlattık.
+
+
+## Yolculuktan önce hazırlık
+
+- **Çantaya alıştırma:** Taşıma çantasını yolculuktan günler önce evde açık bırakın; hayvan içine kendi isteğiyle girip çıksın.
+- **Veteriner kontrolü:** Yolculuktan önce hayvanın uçmaya uygun olup olmadığını ve aşılarının güncel olup olmadığını hekiminize kontrol ettirin.
+- **Erken varış:** Hayvanla birlikte kontuara gelinmesi ve belgelerin yanınızda olması isteniyor; işlemler için zaman bırakın.
+
+UYARI: Bu yazıdaki ölçüler ve kurallar havayollarının kendi sayfalarından alındı. Havayolları kuralları, kontenjanları ve ücretleri sık güncelleyebiliyor; bilet almadan önce uçacağınız havayolunun güncel sayfasını ve gidilen ülkenin resmî kurallarını kontrol edin.
+
+## Sıkça sorulan sorular
+
+**Uçakta kabinde evcil hayvan kaç kilo olabilir?**
+THY ve Pegasus'ta hayvan ve çantası birlikte en çok 8 kilo.
+
+**Uçakta kedi taşıma çantası ölçüsü ne olmalı?**
+THY'de en çok 23 x 30 x 40 cm, Pegasus'ta en çok 32 x 32 x 50 cm.
+
+**Evcil hayvan uçak bileti nasıl alınır?**
+Hayvan bilete eklenerek ücretlendiriliyor; Pegasus'ta yalnız çağrı merkezi ya da acenta üzerinden ekleniyor.
+
+**Yavru kedi uçakla seyahat edebilir mi?**
+Pegasus üç aydan küçük ve aşısı tamamlanmamış hayvanları kabul etmiyor.
+
+**Uçakta evcil hayvan için hangi belgeler gerekir?**
+Yurt içinde pasaport; yurt dışında ayrıca veteriner sağlık sertifikası ve ülkenin istediği diğer belgeler.
+
+**Evcil hayvana uçakta sakinleştirici verilebilir mi?**
+THY sakinleştirici verilmiş hayvanları kabul etmiyor; stres için önceden hekiminize danışın.
+
+## Kaynaklar
+
+- Türk Hava Yolları · Evcil Hayvanlarla Seyahat · https://www.turkishairlines.com/en-us/any-questions/traveling-with-pets/
+- Pegasus Hava Yolları · Evcil Hayvanlarla Seyahat ve Uçak Yolculuğu · https://www.flypgs.com/faydali-bilgiler/diger-bilgiler/evcil-hayvanla-seyahat
+- T.C. Tarım ve Orman Bakanlığı · Sahipli Hayvanların Dijital Kimliklendirilmesi (kamuoyu bilgilendirmesi, 27.12.2022) · https://www.tarimorman.gov.tr/Haber/5652/Sahipli-Hayvanlarin-Dijital-Kimliklendirilmesi
+- T.C. Tarım ve Orman Bakanlığı · Kedi ve Köpeklerin Yurt Dışına Yolcu Beraberi ve Ticari Sevklerine İlişkin Uygulama Talimatı (21.10.2022) · https://vskn.tarimorman.gov.tr/tekirdag/Belgeler/D%C3%96K%C3%9CMAN/Kedi%20Ve%20K%C3%B6peklerin%20Yurt%20D%C4%B1%C5%9F%C4%B1na%20Yolcu%20Beraberi%20Ve%20Ticari%20Sevklerine%20%C4%B0li%C5%9Fkin%20Uygulama%20Talimat%C4%B1.pdf
+
+---
+
+# Kedi Tüy Dökümü: Ne Zaman Normal, Nasıl Azaltılır?
+
+Adres: https://veterito.com/blog/kedi-tuy-dokumu
+Kategori: Kedi · Yayın: 2026-10-21
+
+Kedilerde tüy dökümü mevsim geçişlerinde artar ve çoğu zaman normaldir. Normal dökülme ile tüy kaybı nasıl ayırt edilir, tüy dökümü nasıl azaltılır, ne zaman hekime gidilir?
+
+**Kedilerde tüy dökümü çoğu zaman normal** ve mevsim geçişlerinde artıyor. Normal olmayan, tüyün yerine yenisi gelmeden **açıklık, kel bölge ya da deri yarası** oluşması. Tüy dökümünü azaltmanın en etkili yolu düzenli tarama; Cornell Üniversitesi Kedi Sağlığı Merkezi kedi sahiplerine tüyü **her gün** fırçalayıp taramayı alışkanlık haline getirmelerini öneriyor.
+
+Aşağıda dökülmenin ne zaman normal sayıldığını, hangi belirtilerin bir soruna işaret ettiğini ve evde neler yapılabileceğini anlatıyoruz.
+
+
+## Kedilerde tüy dökümü ne zaman normal?
+
+Kediler gününün **yüzde 30 ile 50'sini** kendini temizleyerek geçiriyor ve bu sırada dökülen tüyün önemli bir kısmını yutuyor. Cornell, kedilerin tüylerini normalde döktüğü mevsimlerde tüy yumağının da daha sık görüldüğünü belirtiyor; yani bu dönemlerde evde daha çok tüy görmek beklenen bir durum.
+
+Uzun tüylü ırklarda, örneğin İran kedisi ve Maine Coon'da, tüy yumağı riski daha yüksek. Bu kedilerde düzenli tarama hem evdeki tüyü hem de yutulan tüyü azaltıyor.
+
+YAYGIN YANILGI — "Çok tüy döküyorsa hasta demektir": Bol dökülme tek başına hastalık belirtisi değil; özellikle mevsim geçişlerinde normal. Asıl dikkat edilmesi gereken, derinin görünür hale gelmesi, kel bölgeler, kabuklanma ya da kedinin bir bölgeyi sürekli yalaması.
+
+
+## Tüy kaybı ne zaman bir sorunun belirtisi?
+
+Cornell'e göre yalama ve temizlenme, sıklığı ya da süresi aşırıya kaçtığında ve **çok sayıda tüy yumağına ya da tüy kaybına** yol açtığında normal değil. Tüy kaybının yeri ipucu verebiliyor:
+
+Nerede | Akla gelebilecek neden
+Kuyruk dibinde sürekli yalama | Pire
+Sırt, karın ya da vücudun çeşitli yerleri | Polen ya da besin alerjisi
+Tek bir noktaya odaklanmış yalama | O bölgede ağrı
+Belirgin bir tıbbi neden yoksa | Stres
+
+Tablo yalnız yönlendirme amaçlı; nedeni hekim muayeneyle belirler. Yalama deriyi aşındırdığında enfeksiyon başlayabiliyor ve bu da yalamayı artırabiliyor; bu yüzden kel bölge ya da yara gördüğünüzde beklemeyin. Pirenin evde nasıl anlaşılacağını kedilerde pire nasıl anlaşılır (https://veterito.com/blog/kedilerde-pire-nasil-anlasilir) yazımızda anlattık.
+
+
+## Stres tüy kaybına yol açar mı?
+
+Evet. Cornell; taşınma, eve yeni bir hayvanın gelmesi ya da bir hayvanın kaybı, hatta günlük düzenin değişmesinin kedide kaygıya yol açabildiğini ve yalamanın kediyi sakinleştiren bir davranışa dönüşebildiğini belirtiyor. Tıbbi nedenler dışlandıktan sonra önerilenler:
+
+- Değişiklikleri ve yeni tanışmaları **yavaş yavaş** yapmak.
+- Kedinin çekilebileceği **yüksek ve güvenli** yerler sağlamak.
+- Her gün **10-15 dakika** kediyle oyun oynamak.
+- Ciddi stres varsa hekimle geçici ilaç seçeneğini konuşmak.
+
+Neden ortadan kalksa bile yalama alışkanlığının geçmesi zaman alabiliyor; sabırlı olmak gerekiyor.
+
+
+## Kedi tüy dökümü nasıl azaltılır?
+
+- **Her gün tarama:** Dökülecek tüyü kedi yutmadan önce fırça topluyor. Uzun tüylü kedilerde tarama keçeleşmeyi de önlüyor.
+- **Düzenli pire koruması:** Pire, tüy kaybının en sık nedenlerinden. Koruma programını kedilerde iç ve dış parazit (https://veterito.com/blog/kedilerde-ic-ve-dis-parazit) yazımızda anlattık.
+- **Stresi azaltmak:** Yukarıdaki önerilerle.
+- **Tüy yumağını izlemek:** Malt gibi ürünlerin ne işe yaradığını kedilerde malt ne işe yarar (https://veterito.com/blog/kedilerde-malt-ne-ise-yarar) yazımızda anlattık.
+
+UYARI: Kediniz halsizse, bir iki günden uzun süre yemek yemiyorsa ya da tekrar tekrar sonuçsuz öğürüyor veya kusuyorsa tüy yumağı bir tıkanıklığa yol açmış olabilir; vakit kaybetmeden veteriner hekime başvurun.
+
+## Sıkça sorulan sorular
+
+**Kedilerde tüy dökümü normal mi?**
+Evet, çoğu zaman normal ve mevsim geçişlerinde artıyor.
+
+**Kedi tüy dökümü nasıl azaltılır?**
+Her gün tarayarak, düzenli pire koruması uygulayarak ve stresi azaltarak.
+
+**Kedimin tüyü neden öbek öbek dökülüyor?**
+Kel bölge normal dökülme değil; pire, alerji, ağrı ya da stres olabilir, hekime gösterin.
+
+**Kediler ne kadar süre kendini temizler?**
+Cornell'e göre günün yüzde 30 ile 50'si.
+
+**Uzun tüylü kedileri ne sıklıkla taramalıyım?**
+Cornell her gün fırçalayıp taramayı öneriyor.
+
+**Stres kedide tüy dökülmesine yol açar mı?**
+Evet; aşırı yalama yoluyla tüy kaybına yol açabiliyor.
+
+## Kaynaklar
+
+- Cornell University College of Veterinary Medicine, Cornell Feline Health Center · The Danger of Hairballs · https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/danger-hairballs
+- Cornell University College of Veterinary Medicine, Cornell Feline Health Center · Cats that Lick Too Much · https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/cats-lick-too-much
+
+---
+
+# Tasmasız Köpek Gezdirmek Yasak mı? Köpek Gezdirme Kuralları
+
+Adres: https://veterito.com/blog/kopek-gezdirme-kurallari
+Kategori: Köpek · Yayın: 2026-10-21
+
+Evet, halka açık yerde köpeği tasmayla gezdirmek ve dışkısını toplamak yönetmelikle zorunlu. Ağızlık kimlere şart, cezası ne, köpek birine zarar verirse sorumluluk kimde.
+
+**Evet, Türkiye'de halka açık yerlerde köpeği tasmasız gezdirmek kurallara aykırı.** 13 Aralık 2024'te yürürlüğe giren Hayvanların Korunması Hakkında Uygulama Yönetmeliği'nin 10. maddesi, sahibin **köpeğini halka açık yerlerde tasmayla kontrol altında dolaştırmasını, pasaportunu yanında bulundurmasını ve dışkısını temizlemesini** yükümlülük olarak sayıyor.
+
+Aşağıda bu kuralların dayanağını, ağızlığın kimler için zorunlu olduğunu, kurala uyulmadığında hangi yaptırımların gündeme geldiğini ve köpek birine zarar verirse sorumluluğun kimde olduğunu kanun maddeleriyle anlatıyoruz.
+
+
+## Tasmasız köpek gezdirmek yasak mı?
+
+Kural iki metinden geliyor. 5199 sayılı Hayvanları Koruma Kanunu (https://veterito.com/blog/5199-sayili-kanun)'nun 5. maddesi sahibi, **hayvanının insanlara verebileceği zarar ve rahatsızlıkları önlemekle** yükümlü tutuyor. Uygulama yönetmeliği bunu somutlaştırıyor: halka açık yerlerde sahipli köpek **tasmayla ve kontrol altında** dolaştırılıyor.
+
+Yönetmelik tasmanın kendisi için de bir şart koyuyor: kullanılan alet ve ekipman hayvana zarar vermemeli ve ona yeterli hareket özgürlüğü tanımalı. Çocuk oyun alanları, parklar, alışveriş merkezleri, plajlar ve gıda işletmeleri gibi yerlerde ise ayrıca o yerin mevzuatına ve kurallarına uyulması gerekiyor; belediyenin ya da işletmenin koyduğu yasaklar burada geçerli.
+
+YAYGIN YANILGI — "Köpeğim çok uysal, tasmaya gerek yok": Kural köpeğin mizacına bakmıyor; halka açık yerde her sahipli köpek için geçerli. Uysal bir köpek de ürkebiliyor, bir çocuğa ya da başka bir köpeğe koşabiliyor. Bir zarar doğduğunda sahibin özen gösterip göstermediği de sorulan ilk şey oluyor.
+
+
+## Tasmasız köpek gezdirmenin cezası nedir?
+
+Yönetmelik, tasmasız dolaştırmanın kanundaki hangi ceza bendine bağlanacağını ayrıca yazmıyor; denetimde kabahat tespit edilirse idari yaptırım karar tutanağı düzenleniyor. Kanunun 28. maddesinin (b) bendi, 5. maddedeki bakım ve zarar önleme yükümlülüklerine aykırılığa **hayvan başına 1.000 TL** idari para cezası öngörüyor. İdari para cezaları her yıl yeniden değerleme oranıyla arttığı için bu tutar 2026'da **hayvan başına 8.687 TL**'ye karşılık geliyor.
+
+
+## Tasmasız köpek gezdirmek suç mu?
+
+Köpek başkaları için tehlike yaratıyorsa evet. Türk Ceza Kanunu'nun 177. maddesi, gözetimindeki hayvanı **başkalarının hayatı veya sağlığı bakımından tehlikeli olabilecek şekilde serbest bırakan ya da kontrol altına alınmasında ihmal gösteren** kişiye altı aya kadar hapis veya adli para cezası öngörüyor. Yani sıradan bir tasmasız yürüyüş idari bir konuyken, köpeğin insanlara saldırabilecek şekilde başıboş bırakılması ceza hukukunun alanına giriyor.
+
+
+## Köpek birine zarar verirse sorumluluk kimde?
+
+Türk Borçlar Kanunu'nun 67. maddesine göre **hayvanın bakımını ve yönetimini sürekli ya da geçici olarak üstlenen kişi, hayvanın verdiği zararı gidermekle yükümlü.** Sorumluluktan kurtulmanın tek yolu, zararın doğmaması için gerekli özeni gösterdiğini ispat etmek. Köpeği tasmayla, kontrol altında gezdirmek bu özenin en temel göstergesi. 5199 sayılı kanun da yeterli önlem alınmadığı için doğan zararın sahibince tazmin edileceğini söylüyor.
+
+Köpeğinizi bir arkadaşınıza ya da bir gezdiriciye emanet ettiğinizde de bu kural geçerli: madde, hayvanın yönetimini **geçici olarak** üstlenen kişiyi de kapsıyor.
+
+
+## Köpek dışkısını toplamak zorunlu mu?
+
+Evet. Uygulama yönetmeliği halka açık yerlerde köpeğin dışkısının sahibince temizlenmesini açıkça istiyor; kanun da sahibi hayvanından kaynaklanan çevre kirliliğini önlemekle yükümlü tutuyor. Dışkı aynı zamanda iç parazitlerin bulaşma yolu; düzenli parazit koruması için köpeklerde iç ve dış parazit (https://veterito.com/blog/kopeklerde-ic-ve-dis-parazit) yazımıza bakabilirsiniz.
+
+
+## Köpeklere ağızlık takmak zorunlu mu?
+
+Genel bir ağızlık zorunluluğu yok; zorunluluk **Bakanlıkça tehlike arz eden sayılan ırklar** için. Tarım ve Orman Bakanlığı'nın 2021/48 sayılı genelgesi bu ırkları şöyle sayıyor:
+
+- Amerikan Pitbull Terrier
+- Dogo Argentino
+- Fila Brasileiro
+- Japanese Tosa
+- American Staffordshire Terrier
+- American Bully
+
+Bu ırkları ve melezlerini üretmek, sahiplenmek, satmak ve sahiplendirmek kanunla yasak. Süresi içinde kısırlaştırılıp kayda alınarak sahibinin yanında kalan köpekler ise **kayıt belgesi, ağızlık ve tasma olmadan dolaştırılamıyor;** kalabalık yerlere, çocuk oyun alanlarına ve parklara sokulamıyor.
+
+
+## Köpek gezdirirken yanınızda olması gerekenler
+
+- **Tasma:** Köpeğe zarar vermeyen, kontrolü sağlayan bir tasma ve gezdirme kayışı.
+- **Pasaport:** Yönetmelik halka açık yerde köpeğin pasaportunun yanınızda bulunmasını istiyor. Pasaport, PETVET kaydıyla (https://veterito.com/blog/petvet-kayit) birlikte düzenleniyor.
+- **Dışkı torbası:** Dışkıyı toplayıp çöpe atmak için.
+- **Ağızlık ve kayıt belgesi:** Yalnız tehlike arz eden ırklar için zorunlu.
+
+
+## Tasmasız köpek gezdirenler nereye şikâyet edilir?
+
+Yönetmeliğe göre 5199 sayılı kanun ve yönetmeliğe uyulup uyulmadığını denetleme yetkisi **Tarım ve Orman Bakanlığı'nda;** bu nedenle başvuru yeri il veya ilçe tarım ve orman müdürlüğü. Park, plaj gibi belediye alanlarındaki kurallar için belediyeye başvurulabiliyor. Bir köpek o anda insanlar için tehlike oluşturuyorsa 112'yi arayın.
+
+UYARI: Bir köpek ısırdıysa vakit kaybetmeden bir sağlık kuruluşuna başvurun; kuduz riskini sağlık kuruluşu değerlendirir. Köpeğin sahibine ulaşabiliyorsanız köpeğin aşı bilgisini isteyin.
+
+## Sıkça sorulan sorular
+
+**Tasmasız köpek gezdirmek yasak mı?**
+Evet; 2024 tarihli uygulama yönetmeliği halka açık yerlerde köpeğin tasmayla kontrol altında dolaştırılmasını istiyor.
+
+**Tasmasız köpek gezdirmenin cezası ne kadar?**
+Kanunun 28/b bendindeki tutar hayvan başına 1.000 TL; yeniden değerlemeyle 2026 karşılığı 8.687 TL.
+
+**Tasmasız köpek gezdirmek suç mu?**
+Köpek başkalarının hayatı veya sağlığı için tehlike yaratıyorsa TCK 177 gereği altı aya kadar hapis veya adli para cezası var.
+
+**Köpek dışkısını toplamak zorunlu mu?**
+Evet; yönetmelik halka açık yerlerde dışkının sahibince temizlenmesini istiyor.
+
+**Hangi köpeklere ağızlık zorunlu?**
+Bakanlığın tehlike arz eden saydığı altı ırka ve melezlerine; diğer köpekler için genel bir ağızlık zorunluluğu yok.
+
+**Köpeğim birini ısırırsa sorumlu kim olur?**
+Borçlar Kanunu 67. madde gereği köpeğin bakımını ve yönetimini üstlenen kişi; gerekli özeni ispat ederse sorumlu olmaz.
+
+**Tasmasız köpek gezdirenler nereye şikâyet edilir?**
+İl veya ilçe tarım ve orman müdürlüğüne; o anda tehlike varsa 112'ye.
+
+## Kaynaklar
+
+- T.C. Resmî Gazete · Hayvanların Korunması Hakkında Uygulama Yönetmeliği (13.12.2024, sayı 32751) · https://www.resmigazete.gov.tr/eskiler/2024/12/20241213-3.htm
+- T.C. Cumhurbaşkanlığı Mevzuat Bilgi Sistemi · 5199 sayılı Hayvanları Koruma Kanunu (madde 5, 14, 28 ve geçici madde 3) · https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=1&MevzuatNo=5199&MevzuatTertip=5
+- T.C. Tarım ve Orman Bakanlığı Doğa Koruma ve Milli Parklar Genel Müdürlüğü · Tehlike Arz Eden Hayvanlara İlişkin Genelge (2021/48) · https://www.tarimorman.gov.tr/DKMP/Haber/209/Tehlike-Arz-Eden-Hayvanlara-Iliskin-Genelge
+- T.C. Cumhurbaşkanlığı Mevzuat Bilgi Sistemi · 5237 sayılı Türk Ceza Kanunu (madde 177) · https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=1&MevzuatNo=5237&MevzuatTertip=5
+- T.C. Cumhurbaşkanlığı Mevzuat Bilgi Sistemi · 6098 sayılı Türk Borçlar Kanunu (madde 67) · https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=1&MevzuatNo=6098&MevzuatTertip=5
+
+---
+
+# Köpeklerde Kene: Nasıl Temizlenir, Hangi Hastalıkları Taşır?
+
+Adres: https://veterito.com/blog/kopeklerde-kene
+Kategori: Köpek · Yayın: 2026-10-21
+
+Köpekte kene görünce yapılacak ilk şey onu doğru yöntemle, hemen çıkarmak. Kene nasıl çıkarılır, neler yapılmaz, hangi hastalıkları taşır ve korunma yıl boyu mu sürer?
+
+**Köpeğinizde kene gördüyseniz onu beklemeden, doğru yöntemle çıkarın.** Avrupa Evcil Hayvan Parazitleri Bilimsel Danışma Kurulu'nun (ESCCAP) kılavuzuna göre görünen keneler fark edilir edilmez çıkarılmalı, çünkü kenenin taşıdığı hastalık etkenleri beslenme sırasında tükürükle geçiyor ve kene ne kadar uzun tutunursa risk o kadar artıyor.
+
+Aşağıda kenenin nasıl çıkarıldığını, hangi yöntemlerin zarar verdiğini, kenelerin köpeklere hangi hastalıkları taşıdığını ve korunmanın neden çoğu bölgede yıl boyu sürmesi gerektiğini anlatıyoruz.
+
+
+## Köpekte kene nasıl çıkarılır?
+
+- **Aleti hazırlayın:** İnce uçlu bir cımbız ya da evcil hayvanlar için yapılmış kene çıkarma aleti kullanın. Mümkünse eldiven giyin.
+- **Deriye en yakın yerden tutun:** Keneyi gövdesinden sıkmadan, ağız kısmına en yakın noktadan, derinin hemen üstünden kavrayın.
+- **Sabit kuvvetle çekin:** Keneyi çevirmeden, sarsmadan, düzgün ve sabit bir kuvvetle dışarı çekin. Sarsmak ağız parçalarının deride kalmasına yol açabiliyor.
+- **Bölgeyi temizleyin:** Isırık yerini ve ellerinizi sabun ve suyla yıkayın.
+- **Keneyi güvenle atın:** Kenenin başka bir canlıya geçmemesi için kapalı bir kaba ya da banta sarılı olarak atın; parmaklarınızla ezmeyin.
+
+Ağız parçaları deride kalırsa zorlamayın; ESCCAP, zorla çıkarılan kenenin geride kalan ağız parçalarının ısırık yerinde enfeksiyon ya da küçük bir apseye yol açabileceğini belirtiyor. Bölgede şişlik, kızarıklık ya da akıntı olursa hekime gösterin.
+
+YAYGIN YANILGI — "Keneye yağ, kolonya ya da çakmak tutunca kendisi çıkar": ESCCAP kılavuzu keneyi çıkarırken yağ, alkol ya da eter kullanılmamasını açıkça yazıyor. ABD Hastalık Kontrol Merkezi de vazelin, oje, ısı gibi yöntemlerin keneyi tahriş edip enfekte sıvının deriye geçmesine yol açabileceğini belirtiyor. Bu yöntemlerle uğraşmak, keneyi çıkarmayı geciktirmekten başka işe yaramıyor.
+
+
+## Köpeklerde kene en çok nerede bulunur?
+
+Keneler vücudun her yerinde olabiliyor ama en çok **tüyün az ve derinin ince olduğu** yerlere tutunuyor: yüz, kulaklar, koltuk altları, parmak araları, kasık ve anüs çevresi. Doğa yürüyüşünden, parktan ya da bahçeden döndükten sonra bu bölgeleri elle yoklayarak kontrol etmek en etkili alışkanlık. Larva ve nimf denen genç evreler çok küçük olduğu için gözden kaçabiliyor; beslenip şişmiş dişi keneler ise 1 santimetreye ulaşabiliyor ve kolay görülüyor.
+
+
+## Kene köpeklere hangi hastalıkları taşır?
+
+Kenenin asıl önemi kan emmesi değil, taşıdığı hastalık etkenleri. ESCCAP'ın Avrupa için hazırladığı tabloda köpekleri ilgilendiren başlıcaları şunlar:
+
+Hastalık | Etken | Taşıyan kene
+Babesiosis (piroplazmoz) | Babesia canis, Babesia vogeli | Dermacentor, kahverengi köpek kenesi (Rhipicephalus sanguineus)
+Ehrlichiosis | Ehrlichia canis | Kahverengi köpek kenesi
+Anaplasmosis | Anaplasma türleri | Ixodes, kahverengi köpek kenesi
+Lyme hastalığı | Borrelia türleri | Ixodes
+Hepatozoonosis | Hepatozoon canis | Kahverengi köpek kenesi (kene yutulunca bulaşır)
+
+Bu hastalıkların belirtileri belirsiz olabiliyor ve kene ısırığından günler ya da haftalar sonra ortaya çıkabiliyor. Bu yüzden kene çıkardıktan sonraki haftalarda köpeğinizde halsizlik, iştahsızlık, ateş, solgun diş eti ya da koyu renkli idrar görürseniz hekiminize kene ısırığından da söz edin. Teşhis ve tedaviye hekim karar verir.
+
+
+## Keneden korunma yıl boyu mu sürmeli?
+
+ESCCAP'a göre korunma, kenelerin aktif olduğu dönemin tamamını kapsamalı. Kışları sert geçen bölgelerde bu "kene mevsimi" demek; ancak sıcak bölgelerde ve kenenin evde yaşayabildiği durumlarda koruma **yıl boyu** gerekebiliyor. Kahverengi köpek kenesi güney Avrupa ikliminde ilkbahar ve yazın yoğunlaşsa da yıl boyu beslenebiliyor ve hayatını ev ile köpek barınağı içinde tamamlayabiliyor.
+
+Köpeğin yaşamı | ESCCAP önerisi
+Dışarıya çok az çıkıyor | Düzenli kontrol; kene bulunursa elle çıkarma, gerekirse ardından kene ilacı
+Düzenli dışarı çıkıyor | Ürün etiketine uygun düzenli koruma; sıcak bölgelerde yıl boyu
+Sürekli kene riski var | Yıl boyu kesintisiz koruma
+
+Kene bulunduktan sonra kalan dönem için hem o köpeğin hem evdeki diğer hayvanların korunmaya alınması öneriliyor. İç ve dış parazit takvimini köpeklerde iç ve dış parazit (https://veterito.com/blog/kopeklerde-ic-ve-dis-parazit) yazımızda ayrıntılı anlattık.
+
+UYARI: Köpekler için üretilen bazı kene ilaçları (yüksek yoğunluklu sentetik piretroidler) kediler için zehirli. Evde kedi de varsa ürünü hekiminize danışarak seçin ve köpeğe ait ürünü asla kediye uygulamayın.
+
+## Sıkça sorulan sorular
+
+**Köpekte kene nasıl çıkarılır?**
+İnce uçlu cımbız ya da kene aletiyle deriye en yakın yerden tutup çevirmeden, sabit kuvvetle çekerek.
+
+**Keneyi çıkarırken yağ ya da kolonya kullanılır mı?**
+Hayır; ESCCAP yağ, alkol ve eter kullanılmamasını öneriyor.
+
+**Kenenin başı içeride kalırsa ne olur?**
+Zorlamayın; bölgede şişlik ya da akıntı olursa hekime gösterin.
+
+**Kene köpeğe hangi hastalıkları bulaştırır?**
+Başlıcaları babesiosis, ehrlichiosis, anaplasmosis, Lyme hastalığı ve hepatozoonosis.
+
+**Kene en çok köpeğin neresinde olur?**
+Yüz, kulaklar, koltuk altı, parmak araları, kasık ve anüs çevresi gibi tüyü az, derisi ince yerlerde.
+
+**Kene koruması kışın da gerekir mi?**
+Sıcak bölgelerde ve kenenin evde yaşayabildiği durumlarda ESCCAP yıl boyu koruma öneriyor.
+
+## Kaynaklar
+
+- European Scientific Counsel Companion Animal Parasites (ESCCAP) · Control of Ectoparasites in Dogs and Cats. ESCCAP Guideline 03, Seventh Edition · 2022 · https://www.esccap.org/uploads/docs/cgqtqpf1_0720_ESCCAP_GL3__English_v19_1p.pdf
+- U.S. Centers for Disease Control and Prevention (CDC) · What to Do After a Tick Bite · https://www.cdc.gov/ticks/after-a-tick-bite/index.html
+
+---
+
+# Yavru Kedi Bakımı: İlk Haftalardan İki Aylığa Kadar Rehber
+
+Adres: https://veterito.com/blog/yavru-kedi-bakimi
+Kategori: Kedi · Yayın: 2026-10-21
+
+Yavru kedinin ilk iki ayı beslenme, sosyalleşme ve ilk veteriner ziyareti açısından en kritik dönem. Haftalara göre neler değişir, mamaya ne zaman geçilir, nasıl alıştırılır?
+
+Yavru kedinin ilk iki ayında üç şey belirleyici: **düzenli beslenme, insanlarla olumlu tanışma ve erken veteriner kontrolü.** 2021 tarihli AAHA ve AAFP kedi yaşam evreleri kılavuzuna göre yavrular **3-5 haftalıkken** yavru mamasına geçmeye başlayabiliyor; insanlara ve yeni deneyimlere alıştıkları hassas sosyalleşme dönemi **2-3 haftada** başlıyor ve **9-10 haftada** kapanmaya yaklaşıyor.
+
+Aşağıda bu dönemi haftalara göre özetledik; beslenme, sosyalleşme, tuvalet ve ilk veteriner ziyareti için neler yapılacağını kılavuzlara dayanarak anlatıyoruz. Yavrunuza özel plan her zaman veteriner hekiminizle yapılır.
+
+
+## Haftalara göre yavru kedi gelişimi
+
+Yaş | Ne oluyor | Sizin işiniz
+0-3 hafta | Yavru annesine bağımlı, anne sütüyle besleniyor | Anne ve yavruları sakin, sıcak bir köşede tutmak
+2-3 hafta | Hassas sosyalleşme dönemi başlıyor | Nazik, kısa ve olumlu dokunuşlar
+3-5 hafta | Yavru mamasına geçiş başlayabiliyor | Dengeli, ticari yavru maması sunmak
+6-8 hafta | Temel aşı programı başlıyor | Veteriner muayenesi ve aşı takvimi
+9-10 hafta | Sosyalleşme dönemi kapanmaya yaklaşıyor | İnsanlara, seslere, taşıma çantasına alıştırmayı sürdürmek
+12 hafta civarı | Kediler arası oyun en yüksek düzeyde | Av içgüdüsüne uygun oyun ve oyuncak
+
+
+## Yavru kedi nasıl beslenir?
+
+AAHA ve AAFP kılavuzuna göre yavrular **3-5 haftalıkken** besin açısından dengeli ticari yavru mamasına geçmeye başlayabiliyor. Yavruların kilogram başına enerji ihtiyacı yetişkinden çok daha yüksek: kılavuz 10 haftalık bir yavrunun kilogram başına günde yaklaşık 200 kilokalori harcadığını belirtiyor. Bunun kaç grama denk geldiğini yavru kedi ne kadar mama yemeli (https://veterito.com/blog/yavru-kedi-ne-kadar-mama-yemeli) yazımızda hesapladık.
+
+Cornell Üniversitesi Kedi Sağlığı Merkezi, yavruların kilogram başına daha çok besine ihtiyaç duyduğu için gün içinde daha sık beslenmesini, **altı aylık olana kadar genellikle günde üç öğünün** en iyi sonucu verdiğini belirtiyor.
+
+UYARI: Altı haftadan küçük bir yavruda yalnız 12 saatlik açlık bile hayati tehlike oluşturabiliyor. Yavru emmiyor ya da mamayı reddediyorsa beklemeden veteriner hekime başvurun.
+
+
+## Annesiz yavru kediye nasıl bakılır?
+
+İlk haftalarda yavrunun ısınma, beslenme ve temizlik ihtiyacını annesi karşılıyor. Annesiz bulunan bir yavruda bu ihtiyaçların hepsi yaşa göre değişiyor ve yanlış süt, yanlış sıcaklık ya da düzensiz beslenme kısa sürede tehlikeli olabiliyor. Bu yüzden annesiz bir yavru bulduğunuzda ilk iş onu sıcak tutup **aynı gün** bir veteriner hekime götürmek; hekim yavrunun yaşını tahmin edip beslenme planını çıkarır.
+
+YAYGIN YANILGI — "Yavru biraz aç kalsa bir şey olmaz, sabah götürürüm": Çok küçük yavruların enerji depoları sınırlı. Cornell'e göre altı haftadan küçük bir yavruda 12 saatlik açlık bile ölümcül olabiliyor; bu yaşta beklemek risk.
+
+
+## Yavru kedi nasıl sosyalleştirilir?
+
+Sosyalleşme döneminde edinilen deneyimler kedinin ömür boyu insanlara ve yeni durumlara nasıl tepki vereceğini büyük ölçüde belirliyor. AAHA ve AAFP kılavuzunun önerileri:
+
+- **Günde 30-60 dakika** insanlarla olumlu etkileşim.
+- **Nazik ve saygılı tutma:** Yavru ömür boyu rahat tutulmaya böyle hazırlanıyor.
+- **İlk karşılaşmalar stresli olmasın:** Yeni insan, ses ve ortamlarla tanışma kısa ve olumlu olmalı.
+- **El ve ayakla oynamayın:** Kılavuz, oyunda ellerin ve ayakların oyuncak gibi kullanılmamasını öğütlüyor; büyüyen kedide tırmalama ve ısırma alışkanlığı buradan başlayabiliyor.
+- **Av içgüdüsüne uygun oyuncak:** Yavrular kovalayarak, atılarak ve yakalayarak öğreniyor; bu dürtüye uygun oyuncaklar sunun.
+
+
+## Yavru kediye tuvalet nasıl öğretilir?
+
+AAHA ve AAFP kılavuzu, yavruya **farklı türde kumlar sunmanın** faydalı olabileceğini belirtiyor; yavru hangisini tercih ettiğini böyle gösteriyor.
+
+
+## İlk veteriner ziyareti ve aşılar
+
+Yavru kedinin ilk veteriner ziyareti, kaç haftalık olursa olsun **eve gelir gelmez** yapılmalı; temel aşılar ise 6-8 haftalıkken başlıyor. Ziyaret zamanlamasını yavru kedi veterinere ne zaman götürülmeli (https://veterito.com/blog/yavru-kedi-veterinere-ne-zaman-goturulmeli), aşı programını kedi aşı takvimi (https://veterito.com/blog/kedi-asi-takvimi) yazılarımızda ayrıntılı anlattık.
+
+Her veteriner ziyareti aynı zamanda bir sosyalleşme fırsatı. Taşıma çantasını evde açık bırakmak ve yavrunun kendi isteğiyle girip çıkmasına izin vermek, ileride kliniğe gitmeyi çok daha kolay hale getiriyor.
+
+## Sıkça sorulan sorular
+
+**Yavru kedi ne zaman mamaya geçer?**
+AAHA ve AAFP kılavuzuna göre 3-5 haftalıkken dengeli ticari yavru mamasına geçiş başlayabiliyor.
+
+**Yavru kedi günde kaç öğün yemeli?**
+Cornell'e göre altı aylık olana kadar genellikle günde üç öğün en iyi sonucu veriyor.
+
+**Yavru kedinin sosyalleşme dönemi ne zaman?**
+2-3 haftada başlıyor ve 9-10 haftada kapanmaya yaklaşıyor.
+
+**Yavru kediyle günde ne kadar ilgilenmeliyim?**
+Kılavuz günde 30-60 dakika insanlarla olumlu etkileşim öneriyor.
+
+**Annesiz yavru kedi bulursam ne yapmalıyım?**
+Sıcak tutup aynı gün veteriner hekime götürün; beslenme planını hekim yaşına göre çıkarır.
+
+**Yavru kediyle elle oynamak zararlı mı?**
+Kılavuz ellerin ve ayakların oyuncak gibi kullanılmamasını öneriyor; bunun yerine oyuncak kullanın.
+
+## Kaynaklar
+
+- American Animal Hospital Association (AAHA), American Association of Feline Practitioners (AAFP) · 2021 AAHA/AAFP Feline Life Stage Guidelines · Quimby J, Gowland S, Carney HC, DePorter T, Plummer P, Westropp J · Journal of Feline Medicine and Surgery · 2021 · 23(3):211-233 · DOI: 10.1177/1098612X21993657 · https://pmc.ncbi.nlm.nih.gov/articles/PMC10812130/
+- Cornell University College of Veterinary Medicine, Cornell Feline Health Center · Anorexia · https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/anorexia
+- Cornell University College of Veterinary Medicine, Cornell Feline Health Center · How often should you feed your cat? · https://www.vet.cornell.edu/departments/cornell-feline-health-center/health-information/feline-health-topics/how-often-should-you-feed-your-cat
 
 ---
 
