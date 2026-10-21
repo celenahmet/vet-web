@@ -2,15 +2,15 @@ import type { BlogYazi } from './types';
 
 export const apartmandaKediKopekBeslemek: BlogYazi = {
   slug: 'apartmanda-kedi-kopek-beslemek',
-  baslik: 'Apartmanda Kedi Köpek Beslemek Yasak mı? Kat Mülkiyeti Kanunu Ne Diyor?',
-  ozet: 'Kat Mülkiyeti Kanunu evde hayvan beslemeyi yasaklamıyor; belirleyici olan yönetim planı ve komşuları rahatsız etmeme yükümlülüğü. Barınaktan köpek alırken yönetici izni de isteniyor.',
+  baslik: 'Apartmanda Kedi Köpek Beslemek Yasak mı? Kanun Ne Diyor?',
+  ozet: 'Kat Mülkiyeti Kanunu evde hayvan beslemeyi yasaklamıyor; belirleyici olan yönetim planı. Barınaktan köpek alırken yönetici izni de isteniyor.',
   kapakAlt:
     'Apartmanda kedi köpek beslemek konulu yazının kapak görseli; apartman dairesinde pencere önünde oturan bir kedi',
   kategori: 'Pet Sahipleri',
   tarih: '2026-10-22',
   bloklar: [
     { kind: 'paragraf', metin: 'Kısa cevap: **Kat Mülkiyeti Kanunu\'nda apartmanda kedi ya da köpek beslemeyi yasaklayan bir madde yok.** Belirleyici olan iki şey var: binanın **yönetim planı** ve kat maliklerinin **birbirini rahatsız etmeme** yükümlülüğü. 2024 tarihli Hayvanların Korunması Hakkında Uygulama Yönetmeliği ise barınaktan ya da pet shoptan **köpek** alırken binanın yönetim planını ve yöneticiden alınan izin belgesini istiyor.' },
-    { kind: 'paragraf', metin: 'Aşağıda kanun ve yönetmelik maddelerinin tam olarak ne söylediğini, yönetim planının neden önemli olduğunu ve komşuyla anlaşmazlık çıkarsa hangi yolun izlendiğini anlatıyoruz. Bu yazı bilgilendirme amaçlı; somut bir uyuşmazlıkta bir hukukçuya danışın.' },
+    { kind: 'paragraf', metin: 'Aşağıda kanun ve yönetmelik maddelerinin tam olarak ne söylediğini, yönetim planının neden önemli olduğunu ve komşuyla anlaşmazlık çıkarsa hangi yolun izlendiğini anlatıyoruz. Bu yazı bilgilendirme amaçlı; somut bir uyuşmazlıkta bir hukukçudan görüş almak gerekiyor.' },
 
     { kind: 'baslik', metin: 'Apartmanda kedi köpek beslemek yasak mı?' },
     { kind: 'paragraf', metin: '634 sayılı Kat Mülkiyeti Kanunu\'nda evcil hayvanla ilgili bir hüküm bulunmuyor; kanunun bağımsız bölümlerde yapılması yasak işleri sayan 24. maddesi de hayvan beslemeyi kapsamıyor. Bu yüzden genel kural, evde hayvan beslemenin **kendiliğinden yasak olmadığı.** Kanunun 18. maddesi ise kat maliklerini **doğruluk kurallarına uymak, özellikle birbirini rahatsız etmemekle** yükümlü tutuyor.' },
@@ -19,7 +19,7 @@ export const apartmandaKediKopekBeslemek: BlogYazi = {
 
     { kind: 'baslik', metin: 'Yönetim planı ne diyor?' },
     { kind: 'paragraf', metin: 'Kat Mülkiyeti Kanunu\'nun 28. maddesine göre yönetim planı **bütün kat maliklerini bağlayan bir sözleşme** hükmünde. Binanızın yönetim planında evcil hayvanla ilgili bir hüküm varsa o hüküm bağlayıcı. Planı değiştirmek için ise **bütün kat maliklerinin beşte dördünün** oyu gerekiyor; yani tek bir toplantıda basit çoğunlukla hayvan yasağı getirilemiyor.' },
-    { kind: 'paragraf', metin: 'Hayvan sahiplenmeden ya da eve taşınmadan önce yönetim planını yöneticiden isteyip okumak, sonradan çıkabilecek tartışmaların önünü kesiyor. Kiracıysanız kira sözleşmenizde hayvanla ilgili bir hüküm olup olmadığına da bakın.' },
+    { kind: 'paragraf', metin: 'Hayvan sahiplenmeden ya da eve taşınmadan önce yönetim planını yöneticiden isteyip okumak, sonradan çıkabilecek tartışmaların önünü kesiyor. Kiracılar için kira sözleşmesinde hayvanla ilgili bir hüküm olup olmadığı da önemli.' },
 
     { kind: 'baslik', metin: 'Barınaktan ya da pet shoptan köpek alırken apartman izni' },
     { kind: 'paragraf', metin: '13 Aralık 2024\'te yürürlüğe giren uygulama yönetmeliği bu konuda üç yerde aynı belgeyi istiyor:' },
@@ -36,12 +36,19 @@ export const apartmandaKediKopekBeslemek: BlogYazi = {
 
     { kind: 'baslik', metin: 'Komşularla sorun yaşamamak için' },
     { kind: 'liste', maddeler: [
-      '**Kayıt ve aşı:** Kedi ve köpeğinizin mikroçipli kaydı ve kuduz aşısı güncel olsun. Kaydı [[petvet-kayit|PETVET kaydı]], aşıyı [[kedilere-kuduz-asisi|kedilere kuduz aşısı]] yazımızda anlattık.',
-      '**Ortak alanlar:** Merdiven, asansör ve bahçede köpeği tasmayla, kontrol altında taşıyın; kirlettiğiniz yeri hemen temizleyin.',
+      '**Kayıt ve aşı:** Kedi ve köpeğin mikroçipli kaydı ve kuduz aşısı güncel olmalı. Kaydı [[petvet-kayit|PETVET kaydı]], aşıyı [[kedilere-kuduz-asisi|kedilere kuduz aşısı]] yazımızda anlattık.',
+      '**Ortak alanlar:** Merdivende, asansörde ve bahçede köpeğin tasmayla, kontrol altında tutulması ve kirlenen yerin hemen temizlenmesi gerekiyor.',
       '**Gürültü ve yalnızlık:** Uzun süre yalnız kalan köpeklerde havlama sık görülen bir şikâyet nedeni. Bu konuyu [[kopeklerde-ayrilik-kaygisi|köpeklerde ayrılık kaygısı]] yazımızda ele aldık.',
       '**Kısırlaştırma:** Kontrolsüz üremeyi önlemek yönetmelikte sahibin yükümlülükleri arasında; kızgınlık dönemindeki ses ve işaretleme şikâyetlerini de azaltıyor.',
     ]},
-    { kind: 'uyari', metin: 'Yönetim planları binadan binaya değişiyor ve uyuşmazlıklar somut olaya göre değerlendiriliyor. Hukuki bir anlaşmazlıkta bu yazı yerine bir avukattan görüş alın.' },
+    { kind: 'uyari', metin: 'Yönetim planları binadan binaya değişiyor ve uyuşmazlıklar somut olaya göre değerlendiriliyor. Hukuki bir anlaşmazlıkta bu yazı yerine bir avukattan görüş almak gerekiyor.' },
+  ],
+  kontrolListesi: [
+    'Yönetim planını okudunuz mu?',
+    'Köpek için yönetici izni var mı?',
+    'Ortak alanda tasma kullanılıyor mu?',
+    'Kayıt ve kuduz aşısı güncel mi?',
+    'Kirada hayvan maddesi var mı?',
   ],
   sss: [
     { soru: 'Apartmanda kedi beslemek yasak mı?', cevap: 'Kat Mülkiyeti Kanunu yasaklamıyor; yönetim planındaki hükümler ve komşuları rahatsız etmeme yükümlülüğü geçerli.' },

@@ -2,8 +2,8 @@ import type { BlogYazi } from './types';
 
 export const veterinerHekimNasilOlunur: BlogYazi = {
   slug: 'veteriner-hekim-nasil-olunur',
-  baslik: 'Veteriner Hekim Nasıl Olunur? Eğitim, Puan Türü ve Meslek Şartları',
-  ozet: 'Veteriner hekim olmak için YKS\'de sayısal puanla veteriner fakültesine yerleşip beş yıllık eğitimi bitirmek gerekiyor. İntörnlük, diploma tescili ve odaya kayıt dahil adım adım yol.',
+  baslik: 'Veteriner Hekim Nasıl Olunur? Eğitim, Puan Türü ve Şartlar',
+  ozet: 'Veteriner hekim olmak için YKS\'de sayısal puanla veteriner fakültesine girip beş yıllık eğitimi bitirmek gerekiyor. İntörnlük, tescil ve oda kaydı.',
   kapakAlt:
     'Veteriner hekim nasıl olunur konulu yazının kapak görseli; veteriner fakültesi laboratuvarında önlüklü öğrenciler',
   kategori: 'Klinik Yönetimi',
@@ -16,7 +16,7 @@ export const veterinerHekimNasilOlunur: BlogYazi = {
     { kind: 'paragraf', metin: 'Veteriner hekim olmanın yolu üniversitelerin **veteriner fakülteleri.** Meslek yüksekokullarının veterinerlikle ilgili ön lisans programları ise **veteriner teknikeri** yetiştiriyor; tekniker veteriner hekimin yerine geçmiyor. İki meslek arasındaki farkı [[veteriner-hekim-tekniker-farki|veteriner hekim ve tekniker farkı]] yazımızda anlattık.' },
 
     { kind: 'baslik', metin: 'Veterinerlik hangi puan türüyle alıyor, taban puanlar nereden bakılır?' },
-    { kind: 'paragraf', metin: 'Veteriner fakülteleri öğrencilerini ÖSYM\'nin merkezi yerleştirmesiyle, **sayısal (SAY)** puan türünden alıyor. Taban puan ve başarı sıraları üniversiteden üniversiteye ve yıldan yıla büyük farklılık gösteriyor; Türkçe ve İngilizce programlar, devlet ve vakıf üniversiteleri ayrı listeleniyor. Güncel ve resmî rakamlar için Yükseköğretim Kurulu\'nun **YÖK Atlas** sayfasındaki program sayfalarına bakın; her programın kontenjanı, yerleşen sayısı, en düşük puanı ve başarı sırası orada yer alıyor.' },
+    { kind: 'paragraf', metin: 'Veteriner fakülteleri öğrencilerini ÖSYM\'nin merkezi yerleştirmesiyle, **sayısal (SAY)** puan türünden alıyor. Taban puan ve başarı sıraları üniversiteden üniversiteye ve yıldan yıla büyük farklılık gösteriyor; Türkçe ve İngilizce programlar, devlet ve vakıf üniversiteleri ayrı listeleniyor. Güncel ve resmî rakamlar için Yükseköğretim Kurulu\'nun **YÖK Atlas** sayfasındaki program sayfalarına bakmak gerekiyor; her programın kontenjanı, yerleşen sayısı, en düşük puanı ve başarı sırası orada yer alıyor.' },
     { kind: 'yanilgi', baslik: '"Taban puanı düşük fakülte daha kolay diploma verir"', metin: 'Taban puan, o yıl programı tercih edenlerin sıralamasını gösteriyor; eğitimin süresini ya da içeriğini değil. Her fakültenin eğitim süresi ve mezuniyet şartları kendi yönetmeliğinde yazılı ve aşağıda göreceğiniz gibi temel yapı aynı.' },
 
     { kind: 'baslik', metin: 'Veteriner fakültesi kaç yıl, eğitim nasıl ilerliyor?' },
@@ -41,7 +41,14 @@ export const veterinerHekimNasilOlunur: BlogYazi = {
 
     { kind: 'baslik', metin: 'Veteriner hekimler nerede çalışır, ne kazanır?' },
     { kind: 'paragraf', metin: 'Veteriner hekimler muayenehane, poliklinik ve hayvan hastanelerinde, kamuda Tarım ve Orman Bakanlığı ile belediyelerde, gıda ve hayvancılık işletmelerinde, ilaç ve yem sektöründe ve akademide çalışabiliyor. Klinik türleri arasındaki farkı [[muayenehane-poliklinik-hastane-farki|muayenehane, poliklinik ve hastane farkı]], maaşları [[veteriner-hekim-maaslari|veteriner hekim maaşları]] yazılarımızda ele aldık.' },
-    { kind: 'uyari', metin: 'Taban puanlar, kontenjanlar ve fakülte yönetmelikleri her yıl değişebiliyor. Tercih yapmadan önce YÖK Atlas\'taki güncel program sayfasına ve tercih edeceğiniz üniversitenin kendi yönetmeliğine bakın.' },
+    { kind: 'uyari', metin: 'Taban puanlar, kontenjanlar ve fakülte yönetmelikleri her yıl değişebiliyor. Tercih yapmadan önce YÖK Atlas\'taki güncel program sayfasına ve tercih edeceğiniz üniversitenin kendi yönetmeliğine bakmak gerekiyor.' },
+  ],
+  kontrolListesi: [
+    'YÖK Atlas\'ta güncel puana baktınız mı?',
+    'Puan türünüz SAY mı?',
+    'Fakültenin yönetmeliğini okudunuz mu?',
+    'İntörnlük dönemini biliyor musunuz?',
+    'Hazırlık sınıfı var mı?',
   ],
   sss: [
     { soru: 'Veteriner hekim olmak için hangi bölüm okunur?', cevap: 'Üniversitelerin veteriner fakülteleri; ön lisans programları ise veteriner teknikeri yetiştiriyor.' },

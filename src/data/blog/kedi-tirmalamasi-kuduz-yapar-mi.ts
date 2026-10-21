@@ -3,7 +3,7 @@ import type { BlogYazi } from './types';
 export const kediTirmalamasiKuduzYaparMi: BlogYazi = {
   slug: 'kedi-tirmalamasi-kuduz-yapar-mi',
   baslik: 'Kedi Tırmalaması ve Köpek Isırması Kuduz Yapar mı? Ne Yapılmalı?',
-  ozet: 'Kedi ya da köpek ısırması ve deriyi zedeleyen tırmalama kuduz riski taşır. Yara hemen sabunlu suyla yıkanır, en kısa sürede sağlık kuruluşuna gidilir. Sağlık Bakanlığı rehberine göre adımlar.',
+  ozet: 'Kedi ya da köpek ısırması ve deriyi zedeleyen tırmalama kuduz riski taşır. Yara hemen sabunlu suyla yıkanır, sağlık kuruluşuna başvurulur.',
   kapakAlt:
     'Kedi tırmalaması ve kuduz konulu yazının kapak görseli; oyun sırasında patisiyle bir elin parmağına uzanan yavru kedi',
   kategori: 'Pet Sahipleri',
@@ -14,13 +14,13 @@ export const kediTirmalamasiKuduzYaparMi: BlogYazi = {
 
     { kind: 'baslik', metin: 'Kedi tırmalarsa ya da köpek ısırırsa ne yapılır?' },
     { kind: 'liste', maddeler: [
-      '**Yarayı yıkayın:** Yara ya da ısırık bölgesini vakit kaybetmeden bol su ve sabunla iyice yıkayın. Sağlık Bakanlığı yıkamanın en az 15 dakika sürmesini öneriyor.',
-      '**Antiseptik uygulayın:** Yıkama bittikten sonra alkol ya da tentürdiyot gibi iyotlu bir antiseptik sürün.',
-      '**Göz, ağız ya da burun temas ettiyse:** Bol suyla yıkayın.',
-      '**Sağlık kuruluşuna gidin:** En kısa sürede başvurun. Temasın üzerinden günler geçmiş olsa bile gidin; rehber, kuduzun kuluçka süresi çok değişken olduğu için aradan geçen süreye bakılmadan değerlendirme yapılmasını istiyor.',
-      '**Hayvanı not edin:** Hayvanın sahibi, aşı durumu ve nerede olduğu bilgisi, hekimin kararını doğrudan etkiliyor.',
+      '**Yıkama:** Yara ya da ısırık bölgesi vakit kaybetmeden bol su ve sabunla iyice yıkanıyor. Sağlık Bakanlığı yıkamanın en az 15 dakika sürmesini öneriyor.',
+      '**Antiseptik:** Yıkama bittikten sonra alkol ya da tentürdiyot gibi iyotlu bir antiseptik sürülüyor.',
+      '**Göz, ağız ya da burun temas ettiyse:** Bol suyla yıkanıyor.',
+      '**Sağlık kuruluşu:** En kısa sürede başvurmak gerekiyor, temasın üzerinden günler geçmiş olsa bile; rehber, kuduzun kuluçka süresi çok değişken olduğu için aradan geçen süreye bakılmadan değerlendirme yapılmasını istiyor.',
+      '**Hayvanın bilgisi:** Hayvanın sahibi, aşı durumu ve nerede olduğu bilgisi, hekimin kararını doğrudan etkiliyor.',
     ]},
-    { kind: 'yanilgi', baslik: '"Ev kedisi tırmaladı, kuduz olmaz"', metin: 'Bunu hayvanın kendisi değil aşı ve gözlem durumu belirliyor. Rehber, temas eden evcil hayvanın son bir yılda kuduz aşısı olup olmadığını ve 10 gün gözlem altında tutulabilip tutulamayacağını soruyor. Deriyi zedeleyen her temasta kararı sağlık kuruluşuna bırakın.' },
+    { kind: 'yanilgi', baslik: '"Ev kedisi tırmaladı, kuduz olmaz"', metin: 'Bunu hayvanın kendisi değil aşı ve gözlem durumu belirliyor. Rehber, temas eden evcil hayvanın son bir yılda kuduz aşısı olup olmadığını ve 10 gün gözlem altında tutulabilip tutulamayacağını soruyor. Deriyi zedeleyen her temasta kararı sağlık kuruluşu verir.' },
 
     { kind: 'baslik', metin: 'Kuduz riski hangi temaslarda var?' },
     { kind: 'paragraf', metin: 'Sağlık Bakanlığı\'nın profilaksi algoritması temasları şöyle sınıflandırıyor:' },
@@ -42,11 +42,18 @@ export const kediTirmalamasiKuduzYaparMi: BlogYazi = {
     { kind: 'paragraf', metin: 'Sağlık Bakanlığı\'na göre bugünkü verilerle fare, sıçan, sincap, hamster, kobay, gerbil ve tavşan ısırıklarında insana kuduz geçişi gösterilmemiş; sürüngen ve kümes hayvanı ısırıkları da aşı gerektirmiyor. Kedi ve köpeğin yanında keçi, at, eşek, inek gibi evcil hayvanlar ile kurt, tilki, çakal, ayı, sansar gibi yabani hayvanlar ise kuduza yakalanabiliyor.' },
 
     { kind: 'baslik', metin: 'Kendi kedinizi ve köpeğinizi korumak' },
-    { kind: 'paragraf', metin: 'İnsanlara bulaşmanın önündeki en önemli engel evcil hayvanların aşılı olması. Kuduz aşısı Türkiye\'de üç aydan büyük kedi ve köpekler için yılda bir **yasal zorunluluk;** takvimi [[kedilere-kuduz-asisi|kedilere kuduz aşısı]] yazımızda anlattık. Hayvanınız birini ısırdıysa aşı kaydını gösterebilmek için pasaportunu hazır tutun.' },
-    { kind: 'uyari', metin: 'Davranışı aniden değişen, saldırganlaşan, salya akıtan ya da yutkunmakta zorlanan bir hayvana yaklaşmayın; il veya ilçe tarım ve orman müdürlüğüne, belediyeye ya da muhtarlığa haber verin. Bu yazı genel bilgilendirmedir; ısırık ya da tırmalamadan sonra karar sağlık kuruluşunundur.' },
+    { kind: 'paragraf', metin: 'İnsanlara bulaşmanın önündeki en önemli engel evcil hayvanların aşılı olması. Kuduz aşısı Türkiye\'de üç aydan büyük kedi ve köpekler için yılda bir **yasal zorunluluk;** takvimi [[kedilere-kuduz-asisi|kedilere kuduz aşısı]] yazımızda anlattık. Hayvanınız birini ısırdıysa aşı kaydını gösterebilmek için pasaportun hazır tutulması işe yarar.' },
+    { kind: 'uyari', metin: 'Davranışı aniden değişen, saldırganlaşan, salya akıtan ya da yutkunmakta zorlanan bir hayvana yaklaşmamak ve il veya ilçe tarım ve orman müdürlüğüne, belediyeye ya da muhtarlığa haber vermek gerekiyor. Bu yazı genel bilgilendirmedir; ısırık ya da tırmalamadan sonra karar sağlık kuruluşunundur.' },
+  ],
+  kontrolListesi: [
+    'Yara 15 dakika sabunla yıkandı mı?',
+    'Sağlık kuruluşuna başvuruldu mu?',
+    'Hayvanın aşı durumu öğrenildi mi?',
+    'Hayvan 10 gün izlenebiliyor mu?',
+    'Aşı randevuları takvimde mi?',
   ],
   sss: [
-    { soru: 'Kedi tırmalaması kuduz yapar mı?', cevap: 'Deriyi zedeleyen tırmalama kuduz riski taşıyabilir; yarayı yıkayıp sağlık kuruluşuna başvurun.' },
+    { soru: 'Kedi tırmalaması kuduz yapar mı?', cevap: 'Deriyi zedeleyen tırmalama kuduz riski taşıyabilir; yaranın yıkanıp sağlık kuruluşuna başvurulması gerekiyor.' },
     { soru: 'Köpek ısırmasına ne yapılır?', cevap: 'Yara en az 15 dakika bol su ve sabunla yıkanır, antiseptik sürülür ve en kısa sürede sağlık kuruluşuna gidilir.' },
     { soru: 'Kedi tırmalaması kuduz aşısı gerektirir mi?', cevap: 'Temasın türüne ve hayvanın aşı ve gözlem durumuna göre hekim karar verir.' },
     { soru: 'Kuduz aşısı kaç doz yapılır?', cevap: 'Rehbere göre 0., 3., 7. ve 14-28. günlerde 4 doz ya da 2-1-1 şeması uygulanır.' },

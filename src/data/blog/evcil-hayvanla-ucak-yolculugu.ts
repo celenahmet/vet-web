@@ -10,7 +10,7 @@ export const evcilHayvanlaUcakYolculugu: BlogYazi = {
   tarih: '2026-10-21',
   bloklar: [
     { kind: 'paragraf', metin: 'Kedi ya da köpekle uçak yolculuğunda iki seçenek var: **kabinde** ya da **uçak altında (bagaj bölümünde).** Türk Hava Yolları ve Pegasus\'ta kabinde taşınabilmek için hayvanın **çantasıyla birlikte en çok 8 kilo** olması gerekiyor. Evcil hayvan ücretsiz bagaj hakkına dahil değil, ayrıca ücretlendiriliyor ve uçuş başına kontenjan sınırlı; bu yüzden hayvanı bilet alırken ya da hemen sonrasında rezervasyona eklemek gerekiyor.' },
-    { kind: 'paragraf', metin: 'Aşağıda havayollarının kendi kurallarını, yurt içi ve yurt dışı için gereken belgeleri ve yolculuk öncesi hazırlığı anlatıyoruz. Kurallar ve ücretler değişebildiği için uçmadan önce havayolunun güncel sayfasına mutlaka bakın.' },
+    { kind: 'paragraf', metin: 'Aşağıda havayollarının kendi kurallarını, yurt içi ve yurt dışı için gereken belgeleri ve yolculuk öncesi hazırlığı anlatıyoruz. Kurallar ve ücretler değişebildiği için uçmadan önce havayolunun güncel sayfasına mutlaka bakmak gerekiyor.' },
 
     { kind: 'baslik', metin: 'Evcil hayvanla uçak yolculuğu için gerekenler' },
     { kind: 'liste', maddeler: [
@@ -31,7 +31,7 @@ export const evcilHayvanlaUcakYolculugu: BlogYazi = {
 
     { kind: 'baslik', metin: 'Uçak altında (kargo bölümünde) taşıma' },
     { kind: 'paragraf', metin: 'Kabin sınırını aşan hayvanlar uçak altındaki bölümde taşınıyor. THY\'de bu bölümde hayvan ve kafes birlikte en çok 50 kg, kafes en çok 75 x 75 x 125 cm olabiliyor; daha büyük kafesler Turkish Cargo ile gönderiliyor. Pegasus\'ta uçak altı taşıma **yalnız iç hat** uçuşlarında ve yalnız kedi ve köpek için var; kafesin sağlam, kilitli ve hayvanın içinde yatıp dönebileceği büyüklükte olması isteniyor.' },
-    { kind: 'yanilgi', baslik: '"Yolculukta sakinleştirici vermek en iyisi"', metin: 'THY sakinleştirici verilmiş hayvanları uçuşa kabul etmiyor. Hayvanınız yolculukta çok stresleniyorsa ne yapılabileceğini önceden veteriner hekiminizle konuşun; kendi başınıza ilaç vermeyin.' },
+    { kind: 'yanilgi', baslik: '"Yolculukta sakinleştirici vermek en iyisi"', metin: 'THY sakinleştirici verilmiş hayvanları uçuşa kabul etmiyor. Hayvanınız yolculukta çok stresleniyorsa ne yapılabileceğini önceden veteriner hekimle konuşmak gerekiyor; kendi başına ilaç vermek doğru olmuyor.' },
 
     { kind: 'baslik', metin: 'Kabul edilmeyen ırklar ve hatlar' },
     { kind: 'paragraf', metin: 'Havayolları uçuş güvenliği açısından bazı köpek ırklarını kabul etmiyor. Pegasus\'un listesinde Pit Bull, Japanese Tosa, Dogo Argentino, Fila Brasileiro, American Staffordshire Terrier, Presa Canario, Rottweiler, Doberman, Mastiff, American Bulldog, Kafkas çoban köpeği, Napoliten mastif ve Chow Chow gibi ırklar var. Pegasus ayrıca Bahreyn, Birleşik Arap Emirlikleri ve Katar\'a; Suudi Arabistan, İrlanda ve İngiltere\'ye ve bu ülkelerden kalkan uçuşlarda evcil hayvan kabul etmiyor.' },
@@ -46,11 +46,18 @@ export const evcilHayvanlaUcakYolculugu: BlogYazi = {
 
     { kind: 'baslik', metin: 'Yolculuktan önce hazırlık' },
     { kind: 'liste', maddeler: [
-      '**Çantaya alıştırma:** Taşıma çantasını yolculuktan günler önce evde açık bırakın; hayvan içine kendi isteğiyle girip çıksın.',
-      '**Veteriner kontrolü:** Yolculuktan önce hayvanın uçmaya uygun olup olmadığını ve aşılarının güncel olup olmadığını hekiminize kontrol ettirin.',
-      '**Erken varış:** Hayvanla birlikte kontuara gelinmesi ve belgelerin yanınızda olması isteniyor; işlemler için zaman bırakın.',
+      '**Çantaya alıştırma:** Taşıma çantası yolculuktan günler önce evde açık bırakılıyor; hayvan içine kendi isteğiyle girip çıkmayı öğreniyor.',
+      '**Veteriner kontrolü:** Yolculuktan önce hayvanın uçmaya uygun olup olmadığını ve aşılarının güncel olup olmadığının veteriner hekimce kontrol edilmesi gerekiyor.',
+      '**Erken varış:** Hayvanla birlikte kontuara gelinmesi ve belgelerin yanınızda olması isteniyor; işlemler için zaman bırakmak gerekiyor.',
     ]},
-    { kind: 'uyari', metin: 'Bu yazıdaki ölçüler ve kurallar havayollarının kendi sayfalarından alındı. Havayolları kuralları, kontenjanları ve ücretleri sık güncelleyebiliyor; bilet almadan önce uçacağınız havayolunun güncel sayfasını ve gidilen ülkenin resmî kurallarını kontrol edin.' },
+    { kind: 'uyari', metin: 'Bu yazıdaki ölçüler ve kurallar havayollarının kendi sayfalarından alındı. Havayolları kuralları, kontenjanları ve ücretleri sık güncelleyebiliyor; bilet almadan önce uçacağınız havayolunun güncel sayfasını ve gidilen ülkenin resmî kurallarını kontrol etmek gerekiyor.' },
+  ],
+  kontrolListesi: [
+    'Hayvan bilete eklendi mi?',
+    'Çanta ölçüsü havayoluna uyuyor mu?',
+    'Toplam ağırlık 8 kilonun altında mı?',
+    'Pasaport ve aşı kaydı yanınızda mı?',
+    'Hayvan çantaya alıştırıldı mı?',
   ],
   sss: [
     { soru: 'Uçakta kabinde evcil hayvan kaç kilo olabilir?', cevap: 'THY ve Pegasus\'ta hayvan ve çantası birlikte en çok 8 kilo.' },
@@ -58,7 +65,7 @@ export const evcilHayvanlaUcakYolculugu: BlogYazi = {
     { soru: 'Evcil hayvan uçak bileti nasıl alınır?', cevap: 'Hayvan bilete eklenerek ücretlendiriliyor; Pegasus\'ta yalnız çağrı merkezi ya da acenta üzerinden ekleniyor.' },
     { soru: 'Yavru kedi uçakla seyahat edebilir mi?', cevap: 'Pegasus üç aydan küçük ve aşısı tamamlanmamış hayvanları kabul etmiyor.' },
     { soru: 'Uçakta evcil hayvan için hangi belgeler gerekir?', cevap: 'Yurt içinde pasaport; yurt dışında ayrıca veteriner sağlık sertifikası ve ülkenin istediği diğer belgeler.' },
-    { soru: 'Evcil hayvana uçakta sakinleştirici verilebilir mi?', cevap: 'THY sakinleştirici verilmiş hayvanları kabul etmiyor; stres için önceden hekiminize danışın.' },
+    { soru: 'Evcil hayvana uçakta sakinleştirici verilebilir mi?', cevap: 'THY sakinleştirici verilmiş hayvanları kabul etmiyor; stres için önceden veteriner hekime danışmak gerekiyor.' },
   ],
   kaynaklar: [
     {

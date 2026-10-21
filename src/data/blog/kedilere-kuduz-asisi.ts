@@ -34,7 +34,7 @@ export const kedilereKuduzAsisi: BlogYazi = {
       '**Özel veteriner klinikleri:** Serbest veteriner hekimler kuduz aşısı uyguluyor. Sahipli kediler için en yaygın yol bu.',
       '**Resmi ve belediye veteriner hekimleri:** Yönetmelik aşıyı uygulayabilecek hekimler arasında onları da sayıyor. Belediyeler sahipsiz kedi ve köpekleri de yılda bir aşılıyor.',
     ]},
-    { kind: 'paragraf', metin: 'Aşıyı yapan hekim, uygulamanın bilgilerini ve **bir sonraki aşı tarihini** kedinin kimlik belgesine işlemek ve Bakanlık veri tabanındaki kaydı güncellemekle yükümlü. Aşı sonrasında belgenin güncellendiğini kontrol edin; seyahatte ve pansiyonda bu belge isteniyor.' },
+    { kind: 'paragraf', metin: 'Aşıyı yapan hekim, uygulamanın bilgilerini ve **bir sonraki aşı tarihini** kedinin kimlik belgesine işlemek ve Bakanlık veri tabanındaki kaydı güncellemekle yükümlü. Aşı sonrasında belgenin güncellenip güncellenmediğine bakmak gerekiyor; seyahatte ve pansiyonda bu belge isteniyor.' },
 
     { kind: 'baslik', metin: 'Kuduz aşısı fiyatı ne kadar?' },
     { kind: 'paragraf', metin: 'Fiyat klinikten kliniğe ve şehirden şehre değişiyor. Muayene, aşının kendisi ve kimlik belgesi işlemleri ayrı kalemler olabiliyor. Fiyatların nasıl oluştuğunu ve meslek odalarının belirlediği tabanı [[veteriner-ucretleri|veteriner ücretleri]] ve [[asgari-ucret-tarifesi-nedir|asgari ücret tarifesi]] yazılarımızda anlattık.' },
@@ -45,7 +45,14 @@ export const kedilereKuduzAsisi: BlogYazi = {
       '**Hemen kliniğe dönülmesi gerekenler:** Yüzde şişlik, kusma, yaygın kaşıntı, nefes almada güçlük, bayılma.',
       '**Hekime gösterilmesi gerekenler:** Aşı yerinde **üç aydan uzun süren, 2 santimetreden büyük ya da aşıdan bir ay sonra hâlâ büyüyen** şişlik. Kedi aşı rehberi bu durumda şişliğin incelenmesini öneriyor.',
     ]},
-    { kind: 'uyari', metin: 'Kediniz birini ısırdıysa ya da kuduz şüphesi varsa vakit kaybetmeden hem bir sağlık kuruluşuna hem veteriner hekime başvurun. Isırılan kişinin tedavisine sağlık kuruluşu karar verir.' },
+    { kind: 'uyari', metin: 'Kediniz birini ısırdıysa ya da kuduz şüphesi varsa vakit kaybetmeden hem bir sağlık kuruluşuna hem veteriner hekime başvurmak gerekiyor. Isırılan kişinin tedavisine sağlık kuruluşu karar verir.' },
+  ],
+  kontrolListesi: [
+    'İlk kuduz aşısı 3 ayda yapıldı mı?',
+    '21 gün sonraki rapel yapıldı mı?',
+    'Sonraki aşı tarihi takvimde mi?',
+    'Aşı pasaporta işlendi mi?',
+    'Kedi mikroçipli ve kayıtlı mı?',
   ],
   sss: [
     { soru: 'Kedilere kuduz aşısı ne zaman yapılır?', cevap: 'Kedi üç aylıktan büyükken ilk doz yapılıyor; üretici farklı süre belirtmemişse 21 gün sonra rapel dozu, sonra yılda bir tekrar.' },
@@ -53,7 +60,7 @@ export const kedilereKuduzAsisi: BlogYazi = {
     { soru: 'Kediye kuduz aşısı yaptırmak zorunlu mu?', cevap: 'Evet; kuduz yönetmeliğinin 9. maddesi üç aydan büyük kedi ve köpek sahiplerini yılda bir aşılatmakla yükümlü tutuyor.' },
     { soru: 'Hiç dışarı çıkmayan ev kedisine kuduz aşısı gerekli mi?', cevap: 'Evet; yönetmelikte ev kedisi için istisna yok ve seyahat ile pansiyon için de güncel aşı isteniyor.' },
     { soru: 'Kuduz aşısı nerede yapılır?', cevap: 'Özel veteriner kliniklerinde; resmi ve belediye veteriner hekimleri de uygulayabiliyor ve bilgiyi kimlik belgesine işliyor.' },
-    { soru: 'Kuduz aşısını geciktirdim, ne yapmalıyım?', cevap: 'Kliniğinizi arayıp son aşı tarihini söyleyin; gecikmenin süresine göre hekim nasıl devam edileceğine karar verir.' },
+    { soru: 'Kuduz aşısını geciktirdim, ne yapmalıyım?', cevap: 'Kliniğe son aşı tarihini bildirmek yeterli; gecikmenin süresine göre hekim nasıl devam edileceğine karar verir.' },
     { soru: 'Kuduz ve karma aşı aynı gün yapılır mı?', cevap: 'Hekim uygun görürse aynı ziyarette yapılabiliyor; kedinin yaşı ve sağlık durumuna göre karar veriliyor.' },
   ],
   kaynaklar: [

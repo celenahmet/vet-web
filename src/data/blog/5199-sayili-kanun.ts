@@ -3,14 +3,14 @@ import type { BlogYazi } from './types';
 export const kanun5199: BlogYazi = {
   slug: '5199-sayili-kanun',
   baslik: '5199 Sayılı Hayvanları Koruma Kanunu: Sahiplenme, Yükümlülükler ve Cezalar',
-  ozet: '5199 sayılı kanun ve 2024 tarihli uygulama yönetmeliği hayvan sahiplerine ne yüklüyor? Barınaktan sahiplenme şartları, sahibin yükümlülükleri ve 2026 idari para cezaları tek tabloda.',
+  ozet: '5199 sayılı kanun hayvan sahiplerine ne yüklüyor? Barınaktan sahiplenme şartları, sahibin yükümlülükleri ve 2026 idari para cezaları tek tabloda.',
   kapakAlt:
     '5199 sayılı Hayvanları Koruma Kanunu konulu yazının kapak görseli; barınakta yeni sahibine kucak açan bir köpek',
   kategori: 'Pet Sahipleri',
   tarih: '2026-10-20',
   bloklar: [
     { kind: 'paragraf', metin: 'Türkiye\'de hayvan sahiplenmenin, bakımın ve sahipsiz hayvanlarla ilgili işlerin temel kanunu **5199 sayılı Hayvanları Koruma Kanunu.** Son kapsamlı değişikliği **7527 sayılı Kanun** yaptı; değişiklik **2 Ağustos 2024**\'te yürürlüğe girdi. Ayrıntıları ise **13 Aralık 2024**\'te Resmî Gazete\'de yayımlanan **Hayvanların Korunması Hakkında Uygulama Yönetmeliği** düzenliyor.' },
-    { kind: 'paragraf', metin: 'Aşağıda bir kedi ya da köpek sahibinin bilmesi gerekenleri madde numaralarıyla topladık: barınaktan sahiplenme şartları, sahibin yükümlülükleri ve bunlara uyulmadığında uygulanan cezalar. Bu yazı bilgilendirme amaçlı; somut bir uyuşmazlıkta il veya ilçe tarım ve orman müdürlüğüne ya da bir hukukçuya danışın.' },
+    { kind: 'paragraf', metin: 'Aşağıda bir kedi ya da köpek sahibinin bilmesi gerekenleri madde numaralarıyla topladık: barınaktan sahiplenme şartları, sahibin yükümlülükleri ve bunlara uyulmadığında uygulanan cezalar. Bu yazı bilgilendirme amaçlı; somut bir uyuşmazlıkta il veya ilçe tarım ve orman müdürlüğünden ya da bir hukukçudan görüş almak gerekiyor.' },
 
     { kind: 'baslik', metin: '5199 sayılı kanun neyi düzenler?' },
     { kind: 'liste', maddeler: [
@@ -64,7 +64,14 @@ export const kanun5199: BlogYazi = {
 
     { kind: 'baslik', metin: 'Denetimi kim yapar, şikâyet nereye yapılır?' },
     { kind: 'paragraf', metin: 'Yönetmeliğe göre kanuna uyulup uyulmadığını denetleme yetkisi **Tarım ve Orman Bakanlığı\'nda;** Bakanlık bu yetkiyi mahallin en büyük mülki amirine devredebiliyor. Kayıtsız hayvan, terk ya da bakım ihmali gibi idari konularda il veya ilçe tarım ve orman müdürlüğüne başvurulabiliyor. Hayvana karşı suç niteliğindeki olaylarda da müdürlüğe bildirim önemli, çünkü savcılığa yazılı başvuruyu müdürlük yapıyor; suçüstü hâlinde kolluğa haber verilebiliyor.' },
-    { kind: 'uyari', metin: 'Bir hayvana şiddet uygulandığını görüyorsanız kendinizi tehlikeye atmadan, olayın yerini ve saatini not ederek kolluğa bildirin. Yaralı hayvan için en yakın veteriner kliniğine ulaşın.' },
+    { kind: 'uyari', metin: 'Bir hayvana şiddet uygulandığına tanık olunduğunda kendini tehlikeye atmadan, olayın yerini ve saatini not ederek kolluğa bildirmek gerekiyor. Yaralı hayvan, vakit kaybetmeden en yakın veteriner kliniğine ulaştırılması gereken bir durumdadır.' },
+  ],
+  kontrolListesi: [
+    'Kedi ve köpeğiniz kayıtlı mı?',
+    'Kuduz aşısı güncel mi?',
+    'Kısırlaştırma planlandı mı?',
+    'Gezdirmede tasma yanınızda mı?',
+    'Dışkı torbası çantanızda mı?',
   ],
   sss: [
     { soru: '5199 sayılı kanun nedir?', cevap: 'Türkiye\'de hayvanların korunmasını, sahiplenmeyi ve sahipsiz hayvanlarla ilgili görevleri düzenleyen Hayvanları Koruma Kanunu.' },

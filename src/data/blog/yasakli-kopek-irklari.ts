@@ -2,8 +2,8 @@ import type { BlogYazi } from './types';
 
 export const yasakliKopekIrklari: BlogYazi = {
   slug: 'yasakli-kopek-irklari',
-  baslik: 'Yasaklı Köpek Irkları 2026: Türkiye\'de Hangi Irklar Yasak, Cezası Ne?',
-  ozet: 'Türkiye\'de altı köpek ırkı ve melezleri tehlike arz eden sayılıyor; bunları üretmek, sahiplenmek ve satmak yasak. Hangi ırklar, mevcut sahipler ne yapmalı, cezası ne kadar?',
+  baslik: 'Yasaklı Köpek Irkları 2026: Hangi Irklar Yasak, Cezası Ne?',
+  ozet: 'Türkiye\'de altı köpek ırkı ve melezleri yasak; üretmek, sahiplenmek ve satmak ceza gerektiriyor. Hangi ırklar, sahipler ne yapmalı, ceza ne kadar?',
   kapakAlt:
     'Yasaklı köpek ırkları konulu yazının kapak görseli; şehir kaldırımında tasma ve ağızlıkla sahibinin yanında yürüyen iri bir köpek',
   kategori: 'Köpek',
@@ -43,8 +43,15 @@ export const yasakliKopekIrklari: BlogYazi = {
     { kind: 'paragraf', metin: 'Yaptırım para cezasıyla sınırlı değil: geçici 3. maddeye göre hayvanlara el konuluyor ve belediye tarafından bakımevine götürülüyor. Yönetmelik, yasaklara aykırılığın **tekrarında** hayvana el konulmasını ve ötanazi uygulanmasını öngörüyor; süresi içinde kısırlaştırılıp kaydedilerek sahibinin yanında kalan köpekler bu hükmün dışında.' },
 
     { kind: 'baslik', metin: 'Yasaklı köpek ırkı nereye şikâyet edilir?' },
-    { kind: 'paragraf', metin: 'Uygulama yönetmeliğine göre 5199 sayılı kanuna uyulup uyulmadığını denetleme yetkisi **Tarım ve Orman Bakanlığı\'nda;** bu nedenle başvuru yeri il veya ilçe tarım ve orman müdürlüğü. Bir köpek o anda insanlar için tehlike oluşturuyorsa 112\'yi arayın.' },
-    { kind: 'uyari', metin: 'Bir köpeğin ırkını görünüşüne bakarak kesin olarak söylemek çoğu zaman mümkün değil. Bu yazı kanun, yönetmelik ve genelgenin özetidir; somut bir durumda il veya ilçe tarım ve orman müdürlüğüne danışın.' },
+    { kind: 'paragraf', metin: 'Uygulama yönetmeliğine göre 5199 sayılı kanuna uyulup uyulmadığını denetleme yetkisi **Tarım ve Orman Bakanlığı\'nda;** bu nedenle başvuru yeri il veya ilçe tarım ve orman müdürlüğü. Bir köpek o anda insanlar için tehlike oluşturuyorsa 112\'nin aranması gerekiyor.' },
+    { kind: 'uyari', metin: 'Bir köpeğin ırkını görünüşüne bakarak kesin olarak söylemek çoğu zaman mümkün değil. Bu yazı kanun, yönetmelik ve genelgenin özetidir; somut bir durumda il veya ilçe tarım ve orman müdürlüğüne danışmak gerekiyor.' },
+  ],
+  kontrolListesi: [
+    'Köpeğin ırkı pasaportta doğru mu?',
+    'Kısırlaştırma belgesi yanınızda mı?',
+    'Ağızlık ve tasma takılı mı?',
+    'Park ve oyun alanından uzak mısınız?',
+    'Kayıt belgesi gezide yanınızda mı?',
   ],
   sss: [
     { soru: 'Türkiye\'de yasaklı köpek ırkları hangileri?', cevap: 'Amerikan Pitbull Terrier, Dogo Argentino, Fila Brasileiro, Japanese Tosa, American Staffordshire Terrier, American Bully ve melezleri.' },

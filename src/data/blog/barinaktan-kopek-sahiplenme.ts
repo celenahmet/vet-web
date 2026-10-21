@@ -3,7 +3,7 @@ import type { BlogYazi } from './types';
 export const barinaktanKopekSahiplenme: BlogYazi = {
   slug: 'barinaktan-kopek-sahiplenme',
   baslik: 'Barınaktan Köpek Sahiplenme Şartları 2026: Belgeler ve Süreç',
-  ozet: 'Barınaktan köpek sahiplenmek ücretsiz; form, hekim onayı, apartmanda yönetici izni ve kayıtla tamamlanıyor. 2024 yönetmeliğine göre şartlar, adımlar ve sahiplendikten sonra yapılacaklar.',
+  ozet: 'Barınaktan köpek sahiplenmek ücretsiz; form, hekim onayı, apartmanda yönetici izni ve kayıtla tamamlanıyor. Şartlar, adımlar ve sahiplendikten sonrası.',
   kapakAlt:
     'Barınaktan köpek sahiplenme konulu yazının kapak görseli; barınakta bölmesinin önünde diz çöküp köpeğe elini uzatan genç bir kadın',
   kategori: 'Köpek',
@@ -36,12 +36,19 @@ export const barinaktanKopekSahiplenme: BlogYazi = {
 
     { kind: 'baslik', metin: 'Sahiplendikten sonra yapılacaklar' },
     { kind: 'liste', maddeler: [
-      '**İlk veteriner kontrolü:** Barınakta temel bakımı yapılmış olsa da köpeği eve geldikten sonra kendi hekiminize gösterin. Yavru köpekler için zamanlamayı [[yavru-kopek-veterinere-ne-zaman-goturulmeli|yavru köpek veterinere ne zaman götürülmeli]] yazımızda anlattık.',
-      '**Aşı takvimi:** Barınaktan aldığınız pasaporttaki aşı kayıtlarını hekiminize gösterin ve takvimi buradan sürdürün; ayrıntılar [[kopek-asi-takvimi|köpek aşı takvimi]] yazımızda.',
-      '**Kayıt bilgileri:** Köpeğin kaydı sizin adınıza yapılıyor; adres ya da telefon değişirse güncel tutun. Kayıtla ilgili bildirim sürelerini [[petvet-kayit|PETVET kaydı]] yazımızda topladık.',
+      '**İlk veteriner kontrolü:** Barınakta temel bakımı yapılmış olsa da köpeğin eve geldikten sonra kendi veteriner hekiminize gösterilmesi gerekiyor. Yavru köpekler için zamanlamayı [[yavru-kopek-veterinere-ne-zaman-goturulmeli|yavru köpek veterinere ne zaman götürülmeli]] yazımızda anlattık.',
+      '**Aşı takvimi:** Pasaporttaki aşı kayıtları veteriner hekime gösterilerek takvim kaldığı yerden sürdürülüyor; ayrıntılar [[kopek-asi-takvimi|köpek aşı takvimi]] yazımızda.',
+      '**Kayıt bilgileri:** Köpeğin kaydı sizin adınıza yapılıyor; adres ya da telefon değişirse kaydın güncellenmesi gerekiyor. Kayıtla ilgili bildirim sürelerini [[petvet-kayit|PETVET kaydı]] yazımızda topladık.',
       '**Uyum süreci:** Barınaktan gelen köpek yeni eve alışırken yalnız kalmakta zorlanabiliyor; [[kopeklerde-ayrilik-kaygisi|köpeklerde ayrılık kaygısı]] yazımız bu dönemde işinize yarayabilir.',
     ]},
-    { kind: 'uyari', metin: 'Sahiplendiğiniz köpeğe bakamaz hale gelirseniz onu sokağa bırakmayın; bu ağır bir idari para cezası gerektiriyor ve üç yıllık sahiplenme yasağına yol açıyor. Yönetmelik bakamayan sahibe iki yol gösteriyor: hayvanı yeniden sahiplendirmek ya da bir hayvan bakımevine teslim etmek.' },
+    { kind: 'uyari', metin: 'Sahiplenilen köpeğe bakılamaz hâle gelinirse onu sokağa bırakmak çözüm değil; bu ağır bir idari para cezası gerektiriyor ve üç yıllık sahiplenme yasağına yol açıyor. Yönetmelik bakamayan sahibe iki yol gösteriyor: hayvanı yeniden sahiplendirmek ya da bir hayvan bakımevine teslim etmek.' },
+  ],
+  kontrolListesi: [
+    'Yönetici izin belgesi alındı mı?',
+    'Sahiplenme formu dolduruldu mu?',
+    'Pasaport sizin adınıza mı?',
+    'İlk veteriner kontrolü yapıldı mı?',
+    'Kısırlaştırma tarihi takvimde mi?',
   ],
   sss: [
     { soru: 'Barınaktan köpek sahiplenmek ücretli mi?', cevap: 'Hayır; yönetmeliğe göre bakımevleri sahiplendirme için bağış ya da ücret isteyemiyor.' },

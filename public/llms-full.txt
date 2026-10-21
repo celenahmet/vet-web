@@ -13,7 +13,7 @@ Kedi ya da köpekle uçmak için kabinde 8 kiloluk sınır, çanta ölçüsü, u
 
 Kedi ya da köpekle uçak yolculuğunda iki seçenek var: **kabinde** ya da **uçak altında (bagaj bölümünde).** Türk Hava Yolları ve Pegasus'ta kabinde taşınabilmek için hayvanın **çantasıyla birlikte en çok 8 kilo** olması gerekiyor. Evcil hayvan ücretsiz bagaj hakkına dahil değil, ayrıca ücretlendiriliyor ve uçuş başına kontenjan sınırlı; bu yüzden hayvanı bilet alırken ya da hemen sonrasında rezervasyona eklemek gerekiyor.
 
-Aşağıda havayollarının kendi kurallarını, yurt içi ve yurt dışı için gereken belgeleri ve yolculuk öncesi hazırlığı anlatıyoruz. Kurallar ve ücretler değişebildiği için uçmadan önce havayolunun güncel sayfasına mutlaka bakın.
+Aşağıda havayollarının kendi kurallarını, yurt içi ve yurt dışı için gereken belgeleri ve yolculuk öncesi hazırlığı anlatıyoruz. Kurallar ve ücretler değişebildiği için uçmadan önce havayolunun güncel sayfasına mutlaka bakmak gerekiyor.
 
 
 ## Evcil hayvanla uçak yolculuğu için gerekenler
@@ -39,7 +39,7 @@ THY'de çanta yolculuk boyunca kapalı kalıyor ve öndeki koltuğun altına yer
 
 Kabin sınırını aşan hayvanlar uçak altındaki bölümde taşınıyor. THY'de bu bölümde hayvan ve kafes birlikte en çok 50 kg, kafes en çok 75 x 75 x 125 cm olabiliyor; daha büyük kafesler Turkish Cargo ile gönderiliyor. Pegasus'ta uçak altı taşıma **yalnız iç hat** uçuşlarında ve yalnız kedi ve köpek için var; kafesin sağlam, kilitli ve hayvanın içinde yatıp dönebileceği büyüklükte olması isteniyor.
 
-YAYGIN YANILGI — "Yolculukta sakinleştirici vermek en iyisi": THY sakinleştirici verilmiş hayvanları uçuşa kabul etmiyor. Hayvanınız yolculukta çok stresleniyorsa ne yapılabileceğini önceden veteriner hekiminizle konuşun; kendi başınıza ilaç vermeyin.
+YAYGIN YANILGI — "Yolculukta sakinleştirici vermek en iyisi": THY sakinleştirici verilmiş hayvanları uçuşa kabul etmiyor. Hayvanınız yolculukta çok stresleniyorsa ne yapılabileceğini önceden veteriner hekimle konuşmak gerekiyor; kendi başına ilaç vermek doğru olmuyor.
 
 
 ## Kabul edilmeyen ırklar ve hatlar
@@ -58,11 +58,11 @@ Yurt dışı için sürelerin nasıl hesaplandığını, özellikle AB ülkeleri
 
 ## Yolculuktan önce hazırlık
 
-- **Çantaya alıştırma:** Taşıma çantasını yolculuktan günler önce evde açık bırakın; hayvan içine kendi isteğiyle girip çıksın.
-- **Veteriner kontrolü:** Yolculuktan önce hayvanın uçmaya uygun olup olmadığını ve aşılarının güncel olup olmadığını hekiminize kontrol ettirin.
-- **Erken varış:** Hayvanla birlikte kontuara gelinmesi ve belgelerin yanınızda olması isteniyor; işlemler için zaman bırakın.
+- **Çantaya alıştırma:** Taşıma çantası yolculuktan günler önce evde açık bırakılıyor; hayvan içine kendi isteğiyle girip çıkmayı öğreniyor.
+- **Veteriner kontrolü:** Yolculuktan önce hayvanın uçmaya uygun olup olmadığını ve aşılarının güncel olup olmadığının veteriner hekimce kontrol edilmesi gerekiyor.
+- **Erken varış:** Hayvanla birlikte kontuara gelinmesi ve belgelerin yanınızda olması isteniyor; işlemler için zaman bırakmak gerekiyor.
 
-UYARI: Bu yazıdaki ölçüler ve kurallar havayollarının kendi sayfalarından alındı. Havayolları kuralları, kontenjanları ve ücretleri sık güncelleyebiliyor; bilet almadan önce uçacağınız havayolunun güncel sayfasını ve gidilen ülkenin resmî kurallarını kontrol edin.
+UYARI: Bu yazıdaki ölçüler ve kurallar havayollarının kendi sayfalarından alındı. Havayolları kuralları, kontenjanları ve ücretleri sık güncelleyebiliyor; bilet almadan önce uçacağınız havayolunun güncel sayfasını ve gidilen ülkenin resmî kurallarını kontrol etmek gerekiyor.
 
 ## Sıkça sorulan sorular
 
@@ -82,7 +82,7 @@ Pegasus üç aydan küçük ve aşısı tamamlanmamış hayvanları kabul etmiyo
 Yurt içinde pasaport; yurt dışında ayrıca veteriner sağlık sertifikası ve ülkenin istediği diğer belgeler.
 
 **Evcil hayvana uçakta sakinleştirici verilebilir mi?**
-THY sakinleştirici verilmiş hayvanları kabul etmiyor; stres için önceden hekiminize danışın.
+THY sakinleştirici verilmiş hayvanları kabul etmiyor; stres için önceden veteriner hekime danışmak gerekiyor.
 
 ## Kaynaklar
 
@@ -98,7 +98,7 @@ THY sakinleştirici verilmiş hayvanları kabul etmiyor; stres için önceden he
 Adres: https://veterito.com/blog/kedi-tuy-dokumu
 Kategori: Kedi · Yayın: 2026-10-21
 
-Kedilerde tüy dökümü mevsim geçişlerinde artar ve çoğu zaman normaldir. Normal dökülme ile tüy kaybı nasıl ayırt edilir, tüy dökümü nasıl azaltılır, ne zaman hekime gidilir?
+Kedilerde tüy dökümü mevsim geçişlerinde artar ve çoğu zaman normaldir. Normal dökülme ile tüy kaybı nasıl ayrılır, dökülme nasıl azaltılır?
 
 **Kedilerde tüy dökümü çoğu zaman normal** ve mevsim geçişlerinde artıyor. Normal olmayan, tüyün yerine yenisi gelmeden **açıklık, kel bölge ya da deri yarası** oluşması. Tüy dökümünü azaltmanın en etkili yolu düzenli tarama; Cornell Üniversitesi Kedi Sağlığı Merkezi kedi sahiplerine tüyü **her gün** fırçalayıp taramayı alışkanlık haline getirmelerini öneriyor.
 
@@ -124,7 +124,7 @@ Sırt, karın ya da vücudun çeşitli yerleri | Polen ya da besin alerjisi
 Tek bir noktaya odaklanmış yalama | O bölgede ağrı
 Belirgin bir tıbbi neden yoksa | Stres
 
-Tablo yalnız yönlendirme amaçlı; nedeni hekim muayeneyle belirler. Yalama deriyi aşındırdığında enfeksiyon başlayabiliyor ve bu da yalamayı artırabiliyor; bu yüzden kel bölge ya da yara gördüğünüzde beklemeyin. Pirenin evde nasıl anlaşılacağını kedilerde pire nasıl anlaşılır (https://veterito.com/blog/kedilerde-pire-nasil-anlasilir) yazımızda anlattık.
+Tablo yalnız yönlendirme amaçlı; nedeni hekim muayeneyle belirler. Yalama deriyi aşındırdığında enfeksiyon başlayabiliyor ve bu da yalamayı artırabiliyor; bu yüzden kel bölge ya da yara görüldüğünde beklememek gerekiyor. Pirenin evde nasıl anlaşılacağını kedilerde pire nasıl anlaşılır (https://veterito.com/blog/kedilerde-pire-nasil-anlasilir) yazımızda anlattık.
 
 
 ## Stres tüy kaybına yol açar mı?
@@ -146,7 +146,7 @@ Neden ortadan kalksa bile yalama alışkanlığının geçmesi zaman alabiliyor;
 - **Stresi azaltmak:** Yukarıdaki önerilerle.
 - **Tüy yumağını izlemek:** Malt gibi ürünlerin ne işe yaradığını kedilerde malt ne işe yarar (https://veterito.com/blog/kedilerde-malt-ne-ise-yarar) yazımızda anlattık.
 
-UYARI: Kediniz halsizse, bir iki günden uzun süre yemek yemiyorsa ya da tekrar tekrar sonuçsuz öğürüyor veya kusuyorsa tüy yumağı bir tıkanıklığa yol açmış olabilir; vakit kaybetmeden veteriner hekime başvurun.
+UYARI: Kediniz halsizse, bir iki günden uzun süre yemek yemiyorsa ya da tekrar tekrar sonuçsuz öğürüyor veya kusuyorsa tüy yumağı bir tıkanıklığa yol açmış olabilir; vakit kaybetmeden veteriner hekime ulaşılması gereken bir tablodur.
 
 ## Sıkça sorulan sorular
 
@@ -157,7 +157,7 @@ Evet, çoğu zaman normal ve mevsim geçişlerinde artıyor.
 Her gün tarayarak, düzenli pire koruması uygulayarak ve stresi azaltarak.
 
 **Kedimin tüyü neden öbek öbek dökülüyor?**
-Kel bölge normal dökülme değil; pire, alerji, ağrı ya da stres olabilir, hekime gösterin.
+Kel bölge normal dökülme değil; pire, alerji, ağrı ya da stres olabilir; veteriner hekim muayenesi gerekiyor.
 
 **Kediler ne kadar süre kendini temizler?**
 Cornell'e göre günün yüzde 30 ile 50'si.
@@ -180,7 +180,7 @@ Evet; aşırı yalama yoluyla tüy kaybına yol açabiliyor.
 Adres: https://veterito.com/blog/kopek-gezdirme-kurallari
 Kategori: Köpek · Yayın: 2026-10-21
 
-Evet, halka açık yerde köpeği tasmayla gezdirmek ve dışkısını toplamak yönetmelikle zorunlu. Ağızlık kimlere şart, cezası ne, köpek birine zarar verirse sorumluluk kimde.
+Halka açık yerde köpeği tasmayla gezdirmek ve dışkısını toplamak zorunlu. Ağızlık kimlere şart, cezası ne, köpek birine zarar verirse sorumlu kim?
 
 **Evet, Türkiye'de halka açık yerlerde köpeği tasmasız gezdirmek kurallara aykırı.** 13 Aralık 2024'te yürürlüğe giren Hayvanların Korunması Hakkında Uygulama Yönetmeliği'nin 10. maddesi, sahibin **köpeğini halka açık yerlerde tasmayla kontrol altında dolaştırmasını, pasaportunu yanında bulundurmasını ve dışkısını temizlemesini** yükümlülük olarak sayıyor.
 
@@ -242,9 +242,9 @@ Bu ırkları ve melezlerini üretmek, sahiplenmek, satmak ve sahiplendirmek kanu
 
 ## Tasmasız köpek gezdirenler nereye şikâyet edilir?
 
-Yönetmeliğe göre 5199 sayılı kanun ve yönetmeliğe uyulup uyulmadığını denetleme yetkisi **Tarım ve Orman Bakanlığı'nda;** bu nedenle başvuru yeri il veya ilçe tarım ve orman müdürlüğü. Park, plaj gibi belediye alanlarındaki kurallar için belediyeye başvurulabiliyor. Bir köpek o anda insanlar için tehlike oluşturuyorsa 112'yi arayın.
+Yönetmeliğe göre 5199 sayılı kanun ve yönetmeliğe uyulup uyulmadığını denetleme yetkisi **Tarım ve Orman Bakanlığı'nda;** bu nedenle başvuru yeri il veya ilçe tarım ve orman müdürlüğü. Park, plaj gibi belediye alanlarındaki kurallar için belediyeye başvurulabiliyor. Bir köpek o anda insanlar için tehlike oluşturuyorsa 112'nin aranması gerekiyor.
 
-UYARI: Bir köpek ısırdıysa vakit kaybetmeden bir sağlık kuruluşuna başvurun; kuduz riskini sağlık kuruluşu değerlendirir. Köpeğin sahibine ulaşabiliyorsanız köpeğin aşı bilgisini isteyin.
+UYARI: Bir köpek ısırdıysa vakit kaybetmeden bir sağlık kuruluşuna başvurmak gerekiyor; kuduz riskini sağlık kuruluşu değerlendirir. Köpeğin sahibine ulaşılabiliyorsa aşı bilgisini öğrenmek hekimin kararını kolaylaştırır.
 
 ## Sıkça sorulan sorular
 
@@ -284,22 +284,22 @@ Borçlar Kanunu 67. madde gereği köpeğin bakımını ve yönetimini üstlenen
 Adres: https://veterito.com/blog/kopeklerde-kene
 Kategori: Köpek · Yayın: 2026-10-21
 
-Köpekte kene görünce yapılacak ilk şey onu doğru yöntemle, hemen çıkarmak. Kene nasıl çıkarılır, neler yapılmaz, hangi hastalıkları taşır ve korunma yıl boyu mu sürer?
+Köpekte kene görünce yapılacak ilk şey onu doğru yöntemle hemen çıkarmak. Kene nasıl çıkarılır, hangi hastalıkları taşır, koruma yıl boyu mu sürer?
 
-**Köpeğinizde kene gördüyseniz onu beklemeden, doğru yöntemle çıkarın.** Avrupa Evcil Hayvan Parazitleri Bilimsel Danışma Kurulu'nun (ESCCAP) kılavuzuna göre görünen keneler fark edilir edilmez çıkarılmalı, çünkü kenenin taşıdığı hastalık etkenleri beslenme sırasında tükürükle geçiyor ve kene ne kadar uzun tutunursa risk o kadar artıyor.
+**Köpekte görülen kene beklemeden ve doğru yöntemle çıkarılmalı.** Avrupa Evcil Hayvan Parazitleri Bilimsel Danışma Kurulu'nun (ESCCAP) kılavuzu da görünen kenelerin fark edilir edilmez çıkarılmasını istiyor, çünkü kenenin taşıdığı hastalık etkenleri beslenme sırasında tükürükle geçiyor ve kene ne kadar uzun tutunursa risk o kadar artıyor.
 
 Aşağıda kenenin nasıl çıkarıldığını, hangi yöntemlerin zarar verdiğini, kenelerin köpeklere hangi hastalıkları taşıdığını ve korunmanın neden çoğu bölgede yıl boyu sürmesi gerektiğini anlatıyoruz.
 
 
 ## Köpekte kene nasıl çıkarılır?
 
-- **Aleti hazırlayın:** İnce uçlu bir cımbız ya da evcil hayvanlar için yapılmış kene çıkarma aleti kullanın. Mümkünse eldiven giyin.
-- **Deriye en yakın yerden tutun:** Keneyi gövdesinden sıkmadan, ağız kısmına en yakın noktadan, derinin hemen üstünden kavrayın.
-- **Sabit kuvvetle çekin:** Keneyi çevirmeden, sarsmadan, düzgün ve sabit bir kuvvetle dışarı çekin. Sarsmak ağız parçalarının deride kalmasına yol açabiliyor.
-- **Bölgeyi temizleyin:** Isırık yerini ve ellerinizi sabun ve suyla yıkayın.
-- **Keneyi güvenle atın:** Kenenin başka bir canlıya geçmemesi için kapalı bir kaba ya da banta sarılı olarak atın; parmaklarınızla ezmeyin.
+- **Alet:** İnce uçlu bir cımbız ya da evcil hayvanlar için yapılmış bir kene çıkarma aleti kullanılıyor; mümkünse eldivenle.
+- **Tutuş:** Kene gövdesinden sıkılmadan, ağız kısmına en yakın noktadan, derinin hemen üstünden kavranıyor.
+- **Çekiş:** Kene çevrilmeden, sarsılmadan, düzgün ve sabit bir kuvvetle dışarı çekiliyor. Sarsmak ağız parçalarının deride kalmasına yol açabiliyor.
+- **Temizlik:** Isırık yeri ve eller sabun ve suyla yıkanıyor.
+- **Atma:** Kenenin başka bir canlıya geçmemesi için kapalı bir kaba konuyor ya da banta sarılarak atılıyor; parmakla ezilmiyor.
 
-Ağız parçaları deride kalırsa zorlamayın; ESCCAP, zorla çıkarılan kenenin geride kalan ağız parçalarının ısırık yerinde enfeksiyon ya da küçük bir apseye yol açabileceğini belirtiyor. Bölgede şişlik, kızarıklık ya da akıntı olursa hekime gösterin.
+Ağız parçaları deride kalırsa zorlamak doğru olmuyor; ESCCAP, zorla çıkarılan kenenin geride kalan ağız parçalarının ısırık yerinde enfeksiyon ya da küçük bir apseye yol açabileceğini belirtiyor. Bölgede şişlik, kızarıklık ya da akıntı olursa veteriner hekime göstermek gerekiyor.
 
 YAYGIN YANILGI — "Keneye yağ, kolonya ya da çakmak tutunca kendisi çıkar": ESCCAP kılavuzu keneyi çıkarırken yağ, alkol ya da eter kullanılmamasını açıkça yazıyor. ABD Hastalık Kontrol Merkezi de vazelin, oje, ısı gibi yöntemlerin keneyi tahriş edip enfekte sıvının deriye geçmesine yol açabileceğini belirtiyor. Bu yöntemlerle uğraşmak, keneyi çıkarmayı geciktirmekten başka işe yaramıyor.
 
@@ -320,7 +320,7 @@ Anaplasmosis | Anaplasma türleri | Ixodes, kahverengi köpek kenesi
 Lyme hastalığı | Borrelia türleri | Ixodes
 Hepatozoonosis | Hepatozoon canis | Kahverengi köpek kenesi (kene yutulunca bulaşır)
 
-Bu hastalıkların belirtileri belirsiz olabiliyor ve kene ısırığından günler ya da haftalar sonra ortaya çıkabiliyor. Bu yüzden kene çıkardıktan sonraki haftalarda köpeğinizde halsizlik, iştahsızlık, ateş, solgun diş eti ya da koyu renkli idrar görürseniz hekiminize kene ısırığından da söz edin. Teşhis ve tedaviye hekim karar verir.
+Bu hastalıkların belirtileri belirsiz olabiliyor ve kene ısırığından günler ya da haftalar sonra ortaya çıkabiliyor. Bu yüzden kene çıkardıktan sonraki haftalarda köpeğinizde halsizlik, iştahsızlık, ateş, solgun diş eti ya da koyu renkli idrar fark edilirse veteriner hekime kene ısırığından da söz etmek önemli. Teşhis ve tedaviye hekim karar verir.
 
 
 ## Keneden korunma yıl boyu mu sürmeli?
@@ -334,7 +334,7 @@ Sürekli kene riski var | Yıl boyu kesintisiz koruma
 
 Kene bulunduktan sonra kalan dönem için hem o köpeğin hem evdeki diğer hayvanların korunmaya alınması öneriliyor. İç ve dış parazit takvimini köpeklerde iç ve dış parazit (https://veterito.com/blog/kopeklerde-ic-ve-dis-parazit) yazımızda ayrıntılı anlattık.
 
-UYARI: Köpekler için üretilen bazı kene ilaçları (yüksek yoğunluklu sentetik piretroidler) kediler için zehirli. Evde kedi de varsa ürünü hekiminize danışarak seçin ve köpeğe ait ürünü asla kediye uygulamayın.
+UYARI: Köpekler için üretilen bazı kene ilaçları (yüksek yoğunluklu sentetik piretroidler) kediler için zehirli. Evde kedi de varsa ürünün veteriner hekime danışılarak seçilmesi gerekiyor; köpeğe ait ürün asla kediye uygulanmamalı.
 
 ## Sıkça sorulan sorular
 
@@ -345,7 +345,7 @@ UYARI: Köpekler için üretilen bazı kene ilaçları (yüksek yoğunluklu sent
 Hayır; ESCCAP yağ, alkol ve eter kullanılmamasını öneriyor.
 
 **Kenenin başı içeride kalırsa ne olur?**
-Zorlamayın; bölgede şişlik ya da akıntı olursa hekime gösterin.
+Zorlamak doğru olmuyor; bölgede şişlik ya da akıntı olursa veteriner hekime göstermek gerekiyor.
 
 **Kene köpeğe hangi hastalıkları bulaştırır?**
 Başlıcaları babesiosis, ehrlichiosis, anaplasmosis, Lyme hastalığı ve hepatozoonosis.
@@ -368,7 +368,7 @@ Sıcak bölgelerde ve kenenin evde yaşayabildiği durumlarda ESCCAP yıl boyu k
 Adres: https://veterito.com/blog/yavru-kedi-bakimi
 Kategori: Kedi · Yayın: 2026-10-21
 
-Yavru kedinin ilk iki ayı beslenme, sosyalleşme ve ilk veteriner ziyareti açısından en kritik dönem. Haftalara göre neler değişir, mamaya ne zaman geçilir, nasıl alıştırılır?
+Yavru kedinin ilk iki ayı beslenme, sosyalleşme ve ilk veteriner ziyareti için kritik. Haftalara göre neler değişir, mamaya ne zaman geçilir?
 
 Yavru kedinin ilk iki ayında üç şey belirleyici: **düzenli beslenme, insanlarla olumlu tanışma ve erken veteriner kontrolü.** 2021 tarihli AAHA ve AAFP kedi yaşam evreleri kılavuzuna göre yavrular **3-5 haftalıkken** yavru mamasına geçmeye başlayabiliyor; insanlara ve yeni deneyimlere alıştıkları hassas sosyalleşme dönemi **2-3 haftada** başlıyor ve **9-10 haftada** kapanmaya yaklaşıyor.
 
@@ -392,7 +392,7 @@ AAHA ve AAFP kılavuzuna göre yavrular **3-5 haftalıkken** besin açısından 
 
 Cornell Üniversitesi Kedi Sağlığı Merkezi, yavruların kilogram başına daha çok besine ihtiyaç duyduğu için gün içinde daha sık beslenmesini, **altı aylık olana kadar genellikle günde üç öğünün** en iyi sonucu verdiğini belirtiyor.
 
-UYARI: Altı haftadan küçük bir yavruda yalnız 12 saatlik açlık bile hayati tehlike oluşturabiliyor. Yavru emmiyor ya da mamayı reddediyorsa beklemeden veteriner hekime başvurun.
+UYARI: Altı haftadan küçük bir yavruda yalnız 12 saatlik açlık bile hayati tehlike oluşturabiliyor. Yavru emmiyor ya da mamayı reddediyorsa vakit kaybetmeden veteriner hekime ulaşılması gereken bir tablodur.
 
 
 ## Annesiz yavru kediye nasıl bakılır?
@@ -409,8 +409,8 @@ Sosyalleşme döneminde edinilen deneyimler kedinin ömür boyu insanlara ve yen
 - **Günde 30-60 dakika** insanlarla olumlu etkileşim.
 - **Nazik ve saygılı tutma:** Yavru ömür boyu rahat tutulmaya böyle hazırlanıyor.
 - **İlk karşılaşmalar stresli olmasın:** Yeni insan, ses ve ortamlarla tanışma kısa ve olumlu olmalı.
-- **El ve ayakla oynamayın:** Kılavuz, oyunda ellerin ve ayakların oyuncak gibi kullanılmamasını öğütlüyor; büyüyen kedide tırmalama ve ısırma alışkanlığı buradan başlayabiliyor.
-- **Av içgüdüsüne uygun oyuncak:** Yavrular kovalayarak, atılarak ve yakalayarak öğreniyor; bu dürtüye uygun oyuncaklar sunun.
+- **El ve ayak oyuncak değil:** Kılavuz, oyunda ellerin ve ayakların oyuncak gibi kullanılmamasını öğütlüyor; büyüyen kedide tırmalama ve ısırma alışkanlığı buradan başlayabiliyor.
+- **Av içgüdüsüne uygun oyuncak:** Yavrular kovalayarak, atılarak ve yakalayarak öğreniyor; bu dürtüye uygun oyuncaklar işe yarıyor.
 
 
 ## Yavru kediye tuvalet nasıl öğretilir?
@@ -439,10 +439,10 @@ Cornell'e göre altı aylık olana kadar genellikle günde üç öğün en iyi s
 Kılavuz günde 30-60 dakika insanlarla olumlu etkileşim öneriyor.
 
 **Annesiz yavru kedi bulursam ne yapmalıyım?**
-Sıcak tutup aynı gün veteriner hekime götürün; beslenme planını hekim yaşına göre çıkarır.
+Yavrunun sıcak tutulup aynı gün veteriner hekime götürülmesi gerekiyor; beslenme planını hekim yaşına göre çıkarır.
 
 **Yavru kediyle elle oynamak zararlı mı?**
-Kılavuz ellerin ve ayakların oyuncak gibi kullanılmamasını öneriyor; bunun yerine oyuncak kullanın.
+Kılavuz ellerin ve ayakların oyuncak gibi kullanılmamasını öneriyor; bunun yerine oyuncak kullanmak doğru.
 
 ## Kaynaklar
 
@@ -457,11 +457,11 @@ Kılavuz ellerin ve ayakların oyuncak gibi kullanılmamasını öneriyor; bunun
 Adres: https://veterito.com/blog/5199-sayili-kanun
 Kategori: Pet Sahipleri · Yayın: 2026-10-20
 
-5199 sayılı kanun ve 2024 tarihli uygulama yönetmeliği hayvan sahiplerine ne yüklüyor? Barınaktan sahiplenme şartları, sahibin yükümlülükleri ve 2026 idari para cezaları tek tabloda.
+5199 sayılı kanun hayvan sahiplerine ne yüklüyor? Barınaktan sahiplenme şartları, sahibin yükümlülükleri ve 2026 idari para cezaları tek tabloda.
 
 Türkiye'de hayvan sahiplenmenin, bakımın ve sahipsiz hayvanlarla ilgili işlerin temel kanunu **5199 sayılı Hayvanları Koruma Kanunu.** Son kapsamlı değişikliği **7527 sayılı Kanun** yaptı; değişiklik **2 Ağustos 2024**'te yürürlüğe girdi. Ayrıntıları ise **13 Aralık 2024**'te Resmî Gazete'de yayımlanan **Hayvanların Korunması Hakkında Uygulama Yönetmeliği** düzenliyor.
 
-Aşağıda bir kedi ya da köpek sahibinin bilmesi gerekenleri madde numaralarıyla topladık: barınaktan sahiplenme şartları, sahibin yükümlülükleri ve bunlara uyulmadığında uygulanan cezalar. Bu yazı bilgilendirme amaçlı; somut bir uyuşmazlıkta il veya ilçe tarım ve orman müdürlüğüne ya da bir hukukçuya danışın.
+Aşağıda bir kedi ya da köpek sahibinin bilmesi gerekenleri madde numaralarıyla topladık: barınaktan sahiplenme şartları, sahibin yükümlülükleri ve bunlara uyulmadığında uygulanan cezalar. Bu yazı bilgilendirme amaçlı; somut bir uyuşmazlıkta il veya ilçe tarım ve orman müdürlüğünden ya da bir hukukçudan görüş almak gerekiyor.
 
 
 ## 5199 sayılı kanun neyi düzenler?
@@ -528,7 +528,7 @@ Bu suçlarda soruşturma kural olarak **Tarım ve Orman Bakanlığı il veya il�
 
 Yönetmeliğe göre kanuna uyulup uyulmadığını denetleme yetkisi **Tarım ve Orman Bakanlığı'nda;** Bakanlık bu yetkiyi mahallin en büyük mülki amirine devredebiliyor. Kayıtsız hayvan, terk ya da bakım ihmali gibi idari konularda il veya ilçe tarım ve orman müdürlüğüne başvurulabiliyor. Hayvana karşı suç niteliğindeki olaylarda da müdürlüğe bildirim önemli, çünkü savcılığa yazılı başvuruyu müdürlük yapıyor; suçüstü hâlinde kolluğa haber verilebiliyor.
 
-UYARI: Bir hayvana şiddet uygulandığını görüyorsanız kendinizi tehlikeye atmadan, olayın yerini ve saatini not ederek kolluğa bildirin. Yaralı hayvan için en yakın veteriner kliniğine ulaşın.
+UYARI: Bir hayvana şiddet uygulandığına tanık olunduğunda kendini tehlikeye atmadan, olayın yerini ve saatini not ederek kolluğa bildirmek gerekiyor. Yaralı hayvan, vakit kaybetmeden en yakın veteriner kliniğine ulaştırılması gereken bir durumdadır.
 
 ## Sıkça sorulan sorular
 
@@ -568,7 +568,7 @@ Kanunun 28/A maddesine göre ev hayvanını ya da evcil hayvanı kasten öldürm
 Adres: https://veterito.com/blog/evcil-hayvan-pasaportu
 Kategori: Pet Sahipleri · Yayın: 2026-10-20
 
-Pasaport PETVET kaydıyla birlikte düzenleniyor ama yurt dışı için tek başına yetmiyor. Kuduz aşısı, antikor testi, sağlık sertifikası ve AB için 90 günlük bekleme adım adım.
+Pasaport PETVET kaydıyla düzenleniyor ama yurt dışı için yetmiyor. Kuduz aşısı, antikor testi, sağlık sertifikası ve AB için 90 günlük bekleme adım adım.
 
 Türkiye'de kedi ve köpeğin pasaportu, hayvan **mikroçiple PETVET'e kaydedilirken** veteriner hekim ya da il veya ilçe tarım ve orman müdürlüğü tarafından düzenleniyor. Ancak yurt dışına çıkışta pasaport **tek başına yetmiyor:** hayvanın kuduz aşısının geçerli olması, gidilen ülke istiyorsa kuduz antikor testinin yapılmış olması ve çıkıştan önce **resmî veteriner hekimin düzenlediği veteriner sağlık sertifikasının** alınması gerekiyor.
 
@@ -591,7 +591,7 @@ Yurt içinde başka bir şehre götürürken de pasaportun yanınızda olması g
 - **Kuduz antikor (titre) testi:** Gidilen ülke istiyorsa zorunlu. AB ülkeleri istiyor.
 - **Veteriner sağlık sertifikası:** İkamet ettiğiniz il veya ilçe tarım ve orman müdürlüğü, **çıkışa en erken 48 saat kala** düzenliyor. Bu sertifika olmadan hiçbir kedi ve köpek yurt dışına çıkarılamıyor.
 
-Aşı zamanlamasını kedi aşı takvimi (https://veterito.com/blog/kedi-asi-takvimi) ve köpek aşı takvimi (https://veterito.com/blog/kopek-asi-takvimi) yazılarımızda anlattık. Yurt dışı planınız varsa bunu ilk kuduz aşısında hekiminize söyleyin; mikroçipin aşıdan önce ya da aynı gün takılmış olması şart.
+Aşı zamanlamasını kedi aşı takvimi (https://veterito.com/blog/kedi-asi-takvimi) ve köpek aşı takvimi (https://veterito.com/blog/kopek-asi-takvimi) yazılarımızda anlattık. Yurt dışı planı varsa bunu ilk kuduz aşısında veteriner hekime söylemek gerekiyor; mikroçipin aşıdan önce ya da aynı gün takılmış olması şart.
 
 
 ## Kuduz antikor testi nedir, nasıl yapılır?
@@ -636,7 +636,7 @@ Gen kaynakları koruma altındaki şu ırkların yurt dışına çıkışı **ö
 
 Bakanlıkça tehlike arz eden sayılan ırklardan sahipli ve kayıtlı köpekler, alıcı ülke kabul ederse sahipleriyle yurt dışına çıkabiliyor ama **Türkiye'ye yeniden giremiyor.**
 
-UYARI: Ülkelerin giriş kuralları ve havayollarının hayvan taşıma şartları değişebiliyor. Bilet almadan önce gideceğiniz ülkenin resmî makamının ve havayolunun güncel kurallarına bakın, sertifika için de il veya ilçe müdürlüğüyle erkenden görüşün.
+UYARI: Ülkelerin giriş kuralları ve havayollarının hayvan taşıma şartları değişebiliyor. Bilet almadan önce gidilecek ülkenin resmî makamının ve havayolunun güncel kurallarına bakmak, sertifika için de il veya ilçe müdürlüğüyle erkenden görüşmek gerekiyor.
 
 ## Sıkça sorulan sorular
 
@@ -714,7 +714,7 @@ Aynı yönetmeliğin 8. maddesi, **altı aydan büyük kedilerin** kayıt altın
 - **Özel veteriner klinikleri:** Serbest veteriner hekimler kuduz aşısı uyguluyor. Sahipli kediler için en yaygın yol bu.
 - **Resmi ve belediye veteriner hekimleri:** Yönetmelik aşıyı uygulayabilecek hekimler arasında onları da sayıyor. Belediyeler sahipsiz kedi ve köpekleri de yılda bir aşılıyor.
 
-Aşıyı yapan hekim, uygulamanın bilgilerini ve **bir sonraki aşı tarihini** kedinin kimlik belgesine işlemek ve Bakanlık veri tabanındaki kaydı güncellemekle yükümlü. Aşı sonrasında belgenin güncellendiğini kontrol edin; seyahatte ve pansiyonda bu belge isteniyor.
+Aşıyı yapan hekim, uygulamanın bilgilerini ve **bir sonraki aşı tarihini** kedinin kimlik belgesine işlemek ve Bakanlık veri tabanındaki kaydı güncellemekle yükümlü. Aşı sonrasında belgenin güncellenip güncellenmediğine bakmak gerekiyor; seyahatte ve pansiyonda bu belge isteniyor.
 
 
 ## Kuduz aşısı fiyatı ne kadar?
@@ -728,7 +728,7 @@ Fiyat klinikten kliniğe ve şehirden şehre değişiyor. Muayene, aşının ken
 - **Hemen kliniğe dönülmesi gerekenler:** Yüzde şişlik, kusma, yaygın kaşıntı, nefes almada güçlük, bayılma.
 - **Hekime gösterilmesi gerekenler:** Aşı yerinde **üç aydan uzun süren, 2 santimetreden büyük ya da aşıdan bir ay sonra hâlâ büyüyen** şişlik. Kedi aşı rehberi bu durumda şişliğin incelenmesini öneriyor.
 
-UYARI: Kediniz birini ısırdıysa ya da kuduz şüphesi varsa vakit kaybetmeden hem bir sağlık kuruluşuna hem veteriner hekime başvurun. Isırılan kişinin tedavisine sağlık kuruluşu karar verir.
+UYARI: Kediniz birini ısırdıysa ya da kuduz şüphesi varsa vakit kaybetmeden hem bir sağlık kuruluşuna hem veteriner hekime başvurmak gerekiyor. Isırılan kişinin tedavisine sağlık kuruluşu karar verir.
 
 ## Sıkça sorulan sorular
 
@@ -748,7 +748,7 @@ Evet; yönetmelikte ev kedisi için istisna yok ve seyahat ile pansiyon için de
 Özel veteriner kliniklerinde; resmi ve belediye veteriner hekimleri de uygulayabiliyor ve bilgiyi kimlik belgesine işliyor.
 
 **Kuduz aşısını geciktirdim, ne yapmalıyım?**
-Kliniğinizi arayıp son aşı tarihini söyleyin; gecikmenin süresine göre hekim nasıl devam edileceğine karar verir.
+Kliniğe son aşı tarihini bildirmek yeterli; gecikmenin süresine göre hekim nasıl devam edileceğine karar verir.
 
 **Kuduz ve karma aşı aynı gün yapılır mı?**
 Hekim uygun görürse aynı ziyarette yapılabiliyor; kedinin yaşı ve sağlık durumuna göre karar veriliyor.
@@ -765,7 +765,7 @@ Hekim uygun görürse aynı ziyarette yapılabiliyor; kedinin yaşı ve sağlık
 Adres: https://veterito.com/blog/petvet-kayit
 Kategori: Pet Sahipleri · Yayın: 2026-10-20
 
-Sahipli kedi ve köpeklerin mikroçiple PETVET'e kaydı zorunlu ve son tarih 31 Aralık 2025'te doldu. Kayıt nerede yapılır, yavruda ne zaman, ceza ne kadar, sonra neler bildirilir.
+Sahipli kedi ve köpeğin PETVET kaydı zorunlu; son tarih 31 Aralık 2025'ti. Kayıt nerede yapılır, yavruda ne zaman, cezası ne kadar, sonra neler bildirilir?
 
 **Sahipli kedi ve köpeklerin mikroçiple kimliklendirilip PETVET'e kaydettirilmesi yasal bir zorunluluk.** 5199 sayılı Hayvanları Koruma Kanunu, sahiplere bunun için **31 Aralık 2025**'e kadar süre vermişti; bu süre doldu. Bugün kaydı olmayan bir kedi ya da köpek için sahibine idari para cezası uygulanabiliyor.
 
@@ -859,7 +859,7 @@ Doğumdan itibaren en geç altı ay içinde; köpek yavrularında kuduz yönetme
 Kanundaki tutar hayvan başına 1.200 TL; yıllık yeniden değerlemeyle 2026 tutarı hayvan başına 10.423 TL'ye ulaşıyor.
 
 **Hayvanım kaybolursa ne yapmalıyım?**
-7 gün içinde il veya ilçe müdürlüğüne bildirin; hayvan PETVET'te kayıp olarak işaretlenir.
+7 gün içinde il veya ilçe müdürlüğüne bildirilmesi gerekiyor; hayvan PETVET'te kayıp olarak işaretlenir.
 
 **Sahiplendiğim hayvanın kaydını nasıl üzerime alırım?**
 Sahip değişikliği belgesiyle 60 gün içinde il veya ilçe müdürlüğüne başvurursunuz.
@@ -878,7 +878,7 @@ Sahip değişikliği belgesiyle 60 gün içinde il veya ilçe müdürlüğüne b
 Adres: https://veterito.com/blog/veteriner-klinigi-acmak
 Kategori: Klinik Yönetimi · Yayın: 2026-10-20
 
-Muayenehane ya da poliklinik açmak için il müdürlüğüne hangi belgelerle başvurulur, oda ölçüleri ne olmalı, poliklinikte kaç hekim gerekir? Yönetmelik maddeleriyle adım adım.
+Muayenehane ya da poliklinik açmak için hangi belgeler gerekir, odalar kaç metrekare olmalı, poliklinikte kaç hekim çalışır? Yönetmelik maddeleriyle.
 
 Türkiye'de veteriner kliniği açmak için **il tarım ve orman müdürlüğünden ruhsat** almak gerekiyor. Şartları **Veteriner Hekim Muayenehane ve Poliklinik Yönetmeliği** belirliyor: tek hekimin çalıştığı yer **muayenehane**, en az dört hekimin birlikte çalıştığı yer **poliklinik.** Başvuru dilekçe ve belgelerle yapılıyor, il müdürlüğü yeri yerinde inceliyor ve uygun bulursa ruhsatı ve çalışma izinlerini veriyor.
 
@@ -951,7 +951,7 @@ Ruhsatın kaybı | Kayıp ilanıyla ya da yıpranmış ruhsatın aslıyla yenide
 
 Ruhsat kliniği açar ama kliniği yaşatan, hastanın geri gelmesi. Randevu, aşı hatırlatma ve hasta kayıtlarını ilk günden düzenli tutmak, sonradan kâğıt yığınını sisteme taşımaktan kolay. Bu konuları klinikte randevu yönetimi (https://veterito.com/blog/klinikte-randevu-yonetimi) ve kliniklerde aşı hatırlatma (https://veterito.com/blog/kliniklerde-asi-hatirlatma) yazılarımızda anlattık. Fiyatlandırmada meslek odasının belirlediği tabanı asgari ücret tarifesi (https://veterito.com/blog/asgari-ucret-tarifesi-nedir) yazısında bulabilirsiniz.
 
-UYARI: Bu yazı yönetmeliğin özetidir. Vergi kaydı, belediye işlemleri ve kira sözleşmesi gibi konular için bir mali müşavirle, güncel ekipman listesi ve inceleme takvimi için il tarım ve orman müdürlüğüyle görüşün.
+UYARI: Bu yazı yönetmeliğin özetidir. Vergi kaydı, belediye işlemleri ve kira sözleşmesi gibi konular için bir mali müşavirle, güncel ekipman listesi ve inceleme takvimi için il tarım ve orman müdürlüğüyle görüşmek gerekiyor.
 
 ## Sıkça sorulan sorular
 

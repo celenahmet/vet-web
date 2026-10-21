@@ -3,7 +3,7 @@ import type { BlogYazi } from './types';
 export const yavruKediBakimi: BlogYazi = {
   slug: 'yavru-kedi-bakimi',
   baslik: 'Yavru Kedi Bakımı: İlk Haftalardan İki Aylığa Kadar Rehber',
-  ozet: 'Yavru kedinin ilk iki ayı beslenme, sosyalleşme ve ilk veteriner ziyareti açısından en kritik dönem. Haftalara göre neler değişir, mamaya ne zaman geçilir, nasıl alıştırılır?',
+  ozet: 'Yavru kedinin ilk iki ayı beslenme, sosyalleşme ve ilk veteriner ziyareti için kritik. Haftalara göre neler değişir, mamaya ne zaman geçilir?',
   kapakAlt:
     'Yavru kedi bakımı konulu yazının kapak görseli; avuçlar arasında battaniyeye sarılı küçük bir yavru kedi',
   kategori: 'Kedi',
@@ -25,7 +25,7 @@ export const yavruKediBakimi: BlogYazi = {
     { kind: 'baslik', metin: 'Yavru kedi nasıl beslenir?' },
     { kind: 'paragraf', metin: 'AAHA ve AAFP kılavuzuna göre yavrular **3-5 haftalıkken** besin açısından dengeli ticari yavru mamasına geçmeye başlayabiliyor. Yavruların kilogram başına enerji ihtiyacı yetişkinden çok daha yüksek: kılavuz 10 haftalık bir yavrunun kilogram başına günde yaklaşık 200 kilokalori harcadığını belirtiyor. Bunun kaç grama denk geldiğini [[yavru-kedi-ne-kadar-mama-yemeli|yavru kedi ne kadar mama yemeli]] yazımızda hesapladık.' },
     { kind: 'paragraf', metin: 'Cornell Üniversitesi Kedi Sağlığı Merkezi, yavruların kilogram başına daha çok besine ihtiyaç duyduğu için gün içinde daha sık beslenmesini, **altı aylık olana kadar genellikle günde üç öğünün** en iyi sonucu verdiğini belirtiyor.' },
-    { kind: 'uyari', metin: 'Altı haftadan küçük bir yavruda yalnız 12 saatlik açlık bile hayati tehlike oluşturabiliyor. Yavru emmiyor ya da mamayı reddediyorsa beklemeden veteriner hekime başvurun.' },
+    { kind: 'uyari', metin: 'Altı haftadan küçük bir yavruda yalnız 12 saatlik açlık bile hayati tehlike oluşturabiliyor. Yavru emmiyor ya da mamayı reddediyorsa vakit kaybetmeden veteriner hekime ulaşılması gereken bir tablodur.' },
 
     { kind: 'baslik', metin: 'Annesiz yavru kediye nasıl bakılır?' },
     { kind: 'paragraf', metin: 'İlk haftalarda yavrunun ısınma, beslenme ve temizlik ihtiyacını annesi karşılıyor. Annesiz bulunan bir yavruda bu ihtiyaçların hepsi yaşa göre değişiyor ve yanlış süt, yanlış sıcaklık ya da düzensiz beslenme kısa sürede tehlikeli olabiliyor. Bu yüzden annesiz bir yavru bulduğunuzda ilk iş onu sıcak tutup **aynı gün** bir veteriner hekime götürmek; hekim yavrunun yaşını tahmin edip beslenme planını çıkarır.' },
@@ -37,8 +37,8 @@ export const yavruKediBakimi: BlogYazi = {
       '**Günde 30-60 dakika** insanlarla olumlu etkileşim.',
       '**Nazik ve saygılı tutma:** Yavru ömür boyu rahat tutulmaya böyle hazırlanıyor.',
       '**İlk karşılaşmalar stresli olmasın:** Yeni insan, ses ve ortamlarla tanışma kısa ve olumlu olmalı.',
-      '**El ve ayakla oynamayın:** Kılavuz, oyunda ellerin ve ayakların oyuncak gibi kullanılmamasını öğütlüyor; büyüyen kedide tırmalama ve ısırma alışkanlığı buradan başlayabiliyor.',
-      '**Av içgüdüsüne uygun oyuncak:** Yavrular kovalayarak, atılarak ve yakalayarak öğreniyor; bu dürtüye uygun oyuncaklar sunun.',
+      '**El ve ayak oyuncak değil:** Kılavuz, oyunda ellerin ve ayakların oyuncak gibi kullanılmamasını öğütlüyor; büyüyen kedide tırmalama ve ısırma alışkanlığı buradan başlayabiliyor.',
+      '**Av içgüdüsüne uygun oyuncak:** Yavrular kovalayarak, atılarak ve yakalayarak öğreniyor; bu dürtüye uygun oyuncaklar işe yarıyor.',
     ]},
 
     { kind: 'baslik', metin: 'Yavru kediye tuvalet nasıl öğretilir?' },
@@ -48,13 +48,20 @@ export const yavruKediBakimi: BlogYazi = {
     { kind: 'paragraf', metin: 'Yavru kedinin ilk veteriner ziyareti, kaç haftalık olursa olsun **eve gelir gelmez** yapılmalı; temel aşılar ise 6-8 haftalıkken başlıyor. Ziyaret zamanlamasını [[yavru-kedi-veterinere-ne-zaman-goturulmeli|yavru kedi veterinere ne zaman götürülmeli]], aşı programını [[kedi-asi-takvimi|kedi aşı takvimi]] yazılarımızda ayrıntılı anlattık.' },
     { kind: 'paragraf', metin: 'Her veteriner ziyareti aynı zamanda bir sosyalleşme fırsatı. Taşıma çantasını evde açık bırakmak ve yavrunun kendi isteğiyle girip çıkmasına izin vermek, ileride kliniğe gitmeyi çok daha kolay hale getiriyor.' },
   ],
+  kontrolListesi: [
+    'Yavru günde üç öğün yiyor mu?',
+    'İlk veteriner ziyareti yapıldı mı?',
+    'Aşı takvimi başladı mı?',
+    'Günde 30 dakika ilgi görüyor mu?',
+    'Taşıma çantası evde açık mı?',
+  ],
   sss: [
     { soru: 'Yavru kedi ne zaman mamaya geçer?', cevap: 'AAHA ve AAFP kılavuzuna göre 3-5 haftalıkken dengeli ticari yavru mamasına geçiş başlayabiliyor.' },
     { soru: 'Yavru kedi günde kaç öğün yemeli?', cevap: 'Cornell\'e göre altı aylık olana kadar genellikle günde üç öğün en iyi sonucu veriyor.' },
     { soru: 'Yavru kedinin sosyalleşme dönemi ne zaman?', cevap: '2-3 haftada başlıyor ve 9-10 haftada kapanmaya yaklaşıyor.' },
     { soru: 'Yavru kediyle günde ne kadar ilgilenmeliyim?', cevap: 'Kılavuz günde 30-60 dakika insanlarla olumlu etkileşim öneriyor.' },
-    { soru: 'Annesiz yavru kedi bulursam ne yapmalıyım?', cevap: 'Sıcak tutup aynı gün veteriner hekime götürün; beslenme planını hekim yaşına göre çıkarır.' },
-    { soru: 'Yavru kediyle elle oynamak zararlı mı?', cevap: 'Kılavuz ellerin ve ayakların oyuncak gibi kullanılmamasını öneriyor; bunun yerine oyuncak kullanın.' },
+    { soru: 'Annesiz yavru kedi bulursam ne yapmalıyım?', cevap: 'Yavrunun sıcak tutulup aynı gün veteriner hekime götürülmesi gerekiyor; beslenme planını hekim yaşına göre çıkarır.' },
+    { soru: 'Yavru kediyle elle oynamak zararlı mı?', cevap: 'Kılavuz ellerin ve ayakların oyuncak gibi kullanılmamasını öneriyor; bunun yerine oyuncak kullanmak doğru.' },
   ],
   kaynaklar: [
     {

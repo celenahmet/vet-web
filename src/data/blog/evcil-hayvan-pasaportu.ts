@@ -3,7 +3,7 @@ import type { BlogYazi } from './types';
 export const evcilHayvanPasaportu: BlogYazi = {
   slug: 'evcil-hayvan-pasaportu',
   baslik: 'Evcil Hayvan Pasaportu Nasıl Alınır? Yurt Dışına Kedi Köpek Götürmek',
-  ozet: 'Pasaport PETVET kaydıyla birlikte düzenleniyor ama yurt dışı için tek başına yetmiyor. Kuduz aşısı, antikor testi, sağlık sertifikası ve AB için 90 günlük bekleme adım adım.',
+  ozet: 'Pasaport PETVET kaydıyla düzenleniyor ama yurt dışı için yetmiyor. Kuduz aşısı, antikor testi, sağlık sertifikası ve AB için 90 günlük bekleme adım adım.',
   kapakAlt:
     'Evcil hayvan pasaportu konulu yazının kapak görseli; havalimanında valizin yanında taşıma çantasında bekleyen bir kedi',
   kategori: 'Pet Sahipleri',
@@ -27,7 +27,7 @@ export const evcilHayvanPasaportu: BlogYazi = {
       '**Kuduz antikor (titre) testi:** Gidilen ülke istiyorsa zorunlu. AB ülkeleri istiyor.',
       '**Veteriner sağlık sertifikası:** İkamet ettiğiniz il veya ilçe tarım ve orman müdürlüğü, **çıkışa en erken 48 saat kala** düzenliyor. Bu sertifika olmadan hiçbir kedi ve köpek yurt dışına çıkarılamıyor.',
     ]},
-    { kind: 'paragraf', metin: 'Aşı zamanlamasını [[kedi-asi-takvimi|kedi aşı takvimi]] ve [[kopek-asi-takvimi|köpek aşı takvimi]] yazılarımızda anlattık. Yurt dışı planınız varsa bunu ilk kuduz aşısında hekiminize söyleyin; mikroçipin aşıdan önce ya da aynı gün takılmış olması şart.' },
+    { kind: 'paragraf', metin: 'Aşı zamanlamasını [[kedi-asi-takvimi|kedi aşı takvimi]] ve [[kopek-asi-takvimi|köpek aşı takvimi]] yazılarımızda anlattık. Yurt dışı planı varsa bunu ilk kuduz aşısında veteriner hekime söylemek gerekiyor; mikroçipin aşıdan önce ya da aynı gün takılmış olması şart.' },
 
     { kind: 'baslik', metin: 'Kuduz antikor testi nedir, nasıl yapılır?' },
     { kind: 'paragraf', metin: 'Kuduz antikor titrasyon testi (FAVN), aşının hayvanda yeterli bağışıklık oluşturduğunu kandan ölçüyor. Bakanlık talimatına göre süreç şöyle işliyor:' },
@@ -61,7 +61,14 @@ export const evcilHayvanPasaportu: BlogYazi = {
     { kind: 'baslik', metin: 'Yurt dışına çıkışı izne bağlı ırklar' },
     { kind: 'paragraf', metin: 'Gen kaynakları koruma altındaki şu ırkların yurt dışına çıkışı **ön izne** bağlı: Kangal, Akbaş ve Kars çoban köpekleri, Çatal Burun av köpeği, Zağar İnci köpeği, Ankara kedisi ve Van kedisi. Pasaportunda ırk ya da renk yalnız "melez" veya "karışık" diye yazılmış hayvanlarda çıkış işlemi yapılmıyor; önce pasaporta en yakın ırk ve renk yazdırılması gerekiyor.' },
     { kind: 'paragraf', metin: 'Bakanlıkça tehlike arz eden sayılan ırklardan sahipli ve kayıtlı köpekler, alıcı ülke kabul ederse sahipleriyle yurt dışına çıkabiliyor ama **Türkiye\'ye yeniden giremiyor.**' },
-    { kind: 'uyari', metin: 'Ülkelerin giriş kuralları ve havayollarının hayvan taşıma şartları değişebiliyor. Bilet almadan önce gideceğiniz ülkenin resmî makamının ve havayolunun güncel kurallarına bakın, sertifika için de il veya ilçe müdürlüğüyle erkenden görüşün.' },
+    { kind: 'uyari', metin: 'Ülkelerin giriş kuralları ve havayollarının hayvan taşıma şartları değişebiliyor. Bilet almadan önce gidilecek ülkenin resmî makamının ve havayolunun güncel kurallarına bakmak, sertifika için de il veya ilçe müdürlüğüyle erkenden görüşmek gerekiyor.' },
+  ],
+  kontrolListesi: [
+    'Mikroçip aşıdan önce mi takıldı?',
+    'Kuduz aşısı pasaporta işli mi?',
+    'Gidilecek ülke test istiyor mu?',
+    'Kan örneği 90 günü karşılıyor mu?',
+    'Sertifika randevusu planlandı mı?',
   ],
   sss: [
     { soru: 'Evcil hayvan pasaportu nereden alınır?', cevap: 'Mikroçip ve PETVET kaydıyla birlikte veteriner hekimde ya da il veya ilçe tarım ve orman müdürlüğünde düzenleniyor.' },

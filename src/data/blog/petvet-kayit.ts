@@ -3,7 +3,7 @@ import type { BlogYazi } from './types';
 export const petvetKayit: BlogYazi = {
   slug: 'petvet-kayit',
   baslik: 'PETVET Kaydı Nasıl Yapılır? Sahipli Hayvan Kayıt Zorunluluğu',
-  ozet: 'Sahipli kedi ve köpeklerin mikroçiple PETVET\'e kaydı zorunlu ve son tarih 31 Aralık 2025\'te doldu. Kayıt nerede yapılır, yavruda ne zaman, ceza ne kadar, sonra neler bildirilir.',
+  ozet: 'Sahipli kedi ve köpeğin PETVET kaydı zorunlu; son tarih 31 Aralık 2025\'ti. Kayıt nerede yapılır, yavruda ne zaman, cezası ne kadar, sonra neler bildirilir?',
   kapakAlt:
     'PETVET kaydı konulu yazının kapak görseli; klinikte mikroçip okuyucuyla okutulan bir köpek',
   kategori: 'Pet Sahipleri',
@@ -61,13 +61,20 @@ export const petvetKayit: BlogYazi = {
     { kind: 'paragraf', metin: 'En kısa yol hayvanın **pasaportu:** mikroçip numarası ve kayıt bilgileri orada yazıyor. Pasaport elinizde değilse herhangi bir veteriner kliniğinde hayvanı okuyucuyla okutup numarayı öğrenebilir, kaydın durumunu il veya ilçe müdürlüğüne sorabilirsiniz. Adres ya da telefon değiştiğinde bilgileri güncel tutmak kaydın asıl işlevi: kaybolan hayvanın sahibine bu bilgilerle ulaşılıyor.' },
     { kind: 'uyari', metin: 'Yurt içinde başka bir şehre taşırken hayvanın pasaportunun yanınızda olması gerekiyor. Yurt dışına çıkışta mikroçip, pasaport ve PETVET kaydı birlikte isteniyor; ülkeye göre ek aşı ve test şartları da var.' },
   ],
+  kontrolListesi: [
+    'Mikroçip numarası pasaportta mı?',
+    'Kayıttaki telefon güncel mi?',
+    'Adres değişikliği bildirildi mi?',
+    'Yavru 6 aylık olmadan çiplendi mi?',
+    'Pasaport kolay bulunur yerde mi?',
+  ],
   sss: [
     { soru: 'PETVET nedir?', cevap: 'Tarım ve Orman Bakanlığı\'nın Ev Hayvanı Kayıt Sistemi; mikroçip numarasıyla hayvanın ve sahibinin bilgilerini tutuyor.' },
     { soru: 'PETVET kaydı zorunlu mu?', cevap: 'Evet; 5199 sayılı kanun sahipli kedi ve köpeklerin kaydını zorunlu tutuyor ve son tarih 31 Aralık 2025\'ti.' },
     { soru: 'PETVET kaydı nerede yapılır?', cevap: 'Serbest çalışan veteriner hekimlerde ya da il ve ilçe tarım ve orman müdürlüklerinde.' },
     { soru: 'Yavru kediyi ne zaman kaydettirmeliyim?', cevap: 'Doğumdan itibaren en geç altı ay içinde; köpek yavrularında kuduz yönetmeliği üç aylıktan itibaren kayıt istiyor.' },
     { soru: 'Kayıt yaptırmamanın cezası ne kadar?', cevap: 'Kanundaki tutar hayvan başına 1.200 TL; yıllık yeniden değerlemeyle 2026 tutarı hayvan başına 10.423 TL\'ye ulaşıyor.' },
-    { soru: 'Hayvanım kaybolursa ne yapmalıyım?', cevap: '7 gün içinde il veya ilçe müdürlüğüne bildirin; hayvan PETVET\'te kayıp olarak işaretlenir.' },
+    { soru: 'Hayvanım kaybolursa ne yapmalıyım?', cevap: '7 gün içinde il veya ilçe müdürlüğüne bildirilmesi gerekiyor; hayvan PETVET\'te kayıp olarak işaretlenir.' },
     { soru: 'Sahiplendiğim hayvanın kaydını nasıl üzerime alırım?', cevap: 'Sahip değişikliği belgesiyle 60 gün içinde il veya ilçe müdürlüğüne başvurursunuz.' },
   ],
   kaynaklar: [

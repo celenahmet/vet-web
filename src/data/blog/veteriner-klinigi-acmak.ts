@@ -3,7 +3,7 @@ import type { BlogYazi } from './types';
 export const veterinerKlinigiAcmak: BlogYazi = {
   slug: 'veteriner-klinigi-acmak',
   baslik: 'Veteriner Kliniği Açmak İçin Gerekenler: Şartlar ve Belgeler',
-  ozet: 'Muayenehane ya da poliklinik açmak için il müdürlüğüne hangi belgelerle başvurulur, oda ölçüleri ne olmalı, poliklinikte kaç hekim gerekir? Yönetmelik maddeleriyle adım adım.',
+  ozet: 'Muayenehane ya da poliklinik açmak için hangi belgeler gerekir, odalar kaç metrekare olmalı, poliklinikte kaç hekim çalışır? Yönetmelik maddeleriyle.',
   kapakAlt:
     'Veteriner kliniği açmak konulu yazının kapak görseli; yeni döşenmiş, boş ve modern bir veteriner muayene odası',
   kategori: 'Klinik Yönetimi',
@@ -67,7 +67,14 @@ export const veterinerKlinigiAcmak: BlogYazi = {
 
     { kind: 'baslik', metin: 'Açılıştan sonra ilk kurulacak düzen' },
     { kind: 'paragraf', metin: 'Ruhsat kliniği açar ama kliniği yaşatan, hastanın geri gelmesi. Randevu, aşı hatırlatma ve hasta kayıtlarını ilk günden düzenli tutmak, sonradan kâğıt yığınını sisteme taşımaktan kolay. Bu konuları [[klinikte-randevu-yonetimi|klinikte randevu yönetimi]] ve [[kliniklerde-asi-hatirlatma|kliniklerde aşı hatırlatma]] yazılarımızda anlattık. Fiyatlandırmada meslek odasının belirlediği tabanı [[asgari-ucret-tarifesi-nedir|asgari ücret tarifesi]] yazısında bulabilirsiniz.' },
-    { kind: 'uyari', metin: 'Bu yazı yönetmeliğin özetidir. Vergi kaydı, belediye işlemleri ve kira sözleşmesi gibi konular için bir mali müşavirle, güncel ekipman listesi ve inceleme takvimi için il tarım ve orman müdürlüğüyle görüşün.' },
+    { kind: 'uyari', metin: 'Bu yazı yönetmeliğin özetidir. Vergi kaydı, belediye işlemleri ve kira sözleşmesi gibi konular için bir mali müşavirle, güncel ekipman listesi ve inceleme takvimi için il tarım ve orman müdürlüğüyle görüşmek gerekiyor.' },
+  ],
+  kontrolListesi: [
+    'Plan oda ölçülerine uyuyor mu?',
+    'Oda kayıt belgesi hazır mı?',
+    'Güncel ekipman listesi alındı mı?',
+    'Tıbbi atık düzeni kuruldu mu?',
+    'Ruhsat görünür yere asıldı mı?',
   ],
   sss: [
     { soru: 'Veteriner kliniği açmak için ruhsatı kim verir?', cevap: 'İl tarım ve orman müdürlüğü, yeri yerinde inceledikten sonra verir.' },

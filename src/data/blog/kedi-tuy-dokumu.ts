@@ -3,7 +3,7 @@ import type { BlogYazi } from './types';
 export const kediTuyDokumu: BlogYazi = {
   slug: 'kedi-tuy-dokumu',
   baslik: 'Kedi Tüy Dökümü: Ne Zaman Normal, Nasıl Azaltılır?',
-  ozet: 'Kedilerde tüy dökümü mevsim geçişlerinde artar ve çoğu zaman normaldir. Normal dökülme ile tüy kaybı nasıl ayırt edilir, tüy dökümü nasıl azaltılır, ne zaman hekime gidilir?',
+  ozet: 'Kedilerde tüy dökümü mevsim geçişlerinde artar ve çoğu zaman normaldir. Normal dökülme ile tüy kaybı nasıl ayrılır, dökülme nasıl azaltılır?',
   kapakAlt:
     'Kedi tüy dökümü konulu yazının kapak görseli; sıcak ev ışığında taranan uzun tüylü bir kedi ve fırçada biriken tüyler',
   kategori: 'Kedi',
@@ -25,7 +25,7 @@ export const kediTuyDokumu: BlogYazi = {
       ['Tek bir noktaya odaklanmış yalama', 'O bölgede ağrı'],
       ['Belirgin bir tıbbi neden yoksa', 'Stres'],
     ]},
-    { kind: 'paragraf', metin: 'Tablo yalnız yönlendirme amaçlı; nedeni hekim muayeneyle belirler. Yalama deriyi aşındırdığında enfeksiyon başlayabiliyor ve bu da yalamayı artırabiliyor; bu yüzden kel bölge ya da yara gördüğünüzde beklemeyin. Pirenin evde nasıl anlaşılacağını [[kedilerde-pire-nasil-anlasilir|kedilerde pire nasıl anlaşılır]] yazımızda anlattık.' },
+    { kind: 'paragraf', metin: 'Tablo yalnız yönlendirme amaçlı; nedeni hekim muayeneyle belirler. Yalama deriyi aşındırdığında enfeksiyon başlayabiliyor ve bu da yalamayı artırabiliyor; bu yüzden kel bölge ya da yara görüldüğünde beklememek gerekiyor. Pirenin evde nasıl anlaşılacağını [[kedilerde-pire-nasil-anlasilir|kedilerde pire nasıl anlaşılır]] yazımızda anlattık.' },
 
     { kind: 'baslik', metin: 'Stres tüy kaybına yol açar mı?' },
     { kind: 'paragraf', metin: 'Evet. Cornell; taşınma, eve yeni bir hayvanın gelmesi ya da bir hayvanın kaybı, hatta günlük düzenin değişmesinin kedide kaygıya yol açabildiğini ve yalamanın kediyi sakinleştiren bir davranışa dönüşebildiğini belirtiyor. Tıbbi nedenler dışlandıktan sonra önerilenler:' },
@@ -44,12 +44,19 @@ export const kediTuyDokumu: BlogYazi = {
       '**Stresi azaltmak:** Yukarıdaki önerilerle.',
       '**Tüy yumağını izlemek:** Malt gibi ürünlerin ne işe yaradığını [[kedilerde-malt-ne-ise-yarar|kedilerde malt ne işe yarar]] yazımızda anlattık.',
     ]},
-    { kind: 'uyari', metin: 'Kediniz halsizse, bir iki günden uzun süre yemek yemiyorsa ya da tekrar tekrar sonuçsuz öğürüyor veya kusuyorsa tüy yumağı bir tıkanıklığa yol açmış olabilir; vakit kaybetmeden veteriner hekime başvurun.' },
+    { kind: 'uyari', metin: 'Kediniz halsizse, bir iki günden uzun süre yemek yemiyorsa ya da tekrar tekrar sonuçsuz öğürüyor veya kusuyorsa tüy yumağı bir tıkanıklığa yol açmış olabilir; vakit kaybetmeden veteriner hekime ulaşılması gereken bir tablodur.' },
+  ],
+  kontrolListesi: [
+    'Tüy her gün taranıyor mu?',
+    'Pire koruması güncel mi?',
+    'Kel ya da yaralı bölge var mı?',
+    'Bir nokta sürekli yalanıyor mu?',
+    'Günde 10-15 dakika oyun var mı?',
   ],
   sss: [
     { soru: 'Kedilerde tüy dökümü normal mi?', cevap: 'Evet, çoğu zaman normal ve mevsim geçişlerinde artıyor.' },
     { soru: 'Kedi tüy dökümü nasıl azaltılır?', cevap: 'Her gün tarayarak, düzenli pire koruması uygulayarak ve stresi azaltarak.' },
-    { soru: 'Kedimin tüyü neden öbek öbek dökülüyor?', cevap: 'Kel bölge normal dökülme değil; pire, alerji, ağrı ya da stres olabilir, hekime gösterin.' },
+    { soru: 'Kedimin tüyü neden öbek öbek dökülüyor?', cevap: 'Kel bölge normal dökülme değil; pire, alerji, ağrı ya da stres olabilir; veteriner hekim muayenesi gerekiyor.' },
     { soru: 'Kediler ne kadar süre kendini temizler?', cevap: 'Cornell\'e göre günün yüzde 30 ile 50\'si.' },
     { soru: 'Uzun tüylü kedileri ne sıklıkla taramalıyım?', cevap: 'Cornell her gün fırçalayıp taramayı öneriyor.' },
     { soru: 'Stres kedide tüy dökülmesine yol açar mı?', cevap: 'Evet; aşırı yalama yoluyla tüy kaybına yol açabiliyor.' },

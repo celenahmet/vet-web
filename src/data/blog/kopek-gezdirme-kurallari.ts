@@ -3,7 +3,7 @@ import type { BlogYazi } from './types';
 export const kopekGezdirmeKurallari: BlogYazi = {
   slug: 'kopek-gezdirme-kurallari',
   baslik: 'Tasmasız Köpek Gezdirmek Yasak mı? Köpek Gezdirme Kuralları',
-  ozet: 'Evet, halka açık yerde köpeği tasmayla gezdirmek ve dışkısını toplamak yönetmelikle zorunlu. Ağızlık kimlere şart, cezası ne, köpek birine zarar verirse sorumluluk kimde.',
+  ozet: 'Halka açık yerde köpeği tasmayla gezdirmek ve dışkısını toplamak zorunlu. Ağızlık kimlere şart, cezası ne, köpek birine zarar verirse sorumlu kim?',
   kapakAlt:
     'Köpek gezdirme kuralları konulu yazının kapak görseli; sonbahar parkında tasmalı köpeğini gezdiren bir kişi',
   kategori: 'Köpek',
@@ -51,8 +51,15 @@ export const kopekGezdirmeKurallari: BlogYazi = {
     ]},
 
     { kind: 'baslik', metin: 'Tasmasız köpek gezdirenler nereye şikâyet edilir?' },
-    { kind: 'paragraf', metin: 'Yönetmeliğe göre 5199 sayılı kanun ve yönetmeliğe uyulup uyulmadığını denetleme yetkisi **Tarım ve Orman Bakanlığı\'nda;** bu nedenle başvuru yeri il veya ilçe tarım ve orman müdürlüğü. Park, plaj gibi belediye alanlarındaki kurallar için belediyeye başvurulabiliyor. Bir köpek o anda insanlar için tehlike oluşturuyorsa 112\'yi arayın.' },
-    { kind: 'uyari', metin: 'Bir köpek ısırdıysa vakit kaybetmeden bir sağlık kuruluşuna başvurun; kuduz riskini sağlık kuruluşu değerlendirir. Köpeğin sahibine ulaşabiliyorsanız köpeğin aşı bilgisini isteyin.' },
+    { kind: 'paragraf', metin: 'Yönetmeliğe göre 5199 sayılı kanun ve yönetmeliğe uyulup uyulmadığını denetleme yetkisi **Tarım ve Orman Bakanlığı\'nda;** bu nedenle başvuru yeri il veya ilçe tarım ve orman müdürlüğü. Park, plaj gibi belediye alanlarındaki kurallar için belediyeye başvurulabiliyor. Bir köpek o anda insanlar için tehlike oluşturuyorsa 112\'nin aranması gerekiyor.' },
+    { kind: 'uyari', metin: 'Bir köpek ısırdıysa vakit kaybetmeden bir sağlık kuruluşuna başvurmak gerekiyor; kuduz riskini sağlık kuruluşu değerlendirir. Köpeğin sahibine ulaşılabiliyorsa aşı bilgisini öğrenmek hekimin kararını kolaylaştırır.' },
+  ],
+  kontrolListesi: [
+    'Tasma köpeğe zarar vermiyor mu?',
+    'Pasaport yürüyüşte yanınızda mı?',
+    'Dışkı torbası cebinizde mi?',
+    'Parazit koruması güncel mi?',
+    'Parkın köpek kuralını biliyor musunuz?',
   ],
   sss: [
     { soru: 'Tasmasız köpek gezdirmek yasak mı?', cevap: 'Evet; 2024 tarihli uygulama yönetmeliği halka açık yerlerde köpeğin tasmayla kontrol altında dolaştırılmasını istiyor.' },
