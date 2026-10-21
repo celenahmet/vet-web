@@ -30,6 +30,16 @@ import { kediTirmalamasiKuduzYaparMi } from './kedi-tirmalamasi-kuduz-yapar-mi';
 import { yasakliKopekIrklari } from './yasakli-kopek-irklari';
 import { barinaktanKopekSahiplenme } from './barinaktan-kopek-sahiplenme';
 import { veterinerHekimNasilOlunur } from './veteriner-hekim-nasil-olunur';
+import { kopekYasiHesaplama } from './kopek-yasi-hesaplama';
+import { kedilereZararliYiyecekler } from './kedilere-zararli-yiyecekler';
+import { kediKacGundeDogurur } from './kedi-kac-gunde-dogurur';
+import { kopekKacGundeDogurur } from './kopek-kac-gunde-dogurur';
+import { kediKizginlikDonemi } from './kedi-kizginlik-donemi';
+import { kopekKizginlikDonemi } from './kopek-kizginlik-donemi';
+import { kopekGundeKacGramMamaYer } from './kopek-gunde-kac-gram-mama-yer';
+import { yeniKediEveAlisma } from './yeni-kedi-eve-alisma';
+import { kopeklerNedenOtYer } from './kopekler-neden-ot-yer';
+import { komsununKopegiHavliyor } from './komsunun-kopegi-havliyor';
 import { kopekAsiTakvimi } from './kopek-asi-takvimi';
 import { kopegimFazlaKiloluMu } from './kopegim-fazla-kilolu-mu';
 import { kedilerdeIcVeDisParazit } from './kedilerde-ic-ve-dis-parazit';
@@ -95,7 +105,9 @@ const TUM_YAZILAR: BlogYazi[] = [
   kedilereKuduzAsisi, petvetKayit, kanun5199, kopekGezdirmeKurallari, evcilHayvanPasaportu,
   veterinerKlinigiAcmak, kopeklerdeKene, yavruKediBakimi, kediTuyDokumu, evcilHayvanlaUcakYolculugu,
   apartmandaKediKopekBeslemek, kediTirmalamasiKuduzYaparMi, yasakliKopekIrklari, barinaktanKopekSahiplenme,
-  veterinerHekimNasilOlunur,
+  veterinerHekimNasilOlunur, kopekYasiHesaplama, kedilereZararliYiyecekler, kediKacGundeDogurur,
+  kopekKacGundeDogurur, kediKizginlikDonemi, kopekKizginlikDonemi, kopekGundeKacGramMamaYer,
+  yeniKediEveAlisma, kopeklerNedenOtYer, komsununKopegiHavliyor,
 ];
 
 /**
