@@ -2,7 +2,7 @@ import type { BlogYazi } from './types';
 
 export const kanun5199: BlogYazi = {
   slug: '5199-sayili-kanun',
-  baslik: '5199 Sayılı Hayvanları Koruma Kanunu: Sahiplenme, Yükümlülükler ve Cezalar',
+  baslik: '5199 Sayılı Hayvanları Koruma Kanunu: Sahiplenme ve 2026 Cezaları',
   ozet: '5199 sayılı kanun hayvan sahiplerine ne yüklüyor? Barınaktan sahiplenme şartları, sahibin yükümlülükleri ve 2026 idari para cezaları tek tabloda.',
   kapakAlt:
     '5199 sayılı Hayvanları Koruma Kanunu konulu yazının kapak görseli; barınakta yeni sahibine kucak açan bir köpek',

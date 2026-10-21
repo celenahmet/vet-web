@@ -2,7 +2,7 @@ import type { BlogYazi } from './types';
 
 export const evcilHayvanPasaportu: BlogYazi = {
   slug: 'evcil-hayvan-pasaportu',
-  baslik: 'Evcil Hayvan Pasaportu Nasıl Alınır? Yurt Dışına Kedi Köpek Götürmek',
+  baslik: 'Evcil Hayvan Pasaportu Nasıl Alınır? Yurt Dışına Kedi Köpek',
   ozet: 'Pasaport PETVET kaydıyla düzenleniyor ama yurt dışı için yetmiyor. Kuduz aşısı, antikor testi, sağlık sertifikası ve AB için 90 günlük bekleme adım adım.',
   kapakAlt:
     'Evcil hayvan pasaportu konulu yazının kapak görseli; havalimanında valizin yanında taşıma çantasında bekleyen bir kedi',
