@@ -36,7 +36,7 @@ import './YaziSonu.css';
  *
  * ⚠️ TEPKI BOLUMU SUNUCU HAZIRSA GORUNUYOR. `tepkileriOku` null donerse bolum
  * hic cizilmiyor; paylasim ve Google baglantisi her zaman.
- * Sunucu tarafi: veteriner/supabase/migrations/0346_blog_tepkiler.sql.
+ * Sunucu tarafi: veteriner/supabase/migrations/0348_blog_tepkiler.sql (+ 0349 alti ifade).
  *
  * ⚠️ Kart, paylasim ve Google baglantisi `scripts/prerender.mjs` ciktisinda da
  * var, ayni siniflarla; tepki bolumu yalniz React'te (sayilar canli).

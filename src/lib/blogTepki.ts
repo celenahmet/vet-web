@@ -1,7 +1,7 @@
 /**
  * BLOG TEPKILERI: "Faydali oldu mu?" ve emoji ifadeleri (29.10.2026).
  *
- * Sunucu tarafi `veteriner/supabase/migrations/0346_blog_tepkiler.sql`:
+ * Sunucu tarafi `veteriner/supabase/migrations/0348_blog_tepkiler.sql (+ 0349 alti ifade)`:
  * yalniz (slug, tur) basina sayac; IP, cerez, oturum yok.
  *
  * ⚠️ IKI EKSEN (UniConnectly mig 537 ile ayni mantik): 'faydali'/'faydasiz'
@@ -19,7 +19,7 @@
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL ?? '';
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY ?? '';
 
-// 6 ifade (30.10, mig 0347): harika ve zorlandim yeni; digerlerinin sayaclari korunuyor.
+// 6 ifade (30.10, mig 0349): harika ve zorlandim yeni; digerlerinin sayaclari korunuyor.
 export type TepkiTuru = 'faydali' | 'faydasiz' | 'sevdim' | 'harika' | 'ogrendim' | 'sasirdim' | 'dusundurdu' | 'zorlandim';
 export type TepkiEkseni = 'faydali' | 'ifade';
 export type TepkiSecimi = Partial<Record<TepkiEkseni, TepkiTuru>>;
