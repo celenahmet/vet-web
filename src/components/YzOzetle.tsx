@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { BotMessageSquare, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { yzBaglantilari, type YzAnahtari } from '../lib/blogPaylasim';
-import { ChatGPT, Claude, Copilot, GoogleRenkli, Grok, Perplexity } from './MarkaIkonlari';
+import { ozetIstemi, yzBaglantilari, type YzAnahtari } from '../lib/blogPaylasim';
+import { ChatGPT, Claude, Copilot, Gemini, Grok, Perplexity } from './MarkaIkonlari';
 import './YzOzetle.css';
 
 /**
@@ -18,7 +18,7 @@ import './YzOzetle.css';
  */
 const IKONLAR: Record<YzAnahtari, (p: { boyut?: number }) => React.JSX.Element> = {
   chatgpt: ChatGPT,
-  google: GoogleRenkli,
+  gemini: Gemini,
   claude: Claude,
   copilot: Copilot,
   perplexity: Perplexity,
@@ -68,10 +68,17 @@ export default function YzOzetle({ slug, baslik }: { slug: string; baslik: strin
                 href={s.adres}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => { if (ref.current) ref.current.open = false; }}
+                onClick={() => {
+                  // Gemini: baglanti istemi tasimazsa okur panodan yapistirsin.
+                  if (s.kopyala) void navigator.clipboard?.writeText(ozetIstemi(slug, baslik)).catch(() => {});
+                  if (ref.current) ref.current.open = false;
+                }}
               >
                 <span className={`yz-ikon yz-ikon-${s.anahtar}`} aria-hidden="true"><Ikon boyut={20} /></span>
-                {s.ad}
+                <span className="yz-ad">
+                  {s.ad}
+                  {s.kopyala ? <small className="yz-not">{t('post_ai_copy_note')}</small> : null}
+                </span>
               </a>
             </li>
           );

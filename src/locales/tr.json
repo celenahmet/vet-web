@@ -759,6 +759,7 @@
   "post_related_title": "İlgili yazılar",
   "post_ai_summary": "AI ile Özetle",
   "post_ai_menu": "Yapay zekâ ile özetleme seçenekleri",
+  "post_ai_copy_note": "İstem panoya kopyalanır",
   "post_end_label": "Yazı hakkında geri bildirim ve paylaşım",
   "post_helpful_q": "Bu yazı faydalı oldu mu?",
   "post_helpful_yes": "Evet",
@@ -767,10 +768,10 @@
   "post_helpful_count": "{{n}} okur bu yazıyı faydalı buldu.",
   "post_react_q": "Yazı size ne hissettirdi?",
   "post_react_love": "Sevdim",
-  "post_react_learned": "Öğrendim",
-  "post_react_surprised": "Şaşırdım",
-  "post_react_thoughtful": "Düşündürdü",
-  "post_share": "Paylaş:",
+  "post_react_learned": "Öğretici",
+  "post_react_surprised": "Şaşırtıcı",
+  "post_react_thoughtful": "Düşündürücü",
+  "post_share": "Bu yazıyı paylaşın",
   "post_share_on": "{{ag}} ile paylaş",
   "post_copy_link": "Bağlantıyı kopyala",
   "post_copied": "Bağlantı kopyalandı",
@@ -1624,5 +1625,10 @@
       "dikkat": "Dikkat",
       "hareket": "Hareket"
     }
-  }
+  },
+  "post_share_device": "Cihazın paylaşım menüsü",
+  "post_share_device_short": "Paylaş",
+  "post_share_instagram": "Instagram'da paylaşın",
+  "post_insta_copied": "Bağlantı kopyalandı, Instagram'da yapıştırabilirsiniz",
+  "post_share_email": "E-postayla gönderin"
 }

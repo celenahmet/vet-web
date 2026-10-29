@@ -1,30 +1,46 @@
 /*
- * Yazi sonu: tepki, paylasim, Google tercih edilen kaynak.
+ * Yazi sonu karti: tepki, paylasim, Google tercih edilen kaynak.
  * ⚠️ Gradyan yok, duz renk; paylasim daireleri markalarin kendi duz renginde.
- * ⚠️ Daire ve Google dugmesi olculeri `scripts/prerender.mjs` ciktisiyla ayni.
+ * ⚠️ Kart, daire ve Google dugmesi olculeri `scripts/prerender.mjs` ciktisiyla
+ *    ayni siniflarla: React gelince yerinden oynamiyor.
+ * ⚠️ Yan yana / alt alta karari KAPSAYICI SORGUSUYLA (kartin genisligi), ekranin
+ *    degil: yazi sutunu kenar cubuguyla daraldiginda da dogru dizilsin.
  */
 .yazi-sonu {
   margin-top: 48px;
-  padding-top: 28px;
-  border-top: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
-.yazi-tepki { display: flex; flex-direction: column; gap: 18px; }
-.tepki-satir { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.ys-kart {
+  container-type: inline-size;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-surface);
+  padding: 22px 24px;
+}
+.ys-ic { display: flex; flex-direction: column; gap: 20px; }
+.ys-bolum { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.ys-paylas.ayrik { padding-top: 20px; border-top: 1px solid var(--color-border); }
+
+@container (min-width: 640px) {
+  .ys-ic { flex-direction: row; align-items: center; justify-content: space-between; gap: 28px; }
+  .ys-paylas.ayrik { padding-top: 0; border-top: 0; padding-left: 28px; border-left: 1px solid var(--color-border); }
+}
+
+.tepki-satir { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
 .tepki-soru { margin: 0; font-weight: 700; color: var(--color-text); font-size: 1rem; }
 .tepki-dugmeler { display: flex; flex-wrap: wrap; gap: 8px; }
 .tepki-tesekkur { margin: 0; color: var(--color-vet-secondary); font-weight: 600; font-size: 0.95rem; }
 
-.faydali-dugme,
-.ifade-dugme {
+.faydali-dugme {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 14px;
+  height: 40px;
+  padding: 0 16px;
   border: 1px solid var(--color-border);
   border-radius: 999px;
   background: var(--color-surface);
@@ -35,23 +51,71 @@
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease;
 }
-.faydali-dugme:hover,
-.ifade-dugme:hover:not(:disabled) { border-color: var(--color-vet-secondary); background: var(--color-vet-accent-light); }
+.faydali-dugme:hover { border-color: var(--color-vet-secondary); background: var(--color-vet-accent-light); }
+
+/* Emoji: yalniz isaret; adi ipucunda (Ahmet 29.10). */
+.ifade-liste { display: flex; flex-wrap: wrap; gap: 8px; }
+.ifade-dugme {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-vet-accent-light);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.ifade-dugme:hover:not(:disabled) { transform: translateY(-2px); border-color: var(--color-vet-secondary); }
+.ifade-dugme.secili { border-color: var(--color-vet-secondary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-vet-secondary) 22%, transparent); }
+.ifade-dugme:disabled { cursor: default; }
+.ifade-dugme:disabled:not(.secili) { opacity: 0.45; }
+.ifade-dugme[data-ipucu]::after {
+  content: attr(data-ipucu);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: var(--color-vet-accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+  z-index: 5;
+}
+.ifade-dugme[data-ipucu]:hover::after,
+.ifade-dugme[data-ipucu]:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
+
 .faydali-dugme:focus-visible,
 .ifade-dugme:focus-visible { outline: 2px solid var(--color-vet-secondary); outline-offset: 2px; }
-.ifade-dugme.secili { border-color: var(--color-vet-secondary); background: var(--color-vet-accent-light); }
-.ifade-dugme:disabled { cursor: default; opacity: 0.55; }
-.ifade-sayi { margin-left: 2px; color: var(--color-text-muted); font-weight: 600; font-size: 0.85rem; }
 
-.paylas-satir { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
-.paylas-baslik { font-weight: 700; color: var(--color-text); font-size: 1rem; }
-.paylas-liste { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.paylas-baslik { margin: 0; font-weight: 700; color: var(--color-text-muted); font-size: 0.88rem; }
+/* 6 sutun: 10-11 dugme iki dengeli satira dusuyor; dar ekranda daireler kuculuyor. */
+.paylas-liste {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(34px, 44px));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.paylas-liste > li { display: flex; }
 
 .paylas-dugme {
   display: inline-grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  padding: 0;
   border: 0;
   border-radius: 50%;
   color: #fff;
@@ -59,40 +123,45 @@
   text-decoration: none;
   transition: transform 0.15s ease, filter 0.15s ease;
 }
-.paylas-dugme:hover { transform: translateY(-2px); filter: brightness(1.05); }
+.paylas-dugme:hover { transform: translateY(-2px); filter: brightness(1.06); }
 .paylas-dugme:focus-visible { outline: 2px solid var(--color-vet-secondary); outline-offset: 3px; }
+.paylas-cihaz { background: var(--color-vet-accent); }
+.paylas-kopya { background: var(--color-vet-secondary); }
+.paylas-instagram { background: #E4405F; }
 .paylas-whatsapp { background: #25D366; }
-.paylas-telegram { background: #229ED9; }
 .paylas-x { background: #000; }
+.paylas-telegram { background: #229ED9; }
 .paylas-facebook { background: #1877F2; }
 .paylas-linkedin { background: #0A66C2; }
-.paylas-kopya { background: var(--color-vet-secondary); }
-:root[data-theme='dark'] .paylas-x { background: #fff; color: #000; }
+.paylas-threads { background: #000; }
+.paylas-reddit { background: #FF4500; }
+.paylas-eposta { background: #475569; }
+:root[data-theme='dark'] .paylas-x,
+:root[data-theme='dark'] .paylas-threads { background: #fff; color: #000; }
 
-.paylas-durum { color: var(--color-vet-secondary); font-weight: 600; font-size: 0.9rem; min-height: 1em; }
+.paylas-durum { margin: 0; min-height: 1em; color: var(--color-vet-secondary); font-weight: 600; font-size: 0.85rem; }
 
 .google-tercih {
   align-self: center;
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px 22px;
+  gap: 12px;
+  padding: 10px 20px;
   border: 1px solid var(--color-border);
-  border-radius: 14px;
+  border-radius: 999px;
   background: var(--color-surface);
   color: var(--color-text);
   font-weight: 600;
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   line-height: 1.35;
   text-decoration: none;
-  max-width: 340px;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .google-tercih:hover { border-color: var(--color-vet-secondary); box-shadow: 0 6px 18px rgba(12, 59, 67, 0.1); }
 .google-tercih:focus-visible { outline: 2px solid var(--color-vet-secondary); outline-offset: 3px; }
-.google-tercih-simge { display: inline-grid; place-items: center; width: 30px; height: 30px; flex-shrink: 0; }
+.google-tercih-simge { display: inline-grid; place-items: center; width: 26px; height: 26px; flex-shrink: 0; }
 
-@media (max-width: 640px) {
-  .paylas-dugme { width: 42px; height: 42px; }
-  .google-tercih { align-self: stretch; max-width: none; justify-content: center; }
+@media (max-width: 480px) {
+  .ys-kart { padding: 18px; }
+  .google-tercih { align-self: stretch; justify-content: center; }
 }

@@ -748,6 +748,7 @@
   "post_related_title": "Related Posts",
   "post_ai_summary": "Summarize with AI",
   "post_ai_menu": "AI summary options",
+  "post_ai_copy_note": "Prompt is copied to clipboard",
   "post_end_label": "Feedback and sharing",
   "post_helpful_q": "Was this article helpful?",
   "post_helpful_yes": "Yes",
@@ -756,10 +757,10 @@
   "post_helpful_count": "{{n}} readers found this article helpful.",
   "post_react_q": "How did this article make you feel?",
   "post_react_love": "Loved it",
-  "post_react_learned": "Learned something",
-  "post_react_surprised": "Surprised",
-  "post_react_thoughtful": "Made me think",
-  "post_share": "Share:",
+  "post_react_learned": "Informative",
+  "post_react_surprised": "Surprising",
+  "post_react_thoughtful": "Thought-provoking",
+  "post_share": "Share this article",
   "post_share_on": "Share on {{ag}}",
   "post_copy_link": "Copy link",
   "post_copied": "Link copied",
@@ -1680,5 +1681,10 @@
       "dikkat": "Focus",
       "hareket": "Motion"
     }
-  }
+  },
+  "post_share_device": "Device share menu",
+  "post_share_device_short": "Share",
+  "post_share_instagram": "Share on Instagram",
+  "post_insta_copied": "Link copied, you can paste it on Instagram",
+  "post_share_email": "Send by email"
 }

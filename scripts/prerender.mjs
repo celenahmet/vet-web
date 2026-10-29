@@ -99,16 +99,19 @@ const kalin = (s) =>
  */
 function yzOzetHtml(y) {
   const liste = yzBaglantilari(y.slug, y.baslik)
-    .map((s) => `<li><a href="${kac(s.adres)}" target="_blank" rel="noopener noreferrer"><span class="yz-ikon yz-ikon-${s.anahtar}" aria-hidden="true"></span>${kac(s.ad)}</a></li>`)
+    .map((s) => `<li><a href="${kac(s.adres)}" target="_blank" rel="noopener noreferrer"><span class="yz-ikon yz-ikon-${s.anahtar}" aria-hidden="true"></span><span class="yz-ad">${kac(s.ad)}${s.kopyala ? '<small class="yz-not">İstem panoya kopyalanır</small>' : ''}</span></a></li>`)
     .join('');
   return `<details class="yz-ozet"><summary><span class="yz-simge" aria-hidden="true"></span><span>AI ile Özetle</span><span class="yz-ok" aria-hidden="true"></span></summary><ul class="yz-menu" aria-label="Yapay zekâ ile özetleme seçenekleri">${liste}</ul></details>`;
 }
 
 function yaziSonuHtml(y) {
+  // React'teki YaziSonu ile ayni siralama: kopyala, Instagram, sonra baglantilar.
+  // Cihaz paylasimi ve tepki bolumu yalniz React'te (tarayiciya ve canli sayiya bagli).
   const paylas = paylasimBaglantilari(y.slug, y.baslik)
-    .map((k) => `<li><a class="paylas-dugme paylas-${k.anahtar}" href="${kac(k.adres)}" target="_blank" rel="noopener noreferrer" aria-label="${kac(k.ad)} ile paylaş"></a></li>`)
+    .map((k) => `<li><a class="paylas-dugme paylas-${k.anahtar}" href="${kac(k.adres)}"${k.anahtar === 'eposta' ? '' : ' target="_blank"'} rel="noopener noreferrer" aria-label="${kac(k.anahtar === 'eposta' ? 'E-postayla gönderin' : `${k.ad} ile paylaş`)}"></a></li>`)
     .join('');
-  return `<section class="yazi-sonu" aria-label="Yazı hakkında geri bildirim ve paylaşım"><div class="paylas-satir"><span class="paylas-baslik">Paylaş:</span><ul class="paylas-liste">${paylas}</ul></div><a class="google-tercih" href="${kac(GOOGLE_TERCIH_ADRESI)}" target="_blank" rel="noopener noreferrer"><span class="google-tercih-simge" aria-hidden="true"></span><span>Google'da tercih edilen kaynak olarak ekleyin</span></a></section>`;
+  const sabit = '<li><button type="button" class="paylas-dugme paylas-kopya" aria-label="Bağlantıyı kopyala"></button></li><li><button type="button" class="paylas-dugme paylas-instagram" aria-label="Instagram\'da paylaşın"></button></li>';
+  return `<section class="yazi-sonu" aria-label="Yazı hakkında geri bildirim ve paylaşım"><div class="ys-kart"><div class="ys-ic"><div class="ys-bolum ys-paylas"><p class="paylas-baslik">Bu yazıyı paylaşın</p><ul class="paylas-liste">${sabit}${paylas}</ul><p class="paylas-durum" role="status"></p></div></div></div><a class="google-tercih" href="${kac(GOOGLE_TERCIH_ADRESI)}" target="_blank" rel="noopener noreferrer"><span class="google-tercih-simge" aria-hidden="true"></span><span>Google'da tercih edilen kaynak olarak ekleyin</span></a></section>`;
 }
 
 function blokHtml(b) {
