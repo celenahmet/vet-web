@@ -479,7 +479,7 @@ export const legalDocumentsEN: Record<LegalDocumentId, LegalDocument> = {
     slug: '/cookies',
     title: 'Cookie Notice',
     summary: 'Which cookies and similar technologies are used on the website and in the app.',
-    effectiveDate: EFFECTIVE,
+    effectiveDate: '30 October 2026', // section 3: YouTube player (30.10)
     related: ['privacy', 'kvkk'],
     required: true,
     intro: [
@@ -513,7 +513,10 @@ export const legalDocumentsEN: Record<LegalDocumentId, LegalDocument> = {
       },
       {
         number: '3', title: 'Third-party content',
-        blocks: [{ kind: 'text', value: 'The site embeds no advertising, tracking pixels or social media buttons. When you follow a link to an app store, Apple\'s or Google\'s own rules apply.' }],
+        blocks: [
+          { kind: 'text', value: 'The site embeds no advertising, tracking pixels or social media buttons. When you follow a link to an app store, Apple\'s or Google\'s own rules apply.' },
+          { kind: 'text', value: '**YouTube videos:** when you play a video on our “Veterito on social media” page, it loads through YouTube\'s privacy-enhanced mode (youtube-nocookie.com). No request goes to YouTube unless you press play; once you do, Google\'s own rules apply and YouTube may use its own cookies or browser storage. You can also choose to open the video on YouTube.' },
+        ],
       },
       {
         number: '4', title: 'Changes',

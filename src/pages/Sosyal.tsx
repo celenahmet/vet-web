@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ArrowUpRight, Eye } from 'lucide-react';
+import { ArrowUpRight, Eye, Play, X as Kapat } from 'lucide-react';
 import SEO from '../components/SEO';
 import { brandConfig } from '../config/brand';
 import { ELLE_GONDERILER, type SosyalGonderi, type SosyalPlatform } from '../data/sosyal';
@@ -34,11 +34,17 @@ const PLATFORMLAR: Platform[] = SIRA.flatMap((anahtar) => {
   return h ? [{ anahtar, ad: h.ad, kullanici: h.kullanici, adres: h.adres, Ikon: IKON[anahtar] }] : [];
 });
 
+type YouTubeGonderi = SosyalGonderi & { id?: string };
 type YouTubeVeri = { profil: string; gonderiler: (SosyalGonderi & { id: string })[] };
 
 export default function Sosyal() {
   const { t, i18n } = useTranslation();
-  const [youtube, setYoutube] = useState<SosyalGonderi[]>([]);
+  const [youtube, setYoutube] = useState<YouTubeGonderi[]>([]);
+  // Sayfa ici oynatici (Ahmet 30.10: "play kismi new tab yapilmadan da izlenebilsin").
+  // YALNIZ TIKLAYINCA yuklenir ve gizlilik gelistirilmis kipte (youtube-nocookie.com):
+  // oynatilmadikca YouTube'a hic istek gitmez. Cerez Bildirimi 3. bolum buna gore guncellendi.
+  const [oynatilan, setOynatilan] = useState<YouTubeGonderi | null>(null);
+  const pencere = useRef<HTMLDialogElement>(null);
   const [secili, setSecili] = useState<SosyalPlatform | null>(null);
   const [sira, setSira] = useState<'yeni' | 'populer'>('yeni');
 
@@ -57,8 +63,15 @@ export default function Sosyal() {
 
   const gonderiler = (p: SosyalPlatform): SosyalGonderi[] => (p === 'youtube' ? youtube : ELLE_GONDERILER[p]);
 
-  // Varsayilan sekme: gonderisi olan ilk platform; hicbiri yoksa ilk platform.
-  const aktif: SosyalPlatform = secili ?? PLATFORMLAR.find((p) => gonderiler(p.anahtar).length > 0)?.anahtar ?? PLATFORMLAR[0]?.anahtar ?? 'instagram';
+  // Varsayilan sekme YouTube (Ahmet 30.10: "standart youtube acilsin").
+  const aktif: SosyalPlatform = secili ?? (PLATFORMLAR.some((p) => p.anahtar === 'youtube') ? 'youtube' : PLATFORMLAR[0]?.anahtar ?? 'instagram');
+
+  useEffect(() => {
+    const d = pencere.current;
+    if (!d) return;
+    if (oynatilan && !d.open) d.showModal();
+    if (!oynatilan && d.open) d.close();
+  }, [oynatilan]);
   const platform = PLATFORMLAR.find((p) => p.anahtar === aktif);
 
   const liste = useMemo(() => {
@@ -110,10 +123,24 @@ export default function Sosyal() {
               <ul className="sosyal-izgara">
                 {liste.map((g) => (
                   <li key={g.adres}>
-                    <a className={g.dikey ? 'sosyal-kart dikey' : 'sosyal-kart'} href={g.adres} target="_blank" rel="noopener noreferrer">
+                    <a
+                      className={g.dikey ? 'sosyal-kart dikey' : 'sosyal-kart'}
+                      href={g.adres}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => {
+                        // YouTube: sayfanin icinde oynat. Ctrl/Cmd ile tiklayan yine yeni sekme alir;
+                        // JS yoksa baglanti zaten YouTube'a gider.
+                        const id = (g as YouTubeGonderi).id;
+                        if (!id || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                        e.preventDefault();
+                        setOynatilan(g);
+                      }}
+                    >
                       <span className="sosyal-gorsel">
                         <img src={g.gorsel} alt="" loading="lazy" decoding="async" />
                         {g.tur === 'shorts' ? <span className="sosyal-rozet">Shorts</span> : null}
+                        {(g as YouTubeGonderi).id ? <span className="sosyal-oynat" aria-hidden="true"><Play size={22} fill="currentColor" /></span> : null}
                       </span>
                       <span className="sosyal-baslik">{g.baslik}</span>
                       <span className="sosyal-alt">
@@ -140,6 +167,33 @@ export default function Sosyal() {
           ) : null}
         </section>
       </div>
+
+      <dialog
+        ref={pencere}
+        className={oynatilan?.tur === 'shorts' ? 'sosyal-oynatici dikey' : 'sosyal-oynatici'}
+        aria-label={oynatilan?.baslik ?? ''}
+        onClose={() => setOynatilan(null)}
+        onClick={(e) => { if (e.target === e.currentTarget) setOynatilan(null); }}
+      >
+        {oynatilan?.id ? (
+          <div className="sosyal-oynatici-ic">
+            <button type="button" className="sosyal-kapat" onClick={() => setOynatilan(null)} aria-label={t('social_close')}>
+              <Kapat size={20} aria-hidden="true" />
+            </button>
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${oynatilan.id}?autoplay=1&rel=0&playsinline=1`}
+              title={oynatilan.baslik}
+              allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+              allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+            <p className="sosyal-oynatici-not">
+              {t('social_player_note')}{' '}
+              <a href={oynatilan.adres} target="_blank" rel="noopener noreferrer">{t('social_open_youtube')}</a>
+            </p>
+          </div>
+        ) : null}
+      </dialog>
     </div>
   );
 }

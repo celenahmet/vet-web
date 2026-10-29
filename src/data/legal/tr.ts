@@ -892,7 +892,7 @@ export const legalDocumentsTR: Record<LegalDocumentId, LegalDocument> = {
     slug: '/cookies',
     title: 'Çerez Bildirimi',
     summary: 'Web sitesinde ve uygulamada hangi çerez ve benzeri teknolojilerin kullanıldığı.',
-    effectiveDate: YURURLUK,
+    effectiveDate: '30 Ekim 2026', // 3. bolume YouTube oynatici eklendi (30.10)
     related: ['privacy', 'kvkk'],
     required: true,
     intro: [
@@ -956,6 +956,11 @@ export const legalDocumentsTR: Record<LegalDocumentId, LegalDocument> = {
             kind: 'text',
             value:
               'Sitede gömülü reklam, izleme pikseli ya da sosyal medya beğeni düğmesi bulunmaz. Uygulama mağazalarına verilen bağlantılara tıkladığınızda Apple ya da Google’ın kendi kuralları geçerli olur.',
+          },
+          {
+            kind: 'text',
+            value:
+              '**YouTube videoları:** “Sosyal medyada biz” sayfasında bir videoyu oynattığınızda video, YouTube’un gizlilik geliştirilmiş modu (youtube-nocookie.com) üzerinden yüklenir. Oynatmadığınız sürece YouTube’a hiçbir istek gitmez; oynattığınızda Google’ın kendi kuralları geçerli olur ve YouTube kendi çerezlerini ya da tarayıcı depolamasını kullanabilir. Videoyu YouTube’da açmayı da seçebilirsiniz.',
           },
         ],
       },

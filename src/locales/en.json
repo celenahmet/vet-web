@@ -1701,5 +1701,8 @@
   "social_popular": "Popular",
   "social_see_all": "See all on {{ag}}",
   "social_follow": "Follow us on {{ag}}",
-  "social_profile_text": "You can find our posts on our {{ag}} account."
+  "social_profile_text": "You can find our posts on our {{ag}} account.",
+  "social_close": "Close",
+  "social_player_note": "This video plays via YouTube.",
+  "social_open_youtube": "Open on YouTube"
 }

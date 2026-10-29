@@ -52,3 +52,21 @@
   .sosyal-panel { padding: 16px; border-radius: 18px; }
   .sosyal-izgara { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 }
+
+/* Kart ustundeki oynat isareti (yalniz YouTube). */
+.sosyal-oynat { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; background: rgba(0, 0, 0, 0.55); color: #fff; transition: transform 0.15s ease, background-color 0.15s ease; }
+.sosyal-kart:hover .sosyal-oynat { transform: translate(-50%, -50%) scale(1.08); background: var(--color-vet-secondary); }
+
+/* Sayfa ici oynatici (30.10): tiklayinca acilir, youtube-nocookie. */
+/* Tailwind sifirlamasi dialog'un margin:auto ortalamasini siliyor; acikca veriliyor. */
+.sosyal-oynatici { position: fixed; inset: 0; margin: auto; height: fit-content; padding: 0; border: 0; border-radius: 18px; background: #000; max-width: min(92vw, 960px); width: 100%; overflow: visible; }
+.sosyal-oynatici.dikey { max-width: min(92vw, calc(82vh * 9 / 16)); }
+.sosyal-oynatici::backdrop { background: rgba(8, 20, 22, 0.78); }
+.sosyal-oynatici-ic { position: relative; }
+.sosyal-oynatici iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 18px 18px 0 0; }
+.sosyal-oynatici.dikey iframe { aspect-ratio: 9 / 16; max-height: 82vh; }
+.sosyal-oynatici-not { margin: 0; padding: 10px 14px; border-radius: 0 0 18px 18px; background: #0b1a1c; color: #cfe3e1; font-size: 0.8rem; }
+.sosyal-oynatici-not a { color: #fff; font-weight: 700; }
+.sosyal-kapat { position: absolute; right: -14px; top: -14px; z-index: 2; display: grid; place-items: center; width: 38px; height: 38px; border: 0; border-radius: 50%; background: #fff; color: #0b1a1c; cursor: pointer; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3); }
+.sosyal-kapat:focus-visible { outline: 2px solid var(--color-vet-secondary); outline-offset: 2px; }
+@media (max-width: 560px) { .sosyal-kapat { right: 6px; top: 6px; } }

@@ -1645,5 +1645,8 @@
   "social_popular": "Popüler",
   "social_see_all": "{{konum}} tümünü gör",
   "social_follow": "{{konum}} takip edin",
-  "social_profile_text": "Paylaşımlarımızı {{ag}} hesabımızda bulabilirsiniz."
+  "social_profile_text": "Paylaşımlarımızı {{ag}} hesabımızda bulabilirsiniz.",
+  "social_close": "Kapat",
+  "social_player_note": "Video YouTube üzerinden oynatılıyor.",
+  "social_open_youtube": "YouTube’da aç"
 }
