@@ -1,0 +1,72 @@
+/*
+ * "AI ile Ozetle" dugmesi: kunye satirinin sonunda, saga yaslanmis.
+ * ⚠️ Olculer `scripts/prerender.mjs` ciktisiyla ayni: `.yz-simge` ve `.yz-ok`
+ * sabit genislikte, ikon React gelene kadar bos dursa da dugme ayni yeri kapliyor.
+ */
+.yz-ozet {
+  position: relative;
+  margin-left: auto;
+}
+
+.yz-ozet > summary {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1.5px solid var(--color-vet-secondary);
+  border-radius: 999px;
+  color: var(--color-vet-secondary);
+  background: var(--color-surface);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease;
+}
+.yz-ozet > summary::-webkit-details-marker { display: none; }
+.yz-ozet > summary:hover { background: var(--color-vet-accent-light); }
+.yz-ozet > summary:focus-visible { outline: 2px solid var(--color-vet-secondary); outline-offset: 2px; }
+
+.yz-simge { display: inline-grid; place-items: center; width: 18px; height: 18px; }
+.yz-ok { display: inline-grid; place-items: center; width: 16px; height: 16px; transition: transform 0.15s ease; }
+.yz-ozet[open] .yz-ok { transform: rotate(180deg); }
+
+.yz-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 30;
+  min-width: 220px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(12, 59, 67, 0.14);
+}
+
+.yz-menu a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+.yz-menu a:hover,
+.yz-menu a:focus-visible { background: var(--color-vet-accent-light); outline: none; }
+
+.yz-ikon { display: inline-grid; place-items: center; width: 22px; height: 22px; color: var(--color-text); }
+/* Claude markasinin kendi rengi; digerleri metin rengini izliyor. */
+.yz-ikon-claude { color: #D97757; }
+
+/* Dar ekranda kunye satiri kiriliyor; dugme kendi satirinda soldan basliyor. */
+@media (max-width: 640px) {
+  .yz-ozet { margin-left: 0; flex-basis: 100%; }
+  .yz-menu { left: 0; right: auto; }
+}
