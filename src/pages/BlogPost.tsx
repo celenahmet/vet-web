@@ -12,6 +12,8 @@ import { YAZILAR, yaziBul, okumaSuresi, tarihiYaz } from '../data/blog';
 import type { BlogBlock } from '../data/blog';
 import BlogKapak from '../components/BlogKapak';
 import BlogKenarCubugu from '../components/BlogKenarCubugu';
+import YzOzetle from '../components/YzOzetle';
+import YaziSonu from '../components/YaziSonu';
 import { goruntulenmeArtir, sayiyiKisalt } from '../lib/blogGoruntulenme';
 import { ilgiliYazilar } from '../lib/ilgiliYazilar';
 import { useOranliYapiskan } from '../lib/oranliYapiskan';
@@ -299,6 +301,8 @@ export default function BlogPost() {
             {goruntulenme !== null ? (
               <span><Eye size={14} /> {sayiyiKisalt(goruntulenme)} {t('post_views')}</span>
             ) : null}
+            {/* AI ile ozetle (Ahmet 29.10): kunye satirinin sonunda, saga yasli. */}
+            <YzOzetle slug={yazi.slug} baslik={yazi.baslik} />
           </div>
         </div>
       </header>
@@ -422,6 +426,9 @@ export default function BlogPost() {
               </ol>
             </section>
           ) : null}
+
+          {/* Faydali mi, emoji tepkisi, paylasim, Google tercih edilen kaynak (Ahmet 29.10). */}
+          <YaziSonu slug={yazi.slug} baslik={yazi.baslik} />
         </div>
 
         <BlogKenarCubugu

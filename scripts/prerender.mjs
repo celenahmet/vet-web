@@ -19,6 +19,7 @@ import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from 
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { ilgiliYazilar } from '../src/lib/ilgiliYazilar.ts';
+import { yzBaglantilari, paylasimBaglantilari, GOOGLE_TERCIH_ADRESI } from '../src/lib/blogPaylasim.ts';
 
 /**
  * ⚠️ SURUM KAPISI: tip soyma (type stripping) Node 22.6+ istiyor. Daha eski bir
@@ -89,6 +90,26 @@ const kalin = (s) =>
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '<a href="/blog/$1">$2</a>')
     .replace(/\[\[([^\]|]+)\]\]/g, '<a href="/blog/$1">$1</a>');
+
+/*
+ * ⚠️ "AI ILE OZETLE" VE YAZI SONU PRERENDER'DA DA VAR (29.10.2026). Baglantilar
+ * `src/lib/blogPaylasim.ts`'ten, React bilesenleriyle (YzOzetle, YaziSonu) ayni
+ * siniflarla. Ikon yuvalari sabit olculu ve bos: React gelince ikon doluyor,
+ * dugmeler yerinden oynamiyor. `<details>` JS'siz de acilip kapaniyor.
+ */
+function yzOzetHtml(y) {
+  const liste = yzBaglantilari(y.slug, y.baslik)
+    .map((s) => `<li><a href="${kac(s.adres)}" target="_blank" rel="noopener noreferrer"><span class="yz-ikon yz-ikon-${s.anahtar}" aria-hidden="true"></span>${kac(s.ad)}</a></li>`)
+    .join('');
+  return `<details class="yz-ozet"><summary><span class="yz-simge" aria-hidden="true"></span><span>AI ile Özetle</span><span class="yz-ok" aria-hidden="true"></span></summary><ul class="yz-menu" aria-label="Yapay zekâ ile özetleme seçenekleri">${liste}</ul></details>`;
+}
+
+function yaziSonuHtml(y) {
+  const paylas = paylasimBaglantilari(y.slug, y.baslik)
+    .map((k) => `<li><a class="paylas-dugme paylas-${k.anahtar}" href="${kac(k.adres)}" target="_blank" rel="noopener noreferrer" aria-label="${kac(k.ad)} ile paylaş"></a></li>`)
+    .join('');
+  return `<section class="yazi-sonu" aria-label="Yazı hakkında geri bildirim ve paylaşım"><div class="paylas-satir"><span class="paylas-baslik">Paylaş:</span><ul class="paylas-liste">${paylas}</ul></div><a class="google-tercih" href="${kac(GOOGLE_TERCIH_ADRESI)}" target="_blank" rel="noopener noreferrer"><span class="google-tercih-simge" aria-hidden="true"></span><span>Google'da tercih edilen kaynak olarak ekleyin</span></a></section>`;
+}
 
 function blokHtml(b) {
   switch (b.kind) {
@@ -408,7 +429,7 @@ for (const y of yazilar) {
     `<span class="yazi-kategori">${kac(y.kategori.toLocaleUpperCase('tr-TR'))}</span>`,
     `<h1>${kac(y.baslik)}</h1>`,
     `<p class="yazi-ozet">${kac(y.ozet)}</p>`,
-    `<div class="yazi-kunye"><a class="yazi-yazar" href="${YAZAR.yol}"><span class="yazi-yazar-avatar" aria-hidden="true"></span>${kac(YAZAR.ad)}</a><span>${kac(tarihiYaz(y.tarih))}</span><span>${dakika} dk okuma</span></div>`,
+    `<div class="yazi-kunye"><a class="yazi-yazar" href="${YAZAR.yol}"><span class="yazi-yazar-avatar" aria-hidden="true"></span>${kac(YAZAR.ad)}</a><span>${kac(tarihiYaz(y.tarih))}</span><span>${dakika} dk okuma</span>${yzOzetHtml(y)}</div>`,
     `</div></header>`,
     `<div class="container yazi-duzen"><div class="yazi-ana">`,
     /*
@@ -478,6 +499,10 @@ for (const y of yazilar) {
      * da ayni agac: sutunlar kaynaklardan SONRA kapaniyor, sonra </article>.
      * Eskiden iki div hic kapanmiyordu ve kaynaklar makalenin disindaydi.
      */
+    /* Yazi sonu: paylasim ve Google tercih edilen kaynak (YaziSonu.tsx ile ayni
+       siniflar). Tepki bolumu yalniz React'te: sayilar canli ve sunucu hazir
+       degilse hic gorunmuyor. */
+    yaziSonuHtml(y),
     `</div></div>`,
     `</article>`,
     /*

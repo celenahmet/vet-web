@@ -16,6 +16,8 @@ const BLOG_DOSYALARI = [
   'src/pages/BlogPost.tsx',
   'src/components/BlogKenarCubugu.tsx',
   'src/components/ReklamKutusu.tsx',
+  'src/components/YzOzetle.tsx',
+  'src/components/YaziSonu.tsx',
 ];
 const ANAHTAR_DESENI = /\bt\('((?:blog|post|sidebar|ad)_[^']+)'/g;
 const HAM_ANAHTAR_DESENI = /^(blog|post|sidebar|ad)_/;
