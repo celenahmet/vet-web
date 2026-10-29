@@ -29,7 +29,7 @@ export function ozetIstemi(slug: string, baslik: string): string {
   return `Yalnızca ${SITE_ADI} sitesinin ${yaziAdresi(slug)} adresindeki içeriği referans alarak "${baslik}" başlıklı yazı için özet oluştur.`;
 }
 
-export type YzAnahtari = 'chatgpt' | 'gemini' | 'claude' | 'copilot' | 'perplexity' | 'grok';
+export type YzAnahtari = 'chatgpt' | 'claude' | 'google' | 'gemini' | 'copilot' | 'perplexity' | 'grok';
 /** `kopyala`: tiklayinca istem panoya da kopyalanir (bkz. Gemini notu). */
 export type YzBaglantisi = { anahtar: YzAnahtari; ad: string; adres: string; kopyala?: boolean };
 
@@ -39,22 +39,23 @@ export type YzBaglantisi = { anahtar: YzAnahtari; ad: string; adres: string; kop
  * yonleniyor, dogrudan yenisi kullaniliyor; Grok icin `grok.com/?q=` (x.com
  * uzerinden acilan surum X hesabi istiyor).
  *
- * ⚠️ 6 ARAC (Ahmet 29.10: "5-6 tane ai araci olsun en fazla kullanilan").
- * Copilot uygulamasi giris sayfasina atip istemi dusurdu (basliksiz Chrome'da
- * denendi); istemi tasiyan Bing Copilot aramasi kullaniliyor.
+ * ⚠️ 7 ARAC, SIRA SABIT (Ahmet 29.10: "AI Mode ile Gemini ayri ayri olsun her
+ * sitede, siralama gpt, claude, ai mode google, Gemini diye ilerlesin"). Google AI
+ * Modu (`udm=50`) istemi tasiyor. Copilot uygulamasi giris sayfasina atip istemi
+ * dusurdu; istemi tasiyan Bing Copilot aramasi kullaniliyor.
  *
- * ⚠️ GEMINI (Ahmet 29.10: "Google gemini de olmasi lazim"): `?q=` desteginin
- * resmi belgesi yok, kaynaklar celisiyor; oturumsuz basliksiz Chrome'da istem
- * kutuya gelmedi. Bu yuzden IKI YOL BIRDEN: baglanti istemi tasiyor (destek
- * varsa kutu dolu acilir) ve tiklayinca istem panoya da kopyalaniyor (yoksa
- * okur yapistirir). Menude "Istem panoya kopyalanir" notu bunu soyluyor.
+ * ⚠️ GEMINI: `?q=` desteginin resmi belgesi yok, kaynaklar celisiyor; oturumsuz
+ * basliksiz Chrome'da istem kutuya gelmedi. Bu yuzden IKI YOL BIRDEN: baglanti
+ * istemi tasiyor ve tiklayinca istem panoya da kopyalaniyor. Menude "Istem panoya
+ * kopyalanir" notu bunu soyluyor.
  */
 export function yzBaglantilari(slug: string, baslik: string): YzBaglantisi[] {
   const q = encodeURIComponent(ozetIstemi(slug, baslik));
   return [
     { anahtar: 'chatgpt', ad: 'ChatGPT', adres: `https://chatgpt.com/?q=${q}` },
-    { anahtar: 'gemini', ad: 'Gemini', adres: `https://gemini.google.com/app?q=${q}`, kopyala: true },
     { anahtar: 'claude', ad: 'Claude', adres: `https://claude.ai/new?q=${q}` },
+    { anahtar: 'google', ad: 'Google AI Modu', adres: `https://www.google.com/search?udm=50&q=${q}` },
+    { anahtar: 'gemini', ad: 'Gemini', adres: `https://gemini.google.com/app?q=${q}`, kopyala: true },
     { anahtar: 'copilot', ad: 'Copilot', adres: `https://www.bing.com/copilotsearch?q=${q}` },
     { anahtar: 'perplexity', ad: 'Perplexity', adres: `https://www.perplexity.ai/search/new?q=${q}` },
     { anahtar: 'grok', ad: 'Grok', adres: `https://grok.com/?q=${q}` },

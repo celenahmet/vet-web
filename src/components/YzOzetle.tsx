@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { BotMessageSquare, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ozetIstemi, yzBaglantilari, type YzAnahtari } from '../lib/blogPaylasim';
-import { ChatGPT, Claude, Copilot, Gemini, Grok, Perplexity } from './MarkaIkonlari';
+import { ChatGPT, Claude, Copilot, Gemini, GoogleRenkli, Grok, Perplexity } from './MarkaIkonlari';
 import './YzOzetle.css';
 
 /**
@@ -18,8 +18,9 @@ import './YzOzetle.css';
  */
 const IKONLAR: Record<YzAnahtari, (p: { boyut?: number }) => React.JSX.Element> = {
   chatgpt: ChatGPT,
-  gemini: Gemini,
   claude: Claude,
+  google: GoogleRenkli,
+  gemini: Gemini,
   copilot: Copilot,
   perplexity: Perplexity,
   grok: Grok,
