@@ -4,7 +4,7 @@
  * `SosyalIkonlar.tsx` ile ayni gerekce: lucide marka ikonu tasimiyor, paket
  * eklemek birkac ikon icin gereksiz yuk. Yollar acik lisansli setlerden:
  * WhatsApp, Telegram, OpenAI, Claude, Perplexity Simple Icons 15.12.0 (CC0);
- * Grok @lobehub/icons-static-svg 1.71.0 (MIT). X, Facebook ve LinkedIn zaten
+ * Grok ve Copilot @lobehub/icons-static-svg 1.71.0 (MIT). X, Facebook ve LinkedIn zaten
  * `SosyalIkonlar.tsx`'te, oradan kullaniliyor.
  *
  * ⚠️ Hepsi `currentColor`: renk bulunduklari dugmenin CSS'inden geliyor.
@@ -67,6 +67,14 @@ export function Perplexity({ boyut = 20 }: Props) {
   return (
     <svg {...ortak(boyut)}>
       <path d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z" />
+    </svg>
+  );
+}
+
+export function Copilot({ boyut = 20 }: Props) {
+  return (
+    <svg {...ortak(boyut)}>
+      <path fillRule="evenodd" clipRule="evenodd" d="M9 23l.073-.001a2.53 2.53 0 01-2.347-1.838l-.697-2.433a2.529 2.529 0 00-2.426-1.839h-.497l-.104-.002c-4.485 0-2.935-5.278-1.75-9.225l.162-.525C2.412 3.99 3.883 1 6.25 1h8.86c1.12 0 2.106.745 2.422 1.829l.715 2.453a2.53 2.53 0 002.247 1.823l.147.005.534.001c3.557.115 3.088 3.745 2.156 7.206l-.113.413c-.154.548-.315 1.089-.47 1.607l-.163.525C21.588 20.01 20.116 23 17.75 23h-8.75zm8.22-15.89l-3.856.001a2.526 2.526 0 00-2.35 1.615L9.21 15.04a2.529 2.529 0 01-2.43 1.847l3.853.002c1.056 0 1.992-.661 2.361-1.644l1.796-6.287a2.529 2.529 0 012.43-1.848z" />
     </svg>
   );
 }

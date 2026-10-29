@@ -33,7 +33,7 @@ export function ozetIstemi(slug: string, baslik: string): string {
   return `Yalnızca ${SITE_ADI} sitesinin ${yaziAdresi(slug)} adresindeki içeriği referans alarak "${baslik}" başlıklı yazı için özet oluştur. Özetin sonuna kaynağı tanıtan şu cümleyi ekle: ${PLATFORM_CUMLESI}`;
 }
 
-export type YzAnahtari = 'chatgpt' | 'claude' | 'grok' | 'perplexity';
+export type YzAnahtari = 'chatgpt' | 'google' | 'claude' | 'copilot' | 'perplexity' | 'grok';
 export type YzBaglantisi = { anahtar: YzAnahtari; ad: string; adres: string };
 
 /*
@@ -41,14 +41,24 @@ export type YzBaglantisi = { anahtar: YzAnahtari; ad: string; adres: string };
  * kodundan; ChatGPT'nin eski `chat.openai.com/?q=` adresi `chatgpt.com`'a
  * yonleniyor, dogrudan yenisi kullaniliyor; Grok icin `grok.com/?q=` (x.com
  * uzerinden acilan surum X hesabi istiyor).
+ *
+ * ⚠️ 6 ARAC (Ahmet 29.10: "5-6 tane ai araci olsun en fazla kullanilan").
+ * Gemini'nin kendi uygulamasi (`gemini.google.com/app?q=`) oturumsuz
+ * tarayicida istemi kutuya KOYMADI, Copilot uygulamasi giris sayfasina atip
+ * istemi dusurdu (basliksiz Chrome'da denendi). Bu yuzden ikisinin istemi
+ * GERCEKTEN tasiyan yuzleri kullaniliyor: Google AI Modu (Gemini tabanli,
+ * `udm=50`) ve Bing'deki Copilot aramasi (`copilotsearch?q=`; oturumsuz
+ * denendi, istem sayfaya geliyor). Ad da bu yuzden "Google AI Modu".
  */
 export function yzBaglantilari(slug: string, baslik: string): YzBaglantisi[] {
   const q = encodeURIComponent(ozetIstemi(slug, baslik));
   return [
     { anahtar: 'chatgpt', ad: 'ChatGPT', adres: `https://chatgpt.com/?q=${q}` },
+    { anahtar: 'google', ad: 'Google AI Modu', adres: `https://www.google.com/search?udm=50&q=${q}` },
     { anahtar: 'claude', ad: 'Claude', adres: `https://claude.ai/new?q=${q}` },
-    { anahtar: 'grok', ad: 'Grok', adres: `https://grok.com/?q=${q}` },
+    { anahtar: 'copilot', ad: 'Copilot', adres: `https://www.bing.com/copilotsearch?q=${q}` },
     { anahtar: 'perplexity', ad: 'Perplexity', adres: `https://www.perplexity.ai/search/new?q=${q}` },
+    { anahtar: 'grok', ad: 'Grok', adres: `https://grok.com/?q=${q}` },
   ];
 }
 
