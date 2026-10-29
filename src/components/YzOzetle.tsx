@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react';
-import { BotMessageSquare, ChevronDown, ClipboardCopy } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { BotMessageSquare, Check, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ozetIstemi, yzBaglantilari, type YzAnahtari } from '../lib/blogPaylasim';
 import { ChatGPT, Claude, Copilot, GeminiRenkli, GoogleRenkli, Grok, Perplexity } from './MarkaIkonlari';
@@ -29,6 +30,27 @@ const IKONLAR: Record<YzAnahtari, (p: { boyut?: number }) => React.JSX.Element> 
 export default function YzOzetle({ slug, baslik }: { slug: string; baslik: string }) {
   const { t } = useTranslation();
   const ref = useRef<HTMLDetailsElement>(null);
+  // Gemini'ye tiklayinca istem panoya kopyalaniyor ve ekranin altinda bildirim cikiyor
+  // (Ahmet 30.10: "sagdaki ikon gereksiz, tiklayinca kopyalandi diyelim").
+  // ⚠️ Gemini YENI SEKMEDE aciliyor; sekme arka plana gectiyse bildirim bekler, okur
+  // donunce 4 sn gorunur. Menu kapaninca ici gizlendigi icin bildirim disarida (portal).
+  const [kopyalandi, setKopyalandi] = useState(false);
+  const zaman = useRef<number | undefined>(undefined);
+  useEffect(() => () => window.clearTimeout(zaman.current), []);
+  function bildir() {
+    window.clearTimeout(zaman.current);
+    setKopyalandi(true);
+    const kapat = () => { zaman.current = window.setTimeout(() => setKopyalandi(false), 4000); };
+    window.setTimeout(() => {
+      if (document.visibilityState === 'visible') { kapat(); return; }
+      const don = () => {
+        if (document.visibilityState !== 'visible') return;
+        document.removeEventListener('visibilitychange', don);
+        kapat();
+      };
+      document.addEventListener('visibilitychange', don);
+    }, 500);
+  }
 
   useEffect(() => {
     const disariTik = (e: MouseEvent) => {
@@ -71,25 +93,27 @@ export default function YzOzetle({ slug, baslik }: { slug: string; baslik: strin
                 rel="noopener noreferrer"
                 onClick={() => {
                   // Gemini: baglanti istemi tasimazsa okur panodan yapistirsin.
-                  if (s.kopyala) void navigator.clipboard?.writeText(ozetIstemi(slug, baslik)).catch(() => {});
+                  if (s.kopyala) {
+                    void navigator.clipboard?.writeText(ozetIstemi(slug, baslik)).then(bildir, () => {});
+                  }
                   if (ref.current) ref.current.open = false;
                 }}
               >
                 <span className={`yz-ikon yz-ikon-${s.anahtar}`} aria-hidden="true"><Ikon boyut={20} /></span>
                 <span>{s.ad}</span>
-                {/* Gemini: istem panoya da kopyalaniyor. Satir tek satir kalsin diye not
-                    gorunur yazi degil, sagda kucuk simge + ipucu (Ahmet 30.10: "dengesiz durmus"). */}
-                {s.kopyala ? (
-                  <span className="yz-pano" title={t('post_ai_copy_note')}>
-                    <ClipboardCopy size={15} aria-hidden="true" />
-                    <span className="yz-gizli">({t('post_ai_copy_note')})</span>
-                  </span>
-                ) : null}
               </a>
             </li>
           );
         })}
       </ul>
+      {kopyalandi
+        ? createPortal(
+            <span className="yz-bildirim" role="status">
+              <Check size={16} aria-hidden="true" /> {t('post_ai_copied')}
+            </span>,
+            document.body,
+          )
+        : null}
     </details>
   );
 }

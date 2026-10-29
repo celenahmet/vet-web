@@ -748,7 +748,6 @@
   "post_related_title": "Related Posts",
   "post_ai_summary": "Summarize with AI",
   "post_ai_menu": "AI summary options",
-  "post_ai_copy_note": "Prompt is copied to clipboard",
   "post_end_label": "Feedback and sharing",
   "post_helpful_q": "Was this article helpful?",
   "post_helpful_yes": "Yes",
@@ -1688,5 +1687,7 @@
   "post_insta_copied": "Link copied, you can paste it on Instagram",
   "post_share_email": "Send by email",
   "post_react_great": "Great",
-  "post_react_hard": "Found it hard"
+  "post_react_hard": "Found it hard",
+  "post_ai_copied": "Prompt copied, paste it into Gemini",
+  "post_google_news": "Follow on Google News"
 }

@@ -759,7 +759,6 @@
   "post_related_title": "İlgili yazılar",
   "post_ai_summary": "AI ile Özetle",
   "post_ai_menu": "Yapay zekâ ile özetleme seçenekleri",
-  "post_ai_copy_note": "İstem panoya kopyalanır",
   "post_end_label": "Yazı hakkında geri bildirim ve paylaşım",
   "post_helpful_q": "Bu yazı faydalı oldu mu?",
   "post_helpful_yes": "Evet",
@@ -1632,5 +1631,7 @@
   "post_insta_copied": "Bağlantı kopyalandı, Instagram'da yapıştırabilirsiniz",
   "post_share_email": "E-postayla gönderin",
   "post_react_great": "Harika",
-  "post_react_hard": "Zorlandım"
+  "post_react_hard": "Zorlandım",
+  "post_ai_copied": "İstem panoya kopyalandı, Gemini'de yapıştırabilirsiniz",
+  "post_google_news": "Google Haberler'de takip edin"
 }

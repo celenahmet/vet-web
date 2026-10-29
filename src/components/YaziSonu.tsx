@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Check, Link2, Mail, Share2, ThumbsDown, ThumbsUp } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
+  GOOGLE_HABERLER_ADRESI,
   GOOGLE_TERCIH_ADRESI,
   INSTAGRAM_ADRESI,
   paylasimBaglantilari,
@@ -17,7 +18,7 @@ import {
   type TepkiSecimi,
   type TepkiTuru,
 } from '../lib/blogTepki';
-import { GoogleRenkli, Reddit, Telegram, Threads, WhatsApp } from './MarkaIkonlari';
+import { GoogleHaberler, GoogleRenkli, Reddit, Telegram, Threads, WhatsApp } from './MarkaIkonlari';
 import { Facebook, Instagram, LinkedIn, X } from './SosyalIkonlar';
 import './YaziSonu.css';
 
@@ -238,10 +239,17 @@ export default function YaziSonu({ slug, baslik }: { slug: string; baslik: strin
         </div>
       </div>
 
-      <a className="google-tercih" href={GOOGLE_TERCIH_ADRESI} target="_blank" rel="noopener noreferrer">
-        <span className="google-tercih-simge" aria-hidden="true"><GoogleRenkli boyut={26} /></span>
-        <span>{t('post_google_pref')}</span>
-      </a>
+      {/* Google'da one cikarma: tercih edilen kaynak + Google Haberler'de takip (30.10). */}
+      <div className="google-satir">
+        <a className="google-tercih" href={GOOGLE_TERCIH_ADRESI} target="_blank" rel="noopener noreferrer">
+          <span className="google-tercih-simge" aria-hidden="true"><GoogleRenkli boyut={24} /></span>
+          <span>{t('post_google_pref')}</span>
+        </a>
+        <a className="google-tercih" href={GOOGLE_HABERLER_ADRESI} target="_blank" rel="noopener noreferrer">
+          <span className="google-tercih-simge" aria-hidden="true"><GoogleHaberler boyut={24} /></span>
+          <span>{t('post_google_news')}</span>
+        </a>
+      </div>
     </section>
   );
 }

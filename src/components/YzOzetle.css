@@ -68,9 +68,13 @@
 .yz-ikon { display: inline-grid; place-items: center; width: 22px; height: 22px; color: var(--color-text); }
 /* Claude ve Gemini markalarinin kendi rengi; digerleri metin rengini izliyor. */
 .yz-ikon-claude { color: #D97757; }
-/* Gemini satirinda pano simgesi: tek satir, sagda, sessiz renk (30.10). */
-.yz-pano { margin-left: auto; display: inline-grid; place-items: center; padding-left: 10px; color: var(--color-text-muted); }
-.yz-gizli { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* Gemini'ye tiklayinca "Istem panoya kopyalandi" (30.10): ekranin alt ortasinda (portal). */
+.yz-bildirim {
+  position: fixed; left: 16px; right: 16px; bottom: 24px; margin: 0 auto; width: max-content; z-index: 80;
+  display: flex; align-items: center; gap: 8px; max-width: calc(100vw - 32px); padding: 10px 16px; border-radius: 12px;
+  background: var(--color-vet-accent); color: #fff; font-size: 0.9rem; font-weight: 700;
+  box-shadow: 0 12px 32px rgba(12, 59, 67, 0.28);
+}
 
 /* Dar ekranda kunye satiri kiriliyor; dugme kendi satirinda soldan basliyor. */
 @media (max-width: 640px) {

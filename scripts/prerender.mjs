@@ -19,7 +19,7 @@ import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from 
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { ilgiliYazilar } from '../src/lib/ilgiliYazilar.ts';
-import { yzBaglantilari, paylasimBaglantilari, GOOGLE_TERCIH_ADRESI } from '../src/lib/blogPaylasim.ts';
+import { yzBaglantilari, paylasimBaglantilari, GOOGLE_TERCIH_ADRESI, GOOGLE_HABERLER_ADRESI } from '../src/lib/blogPaylasim.ts';
 
 /**
  * ⚠️ SURUM KAPISI: tip soyma (type stripping) Node 22.6+ istiyor. Daha eski bir
@@ -99,7 +99,7 @@ const kalin = (s) =>
  */
 function yzOzetHtml(y) {
   const liste = yzBaglantilari(y.slug, y.baslik)
-    .map((s) => `<li><a href="${kac(s.adres)}" target="_blank" rel="noopener noreferrer"><span class="yz-ikon yz-ikon-${s.anahtar}" aria-hidden="true"></span><span>${kac(s.ad)}</span>${s.kopyala ? '<span class="yz-pano" title="İstem panoya kopyalanır"><span class="yz-gizli">(istem panoya kopyalanır)</span></span>' : ''}</a></li>`)
+    .map((s) => `<li><a href="${kac(s.adres)}" target="_blank" rel="noopener noreferrer"><span class="yz-ikon yz-ikon-${s.anahtar}" aria-hidden="true"></span><span>${kac(s.ad)}</span></a></li>`)
     .join('');
   return `<details class="yz-ozet"><summary><span class="yz-simge" aria-hidden="true"></span><span>AI ile Özetle</span><span class="yz-ok" aria-hidden="true"></span></summary><ul class="yz-menu" aria-label="Yapay zekâ ile özetleme seçenekleri">${liste}</ul></details>`;
 }
@@ -111,7 +111,7 @@ function yaziSonuHtml(y) {
     .map((k) => `<li><a class="paylas-dugme paylas-${k.anahtar}" href="${kac(k.adres)}"${k.anahtar === 'eposta' ? '' : ' target="_blank"'} rel="noopener noreferrer" aria-label="${kac(k.anahtar === 'eposta' ? 'E-postayla gönderin' : `${k.ad} ile paylaş`)}"></a></li>`)
     .join('');
   const sabit = '<li><button type="button" class="paylas-dugme paylas-kopya" aria-label="Bağlantıyı kopyala"></button></li><li><button type="button" class="paylas-dugme paylas-instagram" aria-label="Instagram\'da paylaşın"></button></li>';
-  return `<section class="yazi-sonu" aria-label="Yazı hakkında geri bildirim ve paylaşım"><div class="ys-kart"><div class="ys-ic"><div class="ys-bolum ys-paylas"><p class="paylas-baslik">Bu yazıyı paylaşın</p><ul class="paylas-liste">${sabit}${paylas}</ul><p class="paylas-durum" role="status"></p></div></div></div><a class="google-tercih" href="${kac(GOOGLE_TERCIH_ADRESI)}" target="_blank" rel="noopener noreferrer"><span class="google-tercih-simge" aria-hidden="true"></span><span>Google'da tercih edilen kaynak olarak ekleyin</span></a></section>`;
+  return `<section class="yazi-sonu" aria-label="Yazı hakkında geri bildirim ve paylaşım"><div class="ys-kart"><div class="ys-ic"><div class="ys-bolum ys-paylas"><p class="paylas-baslik">Bu yazıyı paylaşın</p><ul class="paylas-liste">${sabit}${paylas}</ul><p class="paylas-durum" role="status"></p></div></div></div><div class="google-satir"><a class="google-tercih" href="${kac(GOOGLE_TERCIH_ADRESI)}" target="_blank" rel="noopener noreferrer"><span class="google-tercih-simge" aria-hidden="true"></span><span>Google'da tercih edilen kaynak olarak ekleyin</span></a><a class="google-tercih" href="${kac(GOOGLE_HABERLER_ADRESI)}" target="_blank" rel="noopener noreferrer"><span class="google-tercih-simge" aria-hidden="true"></span><span>Google Haberler'de takip edin</span></a></div></section>`;
 }
 
 function blokHtml(b) {

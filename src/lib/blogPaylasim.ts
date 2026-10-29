@@ -105,3 +105,14 @@ export const INSTAGRAM_ADRESI = 'https://www.instagram.com/';
  * edilen kaynaklarina ekliyor; bizim tarafimizda bir sey tutulmuyor.
  */
 export const GOOGLE_TERCIH_ADRESI = `https://www.google.com/preferences/source?q=${SITE}/`;
+
+/*
+ * Google Haberler'de takip (Ahmet 30.10: "google ile tercih edilen kaynak gibi başka bi şey
+ * yok mu, proaktif olalım"). Ölçüm 30.10: dört sitemiz de Google Haberler'de (UniConnectly 100,
+ * bote 52, Veterito 43, OtoSenior 21 haber; news.google.com RSS araması). Türk haber sitelerinin
+ * "Google Haberler'de takip et" düğmesinin eşi. Kaynak sayfasının doğrudan adresi (publications/…)
+ * oturum ister ve otomatik tarayıcıya kapalı; o gelene kadar sitenin Google Haberler sayfası:
+ * okur kaynak adına dokunup "Takip et" der. Doğrudan adres gelince yalnız bu sabit değişir.
+ * Düz bağlantı; hiçbir veri gitmiyor.
+ */
+export const GOOGLE_HABERLER_ADRESI = 'https://news.google.com/search?q=site%3Aveterito.com&hl=tr&gl=TR&ceid=TR%3Atr';

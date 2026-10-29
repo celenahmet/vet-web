@@ -147,8 +147,8 @@
 
 .paylas-durum { margin: 0; min-height: 1em; color: var(--color-vet-secondary); font-weight: 600; font-size: 0.85rem; }
 
+.google-satir { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
 .google-tercih {
-  align-self: center;
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -165,9 +165,9 @@
 }
 .google-tercih:hover { border-color: var(--color-vet-secondary); box-shadow: 0 6px 18px rgba(12, 59, 67, 0.1); }
 .google-tercih:focus-visible { outline: 2px solid var(--color-vet-secondary); outline-offset: 3px; }
-.google-tercih-simge { display: inline-grid; place-items: center; width: 26px; height: 26px; flex-shrink: 0; }
+.google-tercih-simge { display: inline-grid; place-items: center; width: 24px; height: 24px; flex-shrink: 0; }
 
 @media (max-width: 480px) {
   .ys-kart { padding: 18px; }
-  .google-tercih { align-self: stretch; justify-content: center; }
+  .google-tercih { width: 100%; justify-content: center; }
 }
