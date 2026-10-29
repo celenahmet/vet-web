@@ -693,6 +693,8 @@ let bulunamadiHtml = kafaDegistir(sablon, {
 // isaret eden bir canonical yanlis bilgi olurdu.
 bulunamadiHtml = bulunamadiHtml
   .replace(/\s*<link rel="canonical"[^>]*>/, '')
+  // Genel robots etiketi (index.html) burada cikiyor: 404'te yalniz noindex kalsin.
+  .replace(/\s*<meta name="robots"[^>]*>/, '')
   .replace('</head>', '    <meta name="robots" content="noindex, follow" />\n  </head>');
 
 yaz(join(KOK, 'dist/404.html'), govdeDegistir(bulunamadiHtml, bulunamadiGovde));
