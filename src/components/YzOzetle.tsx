@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { BotMessageSquare, Check, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ozetIstemi, yzBaglantilari, type YzAnahtari } from '../lib/blogPaylasim';
-import { ChatGPT, Claude, Copilot, GeminiRenkli, GoogleRenkli, Grok, Perplexity } from './MarkaIkonlari';
+import { ChatGPT, Claude, Copilot, DeepSeek, GeminiRenkli, GoogleRenkli, Grok, Kimi, Perplexity } from './MarkaIkonlari';
 import './YzOzetle.css';
 
 /**
@@ -25,6 +25,8 @@ const IKONLAR: Record<YzAnahtari, (p: { boyut?: number }) => React.JSX.Element> 
   copilot: Copilot,
   perplexity: Perplexity,
   grok: Grok,
+  deepseek: DeepSeek,
+  kimi: Kimi,
 };
 
 export default function YzOzetle({ slug, baslik }: { slug: string; baslik: string }) {
@@ -34,13 +36,14 @@ export default function YzOzetle({ slug, baslik }: { slug: string; baslik: strin
   // (Ahmet 30.10: "sagdaki ikon gereksiz, tiklayinca kopyalandi diyelim").
   // ⚠️ Gemini YENI SEKMEDE aciliyor; sekme arka plana gectiyse bildirim bekler, okur
   // donunce 4 sn gorunur. Menu kapaninca ici gizlendigi icin bildirim disarida (portal).
-  const [kopyalandi, setKopyalandi] = useState(false);
+  // Panoya kopyalanan aracin adi (Gemini, DeepSeek); null = bildirim yok.
+  const [kopyalandi, setKopyalandi] = useState<string | null>(null);
   const zaman = useRef<number | undefined>(undefined);
   useEffect(() => () => window.clearTimeout(zaman.current), []);
-  function bildir() {
+  function bildir(ad: string) {
     window.clearTimeout(zaman.current);
-    setKopyalandi(true);
-    const kapat = () => { zaman.current = window.setTimeout(() => setKopyalandi(false), 4000); };
+    setKopyalandi(ad);
+    const kapat = () => { zaman.current = window.setTimeout(() => setKopyalandi(null), 4000); };
     window.setTimeout(() => {
       if (document.visibilityState === 'visible') { kapat(); return; }
       const don = () => {
@@ -94,7 +97,7 @@ export default function YzOzetle({ slug, baslik }: { slug: string; baslik: strin
                 onClick={() => {
                   // Gemini: baglanti istemi tasimazsa okur panodan yapistirsin.
                   if (s.kopyala) {
-                    void navigator.clipboard?.writeText(ozetIstemi(slug, baslik)).then(bildir, () => {});
+                    void navigator.clipboard?.writeText(ozetIstemi(slug, baslik)).then(() => bildir(s.ad), () => {});
                   }
                   if (ref.current) ref.current.open = false;
                 }}
@@ -109,7 +112,7 @@ export default function YzOzetle({ slug, baslik }: { slug: string; baslik: strin
       {kopyalandi
         ? createPortal(
             <span className="yz-bildirim" role="status">
-              <Check size={16} aria-hidden="true" /> {t('post_ai_copied')}
+              <Check size={16} aria-hidden="true" /> {t('post_ai_copied', { ad: kopyalandi })}
             </span>,
             document.body,
           )

@@ -1632,6 +1632,6 @@
   "post_share_email": "E-postayla gönderin",
   "post_react_great": "Harika",
   "post_react_hard": "Zorlandım",
-  "post_ai_copied": "İstem panoya kopyalandı, Gemini'de yapıştırabilirsiniz",
+  "post_ai_copied": "İstem panoya kopyalandı; {{ad}} sohbet kutusuna yapıştırabilirsiniz",
   "post_google_news": "Google Haberler'de takip edin"
 }

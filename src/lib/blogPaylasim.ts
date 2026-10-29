@@ -37,7 +37,7 @@ export function ozetIstemi(slug: string, baslik: string): string {
   return `Yalnızca ${SITE_ADI} sitesinin ${yaziAdresi(slug)} adresindeki içeriği referans alarak "${baslik}" başlıklı yazı için özet oluştur. ${PLATFORM_CUMLESI}`;
 }
 
-export type YzAnahtari = 'chatgpt' | 'claude' | 'google' | 'gemini' | 'copilot' | 'perplexity' | 'grok';
+export type YzAnahtari = 'chatgpt' | 'claude' | 'google' | 'gemini' | 'copilot' | 'perplexity' | 'grok' | 'deepseek' | 'kimi';
 /** `kopyala`: tiklayinca istem panoya da kopyalanir (bkz. Gemini notu). */
 export type YzBaglantisi = { anahtar: YzAnahtari; ad: string; adres: string; kopyala?: boolean };
 
@@ -67,6 +67,11 @@ export function yzBaglantilari(slug: string, baslik: string): YzBaglantisi[] {
     { anahtar: 'copilot', ad: 'Copilot', adres: `https://www.bing.com/copilotsearch?q=${q}` },
     { anahtar: 'perplexity', ad: 'Perplexity', adres: `https://www.perplexity.ai/search/new?q=${q}` },
     { anahtar: 'grok', ad: 'Grok', adres: `https://grok.com/?q=${q}` },
+    // DeepSeek ve Kimi (Ahmet 30.10: "deepseek ile kimi de eklenebilir"). Ölçüm 30.10:
+    // Kimi `_prefill_chat` ile istemi oturumsuz bile kutuya koyuyor; DeepSeek'in hazır
+    // istem adresi yok (otomatik tarayıcıyı da engelliyor), istem panoya kopyalanıyor.
+    { anahtar: 'deepseek', ad: 'DeepSeek', adres: 'https://chat.deepseek.com/', kopyala: true },
+    { anahtar: 'kimi', ad: 'Kimi', adres: `https://www.kimi.com/_prefill_chat?prefill_prompt=${q}&send_immediately=false` },
   ];
 }
 

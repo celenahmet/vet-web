@@ -1688,6 +1688,6 @@
   "post_share_email": "Send by email",
   "post_react_great": "Great",
   "post_react_hard": "Found it hard",
-  "post_ai_copied": "Prompt copied, paste it into Gemini",
+  "post_ai_copied": "Prompt copied; paste it into the {{ad}} chat box",
   "post_google_news": "Follow on Google News"
 }
