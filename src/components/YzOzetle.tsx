@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
-import { BotMessageSquare, ChevronDown } from 'lucide-react';
+import { BotMessageSquare, ChevronDown, ClipboardCopy } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ozetIstemi, yzBaglantilari, type YzAnahtari } from '../lib/blogPaylasim';
-import { ChatGPT, Claude, Copilot, Gemini, GoogleRenkli, Grok, Perplexity } from './MarkaIkonlari';
+import { ChatGPT, Claude, Copilot, GeminiRenkli, GoogleRenkli, Grok, Perplexity } from './MarkaIkonlari';
 import './YzOzetle.css';
 
 /**
@@ -20,7 +20,7 @@ const IKONLAR: Record<YzAnahtari, (p: { boyut?: number }) => React.JSX.Element> 
   chatgpt: ChatGPT,
   claude: Claude,
   google: GoogleRenkli,
-  gemini: Gemini,
+  gemini: GeminiRenkli,
   copilot: Copilot,
   perplexity: Perplexity,
   grok: Grok,
@@ -76,10 +76,15 @@ export default function YzOzetle({ slug, baslik }: { slug: string; baslik: strin
                 }}
               >
                 <span className={`yz-ikon yz-ikon-${s.anahtar}`} aria-hidden="true"><Ikon boyut={20} /></span>
-                <span className="yz-ad">
-                  {s.ad}
-                  {s.kopyala ? <small className="yz-not">{t('post_ai_copy_note')}</small> : null}
-                </span>
+                <span>{s.ad}</span>
+                {/* Gemini: istem panoya da kopyalaniyor. Satir tek satir kalsin diye not
+                    gorunur yazi degil, sagda kucuk simge + ipucu (Ahmet 30.10: "dengesiz durmus"). */}
+                {s.kopyala ? (
+                  <span className="yz-pano" title={t('post_ai_copy_note')}>
+                    <ClipboardCopy size={15} aria-hidden="true" />
+                    <span className="yz-gizli">({t('post_ai_copy_note')})</span>
+                  </span>
+                ) : null}
               </a>
             </li>
           );

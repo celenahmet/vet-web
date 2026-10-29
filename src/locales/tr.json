@@ -768,7 +768,7 @@
   "post_helpful_count": "{{n}} okur bu yazıyı faydalı buldu.",
   "post_react_q": "Yazı size ne hissettirdi?",
   "post_react_love": "Sevdim",
-  "post_react_learned": "Öğretici",
+  "post_react_learned": "Anladım",
   "post_react_surprised": "Şaşırtıcı",
   "post_react_thoughtful": "Düşündürücü",
   "post_share": "Bu yazıyı paylaşın",
@@ -1630,5 +1630,7 @@
   "post_share_device_short": "Paylaş",
   "post_share_instagram": "Instagram'da paylaşın",
   "post_insta_copied": "Bağlantı kopyalandı, Instagram'da yapıştırabilirsiniz",
-  "post_share_email": "E-postayla gönderin"
+  "post_share_email": "E-postayla gönderin",
+  "post_react_great": "Harika",
+  "post_react_hard": "Zorlandım"
 }

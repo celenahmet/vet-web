@@ -757,7 +757,7 @@
   "post_helpful_count": "{{n}} readers found this article helpful.",
   "post_react_q": "How did this article make you feel?",
   "post_react_love": "Loved it",
-  "post_react_learned": "Informative",
+  "post_react_learned": "Got it",
   "post_react_surprised": "Surprising",
   "post_react_thoughtful": "Thought-provoking",
   "post_share": "Share this article",
@@ -1686,5 +1686,7 @@
   "post_share_device_short": "Share",
   "post_share_instagram": "Share on Instagram",
   "post_insta_copied": "Link copied, you can paste it on Instagram",
-  "post_share_email": "Send by email"
+  "post_share_email": "Send by email",
+  "post_react_great": "Great",
+  "post_react_hard": "Found it hard"
 }

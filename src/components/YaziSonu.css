@@ -19,19 +19,20 @@
   border: 1px solid var(--color-border);
   border-radius: 20px;
   background: var(--color-surface);
-  padding: 22px 24px;
+  padding: 20px 22px;
 }
 .ys-ic { display: flex; flex-direction: column; gap: 20px; }
-.ys-bolum { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.ys-bolum { display: flex; flex-direction: column; gap: 14px; min-width: 0; flex: 1 1 auto; }
 .ys-paylas.ayrik { padding-top: 20px; border-top: 1px solid var(--color-border); }
 
-@container (min-width: 640px) {
-  .ys-ic { flex-direction: row; align-items: center; justify-content: space-between; gap: 28px; }
-  .ys-paylas.ayrik { padding-top: 0; border-top: 0; padding-left: 28px; border-left: 1px solid var(--color-border); }
+@container (min-width: 620px) {
+  .ys-ic { flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; }
+  .ys-paylas { flex: none; }
+  .ys-paylas.ayrik { padding-top: 0; border-top: 0; padding-left: 24px; border-left: 1px solid var(--color-border); }
 }
 
 .tepki-satir { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
-.tepki-soru { margin: 0; font-weight: 700; color: var(--color-text); font-size: 1rem; }
+.tepki-soru { margin: 0; font-weight: 700; color: var(--color-text); font-size: 0.97rem; }
 .tepki-dugmeler { display: flex; flex-wrap: wrap; gap: 8px; }
 .tepki-tesekkur { margin: 0; color: var(--color-vet-secondary); font-weight: 600; font-size: 0.95rem; }
 
@@ -39,8 +40,8 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  height: 40px;
-  padding: 0 16px;
+  height: 38px;
+  padding: 0 13px;
   border: 1px solid var(--color-border);
   border-radius: 999px;
   background: var(--color-surface);
@@ -53,23 +54,28 @@
 }
 .faydali-dugme:hover { border-color: var(--color-vet-secondary); background: var(--color-vet-accent-light); }
 
-/* Emoji: yalniz isaret; adi ipucunda (Ahmet 29.10). */
+/* Emoji: hap bicimi, adi ipucunda, sayi yaninda (Ahmet 30.10, bote referansi). */
 .ifade-liste { display: flex; flex-wrap: wrap; gap: 8px; }
 .ifade-dugme {
   position: relative;
-  display: inline-grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 0 13px;
   border: 1px solid var(--color-border);
-  border-radius: 50%;
-  background: var(--color-vet-accent-light);
-  font-size: 1.3rem;
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
   line-height: 1;
   cursor: pointer;
   transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
+.ifade-dugme > span { font-size: 1.2rem; line-height: 1; }
+.ifade-dugme > b { font-variant-numeric: tabular-nums; }
 .ifade-dugme:hover:not(:disabled) { transform: translateY(-2px); border-color: var(--color-vet-secondary); }
 .ifade-dugme.secili { border-color: var(--color-vet-secondary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-vet-secondary) 22%, transparent); }
 .ifade-dugme:disabled { cursor: default; }
@@ -102,8 +108,8 @@
 /* 6 sutun: 10-11 dugme iki dengeli satira dusuyor; dar ekranda daireler kuculuyor. */
 .paylas-liste {
   display: grid;
-  grid-template-columns: repeat(6, minmax(34px, 44px));
-  gap: 8px;
+  grid-template-columns: repeat(6, minmax(32px, 38px));
+  gap: 6px;
   margin: 0;
   padding: 0;
   list-style: none;

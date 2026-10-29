@@ -19,7 +19,8 @@
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL ?? '';
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY ?? '';
 
-export type TepkiTuru = 'faydali' | 'faydasiz' | 'sevdim' | 'ogrendim' | 'sasirdim' | 'dusundurdu';
+// 6 ifade (30.10, mig 0347): harika ve zorlandim yeni; digerlerinin sayaclari korunuyor.
+export type TepkiTuru = 'faydali' | 'faydasiz' | 'sevdim' | 'harika' | 'ogrendim' | 'sasirdim' | 'dusundurdu' | 'zorlandim';
 export type TepkiEkseni = 'faydali' | 'ifade';
 export type TepkiSecimi = Partial<Record<TepkiEkseni, TepkiTuru>>;
 

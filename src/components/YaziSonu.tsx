@@ -26,12 +26,13 @@ import './YaziSonu.css';
  * Google tercih edilen kaynak (İSTEK: Ahmet, 29.10.2026; secim "Emoji +
  * 'Faydali mi', anonim").
  *
- * TASARIM (Ahmet 29.10, referans gorsel): "emojiler sade, ustune gelince ne
- * oldugu (sasirtici vs.) gosterilsin", "yerlesim dengeli, mobil, tablet ve
- * webde de", "tasarim aynisi degil". Emoji dugmesinde gorunur yazi yok; adi ve
- * sayisi ipucunda ve `aria-label`da. Kart KAPSAYICI SORGUSUYLA diziliyor: yan
- * yana sigarsa iki bolum arasinda dikey cizgi, sigmazsa alt alta. Paylasim
- * daireleri Veterito'nun kendi dili: markanin duz renginde dolu (gradyan yok).
+ * TASARIM (Ahmet 29-30.10, referans bote.web.tr'deki kart: "ikinci fotodaki gibi
+ * olsun dedim ben israrla"): soru ve Evet/Hayir AYNI SATIRDA, altinda 6 emoji HAP
+ * bicimde (❤️ 🔥 ✅ 🤯 🤔 😅). Emoji dugmesinde ad yazmaz; adi ipucunda ve
+ * `aria-label`da, sayi (varsa) emojinin yaninda. Kart KAPSAYICI SORGUSUYLA
+ * diziliyor: yan yana sigarsa iki bolum arasinda dikey cizgi, sigmazsa alt alta.
+ * Paylasim daireleri Veterito'nun kendi dili: markanin duz renginde dolu (gradyan
+ * yok); 38 px, soru satiri tek satirda kalsin diye.
  *
  * ⚠️ TEPKI BOLUMU SUNUCU HAZIRSA GORUNUYOR. `tepkileriOku` null donerse bolum
  * hic cizilmiyor; paylasim ve Google baglantisi her zaman.
@@ -129,12 +130,15 @@ export default function YaziSonu({ slug, baslik }: { slug: string; baslik: strin
     if (tamam) durumGoster(t('post_insta_copied'));
   }
 
-  // Gorunur yazi yok; ad ipucunda ve ekran okuyucuda (Ahmet 29.10).
+  // 6 ifade, bote.web.tr ile ayni emojiler (Ahmet 30.10). Ad yalniz ipucunda ve ekran
+  // okuyucuda. Eski turlerin anahtari ve sayaci korunuyor (ogrendim artik ✅ Anladim).
   const ifadeler: { tur: TepkiTuru; emoji: string; ad: string }[] = [
     { tur: 'sevdim', emoji: '❤️', ad: t('post_react_love') },
-    { tur: 'ogrendim', emoji: '💡', ad: t('post_react_learned') },
-    { tur: 'sasirdim', emoji: '😮', ad: t('post_react_surprised') },
+    { tur: 'harika', emoji: '🔥', ad: t('post_react_great') },
+    { tur: 'ogrendim', emoji: '✅', ad: t('post_react_learned') },
+    { tur: 'sasirdim', emoji: '🤯', ad: t('post_react_surprised') },
     { tur: 'dusundurdu', emoji: '🤔', ad: t('post_react_thoughtful') },
+    { tur: 'zorlandim', emoji: '😅', ad: t('post_react_hard') },
   ];
   const faydaliSayi = sayilar?.faydali ?? 0;
 
@@ -167,19 +171,19 @@ export default function YaziSonu({ slug, baslik }: { slug: string; baslik: strin
                 {ifadeler.map((i) => {
                   const secili = secim.ifade === i.tur;
                   const sayi = sayilar[i.tur] ?? 0;
-                  const ipucu = sayi > 0 ? `${i.ad} · ${sayi}` : i.ad;
                   return (
                     <button
                       key={i.tur}
                       type="button"
                       className={secili ? 'ifade-dugme secili' : 'ifade-dugme'}
-                      data-ipucu={ipucu}
-                      aria-label={ipucu}
+                      data-ipucu={i.ad}
+                      aria-label={sayi > 0 ? `${i.ad}, ${sayi}` : i.ad}
                       aria-pressed={secili}
                       disabled={Boolean(secim.ifade) && !secili}
                       onClick={() => oyla('ifade', i.tur)}
                     >
                       <span aria-hidden="true">{i.emoji}</span>
+                      {sayi > 0 ? <b aria-hidden="true">{sayi}</b> : null}
                     </button>
                   );
                 })}
@@ -194,20 +198,20 @@ export default function YaziSonu({ slug, baslik }: { slug: string; baslik: strin
                 <li>
                   <button type="button" className="paylas-dugme paylas-cihaz" onClick={cihazdaPaylas}
                     aria-label={t('post_share_device')} title={t('post_share_device_short')}>
-                    <Share2 size={20} aria-hidden="true" />
+                    <Share2 size={17} aria-hidden="true" />
                   </button>
                 </li>
               ) : null}
               <li>
                 <button type="button" className="paylas-dugme paylas-kopya" onClick={() => { void kopyala(); }}
                   aria-label={t('post_copy_link')} title={t('post_copy_link')}>
-                  {kopyalandi ? <Check size={20} aria-hidden="true" /> : <Link2 size={20} aria-hidden="true" />}
+                  {kopyalandi ? <Check size={17} aria-hidden="true" /> : <Link2 size={17} aria-hidden="true" />}
                 </button>
               </li>
               <li>
                 <button type="button" className="paylas-dugme paylas-instagram" onClick={() => { void instagram(); }}
                   aria-label={t('post_share_instagram')} title="Instagram">
-                  <Instagram boyut={20} />
+                  <Instagram boyut={17} />
                 </button>
               </li>
               {paylasimBaglantilari(slug, baslik).map((k) => {
@@ -223,7 +227,7 @@ export default function YaziSonu({ slug, baslik }: { slug: string; baslik: strin
                       aria-label={k.anahtar === 'eposta' ? t('post_share_email') : t('post_share_on', { ag: k.ad })}
                       title={k.ad}
                     >
-                      <Ikon boyut={20} />
+                      <Ikon boyut={17} />
                     </a>
                   </li>
                 );

@@ -301,7 +301,8 @@ export default function BlogPost() {
             {goruntulenme !== null ? (
               <span><Eye size={14} /> {sayiyiKisalt(goruntulenme)} {t('post_views')}</span>
             ) : null}
-            {/* AI ile ozetle (Ahmet 29.10): kunye satirinin sonunda, saga yasli. */}
+            {/* AI ile ozetle (Ahmet 29.10): kunye bilgilerinin hemen ardinda (30.10:
+                saga yasli hali yazidan kopuk duruyordu; YzOzetle.css). */}
             <YzOzetle slug={yazi.slug} baslik={yazi.baslik} />
           </div>
         </div>

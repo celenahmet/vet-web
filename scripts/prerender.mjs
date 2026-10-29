@@ -99,7 +99,7 @@ const kalin = (s) =>
  */
 function yzOzetHtml(y) {
   const liste = yzBaglantilari(y.slug, y.baslik)
-    .map((s) => `<li><a href="${kac(s.adres)}" target="_blank" rel="noopener noreferrer"><span class="yz-ikon yz-ikon-${s.anahtar}" aria-hidden="true"></span><span class="yz-ad">${kac(s.ad)}${s.kopyala ? '<small class="yz-not">İstem panoya kopyalanır</small>' : ''}</span></a></li>`)
+    .map((s) => `<li><a href="${kac(s.adres)}" target="_blank" rel="noopener noreferrer"><span class="yz-ikon yz-ikon-${s.anahtar}" aria-hidden="true"></span><span>${kac(s.ad)}</span>${s.kopyala ? '<span class="yz-pano" title="İstem panoya kopyalanır"><span class="yz-gizli">(istem panoya kopyalanır)</span></span>' : ''}</a></li>`)
     .join('');
   return `<details class="yz-ozet"><summary><span class="yz-simge" aria-hidden="true"></span><span>AI ile Özetle</span><span class="yz-ok" aria-hidden="true"></span></summary><ul class="yz-menu" aria-label="Yapay zekâ ile özetleme seçenekleri">${liste}</ul></details>`;
 }

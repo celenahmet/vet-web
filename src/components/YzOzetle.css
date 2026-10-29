@@ -3,10 +3,14 @@
  * ⚠️ Olculer `scripts/prerender.mjs` ciktisiyla ayni: `.yz-simge` ve `.yz-ok`
  * sabit genislikte, ikon React gelene kadar bos dursa da dugme ayni yeri kapliyor.
  */
+/* Kunye bilgilerinin HEMEN ARDINDA, ince cizgiyle ayrilmis (Ahmet 30.10, UC'de
+   "masaustunde cok ileride kalmis, yaziya sola yaklastiralim"; kunye basligin tam
+   genisliginde oldugu icin saga yasli dugme yazidan kopuyordu). Menu dugmenin
+   altindan saga acilir. */
 .yz-ozet {
   position: relative;
-  margin-left: auto;
 }
+.yazi-kunye > .yz-ozet { padding-left: 18px; border-left: 1px solid var(--color-border); }
 
 .yz-ozet > summary {
   list-style: none;
@@ -34,7 +38,7 @@
 
 .yz-menu {
   position: absolute;
-  right: 0;
+  left: 18px;
   top: calc(100% + 8px);
   z-index: 30;
   min-width: 220px;
@@ -64,12 +68,13 @@
 .yz-ikon { display: inline-grid; place-items: center; width: 22px; height: 22px; color: var(--color-text); }
 /* Claude ve Gemini markalarinin kendi rengi; digerleri metin rengini izliyor. */
 .yz-ikon-claude { color: #D97757; }
-.yz-ikon-gemini { color: #8E75B2; }
-.yz-ad { display: flex; flex-direction: column; line-height: 1.25; }
-.yz-not { font-size: 11.5px; font-weight: 500; color: var(--color-text-muted); }
+/* Gemini satirinda pano simgesi: tek satir, sagda, sessiz renk (30.10). */
+.yz-pano { margin-left: auto; display: inline-grid; place-items: center; padding-left: 10px; color: var(--color-text-muted); }
+.yz-gizli { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* Dar ekranda kunye satiri kiriliyor; dugme kendi satirinda soldan basliyor. */
 @media (max-width: 640px) {
-  .yz-ozet { margin-left: 0; flex-basis: 100%; }
+  .yz-ozet { flex-basis: 100%; }
+  .yazi-kunye > .yz-ozet { padding-left: 0; border-left: 0; }
   .yz-menu { left: 0; right: auto; }
 }
