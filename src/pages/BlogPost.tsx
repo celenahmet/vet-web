@@ -14,6 +14,7 @@ import BlogKapak from '../components/BlogKapak';
 import BlogKenarCubugu from '../components/BlogKenarCubugu';
 import { goruntulenmeArtir, sayiyiKisalt } from '../lib/blogGoruntulenme';
 import { ilgiliYazilar } from '../lib/ilgiliYazilar';
+import { useOranliYapiskan } from '../lib/oranliYapiskan';
 import './BlogPost.css';
 import '../styles/kirinti.css';
 
@@ -136,6 +137,10 @@ export default function BlogPost() {
   useEffect(() => { setIsaretliler(new Set()); }, [slug]);
   // Geçersiz slug da bir render yoludur; hook dönüşten önce koşulsuz çağrılır.
   useOncedenUretilmisVeriyiDevral();
+
+  // Kenar cubugu yaziyla ayni oranda iner; iki sutun ayni yerde biter (lib/oranliYapiskan.ts).
+  const duzenRef = useRef<HTMLDivElement>(null);
+  useOranliYapiskan(duzenRef, '.blog-kenar', slug);
 
   function isaretiCevir(sira: number) {
     setIsaretliler((onceki) => {
@@ -298,7 +303,7 @@ export default function BlogPost() {
         </div>
       </header>
 
-      <div className="container yazi-duzen">
+      <div className="container yazi-duzen" ref={duzenRef}>
         <div className="yazi-ana">
 
           <div className="yazi-kapak">
@@ -308,6 +313,115 @@ export default function BlogPost() {
           <div className="yazi-govde">
             {yazi.bloklar.map((b, i) => <Blok key={i} blok={b} />)}
           </div>
+
+          {/*
+            ⚠️ KAPANIS BOLUMLERI SOL SUTUNUN ICINDE (Ahmet, 29.10.2026: "kaydirirken
+            bu sag tarafta sorun var"). Izgaranin disindayken kenar cubugunun
+            yapiskanligi yazi govdesiyle bitiyordu: kontrol listesine gelince
+            cubuk ust cubugun altina kayip gidiyor, SSS ve kaynaklarin yani bos
+            kaliyordu. Artik cubuk kaynaklarin sonuna kadar yaninda. Dar ekranda
+            sira degismiyor: yazi, kapanis bolumleri, en sonda kenar cubugu.
+          */}
+          {yazi.kontrolListesi?.length ? (
+            <section className="yazi-kontrol">
+              <div className="kontrol-panel">
+                <header>
+                  <CheckCircle2 size={22} />
+                  <div>
+                    <h2>{t('post_checklist_title')}</h2>
+                    <p>{t('post_checklist_desc')}</p>
+                  </div>
+                </header>
+                {/*
+                  ⚠️ TIKLANABILIR AMA HICBIR YERE YAZILMIYOR (İSTEK: Ahmet,
+                  24.08.2026 — "bunlari tikleme yapilabilsin geciciiTABI hicbir yerde
+                  verileri tutulmasin reaksiyon amac").
+
+                  Durum yalniz bu bilesenin belleginde. Sunucuya gitmiyor,
+                  `localStorage`'a da yazilmiyor: sayfa yenilenince siniyor. Bu bir
+                  eksiklik degil, karar. Kontrol listesi bir gorev yoneticisi degil,
+                  okurken "bunu yaptim" diyebilmek icin bir tepki.
+
+                  ⚠️ Veri minimizasyonu acisindan da dogru olan bu: tutulmayan veri
+                  icin cerez metni, saklama suresi ve silme yolu gerekmiyor.
+
+                  ⚠️ `<li>` degil `<button>`: tiklanabilir bir sey klavyeyle de
+                  erisilebilir olmali. `aria-pressed` ekran okuyucuya durumu soyluyor.
+                */}
+                <ul>
+                  {yazi.kontrolListesi.map((m, i) => (
+                    <li key={m}>
+                      <button
+                        type="button"
+                        className={isaretliler.has(i) ? 'kontrol-madde isaretli' : 'kontrol-madde'}
+                        aria-pressed={isaretliler.has(i)}
+                        onClick={() => isaretiCevir(i)}
+                      >
+                        {m}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          ) : null}
+
+          {yazi.sss.length ? (
+            <section className="yazi-sss">
+              <h2>{t('post_faq_title')}</h2>
+              {/*
+                ⚠️ ACILIR KAPANIR DEGIL (Ahmet, 23.08.2026): "sikca sorulan sorular
+                acilir kapanirda degil de direkt gozukse tasarimi ayri gozukur".
+                Ayrica kapali metin arama motoru icin de zayif: acilir kutudaki cevap
+                sayfada var ama okuyucunun gormesi bir tiklamaya bagli.
+
+                Genis ekranda iki sutuna aciliyor; tek sutunda cok uzun bir serit
+                oluyordu.
+              */}
+              <div className="sss-izgara">
+                {yazi.sss.map((s, i) => (
+                  <div className="sss-kart" id={`soru-${i + 1}`} key={s.soru}>
+                    <span className="sss-no">{String(i + 1).padStart(2, '0')}</span>
+                    <div>
+                      <h3>{s.soru}</h3>
+                      <p>{s.cevap}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          {yazi.kaynaklar?.length ? (
+            <section className="yazi-kaynaklar">
+              <h2>{t('post_sources_title')}</h2>
+              {/*
+                ⚠️ KUNYE PARCALI GOSTERILIYOR (Ahmet, 24.08.2026: "hangi dergi hangi
+                makale hangi sayi vs vs"). Once yalniz bir baglanti etiketi vardi ve
+                okuyucu kaynagin hakemli bir calisma mi yoksa bir kurum sayfasi mi
+                oldugunu ayirt edemiyordu.
+
+                Sira bilincli: once YAZAR (arastirmayi kim yurutmus), sonra baslik,
+                sonra dergi/kurum ve kunye. Saglik iceriginde guvenilirlik sinyali
+                once kimin soyledigi.
+              */}
+              <ol>
+                {yazi.kaynaklar.map((k) => (
+                  <li key={k.doi ?? k.adres ?? k.baslik}>
+                    {k.yazarlar ? <span className="kaynak-yazar">{k.yazarlar}. </span> : null}
+                    {k.adres
+                      ? <a href={k.adres} target="_blank" rel="noopener noreferrer">{k.baslik}</a>
+                      : <span>{k.baslik}</span>}
+                    {k.dergi ? <span className="kaynak-dergi">. {k.dergi}</span> : null}
+                    {k.yil ? <span>, {k.yil}</span> : null}
+                    {k.kunye ? <span>;{k.kunye}</span> : null}
+                    <span className="kaynak-kurum">{k.kurum}</span>
+                    {k.doi ? <span className="kaynak-doi">doi: {k.doi}</span> : null}
+                  </li>
+                ))}
+              </ol>
+            </section>
+          ) : null}
         </div>
 
         <BlogKenarCubugu
@@ -318,107 +432,6 @@ export default function BlogPost() {
           isaretiCevir={isaretiCevir}
         />
       </div>
-
-      {yazi.kontrolListesi?.length ? (
-        <section className="container yazi-kontrol">
-          <div className="kontrol-panel">
-            <header>
-              <CheckCircle2 size={22} />
-              <div>
-                <h2>{t('post_checklist_title')}</h2>
-                <p>{t('post_checklist_desc')}</p>
-              </div>
-            </header>
-            {/*
-              ⚠️ TIKLANABILIR AMA HICBIR YERE YAZILMIYOR (İSTEK: Ahmet,
-              24.08.2026 — "bunlari tikleme yapilabilsin geciciiTABI hicbir yerde
-              verileri tutulmasin reaksiyon amac").
-
-              Durum yalniz bu bilesenin belleginde. Sunucuya gitmiyor,
-              `localStorage`'a da yazilmiyor: sayfa yenilenince siniyor. Bu bir
-              eksiklik degil, karar. Kontrol listesi bir gorev yoneticisi degil,
-              okurken "bunu yaptim" diyebilmek icin bir tepki.
-
-              ⚠️ Veri minimizasyonu acisindan da dogru olan bu: tutulmayan veri
-              icin cerez metni, saklama suresi ve silme yolu gerekmiyor.
-
-              ⚠️ `<li>` degil `<button>`: tiklanabilir bir sey klavyeyle de
-              erisilebilir olmali. `aria-pressed` ekran okuyucuya durumu soyluyor.
-            */}
-            <ul>
-              {yazi.kontrolListesi.map((m, i) => (
-                <li key={m}>
-                  <button
-                    type="button"
-                    className={isaretliler.has(i) ? 'kontrol-madde isaretli' : 'kontrol-madde'}
-                    aria-pressed={isaretliler.has(i)}
-                    onClick={() => isaretiCevir(i)}
-                  >
-                    {m}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      ) : null}
-
-      {yazi.sss.length ? (
-        <section className="container yazi-sss">
-          <h2>{t('post_faq_title')}</h2>
-          {/*
-            ⚠️ ACILIR KAPANIR DEGIL (Ahmet, 23.08.2026): "sikca sorulan sorular
-            acilir kapanirda degil de direkt gozukse tasarimi ayri gozukur".
-            Ayrica kapali metin arama motoru icin de zayif: acilir kutudaki cevap
-            sayfada var ama okuyucunun gormesi bir tiklamaya bagli.
-
-            Genis ekranda iki sutuna aciliyor; tek sutunda cok uzun bir serit
-            oluyordu.
-          */}
-          <div className="sss-izgara">
-            {yazi.sss.map((s, i) => (
-              <div className="sss-kart" id={`soru-${i + 1}`} key={s.soru}>
-                <span className="sss-no">{String(i + 1).padStart(2, '0')}</span>
-                <div>
-                  <h3>{s.soru}</h3>
-                  <p>{s.cevap}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      ) : null}
-
-      {yazi.kaynaklar?.length ? (
-        <section className="container yazi-kaynaklar">
-          <h2>{t('post_sources_title')}</h2>
-          {/*
-            ⚠️ KUNYE PARCALI GOSTERILIYOR (Ahmet, 24.08.2026: "hangi dergi hangi
-            makale hangi sayi vs vs"). Once yalniz bir baglanti etiketi vardi ve
-            okuyucu kaynagin hakemli bir calisma mi yoksa bir kurum sayfasi mi
-            oldugunu ayirt edemiyordu.
-
-            Sira bilincli: once YAZAR (arastirmayi kim yurutmus), sonra baslik,
-            sonra dergi/kurum ve kunye. Saglik iceriginde guvenilirlik sinyali
-            once kimin soyledigi.
-          */}
-          <ol>
-            {yazi.kaynaklar.map((k) => (
-              <li key={k.doi ?? k.adres ?? k.baslik}>
-                {k.yazarlar ? <span className="kaynak-yazar">{k.yazarlar}. </span> : null}
-                {k.adres
-                  ? <a href={k.adres} target="_blank" rel="noopener noreferrer">{k.baslik}</a>
-                  : <span>{k.baslik}</span>}
-                {k.dergi ? <span className="kaynak-dergi">. {k.dergi}</span> : null}
-                {k.yil ? <span>, {k.yil}</span> : null}
-                {k.kunye ? <span>;{k.kunye}</span> : null}
-                <span className="kaynak-kurum">{k.kurum}</span>
-                {k.doi ? <span className="kaynak-doi">doi: {k.doi}</span> : null}
-              </li>
-            ))}
-          </ol>
-        </section>
-      ) : null}
 
       {ilgili.length ? (
         <section className="container yazi-ilgili">

@@ -73,7 +73,13 @@
   font-size: 0.86rem; color: var(--color-text-muted);
 }
 .yazi-kunye span { display: inline-flex; align-items: center; gap: 6px; }
-.yazi-yazar { font-weight: 700; color: var(--color-text); gap: 10px; text-decoration: none; }
+/*
+ * ⚠️ `inline-flex` SART (Ahmet, 29.10.2026: "editor kismini da duzeltelim").
+ * Yazar bir <a>; ustteki `.yazi-kunye span` kurali onu tutmuyor. Esnek kutu
+ * olmayinca `gap` hic islemiyordu: avatar ile ad bitisikti ve daire yazinin
+ * taban cizgisine oturup satirdan tasiyordu.
+ */
+.yazi-yazar { display: inline-flex; align-items: center; font-weight: 700; color: var(--color-text); gap: 10px; text-decoration: none; }
 .yazi-yazar:hover { color: var(--color-vet-secondary); }
 /* Yazar avatari: referanstaki daire, Veterito renginde. */
 .yazi-yazar-avatar {
@@ -328,6 +334,16 @@
   .yazi-sayfa .yazi-sss > *,
   .yazi-sayfa .yazi-kaynaklar > * { max-width: none; }
 }
+
+/*
+ * ⚠️ 29.10.2026: bu uc bolum artik `.yazi-ana` (sol sutun) ICINDE; genisligi
+ * izgara veriyor. Yukaridaki `100% - 368px` daraltmasi orada bir kez daha
+ * daraltirdi, o yuzden sol sutunun icinde kaldiriliyor. Kenar cubugu boylece
+ * kaynaklarin sonuna kadar yapisik kaliyor (BlogPost.tsx'teki not).
+ */
+.yazi-sayfa .yazi-ana .yazi-kontrol > *,
+.yazi-sayfa .yazi-ana .yazi-sss > *,
+.yazi-sayfa .yazi-ana .yazi-kaynaklar > * { max-width: none; }
 
 /*
  * ⚠️ ILGILI YAZILAR SIKISIKTI (Ahmet, 24.08.2026: "ilgili yazilar kismi da cok
