@@ -14,6 +14,7 @@ import BlogKapak from '../components/BlogKapak';
 import BlogKenarCubugu from '../components/BlogKenarCubugu';
 import { goruntulenmeArtir, sayiyiKisalt } from '../lib/blogGoruntulenme';
 import { ilgiliYazilar } from '../lib/ilgiliYazilar';
+import { useOranliYapiskan } from '../lib/oranliYapiskan';
 import './BlogPost.css';
 import '../styles/kirinti.css';
 
@@ -136,6 +137,10 @@ export default function BlogPost() {
   useEffect(() => { setIsaretliler(new Set()); }, [slug]);
   // Geçersiz slug da bir render yoludur; hook dönüşten önce koşulsuz çağrılır.
   useOncedenUretilmisVeriyiDevral();
+
+  // Kenar cubugu yaziyla ayni oranda iner; iki sutun ayni yerde biter (lib/oranliYapiskan.ts).
+  const duzenRef = useRef<HTMLDivElement>(null);
+  useOranliYapiskan(duzenRef, '.blog-kenar', slug);
 
   function isaretiCevir(sira: number) {
     setIsaretliler((onceki) => {
@@ -298,7 +303,7 @@ export default function BlogPost() {
         </div>
       </header>
 
-      <div className="container yazi-duzen">
+      <div className="container yazi-duzen" ref={duzenRef}>
         <div className="yazi-ana">
 
           <div className="yazi-kapak">

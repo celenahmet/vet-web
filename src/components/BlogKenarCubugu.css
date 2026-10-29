@@ -105,5 +105,15 @@
     padding-right: 4px;
     scrollbar-width: thin;
   }
+
+  /*
+   * ⚠️ 29.10.2026: ORANLI INIS (lib/oranliYapiskan.ts). Kanca calisinca cubuk
+   * ic kaydirma yerine sayfayla oranli iniyor; boyu kisitlanmiyor, tamami
+   * sirayla gorunuyor. JS yoksa sinif eklenmez ve yukaridaki ic kaydirma kalir.
+   */
+  .yazi-duzen .blog-kenar.oranli {
+    max-height: none;
+    overflow: visible;
+  }
 }
 

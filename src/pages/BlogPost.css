@@ -73,7 +73,13 @@
   font-size: 0.86rem; color: var(--color-text-muted);
 }
 .yazi-kunye span { display: inline-flex; align-items: center; gap: 6px; }
-.yazi-yazar { font-weight: 700; color: var(--color-text); gap: 10px; text-decoration: none; }
+/*
+ * ⚠️ `inline-flex` SART (Ahmet, 29.10.2026: "editor kismini da duzeltelim").
+ * Yazar bir <a>; ustteki `.yazi-kunye span` kurali onu tutmuyor. Esnek kutu
+ * olmayinca `gap` hic islemiyordu: avatar ile ad bitisikti ve daire yazinin
+ * taban cizgisine oturup satirdan tasiyordu.
+ */
+.yazi-yazar { display: inline-flex; align-items: center; font-weight: 700; color: var(--color-text); gap: 10px; text-decoration: none; }
 .yazi-yazar:hover { color: var(--color-vet-secondary); }
 /* Yazar avatari: referanstaki daire, Veterito renginde. */
 .yazi-yazar-avatar {
