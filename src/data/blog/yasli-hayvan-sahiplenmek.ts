@@ -1,0 +1,135 @@
+import type { BlogYazi } from './types';
+
+export const yasliHayvanSahiplenmek: BlogYazi = {
+  slug: 'yasli-hayvan-sahiplenmek',
+  baslik: 'Yaşlı Kedi ve Köpek Sahiplenmek: Kasım Neden Onların Ayı?',
+  ozet: 'Kasım yaşlı evcil hayvanlar ayı. Kedi ve köpek ne zaman yaşlı sayılır, barınakta neden daha uzun bekler, yaşlı bir dostu sahiplenirken nelere dikkat edilir?',
+  kapakAlt:
+    'Yaşlı hayvan sahiplenme konulu yazının kapak görseli; sonbahar ışığında, kanepede yeni sahibinin yanında huzurla uzanan ağzının çevresi ağarmış yaşlı bir köpek ve yaşlı bir kedi',
+  kategori: 'Pet Sahipleri',
+  tarih: '2026-10-29',
+  bloklar: [
+    { kind: 'paragraf', metin: '**Kasım, yaşlı kedi ve köpeklerin sahiplenilmesine dikkat çekilen aydır.** ABD\'de kasım ayı "Ulusal Yaşlı Evcil Hayvanlar Ayı" (National Senior Pet Month) olarak kutlanıyor ve hayvan refahı kuruluşu ASPCA bu ayda barınaklardaki yaşlı hayvanları tanıtıyor. ASPCA\'ya göre bu hayvanlar da daha genç bir hayvan kadar sevecen ve oyuncu olabiliyor; yaşları kimseyi yanıltmamalı.' },
+    { kind: 'paragraf', metin: 'Barınaklarda yavrular çoğu zaman hızla yuva bulurken yaşlı hayvanlar daha uzun bekliyor. Aşağıda kedi ve köpeklerin ne zaman yaşlı sayıldığını, barınakta neden daha uzun beklediklerini ve yaşlı bir dostu sahiplenirken nelere dikkat etmek gerektiğini veteriner kılavuzlarına dayanarak anlattık.' },
+
+    { kind: 'tablo', basliklar: ['Soru', 'Kısa cevap'], satirlar: [
+      ['Köpek ne zaman yaşlı sayılır?', 'Beklenen ömrünün son %25\'inde; ırka ve boya göre değişir'],
+      ['Kedi ne zaman yaşlı sayılır?', '10 yaşından sonra'],
+      ['Yaşlı hayvan barınakta daha uzun mu bekler?', 'Bir çalışmada bekleme süresi yaşla birlikte doğrusal arttı'],
+      ['Yaşlılık bir hastalık mı?', 'Hayır; veteriner kılavuzlarına göre yaşlılık hastalık değildir'],
+      ['Kasım neden önemli?', 'ABD\'de Ulusal Yaşlı Evcil Hayvanlar Ayı'],
+    ]},
+
+    { kind: 'baslik', metin: 'Kedi ve köpek ne zaman yaşlı sayılır?' },
+    { kind: 'paragraf', metin: 'Amerikan Hayvan Hastaneleri Birliği\'nin (AAHA) 2019 tarihli köpek yaşam evreleri kılavuzu, köpeğin yaşamını beş evreye ayırıyor: yavru, genç yetişkin, olgun yetişkin, yaşlı ve yaşamın sonu. Kılavuza göre köpek, beklenen ömrünün son yüzde 25\'lik diliminden itibaren yaşlı sayılıyor. Beklenen ömür ırka ve boya göre değiştiği için yaşlılık da her köpekte farklı yaşta başlıyor.' },
+    { kind: 'paragraf', metin: 'Kediler için AAHA ve Amerikan Kedi Hekimleri Birliği\'nin (AAFP) 2021 tarihli kılavuzu daha net bir sınır çiziyor: kediler 10 yaşından sonra yaşlı evreye giriyor. AAHA\'nın 2023 tarihli yaşlı bakım kılavuzu ise yaşlılık için tek bir yaş vermiyor. Kedinizin ya da köpeğinizin insan yaşı karşılığını [[kedi-yasi-nasil-hesaplanir|kedi yaşı hesaplama]] ve [[kopek-yasi-hesaplama|köpek yaşı hesaplama]] yazılarımızda bulabilirsiniz.' },
+    { kind: 'yanilgi', baslik: '"Her köpek 7 yaşında yaşlanır"', metin: 'AAHA kılavuzuna göre köpeğin yaşlılığı beklenen ömrünün son yüzde 25\'inde başlıyor ve beklenen ömür ırka ve boya göre değişiyor. Bu yüzden tüm köpekler için geçerli tek bir yaşlılık yaşı yok; büyük ırk bir köpekle küçük ırk bir köpek aynı yaşta farklı yaşam evrelerinde olabilir.' },
+
+    { kind: 'baslik', metin: 'Yaşlı hayvanlar barınakta neden daha uzun bekliyor?' },
+    { kind: 'paragraf', metin: 'ABD\'deki Keuka College\'dan William Brown ve ekibi, New York eyaletindeki iki barınağın sahiplendirme kayıtlarını inceleyerek köpeklerin barınakta kalma süresini neyin etkilediğine baktı. Çalışma 2013\'te Journal of Applied Animal Welfare Science\'ta yayımlandı.' },
+    { kind: 'paragraf', metin: 'Sonuç net: en kısa sürede yuva bulanlar küçük yavrulardı ve köpeklerin barınakta kalma süresi yaş arttıkça doğrusal olarak uzadı. Tüy rengi ve cinsiyet bekleme süresini etkilemedi. Araştırmacılar, sahiplenenlerin hangi özellikleri aradığını anlamanın barınaktaki hayvanların refahını artırmak için önemli olduğunu vurguluyor.' },
+    { kind: 'tablo', basliklar: ['Özellik', 'Barınakta kalma süresine etkisi'], satirlar: [
+      ['Yaş', 'Yaş arttıkça süre doğrusal olarak uzadı'],
+      ['Küçük yavrular', 'En kısa sürede yuva buldular'],
+      ['Tüy rengi', 'Etkisi görülmedi'],
+      ['Cinsiyet', 'Etkisi görülmedi'],
+    ]},
+
+    { kind: 'baslik', metin: 'Yaşlı bir dostu sahiplenmenin güzel yanları' },
+    { kind: 'paragraf', metin: 'Yaşlı bir hayvanı sahiplenmenin en büyük avantajı, karakterinin belli olması. Yavru bir kedi ya da köpeğin nasıl bir yetişkin olacağını önceden bilmek zordur; yaşlı bir hayvanın ise sakin mi, oyuncu mu, kucak seven mi, bağımsız mı olduğu ortadadır. Barınak çalışanları ve gönüllüler hayvanı yakından tanıdığı için size ona uygun bir ev olup olmadığınız konusunda da yol gösterebilir.' },
+    { kind: 'liste', maddeler: [
+      '**Karakter belli:** Hayvanın huyunu ve alışkanlıklarını sahiplenmeden önce görebilirsiniz',
+      '**Daha sakin bir tempo:** Sakin bir yaşam arayanlar için iyi bir eşleşme olabilir',
+      '**Büyüme dönemi geride:** Yavruluğun yoğun ilk ayları yaşanmış olur',
+      '**İkinci bir şans:** Barınakta en uzun bekleyenlerden birine yuva açmış olursunuz',
+    ]},
+    { kind: 'paragraf', metin: 'ASPCA\'nın kasım ayında tanıttığı yaşlı kediler de bu çeşitliliği gösteriyor: kimi sahibinin yanında kıvrılıp uyumayı seven sevecen bir kedi, kimi sessiz ve sakin bir hayat isteyen bağımsız bir kedi, kimi de yeni evine kendi hızında alışmak isteyen çekingen bir kedi.' },
+
+    { kind: 'baslik', metin: 'Yaşlılık bir hastalık değil' },
+    { kind: 'paragraf', metin: 'AAHA\'nın 2023 tarihli yaşlı bakım kılavuzu, veteriner hekimlere "yaşlılığın bir hastalık olmadığının" öğretildiğini hatırlatıyor ve hayvan sahiplerinde yaygın olan bir yanılgıya dikkat çekiyor: yaşlı kedi ve köpeklerin yalnızca yaşlılık yüzünden kaçınılmaz bir fiziksel, zihinsel ve davranışsal gerilemeye uğradığı düşüncesi. Kılavuza göre doğru bakımla yaşlı bir hayvanın yaşam kalitesi artırılabiliyor ve bu süre potansiyel olarak uzatılabiliyor.' },
+    { kind: 'yanilgi', baslik: '"Yaşlı hayvandaki her değişiklik yaşlılıktandır, yapacak bir şey yok"', metin: 'Cornell Üniversitesi Kedi Sağlığı Merkezi, yaşlı kedide görülen değişikliklerin yalnızca yaşlılıktan kaynaklandığını ve tedavi edilemeyeceğini varsaymamak gerektiğini söylüyor. Yaşlı hayvanlarda görülen pek çok durum tamamen düzeltilemese bile çoğu zaman kontrol altına alınabiliyor.' },
+    { kind: 'uyari', metin: 'Yaşlı bir hayvanı sahiplendikten sonra ilk haftalarda bir veteriner hekime genel kontrol için götürmek, mevcut sağlık durumunu ve bakım planını ortaya koyar. Cornell\'e göre yaşlı kedinin davranışında ya da fiziksel durumunda görülen her değişiklik veteriner hekimle görüşmek için bir işarettir.' },
+    { kind: 'paragraf', metin: 'Yaşlı hayvanlarda düzenli kontrollerin ne sıklıkta yapılabileceğini [[kedi-kopek-check-up-ne-zaman|kedi ve köpeklerde check-up]] yazımızda anlattık.' },
+
+    { kind: 'baslik', metin: 'Yaşlı hayvan için evi hazırlamak' },
+    { kind: 'paragraf', metin: 'Cornell\'e göre yaşlı kedilerde eklem kireçlenmesi yaygın ve bu kediler, özellikle zıplamak ya da merdiven çıkmak gerekiyorsa kum kabına, mama ve su kaplarına ulaşmakta zorlanabiliyor. Yaşlı kediler ayrıca evdeki değişikliklere daha duyarlı olabiliyor, çünkü yeni durumlara uyum sağlama yetenekleri yaşla birlikte azalıyor.' },
+    { kind: 'liste', maddeler: [
+      'Mama, su ve kum kabını zıplamadan ulaşılabilecek yerlere koymak',
+      'Kenarı alçak, kolay girilen bir kum kabı seçmek',
+      'Yumuşak ve sıcak bir yatağı sessiz bir köşeye yerleştirmek',
+      'İlk günlerde evdeki düzeni sabit tutmak, hayvanın kendi hızında alışmasına izin vermek',
+      'Tırnakları düzenli kontrol etmek; yaşlı kediler tırmalama tahtasını daha az kullanabiliyor',
+    ]},
+
+    { kind: 'baslik', metin: 'Türkiye\'de yaşlı bir hayvan nasıl sahiplenilir?' },
+    { kind: 'paragraf', metin: 'Belediyelerin hayvan bakımevleri ve hayvan koruma dernekleri, yaşlı kedi ve köpekler için de sahiplendirme yapıyor. Bakımevinden köpek sahiplenirken, binanızın yönetim planını ve köpek bulundurabileceğinize dair yöneticiden alınan izin belgesini yerel yönetime teslim etmeniz gerekiyor. Sahiplendiğiniz hayvan mikroçiple sizin adınıza kayıt altına alınıyor.' },
+    { kind: 'paragraf', metin: 'Sahiplenme sürecini [[barinaktan-kopek-sahiplenme|barınaktan köpek sahiplenme]] yazımızda adım adım anlattık. Kalıcı sahiplenmeye hazır değilseniz, bazı kuruluşların geçici bakım (koruyucu aile) programları da yaşlı bir hayvanın barınak dışında zaman geçirmesini sağlıyor; ASPCA da kasım ayında bu seçeneği öne çıkarıyor.' },
+  ],
+  kontrolListesi: [
+    'Hayvanın karakterini tanıdınız mı?',
+    'Veteriner kontrolü planlandı mı?',
+    'Kaplar kolay ulaşılır yerde mi?',
+    'Kum kabının kenarı alçak mı?',
+    'Mikroçip kaydı yapıldı mı?',
+  ],
+  sss: [
+    { soru: 'Köpekler kaç yaşında yaşlı sayılır?', cevap: 'AAHA\'nın 2019 tarihli kılavuzuna göre köpek, beklenen ömrünün son yüzde 25\'lik diliminden itibaren yaşlı sayılıyor. Beklenen ömür ırka ve boya göre değiştiği için yaşlılığın başladığı yaş da köpekten köpeğe farklı; tek bir yaş sınırı yok.' },
+    { soru: 'Kediler kaç yaşında yaşlı sayılır?', cevap: 'AAHA ve AAFP\'nin 2021 tarihli kedi yaşam evreleri kılavuzuna göre kediler 10 yaşından sonra yaşlı evreye giriyor. Cornell Üniversitesi\'ne göre pek çok kedi yaşa bağlı fiziksel değişikliklerle 7 ile 10 yaş arasında karşılaşmaya başlıyor.' },
+    { soru: 'Yaşlı köpek sahiplenmek mantıklı mı?', cevap: 'Yaşlı bir köpeğin karakteri belli olduğu için size uygun olup olmadığını sahiplenmeden önce görebilirsiniz. Barınaklarda yaşlı köpekler daha uzun bekliyor; bir çalışmada bekleme süresi yaşla birlikte doğrusal olarak arttı. Sakin bir yaşam arayanlar için iyi bir eşleşme olabilir.' },
+    { soru: 'Yaşlı kedi yeni evine alışır mı?', cevap: 'Alışabilir, ama zaman tanımak gerekiyor. Cornell\'e göre yaşlı kediler evdeki değişikliklere daha duyarlı olabiliyor. İlk günlerde düzeni sabit tutmak, kaplara kolay ulaşılmasını sağlamak ve kedinin kendi hızında alışmasına izin vermek uyumu kolaylaştırır.' },
+    { soru: 'Ulusal Yaşlı Evcil Hayvanlar Ayı nedir?', cevap: 'ABD\'de kasım ayı National Senior Pet Month, yani Ulusal Yaşlı Evcil Hayvanlar Ayı olarak kutlanıyor. Bu ayda ASPCA gibi kuruluşlar barınaklardaki yaşlı kedi ve köpekleri tanıtarak onların sahiplenilmesine dikkat çekiyor.' },
+    { soru: 'Yaşlılık bir hastalık mı?', cevap: 'Hayır. AAHA\'nın 2023 tarihli yaşlı bakım kılavuzu, veteriner hekimlere yaşlılığın bir hastalık olmadığının öğretildiğini hatırlatıyor. Kılavuza göre doğru bakımla yaşlı bir hayvanın yaşam kalitesi artırılabiliyor ve bu süre potansiyel olarak uzatılabiliyor.' },
+  ],
+  kaynaklar: [
+    {
+      kurum: 'American Animal Hospital Association (AAHA)',
+      yazarlar: 'Creevy KE, Grady J, Little SE, Moore GE, Strickler BG, Thompson S, Webb JA',
+      baslik: '2019 AAHA Canine Life Stage Guidelines',
+      dergi: 'Journal of the American Animal Hospital Association',
+      yil: 2019,
+      kunye: '55(6):267-290',
+      doi: '10.5326/JAAHA-MS-6999',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/31622127/',
+    },
+    {
+      kurum: 'American Animal Hospital Association (AAHA), American Association of Feline Practitioners (AAFP)',
+      yazarlar: 'Quimby J, Gowland S, Carney HC, DePorter T, Plummer P, Westropp J',
+      baslik: '2021 AAHA/AAFP Feline Life Stage Guidelines',
+      dergi: 'Journal of Feline Medicine and Surgery',
+      yil: 2021,
+      kunye: '23(3):211-233',
+      doi: '10.1177/1098612X21993657',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/33627003/',
+    },
+    {
+      kurum: 'American Animal Hospital Association (AAHA)',
+      yazarlar: 'Dhaliwal R, Boynton E, Carrera-Justiz S, Cruise N, Gardner M, Huntingford J, Lobprise H, Rozanski E',
+      baslik: '2023 AAHA Senior Care Guidelines for Dogs and Cats',
+      dergi: 'Journal of the American Animal Hospital Association',
+      yil: 2023,
+      kunye: '59(1):1-21',
+      doi: '10.5326/JAAHA-MS-7343',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/36584321/',
+    },
+    {
+      kurum: 'Keuka College, Division of Natural Sciences',
+      yazarlar: 'Brown WP, Davidson JP, Zuefle ME',
+      baslik: 'Effects of phenotypic characteristics on the length of stay of dogs at two no kill animal shelters',
+      dergi: 'Journal of Applied Animal Welfare Science',
+      yil: 2013,
+      kunye: '16(1):2-18',
+      doi: '10.1080/10888705.2013.740967',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/23282290/',
+    },
+    {
+      kurum: 'Cornell University, Cornell Feline Health Center',
+      baslik: 'The Special Needs of the Senior Cat',
+      adres: 'https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/special-needs-senior-cat',
+    },
+    {
+      kurum: 'ASPCA',
+      baslik: 'Adopt a Golden-Aged Pet for National Senior Pet Month! (16.11.2023)',
+      adres: 'https://www.aspca.org/news/adopt-golden-aged-pet-national-senior-pet-month',
+    },
+  ],
+};

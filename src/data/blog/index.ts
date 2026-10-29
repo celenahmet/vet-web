@@ -78,6 +78,26 @@ import { kedilerdeMaltNeIseYarar } from './kedilerde-malt-ne-ise-yarar';
 import { kedilerinDisleriNasilTemizlenir } from './kedilerin-disleri-nasil-temizlenir';
 import { kedilerdeGozEnfeksiyonu } from './kedilerde-goz-enfeksiyonu';
 import { kedilerdeGozBoyamaTesti } from './kedilerde-goz-boyama-testi';
+import { kedilerNedenMirlar } from './kediler-neden-mirlar';
+import { kedilerNedenYogurmaYapar } from './kediler-neden-yogurma-yapar';
+import { kedimNedenGeceUyumuyor } from './kedim-neden-gece-uyumuyor';
+import { kedilerNedenCokMiyavlar } from './kediler-neden-cok-miyavlar';
+import { kedilerNedenKutulariSever } from './kediler-neden-kutulari-sever';
+import { kedilerSahibiniTanirMi } from './kediler-sahibini-tanir-mi';
+import { kopeklerNedenUlur } from './kopekler-neden-ulur';
+import { kopeklerNedenKuyrukSallar } from './kopekler-neden-kuyruk-sallar';
+import { kopeklerRuyaGorurMu } from './kopekler-ruya-gorur-mu';
+import { kopeklerRenkleriGorurMu } from './kopekler-renkleri-gorur-mu';
+import { yavruKediTuvaletEgitimi } from './yavru-kedi-tuvalet-egitimi';
+import { yavruKopekTuvaletEgitimi } from './yavru-kopek-tuvalet-egitimi';
+import { kediIleKopekNasilAlistirilir } from './kedi-ile-kopek-nasil-alistirilir';
+import { kediIsimleri } from './kedi-isimleri';
+import { kopekIsimleri } from './kopek-isimleri';
+import { kediKopekSatmakYasakMi } from './kedi-kopek-satmak-yasak-mi';
+import { evcilHayvanlaTopluTasima } from './evcil-hayvanla-toplu-tasima';
+import { sokakKedisiSahiplenmek } from './sokak-kedisi-sahiplenmek';
+import { yasliHayvanSahiplenmek } from './yasli-hayvan-sahiplenmek';
+import { abKediKopekYasasi } from './ab-kedi-kopek-yasasi';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -108,6 +128,11 @@ const TUM_YAZILAR: BlogYazi[] = [
   veterinerHekimNasilOlunur, kopekYasiHesaplama, kedilereZararliYiyecekler, kediKacGundeDogurur,
   kopekKacGundeDogurur, kediKizginlikDonemi, kopekKizginlikDonemi, kopekGundeKacGramMamaYer,
   yeniKediEveAlisma, kopeklerNedenOtYer, komsununKopegiHavliyor,
+  kedilerNedenMirlar, kedilerNedenYogurmaYapar, kedimNedenGeceUyumuyor, kedilerNedenCokMiyavlar,
+  kedilerNedenKutulariSever, kedilerSahibiniTanirMi, kopeklerNedenUlur, kopeklerNedenKuyrukSallar,
+  kopeklerRuyaGorurMu, kopeklerRenkleriGorurMu, yavruKediTuvaletEgitimi, yavruKopekTuvaletEgitimi,
+  kediIleKopekNasilAlistirilir, kediIsimleri, kopekIsimleri, kediKopekSatmakYasakMi,
+  evcilHayvanlaTopluTasima, sokakKedisiSahiplenmek, yasliHayvanSahiplenmek, abKediKopekYasasi,
 ];
 
 /**
