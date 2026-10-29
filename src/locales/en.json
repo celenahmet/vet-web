@@ -1611,5 +1611,74 @@
   "contact_social_desc": "You can follow our social media accounts to be informed about current developments, new features, and tips.",
   "faq_info_1_btn": "READ ARTICLES",
   "faq_info_2_btn": "DOWNLOAD APP",
-  "faq_info_3_btn": "OPEN SUPPORT TICKET"
+  "faq_info_3_btn": "OPEN SUPPORT TICKET",
+  "a11y": {
+    "skip_to_content": "Skip to content",
+    "bar": {
+      "open": "Accessibility settings",
+      "move": "Drag it or use Alt + up/down arrows to move it along the edge",
+      "side": "Bar position",
+      "side_left": "Left",
+      "side_right": "Right",
+      "title": "Accessibility",
+      "active": "{{sayi}} tools on",
+      "compact": "Compact view",
+      "wide": "Wide view",
+      "close": "Close",
+      "profiles": "Profiles",
+      "tools": "Tools",
+      "level": "level {{seviye}}/{{toplam}}",
+      "text_size": "Text size: {{yuzde}}%",
+      "privacy": "Preferences are stored on this device only.",
+      "reset": "Reset"
+    },
+    "profiles": {
+      "az_goren": "Low vision",
+      "disleksi": "Dyslexia friendly",
+      "dikkat": "Focus mode",
+      "hareket": "Motion sensitive"
+    },
+    "tools": {
+      "yaziBoyutu": "Text size",
+      "satirAraligi": "Line height",
+      "harfAraligi": "Letter spacing",
+      "okunakliYazi": "Readable font",
+      "kontrast": "High contrast",
+      "tersRenk": "Invert colors",
+      "renk": "Saturation",
+      "baglantiVurgu": "Highlight links",
+      "baslikVurgu": "Highlight headings",
+      "buyukImlec": "Big cursor",
+      "okumaKilavuzu": "Reading guide",
+      "okumaMaskesi": "Reading mask",
+      "hareketsiz": "Stop motion",
+      "gorselGizle": "Hide images",
+      "odakBelirgin": "Strong focus",
+      "sesliOkuma": "Read aloud"
+    },
+    "tools_short": {
+      "yaziBoyutu": "Text",
+      "satirAraligi": "Lines",
+      "harfAraligi": "Letters",
+      "okunakliYazi": "Readable",
+      "kontrast": "Contrast",
+      "tersRenk": "Invert",
+      "renk": "Saturation",
+      "baglantiVurgu": "Links",
+      "baslikVurgu": "Headings",
+      "buyukImlec": "Cursor",
+      "okumaKilavuzu": "Guide",
+      "okumaMaskesi": "Mask",
+      "hareketsiz": "No motion",
+      "gorselGizle": "No images",
+      "odakBelirgin": "Focus",
+      "sesliOkuma": "Read aloud"
+    },
+    "profiles_short": {
+      "az_goren": "Low vision",
+      "disleksi": "Dyslexia",
+      "dikkat": "Focus",
+      "hareket": "Motion"
+    }
+  }
 }

@@ -1555,5 +1555,74 @@
   "contact_social_desc": "Güncel gelişmelerden, yeni özelliklerden ve ipuçlarından haberdar olmak için sosyal medya hesaplarımızı takip edebilirsiniz.",
   "faq_info_1_btn": "YAZILARI OKU",
   "faq_info_2_btn": "UYGULAMAYI İNDİR",
-  "faq_info_3_btn": "DESTEK TALEBİ AÇ"
+  "faq_info_3_btn": "DESTEK TALEBİ AÇ",
+  "a11y": {
+    "skip_to_content": "İçeriğe geç",
+    "bar": {
+      "open": "Erişilebilirlik ayarları",
+      "move": "Sürükleyerek ya da Alt ve yukarı/aşağı ok tuşlarıyla kenar boyunca taşıyabilirsiniz",
+      "side": "Çubuk konumu",
+      "side_left": "Sol",
+      "side_right": "Sağ",
+      "title": "Erişilebilirlik",
+      "active": "{{sayi}} araç açık",
+      "compact": "Kompakt görünüm",
+      "wide": "Geniş görünüm",
+      "close": "Kapat",
+      "profiles": "Hazır profiller",
+      "tools": "Araçlar",
+      "level": "seviye {{seviye}}/{{toplam}}",
+      "text_size": "Yazı boyutu: %{{yuzde}}",
+      "privacy": "Tercihler yalnız bu cihazda saklanır.",
+      "reset": "Sıfırla"
+    },
+    "profiles": {
+      "az_goren": "Az gören",
+      "disleksi": "Disleksi dostu",
+      "dikkat": "Dikkat odaklı",
+      "hareket": "Hareket hassasiyeti"
+    },
+    "tools": {
+      "yaziBoyutu": "Yazı boyutu",
+      "satirAraligi": "Satır aralığı",
+      "harfAraligi": "Harf aralığı",
+      "okunakliYazi": "Okunaklı yazı",
+      "kontrast": "Yüksek kontrast",
+      "tersRenk": "Ters renk",
+      "renk": "Renk doygunluğu",
+      "baglantiVurgu": "Bağlantıları vurgula",
+      "baslikVurgu": "Başlıkları vurgula",
+      "buyukImlec": "Büyük imleç",
+      "okumaKilavuzu": "Okuma kılavuzu",
+      "okumaMaskesi": "Okuma maskesi",
+      "hareketsiz": "Hareketi durdur",
+      "gorselGizle": "Görselleri gizle",
+      "odakBelirgin": "Belirgin odak",
+      "sesliOkuma": "Sesli oku"
+    },
+    "tools_short": {
+      "yaziBoyutu": "Yazı",
+      "satirAraligi": "Satır",
+      "harfAraligi": "Harf",
+      "okunakliYazi": "Okunaklı",
+      "kontrast": "Kontrast",
+      "tersRenk": "Ters renk",
+      "renk": "Doygunluk",
+      "baglantiVurgu": "Bağlantılar",
+      "baslikVurgu": "Başlıklar",
+      "buyukImlec": "İmleç",
+      "okumaKilavuzu": "Kılavuz",
+      "okumaMaskesi": "Maske",
+      "hareketsiz": "Hareketsiz",
+      "gorselGizle": "Görselsiz",
+      "odakBelirgin": "Odak",
+      "sesliOkuma": "Sesli oku"
+    },
+    "profiles_short": {
+      "az_goren": "Az gören",
+      "disleksi": "Disleksi",
+      "dikkat": "Dikkat",
+      "hareket": "Hareket"
+    }
+  }
 }

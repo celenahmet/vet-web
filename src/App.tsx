@@ -1,4 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { ErisilebilirlikCubugu } from './components/ErisilebilirlikCubugu';
 import { Suspense, lazy, useEffect, type ReactNode } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -176,6 +177,8 @@ function App() {
           </Routes>
         </main>
         <PazarlamaKabugu><Footer /></PazarlamaKabugu>
+        {/* Erişilebilirlik çubuğu (Ahmet 29.10): pazarlama sitesinde; klinik panelinde değil. */}
+        <PazarlamaKabugu><ErisilebilirlikCubugu /></PazarlamaKabugu>
       </Suspense>
     </div>
   );
