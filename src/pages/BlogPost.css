@@ -330,6 +330,16 @@
 }
 
 /*
+ * ⚠️ 29.10.2026: bu uc bolum artik `.yazi-ana` (sol sutun) ICINDE; genisligi
+ * izgara veriyor. Yukaridaki `100% - 368px` daraltmasi orada bir kez daha
+ * daraltirdi, o yuzden sol sutunun icinde kaldiriliyor. Kenar cubugu boylece
+ * kaynaklarin sonuna kadar yapisik kaliyor (BlogPost.tsx'teki not).
+ */
+.yazi-sayfa .yazi-ana .yazi-kontrol > *,
+.yazi-sayfa .yazi-ana .yazi-sss > *,
+.yazi-sayfa .yazi-ana .yazi-kaynaklar > * { max-width: none; }
+
+/*
  * ⚠️ ILGILI YAZILAR SIKISIKTI (Ahmet, 24.08.2026: "ilgili yazilar kismi da cok
  * sikisik kalmis"). Uc sey birden dardi: bolumun ustundeki bosluk SSS'in son
  * kartina yapisiyordu, kartlar arasi 18px idi ve kart icindeki metin alaninin
