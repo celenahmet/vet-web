@@ -517,8 +517,16 @@ for (const y of yazilar) {
     yazilar.length > 1
       ? `<nav class="container yazi-ilgili" aria-label="Diğer yazılar"><h2>Diğer yazılar</h2><ul class="yazi-ilgili-liste">${ilgiliYazilar(y, yazilar, 6)
           .map((d) => `<li><a href="/blog/${d.slug}">${kac(d.baslik)}</a></li>`)
-          .join('')}</ul></nav></div></div></article>`
-      : '</div></div></article>',
+          .join('')}</ul></nav>`
+      : '',
+    /*
+     * ⚠️ 30.10.2026: buradaki eski `</div></div></article>` kapanislari SILINDI.
+     * 29.10'da sutunlar ve makale yazi sonundan sonra kapatilinca bunlar FAZLA
+     * kaldi ve #root'u erken kapatti; botlar icin eklenen sabit altbilgi
+     * (ALTBILGI) kokun DISINA dustu, React acilinca silinmedi ve her yazi
+     * sayfasinin altinda stilsiz liste olarak gorundu (Ahmet 30.10 ekran
+     * goruntusu). Bekci: scripts/prerender-denetimi (asagida, derlemede).
+     */
   ].filter(Boolean).join('\n');
 
   const html = govdeDegistir(
