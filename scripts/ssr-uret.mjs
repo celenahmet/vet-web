@@ -26,7 +26,7 @@ const SSR_DIST = join(KOK, 'dist-ssr');
  * istiyor, /@klinik kullanici verisi, /blog ve hukuki sayfalar zaten
  * prerender'da. Yeni pazarlama sayfasi acilinca buraya da eklenir.
  */
-const ROTALAR = ['/', '/features', '/pets', '/clinics', '/pricing', '/download', '/about', '/contact'];
+const ROTALAR = ['/', '/features', '/pets', '/clinics', '/pricing', '/download', '/about', '/contact', '/social'];
 
 const giris = readdirSync(SSR_DIST).find((f) => /^ssr-giris.*\.js$/.test(f));
 if (!giris) { console.error('ssr-uret: dist-ssr/ssr-giris*.js yok — once `vite build --ssr`'); process.exit(1); }

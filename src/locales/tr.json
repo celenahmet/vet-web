@@ -1633,5 +1633,17 @@
   "post_react_great": "Harika",
   "post_react_hard": "Zorlandım",
   "post_ai_copied": "İstem panoya kopyalandı; {{ad}} sohbet kutusuna yapıştırabilirsiniz",
-  "post_google_news": "Google Haberler'de takip edin"
+  "post_google_news": "Google Haberler'de takip edin",
+  "footer_social": "Sosyal medyada biz",
+  "social_seo_title": "Sosyal medyada Veterito | Instagram, TikTok, YouTube",
+  "social_seo_desc": "Veterito'nun Instagram, TikTok, YouTube, X ve LinkedIn'deki son ve en çok izlenen paylaşımları tek sayfada.",
+  "social_title": "Sosyal medyada biz",
+  "social_desc": "Kedi, köpek ve evcil hayvan bakımı üzerine kısa videolarımız ve paylaşımlarımız. Platform seçin, yenileri ya da en çok izlenenleri görün.",
+  "social_platforms": "Sosyal medya platformları",
+  "social_sort": "Sıralama",
+  "social_new": "Yeni",
+  "social_popular": "Popüler",
+  "social_see_all": "{{konum}} tümünü gör",
+  "social_follow": "{{konum}} takip edin",
+  "social_profile_text": "Paylaşımlarımızı {{ag}} hesabımızda bulabilirsiniz."
 }

@@ -20,6 +20,7 @@ const Home = lazy(() => import('./pages/Home'));
 const Features = lazy(() => import('./pages/Features'));
 const Pets = lazy(() => import('./pages/Pets'));
 const About = lazy(() => import('./pages/About'));
+const Sosyal = lazy(() => import('./pages/Sosyal'));
 const Blog = lazy(() => import('./pages/Blog'));
 const Yazar = lazy(() => import('./pages/Yazar'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
@@ -150,6 +151,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/iletisim" element={<Contact />} />
             <Route path="/sss" element={<FAQ />} />
+            <Route path="/social" element={<Sosyal />} />
             <Route path="/legal" element={<LegalHub />} />
             <Route path="/privacy" element={<LegalDocument />} />
             <Route path="/kvkk" element={<LegalDocument />} />

@@ -1689,5 +1689,17 @@
   "post_react_great": "Great",
   "post_react_hard": "Found it hard",
   "post_ai_copied": "Prompt copied; paste it into the {{ad}} chat box",
-  "post_google_news": "Follow on Google News"
+  "post_google_news": "Follow on Google News",
+  "footer_social": "Veterito on social media",
+  "social_seo_title": "Veterito on social media | Instagram, TikTok, YouTube",
+  "social_seo_desc": "Veterito's latest and most viewed posts on Instagram, TikTok, YouTube, X and LinkedIn on one page.",
+  "social_title": "Veterito on social media",
+  "social_desc": "Short videos and posts about cat, dog and pet care. Pick a platform and see the newest or most viewed.",
+  "social_platforms": "Social media platforms",
+  "social_sort": "Sort",
+  "social_new": "Newest",
+  "social_popular": "Popular",
+  "social_see_all": "See all on {{ag}}",
+  "social_follow": "Follow us on {{ag}}",
+  "social_profile_text": "You can find our posts on our {{ag}} account."
 }

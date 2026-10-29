@@ -94,6 +94,8 @@ const Footer = () => {
               <h3 className="font-semibold text-[15px] text-slate-900 dark:text-white mb-2">{t('footer_contact')}</h3>
             <Link to="/contact" className="text-sm hover:text-emerald-600 transition-colors">{t('contact_title')}</Link>
             <Link to="/sss" className="text-sm hover:text-emerald-600 transition-colors">{t('footer_link_faq')}</Link>
+            {/* Sosyal medyada biz (Ahmet 30.10): /social, platformlarin son ve populer gonderileri. */}
+            <Link to="/social" className="text-sm hover:text-emerald-600 transition-colors">{t('footer_social')}</Link>
             <a href={`mailto:${brandConfig.social.contactEmail}`} className="text-sm hover:text-emerald-600 transition-colors">{brandConfig.social.contactEmail}</a>
             </div>
 
