@@ -431,16 +431,15 @@ for (const y of yazilar) {
     ...y.bloklar.map(blokHtml),
     `</div>`,
     y.kontrolListesi?.length
-      ? `<section class="container yazi-kontrol"><div class="kontrol-panel"><header><div><h2>Kontrol listesi</h2><p>Yazıyı kapatmadan önce bunları gözden geçirin.</p></div></header><ul>${y.kontrolListesi
+      ? `<section class="yazi-kontrol"><div class="kontrol-panel"><header><div><h2>Kontrol listesi</h2><p>Yazıyı kapatmadan önce bunları gözden geçirin.</p></div></header><ul>${y.kontrolListesi
           .map((m) => `<li><span class="kontrol-madde">${kac(m)}</span></li>`)
           .join('')}</ul></div></section>`
       : '',
     y.sss?.length
-      ? `<section class="container yazi-sss"><h2>Sık sorulanlar</h2><div class="sss-izgara">${y.sss
+      ? `<section class="yazi-sss"><h2>Sık sorulanlar</h2><div class="sss-izgara">${y.sss
           .map((s, i) => `<div class="sss-kart" id="soru-${i + 1}"><span class="sss-no">${String(i + 1).padStart(2, '0')}</span><div><h3>${kac(s.soru)}</h3><p>${kac(s.cevap)}</p></div></div>`)
           .join('')}</div></section>`
       : '',
-    `</article>`,
     /*
      * ⚠️ KAYNAKLAR PRERENDER CIKTISINA DA KONUYOR (24.08.2026). Onceden yalniz
      * React tarafinda ciziliyordu; tarama botu ve yapay zeka tarayicisi kaynak
@@ -455,7 +454,7 @@ for (const y of yazilar) {
        * iceriginde kaynak bir guvenilirlik sinyali; yalniz React tarafinda
        * cizilirse o sinyal hic verilmemis oluyor.
        */
-      ? `<section class="container yazi-kaynaklar"><h2>Kaynaklar</h2><ol>${y.kaynaklar
+      ? `<section class="yazi-kaynaklar"><h2>Kaynaklar</h2><ol>${y.kaynaklar
           .map((k) => {
             const bas = k.adres
               ? `<a href="${kac(k.adres)}" rel="noopener noreferrer">${kac(k.baslik)}</a>`
@@ -473,6 +472,14 @@ for (const y of yazilar) {
           })
           .join('')}</ol></section>`
       : '',
+    /*
+     * ⚠️ 29.10.2026: kontrol listesi, SSS ve kaynaklar React'te `.yazi-ana`
+     * (sol sutun) ICINDE ve `container` sinifsiz (BlogPost.tsx'teki not). Burada
+     * da ayni agac: sutunlar kaynaklardan SONRA kapaniyor, sonra </article>.
+     * Eskiden iki div hic kapanmiyordu ve kaynaklar makalenin disindaydi.
+     */
+    `</div></div>`,
+    `</article>`,
     /*
      * ⚠️ IC BAGLANTILAR PRERENDER CIKTISINA DA KONUYOR. React acilinca yerini kenar
      * cubugu aliyor, ama tarama botu JS calistirmadan da diger yazilara gecebiliyor.
