@@ -128,6 +128,14 @@ import { kedimNedenIsiriyor } from './kedim-neden-isiriyor';
 import { kopeklerUsurMu } from './kopekler-usur-mu';
 import { tatileGiderkenKediKopek } from './tatile-giderken-kedi-kopek';
 import { vapurdaEvcilHayvan } from './vapurda-evcil-hayvan';
+import { kediCimiNeIseYarar } from './kedi-cimi-ne-ise-yarar';
+import { kediOtuNedir } from './kedi-otu-nedir';
+import { kediYikanirMi } from './kedi-yikanir-mi';
+import { kedilerKacYasinaKadarBuyur } from './kediler-kac-yasina-kadar-buyur';
+import { kedilerKaranliktaGorurMu } from './kediler-karanlikta-gorur-mu';
+import { kedilerNedenYalanir } from './kediler-neden-yalanir';
+import { kopekSaldirisindaNeYapilir } from './kopek-saldirisinda-ne-yapilir';
+import { kopekTirnagiNasilKesilir } from './kopek-tirnagi-nasil-kesilir';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -172,6 +180,8 @@ const TUM_YAZILAR: BlogYazi[] = [
   kediKumuCesitleri, kediNedenTislar, kediTirmalamaTahtasi, kediTirnagiNasilKesilir,
   kedilerKacSaatUyur, kedilerNedenKuyrukSallar, kedimNedenIsiriyor, kopeklerUsurMu,
   tatileGiderkenKediKopek, vapurdaEvcilHayvan,
+  kediCimiNeIseYarar, kediOtuNedir, kediYikanirMi, kedilerKacYasinaKadarBuyur,
+  kedilerKaranliktaGorurMu, kedilerNedenYalanir, kopekSaldirisindaNeYapilir, kopekTirnagiNasilKesilir,
 ];
 
 /**
