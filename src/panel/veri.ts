@@ -889,7 +889,8 @@ export async function ozelCalismaGunuSil(klinik: string, id: string): Promise<vo
 
 export async function hizmetAdlariniOku(): Promise<HizmetAdi[]> {
   const { data, error } = await istemci.from('service_catalog')
-    .select('code,name_tr,kind,category,sort_order').order('sort_order', { ascending: true }).limit(80);
+    .select('code,name_tr,kind,category,sort_order').eq('is_active', true)
+    .order('sort_order', { ascending: true }).limit(80);
   if (error) throw error;
   return (data as HizmetAdi[] | null) ?? [];
 }
