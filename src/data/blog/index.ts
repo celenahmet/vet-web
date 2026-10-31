@@ -136,6 +136,8 @@ import { kedilerKaranliktaGorurMu } from './kediler-karanlikta-gorur-mu';
 import { kedilerNedenYalanir } from './kediler-neden-yalanir';
 import { kopekSaldirisindaNeYapilir } from './kopek-saldirisinda-ne-yapilir';
 import { kopekTirnagiNasilKesilir } from './kopek-tirnagi-nasil-kesilir';
+import { kediMiKopekMi } from './kedi-mi-kopek-mi';
+import { kopeklerNedenYalar } from './kopekler-neden-yalar';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -182,6 +184,7 @@ const TUM_YAZILAR: BlogYazi[] = [
   tatileGiderkenKediKopek, vapurdaEvcilHayvan,
   kediCimiNeIseYarar, kediOtuNedir, kediYikanirMi, kedilerKacYasinaKadarBuyur,
   kedilerKaranliktaGorurMu, kedilerNedenYalanir, kopekSaldirisindaNeYapilir, kopekTirnagiNasilKesilir,
+  kediMiKopekMi, kopeklerNedenYalar,
 ];
 
 /**

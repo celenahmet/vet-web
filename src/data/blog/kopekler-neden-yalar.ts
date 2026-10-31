@@ -1,0 +1,128 @@
+import type { BlogYazi } from './types';
+
+export const kopeklerNedenYalar: BlogYazi = {
+  slug: 'kopekler-neden-yalar',
+  baslik: 'Köpekler Neden Yalar? Yüz, Pati ve Ağız Yalama',
+  ozet: 'Köpeklerin yalaması çoğu zaman sosyal temasın parçası ama gerilim, bekleyiş ya da kaşıntı da olabilir. Hangi yalama normal, hangisi muayene gerektirir?',
+  kapakAlt:
+    'Sahibinin elini yalayan köpek',
+  kategori: 'Köpek',
+  tarih: '2026-10-31',
+  bloklar: [
+    { kind: 'paragraf', metin: '**Köpeklerin yalaması çoğu zaman sosyal temasın bir parçasıdır, ama gerilim, bekleyiş ya da kaşıntı gibi başka nedenleri de olabilir ve aşırıya kaçtığında veteriner hekim değerlendirmesi gerekiyor.** Yani yalama tek başına ne sevginin ne de hastalığın kanıtıdır; hangi bağlamda, ne sıklıkta ve nereye yöneldiğine bakmak gerekiyor.' },
+    { kind: 'paragraf', metin: 'Aşağıda sahipler üzerinde yapılan bir anket çalışmasının yalamanın ne kadar yaygın olduğuna dair söylediklerini, ağız yalamanın duygularla ilişkisini, pati yalama ile kaşıntı bağlantısını, aşırı yalamanın ne zaman davranış sorunu sayıldığını ve yalanmanın sağlık açısından neler getirebileceğini anlatıyoruz. Yalamanın nedenini evde tahmin etmek yerine, endişe varsa veteriner hekime danışmak en doğrusudur.' },
+
+    { kind: 'tablo', basliklar: ['Yalama türü', 'Olası bağlam', 'Değerlendirme'], satirlar: [
+      ['Elini ya da yüzünü yalama', 'Sosyal temas', 'Çok yaygın; hijyen önlemleri akılda tutulmalı'],
+      ['Dilini ağzında gezdirme, dudak yalama', 'Gerilim, korku ya da bekleyiş', 'Bağlama bakılmalı; durum sürüyorsa veteriner hekime danışılmalı'],
+      ['Pati ve bacak yalama', 'Kaşıntıyla ilişkili olabilir', 'Sürekli ise muayene gerekiyor'],
+      ['Aynı yeri durmadan yalama', 'Aşırı tekrar eden davranış', 'Önce sağlık nedenleri dışlanmalı, veteriner hekim değerlendirmeli'],
+    ]},
+
+    { kind: 'baslik', metin: 'Yalama çok yaygın bir temas biçimi' },
+    { kind: 'paragraf', metin: 'Gent Üniversitesi Veteriner Fakültesi\'nden Joosten ve ekibi 2020\'de köpek sahiplerine çevrimiçi bir anket uyguladı ve 701 tamamlanmış anket topladı. Köpeklerin yüzde 85,3\'ü sahibinin elini yalıyordu, sahiplerin yüzde 49,3\'ü ise yüzünün yalandığını bildirdi. Yani yalama, köpek ile insan arasındaki temasın alışıldık ve yoğun bir parçası.' },
+    { kind: 'paragraf', metin: 'Aynı çalışma, yaşı, cinsiyeti ve yaşadığı yer gibi etkenlerin yanında köpeğin boyutu ve yaşının da temasın yoğunluğuyla ilişkili olduğunu gösterdi. En yoğun teması, ortalamada, şehirde yaşayan, 65 yaşın altındaki kadın katılımcılar ve küçük, genç köpekleri kuruyordu. Araştırmacılar bu yakın temasın bulaşıcı hastalık etkenleri ve dirençli bakteriler açısından taşıdığı riskin ayrıca incelenmesi gerektiğini belirtiyor.' },
+
+    { kind: 'baslik', metin: 'Ağız yalama gerilimin ve bekleyişin işareti olabilir' },
+    { kind: 'paragraf', metin: 'Lincoln Üniversitesi\'nden Albuquerque ve ekibi 2018\'de köpeklere olumlu ve olumsuz yüz ifadeleri gösterip ağız yalama davranışlarını kaydetti. Olumsuz yüzlere bakan köpeklerde ağız yalama daha sık görüldü ve bu davranış köpek görüntülerine kıyasla insan görüntülerine karşı daha çok ortaya çıktı. Araştırmacılar bunu köpeklerin duygusal ifadeleri işlevsel biçimde anlıyor olabileceğine işaret eden bir bulgu olarak yorumluyor.' },
+    { kind: 'paragraf', metin: 'Merck Veteriner El Kitabı da akut korku ve kaygının davranışsal belirtileri arasında esneme ya da dudak yalama gibi yer değiştirme davranışlarını sayıyor. Paris\'teki Ulusal Doğa Tarihi Müzesi\'nden Gaunet\'in 2008 tarihli çalışmasında ise ulaşması engellenen yiyecek karşısında köpekler sesli biçimde ağızlarını yaladı; bu davranışı rehber köpeklerin 9\'da 7\'si, evcil köpeklerin 9\'da 2\'si gösterdi. Yani ağız yalama bazen gerilimle, bazen beklentiyle ortaya çıkabiliyor.' },
+    { kind: 'yanilgi', baslik: '"Köpek yalıyorsa beni seviyordur"', metin: 'Yalama sevgi gösterisi olabilir, ama tek anlamı bu değildir. Ağız yalama olumsuz duygusal uyaranlarla ve korku, kaygı gibi durumlarda da görülüyor. Anlamı belirlemek için yalamanın hangi ortamda, hangi beden dili ve ses eşliğinde geldiğine bakmak gerekiyor.' },
+
+    { kind: 'baslik', metin: 'Pati ve vücut yalama kaşıntıyla ilişkili olabilir' },
+    { kind: 'paragraf', metin: 'Kaliforniya\'da Stetina, Marks ve Griffin\'in 2015 tarihli çalışması, deri, kulak, metabolik ya da sindirim sistemi hastalığı öyküsü olmayan ve muayenesi normal 314 köpeği inceledi. Sahipler ve 31 veteriner hekim kaşıntıyı ölçek üzerinde puanladı. Köpeklerin yüzde 87,6\'sında kaşıntı puanı düşüktü; puan yükseldikçe pati yalama ya da çiğneme, yüz sürtme, baş silkme ve hapşırma davranışları da artıyordu.' },
+    { kind: 'paragraf', metin: 'Aynı çalışmada günlük yürüyüş sayısı arttıkça pati yalama ya da çiğnemenin de arttığı görüldü. Dolayısıyla sağlıklı görünen bir köpeğin arada patisini yalaması olağan olabilir. Yalama sıklaşıyor, kızarıklık, koku ya da tüy kaybı eşlik ediyor ya da köpek aynı bölgeyle uğraşmayı bırakmıyorsa nedenin muayeneyle belirlenmesi gerekiyor. Parazitlere karşı korunma konusunda [[kopeklerde-ic-ve-dis-parazit|köpeklerde iç ve dış parazit]] yazımıza bakabilirsiniz; kulak çevresindeki rahatsızlık için de [[kopeklerde-kulak-enfeksiyonu|köpeklerde kulak enfeksiyonu]] yazımız var.' },
+
+    { kind: 'baslik', metin: 'Aşırı yalama ne zaman davranış sorunu sayılır' },
+    { kind: 'paragraf', metin: 'Merck Veteriner El Kitabı\'na göre kompulsif bozukluklar, tekrarlayan, basmakalıp ya da bakım davranışlarının içinde bulundukları durumla ilgisiz biçimde, aşırı sıklıkta ya da uzunlukta ortaya çıktığı tablodur. Davranış köpeğin olağan işleyişine engel oluyorsa ya da tetikleyen uyarandan bağımsızlaşmışsa bu tanı gündeme geliyor. Rutinin öngörülemez olması, çevrenin değişmesi, normal davranışlar için yeterli çıkış bulunmaması ve süregelen kaygı başlatıcı etkenler arasında sayılıyor.' },
+    { kind: 'paragraf', metin: 'Aynı kaynak bu tanının dışlama yoluyla konduğunu, yani önce fiziksel sağlık sorunlarının araştırılması gerektiğini vurguluyor. Labrador Retriever\'larda ön bacakların alt kısmını aşırı yalamaya daha sık rastlandığı da belirtiliyor. Ayrılık stresi de bu tabloyu besleyebilir; ayrıntılar için [[kopeklerde-ayrilik-kaygisi|köpeklerde ayrılık kaygısı]] yazımıza bakılabilir.' },
+
+    { kind: 'baslik', metin: 'Yalanmanın sağlık açısından anlamı' },
+    { kind: 'paragraf', metin: 'Kaliforniya Üniversitesi Davis Veteriner Fakültesi\'nden Chomel ve Sun\'ın 2011 tarihli derlemesine göre köpek ve kedi ağızlarında doğal olarak bulunan Pasteurella ve Capnocytophaga canimorsus gibi bakteriler, yalanma ve yakın temas sonrası insanlarda enfeksiyona yol açabiliyor. Derlemede köpeğin açık yarayı ya da ameliyat bölgesini yalamasının ardından enfeksiyon gelişen olgular ve çok az sayıda da olsa ölümle sonuçlanan olgu raporları yer alıyor.' },
+    { kind: 'paragraf', metin: 'Derleme, özellikle küçük çocukların ve bağışıklığı zayıf kişilerin hayvanlarıyla yatak paylaşmaktan ve düzenli öpüşmekten caydırılması gerektiğini söylüyor.' },
+    { kind: 'yanilgi', baslik: '"Köpek yarayı yalarsa temizler"', metin: 'Köpek ağzında bulunan bakteriler yaralı ya da bütünlüğü bozulmuş cilt üzerinden enfeksiyona yol açabiliyor. Yalanan bölge, özellikle açık yara ise, sabun ve suyla hemen yıkanması öneriliyor.' },
+    { kind: 'baslik', metin: 'Yalanmaya karşı alınabilecek önlemler' },
+    { kind: 'liste', maddeler: [
+      'Yalanan bölgeyi, özellikle açık yaraysa, sabun ve suyla hemen yıkamak',
+      'Köpeğin açık yaraya, ameliyat bölgesine ya da bozulmuş cilde dilini değdirmesine izin vermemek',
+      'Çocukların ve bağışıklığı zayıf kişilerin yüz ve ağız çevresini yalatmamak',
+      'Köpeği parazitlerden korumak, düzenli aşı ve veteriner kontrollerini sürdürmek',
+    ]},
+    { kind: 'paragraf', metin: 'Chomel ve Sun\'ın derlemesi ayrıca, gelişmekte olan birçok ülkede kuduz olan ya da kuduz şüphesi taşıyan köpeklerin yalamasının önemli bir risk sayıldığını belirtiyor. Kuduz şüphesi taşıyan bir hayvanla temas olduysa vakit kaybetmeden bir sağlık kuruluşuna danışılması önerilir. Kuduz aşısı hakkında [[ucretsiz-kuduz-asisi|ücretsiz kuduz aşısı]] yazımızda bilgi bulabilirsiniz.' },
+
+    { kind: 'uyari', metin: 'Köpek aynı bölgeyi durmadan yalıyorsa, yalama bölgesinde kızarıklık, yara, koku ya da tüy kaybı oluşuyorsa, davranış yeme içme ve günlük işleyişi bozuyorsa veteriner hekime başvurulması gerekiyor. Nedenin ev ortamında tahmin edilmesi ya da kendi başına bir şey uygulanması önerilmez.' },
+  ],
+  kontrolListesi: [
+    'Aynı yeri durmadan yalıyor mu?',
+    'Yalanan bölgede kızarıklık var mı?',
+    'Yalama gerilimli ortamda mı artıyor?',
+    'Köpeğin parazit korunması güncel mi?',
+    'Yalanan açık yara var mı?',
+    'Yalama günlük işleyişi bozuyor mu?',
+  ],
+  sss: [
+    { soru: 'Köpekler neden insanı yalar?', cevap: 'Yalama, köpek ile insan arasındaki yaygın bir temas biçimidir. Gent Üniversitesi\'nin 701 sahiplik anketinde köpeklerin yüzde 85,3\'ü sahibinin elini yalıyordu. Tek bir nedeni yoktur; sosyal temas, gerilim ya da bekleyiş gibi durumlar etkili olabiliyor.' },
+    { soru: 'Köpek ağzını yalıyorsa ne anlama gelir?', cevap: 'Anlamı bağlama göre değişir. Ağız yalama olumsuz duygusal uyaranlarda daha sık görüldü ve Merck Veteriner El Kitabı dudak yalamayı korku ve kaygının belirtileri arasında sayıyor. Yiyecek beklerken de görülebiliyor. Bağlam ve beden diline birlikte bakmak gerekiyor.' },
+    { soru: 'Köpek neden sürekli patisini yalar?', cevap: 'Pati yalama kaşıntıyla ilişkili olabiliyor; sağlıklı köpeklerde de ara sıra görülür. Yalama sürekli hâle geliyorsa, kızarıklık, koku ya da tüy kaybı eşlik ediyorsa nedenin muayeneyle belirlenmesi gerekiyor. Evde tahmin yürütmek ya da bir şey uygulamak önerilmez.' },
+    { soru: 'Köpeğin yüzümü yalaması zararlı mı?', cevap: 'Köpek ağzında doğal olarak bulunan bazı bakteriler insanlarda enfeksiyona yol açabiliyor. Chomel ve Sun\'ın derlemesi özellikle çocukların ve bağışıklığı zayıf kişilerin yakın temastan caydırılmasını öneriyor. Yalanan alan sabun ve suyla yıkanabilir.' },
+    { soru: 'Köpek açık yarayı yalarsa ne olur?', cevap: 'Yaranın yalanması istenmiyor. Derlemelerde köpeğin açık yarayı yalamasının ardından enfeksiyon gelişen olgular bildirilmiş. Yalanan açık yaranın sabun ve suyla hemen yıkanması öneriliyor. Köpeğin ameliyat bölgesi ya da kendi yarası söz konusuysa veteriner hekime danışmak gerekiyor.' },
+    { soru: 'Aşırı yalama bir hastalık mıdır?', cevap: 'Aşırı yalamanın nedeni fiziksel olabileceği gibi davranışsal da olabilir. Merck Veteriner El Kitabı, kompulsif bozukluk tanısından önce fiziksel sağlık sorunlarının dışlanması gerektiğini belirtiyor. Bu ayrımı yalnızca veteriner hekim yapabiliyor.' },
+    { soru: 'Labrador köpekler daha çok mu yalar?', cevap: 'Merck Veteriner El Kitabı Labrador Retriever\'larda ön bacakların alt kısmının aşırı yalanmasına daha sık rastlandığını belirtiyor. Bu, her Labrador\'un yalayacağı anlamına gelmez; ırk yatkınlığı yalnızca bir etkendir. Sıklaşan yalama durumunda ırktan bağımsız olarak muayene önerilir.' },
+  ],
+  kaynaklar: [
+    {
+      kurum: 'Gent Üniversitesi Veteriner Fakültesi',
+      yazarlar: 'Joosten P, Van Cleven A, Sarrazin S, Paepe D, De Sutter A, Dewulf J',
+      baslik: 'Dogs and Their Owners Have Frequent and Intensive Contact',
+      dergi: 'International Journal of Environmental Research and Public Health',
+      yil: 2020,
+      kunye: '17(12):4300',
+      doi: '10.3390/ijerph17124300',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/32560155/',
+    },
+    {
+      kurum: 'Lincoln Üniversitesi, Yaşam Bilimleri Okulu',
+      yazarlar: 'Albuquerque N, Guo K, Wilkinson A, Resende B, Mills DS',
+      baslik: 'Mouth-licking by dogs as a response to emotional stimuli',
+      dergi: 'Behavioural Processes',
+      yil: 2018,
+      kunye: '146:42-45',
+      doi: '10.1016/j.beproc.2017.11.006',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/29129727/',
+    },
+    {
+      kurum: 'Kaliforniya Üniversitesi Davis, Veteriner Fakültesi',
+      yazarlar: 'Stetina KM, Marks SL, Griffin CE',
+      baslik: 'Owner assessment of pruritus and gastrointestinal signs in apparently healthy dogs with no history of cutaneous or noncutaneous disease',
+      dergi: 'Veterinary Dermatology',
+      yil: 2015,
+      kunye: '26(4):246-e54',
+      doi: '10.1111/vde.12219',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/26178605/',
+    },
+    {
+      kurum: 'Kaliforniya Üniversitesi Davis, Veteriner Fakültesi',
+      yazarlar: 'Chomel BB, Sun B',
+      baslik: 'Zoonoses in the bedroom',
+      dergi: 'Emerging Infectious Diseases',
+      yil: 2011,
+      kunye: '17(2):167-172',
+      doi: '10.3201/eid1702.101070',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/21291584/',
+    },
+    {
+      kurum: 'Muséum National d\'Histoire Naturelle, Paris',
+      yazarlar: 'Gaunet F',
+      baslik: 'How do guide dogs of blind owners and pet dogs of sighted owners (Canis familiaris) ask their owners for food?',
+      dergi: 'Animal Cognition',
+      yil: 2008,
+      kunye: '11(3):475-483',
+      doi: '10.1007/s10071-008-0138-3',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/18278527/',
+    },
+    {
+      kurum: 'Merck Veterinary Manual',
+      baslik: 'Behavior Problems of Dogs',
+      adres: 'https://www.merckvetmanual.com/behavior/behavior-of-dogs/behavior-problems-of-dogs',
+    },
+  ],
+};
