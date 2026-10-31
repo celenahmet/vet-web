@@ -98,6 +98,8 @@ import { evcilHayvanlaTopluTasima } from './evcil-hayvanla-toplu-tasima';
 import { sokakKedisiSahiplenmek } from './sokak-kedisi-sahiplenmek';
 import { yasliHayvanSahiplenmek } from './yasli-hayvan-sahiplenmek';
 import { abKediKopekYasasi } from './ab-kedi-kopek-yasasi';
+import { kedilerUsurMu } from './kediler-usur-mu';
+import { hayvanaEziyetCezasi } from './hayvana-eziyet-cezasi';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -133,6 +135,7 @@ const TUM_YAZILAR: BlogYazi[] = [
   kopeklerRuyaGorurMu, kopeklerRenkleriGorurMu, yavruKediTuvaletEgitimi, yavruKopekTuvaletEgitimi,
   kediIleKopekNasilAlistirilir, kediIsimleri, kopekIsimleri, kediKopekSatmakYasakMi,
   evcilHayvanlaTopluTasima, sokakKedisiSahiplenmek, yasliHayvanSahiplenmek, abKediKopekYasasi,
+  kedilerUsurMu, hayvanaEziyetCezasi,
 ];
 
 /**
