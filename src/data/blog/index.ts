@@ -114,6 +114,20 @@ import { pegasusEvcilHayvan } from './pegasus-evcil-hayvan';
 import { thyEvcilHayvan } from './thy-evcil-hayvan';
 import { trendeEvcilHayvan } from './trende-evcil-hayvan';
 import { ucretsizKuduzAsisi } from './ucretsiz-kuduz-asisi';
+import { evcilHayvanOlunce } from './evcil-hayvan-olunce';
+import { kaplumbagaBeslemekYasakMi } from './kaplumbaga-beslemek-yasak-mi';
+import { kediGundeNeKadarSuIcmeli } from './kedi-gunde-ne-kadar-su-icmeli';
+import { kediKacGunYalnizKalabilir } from './kedi-kac-gun-yalniz-kalabilir';
+import { kediKumuCesitleri } from './kedi-kumu-cesitleri';
+import { kediNedenTislar } from './kedi-neden-tislar';
+import { kediTirmalamaTahtasi } from './kedi-tirmalama-tahtasi';
+import { kediTirnagiNasilKesilir } from './kedi-tirnagi-nasil-kesilir';
+import { kedilerKacSaatUyur } from './kediler-kac-saat-uyur';
+import { kedilerNedenKuyrukSallar } from './kediler-neden-kuyruk-sallar';
+import { kedimNedenIsiriyor } from './kedim-neden-isiriyor';
+import { kopeklerUsurMu } from './kopekler-usur-mu';
+import { tatileGiderkenKediKopek } from './tatile-giderken-kedi-kopek';
+import { vapurdaEvcilHayvan } from './vapurda-evcil-hayvan';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -154,6 +168,10 @@ const TUM_YAZILAR: BlogYazi[] = [
   sokakKopekleriYasasi7527, yaraliSokakHayvani,
   arabadaKopekTasima, hayvanTerkEtmeCezasi, kuduzTitreTesti, nobetciVeteriner,
   pegasusEvcilHayvan, thyEvcilHayvan, trendeEvcilHayvan, ucretsizKuduzAsisi,
+  evcilHayvanOlunce, kaplumbagaBeslemekYasakMi, kediGundeNeKadarSuIcmeli, kediKacGunYalnizKalabilir,
+  kediKumuCesitleri, kediNedenTislar, kediTirmalamaTahtasi, kediTirnagiNasilKesilir,
+  kedilerKacSaatUyur, kedilerNedenKuyrukSallar, kedimNedenIsiriyor, kopeklerUsurMu,
+  tatileGiderkenKediKopek, vapurdaEvcilHayvan,
 ];
 
 /**

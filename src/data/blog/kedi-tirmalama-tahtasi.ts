@@ -1,0 +1,118 @@
+import type { BlogYazi } from './types';
+
+export const kediTirmalamaTahtasi: BlogYazi = {
+  slug: 'kedi-tirmalama-tahtasi',
+  baslik: 'Kedi Tırmalama Tahtası Neden Gerekli?',
+  ozet: 'Tırmalama kediler için normal ve yararlı bir davranış. Uygun bir yüzey yoksa koltuk ve halı hedef oluyor. Araştırmalar hangi tahtanın tercih edildiğini gösteriyor.',
+  kapakAlt:
+    'Salonda tırmalama direğine uzanan tekir kedi',
+  kategori: 'Kedi',
+  tarih: '2026-10-31',
+  bloklar: [
+    { kind: 'paragraf', metin: '**Kedi tırmalama tahtası gereklidir, çünkü tırmalama kedi için normal ve yararlı bir davranıştır ve ona uygun bir yüzey sunulmadığında kedi bu davranışı koltukta, halıda, kapı çerçevesinde sürdürür.** DePorter ve Elzerman\'ın 2019 tarihli derlemesi de kedilerin uygun yüzeylerde tırmalama fırsatından yoksun bırakılmasının, ev eşyalarının tırmalanmasına yol açabileceğini belirtiyor.' },
+    { kind: 'paragraf', metin: 'Aşağıda kedilerin neden tırmaladığını, tırmalama tahtası seçerken araştırmaların ne gösterdiğini, tahtanın nereye konulduğunun neden önemli olduğunu ve cezalandırmanın neden işe yaramadığını anlatıyoruz. Tırmalamanın kuduzla ilişkisi için ayrı bir yazı var: [[kedi-tirmalamasi-kuduz-yapar-mi|kedi tırmalaması kuduz yapar mı]].' },
+
+    { kind: 'tablo', basliklar: ['Tahta özelliği', 'Araştırmalarda görülen'], satirlar: [
+      ['Yüzey malzemesi', 'Çoğu kedi sisal ip kaplı yüzeyi tercih ediyor; tahta, halı ve karton da kullanılıyor'],
+      ['Yön', 'Dikey yüzey öneriliyor'],
+      ['Yükseklik', 'En az 0,9 metre (3 fit)'],
+      ['Kat sayısı', 'İki ya da daha fazla katlı kedi ağaçlarında tırmalama daha sık'],
+      ['Sağlamlık', 'Kedi güç uyguladığında sallanmaması gerekiyor'],
+      ['Yavru kedi', 'Kıvrımlı (S biçimli) karton tırmalayıcı bir çalışmada öne çıktı'],
+    ]},
+
+    { kind: 'baslik', metin: 'Kediler neden tırmalar?' },
+    { kind: 'paragraf', metin: 'Tırmalama kedinin doğal davranışlarından biridir ve birden fazla amacı var. Derlemeye göre bu hareket tırnağın dış kılıfını soyuyor, kolların ve omurganın kaslarını çalıştırıyor, esnemeyi sağlıyor ve kedinin tırnaklarını bilemesine yardım ediyor.' },
+    { kind: 'paragraf', metin: 'Tırmalamanın bir de iletişim yönü var. Kedinin patideki bezlerden yüzeye koku ve feromon bırakılıyor, açılan çizik de görsel bir işaret oluyor. Böylece kedi, başka bir kediyle yüz yüze gelmeden bölgesine dair mesaj bırakabiliyor. İtalya\'da 128 kedi üzerinde yapılan bir anket çalışması da tırmalamanın görsel ve kimyasal iletişimle ilişkili olduğunu, tırmalama tahtasının varlığının ve bunun işaretleme ile ilişkisinin önemli olduğunu, tahta bulunduğunda kedinin onu kullanıyor göründüğünü bildiriyor.' },
+    { kind: 'paragraf', metin: 'Evde birden fazla kedi varsa durum biraz değişiyor. DePorter ve Elzerman, kedilerin arasındaki sosyal gerginliğin tırmalama dahil işaretleme davranışlarını artırabildiğini yazıyor. Bu yüzden çok kedili evlerde tek bir tahta yerine farklı noktalarda farklı seçenekler bulunması önerilir.' },
+
+    { kind: 'baslik', metin: 'Tırmalama tahtası olmazsa ne olur?' },
+    { kind: 'paragraf', metin: 'Derlemeye göre uygun yüzeyden yoksun kalan kedi tırmalamayı başka yüzeylere yöneltebiliyor. Derlemede kedilerin tırmalamayı kumaş, halı ya da ahşap eşyalara yöneltebildiği ve bunun mobilyalara, duvarlara, merdivenlere, kapı ve pencere çerçevelerine zarar verebildiği belirtiliyor.' },
+    { kind: 'paragraf', metin: 'Bu sorun yalnızca eşyaların hasarı değil. Aynı derleme, evde zarar veren tırmalamanın kedilerin barınaklara bırakılmasının bir nedeni olarak kayda geçtiğini yazıyor. Yani uygun bir tahta, hem eşyayı hem de kedi ile sahibi arasındaki bağı korumanın en basit yollarından biridir.' },
+    { kind: 'yanilgi', baslik: '"Kedi tırmalayarak sahibine inat ediyor"', metin: 'Tırmalama bir inat davranışı değil, kedinin doğal ihtiyacıdır. Derlemeye göre normal bir davranışın cezalandırılması stresi artırabiliyor. Uygun yüzeyi sunmak, kediyi azarlamaktan çok daha etkili.' },
+
+    { kind: 'baslik', metin: 'Hangi tırmalama tahtası tercih ediliyor?' },
+    { kind: 'paragraf', metin: 'En geniş veri, 39 ülkeden 4331 kedi sahibinin katıldığı internet anketinden geliyor (Wilson ve arkadaşları, 2016). Sahipler en sık halı kaplı tahta sunmuş, ancak ip kaplı yüzeyler sunulduğunda en sık bu kullanılmış. Kediler tercih edilen yüzeyi, basit dikey tahtalar ile iki ya da daha fazla katlı ve en az 3 fit (yaklaşık 0,9 metre) yüksekliğindeki kedi ağaçlarında daha sık tırmaladı.' },
+    { kind: 'paragraf', metin: 'DePorter ve Elzerman bu verileri özetleyerek ideal tırmalama tahtasını şöyle tarif ediyor: sisal ip yüzeyli, dikey, en az 0,9 metre yüksekliğinde, iki ya da daha fazla katlı ve taban genişliği 0,3 ile 0,9 metre arasında. Bir tahtanın sağlam olması, kedi üzerine güç verdiğinde sallanmaması da önemli bir koşul.' },
+    { kind: 'paragraf', metin: 'Her kedinin kendi tercihi olabilir. Derleme, kedi tercihini doğrudan sorma imkanı olmadığı için birkaç farklı seçenek sunup kedinin seçmesine izin vermenin iyi sonuç verebileceğini söylüyor. Wilson ve arkadaşlarının anketinde de farklı tahta çeşidi sayısı arttıkça uygunsuz tırmalamanın azaldığı görüldü.' },
+
+    { kind: 'baslik', metin: 'Tahtayı nereye koymak gerekiyor?' },
+    { kind: 'paragraf', metin: 'Yer seçimi malzeme kadar önemli. Derleme, seçeneklerin kedinin uyku alanlarının yakınına, bölgesinin sınırına yakın yerlere (örneğin pencere kenarlarına) ve kedinin zaten eşya tırmaladığı noktaların yakınına yerleştirilmesini öneriyor.' },
+    { kind: 'paragraf', metin: 'Wilson ve arkadaşlarının anketinde sahiplerin yaklaşık yüzde 70\'i, tahta aynı odada ve çoğu zaman tırmalanan yüzeye oldukça yakın olsa da uygunsuz tırmalamanın sürdüğünü bildirdi. Yani yalnızca tahta almak yetmeyebiliyor; kedinin onu kullanmaya yönlendirilmesi gerekiyor.' },
+
+    { kind: 'baslik', metin: 'Yavru kedilerde tırmalama tahtası seçimi' },
+    { kind: 'paragraf', metin: 'Yavru kedide alışkanlıklar henüz oturmamış olabiliyor. Derleme, yavrulara sisal ip, halı, karton ve ahşap gibi farklı yüzeyler sunulmasını, böylece yetişkinlikte de farklı tahtaları kullanmaya alışmalarını öneriyor. Yavru kedi bakımının genel çerçevesi için [[yavru-kedi-bakimi|yavru kedi bakımı]] yazısına bakılabilir.' },
+    { kind: 'paragraf', metin: 'Texas Tech Üniversitesi\'nde 8 haftadan küçük 40 yavru kedi ile yapılan tercih testlerinde, S biçimli karton tırmalayıcı; kenevir direk, pencere teli, kısa tüylü halı ve uzun ya da dikdörtgen karton gibi birkaç seçeneğe kıyasla daha çok tercih edildi. Uzun tüylü halı ve kayık biçimli kartonda ise fark görülmedi. Aynı çalışmada kedi nanesi ve başka kedilerin tüyünün yavru kedilerin tırmalama davranışını değiştirmediği görüldü.' },
+    { kind: 'paragraf', metin: 'Yeni bir kedi eve geldiğinde de alışkanlıklarını gözlemlemek ve en çok sevdiği yüzeyi sunmak gerekiyor. Yeni kedinin eve uyumu için [[yeni-kedi-eve-alisma|yeni kedi eve nasıl alışır]] yazısı faydalı olabilir.' },
+
+    { kind: 'baslik', metin: 'Kedi tahtayı kullanmıyorsa' },
+    { kind: 'paragraf', metin: 'Tahta uygun yerde olsa bile kedinin hemen kullanmaması olağan. Derlemeye göre kediyi tahtaya götürüp tırmalama fırsatı vermek, kedi nanesi sürmek ya da tahtanın üzerinde bir oyuncak sallamak kediyi ilgilendirebiliyor. Kedinin patisini tutup tahtaya sürtmek ise tersine bir etki yapıp kedide o alana karşı isteksizlik oluşturabiliyor.' },
+    { kind: 'paragraf', metin: 'Ödüllendirme de fark yaratıyor. Wilson ve arkadaşlarının anketinde kedisini ödüllendiren sahiplerde (mama ödülü, sözlü övgü ya da sevme) kedinin tercih ettiği tahtayı günde en az bir kez kullanma oranı yüzde 80,4, hiç ödüllendirmeyenlerde ise yüzde 67,7 çıktı.' },
+    { kind: 'paragraf', metin: 'Kedinin eşyayı tırmaladığı yerde koku izi kalıyor. Derleme, o bölgenin ılık suyla temizlenmesini, kedi tahtayı alışkanlık hâline getirene kadar eşyaya erişimin kısıtlanmasını ya da geçici olarak örtülmesini öneriyor.' },
+
+    { kind: 'baslik', metin: 'Cezalandırma ve pençe alma neden önerilmiyor?' },
+    { kind: 'paragraf', metin: 'Kediyi azarlamak, su sıkmak ya da gürültüyle korkutmak sorunu çözmüyor. DePorter ve Elzerman, tırmalanan yüzeyi alüminyum folyo gibi hoş olmayan bir malzemeyle kaplamanın tırmalama isteğini azaltmadığını, yalnızca kedinin tercih ettiği yeri değiştirdiğini, bu tür yöntemlerin korku, kaçınma ve kaygıya, hatta tırmalamanın artmasına yol açabileceğini yazıyor.' },
+    { kind: 'paragraf', metin: 'Tırnak ucunu düzenli kesmek ve tırnak kapları kullanmak hasarı azaltmanın yollarından. Kapların yaklaşık aylık aralıklarla yenilenmesi gerekebiliyor, doğru yerleştirilmeleri ve kedinin eski tırnak kabuklarını doğal olarak atıp atmadığının izlenmesi önemli. Uygulama için veteriner hekime danışılması önerilir.' },
+    { kind: 'yanilgi', baslik: '"Kısırlaştırılmış kedi evdeki eşyaları tırmalamaz"', metin: 'Wilson ve arkadaşlarının anketinde kısırlaştırılmış ve kısırlaştırılmamış kediler (erkek ve dişi) uygunsuz yerlerde tırmalama bakımından birbirine benzer çıktı. Uygunsuz tırmalama yaşla birlikte azaldı. Çözüm kısırlaştırma değil, uygun yüzeyleri sunmak.' },
+    { kind: 'uyari', metin: 'Kedinin tırmalama ya da genel davranışında ani ve belirgin bir değişiklik olduğunda, tırmalama sırasında acı belirtisi görüldüğünde ya da kedi hareket etmekte zorlandığında veteriner hekime başvurulması gerekiyor. Bu yazı bir muayenenin ya da teşhisin yerini tutmaz. Pençe alma gibi cerrahi seçenekler de yalnızca veteriner hekimle konuşularak değerlendirilmesi gerekiyor.' },
+  ],
+  kontrolListesi: [
+    'Tahta en az 90 cm yüksekliğinde mi?',
+    'Tahta sallanmadan duruyor mu?',
+    'Uyku alanının yakınında tahta var mı?',
+    'Farklı yüzeylerde seçenek var mı?',
+    'Tahtayı kullanınca ödül veriliyor mu?',
+    'Tırnaklar düzenli kontrol ediliyor mu?',
+  ],
+  sss: [
+    { soru: 'Kediler neden tırmalar?', cevap: 'Tırmalama kedi için doğal bir davranıştır. Tırnağın dış kılıfını soyuyor, kasları çalıştırıyor, esnemeye yardım ediyor ve yüzeye koku bırakarak bölge işareti oluşturuyor. Bu nedenle amaç davranışı engellemek değil, uygun bir yüzeye yönlendirmektir.' },
+    { soru: 'Kedi tırmalama tahtası şart mı?', cevap: 'Tırmalama isteği ortadan kalkmadığı için uygun bir yüzey sunmak gerekiyor. Derlemelere göre kedi bu davranışı için uygun bir yüzey bulamazsa eşyaları tırmalayabiliyor. Bir tahta, bu davranışa evde kabul edilebilir bir yer açıyor.' },
+    { soru: 'Kedi için en iyi tırmalama tahtası hangisi?', cevap: 'Araştırmalardaki ideal tahta, sisal ip yüzeyli, dikey, en az 0,9 metre yüksekliğinde ve iki ya da daha fazla katlı olanı. Tahtanın sağlam olması da şart. Bununla birlikte her kedinin kendi tercihi olabildiği için farklı seçenekler sunmak iyi sonuç verebilir.' },
+    { soru: 'Kedi tırmalama tahtasını kullanmıyorsa ne yapılır?', cevap: 'Tahtayı kedinin uyku alanına ya da zaten tırmaladığı yüzeye yaklaştırmak, kediyi tahtaya götürmek ve kullandığında ödüllendirmek önerilir. Kedinin patisini tutup tahtaya sürtmek ters etki yapabiliyor. Sorun sürerse veteriner hekime ya da davranış konusunda uzman bir hekime danışılabilir.' },
+    { soru: 'Kedi tırmalamayı bırakır mı?', cevap: 'Tırmalama normal bir davranış olduğu için tamamen bırakılması beklenmez. Wilson ve arkadaşlarının anketinde uygunsuz tırmalamanın yaşla birlikte azaldığı görüldü. Hedef, davranışı durdurmak değil, kediyi uygun yüzeylere yönlendirmektir.' },
+    { soru: 'Kediyi tırmaladığı için cezalandırmak işe yarar mı?', cevap: 'Hayır, cezalandırma önerilmiyor. Derlemeye göre normal bir davranışın cezalandırılması stresi artırabiliyor ve korku, kaçınma ve kaygıya yol açabiliyor. Uygun yüzey sunmak ve doğru kullanımı ödüllendirmek daha etkili bir yol.' },
+    { soru: 'Yavru kedi için hangi tırmalama tahtası uygun?', cevap: 'Yavru kediye farklı yüzeylerde birkaç seçenek sunmak önerilir. Texas Tech Üniversitesi\'ndeki tercih testlerinde 8 haftadan küçük yavrular kıvrımlı karton tırmalayıcıyı birçok seçeneğe tercih etti. Kedi nanesi bu tercihi değiştirmedi.' },
+  ],
+  kaynaklar: [
+    {
+      kurum: 'Oakland Veterinary Referral Services',
+      yazarlar: 'DePorter TL, Elzerman AL',
+      baslik: 'Common feline problem behaviors: Destructive scratching',
+      dergi: 'Journal of Feline Medicine and Surgery',
+      yil: 2019,
+      kunye: '21(3):235-243',
+      doi: '10.1177/1098612X19831205',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/30810089/',
+    },
+    {
+      kurum: 'University of California Davis, School of Veterinary Medicine',
+      yazarlar: 'Wilson C, Bain M, DePorter T, Beck A, Grassi V, Landsberg G',
+      baslik: 'Owner observations regarding cat scratching behavior: an internet-based survey',
+      dergi: 'Journal of Feline Medicine and Surgery',
+      yil: 2016,
+      kunye: '18(10):791-7',
+      doi: '10.1177/1098612X15594414',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/26179574/',
+    },
+    {
+      kurum: 'Texas Tech University, Laboratory of Animal Behavior, Physiology and Welfare',
+      yazarlar: 'Zhang L, Plummer R, McGlone J',
+      baslik: 'Preference of kittens for scratchers',
+      dergi: 'Journal of Feline Medicine and Surgery',
+      yil: 2019,
+      kunye: '21(8):691-699',
+      doi: '10.1177/1098612X18795258',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/30152710/',
+    },
+    {
+      kurum: 'University of Pisa, Department of Veterinary Sciences',
+      yazarlar: 'Mengoli M, Mariti C, Cozzi A, Cestarollo E, Lafont-Lecuelle C, Pageat P, Gazzano A',
+      baslik: 'Scratching behaviour and its features: a questionnaire-based study in an Italian sample of domestic cats',
+      dergi: 'Journal of Feline Medicine and Surgery',
+      yil: 2013,
+      kunye: '15(10):886-92',
+      doi: '10.1177/1098612X13481468',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/23492353/',
+    },
+  ],
+};
