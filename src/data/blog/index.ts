@@ -106,6 +106,14 @@ import { kopekIsirmasiTazminat } from './kopek-isirmasi-tazminat';
 import { sokakHayvanlariniBeslemekYasakMi } from './sokak-hayvanlarini-beslemek-yasak-mi';
 import { sokakKopekleriYasasi7527 } from './sokak-kopekleri-yasasi-7527';
 import { yaraliSokakHayvani } from './yarali-sokak-hayvani';
+import { arabadaKopekTasima } from './arabada-kopek-tasima';
+import { hayvanTerkEtmeCezasi } from './hayvan-terk-etme-cezasi';
+import { kuduzTitreTesti } from './kuduz-titre-testi';
+import { nobetciVeteriner } from './nobetci-veteriner';
+import { pegasusEvcilHayvan } from './pegasus-evcil-hayvan';
+import { thyEvcilHayvan } from './thy-evcil-hayvan';
+import { trendeEvcilHayvan } from './trende-evcil-hayvan';
+import { ucretsizKuduzAsisi } from './ucretsiz-kuduz-asisi';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -144,6 +152,8 @@ const TUM_YAZILAR: BlogYazi[] = [
   kedilerUsurMu, hayvanaEziyetCezasi,
   belediyeUcretsizKisirlastirma, kaybolanKediKopekNasilBulunur, kopekIsirmasiTazminat, sokakHayvanlariniBeslemekYasakMi,
   sokakKopekleriYasasi7527, yaraliSokakHayvani,
+  arabadaKopekTasima, hayvanTerkEtmeCezasi, kuduzTitreTesti, nobetciVeteriner,
+  pegasusEvcilHayvan, thyEvcilHayvan, trendeEvcilHayvan, ucretsizKuduzAsisi,
 ];
 
 /**
