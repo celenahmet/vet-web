@@ -138,6 +138,12 @@ import { kopekSaldirisindaNeYapilir } from './kopek-saldirisinda-ne-yapilir';
 import { kopekTirnagiNasilKesilir } from './kopek-tirnagi-nasil-kesilir';
 import { kediMiKopekMi } from './kedi-mi-kopek-mi';
 import { kopeklerNedenYalar } from './kopekler-neden-yalar';
+import { kediGundeKacGramMamaYer } from './kedi-gunde-kac-gram-mama-yer';
+import { kopekDisleriNasilFircalanir } from './kopek-disleri-nasil-fircalanir';
+import { kopekKulagiNasilTemizlenir } from './kopek-kulagi-nasil-temizlenir';
+import { kopeklerKacSaatUyur } from './kopekler-kac-saat-uyur';
+import { yavruKopekBakimi } from './yavru-kopek-bakimi';
+import { yavruKopekNeKadarMamaYemeli } from './yavru-kopek-ne-kadar-mama-yemeli';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -185,6 +191,8 @@ const TUM_YAZILAR: BlogYazi[] = [
   kediCimiNeIseYarar, kediOtuNedir, kediYikanirMi, kedilerKacYasinaKadarBuyur,
   kedilerKaranliktaGorurMu, kedilerNedenYalanir, kopekSaldirisindaNeYapilir, kopekTirnagiNasilKesilir,
   kediMiKopekMi, kopeklerNedenYalar,
+  kediGundeKacGramMamaYer, kopekDisleriNasilFircalanir, kopekKulagiNasilTemizlenir, kopeklerKacSaatUyur,
+  yavruKopekBakimi, yavruKopekNeKadarMamaYemeli,
 ];
 
 /**
