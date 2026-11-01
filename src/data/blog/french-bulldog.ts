@@ -1,0 +1,137 @@
+import type { BlogYazi } from './types';
+
+export const frenchBulldog: BlogYazi = {
+  slug: 'french-bulldog',
+  baslik: 'French Bulldog: Özellikleri ve Bakımı',
+  ozet: 'French Bulldog küçük, kısa burunlu bir eş köpeği. FCI standardını, solunum, sıcak havada bakım, kulak, cilt ve kilo konusunda araştırmaların bulgularını anlatıyoruz.',
+  kapakAlt:
+    'Bahçede oturan siyah beyaz French bulldog',
+  kategori: 'Köpek',
+  tarih: '2026-11-01',
+  bloklar: [
+    { kind: 'paragraf', metin: '**French Bulldog, Fransa kökenli küçük bir eş köpeği ırkıdır; FCI standardına göre erkekleri 9 ile 14 kg, dişileri 8 ile 13 kg arasında olur ve kısa burunlu yapısı nedeniyle bakımda en çok solunum, sıcak havadan korunma ve kilo takibi öne çıkar.**' },
+    { kind: 'paragraf', metin: 'Aşağıda ırkın FCI standardındaki tanımını, mizacını ve Royal Veterinary College ile Cambridge Üniversitesi araştırmalarının gösterdiği sağlık yatkınlıklarını anlatıyoruz. Yazı bilgilendirme amaçlıdır; köpeğinizin sağlığıyla ilgili her soru için veteriner hekime başvurmak gerekiyor.' },
+
+    { kind: 'tablo', basliklar: ['Özellik', 'FCI standardında'], satirlar: [
+      ['Köken', 'Fransa'],
+      ['Grup', '9. grup, eş ve oyuncak köpekler'],
+      ['Erkek', 'Cidago yüksekliği 27 ile 35 cm, ağırlık 9 ile 14 kg'],
+      ['Dişi', 'Cidago yüksekliği 24 ile 32 cm, ağırlık 8 ile 13 kg'],
+      ['Tüy', 'Kısa, düzgün, parlak ve yumuşak; alt tüy yok'],
+      ['Kulak', 'Dik duran, orta boy'],
+    ]},
+
+    { kind: 'baslik', metin: 'Irkın kökeni ve resmî tanımı' },
+    { kind: 'paragraf', metin: 'Irkın uluslararası standardı FCI\'nin 101 numaralı standardıdır (Eylül 2023 sürümü). Standarda göre bugün tanıdığımız bulldog, 1880\'lerde Paris\'in halk mahallelerinde yetiştiricilerin yaptığı farklı çaprazlamaların ürünüdür. İlk ırk kulübü 1880\'de Paris\'te kuruldu, Fransız Kennel Kulübü ırkı 1898\'de tanıdı. FCI ırkı 9. grupta, eş ve oyuncak köpekler arasında, "küçük moloser köpekler" bölümünde sınıflandırıyor.' },
+    { kind: 'paragraf', metin: 'Standart ırkı küçük bedenli bir moloser olarak tarif ediyor: küçüklüğüne göre güçlü, kısa, tıknaz, düz tüylü, basık burunlu, dik kulaklı ve doğuştan kısa kuyruklu. Gövde uzunluğu cidago yüksekliğinden biraz fazladır ve yüz kısadır.' },
+
+    { kind: 'baslik', metin: 'Boy, kilo ve tüy' },
+    { kind: 'paragraf', metin: 'Standardın ölçüleri tabloda görüldüğü gibidir. Standart, tipik bir köpekte standart ağırlığın 500 g üstüne izin veriyor. Tüy kısa, düzgün, parlak ve yumuşaktır; alt tüy yoktur. Kabul edilen renkler boz ya da kaplan desenli olanlardır, beyaz lekeli de olabilir.' },
+    { kind: 'paragraf', metin: 'Tamamen beyaz köpekler, göz kapağı kenarları ve burun siyahsa kabul ediliyor, ama sağırlık riski nedeniyle yetiştirilmeleri hedeflenmiyor. Köpeğinizin ideal kilosunu veteriner hekim belirler; kilo değerlendirmesi için [[kopegim-fazla-kilolu-mu|köpeğim fazla kilolu mu]] yazısına bakılabilir.' },
+
+    { kind: 'baslik', metin: 'Mizaç' },
+    { kind: 'paragraf', metin: 'FCI standardı ırkın mizacını sosyal, canlı, oyuncu, sahiplenici ve istekli bir eş köpeği olarak tanımlıyor. Aynı standart aşırı çekingen ya da saldırgan köpeği diskalifiye sebebi sayıyor. Köpeğiniz yalnız kalınca ses çıkarıyor ya da eşyalara zarar veriyorsa [[kopeklerde-ayrilik-kaygisi|köpeklerde ayrılık kaygısı]] yazısı yol gösterir.' },
+
+    { kind: 'baslik', metin: 'Kısa burun ve solunum' },
+    { kind: 'paragraf', metin: 'FCI standardı yüzün kısalmasını ve hafifçe yukarı kalkık burnu ırkın özelliği sayıyor, ama burun deliklerinin eğimi ve burnun yukarı kalkıklığının "normal burun solunumuna" izin vermesini şart koşuyor. Solunum güçlüğü ve tamamen kapalı burun delikleri diskalifiye sebepleri arasında yazılı.' },
+    { kind: 'paragraf', metin: 'Uygulamada tablo her zaman standartla örtüşmüyor. Brakisefalik obstrüktif hava yolu sendromu (BOAS), kısa burunlu köpeklerde görülen ve yüz yapısına bağlı bir solunum sorunudur. Cambridge Üniversitesi\'nin 604 pug, French bulldog ve bulldog üzerindeki çalışmasında etkilenen köpeklerin belirtileri horlama ve egzersizde dayanıksızlıktan bayılma gibi yaşamı tehdit eden olaylara kadar uzanıyordu. Dar burun delikleri üç ırkta da BOAS ile ilişkili çıktı; French bulldoglarda boyun çevresi ve boyun uzunluğu oranları da BOAS durumuyla ilişkiliydi.' },
+    { kind: 'yanilgi', baslik: '"Horlama ve hırıltı bu ırkın doğal sesidir"', metin: 'Horlama kısa burunlu köpeklerde sık duyulduğu için sıradan sayılıyor. Cambridge çalışması ise horlamayı ve egzersizde dayanıksızlığı BOAS\'ın belirtileri arasında sayıyor. Köpeğin nefes alışı sizi endişelendiriyorsa bunu normal kabul etmek yerine veteriner hekime göstermek gerekiyor.' },
+    { kind: 'uyari', metin: 'Köpek nefes almakta zorlanıyor, yürüyüş ya da oyun sırasında bayılıyorsa vakit kaybetmeden veteriner hekime başvurmak gerekiyor. Belirtilerin nedenini ve gerekli işlemi yalnız veteriner hekim belirleyebilir.' },
+
+    { kind: 'baslik', metin: 'Sıcak havada dikkat edilecekler' },
+    { kind: 'paragraf', metin: 'Kısa burunlu köpeklerde sıcak çarpması ayrı bir risk olarak öne çıkıyor. Nottingham Trent Üniversitesi ve Royal Veterinary College araştırmacıları İngiltere\'de 905.543 köpeğin 2016 kayıtlarını inceledi ve 395 doğrulanmış ısıyla ilişkili hastalık olayı buldu. Olayların %14,18\'i ölümle sonuçlandı. Çalışma ırk olarak Chow Chow, Bulldog ve French Bulldog\'u, ayrıca kısa kafatası yapısını ve ırk ortalamasına göre yüksek vücut ağırlığını anlamlı risk etkenleri arasında gösterdi.' },
+    { kind: 'paragraf', metin: 'Sıcak mevsimde yürüyüş ve oyun süresini, ortamın havalandırmasını ve yolculuk planını veteriner hekimle konuşmak önerilir. Araç yolculuğu için [[arabada-kopek-tasima|arabada köpek taşıma]], uçak yolculuğu için [[thy-evcil-hayvan|THY evcil hayvan kuralları]] yazısına bakılabilir. Isı çarpması şüphesinde vakit kaybetmeden veteriner hekime başvurmak gerekiyor.' },
+
+    { kind: 'baslik', metin: 'Kulak, cilt kıvrımı ve doğum' },
+    { kind: 'paragraf', metin: 'Royal Veterinary College\'ın VetCompass verisine dayanan çalışması ırkın yatkınlıklarını sayılarla gösteriyor. 2016\'da birinci basamak veteriner hekimlere getirilen 2.781 French Bulldog ile 21.850 diğer köpek karşılaştırıldı. French Bulldog\'lar daha genç (1,51 yıl, diğer köpeklerde 4,48 yıl) ve daha hafifti (12,45 kg, diğerlerinde 13,80 kg). Aşağıdaki odds oranları, bir durumun French Bulldog\'larda diğer köpeklere göre ne kadar daha yüksek yatkınlıkla görüldüğünü gösterir.' },
+    { kind: 'tablo', basliklar: ['Durum', 'French Bulldog için odds oranı'], satirlar: [
+      ['Burun deliği darlığı', '42,14'],
+      ['BOAS', '30,89'],
+      ['Kulaktan akıntı', '14,40'],
+      ['Cilt kıvrımı dermatiti', '11,18'],
+      ['Zor doğum (distosi)', '9,13'],
+    ]},
+    { kind: 'paragraf', metin: 'Tablo ırkın yalnız zayıf yanlarını göstermiyor: 43 yaygın hastalığın 20\'sinde French Bulldog\'ların odds oranı anlamlı biçimde yüksek, 11\'inde anlamlı biçimde düşük çıktı. Araştırmacılar yatkınlıkların birçoğunun ırkı tanımlayan aşırı yapısal özelliklerle yakından ilişkili olduğunu belirtiyor.' },
+    { kind: 'paragraf', metin: 'Kulakta akıntı ya da cilt kıvrımlarında değişiklik fark edilirse nedenini belirlemek veteriner hekimin işidir; kulak sağlığı için [[kopeklerde-kulak-enfeksiyonu|köpeklerde kulak enfeksiyonu]] yazısı genel bilgi veriyor. Gebelik planlayan sahiplerin süreci baştan veteriner hekimle konuşması önerilir; doğum süresi için [[kopek-kac-gunde-dogurur|köpek kaç günde doğurur]] yazısına bakılabilir.' },
+
+    { kind: 'baslik', metin: 'Kilo kontrolü' },
+    { kind: 'paragraf', metin: 'Sıcak çarpması çalışmasının yazarları sağlıklı vücut ağırlığını korumayı tüm köpekler için temel bir refah önceliği sayıyor. Cambridge\'den Tomlinson ve ekibinin 2026 tarihli, French Bulldog dışındaki 14 kısa burunlu ırkta 898 köpeği inceleyen çalışmasında da yüksek vücut kondisyon skoru, dar burun delikleri ve daha kısa yüz yapısı BOAS ile anlamlı biçimde ilişkiliydi.' },
+    { kind: 'paragraf', metin: 'Kilonun sahibin izleyebildiği bir etken olması nedeniyle öğün miktarını ve kilo hedefini veteriner hekimle birlikte belirlemek önerilir. Porsiyonlar için [[kopek-gunde-kac-gram-mama-yer|köpek günde kaç gram mama yer]] yazısı başlangıç noktası olabilir.' },
+
+    { kind: 'baslik', metin: 'Sahiplenmeden önce ve takipte' },
+    { kind: 'liste', maddeler: [
+      'Yetiştiriciden ebeveynlerin solunum durumu hakkında bilgi istemek',
+      'Yavrunun burun deliklerini veteriner hekime gösterip açıklığını sormak',
+      'Sıcak mevsimde yürüyüş ve oyun planını veteriner hekimle konuşmak',
+      'Kulakları ve cilt kıvrımlarını kontrollerde göstermek',
+      'Her kontrolde kiloyu ve kondisyonu ölçtürmek',
+      'Gebelik düşünülüyorsa süreci baştan veteriner hekimle planlamak',
+    ]},
+    { kind: 'paragraf', metin: 'Kontrol sıklığı için [[kedi-kopek-check-up-ne-zaman|kedi ve köpek check-up ne zaman yapılır]] yazısına bakılabilir.' },
+  ],
+  kontrolListesi: [
+    'Nefes alışı rahat mı?',
+    'Burun delikleri açık mı?',
+    'Sıcakta yürüyüş planı var mı?',
+    'Kulak ve kıvrım kontrolü var mı?',
+    'Kilo düzenli ölçülüyor mu?',
+    'Düzenli veteriner kontrolü var mı?',
+  ],
+  sss: [
+    { soru: 'French Bulldog kaç kilo olur?', cevap: 'FCI standardına göre erkekler 9 ile 14 kg, dişiler 8 ile 13 kg arasındadır. Tipik bir köpekte standart ağırlığın 500 g üstüne izin veriliyor. Erkeklerin cidago yüksekliği 27 ile 35 cm, dişilerin 24 ile 32 cm olmalıdır. Köpeğinizin ideal kilosunu veteriner hekim belirler.' },
+    { soru: 'French Bulldog\'un mizacı nasıl?', cevap: 'FCI standardı mizacı sosyal, canlı, oyuncu, sahiplenici ve istekli bir eş köpeği olarak tanımlıyor. Irkın kullanım amacı eş ve oyuncak köpek olmaktır. Standart aşırı çekingen ya da saldırgan köpeği diskalifiye sebebi sayıyor. Davranış sorunlarında veteriner hekimden ya da davranış uzmanından destek alınabilir.' },
+    { soru: 'French Bulldog neden nefes almakta zorlanabilir?', cevap: 'Yüz yapısına bağlı bir hava yolu sorunu olan BOAS nedeniyle zorlanabilir. Cambridge çalışmasında dar burun delikleri French bulldog dahil üç ırkta BOAS ile ilişkili çıktı. Horlama ve egzersizde dayanıksızlık belirtiler arasında sayılıyor. Nefes alışından endişe edildiğinde veteriner hekime başvurmak gerekiyor.' },
+    { soru: 'French Bulldog sıcak havada neden risk altındadır?', cevap: 'Kısa kafatası yapısı, ısıyla ilişkili hastalık için araştırmada anlamlı bir risk etkeni olarak bulundu. İngiltere\'de 2016 kayıtlarını inceleyen çalışmada French Bulldog ırk olarak risk grubundaydı ve olayların %14,18\'i ölümle sonuçlandı. Isı çarpması şüphesinde vakit kaybetmeden veteriner hekime başvurmak gerekiyor.' },
+    { soru: 'French Bulldog sağlıklı bir ırk mıdır?', cevap: 'Araştırmalar ırkın birçok soruna yatkın olduğunu gösteriyor. Royal Veterinary College çalışmasında 43 yaygın hastalığın 20\'sinde French Bulldog\'ların odds oranı anlamlı biçimde yüksek, 11\'inde düşük bulundu. Yatkınlıkların birçoğu ırkın aşırı yapısal özellikleriyle ilişkiliydi. Bireysel sağlık durumu için veteriner kontrolü gerekiyor.' },
+    { soru: 'French Bulldog zor doğum yapar mı?', cevap: 'Zor doğuma yatkınlığı diğer köpeklere göre yüksek bulundu: Royal Veterinary College çalışmasında zor doğum (distosi) için odds oranı 9,13 çıktı. Bu bir kesinlik değil, yatkınlık göstergesidir. Gebelik düşünülüyorsa süreci baştan veteriner hekimle planlamak önerilir.' },
+    { soru: 'French Bulldog\'un tüyü nasıl?', cevap: 'Tüyü kısa, düzgün, parlak ve yumuşaktır; FCI standardına göre alt tüyü yoktur. Kabul edilen renkler boz ya da kaplan desenlidir ve beyaz lekeli olabilir. Burun her renkte siyahtır. Cilt ve kıvrımlardaki bir değişiklik fark edilirse veteriner hekime göstermek gerekiyor.' },
+  ],
+  kaynaklar: [
+    {
+      kurum: 'Fédération Cynologique Internationale (FCI)',
+      baslik: 'FCI-Standard N° 101: Bouledogue Français (French Bulldog)',
+      yil: 2023,
+      adres: 'https://www.fci.be/Nomenclature/Standards/101g09-en.pdf',
+    },
+    {
+      kurum: 'The Royal Veterinary College, Pathobiology and Population Sciences',
+      yazarlar: 'O\'Neill DG, Packer RMA, Francis P, Church DB, Brodbelt DC, Pegram C',
+      baslik: 'French Bulldogs differ to other dogs in the UK in propensity for many common disorders: a VetCompass study',
+      dergi: 'Canine Medicine and Genetics',
+      yil: 2021,
+      kunye: '8(1):13',
+      doi: '10.1186/s40575-021-00112-3',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/34911586/',
+    },
+    {
+      kurum: 'University of Cambridge, Department of Veterinary Medicine',
+      yazarlar: 'Liu NC, Troconis EL, Kalmar L, Price DJ, Wright HE, Adams VJ, Sargan DR, Ladlow JF',
+      baslik: 'Conformational risk factors of brachycephalic obstructive airway syndrome (BOAS) in pugs, French bulldogs, and bulldogs',
+      dergi: 'PLoS ONE',
+      yil: 2017,
+      kunye: '12(8):e0181928',
+      doi: '10.1371/journal.pone.0181928',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/28763490/',
+    },
+    {
+      kurum: 'Nottingham Trent University, School of Animal, Rural and Environmental Sciences',
+      yazarlar: 'Hall EJ, Carter AJ, O\'Neill DG',
+      baslik: 'Incidence and risk factors for heat-related illness (heatstroke) in UK dogs under primary veterinary care in 2016',
+      dergi: 'Scientific Reports',
+      yil: 2020,
+      kunye: '10(1):9128',
+      doi: '10.1038/s41598-020-66015-8',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/32555323/',
+    },
+    {
+      kurum: 'University of Cambridge, Department of Veterinary Medicine',
+      yazarlar: 'Tomlinson F, Liu NC, Sargan DR, Ladlow JF',
+      baslik: 'A cross-sectional study into the prevalence and conformational risk factors of BOAS across fourteen brachycephalic dog breeds',
+      dergi: 'PLoS ONE',
+      yil: 2026,
+      kunye: '21(2):e0340604',
+      doi: '10.1371/journal.pone.0340604',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/41706647/',
+    },
+  ],
+};

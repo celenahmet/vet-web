@@ -170,6 +170,23 @@ import { labradorRetriever } from './labrador-retriever';
 import { pomeranian } from './pomeranian';
 import { sarmanKedi } from './sarman-kedi';
 import { ucRenkliKedi } from './uc-renkli-kedi';
+import { chihuahua } from './chihuahua';
+import { frenchBulldog } from './french-bulldog';
+import { kopekOteliAcmak } from './kopek-oteli-acmak';
+import { kopekUretimCiftligiRuhsati } from './kopek-uretim-ciftligi-ruhsati';
+import { kucukKopekIrklari } from './kucuk-kopek-irklari';
+import { laborantVeVeterinerSaglik } from './laborant-ve-veteriner-saglik';
+import { maineCoon } from './maine-coon';
+import { muhabbetKusuBakimi } from './muhabbet-kusu-bakimi';
+import { scottishFold } from './scottish-fold';
+import { sibiryaKurduHusky } from './sibirya-kurdu-husky';
+import { siyamKedisi } from './siyam-kedisi';
+import { tuysuzKedi } from './tuysuz-kedi';
+import { vanKedisi } from './van-kedisi';
+import { veterinerFakultelerListesi } from './veteriner-fakulteleri-listesi';
+import { veterinerHekimKpss } from './veteriner-hekim-kpss';
+import { veterinerlikKacYil } from './veterinerlik-kac-yil';
+import { veterinerlikTabanPuanlari } from './veterinerlik-taban-puanlari';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -227,6 +244,11 @@ const TUM_YAZILAR: BlogYazi[] = [
   almanKurdu, hamsterKacYilYasar, iranKedisi, kangalKopegi,
   kaplumbagaKacYilYasar, labradorRetriever, pomeranian, sarmanKedi,
   ucRenkliKedi,
+  chihuahua, frenchBulldog, kopekOteliAcmak, kopekUretimCiftligiRuhsati,
+  kucukKopekIrklari, laborantVeVeterinerSaglik, maineCoon, muhabbetKusuBakimi,
+  scottishFold, sibiryaKurduHusky, siyamKedisi, tuysuzKedi,
+  vanKedisi, veterinerFakultelerListesi, veterinerHekimKpss, veterinerlikKacYil,
+  veterinerlikTabanPuanlari,
 ];
 
 /**

@@ -1,0 +1,137 @@
+import type { BlogYazi } from './types';
+
+export const scottishFold: BlogYazi = {
+  slug: 'scottish-fold',
+  baslik: 'Scottish Fold: Özellikleri ve Neden Tartışmalı?',
+  ozet: 'Scottish Fold kıvrık kulaklarıyla tanınan bir kedi ırkı. Kulağı katlayan gen kıkırdak ve eklemleri de etkilediği için ırk dünyada tartışılıyor.',
+  kapakAlt:
+    'Yatağında yatan katlanık kulaklı gri kedi',
+  kategori: 'Kedi',
+  tarih: '2026-11-01',
+  bloklar: [
+    { kind: 'paragraf', metin: '**Scottish Fold, kıvrık kulakları ve yuvarlak yüzüyle tanınan orta boy bir kedi ırkıdır; tartışmanın nedeni, kulağı katlayan genin kıkırdak ve kemik gelişimini de etkilemesidir.** Bilim insanları kıvrık kulağın TRPV4 geninin bir değişikliğiyle ilişkili olduğunu gösterdi. Bu değişiklik kulaktaki kıkırdağı etkilerken ayak, bacak ve kuyruktaki kıkırdak ve eklemleri de etkileyebiliyor. Bu yüzden FIFe ırkı tanımıyor, Cat Fanciers\' Association (CFA) ise ırkı kabul ediyor ama yetiştiricilerden dikkatli eşleştirme bekliyor.' },
+    { kind: 'paragraf', metin: 'Aşağıda ırkın kökenini ve görünümünü, kulağın neden kıvrıldığını, hakemli çalışmalarda ortaya konan eklem ve kemik sorunlarının ne kadar yaygın olduğunu, kurumların ırka bakışını ve bir Scottish Fold edinmeden önce nelere dikkat edilmesi gerektiğini anlatıyoruz. Bir kedide topallama gibi bir belirti görülürse yazı değil veteriner hekim yol göstermelidir.' },
+
+    { kind: 'tablo', basliklar: ['Konu', 'Bilinen'], satirlar: [
+      ['Köken', 'İskoçya\'da 1961\'de bir çiftlikte görülen kıvrık kulaklı kedi'],
+      ['Kulak', 'Yavrularda üç dört haftalıktan sonra kıvrılmaya başlar'],
+      ['Kalıtım', 'Baskın bir genle geçer'],
+      ['Tüy bakımı', 'Kısa tüylülerde haftalık tarama yeterli'],
+      ['Sağlık', 'Kıkırdak ve eklem sorunları açısından tartışmalı'],
+    ]},
+
+    { kind: 'baslik', metin: 'Scottish Fold\'un kökeni ve görünümü' },
+    { kind: 'paragraf', metin: 'CFA\'nın anlattığına göre 1961\'de William Ross adlı bir çoban, İskoçya\'nın Tayside bölgesindeki bir çiftlikte Susie adlı bakır gözlü beyaz bir dişi kedi gördü. Susie\'nin kıvrık kulakları ırkın başlangıcı oldu. Soy çizgisini asıl başlatan, Susie\'nin kızı Snooks oldu. Kıvrık kulaklı yavrular hem evcil bir erkek kediyle hem de bir [[british-shorthair|British Shorthair]] ile çiftleşmesinden doğdu.' },
+    { kind: 'paragraf', metin: 'Irkın görünümünde en çok vurgulanan sözcük "yuvarlak"tır. Kediler orta boydadır; kulakların başa yapışık durması başı belirgin biçimde yuvarlak gösterir, gözler de yuvarlak ve parlaktır. CFA, kıvrık kulakların işitmeyi etkilemediğini belirtiyor. Kısa tüylü Scottish Fold\'lar için haftalık tarama yeterli görülüyor; uzun tüylü olanlar ise tüylerin düğümlenmemesi için daha sık bakım istiyor.' },
+
+    { kind: 'baslik', metin: 'Kulak neden kıvrık?' },
+    { kind: 'paragraf', metin: 'Kıvrık kulaklar baskın bir genle ortaya çıkıyor ve CFA bunu kendiliğinden oluşmuş bir mutasyon olarak tanımlıyor. 2016\'da Gandolfi ve ekibi, Scottish Fold kedilerdeki kıvrık kulak ve kemik-kıkırdak bozukluğunun TRPV4 genindeki bir değişiklikle (c.1024G>T) ilişkili olduğunu bildirdi. Bu değişiklik, çalışmada incelenen 648 etkilenmemiş kedide bulunmadı.' },
+    { kind: 'paragraf', metin: 'Yavrular kıvrık kulakla doğmaz. CFA, kulakların üç dört haftalık olmadan kıvrılmaya başlamadığını söylüyor; bu yüzden bir yavrunun kulağının kıvrık mı düz mü kalacağı ilk haftalarda belli olmuyor. Düz kulaklı yavrular da aynı ırkın bir parçasıdır ve CFA 2022\'de düz kulaklı Scottish Fold\'ları da kabul etti.' },
+    { kind: 'yanilgi', baslik: '"Kıvrık kulak yalnızca kulağın şeklini etkiler"', metin: 'Kıvrık kulağa yol açan gen kıkırdağın gelişimini etkiliyor. Gandolfi ve ekibinin çalışmasında bu bozukluk yalnızca kulakta değil, ön ve arka ayakların uç bölümlerinde ve kuyrukta da görülen şekil bozukluğuyla ve eklemlerde ilerleyen hasarla ilişkilendirildi.' },
+
+    { kind: 'baslik', metin: 'Eklem ve kemik sorunu nedir?' },
+    { kind: 'paragraf', metin: 'Bu durum hakemli yazında osteokondrodisplazi diye geçiyor. Velie ve ekibi, tüm Scottish Fold kedilerin bu bozukluktan etkilendiğinin düşünüldüğünü, bunun ağrılı ve eklemleri aşındıran bir durum olduğunu yazıyor. Malik ve ekibi 1999\'da Sidney\'deki bir çalışmada, 5 aylıktan 6 yaşına kadar altı kedide topallama, zıplamaya isteksizlik, sert ve kısıtlı yürüyüş, kısa ve şekli bozuk ayak uçları, ayak bileği çevresinde şişlik ve kısa, kalın, esnemeyen kuyruk gibi bulguları tarif etti.' },
+    { kind: 'paragraf', metin: 'Rorden ve ekibine göre iki kıvrık kulak geni taşıyan kedilerde, yani hem anneden hem babadan geni alanlarda, şiddetli röntgen bulguları görüldüğü daha önce gösterilmişti. Bu nedenle yetiştiriciler kıvrık kulaklı kediyi düz kulaklı kediyle eşleştiriyor; böylece yavruların yaklaşık yarısı kıvrık, yarısı düz kulaklı doğuyor. CFA da sorumlu yetiştiricilerin yalnızca kıvrık kulaklı kediyi düz kulaklı kediyle çiftleştirdiğini, her çiftin uygunluğunu doğrulamak için DNA testinin büyük önem taşıdığını belirtiyor.' },
+    { kind: 'uyari', metin: 'Bu bilgiler tanı koymak için değil, genel bir çerçeve sunmak için yazıldı. Bir Scottish Fold\'ta topallama, zıplamak istememe, sert yürüyüş ya da kuyruğunda sertlik görülüyorsa muayene için veteriner hekime başvurulması gerekiyor. Ağrı kesici ya da başka bir ilaç vermek veteriner hekimin kararıdır.' },
+
+    { kind: 'baslik', metin: 'Sorunlar ne kadar yaygın?' },
+    { kind: 'paragraf', metin: 'Bu soruda çalışmalar tam aynı sonuca varmıyor. Sidney Üniversitesi\'nden Velie ve ekibi, Avustralya\'daki veteriner kliniklerinin 1992 ile 2018 arasındaki kayıtlarını inceledi. 1.131 Scottish Fold kediden 12\'sine klinik olarak osteokondrodisplazi tanısı konmuştu, 69 kedide de bu durumdan şüphelenilmişti. Tanı konan kediler çoğunlukla 30 aylıktan küçüktü.' },
+    { kind: 'paragraf', metin: 'Araştırmacılar klinikte tanı konan bozukluğun görece düşük olduğunu, ancak bunun klinik önemini doğru değerlendirmek için daha fazla kanıt gerektiğini yazıyor. Rorden ve ekibi ise 22 Scottish Fold kedinin röntgenini, kulak şeklini bilmeyen dört değerlendiriciyle inceledi. Kıvrık kulaklı 10 kedinin hepsi geni tek kopya taşıyordu ve röntgen bulguları daha önce yayımlanan çalışmalara göre çok daha hafifti. Yine de çalışma, kıvrık kulaklı kedi yetiştirilmesi tartışmasının sürdüğünü belirtiyor.' },
+    { kind: 'tablo', basliklar: ['Çalışma', 'Neye baktı?', 'Ne buldu?'], satirlar: [
+      ['Malik ve ekibi, 1999', 'Klinikteki ve çiftlikteki kediler', 'Tüm kıvrık kulaklı kedilerde bir derece bozukluk; kıvrık kulaklı kedilerle üretmekten kaçınılması önerildi'],
+      ['Gandolfi ve ekibi, 2016', 'Gen taraması', 'Kıvrık kulak TRPV4 genindeki değişiklikle ilişkili'],
+      ['Rorden ve ekibi, 2021', '22 kedinin röntgeni', 'Tek kopya taşıyanlarda bulgular daha önce bildirilenden hafif'],
+      ['Velie ve ekibi, 2023', 'Avustralya klinik kayıtları', 'Klinik tanı oranı görece düşük, daha fazla kanıt gerekli'],
+    ]},
+
+    { kind: 'baslik', metin: 'Irk neden tartışılıyor?' },
+    { kind: 'paragraf', metin: 'Tartışmanın çekirdeğinde şu soru var: Sağlık sorununa yol açabilen bir özellik, ırkın tanımlayıcı özelliği olarak üretilmeli mi? FIFe\'nin Üreme ve Kayıt Kuralları\'nın 1 Temmuz 2026 tarihli sürümünde, ırk özelliği olarak ilerleyici eklem, kemik ve kıkırdak deformitesine yol açan bir baskın gen taşıyan hiçbir ırkın kaydedilmeyeceği ve tanınmayacağı yazıyor; örnek olarak Scottish Fold gösteriliyor.' },
+    { kind: 'paragraf', metin: 'Buna karşılık CFA ırkı kabul ediyor. Kısa tüylüleri 1978\'de şampiyonluk statüsüne aldı ve yetiştiricilerden kıvrık kulaklıyı düz kulaklıyla eşleştirmeyi ve DNA testi yaptırmayı bekliyor. Malik ve ekibi ise 1999\'da kıvrık kulaklı kedilerle üretimden kaçınılmasını, bunun yerine düz kulaklı Scottish Shorthair kedilerin kullanılmasını önermişti. Her görüşün farklı bir yerden baktığını bilmek, kararı verirken işe yarıyor.' },
+    { kind: 'tablo', basliklar: ['Kurum ya da çalışma', 'Duruş'], satirlar: [
+      ['FIFe', 'Osteokondrodisplaziyi ırk özelliği olarak kaydetmiyor ve tanımıyor'],
+      ['CFA', 'Irkı kabul ediyor; kıvrık kulaklı ile düz kulaklıyı eşleştirmeyi ve DNA testini vurguluyor'],
+      ['Malik ve ekibi, 1999', 'Üretimde kıvrık kulaklı kedilerden kaçınılmasını önermişti'],
+    ]},
+
+    { kind: 'baslik', metin: 'Edinmeden önce nelere bakılmalı?' },
+    { kind: 'paragraf', metin: 'Bir Scottish Fold ya da düz kulaklı bir Scottish düşünen birinin yetiştiriciye sorabileceği somut sorular var. Kararı kesinleştirmeden önce kediyi veteriner hekime göstermek de önerilir.' },
+    { kind: 'liste', maddeler: [
+      'Ebeveynlerin DNA testi yapılmış mı, sonuç görülebiliyor mu?',
+      'Eşleştirmede kıvrık kulaklı kedi düz kulaklı bir kediyle mi çiftleştirilmiş?',
+      'Yavrunun kuyruğu esnek mi, yürüyüşünde aksama var mı?',
+      'Yetiştirici ırkın sağlık tartışmasından açıkça söz ediyor mu?',
+      'Edinmeden sonra veteriner kontrolü için zaman ayrılmış mı?',
+    ]},
+    { kind: 'paragraf', metin: 'CFA kuyruğun esnekliğinin nazikçe ve sık sık değerlendirilmesini, sertliğin başka sağlık sorunlarının erken bir işareti olabileceğini belirtiyor. İyi yetiştirilmiş bir Scottish Fold\'un kuyruğunun esnek olması ve yürüyüşünde sorun bulunmaması bekleniyor. Düzenli kontrol zamanlaması için [[kedi-kopek-check-up-ne-zaman|kedi ve köpek check-up ne zaman yapılır?]] yazımıza bakılabilir.' },
+  ],
+  kontrolListesi: [
+    'Ebeveynlerin DNA testi var mı?',
+    'Düz kulaklı ebeveyn var mı?',
+    'Kuyruk esnek mi?',
+    'Yürüyüşte aksama var mı?',
+    'Zıplamaya isteksizlik var mı?',
+    'Veteriner muayenesi yapıldı mı?',
+  ],
+  sss: [
+    { soru: 'Scottish Fold\'un kulakları neden kıvrık?', cevap: 'Kıvrık kulaklar TRPV4 genindeki bir değişiklikle ilişkili. Bu gen kıkırdağın gelişimini etkiliyor ve baskın biçimde geçiyor. Aynı kıkırdak etkisi ayak, bacak ve kuyruktaki yapılarda da görülebildiği için ırk sağlık açısından tartışılıyor.' },
+    { soru: 'Tüm Scottish Fold kediler hasta mı olur?', cevap: 'Bu kesin değil. Bazı hakemli çalışmalar tüm kıvrık kulaklı kedilerin bir derece etkilendiğini düşünüyor. Avustralya klinik kayıtlarında ise 1.131 Scottish Fold kediden 12\'sine klinik tanı konmuştu. Bu yüzden kedinin durumunu değerlendirmek veteriner hekime ait.' },
+    { soru: 'Scottish Fold yavrularının kulağı ne zaman kıvrılır?', cevap: 'CFA\'ya göre yavruların kulakları üç dört haftalık olmadan kıvrılmaya başlamıyor. Bu nedenle bir yavrunun kulağının kıvrık mı düz mü olacağı ilk haftalarda belli olmuyor, yetiştiriciler bu yüzden bekleme süresi öngörüyor.' },
+    { soru: 'Kıvrık kulaklı kedi işitmeyi etkiler mi?', cevap: 'CFA, kıvrık kulakların kedinin işitmesi üzerinde bir etkisi olmadığını belirtiyor. Kulak şekli işitmeden bağımsız görünüyor. Asıl tartışma konusu kulakla değil, aynı genin kıkırdak ve eklemlerdeki olası etkileriyle ilgili.' },
+    { soru: 'İki kıvrık kulaklı kedi çiftleştirilir mi?', cevap: 'Sorumlu yetiştiriciler bunu yapmıyor. İki kopya gen taşıyan kedilerde şiddetli röntgen bulguları görüldüğü gösterilmişti. CFA, kıvrık kulaklı kedinin yalnızca düz kulaklı bir kediyle eşleştirilmesini ve DNA testi yapılmasını öneriyor.' },
+    { soru: 'Düz kulaklı Scottish Fold var mı?', cevap: 'Evet, aynı soydan düz kulaklı kediler de doğuyor. CFA 2022\'de düz kulaklı kedileri de kabul etti. Malik ve ekibi 1999\'da üretimde kıvrık kulaklı yerine düz kulaklı Scottish Shorthair kedilerin kullanılmasını önermişti.' },
+    { soru: 'Scottish Fold\'un tüy bakımı zor mu?', cevap: 'Hayır, kısa tüylülerde haftalık tarama CFA\'ya göre tüyün iyi durumda kalması için yeterli. Uzun tüylü Scottish Fold\'lar ise tüylerin düğümlenmesini önlemek için daha sık bakım istiyor.' },
+  ],
+  kaynaklar: [
+    {
+      kurum: 'Fédération Internationale Féline (FIFe)',
+      baslik: 'FIFe Breeding & Registration Rules (01.07.2026)',
+      yil: 2026,
+      adres: 'https://fifeweb.org/wp-content/uploads/2023/11/br_reg_en.pdf',
+    },
+    {
+      kurum: 'The Cat Fanciers\' Association (CFA)',
+      baslik: 'Scottish Fold',
+      adres: 'https://cfa.org/breed/scottish-fold/',
+    },
+    {
+      kurum: 'University of Missouri, University of Sydney, University of Melbourne',
+      yazarlar: 'Gandolfi B, Alamri S, Darby WG, Adhikari B, Lattimer JC, Malik R, Wade CM, Lyons LA, Cheng J, Bateman JF, McIntyre P, Lamandé SR, Haase B',
+      baslik: 'A dominant TRPV4 variant underlies osteochondrodysplasia in Scottish fold cats',
+      dergi: 'Osteoarthritis and Cartilage',
+      yil: 2016,
+      kunye: '24(8):1441-50',
+      doi: '10.1016/j.joca.2016.03.019',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/27063440/',
+    },
+    {
+      kurum: 'University of Sydney, Department of Veterinary Clinical Sciences',
+      yazarlar: 'Malik R, Allan GS, Howlett CR, Thompson DE, James G, McWhirter C, Kendall K',
+      baslik: 'Osteochondrodysplasia in Scottish Fold cats',
+      dergi: 'Australian Veterinary Journal',
+      yil: 1999,
+      kunye: '77(2):85-92',
+      doi: '10.1111/j.1751-0813.1999.tb11672.x',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/10078353/',
+    },
+    {
+      kurum: 'University of South Carolina, North Carolina State University, University of Sydney',
+      yazarlar: 'Rorden C, Griswold MC, Moses N, Berry CR, Keller GG, Rivas R, Flores-Smith H, Shaffer LG, Malik R',
+      baslik: 'Radiographical Survey of Osteochondrodysplasia in Scottish Fold Cats caused by the TRPV4 gene variant',
+      dergi: 'Human Genetics',
+      yil: 2021,
+      kunye: '140(11):1525-1534',
+      doi: '10.1007/s00439-021-02337-5',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/34406467/',
+    },
+    {
+      kurum: 'University of Sydney, Sydney School of Veterinary Science',
+      yazarlar: 'Velie BD, Milden T, Miller H, Haase B',
+      baslik: 'An estimation of osteochondrodysplasia prevalence in Australian Scottish Fold cats: a retrospective study using VetCompass Data',
+      dergi: 'BMC Veterinary Research',
+      yil: 2023,
+      kunye: '19(1):252',
+      doi: '10.1186/s12917-023-03811-0',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/38031079/',
+    },
+  ],
+};
