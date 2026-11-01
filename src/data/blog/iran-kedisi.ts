@@ -1,0 +1,130 @@
+import type { BlogYazi } from './types';
+
+export const iranKedisi: BlogYazi = {
+  slug: 'iran-kedisi',
+  baslik: 'İran Kedisi (Persian): Özellikleri ve Bakımı',
+  ozet: 'İran kedisi yuvarlak yüzlü, kısa burunlu ve uzun tüylü sakin bir ırk. Tüy bakımını, göz ve diş yapısını, böbrek kisti hastalığını (PKD) ve ömrünü anlattık.',
+  kapakAlt:
+    'Koltukta uzanan krem renkli uzun tüylü kedi',
+  kategori: 'Kedi',
+  tarih: '2026-11-01',
+  bloklar: [
+    { kind: 'paragraf', metin: '**İran kedisi (Persian), yuvarlak yüzlü, kısa burunlu, iri gözlü, uzun ve kalın tüylü, sakin huylu bir ırktır; bakımında düzenli tüy taraması, göz çevresinin temizliği ve veteriner kontrolü öne çıkıyor.** İngiltere\'deki bir birinci basamak veteriner çalışmasında İran kedileri için bildirilen ortanca ömür 13,5 yıl oldu. Irkta en çok konuşulan sağlık başlıkları ise kısa burun yapısına bağlı göz ve diş sorunları ile kalıtsal bir böbrek hastalığı olan polikistik böbrek hastalığı (PKD).' },
+    { kind: 'paragraf', metin: 'Aşağıda ırkın kökenini, görünüşünü ve huyunu; tüy bakımını; yüz yapısının getirdiği konuları; PKD\'yi ve ömür verilerini anlatıyoruz. Sağlıkla ilgili rakamlar gözlemsel çalışmalara dayanıyor, bu yüzden tek bir kediye birebir uygulanmıyor. Kedide bir sağlık sorunundan şüphelenildiğinde kararı muayene eden veteriner hekim veriyor.' },
+
+    { kind: 'tablo', basliklar: ['Özellik', 'İran kedisi'], satirlar: [
+      ['Gövde', 'Geniş göğüslü, kaslı, kısa ve kalın kemikli bacaklı'],
+      ['Baş', 'Yuvarlak ve geniş; kısa, basık ve geniş burun'],
+      ['Göz', 'İri, yuvarlak, birbirinden uzak'],
+      ['Kulak', 'Küçük, uçları yuvarlak'],
+      ['Tüy', 'Uzun ve kalın, vücuttan açık duran'],
+      ['Yetişkin ağırlığı', 'İngiltere verisinde ortalama 3,9 kg'],
+    ]},
+
+    { kind: 'baslik', metin: 'Kökeni ve görünüşü: her şey yuvarlak' },
+    { kind: 'paragraf', metin: 'Cat Fanciers\' Association (CFA) İran kedisinin adının varsayılan çıkış ülkesinden geldiğini, ama Batı Avrupa\'ya tam olarak nasıl ulaştığının bilinmediğini yazıyor. CFA\'nın aktardığı kayıtlardan biri 1626 tarihli: İtalyan tüccar Pietro della Valle, Persia\'dan uzun ve yoğun tüylü bir kediyle dönmüş. Irkın ABD\'ye ilk ithalatı 1880\'lerin sonunda yapılmış ve CFA\'nın 1906\'daki kuruluşunda altı kurucu ırktan biri olmuş.' },
+    { kind: 'paragraf', metin: 'CFA ırk standardı idealde ağır kemikli, dengeli, tatlı bakışlı ve yumuşak yuvarlak hatlı bir kedi tarif ediyor. Geniş göğüslü ve kaslı bir gövde, kısa ve kalın kemikli bacaklar, küçük kulaklar ve birbirinden uzak duran iri yuvarlak gözler ırkın görünüşünü oluşturuyor. Rengi çeşitli: CFA yarışmalar için ırkı yedi renk bölümüne ayırdığını yazıyor.' },
+
+    { kind: 'baslik', metin: 'Huyu: sakin, ilgi seven, çocuklarla uyumlu' },
+    { kind: 'paragraf', metin: 'CFA İran kedisini oyuncu ama ağırbaşlı olarak anlatıyor. Uyumlu ve yumuşak huylu olduğunu, bir oyuncağın peşinden koşmaya ikna edilebildiğini ama asıl olarak sahibinin ilgisini ve sevgisini almaktan hoşlandığını yazıyor. Mutfak tezgahına çıkması ya da perdeye tırmanması beklenen bir kedi değil. CFA her yaştan çocukla uyumlu olduğunu ve diğer evcil hayvanlarla barış içinde yaşayabildiğini de belirtiyor.' },
+    { kind: 'paragraf', metin: 'Bunlar ırk tarifidir, her kedi birebir uymaz. Evde yeni bir kedinin uyum sürecini planlıyorsanız [[yeni-kedi-eve-alisma|yeni kedinin eve alışması]] yazısı işe yarar.' },
+
+    { kind: 'baslik', metin: 'Tüy bakımı: düzenli tarama bu ırkta zorunluluk' },
+    { kind: 'paragraf', metin: 'CFA İran kedisi sahipliğinin düzenli tüy bakımına ciddi bir bağlılık gerektirdiğini yazıyor. Tüyün düğümlenmesini ve keçeleşmesini önlemek için uzun ve kısa, sık ve seyrek dişleri olan çelik ya da teflon kaplı bir tarak şart olarak sayılıyor. Yavruların tüy bakımına küçük yaşta alıştırılması gerekiyor. Banyo ancak tüy iyice tarandıktan ve tırnaklar kesildikten sonra öneriliyor; birçok sahip de bakım için profesyonel kuaförlerden yararlanıyor.' },
+    { kind: 'paragraf', metin: 'Sağlık verileri bakımın önemini destekliyor. İngiltere\'de 3235 İran kedisinin incelendiği çalışmada en sık kaydedilen özel sorun tüy sorunlarıydı (yüzde 12,7); uzamış tırnaklar da yüzde 7,2 ile listede yer aldı. Tırnak bakımı için [[kedi-tirnagi-nasil-kesilir|kedi tırnağı nasıl kesilir]], dökülme için [[kedi-tuy-dokumu|kedi tüy dökümü]] yazılarına bakılabilir. Tüyde yaygın düğüm, deride kızarıklık ya da yara görülürse veteriner hekime başvurmak gerekiyor.' },
+
+    { kind: 'baslik', metin: 'Kısa burun ve yüz yapısı: göz, nefes ve diş' },
+    { kind: 'paragraf', metin: 'CFA\'ya göre bir dönem ince hatlara verilen önem, burun delikleri ortalamadan küçük kedilere ve solunum sorunlarına yol açtı. Yetiştiriciler bu sorunlara yatkın kedileri üretimden çıkararak durumu azalttı. Güncel ırk standardı da burun deliklerinin kedinin kısıtlanmadan nefes almasına yetecek kadar açık olmasını şart koşuyor.' },
+    { kind: 'paragraf', metin: 'Almanya\'daki Giessen Üniversitesi\'nin bilgisayarlı tomografi çalışmasında 69 İran kedisinin kafatası incelendi. Kısa yüzlülük (brakisefali) derecesi arttıkça gözün kemik yuvanın dışında kalan bölümü büyüdü, burun girişinin yüksekliği azaldı ve üst çenede azı dişi kayması arttı. Aynı çalışma değerlerin geniş bir aralıkta dağıldığını, bazı İran kedilerinin kısa tüylü ev kedileriyle örtüştüğünü de gösterdi; yani yüz yapısı her kedide aynı ölçüde belirgin değil.' },
+    { kind: 'yanilgi', baslik: '"Kısa burun İran kedisinin doğal özelliği, sorun yaratmaz"', metin: 'Kısa ve basık burun ırk görünümünün parçası, ama derecesi kediden kediye değişiyor ve CFA da aşırı küçük burun deliklerinin solunum sorunu yarattığını kabul ediyor. Giessen çalışması yüz kısaldıkça göz ve diş yapısında da fark görüldüğünü bildiriyor. Kedinin yüz yapısının sağlığına etkisini muayenede veteriner hekime sormak gerekiyor.' },
+    { kind: 'paragraf', metin: 'İngiltere verisi de bu tabloyu destekliyor: göz hastalıkları İran kedilerinde en sık sorun gruplarından biriydi (yüzde 15,3), göz akıntısı ise kedilerin yüzde 5,8\'inde kaydedildi. CFA iri gözlerin lekelenebildiğini ve yumuşak, nemli bir bezle temizlik gerektirdiğini yazıyor. Akıntı artarsa ya da göz kızarırsa nedenini veteriner hekim belirler; ayrıntı için [[kedilerde-goz-akintisi|kedilerde göz akıntısı]] yazısına bakılabilir.' },
+    { kind: 'paragraf', metin: 'Diş sağlığı da ayrı bir başlık. Aynı çalışmada diş hastalıkları grubu yüzde 12,3, diş eti ve çevre doku hastalığı (periodontal hastalık) ise yüzde 11,3 oranında kaydedildi. Ağız bakımı için [[kedilerin-disleri-nasil-temizlenir|kedilerin dişleri nasıl temizlenir]] yazısı yol gösterir.' },
+    { kind: 'uyari', metin: 'Kedide nefes almada zorlanma ya da gözde ani bir değişiklik görülürse nedeni ne olursa olsun vakit kaybetmeden veteriner hekime başvurmak gerekiyor.' },
+
+    { kind: 'baslik', metin: 'Polikistik böbrek hastalığı (PKD)' },
+    { kind: 'paragraf', metin: 'Cornell Üniversitesi Veteriner Fakültesi, PKD\'nin en sık İran kedilerinde görüldüğünü, ayrıca Himalayan ve British Shorthair gibi birkaç ırkta da ortaya çıkabildiğini yazıyor. Hastalıkta böbrek dokusunda sıvı dolu kistler gelişiyor; kistler zamanla sayıca ve boyutça artıp normal böbrek dokusunu bastırabiliyor ve ölümcül olabilen böbrek yetmezliğine yol açabiliyor.' },
+    { kind: 'paragraf', metin: 'Cornell\'e göre kistler doğuştan var ve yavrularda altı aylıktan itibaren saptanabiliyor; belirtiler ise çoğunlukla yedi yaş civarındaki kedilerde fark ediliyor. Belirtiler genel böbrek hastalığıyla aynı olduğu için su içme ve idrar miktarında artış, iştah azalması ya da kilo kaybı gibi değişikliklerde muayene gerekiyor. Cornell\'in aktardığına göre genetik test kedinin ne kadar ağır etkilendiğini söylemiyor; kesin tanı için ultrason gerekiyor. Ankara Üniversitesi Veteriner Fakültesi\'nin çalışması da hastalığın ağırlıklı olarak kalıtsal, baskın (otozomal dominant) bir mutasyondan kaynaklandığını ve hayvanların yıllarca belirti vermeyebildiğini yazıyor.' },
+    { kind: 'paragraf', metin: 'Önlemenin bilinen tek yolu üretimde test. Cornell, geni taşıyabilecek her kedinin, özellikle de İran kedilerinin test edilmesini, geni taşıdığı saptanan kedinin ise üretimde kullanılmamasını istiyor. CFA da PKD\'nin 2000\'lerin başında birçok İran kedisinin ömrünü kısalttığını, ama genetik test ve etkilenen kedilerin kısırlaştırılmasıyla büyük ölçüde kontrol altına alındığını yazıyor.' },
+    { kind: 'paragraf', metin: 'Türkiye için de bir veri var. Ankara Üniversitesi ekibi, farklı ırklardan böbrek hastalığı belirtisi olmayan 294 kediyi taradı ve ikisinde (yüzde 0,68) mutasyon buldu; böbrek bulgusu nedeniyle getirilen 16 kedinin 10\'unda (yüzde 62,5) ise mutasyon vardı. Bu oranlar yalnızca İran kedilerine ait değil, çeşitli ırkları kapsıyor. Hangi testin ya da kontrolün yapılacağına veteriner hekim karar veriyor; yaşa göre kontrol sıklığı için [[kedi-kopek-check-up-ne-zaman|kedi ve köpekte check-up ne zaman yapılmalı]] yazısına bakılabilir.' },
+
+    { kind: 'baslik', metin: 'Ömrü ve sık görülen sorunlar: İngiltere verisi' },
+    { kind: 'paragraf', metin: 'Royal Veterinary College\'dan O\'Neill ve ekibi, 2013 yılında İngiltere\'deki birinci basamak veteriner kliniklerinde izlenen 285.547 kedinin 3235\'ini (yüzde 1,1) oluşturan İran kedilerini inceledi. Yetişkin İran kedilerinin ortalama ağırlığı 3,9 kg bulundu. İran kedilerinin yüzde 64,9\'unda en az bir sorun kaydedilmişti. Ortanca ömür 13,5 yıl, çeyreklik aralığı 9,9 ile 16,0 yıl oldu.' },
+    { kind: 'tablo', basliklar: ['En sık kaydedilen sorun', 'Kedi sayısı', 'Oran'], satirlar: [
+      ['Tüy sorunları', '411', 'Yüzde 12,7'],
+      ['Diş eti ve çevre doku hastalığı', '365', 'Yüzde 11,3'],
+      ['Uzamış tırnaklar', '234', 'Yüzde 7,2'],
+      ['Göz akıntısı', '188', 'Yüzde 5,8'],
+    ]},
+    { kind: 'paragraf', metin: 'Ölüm nedenleri gruplandığında en sık neden böbrek hastalığıydı (yüzde 23,4); onu tümörler (yüzde 8,5) izledi. Yazarlar, tüy, göz ve diş sorunlarının öne çıkmasının ırkın yapısına bağlı sorunlar için sahip farkındalığının artması gerektiğini gösterdiğini yazıyor.' },
+    { kind: 'paragraf', metin: 'Bu rakamlar bir kedinin ne kadar yaşayacağını söylemiyor; yalnızca o çalışmadaki İran kedilerini anlatıyor ve her kedi için geçerli değil. Genel ömür bilgisi için [[kediler-kac-yil-yasar|kediler kaç yıl yaşar]] yazısına bakılabilir.' },
+
+    { kind: 'baslik', metin: 'Sahiplenirken ve sonrasında neye bakılmalı?' },
+    { kind: 'liste', maddeler: [
+      'Yavrunun anne ve babası için PKD test sonucunu sormak',
+      'Burnun ve burun deliklerinin rahat nefese uygun olup olmadığını veteriner hekime göstermek',
+      'Tüy bakımına yavruluktan başlamak ve uygun bir tarak almak',
+      'Göz çevresini nemli, yumuşak bir bezle temiz tutmak',
+      'Diş ve genel sağlık için düzenli veteriner kontrolü yaptırmak',
+    ]},
+    { kind: 'paragraf', metin: 'Aşı programı için [[kedi-asi-takvimi|kedi aşı takvimi]] yazısına göz atılabilir.' },
+  ],
+  kontrolListesi: [
+    'Anne babanın PKD testi var mı?',
+    'Düzenli tüy taraması var mı?',
+    'Göz çevresi temizleniyor mu?',
+    'Diş kontrolü yapıldı mı?',
+    'Nefes almada zorlanma var mı?',
+    'Yıllık veteriner kontrolü var mı?',
+  ],
+  sss: [
+    { soru: 'İran kedisi kaç yıl yaşar?', cevap: 'Kesin bir süre söylemek mümkün değil. İngiltere\'de İran kedileri üzerinde yapılan bir çalışmada ortanca ömür 13,5 yıl, çeyreklik aralığı 9,9 ile 16,0 yıl bulundu. Bu rakam bir ömür beklentisi değil, o örnekteki kedileri anlatıyor. Bireysel kedinin ömrünü bakım, genetik ve sağlık durumu etkiliyor.' },
+    { soru: 'İran kedisinin tüy bakımı zor mu?', cevap: 'Evet, düzenli ve ciddi bir bakım gerekiyor. CFA tüyün düğümlenmesini önlemek için uygun bir tarak ve yavruluktan itibaren alışma çalışması gerektiğini yazıyor. İngiltere verisinde tüy sorunları en sık kaydedilen özel sorun oldu. Düğüm ya da deri sorunu görülürse veteriner hekime başvurmak gerekiyor.' },
+    { soru: 'İran kedisinin gözlerinde akıntı sık görülür mü?', cevap: 'Evet, bu ırkta göz akıntısı ve lekelenme sık kaydediliyor. İngiltere verisinde İran kedilerinin yüzde 5,8\'inde göz akıntısı vardı. CFA iri gözlerin lekelenebildiğini ve yumuşak, nemli bezle temizlik gerektiğini yazıyor. Akıntı artarsa ya da göz kızarırsa nedeni veteriner hekim belirler.' },
+    { soru: 'İran kedisi sakin midir, çocuklarla geçinir mi?', cevap: 'Irk tarifine göre evet. CFA İran kedisini oyuncu ama ağırbaşlı, her yaştan çocukla uyumlu ve diğer evcil hayvanlarla barış içinde yaşayabilen bir kedi olarak anlatıyor. Bu bir ırk tarifidir, her kedinin huyu farklı olduğu için garanti anlamına gelmiyor.' },
+    { soru: 'İran kedisinde PKD nedir?', cevap: 'PKD, böbrekte sıvı dolu kistlerin geliştiği kalıtsal bir hastalıktır. Cornell en sık İran kedilerinde görüldüğünü yazıyor. Kistler doğuştan var, belirtiler çoğunlukla yedi yaş civarında fark ediliyor. Kesin tanı ultrasonla konuyor; test ve kontrol kararını veteriner hekim veriyor.' },
+    { soru: 'İran kedisi yavrusu alırken neye dikkat edilir?', cevap: 'Anne ve babanın PKD test sonucunun sorulması öneriliyor, çünkü Cornell önlemenin bilinen tek yolunun üretimde test olduğunu yazıyor. Yavrunun burun yapısı ve gözleri de veteriner hekime gösterilebilir. Aşı ve kontrol planını muayene eden veteriner hekim belirler.' },
+    { soru: 'İran kedisi kaç kilo olur?', cevap: 'İngiltere verisinde yetişkin İran kedilerinin ortalama ağırlığı 3,9 kg bulundu. Bu bir ortalama, ideal kilo kediye göre değişiyor. Kedinin sağlıklı kilosunu ve porsiyonunu muayenede veteriner hekim değerlendirir.' },
+  ],
+  kaynaklar: [
+    {
+      kurum: 'The Cat Fanciers\' Association (CFA)',
+      baslik: 'Persian (ırk profili)',
+      adres: 'https://cfa.org/persian/',
+    },
+    {
+      kurum: 'Cornell University College of Veterinary Medicine, Cornell Feline Health Center',
+      baslik: 'Polycystic Kidney Disease',
+      adres: 'https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/polycystic-kidney-disease',
+    },
+    {
+      kurum: 'The Royal Veterinary College',
+      yazarlar: 'O\'Neill DG, Romans C, Brodbelt DC, Church DB, Černá P, Gunn-Moore DA',
+      baslik: 'Persian cats under first opinion veterinary care in the UK: demography, mortality and disorders',
+      dergi: 'Scientific Reports',
+      yil: 2019,
+      kunye: '9(1):12952',
+      doi: '10.1038/s41598-019-49317-4',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/31530836/',
+    },
+    {
+      kurum: 'Justus-Liebig University Giessen, Department of Veterinary Clinical Sciences',
+      yazarlar: 'Sieslack J, Farke D, Failing K, Kramer M, Schmidt MJ',
+      baslik: 'Correlation of brachycephaly grade with level of exophthalmos, reduced airway passages and degree of dental malalignment in Persian cats',
+      dergi: 'PLOS ONE',
+      yil: 2021,
+      kunye: '16(7):e0254420',
+      doi: '10.1371/journal.pone.0254420',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/34288937/',
+    },
+    {
+      kurum: 'Ankara University, Faculty of Veterinary Medicine',
+      yazarlar: 'Bilgen N, Bişkin Türkmen M, Çınar Kul B, Isparta S, Şen Y, Akkurt MY, Çıldır ÖŞ, Bars Z',
+      baslik: 'Prevalence of PKD1 gene mutation in cats in Turkey and pathogenesis of feline polycystic kidney disease',
+      dergi: 'Journal of Veterinary Diagnostic Investigation',
+      yil: 2020,
+      kunye: '32(4):549-555',
+      doi: '10.1177/1040638720935433',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/32687010/',
+    },
+  ],
+};

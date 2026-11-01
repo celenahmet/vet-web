@@ -161,6 +161,15 @@ import { muhabbetKusuKacYilYasar } from './muhabbet-kusu-kac-yil-yasar';
 import { tavsanBakimi } from './tavsan-bakimi';
 import { tavsanKacYilYasar } from './tavsan-kac-yil-yasar';
 import { tekirKedi } from './tekir-kedi';
+import { almanKurdu } from './alman-kurdu';
+import { hamsterKacYilYasar } from './hamster-kac-yil-yasar';
+import { iranKedisi } from './iran-kedisi';
+import { kangalKopegi } from './kangal-kopegi';
+import { kaplumbagaKacYilYasar } from './kaplumbaga-kac-yil-yasar';
+import { labradorRetriever } from './labrador-retriever';
+import { pomeranian } from './pomeranian';
+import { sarmanKedi } from './sarman-kedi';
+import { ucRenkliKedi } from './uc-renkli-kedi';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -215,6 +224,9 @@ const TUM_YAZILAR: BlogYazi[] = [
   kopeklerEkmekYerMi, kopeklerMuzYerMi,
   ankaraKedisi, britishShorthair, hamsterBakimi, kopeklerPeynirYerMi,
   muhabbetKusuKacYilYasar, tavsanBakimi, tavsanKacYilYasar, tekirKedi,
+  almanKurdu, hamsterKacYilYasar, iranKedisi, kangalKopegi,
+  kaplumbagaKacYilYasar, labradorRetriever, pomeranian, sarmanKedi,
+  ucRenkliKedi,
 ];
 
 /**

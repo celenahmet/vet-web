@@ -1,0 +1,131 @@
+import type { BlogYazi } from './types';
+
+export const pomeranian: BlogYazi = {
+  slug: 'pomeranian',
+  baslik: 'Pomeranian: Özellikleri ve Bakımı',
+  ozet: 'Pomeranian, FCI standardında Toy Spitz olarak geçen küçük bir refakat köpeğidir. Boyu, tüyü, huyu ve sağlıkta dikkat edilecek alanlar bu yazıda.',
+  kapakAlt:
+    'Salonda ağzında oyuncak tutan turuncu pomeranian',
+  kategori: 'Köpek',
+  tarih: '2026-11-01',
+  bloklar: [
+    { kind: 'paragraf', metin: '**Pomeranian, FCI standardında "Toy Spitz" (Zwergspitz) olarak geçen, omuz yüksekliği 21 cm ± 3 cm olan küçük bir refakat köpeğidir.** Çift katlı gür tüyü, dik kulakları ve sırtına kıvrılan kuyruğuyla tanınır. Standart onu dikkatli, canlı ve sahibine çok bağlı bir köpek olarak tarif ediyor. Küçük ırklarda sıkça konuşulan diz kapağı, nefes borusu ve diş sağlığı konularında ise düzenli veteriner kontrolü gerekiyor.' },
+    { kind: 'paragraf', metin: 'Aşağıda ırkın resmî standardını, boyunu, tüyünü ve huyunu, ardından hakemli çalışmaların işaret ettiği sağlık alanlarını topladık. Teşhis ve tedavi veteriner hekimin işidir; yazıda yalnızca hangi konularda hekime danışılması gerektiği anlatılıyor.' },
+
+    { kind: 'tablo', basliklar: ['Özellik', 'FCI standardına göre'], satirlar: [
+      ['Köken', 'Almanya'],
+      ['Sınıf', '5. grup (Spitz ve ilkel tipler), Avrupa Spitzleri bölümü'],
+      ['Omuz yüksekliği', '21 cm ± 3 cm'],
+      ['Kilo', 'Boyuyla orantılı olmalı, standart kesin kilo vermiyor'],
+      ['Tüy', 'Çift katlı: uzun üst tüy, pamuksu alt tüy'],
+      ['Diş', '42 diş, makas kapanış'],
+      ['Kullanım', 'Refakat ve bekçi köpeği'],
+    ]},
+
+    { kind: 'baslik', metin: 'Pomeranian hangi ırk?' },
+    { kind: 'paragraf', metin: 'Köpek ırklarının uluslararası standardını belirleyen FCI, ırkı 97 numaralı "Alman Spitzleri" standardı altında topluyor. Standart, Almanca konuşulmayan ülkelerde Toy Spitz (Zwergspitz) köpeklerine Pomeranian dendiğini belirtiyor. Köken Almanya, sınıflandırma ise 5. grup (Spitz ve ilkel tipler), 4. bölüm (Avrupa Spitzleri). Alman Spitzlerinin Orta Avrupa\'nın en eski köpek ırkı olduğu da aynı standartta yazıyor.' },
+    { kind: 'paragraf', metin: 'Standart Alman Spitzlerini boyuna göre beş çeşide ayırıyor ve Pomeranian bunların en küçüğü:' },
+    { kind: 'tablo', basliklar: ['Çeşit', 'Omuz yüksekliği'], satirlar: [
+      ['Wolfsspitz / Keeshond', '49 cm ± 6 cm'],
+      ['Büyük Spitz', '45 cm ± 5 cm'],
+      ['Orta boy Spitz', '35 cm ± 5 cm'],
+      ['Küçük Spitz (Miniature)', '27 cm ± 3 cm'],
+      ['Toy Spitz / Pomeranian', '21 cm ± 3 cm'],
+    ]},
+
+    { kind: 'baslik', metin: 'Boy, kilo ve görünüş' },
+    { kind: 'paragraf', metin: 'Standarda göre Pomeranian\'ın omuz yüksekliği 21 cm ± 3 cm, yani 18 ile 24 cm arasında. Standart kesin bir kilo değeri vermiyor; yalnızca kilonun boyuyla orantılı olması gerektiğini söylüyor. Boy ile gövde uzunluğu oranı 1\'e 1. Küçük, üçgen ve sivri uçlu kulaklar her zaman dik duruyor; kuyruk yüksekten çıkıyor ve sırtın üzerine kıvrılıyor. Standartta tilki benzeri olarak tarif edilen, uyanık gözlü baş ırkın görünümünü belirliyor.' },
+    { kind: 'paragraf', metin: 'Çenede 42 diş ve makas kapanış bekleniyor. Standart birkaç küçük azı dişinin eksikliğini hoş görüyor; buna karşılık üst ya da alt çene kapanış kusurları ile çapraz kapanış, standartta diskalifiye nedeni sayılıyor.' },
+
+    { kind: 'baslik', metin: 'Tüy yapısı ve renkler' },
+    { kind: 'paragraf', metin: 'Pomeranian çift katlı tüye sahip: uzun, düz ve dik duran bir üst tüy ile kısa, sık ve pamuk gibi bir alt tüy. Baş, kulaklar, bacakların ön yüzü ve patiler kısa ve kadifemsi tüyle kaplı; vücudun geri kalanında uzun ve gür tüy bulunuyor. Boyun ve omuzlarda kalın bir yele oluşuyor. Standart tüyün dalgalı, kıvırcık ya da sırtta ayrılmış olmamasını istiyor.' },
+    { kind: 'paragraf', metin: 'Standart ayrıca tüyün "biçimlendirilmiş gibi görünmemesini" şart koşuyor. Tıraş ya da kesim yapılıp yapılmayacağını bir bakım uzmanıyla ve veteriner hekimle birlikte konuşmak önerilir.' },
+    { kind: 'paragraf', metin: 'Standartta tanımlı renkler beyaz, siyah, kahverengi, turuncu, gri gölgeli ve diğer renkler. "Diğer renkler" turuncu sable, krem, krem sable, siyah-ateş, siyah-gümüş, kahverengi-ateş ve alacalı tüyü kapsıyor. Alacalı köpeklerde zemin rengi her zaman beyaz olmalı.' },
+    { kind: 'yanilgi', baslik: '"Küçük köpeğin bakımı da küçüktür"', metin: 'Boyun küçük olması veteriner kontrolü ihtiyacını azaltmıyor. Aşağıda anlatılan hakemli çalışmalar tam da küçük ırk köpeklerde diş, diz kapağı ve nefes borusu sorunlarını konu alıyor.' },
+
+    { kind: 'baslik', metin: 'Huy ve karakter' },
+    { kind: 'paragraf', metin: 'FCI standardı Pomeranian\'ı dikkatli, canlı ve sahibine olağanüstü bağlı olarak tanımlıyor. Çok öğretilebilir ve eğitimi kolay bir köpek; neşeli ve arkadaş canlısı yapısı onu ev ve apartman için uygun bir refakat, aile ve bekçi köpeği yapıyor. Ne ürkek ne saldırgan olması bekleniyor. Standart, hava koşullarına kayıtsızlığı, sağlamlığı ve uzun ömrü ırkın en belirgin özellikleri olarak sayıyor. Bu, ırkın ideal tarifidir; her köpeğin sağlığı yine tek tek veteriner hekimce değerlendirilir.' },
+    { kind: 'paragraf', metin: 'Sahibine bu kadar bağlı bir köpekte yalnız kalma süresi de düşünülmesi gereken bir konu. Bunun için [[kopeklerde-ayrilik-kaygisi|köpeklerde ayrılık kaygısı]] yazımıza bakılabilir. Evine yeni yavru alanlar için [[yavru-kopek-bakimi|yavru köpek bakımı]] ve [[kopek-asi-takvimi|köpek aşı takvimi]] yazıları iyi bir başlangıç.' },
+
+    { kind: 'baslik', metin: 'Sağlık: dikkat edilecek üç alan' },
+    { kind: 'paragraf', metin: 'Aşağıdakiler bir hastalık listesi ya da tanı rehberi değil; hakemli çalışmaların gösterdiği, veteriner kontrolünde ayrıca bakılması gereken alanlar.' },
+    { kind: 'altBaslik', metin: 'Diz kapağı çıkığı' },
+    { kind: 'paragraf', metin: 'Chulalongkorn Üniversitesi (Tayland) ve Utrecht Üniversitesi araştırmacıları, Chulalongkorn Veteriner Fakültesi hastanesine getirilen ve dört kuşaklık bir soy ağacının parçası olan 339 Pomeranian\'ı 2006 ile 2013 arasında diz kapağı çıkığı açısından taradı. Köpeklerin %77\'sinde çıkık vardı; bunların %84\'ü iki yanlı, %16\'sı tek yanlıydı. Çıkık %95 oranında içe doğru görüldü. Kalıtsallık 0,44 olarak hesaplandı; dişi ile erkek arasında anlamlı bir risk farkı yoktu (göreli risk 1,11).' },
+    { kind: 'paragraf', metin: 'Bu oranlar tek ülkede, hastaneye getirilen bir köpek grubundan geliyor; tüm Pomeranian\'lar için genel bir oran olarak okunmamalı. Yine de kalıtsallığın yüksek çıkması, yavru alırken ebeveynlerin sağlık durumunun önemini gösteriyor. Yürüyüşte topallama ya da bozulma fark edildiğinde nedenin belirlenmesi için veteriner hekime başvurmak gerekiyor.' },
+    { kind: 'altBaslik', metin: 'Nefes borusu çökmesi' },
+    { kind: 'paragraf', metin: 'Seul Ulusal Üniversitesi Veteriner Fakültesi\'nin 2022 ile 2024 arasındaki kayıtlara dayanan çalışmasında, tanısı floroskopi ile doğrulanmış nefes borusu çökmesi olan 110 küçük ırk köpek incelendi. En sık görülen dört ırk Maltese, Pomeranian, Poodle ve Chihuahua idi. Çökme derecesi yüksek vücut kondisyon skoru ve düşük vücut ağırlığıyla ilişkiliydi. İlginç biçimde çökmenin yeri ve derecesi öksürüğün şiddetiyle ilişkili çıkmadı; yani öksürüğün hafif ya da şiddetli görünmesinden çökmenin derecesi çıkarılamıyor.' },
+    { kind: 'paragraf', metin: 'Aynı çalışmada kilo verdirme, ortam değişikliği ve ilaç tedavisi gibi müdahalelerle vakaların %86,6\'sında belirtiler düzeldi. Hangi müdahalenin uygun olduğuna yalnızca köpeği muayene eden veteriner hekim karar verir.' },
+    { kind: 'altBaslik', metin: 'Diş ve diş eti sağlığı' },
+    { kind: 'paragraf', metin: 'Waltham Petcare Science Institute araştırmacılarının ABD\'de bir veteriner hastane zincirinde 5 yıl boyunca kaydedilen, 60 ırka ait 3 milyondan fazla hasta kaydını incelediği çalışmada, çok küçük ırkların (6,5 kg altı) diş eti hastalığı tanısı alma olasılığı dev ırklara (25 kg üzeri) göre beş kata kadar yüksekti. Yaş, fazla kilo ve son diş taşı temizliğinden bu yana geçen süre de risk etkenleri arasındaydı. Çalışmanın özeti Pomeranian için ayrı bir oran vermiyor; ancak yazarlar diş sağlığı eğitiminin ve tanı çabalarının küçük ırk kategorilerine yöneltilmesini öneriyor.' },
+    { kind: 'paragraf', metin: 'Evde diş bakımı için [[kopek-disleri-nasil-fircalanir|köpek dişleri nasıl fırçalanır]] yazımız var.' },
+
+    { kind: 'baslik', metin: 'Günlük bakımda nelere dikkat edilir?' },
+    { kind: 'liste', maddeler: [
+      '**Kilo takibi:** Hem nefes borusu hem diş çalışmasında fazla kilo öne çıkan bir etken olduğu için düzenli tartı ve kondisyon kontrolü önerilir. [[kopegim-fazla-kilolu-mu|Köpeğim fazla kilolu mu]] yazısı bu konuda yol gösteriyor.',
+      '**Ağız muayenesi:** Son diş taşı temizliğinden geçen süre risk etkenleri arasında sayıldığı için ağız muayenesi ve temizlik sıklığını veteriner hekimle planlamak önerilir.',
+      '**Tüy bakımı:** Çift katlı tüyün bakım sıklığı ve yöntemi için bakım uzmanına ve veteriner hekime danışmak önerilir.',
+      '**Yalnız kalma süresi:** Sahibine çok bağlı bir ırk olduğu için evde yalnız kalacağı saatleri önceden planlamak gerekiyor.',
+      '**Aşı ve kısırlaştırma:** Programı veteriner hekimle birlikte kurmak gerekiyor; ayrıntılar için [[kopek-ne-zaman-kisirlastirilmali|köpek ne zaman kısırlaştırılmalı]] yazısına bakılabilir.',
+    ]},
+
+    { kind: 'baslik', metin: 'Sahiplenmeden önce nelere bakılmalı?' },
+    { kind: 'paragraf', metin: 'FCI standardı, üremede yalnızca işlevsel ve klinik olarak sağlıklı, ırk tipine uygun yapıdaki köpeklerin kullanılmasını söylüyor. Diz kapağı çıkığında kalıtsallığın yüksek bulunduğu düşünülürse, yavru alınacak yerde ebeveynlerin sağlık muayenesi sonuçlarını sormak anlamlı. Sahiplenmek isteyenler için [[barinaktan-kopek-sahiplenme|barınaktan köpek sahiplenme]] yazısı da bir seçenek sunuyor.' },
+
+    { kind: 'uyari', metin: 'Öksürük, nefes darlığı, nefes alırken olağandışı ses, topallama, yürüyüşte bozulma, ağız kokusu ya da yemek yemede güçlük fark edilirse nedeni tahmin etmek veya evde müdahale etmek yerine vakit kaybetmeden veteriner hekime başvurmak gerekiyor.' },
+  ],
+  kontrolListesi: [
+    'Kilo ve kondisyon takibi var mı?',
+    'Düzenli ağız muayenesi var mı?',
+    'Yürüyüşte topallama var mı?',
+    'Öksürük ya da nefes sorunu var mı?',
+    'Ebeveynlerin sağlık bilgisi var mı?',
+    'Yalnız kalma planı var mı?',
+  ],
+  sss: [
+    { soru: 'Pomeranian kaç santim olur?', cevap: 'Irk standardına göre omuz yüksekliği 21 cm ± 3 cm, yani 18 ile 24 cm arasındadır. FCI standardı kesin bir kilo vermiyor, yalnızca kilonun boyuyla orantılı olmasını istiyor. Bireysel köpeğin ideal kilosunu veteriner hekim kondisyon değerlendirmesiyle belirler.' },
+    { soru: 'Pomeranian ile Toy Spitz aynı ırk mı?', cevap: 'Evet, aynı ırktır. FCI standardında Toy Spitz (Zwergspitz) olarak geçen köpeklere Almanca konuşulmayan ülkelerde Pomeranian deniyor. Standart Alman Spitzlerini beş çeşide ayırıyor ve Toy Spitz bunların en küçüğü.' },
+    { soru: 'Pomeranian\'ın tüyü nasıl bir yapıdadır?', cevap: 'Pomeranian çift katlı tüye sahiptir. Uzun, düz ve dik duran bir üst tüy ile kısa, sık ve pamuk gibi bir alt tüyü vardır. Boyun ve omuzlarda kalın bir yele oluşur. Standart, tüyün biçimlendirilmiş gibi görünmemesini şart koşuyor.' },
+    { soru: 'Pomeranian\'ın eğitimi kolay mı?', cevap: 'FCI standardı Pomeranian\'ı çok öğretilebilir ve eğitimi kolay bir ırk olarak tanımlıyor. Aynı standart onu dikkatli, canlı ve sahibine olağanüstü bağlı buluyor. Eğitim süreci köpekten köpeğe değişir; sorun yaşandığında veteriner hekim ya da eğitmenle çalışmak önerilir.' },
+    { soru: 'Pomeranian\'larda hangi sağlık konuları öne çıkıyor?', cevap: 'Hakemli çalışmalarda diz kapağı çıkığı ve nefes borusu çökmesi öne çıkıyor, küçük ırklarda diş eti hastalığı da sık tanı alıyor. Tayland\'da taranan 339 Pomeranian\'ın %77\'sinde diz kapağı çıkığı bulundu. Bu bilgiler tanı koymaya yetmez; belirti ya da şüphe halinde veteriner hekime başvurmak gerekiyor.' },
+    { soru: 'Pomeranian\'ın kaç dişi olur?', cevap: 'Standartta tam diş dizilimi 42 dişten oluşuyor ve makas kapanış bekleniyor. Birkaç küçük azı dişinin eksikliği hoş görülürken kapanış kusurları standartta elenme nedeni sayılıyor. Dişlerin durumunu ve temizlik gereksinimini veteriner hekim ağız muayenesinde değerlendirir.' },
+    { soru: 'Pomeranian apartmanda yaşayabilir mi?', cevap: 'FCI standardı Pomeranian\'ı ev ve apartman için ideal bir refakat ve bekçi köpeği olarak tanımlıyor. Yani yapısı apartman yaşamına uygun görülüyor. Sahibine çok bağlı olduğu için yalnız kalma süresini planlamak ve düzenli veteriner kontrolü yaptırmak önerilir.' },
+  ],
+  kaynaklar: [
+    {
+      kurum: 'Fédération Cynologique Internationale (FCI)',
+      baslik: 'FCI-Standard N° 97: Deutsche Spitze (German Spitz), 3. Toy Spitz / Pomeranian',
+      yil: 2024,
+      adres: 'https://www.fci.be/Nomenclature/Standards/097g05-en.pdf',
+    },
+    {
+      kurum: 'Seoul National University, College of Veterinary Medicine',
+      yazarlar: 'Kim MR, Kim SH, Ryu MO, Youn HY, Choi JH, Seo KW',
+      baslik: 'A retrospective study of tracheal collapse in small-breed dogs: 110 cases (2022-2024)',
+      dergi: 'Frontiers in Veterinary Science',
+      yil: 2024,
+      kunye: '11:1448249',
+      doi: '10.3389/fvets.2024.1448249',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/39205804/',
+    },
+    {
+      kurum: 'Chulalongkorn University ve Utrecht University, Veteriner Fakülteleri',
+      yazarlar: 'Wangdee C, Leegwater PA, Heuven HC, van Steenbeek FG, Techakumphu M, Hazewinkel HA',
+      baslik: 'Population genetic analysis and genome-wide association study of patellar luxation in a Thai population of Pomeranian dogs',
+      dergi: 'Research in Veterinary Science',
+      yil: 2017,
+      kunye: '111:9-13',
+      doi: '10.1016/j.rvsc.2016.11.006',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/28266317/',
+    },
+    {
+      kurum: 'Waltham Petcare Science Institute',
+      yazarlar: 'Wallis C, Saito EK, Salt C, Holcombe LJ, Desforges NG',
+      baslik: 'Association of periodontal disease with breed size, breed, weight, and age in pure-bred client-owned dogs in the United States',
+      dergi: 'The Veterinary Journal',
+      yil: 2021,
+      kunye: '275:105717',
+      doi: '10.1016/j.tvjl.2021.105717',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/34293444/',
+    },
+  ],
+};

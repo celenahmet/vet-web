@@ -1,0 +1,127 @@
+import type { BlogYazi } from './types';
+
+export const kaplumbagaKacYilYasar: BlogYazi = {
+  slug: 'kaplumbaga-kac-yil-yasar',
+  baslik: 'Kaplumbağa Kaç Yıl Yaşar?',
+  ozet: 'Kaplumbağa kaç yıl yaşar? Doğu kutu kaplumbağası 25 ile 50 yıl, leopar kaplumbağası 50 yıldan fazla yaşıyor; ömür türe ve bakıma göre değişiyor.',
+  kapakAlt:
+    'Toprak zeminde duran kara kaplumbağası',
+  kategori: 'Pet Sahipleri',
+  tarih: '2026-11-01',
+  bloklar: [
+    { kind: 'paragraf', metin: '**Kaplumbağanın ömrü türe göre çok değişiyor, ama evde bakılan türlerin hepsi uzun yaşayan hayvanlar: Merck Veterinary Manual\'in evde bakım için verdiği ortalama değerlere göre doğu kutu kaplumbağası 25 ile 50 yıl, leopar kaplumbağası 50 yıldan fazla yaşıyor.** Yani bir kaplumbağa almak, yıllarca değil onlarca yıl sürecek bir bakım kararıdır.' },
+    { kind: 'paragraf', metin: 'Bu yazıda türe göre kaynaklı ömür değerlerini, kaplumbağaların yaşlanıp yaşlanmadığını, ömrü etkileyen bakım koşullarını ve almadan önce düşünülmesi gerekenleri topladık. Her kaplumbağa türü için tek bir ömür sayısı yok; kaynağı olmayan bir sayı yazmadık.' },
+
+    { kind: 'tablo', basliklar: ['Tür', 'Kaynaktaki ömür bilgisi'], satirlar: [
+      ['Doğu kutu kaplumbağası', 'Evde bakımda ortalama 25 ile 50 yıl'],
+      ['Leopar kaplumbağası', 'Evde bakımda ortalama 50 yıldan fazla'],
+      ['Blanding kaplumbağası', 'Doğada izlenen bireyler 75 yaşın üzerine çıkıyor'],
+      ['Tosbağa ve pet shop su kaplumbağaları', 'Bu yazının kaynaklarında doğrulanmış tek bir ortalama yok'],
+    ]},
+
+    { kind: 'baslik', metin: 'Türe göre ömür farkı büyük' },
+    { kind: 'paragraf', metin: 'Merck Veterinary Manual, evde bakılan sürüngenlerin ortalama ömrünü bir tabloda veriyor. Kaplumbağalar tarafında iki satır var: doğu kutu kaplumbağası için 25 ile 50 yıl, leopar kaplumbağası için 50 yıldan fazla. Tablodaki yılan, kertenkele ve bukalemun türlerinde ortalama değerler 3 ile 25 yıl arasında, leopar gekosunda 20 yıldan fazla.' },
+    { kind: 'paragraf', metin: 'Doğada ise daha da uzun örnekler izlenmiş. Michigan Üniversitesi\'ne ait bir alanda 47 yıllık dönemin 35 yılında incelenen Blanding kaplumbağasının, en uzun yaşayan emydid kaplumbağalardan biri olduğu ve bazı bireylerin 75 yaşın üzerine çıktığı bildiriliyor. Bu değer evde bakılan hayvanların ortalaması değil, doğada izlenen bireylerin üst sınırıdır.' },
+    { kind: 'paragraf', metin: 'Evde en çok bakılan gruplardan olan tosbağalar ve su kaplumbağaları için kaynaklarımızda doğrulanmış tek bir ortalama ömür bulamadığımız için sayı yazmıyoruz. Türün beklenen ömrünü satıcıdan ve sürüngenlerden anlayan bir veteriner hekimden öğrenmek önerilir. Hukuki tarafı ise [[kaplumbaga-beslemek-yasak-mi|kaplumbağa beslemek yasak mı]] yazısında anlattık.' },
+
+    { kind: 'baslik', metin: 'Uzun ömür, uzun süreli sorumluluk demek' },
+    { kind: 'paragraf', metin: 'Merck Veterinary Manual, memeli evcil hayvanlarla karşılaştırınca sürüngenlerin oldukça uzun ömürlü olduğunu ve hayvanı almadan önce yaşam alanını kaç yıl bakıp büyütebileceğinizi düşünmeniz gerektiğini belirtiyor. Kaplumbağa yavruyken sevimli görünebilir; ancak aynı kaynak yavruların hızlı büyüdüğünü ve çevresini oldukça kirlettiğini yazıyor.' },
+    { kind: 'yanilgi', baslik: '"Küçük bir kapta tutulursa kaplumbağa küçük kalır"', metin: 'Merck Veterinary Manual\'e göre kaplumbağalar küçük bir kapta tutulunca küçük kalmıyor. Akvaryum tipi küçük kaplar da her yaş ve boydaki kaplumbağa için yeterli değil. Hangi tür için nasıl bir barınak gerektiğini sürüngenlerden anlayan bir veteriner hekime ya da deneyimli bir yetiştiriciye sormak gerekiyor.' },
+    { kind: 'paragraf', metin: 'Aynı kaynak, evde bakılan bir sürüngenin türü bölgeye yerli olsa bile doğaya bırakılmaması gerektiğini söylüyor; bakamayacak duruma gelen kişi için yerel hayvan koruma derneği ya da hayvan kontrol kurumuyla iletişime geçmeyi öneriyor. Ömrün bu kadar uzun olması, bakım planının baştan yapılmasını gerektiriyor; benzer bir soru köpek ve kedi için de var: [[kopekler-kac-yil-yasar|köpekler kaç yıl yaşar]] ve [[kediler-kac-yil-yasar|kediler kaç yıl yaşar]].' },
+
+    { kind: 'baslik', metin: 'Kaplumbağalar hiç yaşlanmıyor mu?' },
+    { kind: 'yanilgi', baslik: '"Kaplumbağalar yaşlanmaz, yalnızca ölür"', metin: 'Iowa Eyalet Üniversitesi\'nden Warner ve ekibinin 20 yılı aşan saha verisi, yaban boyalı kaplumbağada (Chrysemys picta) yetişkin yaşla birlikte hem üremenin hem de hayatta kalmanın azaldığını gösterdi. Araştırmacılar bulguların, kaplumbağaların yaşlanmadığı görüşüne karşı kanıt sunduğunu belirtiyor.' },
+    { kind: 'paragraf', metin: 'Tablo her tür için aynı değil. Reinke ve ekibinin Science dergisinde 2022\'de yayımlanan çalışması, yaban hayatındaki 77 sürüngen ve amfibi türünün 107 popülasyonunu inceledi. Sürüngen ve amfibilerin yaşlanma hızları endotermlere (memeli ve kuşlar) göre daha çeşitli çıktı ve ihmal edilebilir düzeyde yaşlanma bulguları pek çok soy hattında görüldü.' },
+    { kind: 'paragraf', metin: 'Blanding kaplumbağası çalışmasında en yaşlı grup, daha genç gruplardan daha yüksek hayatta kalma ve daha sık üreme gösterdi. Buna karşılık yaşlı dişilerin yuvalarında gelişim sorunları yüzünden tamamen başarısız olan yuva oranı daha yüksekti. Özetle kaplumbağalar yavaş yaşlanıyor olabilir, ama yaşlanma bütünüyle yok sayılamıyor.' },
+
+    { kind: 'baslik', metin: 'Ömrü bakım koşulları belirliyor' },
+    { kind: 'paragraf', metin: 'Ludwig-Maximilians Üniversitesi Veteriner Fakültesi\'nden Bauer ve ekibi, Akdeniz ve Rus tosbağalarının (Testudo türleri) bakımını 1075 kişiyle yaptıkları ankette inceledi. Katılımcıların yüzde 75\'ten fazlası tosbağasını sera ya da soğuk çerçeve içeren açık hava alanında tutuyordu; bu, türe en uygun barınma biçimi olarak kabul ediliyor. Yüzde 67,7\'si yaz bitki örtüsü döneminde diyetin yüzde 80\'inden fazlasını ot ve yabani bitkilerden oluşturuyordu.' },
+    { kind: 'paragraf', metin: 'Araştırmacılar, kabukta piramit biçiminde büyümenin bakım kalitesinin bir göstergesi olabileceğini belirtiyor. Bu sorun, terraryumda tutulan ve/veya yaz döneminde otlardan oluşan payı yüzde 80\'in altında kalan tosbağalarda daha olasıydı. Ankete katılanların yüzde 8,2\'sinin tosbağasında tanı konmuş bir hastalık vardı.' },
+    { kind: 'paragraf', metin: 'Merck Veterinary Manual da esarette bakılan kaplumbağa ve tosbağalarda mineral eksikliğinin sık görüldüğünü yazıyor. Vitamin ve mineral takviyesinin hangi türe, hangi miktarda gerektiği türe göre değiştiği için takviyeye başlamadan önce veteriner hekimle konuşmak gerekiyor. Hayvanı doğadan toplamak yerine yetiştirilmiş bir bireyi seçmek de öneriliyor, çünkü yetiştirilmiş kaplumbağaların daha sağlıklı olma eğilimi var.' },
+    { kind: 'liste', maddeler: [
+      'Hayvanı almadan önce türünün beklenen ömrünü öğrenmek',
+      'Yetişkin boyuna uygun yaşam alanını baştan planlamak',
+      'Yetiştirilmiş bir bireyi tercih etmek',
+      'Sürüngenlerden anlayan bir veteriner hekim bulmak',
+      'Beslenme ve takviye konusunda hekime danışmak',
+    ]},
+
+    { kind: 'baslik', metin: 'Çocuklu evlerde Salmonella konusu' },
+    { kind: 'paragraf', metin: 'Merck Veterinary Manual\'e göre yavru kaplumbağaların evcil hayvan olarak popüler olması, her yıl bebeklerde ve çocuklarda 50.000 ile 80.000 Salmonella enfeksiyonuna yol açıyor. Aynı kaynak, çocukların kabuk boyu 4 inçten (yaklaşık 10 santimetre) kısa kaplumbağaları daha çok ele aldığını ve ABD\'de 1975\'ten beri bu boydaki kaplumbağaların satışının yasal olmadığını belirtiyor.' },
+    { kind: 'paragraf', metin: 'Çocuklu evlerde kaplumbağa düşünüyorsanız hijyen kuralları ve çocukların hayvanla temasına dair önlemler konusunda bir veteriner hekime danışmanız önerilir.' },
+
+    { kind: 'baslik', metin: 'Sağlıklı bir kaplumbağa nasıl görünür?' },
+    { kind: 'paragraf', metin: 'Merck Veterinary Manual, bir kaplumbağa ya da tosbağa seçerken bakılacak noktaları şöyle sıralıyor: gözler berrak, deri kuru ve yarasız olmalı, kabukta beyaz ya da sızıntılı alan veya çukur ve aşınmış bölge bulunmamalı, hayvan hırıltılı nefes almamalı, burun çevresinde mukus ya da kabarcık olmamalı, dışkı sıvı değil sert olmalı.' },
+    { kind: 'uyari', metin: 'Kaplumbağada yeme isteği, hareket, kabuk, göz ya da solunumda bir değişiklik fark ediliyorsa evde müdahale etmeye çalışmadan sürüngenlerden anlayan bir veteriner hekime başvurmak gerekiyor. Muayeneyi ertelememek önerilir.' },
+  ],
+  kontrolListesi: [
+    'Türün beklenen ömrünü öğrendim mi?',
+    'Yetişkin boyuna uygun alan var mı?',
+    'Yıllarca bakım planım var mı?',
+    'Yetiştirilmiş bir birey mi?',
+    'Sürüngen bilen hekim buldum mu?',
+    'Çocuklarla temas kuralı var mı?',
+  ],
+  sss: [
+    { soru: 'Kaplumbağa kaç yıl yaşar?', cevap: 'Türe göre çok değişiyor. Merck Veterinary Manual evde bakımda doğu kutu kaplumbağası için ortalama 25 ile 50 yıl, leopar kaplumbağası için 50 yıldan fazla değer veriyor. Almadan önce türün beklenen ömrünü öğrenmek ve bakım planını buna göre yapmak gerekiyor.' },
+    { soru: 'Kaplumbağalar 75 yıldan fazla yaşar mı?', cevap: 'Bazı türlerin doğada izlenen bireylerinde evet. Michigan\'daki uzun süreli bir çalışmada Blanding kaplumbağasının bazı bireylerinin 75 yaşın üzerine çıktığı bildirildi. Bu, evde bakılan hayvanların ortalama ömrü değil, doğada izlenen bireylerin üst sınırıdır.' },
+    { soru: 'Kaplumbağalar yaşlanır mı?', cevap: 'Evet, en azından incelenen bazı türlerde. Yaban boyalı kaplumbağada 20 yılı aşan veri, yetişkin yaşla birlikte üremenin ve hayatta kalmanın azaldığını gösterdi. Yine de sürüngenlerde yaşlanma hızı çok çeşitli ve bazı soylarda ihmal edilebilir düzeyde görülüyor.' },
+    { soru: 'Tosbağa ve su kaplumbağası kaç yıl yaşar?', cevap: 'Bu iki grup için kaynaklarımızda doğrulanmış tek bir ortalama bulamadık, bu yüzden sayı vermiyoruz. Almayı düşündüğünüz türün beklenen ömrünü satıcıdan ve sürüngenlerden anlayan bir veteriner hekimden öğrenmeniz önerilir.' },
+    { soru: 'Küçük akvaryumda kaplumbağa yaşayabilir mi?', cevap: 'Önerilmiyor. Merck Veterinary Manual akvaryum tipi küçük kapların her yaş ve boydaki kaplumbağa için yeterli olmadığını, kaplumbağanın küçük kapta tutulunca küçük kalmayıp büyümeye devam ettiğini belirtiyor. Uygun barınak için veteriner hekime danışılmalı.' },
+    { soru: 'Kaplumbağanın ömrü bakıma bağlı mı?', cevap: 'Bakım sağlığı etkiliyor. Almanya\'daki bir ankette terraryumda tutulan ve/veya yazın otlardan oluşan diyet payı yüzde 80\'in altında kalan tosbağalarda kabukta piramit biçimli büyüme daha olasıydı; araştırmacılar bunu bakım kalitesinin göstergesi sayıyor.' },
+    { soru: 'Evde beslenen kaplumbağa doğaya bırakılabilir mi?', cevap: 'Hayır. Merck Veterinary Manual evde bakılan bir sürüngenin, türü bölgeye yerli olsa bile doğaya bırakılmaması gerektiğini söylüyor. Bakamayacak duruma gelen kişi için yerel hayvan koruma derneği ya da hayvan kontrol kurumuyla iletişim öneriliyor.' },
+  ],
+  kaynaklar: [
+    {
+      kurum: 'Merck Veterinary Manual',
+      baslik: 'Selecting a Reptile',
+      yil: 2026,
+      adres: 'https://www.merckvetmanual.com/all-other-pets/reptiles/selecting-a-reptile',
+    },
+    {
+      kurum: 'Merck Veterinary Manual',
+      baslik: 'Providing a Home for a Reptile',
+      adres: 'https://www.merckvetmanual.com/all-other-pets/reptiles/providing-a-home-for-a-reptile',
+    },
+    {
+      kurum: 'Iowa State University, Department of Ecology, Evolution and Organismal Biology',
+      yazarlar: 'Warner DA, Miller DA, Bronikowski AM, Janzen FJ',
+      baslik: 'Decades of field data reveal that turtles senesce in the wild',
+      dergi: 'Proceedings of the National Academy of Sciences',
+      yil: 2016,
+      kunye: '113(23):6502-6507',
+      doi: '10.1073/pnas.1600035113',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/27140634/',
+    },
+    {
+      kurum: 'Savannah River Ecology Laboratory',
+      yazarlar: 'Congdon JD, Nagle RD, Kinney OM, van Loben Sels RC',
+      baslik: 'Hypotheses of aging in a long-lived vertebrate, Blanding\'s turtle (Emydoidea blandingii)',
+      dergi: 'Experimental Gerontology',
+      yil: 2001,
+      kunye: '36(4-6):813-827',
+      doi: '10.1016/s0531-5565(00)00242-4',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/11295515/',
+    },
+    {
+      kurum: 'Ludwig-Maximilians-Universität München, Faculty of Veterinary Medicine',
+      yazarlar: 'Bauer T, Reese S, Koelle P',
+      baslik: 'Nutrition and husbandry conditions of Palearctic tortoises (Testudo spp.) in captivity',
+      dergi: 'Journal of Applied Animal Welfare Science',
+      yil: 2019,
+      kunye: '22(2):159-170',
+      doi: '10.1080/10888705.2018.1453814',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/29609473/',
+    },
+    {
+      kurum: 'Northeastern Illinois University, Pennsylvania State University ve ark.',
+      yazarlar: 'Reinke BA, Cayuela H, Janzen FJ, Lemaître JF, Gaillard JM',
+      baslik: 'Diverse aging rates in ectothermic tetrapods provide insights for the evolution of aging and longevity',
+      dergi: 'Science',
+      yil: 2022,
+      kunye: '376(6600):1459-1466',
+      doi: '10.1126/science.abm0151',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/35737773/',
+    },
+  ],
+};
