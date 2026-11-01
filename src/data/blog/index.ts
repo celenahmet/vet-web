@@ -153,6 +153,14 @@ import { kopeklerYumurtaYerMi } from './kopekler-yumurta-yer-mi';
 import { kopeklereUzumZararliMi } from './kopeklere-uzum-zararli-mi';
 import { kopeklerEkmekYerMi } from './kopekler-ekmek-yer-mi';
 import { kopeklerMuzYerMi } from './kopekler-muz-yer-mi';
+import { ankaraKedisi } from './ankara-kedisi';
+import { britishShorthair } from './british-shorthair';
+import { hamsterBakimi } from './hamster-bakimi';
+import { kopeklerPeynirYerMi } from './kopekler-peynir-yer-mi';
+import { muhabbetKusuKacYilYasar } from './muhabbet-kusu-kac-yil-yasar';
+import { tavsanBakimi } from './tavsan-bakimi';
+import { tavsanKacYilYasar } from './tavsan-kac-yil-yasar';
+import { tekirKedi } from './tekir-kedi';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -205,6 +213,8 @@ const TUM_YAZILAR: BlogYazi[] = [
   kedilerSutIcerMi, kedilerTonBaligiYerMi, kedilerYumurtaYerMi, sokakKedileriIcinKisEvi,
   kopeklerElmaYerMi, kopeklerYumurtaYerMi, kopeklereUzumZararliMi,
   kopeklerEkmekYerMi, kopeklerMuzYerMi,
+  ankaraKedisi, britishShorthair, hamsterBakimi, kopeklerPeynirYerMi,
+  muhabbetKusuKacYilYasar, tavsanBakimi, tavsanKacYilYasar, tekirKedi,
 ];
 
 /**

@@ -1,0 +1,141 @@
+import type { BlogYazi } from './types';
+
+export const tekirKedi: BlogYazi = {
+  slug: 'tekir-kedi',
+  baslik: 'Tekir Kedi Irk mı? Özellikleri ve Ömrü',
+  ozet: 'Tekir bir kedi ırkı değil, tüy desenidir. Dört farklı türü, ortak işaretleri, ömrü ve huy konusunda bilinenler ile bilinmeyenler bu yazıda.',
+  kapakAlt:
+    'Pencere önünde gerinen tekir kedi',
+  kategori: 'Kedi',
+  tarih: '2026-11-01',
+  bloklar: [
+    { kind: 'paragraf', metin: '**Hayır, tekir bir ırk değil, tüy desenidir.** Kedi ırkı ve renk tanımlarını yayımlayan Cat Fanciers\' Association (CFA), tekir için "bir desendir, ırk değildir" diyor. Yani Maine Coon da, Oriental de, sokaktan sahiplenilen bir ev kedisi de tekir desenli olabilir.' },
+    { kind: 'paragraf', metin: 'Aşağıda tekir deseninin dört türünü, her tekirde bulunan ortak işaretleri, renklerin nasıl adlandırıldığını, desenin genetik kökenini, tekir kedilerin ne kadar yaşadığını ve huy konusunda neyin bilinip neyin bilinmediğini anlatıyoruz.' },
+
+    { kind: 'tablo', basliklar: ['Tekir deseni', 'Nasıl görünür?', 'CFA notu'], satirlar: [
+      ['Mackerel (balık kılçığı)', 'Dar, birbirine paralel çizgiler', 'En yaygın tekir deseni'],
+      ['Classic (blotched)', 'Yanlarda girift girdaplar, omuzlarda kelebek', 'Diğer adı blotched'],
+      ['Spotted (benekli)', 'Çizgiler ya da girdaplar lekelere bölünmüş', 'Örnek: Ocicat'],
+      ['Ticked (agouti)', 'Her tüyde birden çok renk bandı', 'Örnek: Abyssinian'],
+    ]},
+
+    { kind: 'baslik', metin: 'Tekir bir desen, ırk değil' },
+    { kind: 'paragraf', metin: 'CFA\'nın renk ve desen tanımlarına göre bir kedinin rengi ve deseni yalnızca tüyünü anlatır, ırkını belirtmez. Aynı kuruluş "tekir bir desendir, ırk değildir" cümlesini açıkça yazıyor ve bunun calico ile kaplumbağa kabuğu (tortoiseshell) için de geçerli olduğunu belirtiyor. Örnek olarak tekir desenli bir Oriental ya da Maine Coon verilebilir.' },
+    { kind: 'paragraf', metin: 'Bir kediyi tarif ederken önce renk, sonra desen, sonra tüy uzunluğu söylenir; ırk adı en sona gelir. CFA\'nın kendi örneği "kırmızı mackerel tekir ve beyaz bir Maine Coon" cümlesidir. Tekir desen beyazla da birleşebilir; "kahverengi tekir ve beyaz" gibi tanımlar bu yüzden vardır.' },
+    { kind: 'yanilgi', baslik: '"Tekir kedi ayrı bir kedi ırkıdır"', metin: 'Tekir bir ırk adı değil, tüy desenidir. Farklı ırklarda ve ırkı belli olmayan kedilerde görülür. Bir kedinin tekir olması, hangi ırktan olduğu ya da ırklı olup olmadığı hakkında bilgi vermez.' },
+
+    { kind: 'baslik', metin: 'Tekir deseninin dört türü' },
+    { kind: 'paragraf', metin: 'CFA tekir desenin dört türünü sayıyor: mackerel, classic, spotted ve ticked. Mackerel, yani balık kılçığı deseni, bunların en yaygın olanıdır; çizgiler dardır ve birbirine paralel uzanır. Classic desen, "blotched" adıyla da geçer ve yanlarda girift girdaplar, omuzlarda ise kelebeği andıran bir şekil taşır.' },
+    { kind: 'paragraf', metin: 'Spotted desen mackerel ya da classic desene benzer, yalnızca çizgiler ya da girdaplar lekelere bölünmüştür. Ticked desende ise vücuttaki ve baştaki her tüyde birden çok renk bandı bulunur; bacak ve kuyrukta bantlar görülür. CFA bu desene agouti tekir de diyor.' },
+    { kind: 'paragraf', metin: 'Bilimsel çalışmalarda da aynı dört desen geçiyor. 2010 tarihli bir genetik çalışma, klasik olarak tek bir "Tabby" bölgesince belirlendiği düşünülen dört deseni şöyle sıraladı: ticked (Abyssinian formu), spotted, mackerel ve blotched.' },
+
+    { kind: 'baslik', metin: 'Her tekirde bulunan ortak işaretler' },
+    { kind: 'paragraf', metin: 'CFA\'ya göre hangi tekir desen olursa olsun yüzde karmaşık işaretler bulunur; bunlar gözleri vurgulayan ve yüze yayılan "maskara" çizgileridir. Her tekir desenli kedinin alnında "M" harfine benzeyen belirgin bir işaret vardır.' },
+    { kind: 'liste', maddeler: [
+      'Alında "M" harfine benzeyen işaret',
+      'Gözlerin çevresinde ve yüzde maskara çizgileri',
+      'Bacaklarda çizgiler ya da bantlar',
+      'Karında düğme gibi benekler',
+      'Sırtın ortasında omurga çizgisi',
+      'Kuyrukta halkalar',
+    ]},
+
+    { kind: 'baslik', metin: 'Tekir kedinin rengi nasıl adlandırılır?' },
+    { kind: 'paragraf', metin: 'Tekir desen farklı renklerde görülür. CFA kahverengi tekirin zemininin sıcak kahve ya da bronz tonlu, çizgilerinin siyah olduğunu, mavi tekirin zemininin kremsi, çizgilerinin mavi olduğunu, krem tekirin ise açık bej zemin üzerinde daha koyu bej çizgiler taşıdığını anlatıyor. Gümüş tekirde zemin gümüşi beyazdır ve işaretler siyahtır.' },
+    { kind: 'paragraf', metin: 'Kahverengi tekire neden siyah tekir denmediği de sık sorulur. CFA\'ya göre genetik tanım siyahtır, ama "kahverengi" ifadesi rengi daha iyi anlattığı için gelenek olarak tercih edilir. Kırmızı, kestane, tarçın, cameo ve lila da CFA\'nın saydığı diğer tekir renkleridir.' },
+    { kind: 'paragraf', metin: 'Kahverengi, gümüş ya da mavi bir tekirde kırmızı veya krem yamalar varsa kedi "yamalı tekir" sayılır. CFA bu yamaların cinsiyete bağlı turuncu geniyle ilişkili olduğunu ve bu yüzden kedinin büyük olasılıkla dişi olduğunu belirtiyor.' },
+
+    { kind: 'baslik', metin: 'Desen nasıl oluşuyor?' },
+    { kind: 'paragraf', metin: '2010\'da Genetics dergisinde yayımlanan çalışma, kedinin tüy işaretlerini en az üç farklı bölgenin kontrol ettiğini gösterdi. Bir bölge ticked formundan, bir başkası mackerel ve blotched farkından sorumluydu; ek bölgeler ise mackerel çizgilerini değiştirerek benekli tüy oluşturuyordu.' },
+    { kind: 'paragraf', metin: '2012\'de Science dergisinde yayımlanan çalışma, ev kedilerindeki tekir desen farkından sorumlu geni Taqpep olarak buldu. Araştırmacılar bu genin deri gelişimi sırasında düzenli bir ön desen kurduğunu, rengin ise daha sonra Endothelin3 (Edn3) geninin farklı ifadesiyle uygulandığını öneriyor.' },
+
+    { kind: 'baslik', metin: 'Tekir kedi kaç yıl yaşar?' },
+    { kind: 'paragraf', metin: 'Tekir desenin ömre etkisini ölçen bir çalışma bulamadık; desen ömür için bilinen bir etken olarak da geçmiyor. Elimizdeki en sağlam veri İngiltere\'den geliyor: 118.016 kedi arasından ölümü kesinleşmiş 4009 kedi incelendi ve ortanca ömür 14,0 yıl bulundu. Bunların yüzde 91,7\'si melezdi; yani çalışmadaki kedilerin büyük çoğunluğu ırklı değil melezdi.' },
+    { kind: 'tablo', basliklar: ['Kedi grubu', 'Ortanca ömür'], satirlar: [
+      ['Tüm kediler', '14,0 yıl'],
+      ['Melez kediler', '14,0 yıl'],
+      ['Irklı kediler', '12,5 yıl'],
+    ]},
+    { kind: 'paragraf', metin: 'Aynı çalışmada 5 yaşından sonra ölen kedilerde melez olmak, daha düşük vücut ağırlığı ve kısırlaştırılmış olmak daha uzun yaşamla ilişkili bulundu. Sonuçlar bir ilişkiyi gösterir, tek tek kedi için garanti vermez. Ömür konusuna daha geniş bakmak için [[kediler-kac-yil-yasar|kediler kaç yıl yaşar]] yazımıza, kedinizin yaşını insan yaşına çevirmek için [[kedi-yasi-nasil-hesaplanir|kedi yaşı hesaplama]] yazımıza bakılabilir.' },
+    { kind: 'uyari', metin: 'Kedinin iştahında, kilosunda, su içme ya da tuvalet alışkanlığında değişiklik görülüyorsa bunu rengine ya da desenine bağlamadan veteriner hekime başvurmak gerekiyor. Desen sağlık durumu hakkında bilgi vermez; sağlık veteriner hekim muayenesiyle değerlendirilir.' },
+
+    { kind: 'baslik', metin: 'Huy desene bağlı mı?' },
+    { kind: 'paragraf', metin: 'Tekir kedilerin huyu hakkında sık duyulan genellemeler var, ama elimizdeki kaynaklarda tekir deseni belirli bir huyla ilişkilendiren bir bulgu bulamadık. Rengin huyla ilişkisine bakan çalışmalardan biri, Kaliforniya Üniversitesi Davis\'ten Stelow ve arkadaşlarının 2016 tarihli anket çalışmasıdır. Çalışmaya 1274 sahibin yanıtı alındı.' },
+    { kind: 'paragraf', metin: 'Bu çalışmada sahipler, bazı renk gruplarındaki kedilerin günlük etkileşimde insanlara karşı daha sık saldırgan olduğunu bildirdi. Ancak tutulma sırasında ve veteriner ziyaretlerinde renkler arasındaki fark azdı. Veri sahiplerin bildirimine dayanıyor; bu yüzden bir neden gösterdiği söylenemez ve kediyi huyu bakımından renginden tahmin etmeye yetmez.' },
+    { kind: 'yanilgi', baslik: '"Tekir kedilerin hepsi aynı huydadır"', metin: 'Tekir bir tüy desenidir ve desenle huy arasında kurulmuş sağlam bir bağ bilinmiyor. Huy kediden kediye değişir; sosyalleşme, yaşanan ortam ve kedinin kendi geçmişi de huyu şekillendirir.' },
+
+    { kind: 'baslik', metin: 'Tekir kedi sahiplenirken nelere bakılmalı?' },
+    { kind: 'paragraf', metin: 'Desen kedinin sağlığı ya da bakım ihtiyacı hakkında bilgi vermediği için sahiplenmede önemli olan kedinin kendisidir. Aşağıdaki başlıkların hepsinde veteriner hekimle birlikte hareket etmek önerilir.' },
+    { kind: 'liste', maddeler: [
+      'Sahiplenmeden sonra ilk veteriner hekim muayenesini yaptırmak',
+      'Yaşı bilinmiyorsa veteriner hekimle birlikte tahmini yaşı belirlemek',
+      'Aşı programını [[kedi-asi-takvimi|kedi aşı takvimi]] yazısındaki gibi veteriner hekimle planlamak',
+      'Kısırlaştırma zamanını [[kediler-ne-zaman-kisirlastirilmali|kediler ne zaman kısırlaştırılmalı]] başlığıyla birlikte veteriner hekime danışmak',
+      'Yavru kedi sahiplenildiyse [[yavru-kedi-bakimi|yavru kedi bakımı]] ihtiyaçlarını gözden geçirmek',
+    ]},
+  ],
+  kontrolListesi: [
+    'Kedinin yaşı biliniyor mu?',
+    'İlk muayene yapıldı mı?',
+    'Aşı takvimi güncel mi?',
+    'Kısırlaştırma zamanı konuşuldu mu?',
+    'İştah ve kilo izleniyor mu?',
+    'Davranış değişikliği not ediliyor mu?',
+  ],
+  sss: [
+    { soru: 'Tekir kedi ırk mı?', cevap: 'Hayır, tekir bir ırk değil, tüy desenidir. Cat Fanciers\' Association tekirin bir desen olduğunu, ırk olmadığını yazıyor. Tekir desen Oriental, Maine Coon gibi farklı ırklarda ve ırkı belli olmayan kedilerde görülebilir.' },
+    { soru: 'Tekir kedi kaç yıl yaşar?', cevap: 'Tekir desen için ayrı bir ömür verisi bulunmuyor. İngiltere\'de ölümü kesinleşmiş 4009 kediyle yapılan bir çalışmada ortanca ömür 14,0 yıl, melez kedilerde 14,0 yıl, ırklı kedilerde 12,5 yıl çıktı. Tek bir kedinin ömrü bu ortalamadan farklı olabilir.' },
+    { soru: 'Tekir kedinin kaç türü var?', cevap: 'Dört tür var: mackerel, classic, spotted ve ticked. Mackerel dar ve paralel çizgilerden, classic girdap ve kelebek şeklinden, spotted lekelerden, ticked ise her tüydeki renk bandından oluşuyor. Yamalı tekir ise bu desenlerin kırmızı ya da kremle birleşmesiyle ortaya çıkıyor.' },
+    { soru: 'Tekir kedinin alnındaki M harfi ne?', cevap: 'Alındaki "M" harfine benzeyen işaret tekir desenin ortak özelliğidir. Cat Fanciers\' Association, hangi tekir desen olursa olsun her tekir kedinin alnında bu işaretin bulunduğunu belirtiyor. Yüzde gözleri vurgulayan maskara çizgileri de görülür.' },
+    { soru: 'Tekir kedi hangi renklerde olur?', cevap: 'Tekir desen birçok renkte görülür. Cat Fanciers\' Association kahverengi, gümüş, mavi, kırmızı, kestane, tarçın, cameo, krem ve lila tekirleri sayıyor. Kahverengi tekirin çizgileri genetik olarak siyahtır, ama kahverengi adı geleneksel olarak tercih edilir.' },
+    { soru: 'Tekir kedilerin huyu nasıldır?', cevap: 'Huy desene göre değil kediye göre değişir. Elimizdeki kaynaklarda tekir deseni belirli bir huyla ilişkilendiren bir bulgu yok. Kedinin davranışında ani bir değişiklik fark edilirse nedenini renginde aramadan veteriner hekime danışmak gerekiyor.' },
+    { soru: 'Tekir desen neden oluşuyor?', cevap: 'Desen gelişim sırasında deride kurulan bir programdan geliyor. Bilim insanları ev kedilerindeki tekir desen farkından Taqpep geninin sorumlu olduğunu buldu. Bu gen deri gelişimi sırasında düzenli bir ön desen kuruyor, rengi ise Edn3 geninin farklı ifadesi uyguluyor.' },
+  ],
+  kaynaklar: [
+    {
+      kurum: 'Cat Fanciers\' Association (CFA)',
+      baslik: 'Coat & Color Descriptions',
+      adres: 'https://cfa.org/coat-color-descriptions/',
+    },
+    {
+      kurum: 'University of Missouri, Mason Eye Institute',
+      yazarlar: 'Eizirik E, David VA, Buckley-Beason V, Roelke ME, Schäffer AA, Hannah SS, Narfström K, O\'Brien SJ, Menotti-Raymond M',
+      baslik: 'Defining and mapping mammalian coat pattern genes: multiple genomic regions implicated in domestic cat stripes and spots.',
+      dergi: 'Genetics',
+      yil: 2010,
+      kunye: '184(1):267-275',
+      doi: '10.1534/genetics.109.109629',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/19858284/',
+    },
+    {
+      kurum: 'HudsonAlpha Institute for Biotechnology',
+      yazarlar: 'Kaelin CB, Xu X, Hong LZ, David VA, McGowan KA, Schmidt-Küntzel A, Roelke ME, Pino J, Pontius J, Cooper GM, Manuel H, Swanson WF, Marker L, Harper CK, van Dyk A, Yue B, Mullikin JC, Warren WC, Eizirik E, Kos L, O\'Brien SJ, Barsh GS, Menotti-Raymond M',
+      baslik: 'Specifying and sustaining pigmentation patterns in domestic and wild cats.',
+      dergi: 'Science',
+      yil: 2012,
+      kunye: '337(6101):1536-1541',
+      doi: '10.1126/science.1220893',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/22997338/',
+    },
+    {
+      kurum: 'Royal Veterinary College, VetCompass',
+      yazarlar: 'O\'Neill DG, Church DB, McGreevy PD, Thomson PC, Brodbelt DC',
+      baslik: 'Longevity and mortality of cats attending primary care veterinary practices in England.',
+      dergi: 'Journal of Feline Medicine and Surgery',
+      yil: 2015,
+      kunye: '17(2):125-133',
+      doi: '10.1177/1098612X14536176',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/24925771/',
+    },
+    {
+      kurum: 'University of California, Davis',
+      yazarlar: 'Stelow EA, Bain MJ, Kass PH',
+      baslik: 'The Relationship Between Coat Color and Aggressive Behaviors in the Domestic Cat.',
+      dergi: 'Journal of Applied Animal Welfare Science',
+      yil: 2016,
+      kunye: '19(1):1-15',
+      doi: '10.1080/10888705.2015.1081820',
+      adres: 'https://pubmed.ncbi.nlm.nih.gov/26467020/',
+    },
+  ],
+};
