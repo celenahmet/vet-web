@@ -187,6 +187,16 @@ import { veterinerFakultelerListesi } from './veteriner-fakulteleri-listesi';
 import { veterinerHekimKpss } from './veteriner-hekim-kpss';
 import { veterinerlikKacYil } from './veterinerlik-kac-yil';
 import { veterinerlikTabanPuanlari } from './veterinerlik-taban-puanlari';
+import { borderCollie } from './border-collie';
+import { goldenRetriever } from './golden-retriever';
+import { kopekEgitmeniNasilOlunur } from './kopek-egitmeni-nasil-olunur';
+import { petKuaforAcmak } from './pet-kuafor-acmak';
+import { petKuaforNasilOlunur } from './pet-kuafor-nasil-olunur';
+import { petShopAcmak } from './pet-shop-acmak';
+import { veterinerCalismaIzinBelgesi } from './veteriner-calisma-izin-belgesi';
+import { veterinerERecete } from './veteriner-e-recete';
+import { veterinerHekimReklam } from './veteriner-hekim-reklam';
+import { veterinerTeknikeriKpss } from './veteriner-teknikeri-kpss';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -249,6 +259,9 @@ const TUM_YAZILAR: BlogYazi[] = [
   scottishFold, sibiryaKurduHusky, siyamKedisi, tuysuzKedi,
   vanKedisi, veterinerFakultelerListesi, veterinerHekimKpss, veterinerlikKacYil,
   veterinerlikTabanPuanlari,
+  borderCollie, goldenRetriever, kopekEgitmeniNasilOlunur, petKuaforAcmak,
+  petKuaforNasilOlunur, petShopAcmak, veterinerCalismaIzinBelgesi, veterinerERecete,
+  veterinerHekimReklam, veterinerTeknikeriKpss,
 ];
 
 /**
