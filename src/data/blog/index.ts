@@ -148,6 +148,9 @@ import { kedilerSutIcerMi } from './kediler-sut-icer-mi';
 import { kedilerTonBaligiYerMi } from './kediler-ton-baligi-yer-mi';
 import { kedilerYumurtaYerMi } from './kediler-yumurta-yer-mi';
 import { sokakKedileriIcinKisEvi } from './sokak-kedileri-icin-kis-evi';
+import { kopeklerElmaYerMi } from './kopekler-elma-yer-mi';
+import { kopeklerYumurtaYerMi } from './kopekler-yumurta-yer-mi';
+import { kopeklereUzumZararliMi } from './kopeklere-uzum-zararli-mi';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -198,6 +201,7 @@ const TUM_YAZILAR: BlogYazi[] = [
   kediGundeKacGramMamaYer, kopekDisleriNasilFircalanir, kopekKulagiNasilTemizlenir, kopeklerKacSaatUyur,
   yavruKopekBakimi, yavruKopekNeKadarMamaYemeli,
   kedilerSutIcerMi, kedilerTonBaligiYerMi, kedilerYumurtaYerMi, sokakKedileriIcinKisEvi,
+  kopeklerElmaYerMi, kopeklerYumurtaYerMi, kopeklereUzumZararliMi,
 ];
 
 /**
