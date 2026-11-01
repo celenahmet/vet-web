@@ -151,6 +151,8 @@ import { sokakKedileriIcinKisEvi } from './sokak-kedileri-icin-kis-evi';
 import { kopeklerElmaYerMi } from './kopekler-elma-yer-mi';
 import { kopeklerYumurtaYerMi } from './kopekler-yumurta-yer-mi';
 import { kopeklereUzumZararliMi } from './kopeklere-uzum-zararli-mi';
+import { kopeklerEkmekYerMi } from './kopekler-ekmek-yer-mi';
+import { kopeklerMuzYerMi } from './kopekler-muz-yer-mi';
 
 /**
  * Yazilmis butun yazilar — yayinda olsun olmasin.
@@ -202,6 +204,7 @@ const TUM_YAZILAR: BlogYazi[] = [
   yavruKopekBakimi, yavruKopekNeKadarMamaYemeli,
   kedilerSutIcerMi, kedilerTonBaligiYerMi, kedilerYumurtaYerMi, sokakKedileriIcinKisEvi,
   kopeklerElmaYerMi, kopeklerYumurtaYerMi, kopeklereUzumZararliMi,
+  kopeklerEkmekYerMi, kopeklerMuzYerMi,
 ];
 
 /**
