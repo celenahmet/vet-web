@@ -2,10 +2,9 @@
   min-height: calc(100vh - 160px);
   display: grid;
   place-items: center;
-  padding: 48px 20px;
-  background:
-    radial-gradient(circle at 20% 15%, color-mix(in srgb, var(--color-vet-primary) 18%, transparent), transparent 42%),
-    var(--bg-main);
+  /* Ust menu sabit (fixed); kisa ekranda kart onun altina girmesin. */
+  padding: 104px 20px 48px;
+  background: var(--bg-main);
 }
 
 .app-continue-card {

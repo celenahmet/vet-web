@@ -1648,5 +1648,12 @@
   "social_profile_text": "Paylaşımlarımızı {{ag}} hesabımızda bulabilirsiniz.",
   "social_close": "Kapat",
   "social_player_note": "Video YouTube üzerinden oynatılıyor.",
-  "social_open_youtube": "YouTube’da aç"
+  "social_open_youtube": "YouTube’da aç",
+  "app_continue_title": "Veterito ile devam et",
+  "app_continue_description": "Bu içeriği Veterito uygulamasında güvenle açın.",
+  "app_continue_button": "Veterito'da aç",
+  "app_continue_download": "Uygulama henüz cihazınızda yok mu?",
+  "app_continue_ios": "App Store'dan indir",
+  "app_continue_android": "Google Play'den indir",
+  "app_continue_invalid": "Bu bağlantı geçersiz veya artık desteklenmiyor."
 }

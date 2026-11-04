@@ -2,6 +2,8 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
+import logoUrl from '../assets/logo.webp';
+import logoKoyuUrl from '../assets/logo-koyu.webp';
 import { brandConfig } from '../config/brand';
 import './AppContinue.css';
 
@@ -13,6 +15,7 @@ const ALLOWED_KINDS = new Set([
   'profile',
   'messages',
   'clinic',
+  'breed',
   'appointment',
 ]);
 
@@ -29,7 +32,16 @@ export default function AppContinue() {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <div className="app-continue-card">
-        <img className="app-continue-logo" src="/vet-logo-full.png" alt="Veterito" />
+        {/* Navbar ile ayni logo cifti: acik zeminde koyu murekkep, koyu zeminde acik. */}
+        <img className="app-continue-logo dark:hidden" src={logoUrl} alt="Veterito" width={567} height={144} />
+        <img
+          className="app-continue-logo hidden dark:block"
+          src={logoKoyuUrl}
+          alt="Veterito"
+          width={567}
+          height={127}
+          loading="lazy"
+        />
         <h1>{t('app_continue_title')}</h1>
         <p>{valid ? t('app_continue_description') : t('app_continue_invalid')}</p>
         {appUrl ? (
