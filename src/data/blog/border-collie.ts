@@ -7,7 +7,7 @@ export const borderCollie: BlogYazi = {
   kapakAlt:
     'Çimende top oyuncağına koşan siyah beyaz border collie',
   kategori: 'Köpek',
-  tarih: '2026-11-01',
+  tarih: '2026-11-14',
   bloklar: [
     { kind: 'paragraf', metin: '**Border Collie, Büyük Britanya kökenli, çoban köpeği olarak tanımlanan; çalışkan, dikkatli ve kolay yönlendirilen bir ırktır.** Uluslararası köpek federasyonu FCI\'nin 297 numaralı ırk standardı mizacını "azimli, çalışkan, çok kolay yönlendirilir" diye tarif ediyor ve ırkın ne sinirli ne saldırgan olması gerektiğini belirtiyor.' },
     { kind: 'paragraf', metin: 'Aşağıda ırkın standarttaki özelliklerini, öğrenme gücü üzerine yapılan ünlü bir çalışmanın neyi gösterip neyi göstermediğini, günlük yaşam ve eğitim için neler önerildiğini ve ırkta bilimsel yayınlarda tanımlanan sağlık sorunlarını topladık. Ayrıntılı bakım ve eğitim planı için köpek eğitmeni ve veteriner hekim ile görüşmek gerekiyor.' },

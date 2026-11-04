@@ -7,7 +7,7 @@ export const kopekUretimCiftligiRuhsati: BlogYazi = {
   kapakAlt:
     'Yatakta yavrularıyla uzanan golden anne köpek, yanda not alan kişi',
   kategori: 'Pet Sahipleri',
-  tarih: '2026-11-01',
+  tarih: '2026-11-11',
   bloklar: [
     { kind: 'paragraf', metin: '**Köpek ve kedi üretimini ticari amaçla yapmak için il tarım ve orman müdürlüğünden iki aşamalı bir izin gerekiyor: önce kuruluş izni, sonra çalışma izni.** Halk arasında "ruhsat" denen belgenin yönetmelikteki adı çalışma izin belgesi. Bu belge olmadan üretim yeri açılamıyor, belge olmayan yerden de pet shoplara hayvan satılamıyor.' },
     { kind: 'paragraf', metin: 'Aşağıda "Ev Hayvanlarının Üretim, Satış, Barınma ve Eğitim Yerleri Hakkında Yönetmelik" esas alınarak başvurunun adımları, üretim yerinde bulunması zorunlu bölümler ve izni geçersiz kılan durumlar anlatılıyor. Bu yazı hukuki danışmanlık değil; başvuru öncesinde il ya da ilçe tarım ve orman müdürlüğünden güncel bilgi almak önerilir.' },

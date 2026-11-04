@@ -7,7 +7,7 @@ export const tuysuzKedi: BlogYazi = {
   kapakAlt:
     'Krem battaniyenin üzerinde uzanan tüysüz Sfenks kedi',
   kategori: 'Kedi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-13',
   bloklar: [
     { kind: 'paragraf', metin: '**Sfenks (Sphynx), tüysüz görünen ama çoğu zaman tamamen tüysüz olmayan, orta boy, kaslı ve insana çok düşkün bir kedi ırkıdır; bakımında öne çıkan konular yağlı derinin düzenli banyosu, yalnız kalmaya dayanıksız huyu ve kalp kası hastalığı taramasıdır.** Irk, 1966\'da Kanada\'da doğan tüysüz bir yavrudan gelen doğal bir gen değişikliğine dayanıyor.' },
     { kind: 'paragraf', metin: 'Aşağıda ırkın kökenini, görünüşünü ve huyunu, deri bakımını, kalp kası hastalığı hakkında bilinenleri ve sahiplenmeden önce sorulması gerekenleri anlatıyoruz. Sağlık bölümündeki rakamlar belirli çalışmalara ait; tek bir kediye birebir uygulanmıyor ve kedinizin durumunu muayene eden veteriner hekim değerlendiriyor.' },

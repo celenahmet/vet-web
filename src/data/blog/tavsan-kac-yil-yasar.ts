@@ -7,7 +7,7 @@ export const tavsanKacYilYasar: BlogYazi = {
   kapakAlt:
     'Saman yatağında uzanan sarkık kulaklı tavşan',
   kategori: 'Pet Sahipleri',
-  tarih: '2026-11-01',
+  tarih: '2026-11-08',
   bloklar: [
     { kind: 'paragraf', metin: '**Bakımı iyi olan bir evcil tavşan 10 ile 12 yıl, hatta daha uzun yaşayabiliyor.** MSD Veterinary Manual (Merck), doğru beslenme ve sağlıklı yaşam koşullarında tavşanlar için bu süreyi veriyor. Eski laboratuvar ve halk kaynaklarında ise 5 ile 10 yıl yazılırdı. Merck süreyi doğru beslenmeye ve sağlıklı yaşam koşullarına bağlıyor.' },
     { kind: 'paragraf', metin: 'Aşağıda kaynakların verdiği süreleri, ömrü uzatan beslenme ve kontrol düzenini, yaş ilerledikçe artan sağlık sorunlarını ve tavşan sahiplenmeden önce düşünülmesi gerekenleri anlatıyoruz. Bu yazı bilgilendirme amaçlıdır; tavşanınızın sağlığıyla ilgili her soru için veteriner hekime başvurmak gerekiyor.' },

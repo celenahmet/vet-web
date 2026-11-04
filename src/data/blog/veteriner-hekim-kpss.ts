@@ -7,7 +7,7 @@ export const veterinerHekimKpss: BlogYazi = {
   kapakAlt:
     'Masada evrak dolduran veteriner hekim, yanında taşıma kafesindeki kedi',
   kategori: 'Klinik Yönetimi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-13',
   bloklar: [
     { kind: 'paragraf', metin: '**Kamuda veteriner hekim olarak ilk kez göreve başlamak için geçerli bir KPSS puanı gerekiyor; lisans mezunları için kullanılan puan türü KPSSP3.** ÖSYM\'nin 2026 kılavuzuna göre kamu kurumlarının kadrolarına ilk defa atanacakların geçerli bir KPSS puanına sahip olması zorunlu.' },
     { kind: 'paragraf', metin: 'Aşağıda 2026 KPSS Lisans kılavuzundaki kuralları ve Tarım ve Orman Bakanlığı\'nın 2026\'da yayımladığı veteriner hekim alımını içeren ilanı birlikte ele aldık. Kadro sayıları ve koşullar her ilanda değiştiği için bu yazı bir ilan yerine geçmiyor; kamu dışındaki çalışma biçimleri ve kazanç farkı için [[veteriner-hekim-maaslari|veteriner hekim maaşları]] yazısına bakılabilir.' },

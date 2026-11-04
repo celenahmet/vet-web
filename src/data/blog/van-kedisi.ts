@@ -7,7 +7,7 @@ export const vanKedisi: BlogYazi = {
   kapakAlt:
     'Göl ve dağ manzaralı balkonda duran beyaz tüylü kedi',
   kategori: 'Kedi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-13',
   bloklar: [
     { kind: 'paragraf', metin: '**Van kedisi, Van Gölü çevresinde gelişen yerli bir ırktır; iri yapılı, kaşmir dokulu yarı uzun tüylü ve suyu seven bir kedidir; Tarım ve Orman Bakanlığı talimatında gen kaynakları koruma altına alınan ırklar arasında sayılıyor.** Bu korumanın somut sonucu, yurt dışına çıkışın ön izne bağlı olması. Talimatın konusu yurt dışına sevktir.' },
     { kind: 'paragraf', metin: 'Aşağıda ırkın kökenini, görünüşünü ve huyunu, tüy bakımının nasıl olduğunu, "koruma altında" ifadesinin yönetmelik açısından neyi kapsadığını, yurt dışına götürmek isteyenlerin karşılaşacağı işlemleri ve işitme ile kilo konularını anlatıyoruz. Irk bilgileri kedi federasyonunun tanımına, hukuki bilgiler Bakanlığın belgelerine, sağlık bilgileri hakemli çalışmaya dayanıyor; tek bir kedinin durumunu yalnızca muayene eden veteriner hekim değerlendirebilir.' },

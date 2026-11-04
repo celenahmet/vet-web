@@ -7,7 +7,7 @@ export const veterinerlikTabanPuanlari: BlogYazi = {
   kapakAlt:
     'Masada anatomi kitabıyla çalışan öğrenci ve kucağındaki kedi',
   kategori: 'Klinik Yönetimi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-14',
   bloklar: [
     { kind: 'paragraf', metin: '**Veterinerlik fakültelerinin taban puanı programa göre büyük fark gösteriyor: ÖSYM\'nin 2026 tercih kılavuzundaki 2025 yerleştirme verilerine göre bu yazıdaki sekiz program arasında en yüksek puan Ankara Üniversitesi İngilizce programında (447,30), en düşük puan Siirt Üniversitesi\'nde (337,03).** Hepsi sayısal (SAY) puan türüyle öğrenci alıyor ve eğitim beş yıl sürüyor.' },
     { kind: 'paragraf', metin: 'Aşağıda ÖSYM\'nin kılavuzundan okuduğumuz puanları, başarı sıralamalarını ve kontenjanları bulacaksınız. Ayrıca bu rakamların nasıl okunacağını, hangi yanlışların sık yapıldığını ve tercih öncesi nelere bakılması gerektiğini anlattık. Mesleğin kendisi için [[veteriner-hekim-nasil-olunur|veteriner hekim nasıl olunur]] yazımıza göz atabilirsiniz.' },

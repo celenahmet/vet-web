@@ -7,7 +7,7 @@ export const kaplumbagaKacYilYasar: BlogYazi = {
   kapakAlt:
     'Toprak zeminde duran kara kaplumbağası',
   kategori: 'Pet Sahipleri',
-  tarih: '2026-11-01',
+  tarih: '2026-11-09',
   bloklar: [
     { kind: 'paragraf', metin: '**Kaplumbağanın ömrü türe göre çok değişiyor, ama evde bakılan türlerin hepsi uzun yaşayan hayvanlar: Merck Veterinary Manual\'in evde bakım için verdiği ortalama değerlere göre doğu kutu kaplumbağası 25 ile 50 yıl, leopar kaplumbağası 50 yıldan fazla yaşıyor.** Yani bir kaplumbağa almak, yıllarca değil onlarca yıl sürecek bir bakım kararıdır.' },
     { kind: 'paragraf', metin: 'Bu yazıda türe göre kaynaklı ömür değerlerini, kaplumbağaların yaşlanıp yaşlanmadığını, ömrü etkileyen bakım koşullarını ve almadan önce düşünülmesi gerekenleri topladık. Her kaplumbağa türü için tek bir ömür sayısı yok; kaynağı olmayan bir sayı yazmadık.' },

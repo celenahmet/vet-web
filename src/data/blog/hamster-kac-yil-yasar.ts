@@ -7,7 +7,7 @@ export const hamsterKacYilYasar: BlogYazi = {
   kapakAlt:
     'Ahşap tünelin önünde yem yiyen hamster',
   kategori: 'Pet Sahipleri',
-  tarih: '2026-11-01',
+  tarih: '2026-11-09',
   bloklar: [
     { kind: 'paragraf', metin: '**Evcil hamsterlerin çoğu 18 ay ile 3 yıl arasında yaşar.** Merck Veterinary Manual, pet hamsterlerin genellikle bu aralıkta yaşadığını belirtiyor. Aralık türe göre değişiyor: Rus cüce hamsterde 18 ile 24 ay, Roborovski hamsterde 36 ile 48 ay veriliyor. İngiltere\'de veteriner hekime getirilen 16.605 hamsterin kayıtlarında ölüm yaşının ortancası 1,75 yıl çıktı.' },
     { kind: 'paragraf', metin: 'Aşağıda türlere göre ömür aralıklarını, gerçek klinik kayıtların ve bir laboratuvar kolonisinin ne gösterdiğini, genç yaşta ölümlerin neden önemli olduğunu ve bakım koşullarının ömürle ilişkisini anlatıyoruz. Yazı genel bilgi içindir; hamsterin sağlığıyla ilgili her kaygıda karar veteriner hekime aittir.' },

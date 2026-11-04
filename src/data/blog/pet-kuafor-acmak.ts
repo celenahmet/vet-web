@@ -7,7 +7,7 @@ export const petKuaforAcmak: BlogYazi = {
   kapakAlt:
     'Bakım masasında uzun kulaklı köpeği tarayan görevli',
   kategori: 'Pet Sahipleri',
-  tarih: '2026-11-01',
+  tarih: '2026-11-14',
   bloklar: [
     { kind: 'paragraf', metin: '**Pet kuaför açmak için önce belediyeden işyeri açma ve çalışma ruhsatı almak gerekiyor; ruhsat alınmadan açılan işyerleri yetkili idareler tarafından kapatılıyor.** Hizmetler arasına geçici barındırma ya da davranış eğitimi girerse, ayrıca il tarım ve orman müdürlüğünden çalışma izni almak da gerekiyor.' },
     { kind: 'paragraf', metin: 'Evcil hayvan bakımı sevenler için cazip bir iş gibi görünüyor, ama işin bir de hukuki ve sağlıkla ilgili tarafı var. Ev hayvanlarına ilişkin yönetmelik üretim, satış, barınma ve eğitim yerlerini sayıyor; tüy bakımı ve tıraş bu dört başlık arasında ayrıca anılmıyor. Bu yüzden gerekenler, salonda hangi hizmetlerin verileceğine göre değişiyor. Aşağıda kanun ve yönetmelik metinlerinde doğrulayabildiğimiz noktaları anlattık; doğrulayamadığımız yerleri de açıkça belirttik.' },

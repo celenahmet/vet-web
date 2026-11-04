@@ -7,7 +7,7 @@ export const muhabbetKusuKacYilYasar: BlogYazi = {
   kapakAlt:
     'Tünekte duran mavi muhabbet kuşu, yakın plan',
   kategori: 'Pet Sahipleri',
-  tarih: '2026-11-01',
+  tarih: '2026-11-08',
   bloklar: [
     { kind: 'paragraf', metin: '**Muhabbet kuşunda kayıtlara geçen en uzun ömür 18 ile 21 yıl arasında, ama bu üst sınırdır; kurum kayıtlarında dört yaşına ulaşan bireylerin ortanca ömrü yaklaşık 5,6 yıl çıkıyor.** Yani "muhabbet kuşu 15-20 yıl yaşar" cümlesi mümkün olanı anlatıyor, sık görüleni değil.' },
     { kind: 'paragraf', metin: 'Bu yazıda ömür verilerinin nereden geldiğini, neden ortalamanın üst sınırdan çok daha düşük kaldığını, beslenmenin ve veteriner kontrolünün bu tabloda nasıl bir yer tuttuğunu ve yaşlanan bir muhabbet kuşunda davranışın nasıl değişebildiğini bulacaksınız.' },

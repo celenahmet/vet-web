@@ -7,7 +7,7 @@ export const yavruKopekBakimi: BlogYazi = {
   kapakAlt:
     'Mama kabı ve oyuncakların arasında sevilen golden yavru köpek',
   kategori: 'Köpek',
-  tarih: '2026-10-31',
+  tarih: '2026-11-05',
   bloklar: [
     { kind: 'paragraf', metin: '**Yavru köpek bakımı, ilk aylarda sakin bir düzen kurmayı, aynı yavru maması ve küçük öğünleri, güvenli bir evi, düzenli dinlenmeyi ve aşı dizisi bitmeden de kontrollü biçimde yeni deneyimlerle tanışmayı kapsar.** İngiltere\'nin hayvan refahı kuruluşu RSPCA, 8-12 haftalık dönemi özellikle önemli buluyor: yavrunun bu dönemde öğrendikleri ve yaşadıkları ilerideki davranışını şekillendiriyor.' },
     { kind: 'paragraf', metin: 'Aşağıda eve gelmeden önceki hazırlığı, ilk veteriner ziyaretini, sosyalleşmeyi, yeni deneyimlere alıştırmayı, beslenmeyi, dinlenmeyi ve yavru sınıfını sırayla anlatıyoruz. Aşı, parazit ve tuvalet eğitimi gibi konuların ayrıntısı için ilgili yazılarımıza bağlantı verdik.' },

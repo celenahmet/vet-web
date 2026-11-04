@@ -7,7 +7,7 @@ export const ucRenkliKedi: BlogYazi = {
   kapakAlt:
     'Salonda pati kaldırmış üç renkli kedi',
   kategori: 'Kedi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-10',
   bloklar: [
     { kind: 'paragraf', metin: '**Üç renkli kediler neredeyse her zaman dişidir, çünkü kırmızı (turuncu) rengi veren gen X kromozomunda bulunur.** Cat Fanciers\' Association, bu renklerin cinsiyete bağlı turuncu genle ilişkili olduğunu yazıyor ve calico tanımını "dişi kedi" diye yapıyor. Erkekte bu görünüm yalnızca nadir bir kromozom farkıyla ortaya çıkıyor.' },
     { kind: 'paragraf', metin: 'Sokakta "üç renkli" dediğimiz kedinin gerçekte iki ayrı adı var, üstelik ikisi de ırk değil. Aşağıda rengin nasıl oluştuğunu, calico ile tortoiseshell farkını ve erkek üç renkli kedinin neden istisna sayıldığını kaynaklarıyla birlikte topladık.' },

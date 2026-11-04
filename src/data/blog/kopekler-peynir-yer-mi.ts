@@ -7,7 +7,7 @@ export const kopeklerPeynirYerMi: BlogYazi = {
   kapakAlt:
     'Elle uzatılan peynir küpüne bakan üç renkli köpek',
   kategori: 'Beslenme',
-  tarih: '2026-11-01',
+  tarih: '2026-11-08',
   bloklar: [
     { kind: 'paragraf', metin: '**Köpeklere peynir önerilmiyor: Cornell Üniversitesi Veteriner Fakültesi peyniri kusma, ishal ve pankreatite yol açabilen yağlı gıdalar arasında sayıyor, ASPCA ise süt ürünlerinin laktaz azlığı yüzünden ishal ve sindirim sorunu yapabildiğini belirtiyor.** Küflü peynirler ayrıca ayrı bir risk taşıyor. Sağlıklı bir köpeğe küçük bir parçanın zarar verip vermeyeceği ise köpeğin kilosuna ve sağlık durumuna göre değiştiği için veteriner hekime sorulması gerekiyor.' },
     { kind: 'paragraf', metin: 'Aşağıda peynirin neden sorun çıkarabildiğini, küçük bir parçanın bile ödül payında ne kadar yer tuttuğunu, küflü ve katkılı peynirlerin neden ayrı ele alınması gerektiğini ve hangi durumda veteriner hekime gidileceğini topladık. Köpeğinizin sağlığıyla ilgili bir soru varsa karar için veteriner hekime başvurmak gerekiyor.' },

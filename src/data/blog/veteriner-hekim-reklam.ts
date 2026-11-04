@@ -7,7 +7,7 @@ export const veterinerHekimReklam: BlogYazi = {
   kapakAlt:
     'Klinikte dizüstü bilgisayarla çalışan veteriner hekim ve masadaki golden köpek',
   kategori: 'Klinik Yönetimi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-15',
   bloklar: [
     { kind: 'paragraf', metin: '**Hayır, veteriner hekimler ve klinikler reklam yapamaz; yalnızca kliniğin adı, adresi, telefonu, hekimin unvanı ve muayene saatleri gibi tanıtıcı bilgileri duyurabilir.** 6343 sayılı kanun, çalışma yerini ve ihtisası bildiren ilanlara izin veriyor, ama bunların propaganda ve reklam mahiyetinde olmamasını şart koşuyor.' },
     { kind: 'paragraf', metin: 'Kural hem mesleği icra edenleri hem de kliniğini seçerken tabelalara, ilanlara ve sosyal medya paylaşımlarına bakan hayvan sahiplerini ilgilendiriyor. Aşağıda tabela, internet, indirim, uzmanlık unvanı ve ürün tanıtımı konularını kanun ve yönetmelik maddeleriyle ele aldık.' },

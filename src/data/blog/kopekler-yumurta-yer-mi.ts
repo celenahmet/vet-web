@@ -7,7 +7,7 @@ export const kopeklerYumurtaYerMi: BlogYazi = {
   kapakAlt:
     'Kasedeki haşlanmış yumurtaya bakan köpek',
   kategori: 'Beslenme',
-  tarih: '2026-11-01',
+  tarih: '2026-11-07',
   bloklar: [
     { kind: 'paragraf', metin: '**Köpekler yumurtayı yiyebilir, ancak çiğ değil, tam pişmiş ve ara sıra verilen küçük bir ödül olarak.** ASPCA çiğ yumurtayı evcil hayvanlara verilmemesi gereken yiyecekler arasında sayıyor. Merck Veteriner El Kitabı çiğ yumurta akındaki avidin denen maddenin biyotinin emilimini engellediğini belirtiyor. Amerikan Hayvan Hastaneleri Birliği (AAHA) kılavuzu ise ödül ve diğer yiyeceklerin günlük alımın yüzde 10\'unu geçmemesini öngörüyor.' },
     { kind: 'paragraf', metin: 'Aşağıda çiğ yumurtanın neden sorun sayıldığını, pişirmenin neyi değiştirdiğini, yumurtanın köpek beslenmesindeki yerini ve mutfakta dikkat edilmesi gereken noktaları topladık. Köpeğinizin sağlığıyla ilgili bir soru varsa karar için veteriner hekime başvurmak gerekiyor.' },

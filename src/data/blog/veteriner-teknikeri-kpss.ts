@@ -7,7 +7,7 @@ export const veterinerTeknikeriKpss: BlogYazi = {
   kapakAlt:
     'Klinikte köpeğin yanında malzeme hazırlayan veteriner teknikeri',
   kategori: 'Klinik Yönetimi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-16',
   bloklar: [
     { kind: 'paragraf', metin: '**Veteriner teknikeri olarak kamuya atanmak için KPSS ön lisans sınavından geçerli bir KPSS P93 puanı alınması ve ÖSYM\'nin merkezi yerleştirmesinde bir kadroya yerleşilmesi gerekiyor.** Mezuniyet tek başına atama hakkı vermiyor; kadroyu açan kurum, kadro sayısı ve puan sıralaması sonucu belirliyor.' },
     { kind: 'paragraf', metin: 'Bu yazı veteriner sağlık alanında ön lisans okuyanlara ve mezun olanlara, bir de ekibine teknikeri almayı düşünen klinik sahiplerine yönelik. Anlatılanlar ÖSYM\'nin 2026 KPSS ön lisans başvuru kılavuzuna, KPSS-2026/1 tercih kılavuzuna ve tablolarına dayanıyor. İşin klinikteki yönünü [[veteriner-teknikeri-ne-is-yapar|veteriner teknikeri ne iş yapar]] yazımızda anlattık.' },

@@ -7,7 +7,7 @@ export const kopeklereUzumZararliMi: BlogYazi = {
   kapakAlt:
     'Tezgâhtaki üzüm kasesine bakan golden köpek',
   kategori: 'Beslenme',
-  tarih: '2026-11-01',
+  tarih: '2026-11-06',
   bloklar: [
     { kind: 'paragraf', metin: '**Evet, üzüm ve kuru üzüm köpekler için zararlı: bazı köpeklerde ani böbrek yetmezliğine yol açabiliyor ve güvenli olduğu bilinen bir miktar yok.** Merck Veterinary Manual, üzüm, kuru üzüm ve Zante kuşüzümünün yutulmasının köpeklerde zaman zaman böbrek yetmezliğiyle ilişkilendirildiğini yazıyor. Tek bir tane bile yutulmuş olsa, vakit kaybetmeden veteriner hekime başvurmak gerekiyor.' },
     { kind: 'paragraf', metin: 'Bu yazıda hangi ürünlerin risk taşıdığını, zehirli maddenin ne olduğuna dair bugünkü bilgiyi, miktarın neden kestirilemediğini, belirtilerin ne zaman başladığını ve yutulma şüphesinde veteriner hekime neler söylenmesi gerektiğini anlatıyoruz. Teşhis ve tedavi bu yazının konusu değil; bunlar yalnızca veteriner hekimin işi.' },

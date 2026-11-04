@@ -7,7 +7,7 @@ export const maineCoon: BlogYazi = {
   kapakAlt:
     'Koltuk minderine uzanmış uzun tüylü Maine Coon kedi',
   kategori: 'Kedi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-12',
   bloklar: [
     { kind: 'paragraf', metin: '**Maine Coon, tescilli kedi ırklarının en büyüğü olarak tanımlanan, kalın ve dökümlü tüylü, kulakları ve patileri püsküllü, sosyal ve uysal huylu bir kedi ırkıdır; erkeklerin ağırlığı 20 pounda (yaklaşık 9 kg) ulaşabilir ya da geçebilir, tam gelişim üç yıla kadar sürebilir.** Irkta bakım için haftada iki üç kez tarama öneriliyor; sağlık tarafında ise kalp kası hastalığı (HCM) ve kalça displazisi için tarama konuşuluyor.' },
     { kind: 'paragraf', metin: 'Aşağıda ırkın kökenini, görünüşünü, huyunu ve tüy bakımını; kalp ve kalça sağlığına ilişkin çalışmaların ne söylediğini ve sahiplenirken nelere bakılabileceğini anlatıyoruz. Sağlık rakamları belirli kedi gruplarında yapılmış çalışmalardan geliyor, bu yüzden tek bir kediye birebir uygulanmıyor.' },

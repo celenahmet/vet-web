@@ -7,7 +7,7 @@ export const frenchBulldog: BlogYazi = {
   kapakAlt:
     'Bahçede oturan siyah beyaz French bulldog',
   kategori: 'Köpek',
-  tarih: '2026-11-01',
+  tarih: '2026-11-11',
   bloklar: [
     { kind: 'paragraf', metin: '**French Bulldog, Fransa kökenli küçük bir eş köpeği ırkıdır; FCI standardına göre erkekleri 9 ile 14 kg, dişileri 8 ile 13 kg arasında olur ve kısa burunlu yapısı nedeniyle bakımda en çok solunum, sıcak havadan korunma ve kilo takibi öne çıkar.**' },
     { kind: 'paragraf', metin: 'Aşağıda ırkın FCI standardındaki tanımını, mizacını ve Royal Veterinary College ile Cambridge Üniversitesi araştırmalarının gösterdiği sağlık yatkınlıklarını anlatıyoruz. Yazı bilgilendirme amaçlıdır; köpeğinizin sağlığıyla ilgili her soru için veteriner hekime başvurmak gerekiyor.' },

@@ -7,7 +7,7 @@ export const almanKurdu: BlogYazi = {
   kapakAlt:
     'Ormanlık patikada tasmasıyla yürüyen Alman kurdu',
   kategori: 'Köpek',
-  tarih: '2026-11-01',
+  tarih: '2026-11-09',
   bloklar: [
     { kind: 'paragraf', metin: '**Alman kurdu, uluslararası ırk standardına göre erkeği 60-65 cm boyunda ve 30-40 kg, dişisi 55-60 cm boyunda ve 22-32 kg olan, çalışmak için geliştirilmiş orta boy bir çoban köpeğidir.** Birleşik Krallık\'ta birinci basamak kliniklerin kayıtlarıyla yapılan bir çalışmada ırkın ortanca ömrü 10,3 yıl bulundu.' },
     { kind: 'paragraf', metin: 'Aşağıda ırkın standardındaki ölçüleri, kökenini, huyunu, eğitim ve sosyalleşme konusunda uzman kuruluşların görüşünü, ömrünü ve kayıtlarda sık görünen sağlık konularını bulacaksınız. Türkiye\'de "Alman kurdu" denen ırkın standarttaki adı Deutscher Schäferhund, yani German Shepherd Dog; Fédération Cynologique Internationale (FCI) onu 1. grupta, çoban köpekleri arasında sınıflıyor.' },

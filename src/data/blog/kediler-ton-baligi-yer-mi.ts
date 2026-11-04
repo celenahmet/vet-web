@@ -7,7 +7,7 @@ export const kedilerTonBaligiYerMi: BlogYazi = {
   kapakAlt:
     'Elle uzatılan ton balığına uzanan kedi, yanında mama kabı',
   kategori: 'Beslenme',
-  tarih: '2026-11-01',
+  tarih: '2026-11-05',
   bloklar: [
     { kind: 'paragraf', metin: '**Ton balığı kedinin düzenli yiyeceği olmamalı:** büyük miktarda konserve ton balığı verilen kedilerde E vitamini eksikliği ve "sarı yağ hastalığı" adı verilen yağ dokusu iltihabı görülmüş, insanlar için hazırlanmış konserve balık ise bazı kedilerde ciddi sinir sistemi bozukluklarıyla ilişkilendirilmiş. Kedilerin balığı çok sevmesi, balığın onlar için dengeli bir yiyecek olduğu anlamına gelmiyor.' },
     { kind: 'paragraf', metin: 'Aşağıda Merck Veterinary Manual, Cornell Üniversitesi Veteriner Fakültesi ve Lizbon Veteriner Fakültesi\'nden araştırmacıların yayınladığı bir çalışmaya dayanarak ton balığının neden sorun olabildiğini, çiğ balığın ayrı riskini, ödül miktarının sınırını ve hangi durumda veteriner hekime başvurulması gerektiğini anlatıyoruz. Bu yazı teşhis ya da tedavi bilgisi vermez; kedinizin sağlığıyla ilgili her soruda son söz veteriner hekimindir.' },

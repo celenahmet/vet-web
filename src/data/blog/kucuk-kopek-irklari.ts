@@ -7,7 +7,7 @@ export const kucukKopekIrklari: BlogYazi = {
   kapakAlt:
     'Halıda oyuncakların arasında yan yana duran üç küçük köpek',
   kategori: 'Köpek',
-  tarih: '2026-11-01',
+  tarih: '2026-11-11',
   bloklar: [
     { kind: 'paragraf', metin: '**Küçük köpek ırklarının en küçükleri, uluslararası ırk standartlarına göre Chihuahua için 1 ile 3 kg, Yorkshire Terrier için en çok 3,2 kg, Maltese için 3 ile 4 kg arasında bir ağırlığa sahip.** Ama küçük beden, küçük bakım ihtiyacı demek değil: ABD\'de 3 milyondan fazla klinik kaydın incelendiği bir çalışmada 6,5 kg altındaki çok küçük ırklar, dev ırklara göre diş eti hastalığı tanısını beş kata kadar daha sık aldı.' },
     { kind: 'paragraf', metin: 'Aşağıda üç yaygın küçük ırkın dünya köpekçilik federasyonu FCI standartlarındaki ölçülerini ve huy tariflerini, küçük köpeklerin ömrüne dair bilimsel bulguyu, ağız sağlığı ile soluk borusu konularında çalışmaların söylediğini ve küçük bir köpeği olan ya da almayı düşünen birinin neye bakması gerektiğini bulacaksınız. Tek bir ırkı ayrıntılı anlatan yazı arıyorsanız [[pomeranian|Pomeranian]] yazımıza bakabilirsiniz.' },

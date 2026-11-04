@@ -7,7 +7,7 @@ export const tavsanBakimi: BlogYazi = {
   kapakAlt:
     'Bahçe kafesinde kuru ot yiyen sarkık kulaklı tavşan',
   kategori: 'Pet Sahipleri',
-  tarih: '2026-11-01',
+  tarih: '2026-11-08',
   bloklar: [
     { kind: 'paragraf', metin: '**Tavşanın beslenmesinin temeli sınırsız kuru ot, barınağının temeli ise geniş, havadar ve her gün kafesin dışında vakit geçirebileceği bir alandır.** Merck Veterinary Manual, sağlıklı bir tavşan düzeninde beslenmenin yaklaşık yüzde 85-90\'ının ot olması gerektiğini, geri kalanın ise az miktarda pelet ve taze sebze olduğunu belirtiyor. Barınakta da kafes boyutu, sıcaklık, zemin ve temizlik belirleyici oluyor.' },
     { kind: 'paragraf', metin: 'Aşağıda tavşanın günlük yemi, ot seçimi, kafes ölçüleri, sıcaklık sınırları, zemin ve tuvalet düzeni, arkadaşlık, tüy bakımı ve doğru tutuş anlatılıyor. Yazı bir bakım rehberidir; hastalık tanısı ya da tedavi içermez. Tavşanda bir sağlık sorunundan şüpheleniliyorsa veteriner hekime başvurmak gerekiyor.' },

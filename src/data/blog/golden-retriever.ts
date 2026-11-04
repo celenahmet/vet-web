@@ -7,7 +7,7 @@ export const goldenRetriever: BlogYazi = {
   kapakAlt:
     'Çimenlerde ağzında oyuncakla koşan golden retriever',
   kategori: 'Köpek',
-  tarih: '2026-11-01',
+  tarih: '2026-11-14',
   bloklar: [
     { kind: 'paragraf', metin: '**Golden Retriever, İngiltere kökenli bir toplayıcı av köpeğidir; ırk standardı onu uyumlu, zeki, nazik, arkadaş canlısı ve kendine güvenen bir köpek olarak tanımlıyor.** İngiltere\'de yapılan bir ankette bu ırkın medyan ölüm yaşı yaklaşık 12 yıl 3 ay görünüyor, ama ölümlerin %38,8\'i kanserden olmuş. Yani sevimli bir karakter ve uzun bir ömür beklentisi var, fakat sağlık takibi bu ırkta özellikle önemli.' },
     { kind: 'paragraf', metin: 'Aşağıda uluslararası ırk standardının söyledikleri, tüy ve günlük bakım, kilo ve hareket, ömre dair veriler ve ırkta en çok araştırılan sağlık konusu var. Burada bir teşhis ya da tedavi önerisi yok; sağlıkla ilgili her kaygı için veteriner hekime başvurulması gerekiyor.' },

@@ -7,7 +7,7 @@ export const kangalKopegi: BlogYazi = {
   kapakAlt:
     'Kırsal bahçede duran Kangal köpeği',
   kategori: 'Köpek',
-  tarih: '2026-11-01',
+  tarih: '2026-11-09',
   bloklar: [
     { kind: 'paragraf', metin: '**Kangal, Türkiye kökenli, koyun sürülerini korumak için yetişen iri bir çoban köpeğidir; erkekleri 48 ile 60 kg, dişileri 40 ile 50 kg ağırlığında olabilir ve siyah maskesiyle tanınır.** Uluslararası Kinoloji Federasyonu (FCI) ırkı 331 numaralı standartla tarif ediyor. Standarda göre Kangal saldırgan değil, güvenilir bir bekçidir.' },
     { kind: 'paragraf', metin: 'Aşağıda ırkın kökenini, standarttaki boy, kilo ve tüy ölçülerini, mizacını, büyük köpeklerde sık anılan eklem sorununu, ömür konusunda bilinenleri ve Kangal\'ın yurt dışına çıkarılmasındaki izin şartını anlatıyoruz.' },

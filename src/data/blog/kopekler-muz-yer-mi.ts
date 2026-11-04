@@ -7,7 +7,7 @@ export const kopeklerMuzYerMi: BlogYazi = {
   kapakAlt:
     'Elle uzatılan muz dilimine bakan golden köpek',
   kategori: 'Beslenme',
-  tarih: '2026-11-01',
+  tarih: '2026-11-07',
   bloklar: [
     { kind: 'paragraf', metin: '**Evet, köpekler muz yiyebilir.** ASPCA muz bitkisini köpekler için zehirsiz bitkiler arasında sayıyor ve muz, köpeklere verilmemesi gereken insan yiyecekleri listesinde geçmiyor. Asıl konu miktardır: muz bir ödüldür ve Merck Veteriner El Kitabı\'na göre ödüllerin günlük toplamı toplam kalorinin %10\'unun altında kalmalıdır.' },
     { kind: 'paragraf', metin: 'Aşağıda muzun hangi koşulda güvenli sayıldığını, ödül payının nasıl düşünülmesi gerektiğini, muzlu ürünlerde nelere dikkat edildiğini ve hangi durumda veteriner hekime başvurulacağını anlatıyoruz. Bu yazı tanı ya da tedavi bilgisi vermez; köpeğinizin sağlığıyla ilgili her soruda karar veteriner hekimindir.' },

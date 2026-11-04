@@ -14,7 +14,7 @@ export const laborantVeVeterinerSaglik: BlogYazi = {
   kapakAlt:
     'Laboratuvarda mikroskop ve tüplerle çalışan laborant, yanında kedi',
   kategori: 'Klinik Yönetimi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-11',
   bloklar: [
     { kind: 'paragraf', metin: 'Laborant ve Veteriner Sağlık, meslek yüksekokullarında okutulan **iki yıllık bir ön lisans programı**; mezunları tekniker unvanıyla klinik, laboratuvar ve hayvancılık işletmelerinde yardımcı teknik personel olarak çalışıyor. Teşhis koyan ve tedaviyi belirleyen kişi ise bu programın mezunu değil, veteriner hekim.' },
     { kind: 'paragraf', metin: 'Adı "bölüm" diye anılsa da resmî yapı biraz farklı. Aşağıda üç üniversitenin kendi program sayfalarına ve raporlarına dayanarak programın ne olduğunu, ne öğretildiğini ve mezunun işin neresinde durduğunu anlatıyorum. Klinik sahibi, aday öğrenci ya da sadece veterinerde karşısına çıkan ekibi merak eden hayvan sahibi için yazıldı.' },

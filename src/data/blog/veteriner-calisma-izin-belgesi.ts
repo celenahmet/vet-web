@@ -7,7 +7,7 @@ export const veterinerCalismaIzinBelgesi: BlogYazi = {
   kapakAlt:
     'Masada belge dolduran veteriner hekim, yanında taşıma kafesindeki kedi',
   kategori: 'Klinik Yönetimi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-15',
   bloklar: [
     { kind: 'paragraf', metin: '**Veteriner hekim çalışma izin belgesini il müdürlüğü düzenliyor; belge, ruhsat verilmiş bir muayenehane ya da poliklinikte görev yapan her hekim için, sorumlu hekim dahil, ayrı ayrı çıkarılıyor.** Dayanağı 2011 yılında yayımlanan Veteriner Hekim Muayenehane ve Poliklinik Yönetmeliği.' },
     { kind: 'paragraf', metin: 'Aşağıda belgeyi kimin verdiğini, kimler için düzenlendiğini, başvuruda istenen evrakı, belgesiz çalışmanın sonuçlarını ve hekim ayrıldığında belgeye ne olduğunu yönetmelik maddeleriyle topladık. Klinik açma sürecinin bütününü [[veteriner-klinigi-acmak|veteriner kliniği açmak]] yazımızda anlattık. Buradaki bilgiler yalnızca muayenehane ve poliklinikler için geçerli.' },

@@ -7,7 +7,7 @@ export const tekirKedi: BlogYazi = {
   kapakAlt:
     'Pencere önünde gerinen tekir kedi',
   kategori: 'Kedi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-08',
   bloklar: [
     { kind: 'paragraf', metin: '**Hayır, tekir bir ırk değil, tüy desenidir.** Kedi ırkı ve renk tanımlarını yayımlayan Cat Fanciers\' Association (CFA), tekir için "bir desendir, ırk değildir" diyor. Yani Maine Coon da, Oriental de, sokaktan sahiplenilen bir ev kedisi de tekir desenli olabilir.' },
     { kind: 'paragraf', metin: 'Aşağıda tekir deseninin dört türünü, her tekirde bulunan ortak işaretleri, renklerin nasıl adlandırıldığını, desenin genetik kökenini, tekir kedilerin ne kadar yaşadığını ve huy konusunda neyin bilinip neyin bilinmediğini anlatıyoruz.' },

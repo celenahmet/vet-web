@@ -7,7 +7,7 @@ export const siyamKedisi: BlogYazi = {
   kapakAlt:
     'Perdenin arkasından bakan mavi gözlü Siyam kedisi',
   kategori: 'Kedi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-12',
   bloklar: [
     { kind: 'paragraf', metin: '**Siyam kedisi, uzun ince vücutlu, kama biçimli başlı, mavi badem gözlü ve kısa tüylü; insanlarla iletişimi çok güçlü ve yakınlık isteyen bir kedi ırkıdır.** Yüzü, kulakları, bacakları ve kuyruğu gövdesinden koyu renklidir. Bu yazıda ırkın kökenini, görünüşünü, renk noktalarının neden oluştuğunu, huyunu, tüy bakımını ve ırkta bilinen sağlık konularını bulacaksınız.' },
     { kind: 'paragraf', metin: 'Bilgilerin bir kısmı Cat Fanciers\' Association\'ın (CFA) ırk sayfasından, bir kısmı hakemli veteriner çalışmalarından geliyor. Sağlık konusunda hakemli çalışmaların söylediği, CFA\'nın söylediğinden ayrı tutuldu. Bir kedinin sağlığıyla ilgili her kararda veteriner hekimin muayenesi esastır.' },

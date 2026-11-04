@@ -7,7 +7,7 @@ export const scottishFold: BlogYazi = {
   kapakAlt:
     'Yatağında yatan katlanık kulaklı gri kedi',
   kategori: 'Kedi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-12',
   bloklar: [
     { kind: 'paragraf', metin: '**Scottish Fold, kıvrık kulakları ve yuvarlak yüzüyle tanınan orta boy bir kedi ırkıdır; tartışmanın nedeni, kulağı katlayan genin kıkırdak ve kemik gelişimini de etkilemesidir.** Bilim insanları kıvrık kulağın TRPV4 geninin bir değişikliğiyle ilişkili olduğunu gösterdi. Bu değişiklik kulaktaki kıkırdağı etkilerken ayak, bacak ve kuyruktaki kıkırdak ve eklemleri de etkileyebiliyor. Bu yüzden FIFe ırkı tanımıyor, Cat Fanciers\' Association (CFA) ise ırkı kabul ediyor ama yetiştiricilerden dikkatli eşleştirme bekliyor.' },
     { kind: 'paragraf', metin: 'Aşağıda ırkın kökenini ve görünümünü, kulağın neden kıvrıldığını, hakemli çalışmalarda ortaya konan eklem ve kemik sorunlarının ne kadar yaygın olduğunu, kurumların ırka bakışını ve bir Scottish Fold edinmeden önce nelere dikkat edilmesi gerektiğini anlatıyoruz. Bir kedide topallama gibi bir belirti görülürse yazı değil veteriner hekim yol göstermelidir.' },

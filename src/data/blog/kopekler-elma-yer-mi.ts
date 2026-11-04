@@ -7,7 +7,7 @@ export const kopeklerElmaYerMi: BlogYazi = {
   kapakAlt:
     'Elle uzatılan elma dilimine bakan beagle köpek',
   kategori: 'Beslenme',
-  tarih: '2026-11-01',
+  tarih: '2026-11-06',
   bloklar: [
     { kind: 'paragraf', metin: '**Köpekler elma yiyebilir: meyvenin eti düşük riskli sayılıyor, ama çekirdek, sap ve yaprağın köpeğe verilmemesi gerekiyor ve elmanın günlük kalorinin yüzde 10\'unu geçmeyen ödül payının içinde kalması önerilir.** Merck Veteriner El Kitabı bitkilerde siyanür oluşturabilen maddelerin tohum ve yapraklarda yüksek, meyvenin etli kısmında ise genellikle düşük olduğunu belirtiyor. ASPCA ise elma ağacının sapında, yaprağında ve çekirdeğinde siyanür bulunduğunu bildiriyor.' },
     { kind: 'paragraf', metin: 'Aşağıda elmanın hangi kısmının neden sorun sayıldığını, çiğnemenin neden önemli olduğunu, ödül payının nasıl hesaplandığını ve hazır elmalı ürünlerde nelere dikkat edilmesi gerektiğini topladık. Köpeğinizin sağlığıyla ilgili bir soru varsa karar için veteriner hekime başvurmak gerekiyor.' },

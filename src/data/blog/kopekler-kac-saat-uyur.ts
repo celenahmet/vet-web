@@ -7,7 +7,7 @@ export const kopeklerKacSaatUyur: BlogYazi = {
   kapakAlt:
     'Yuvarlak yatağında uyuyan golden köpek',
   kategori: 'Köpek',
-  tarih: '2026-10-31',
+  tarih: '2026-11-05',
   bloklar: [
     { kind: 'paragraf', metin: '**Sahiplerin bildirdiğine göre 16 haftalık yavrular 24 saatte ortalama 11,2 saat, 12 aylık köpekler ise ortalama 10,8 saat uyuyor.** Bu rakamlar, Dogs Trust\'ın Birleşik Krallık\'ta ev ortamında yaşayan köpekler üzerinde yaptığı ve 2020\'de yayımlanan çalışmadan geliyor. Süreler cihazla ölçülmedi; sahipler köpeğin en az ve en çok kaç saat uyuduğunu tahmin ederek bildirdi. Bu yüzden rakamların kesin bir norm değil, bir ortalama olarak okunması gerekiyor.' },
     { kind: 'paragraf', metin: 'Aşağıda bu rakamın nereden geldiğini, yavru ile genç köpek arasındaki farkı, gece uykusunu, ortamın uykuya etkisini ve uyku düzenindeki değişikliğin ne zaman veteriner hekime danışmayı gerektirdiğini anlatıyoruz. Rüya ve uykuda seğirme merak edilirse [[kopekler-ruya-gorur-mu|köpekler rüya görür mü]] yazısına bakılabilir.' },

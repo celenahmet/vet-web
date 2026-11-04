@@ -7,7 +7,7 @@ export const muhabbetKusuBakimi: BlogYazi = {
   kapakAlt:
     'Kafesteki dalda yan yana duran mavi ve yeşil muhabbet kuşları',
   kategori: 'Pet Sahipleri',
-  tarih: '2026-11-01',
+  tarih: '2026-11-12',
   bloklar: [
     { kind: 'paragraf', metin: '**Muhabbet kuşu bakımı üç ayağa dayanıyor: kuşun rahatça hareket edeceği kadar büyük bir kafes, yalnızca tohumla sınırlı kalmayan dengeli bir yem düzeni ve kafes dışı hareketi, oyunu ve geceyi kapsayan sakin bir günlük akış.** Merck Veterinary Manual\'a göre muhabbet kuşu için önerilen en küçük kafes ölçüsü 20 × 20 × 30 inç, yani yaklaşık 51 × 51 × 76 cm; parmaklık aralığı ise 0,5 inç, yani yaklaşık 1,3 cm.' },
     { kind: 'paragraf', metin: 'Bu yazıda kafesin ölçüsünü ve evdeki yerini, yem düzenini, günlük akışı, gece uykusunu ve evdeki tehlikeleri bulacaksınız. Ömür ve yaşlanma verileri için [[muhabbet-kusu-kac-yil-yasar|muhabbet kuşu kaç yıl yaşar]] yazısı var; burada aynı bilgileri tekrarlamıyoruz. Yazı bir bakım rehberidir; hastalık belirtisi yorumlamaz, tedavi anlatmaz.' },

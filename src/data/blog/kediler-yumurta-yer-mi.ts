@@ -7,7 +7,7 @@ export const kedilerYumurtaYerMi: BlogYazi = {
   kapakAlt:
     'Kaseyle haşlanmış yumurta uzatılan kedi',
   kategori: 'Beslenme',
-  tarih: '2026-11-01',
+  tarih: '2026-11-06',
   bloklar: [
     { kind: 'paragraf', metin: '**Kediler yumurtayı yiyebilir, ancak çiğ değil, tam pişmiş ve ara sıra verilen küçük bir ödül olarak.** ASPCA çiğ yumurtayı evcil hayvanlara verilmemesi gereken yiyecekler arasında sayıyor. Merck Veteriner El Kitabı çiğ yumurtadaki avidin denen maddenin pişirmeyle yok olduğunu belirtiyor. Cornell Üniversitesi Kedi Sağlığı Merkezi ise ödüllerin kedinin günlük kalorisinin yüzde 10 ile 15\'ini geçmemesini öneriyor.' },
     { kind: 'paragraf', metin: 'Aşağıda çiğ yumurtanın neden sorun sayıldığını, pişirmenin neyi değiştirdiğini, yumurtanın kedi beslenmesindeki yerini ve mutfakta dikkat edilmesi gereken hijyen noktalarını topladık. Kedinizin sağlığıyla ilgili bir soru varsa karar için veteriner hekime başvurmak gerekiyor.' },

@@ -7,7 +7,7 @@ export const kedilerSutIcerMi: BlogYazi = {
   kapakAlt:
     'Mutfak tezgâhındaki süt bardağına uzanan kedi',
   kategori: 'Beslenme',
-  tarih: '2026-11-01',
+  tarih: '2026-11-05',
   bloklar: [
     { kind: 'paragraf', metin: '**Kediler süt içebilir ama kedilere süt önerilmiyor: birçok kedi laktozu sindiremiyor ve süt mide ve bağırsak sorunlarına yol açabiliyor.** Cornell Üniversitesi Veteriner Fakültesi\'nin kedi sağlığı merkezi ve Merck Veterinary Manual, sütü kediler için önerilen bir ödül saymıyor. Süt, kedinin ihtiyaç duyduğu bir besin de değil.' },
     { kind: 'paragraf', metin: 'Aşağıda kedilerin sütü neden sindiremediğini, Liverpool Üniversitesi\'nin kedi ve köpek bağırsağını karşılaştıran çalışmasının ne gösterdiğini, yavru kedilere inek sütünün neden verilmediğini, süt ürünleri ve süt alerjisi konusunda söylenenleri ve süt yerine ne sunulabileceğini anlatıyoruz. Bir kedinin sağlığıyla ilgili kararı bu yazı değil, veteriner hekim verir.' },

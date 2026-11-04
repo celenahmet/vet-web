@@ -7,7 +7,7 @@ export const kopekEgitmeniNasilOlunur: BlogYazi = {
   kapakAlt:
     'Parkta tasmalı köpeğe eğitim veren kişi',
   kategori: 'Klinik Yönetimi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-14',
   bloklar: [
     { kind: 'paragraf', metin: '**Köpek eğitmeni olmak için, bir eğitim yeri açılacaksa, çalışma izni verecek kurumca onaylı bir uzmanlık belgesi gerekiyor.** Ev hayvanlarının eğitim yerlerini düzenleyen yönetmelik, bu belgeyi çalışma izni başvurusunun şartları arasında sayıyor. Belgenin hangi eğitimle alınacağını yönetmeliğin kendisi tarif etmiyor; bu yüzden başvurudan önce il müdürlüğüne sormak gerekiyor.' },
     { kind: 'paragraf', metin: 'Aşağıda yönetmeliğin eğitim yerleri için aradığı şartları, üniversite sertifika programlarının neler öğrettiğini, eğitim yöntemi seçiminin köpeğin refahına etkisini ve eğitmenle veteriner hekimin sınırlarını anlatıyoruz. Yazı bir tanı ya da tedavi rehberi değildir; köpeğin sağlığıyla ilgili her şüphede veteriner hekime başvurmak gerekiyor.' },

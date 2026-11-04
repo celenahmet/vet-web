@@ -7,7 +7,7 @@ export const petShopAcmak: BlogYazi = {
   kapakAlt:
     'Pet shopta raflar arasında golden köpekle duran müşteri ve görevli',
   kategori: 'Pet Sahipleri',
-  tarih: '2026-11-01',
+  tarih: '2026-11-15',
   bloklar: [
     { kind: 'paragraf', metin: '**Pet shop açmak için önce yerel yönetimlerin düzenlediği hayvan bakımı eğitimine katılıp sertifika almak, sonra il tarım ve orman müdürlüğünden önce kuruluş izni, ardından çalışma izni almak gerekiyor.** İş yerinde ayrıca bir iş yeri veteriner hekimi çalıştırmak da zorunlu. Bu sıra, 5199 sayılı Hayvanları Koruma Kanunu ile Tarım ve Orman Bakanlığı\'nın ev hayvanı yönetmeliklerinden geliyor.' },
     { kind: 'paragraf', metin: 'Aşağıda adımları, istenen belgeleri ve açılıştan sonraki yükümlülükleri Resmî Gazete ve mevzuat.gov.tr metinlerine göre topladık. Pet shopta kedi ve köpek satışının nasıl yapıldığını ayrıca [[kedi-kopek-satmak-yasak-mi|kedi köpek satışı yasak mı]] yazımızda anlattık; burada konu, işyerini açma sürecidir.' },

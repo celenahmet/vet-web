@@ -7,7 +7,7 @@ export const sibiryaKurduHusky: BlogYazi = {
   kapakAlt:
     'Karlı bahçede dili dışarıda bakan mavi gözlü husky',
   kategori: 'Köpek',
-  tarih: '2026-11-01',
+  tarih: '2026-11-12',
   bloklar: [
     { kind: 'paragraf', metin: '**Sibirya kurdu (Husky), kızak çekmek için yetiştirilmiş, orta boy, çift katmanlı tüyü olan ve dayanıklılığıyla bilinen bir çalışma köpeğidir.** Uluslararası Kinoloji Federasyonu (FCI) standardı mizacını dost canlısı, uyanık ve dışa dönük olarak tarif ediyor. Yani aile köpeği olarak sevilmesinin sebebi bu yapısı, ama bakımında tüy, kilo, göz ve sıcak hava gibi başlıklara dikkat gerekiyor.' },
     { kind: 'paragraf', metin: 'Aşağıda ırkın resmî standardında yazanları, tüy dökümünün neden normal sayıldığını, mavi gözle ilgili yaygın bir yanlış inanışı ve huskylerle yapılmış hakemli çalışmalardan çıkan sağlık bilgilerini bulacaksınız. Teşhis ve tedavi konuları veteriner hekime bırakılıyor.' },

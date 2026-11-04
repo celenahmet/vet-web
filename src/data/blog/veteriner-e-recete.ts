@@ -7,7 +7,7 @@ export const veterinerERecete: BlogYazi = {
   kapakAlt:
     'Muayene masasındaki kedinin yanında tablete reçete yazan veteriner hekim',
   kategori: 'Klinik Yönetimi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-15',
   bloklar: [
     { kind: 'paragraf', metin: '**Veteriner e-reçete sistemi, veteriner hekimin reçeteyi kâğıt yerine Tarım ve Orman Bakanlığı\'nın kurduğu sistem üzerinden elektronik ortamda düzenlemesidir.** Bakanlık, 1 Ocak 2018 itibarıyla tüm ülkede veteriner hekimlikte elektronik reçete uygulamasına geçildiğini duyurdu.' },
     { kind: 'paragraf', metin: 'Amaç, hayvanlara verilen ilaçların kayıt altına alınması. Bu yazıda sistemin ne olduğunu, mevzuatın reçete hakkında ne söylediğini ve hayvan sahibinin nelere dikkat etmesi gerektiğini topladık. Hangi ilacın verileceği ya da nasıl kullanılacağı bu yazının konusu değil; bunlar hayvanı muayene eden veteriner hekimin kararı.' },

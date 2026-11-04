@@ -7,7 +7,7 @@ export const pomeranian: BlogYazi = {
   kapakAlt:
     'Salonda ağzında oyuncak tutan turuncu pomeranian',
   kategori: 'Köpek',
-  tarih: '2026-11-01',
+  tarih: '2026-11-10',
   bloklar: [
     { kind: 'paragraf', metin: '**Pomeranian, FCI standardında "Toy Spitz" (Zwergspitz) olarak geçen, omuz yüksekliği 21 cm ± 3 cm olan küçük bir refakat köpeğidir.** Çift katlı gür tüyü, dik kulakları ve sırtına kıvrılan kuyruğuyla tanınır. Standart onu dikkatli, canlı ve sahibine çok bağlı bir köpek olarak tarif ediyor. Küçük ırklarda sıkça konuşulan diz kapağı, nefes borusu ve diş sağlığı konularında ise düzenli veteriner kontrolü gerekiyor.' },
     { kind: 'paragraf', metin: 'Aşağıda ırkın resmî standardını, boyunu, tüyünü ve huyunu, ardından hakemli çalışmaların işaret ettiği sağlık alanlarını topladık. Teşhis ve tedavi veteriner hekimin işidir; yazıda yalnızca hangi konularda hekime danışılması gerektiği anlatılıyor.' },

@@ -7,7 +7,7 @@ export const iranKedisi: BlogYazi = {
   kapakAlt:
     'Koltukta uzanan krem renkli uzun tüylü kedi',
   kategori: 'Kedi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-09',
   bloklar: [
     { kind: 'paragraf', metin: '**İran kedisi (Persian), yuvarlak yüzlü, kısa burunlu, iri gözlü, uzun ve kalın tüylü, sakin huylu bir ırktır; bakımında düzenli tüy taraması, göz çevresinin temizliği ve veteriner kontrolü öne çıkıyor.** İngiltere\'deki bir birinci basamak veteriner çalışmasında İran kedileri için bildirilen ortanca ömür 13,5 yıl oldu. Irkta en çok konuşulan sağlık başlıkları ise kısa burun yapısına bağlı göz ve diş sorunları ile kalıtsal bir böbrek hastalığı olan polikistik böbrek hastalığı (PKD).' },
     { kind: 'paragraf', metin: 'Aşağıda ırkın kökenini, görünüşünü ve huyunu; tüy bakımını; yüz yapısının getirdiği konuları; PKD\'yi ve ömür verilerini anlatıyoruz. Sağlıkla ilgili rakamlar gözlemsel çalışmalara dayanıyor, bu yüzden tek bir kediye birebir uygulanmıyor. Kedide bir sağlık sorunundan şüphelenildiğinde kararı muayene eden veteriner hekim veriyor.' },

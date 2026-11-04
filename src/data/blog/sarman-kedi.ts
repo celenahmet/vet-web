@@ -7,7 +7,7 @@ export const sarmanKedi: BlogYazi = {
   kapakAlt:
     'Oyuncak fareyle oynayan sarman kedi',
   kategori: 'Kedi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-10',
   bloklar: [
     { kind: 'paragraf', metin: '**Sarman kedi, Türkçede sarı tüylü kedi demektir; bir ırk değil bir tüy rengidir ve bu renk X kromozomundaki tek bir genden gelir.** Türk Dil Kurumu sözlüğü sarmanı "sarı tüylü kedi" diye tanımlıyor. Turuncu rengi veren gen X kromozomunda taşındığı için erkek kedide tek kopya yetiyor, dişi kedide ise rengin tam turuncu olması için iki kopya gerekiyor. Sarman kedilerin çoğunun erkek olması bu yüzden.' },
     { kind: 'paragraf', metin: 'Aşağıda turuncu rengin genetik olarak nasıl ortaya çıktığını, dişi sarman kedinin neden daha az görüldüğünü, çizgili tüyün turuncu zeminde nasıl göründüğünü ve erkek kedilerde üç renkli tüyün neden alışılmadık olduğunu anlatıyoruz. Bilgiler hakemli genetik çalışmalara dayanıyor.' },

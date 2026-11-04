@@ -7,7 +7,7 @@ export const ankaraKedisi: BlogYazi = {
   kapakAlt:
     'Salonda kuyruğunu kaldırmış beyaz uzun tüylü kedi',
   kategori: 'Kedi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-07',
   bloklar: [
     { kind: 'paragraf', metin: '**Ankara kedisi (Turkish Angora), Türkiye\'nin yerli ırkıdır; uzun gövdeli, ipek gibi tek kat tüylü, iri ve dik kulaklı, insanla etkileşimi seven bir kedidir ve bakımı uzun tüylü kedilere göre kolay sayılır.** Cat Fanciers\' Association (CFA) ırkı, bilinen en eski uzun tüylü ırk olarak tanıtıyor. Öne çıkan sağlık konusu ise beyaz tüylü ve özellikle mavi gözlü kedilerde işitme kaybının görülebilmesi.' },
     { kind: 'paragraf', metin: 'Aşağıda ırkın kökenini, görünüşünü ve huyunu, tüy bakımının nasıl olduğunu, beyaz kedilerde işitme konusunda bilimsel çalışmaların ne söylediğini ve sahiplenirken nelere bakılabileceğini anlatıyoruz. Irk bilgileri kedi federasyonlarının tanımlarına, sağlık bilgileri veteriner kaynaklarına dayanıyor; tek tek bir kedinin durumunu yalnızca muayene eden veteriner hekim değerlendirebilir.' },

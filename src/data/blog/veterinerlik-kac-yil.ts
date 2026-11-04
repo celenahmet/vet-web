@@ -7,7 +7,7 @@ export const veterinerlikKacYil: BlogYazi = {
   kapakAlt:
     'Anatomi modellerinin önünde golden köpeği stetoskopla dinleyen öğrenci',
   kategori: 'Klinik Yönetimi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-13',
   bloklar: [
     { kind: 'paragraf', metin: '**Veteriner fakültesi, yabancı dil hazırlık sınıfı hariç beş yıl, yani on yarıyıl sürüyor; azami süre ise sekiz yıl.** Bu sürenin son yarıyılı intörnlüğe ayrılıyor, zorunlu staj da öğrencinin yıllar içinde tamamlaması gereken ayrı bir yükümlülük olarak programda yer alıyor.' },
     { kind: 'paragraf', metin: 'Süre sorusunun cevabı kısa, ama beş yılın içinde neler olduğu çoğu zaman merak ediliyor: hangi tür dersler okutuluyor, devam zorunluluğu var mı, staj kaç gün sürüyor, intörnlük ne zaman başlıyor? Aşağıda bu soruları, Resmî Gazete\'de yayımlanan iki veteriner fakültesi yönetmeliğine dayanarak cevaplıyoruz. Ayrıntılar fakülteden fakülteye değişebildiği için örnekler, kendi fakültenizin güncel yönetmeliğinin yerine geçmiyor.' },

@@ -13,7 +13,7 @@ export const petKuaforNasilOlunur: BlogYazi = {
   kapakAlt:
     'Bakım masasında kıvırcık tüylü köpeği tarayan pet kuaför',
   kategori: 'Klinik Yönetimi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-15',
   bloklar: [
     { kind: 'paragraf', metin: '**Pet kuaförlüğünün resmî çerçevesi, Mesleki Yeterlilik Kurumunun (MYK) Evcil Hayvan Kuaförü (Seviye 3) ulusal meslek standardı.** Standart 21 Aralık 2018 tarihli Resmî Gazete\'de (mükerrer, sayı 30632) yayımlandı ve mesleğe ilişkin ayrıca bir gereklilik öngörmüyor; nitelik, tanımlanan görevleri yapabilme bilgi ve becerisine bağlanıyor.' },
     { kind: 'paragraf', metin: 'Standartta meslek, tüy kesimi yapan, evcil hayvanı yıkayan, tırnak ve pati bakımı ile diğer bakımları yapan nitelikli kişi olarak tanımlanıyor. Sınır da aynı metinde çiziliyor: sağlık hizmetine giren her konuda kapı veteriner hekime açılıyor.' },

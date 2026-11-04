@@ -7,7 +7,7 @@ export const hamsterBakimi: BlogYazi = {
   kapakAlt:
     'Talaşlı kafeste tünel önünde duran hamster, arkada çark',
   kategori: 'Pet Sahipleri',
-  tarih: '2026-11-01',
+  tarih: '2026-11-07',
   bloklar: [
     { kind: 'paragraf', metin: '**Bir hamster için dört temel var: kaçamayacağı sağlam bir kafes, kazıp yuva yapabileceği derin yatak, hamsterlere uygun pelet yem ve tek başına barınma.** Bunlara taze su, güvenli egzersiz ve gece aktif bir hayvanın düzenine uyum eklenince temel bakım tamamlanıyor. Suriye hamsterinin ömrü 2 ile 3 yıl olduğu için bu düzen yıllarca sürecek bir bakım rutinine dönüşüyor.' },
     { kind: 'paragraf', metin: 'Aşağıda kafes ve yatak seçimini, uygun sıcaklığı, yem ile suyu, çark ve top kullanımını, gece aktif bir hayvanla günlük düzeni ve hamsterin ne zaman veteriner hekime götürülmesi gerektiğini anlatıyoruz. Yazı, hekim muayenesinin yerini tutmuyor ve hastalık ya da tedavi bilgisi vermiyor.' },

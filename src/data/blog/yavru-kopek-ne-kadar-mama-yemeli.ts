@@ -7,7 +7,7 @@ export const yavruKopekNeKadarMamaYemeli: BlogYazi = {
   kapakAlt:
     'Terazideki kaba mama dolduran el ve bekleyen golden yavru köpek',
   kategori: 'Beslenme',
-  tarih: '2026-10-31',
+  tarih: '2026-11-05',
   bloklar: [
     { kind: 'paragraf', metin: 'Yavru köpeğin günlük mama miktarı gramla değil **kaloriyle** hesaplanıyor. Merck Veteriner El Kitabı\'na göre sağlıklı bir yavrunun günlük enerji ihtiyacı, 4 aydan küçükse dinlenme enerji ihtiyacının **3 katı**, 4 aydan büyükse **2 katı**. Bu kalori mamanın etiketindeki değere bölününce günlük gram çıkıyor.' },
     { kind: 'paragraf', metin: 'Hesap yalnızca başlangıç noktası; gerçek miktarı yavrunun kilosu ve vücut kondisyonu belirliyor. Aşağıda hesabın nasıl yapıldığı, örnek bir tablo, öğün sayısı, kilonun neden her hafta izlendiği, iri ve dev ırklarda neden ayrı kural olduğu ve yavru mamasından ne zaman çıkıldığı anlatılıyor.' },

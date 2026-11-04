@@ -7,7 +7,7 @@ export const chihuahua: BlogYazi = {
   kapakAlt:
     'Salonda halının üstünde duran açık kahverengi chihuahua',
   kategori: 'Köpek',
-  tarih: '2026-11-01',
+  tarih: '2026-11-10',
   bloklar: [
     { kind: 'paragraf', metin: '**Chihuahua, Meksika kökenli, FCI standardına göre 1 ile 3 kg arasında olması beklenen, hareketli ve gözü pek bir mini ırktır.** Bakımı küçük boyu kadar kolay değildir: İngiltere\'deki klinik kayıtlarında en sık görülen sorunlar diş eti hastalığı, obezite ve süt dişlerinin düşmemesi olarak öne çıkıyor. Diz kapağı sorunları da ırkta sık görülüyor.' },
     { kind: 'paragraf', metin: 'Aşağıda ırkın kökenini, standardındaki boy ve kilo ölçüsünü, mizacını ve veteriner kayıtlarında öne çıkan sağlık konularını hakemli çalışmalara dayanarak anlatıyoruz. Sağlık sorunu şüphesinde tanı ve tedavi için veteriner hekime başvurmak gerekiyor.' },

@@ -7,7 +7,7 @@ export const labradorRetriever: BlogYazi = {
   kapakAlt:
     'Göl kenarındaki çimende ağzında oyuncak tutan siyah labrador',
   kategori: 'Köpek',
-  tarih: '2026-11-01',
+  tarih: '2026-11-10',
   bloklar: [
     { kind: 'paragraf', metin: '**Labrador Retriever, kökeni Büyük Britanya olan, iyi huylu, çevik ve insana bağlı bir av köpeği ırkıdır; bakımında en çok dikkat isteyen konu iştahı ve kilosudur.** Uluslararası köpek federasyonu FCI, 122 numaralı ırk standardında Labrador\'u "Retrieverlar" grubuna (Grup 8, Bölüm 1) yerleştiriyor ve mizacını "iyi huylu, çok çevik, uyumlu ve bağlı bir yoldaş" olarak tarif ediyor.' },
     { kind: 'paragraf', metin: 'Aşağıda ırk standardının ne dediğini, boy ve kilo değerlerini, renkleri, mizacı, kilo eğilimini, Britanya\'daki veteriner kayıtlarında en sık görülen sağlık sorunlarını ve günlük bakımda nelere dikkat edilmesi gerektiğini anlatıyoruz. Bir sağlık sorunundan şüphelenildiğinde yapılacak şey evde yorum yapmak değil, veteriner hekime başvurmaktır.' },

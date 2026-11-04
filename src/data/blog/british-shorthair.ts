@@ -7,7 +7,7 @@ export const britishShorthair: BlogYazi = {
   kapakAlt:
     'Tüylü oyuncağa pati atan gri British Shorthair kedi',
   kategori: 'Kedi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-07',
   bloklar: [
     { kind: 'paragraf', metin: '**British Shorthair, kısa ve çok yoğun tüylü, yuvarlak yüzlü, güçlü yapılı ve sakin huylu bir kedi ırkıdır; tam gelişimine 3 ila 5 yılda ulaşır.** Ömrüne gelince, İngiltere\'deki bir veteriner kayıt çalışmasında ölen 69 British Shorthair\'in ölüm yaşı ortancası 11,8 yıl, melez kedilerinki ise 14,0 yıl bulundu. Irkta kalp kası hastalığı, kan grubu ve kilo konuları öne çıkıyor.' },
     { kind: 'paragraf', metin: 'Aşağıda ırkın kökenini, görünüşünü, huyunu ve bakımını; kan grubunun ve kalp taramasının neden konuşulduğunu; ömür ve kilo verilerinin ne söylediğini anlatıyoruz. Ömür ve sağlık rakamları gözlemsel çalışmalara dayanıyor, bu yüzden tek bir kediye birebir uygulanmıyor.' },

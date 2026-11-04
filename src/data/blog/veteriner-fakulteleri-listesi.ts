@@ -7,7 +7,7 @@ export const veterinerFakultelerListesi: BlogYazi = {
   kapakAlt:
     'Kampüs bahçesinde öğrencilerin arasında duran golden köpek',
   kategori: 'Klinik Yönetimi',
-  tarih: '2026-11-01',
+  tarih: '2026-11-13',
   bloklar: [
     { kind: 'paragraf', metin: '**Türk Veteriner Hekimleri Birliği\'nin (TVHB) sitesindeki listede Türkiye\'de 30 veteriner fakültesi yer alıyor.** Aynı liste Kırgızistan\'daki ve KKTC\'deki iki fakülteyi de sayıyor; yani toplam 32 fakülte görünüyor. Yeni fakülteler açılabildiği için bu sayı zamanla değişebiliyor ve tercih yapacak biri için en güncel kaynak her zaman YÖK Atlas ile üniversitenin kendi sayfası.' },
     { kind: 'paragraf', metin: 'Aşağıda fakültelerin listesini, eğitimin kaç yıl sürdüğünü, fakülte sayısının neden tartışıldığını ve akreditasyonun ne anlama geldiğini bulabilirsiniz. Veteriner hekim olmanın tüm basamakları için [[veteriner-hekim-nasil-olunur|veteriner hekim nasıl olunur]] yazımıza bakılabilir.' },

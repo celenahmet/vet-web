@@ -7,7 +7,7 @@ export const kopekOteliAcmak: BlogYazi = {
   kapakAlt:
     'Köpek otelinin bahçesinde görevliye pati veren köpek',
   kategori: 'Pet Sahipleri',
-  tarih: '2026-11-01',
+  tarih: '2026-11-11',
   bloklar: [
     { kind: 'paragraf', metin: '**Köpek oteli açmak için önce il tarım ve orman müdürlüğünden kuruluş izni, tesis hazır olunca da çalışma izin belgesi almak gerekiyor; ayrıca iş yerinde veteriner hekim istihdamı zorunlu.** Bu çerçeveyi 8 Ekim 2011 tarihli, 28078 sayılı Ev Hayvanlarının Üretim, Satış, Barınma ve Eğitim Yerleri Hakkında Yönetmelik çiziyor. Yönetmelik köpek otelini "barınma yeri" sayıyor: ev hayvanlarının geçici süreler barındırıldığı konukevi, pansiyon ve otel gibi yerler.' },
     { kind: 'paragraf', metin: 'Aşağıda başvuru sürecini, istenen belgeleri, tesiste bulunması gereken bölümleri, köpek kabulündeki kuralları ve izinden sonraki yükümlülükleri yönetmelik maddeleriyle topladık. Hayvanların yaşam alanı için gereken asgari ölçüleri yönetmelik değil Bakanlık belirliyor; başvurudan önce il müdürlüğünden güncel ölçüleri istemek gerekiyor.' },

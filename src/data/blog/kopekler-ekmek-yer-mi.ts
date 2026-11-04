@@ -7,7 +7,7 @@ export const kopeklerEkmekYerMi: BlogYazi = {
   kapakAlt:
     'Tezgâhtaki ekmek dilimine bakan küçük köpek',
   kategori: 'Beslenme',
-  tarih: '2026-11-01',
+  tarih: '2026-11-06',
   bloklar: [
     { kind: 'paragraf', metin: '**Sade ve tamamen pişmiş ekmek küçük miktarda köpekler için kabul edilebilir sayılıyor; asıl tehlike çiğ maya hamuru ile ekmeğe katılan üzüm, ksilitol ve sarımsak gibi içeriklerdir.** Texas A&M Üniversitesi Veteriner Hekimliği Fakültesi\'nden bir klinisyen, sade ekmeğin küçük miktarda kabul edilebilir olduğunu söylüyor ve güvenliğin porsiyona bağlı olduğunu vurguluyor.' },
     { kind: 'paragraf', metin: 'Aşağıda ekmeğin hangi hâlinin sorun çıkarmadığını, hangi hâlinin acil durum sayıldığını, günlük beslenmede ne kadar yer tutabileceğini ve riskli bir ürün yendiğinde hangi aşamada veteriner hekime ulaşılması gerektiğini anlatıyoruz. Bu yazı teşhis ya da tedavi için değil, bilinçli karar vermek için hazırlandı.' },

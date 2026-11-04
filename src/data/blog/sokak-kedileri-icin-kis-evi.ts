@@ -7,7 +7,7 @@ export const sokakKedileriIcinKisEvi: BlogYazi = {
   kapakAlt:
     'Karlı bahçede ahşap kış evinin içindeki samanda oturan kedi',
   kategori: 'Pet Sahipleri',
-  tarih: '2026-11-01',
+  tarih: '2026-11-06',
   bloklar: [
     { kind: 'paragraf', metin: '**Sokak kedileri için iyi bir kış evi; yağmurdan ve rüzgârdan korunan, zeminden yüksekte duran, içi kuru saman ile yalıtılmış ve kedinin sıkışıp kalmaması için mümkünse iki girişi olan küçük, kapalı bir kutudur.** İngiliz kedi refahı kuruluşu Cats Protection\'a göre malzeme olarak ahşaptan çok temizlenebilen plastik tercih ediliyor, yatak olarak ise en kuru, en sıcak ve en güvenli doğal seçenek saman.' },
     { kind: 'paragraf', metin: 'Aşağıda kış evinin nasıl bir yapıda olması gerektiğini, içine ne konup ne konmaması gerektiğini, nereye yerleştirileceğini ve kış evinin tek başına neden yetmediğini anlatıyoruz. Kışın sokakta yaşayan bir kedinin yemek ve su ihtiyacı için [[sokak-hayvanlarini-beslemek-yasak-mi|sokak hayvanlarını beslemek yasak mı]] yazımıza da bakabilirsiniz.' },
