@@ -5,7 +5,7 @@ export const kopeklerNedenYalar: BlogYazi = {
   baslik: 'Köpekler Neden Yalar? Yüz, Pati ve Ağız Yalama',
   ozet: 'Köpeklerin yalaması çoğu zaman sosyal temasın parçası ama gerilim, bekleyiş ya da kaşıntı da olabilir. Hangi yalama normal, hangisi muayene gerektirir?',
   kapakAlt:
-    'Sahibinin elini yalayan köpek',
+    'Oturma odasında sahibinin uzattığı eli yalayan köpek',
   kategori: 'Köpek',
   tarih: '2026-10-31',
   bloklar: [
