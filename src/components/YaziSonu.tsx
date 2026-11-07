@@ -10,11 +10,13 @@ import {
   type PaylasimAnahtari,
 } from '../lib/blogPaylasim';
 import {
-  tepkiEkle,
+  fisGecerli,
+  tepkiSec,
   tepkileriOku,
-  yerelSecim,
-  yerelSecimiKaydet,
+  yerelKayit,
+  yerelKayitYaz,
   type TepkiEkseni,
+  type TepkiFisleri,
   type TepkiSecimi,
   type TepkiTuru,
 } from '../lib/blogTepki';
@@ -34,6 +36,11 @@ import './YaziSonu.css';
  * diziliyor: yan yana sigarsa iki bolum arasinda dikey cizgi, sigmazsa alt alta.
  * Paylasim daireleri Veterito'nun kendi dili: markanin duz renginde dolu (gradyan
  * yok); 38 px, soru satiri tek satirda kalsin diye.
+ *
+ * GERI CEKME (Ahmet 07.11, UniConnectly ve bote.web.tr ile ayni): basili dugmeye tekrar
+ * basmak oyu geri alir, ayni eksendeki obur dugme degistirir. Evet/Hayir da bu yuzden
+ * oy sonrasi kaliyor (sayi yaninda, secilen basili, tesekkur altta). Yalniz fisi olan
+ * oy geri cekilir (bkz. lib/blogTepki.ts); fissiz oyda obur dugmeler soluk ve kilitli.
  *
  * ⚠️ TEPKI BOLUMU SUNUCU HAZIRSA GORUNUYOR. `tepkileriOku` null donerse bolum
  * hic cizilmiyor; paylasim ve Google baglantisi her zaman.
@@ -59,6 +66,14 @@ export default function YaziSonu({ slug, baslik }: { slug: string; baslik: strin
   const [secim, setSecim] = useState<TepkiSecimi>({});
   // Ust uste hizli tiklamada kapanistaki eski `secim` digerini ezmesin diye guncel deger burada.
   const secimRef = useRef<TepkiSecimi>({});
+  const [fisler, setFisler] = useState<TepkiFisleri>({});
+  const fislerRef = useRef<TepkiFisleri>({});
+  // Eksen basina tek istek: yanit gelmeden ikinci tiklama yok sayilir.
+  const mesgulRef = useRef<Partial<Record<TepkiEkseni, boolean>>>({});
+  // Yanit geldiginde okur baska yaziya gecmis olabilir; sonuc o yazinin kaydina gider.
+  const slugRef = useRef(slug);
+  // Tesekkur yalniz bu ziyarette verilen Evet/Hayir oyunun hemen ardindan.
+  const [tesekkur, setTesekkur] = useState(false);
   const [kopyalandi, setKopyalandi] = useState(false);
   const [durum, setDurum] = useState('');
   const [cihazPaylasimi, setCihazPaylasimi] = useState(false);
@@ -67,9 +82,14 @@ export default function YaziSonu({ slug, baslik }: { slug: string; baslik: strin
   useEffect(() => {
     let iptal = false;
     setSayilar(null);
-    const kayitli = yerelSecim(slug);
-    secimRef.current = kayitli;
-    setSecim(kayitli);
+    const kayit = yerelKayit(slug);
+    slugRef.current = slug;
+    secimRef.current = kayit.secim;
+    fislerRef.current = kayit.fisler;
+    mesgulRef.current = {};
+    setSecim(kayit.secim);
+    setFisler(kayit.fisler);
+    setTesekkur(false);
     setKopyalandi(false);
     setDurum('');
     void tepkileriOku(slug).then((s) => { if (!iptal) setSayilar(s); });
@@ -81,16 +101,74 @@ export default function YaziSonu({ slug, baslik }: { slug: string; baslik: strin
   useEffect(() => { setCihazPaylasimi(typeof navigator.share === 'function'); }, []);
   useEffect(() => () => window.clearTimeout(durumZamani.current), []);
 
+  function secimiKoy(secimYeni: TepkiSecimi, fislerYeni: TepkiFisleri) {
+    secimRef.current = secimYeni;
+    fislerRef.current = fislerYeni;
+    setSecim(secimYeni);
+    setFisler(fislerYeni);
+  }
+
+  // Oy var ama fisi yok ya da suresi doldu: obur dugmeler kilitli.
+  const kilitli = (eksen: TepkiEkseni) => Boolean(secim[eksen]) && !fisGecerli(fisler[eksen]);
+
   function oyla(eksen: TepkiEkseni, tur: TepkiTuru) {
-    if (secimRef.current[eksen]) return;
-    const yeni = { ...secimRef.current, [eksen]: tur };
-    secimRef.current = yeni;
-    setSecim(yeni);
-    yerelSecimiKaydet(slug, yeni);
-    // Iyimser artis; sunucunun dondurdugu sayi gelince onunla duzeltiliyor.
-    setSayilar((s) => (s ? { ...s, [tur]: (s[tur] ?? 0) + 1 } : s));
-    void tepkiEkle(slug, tur).then((n) => {
-      if (typeof n === 'number') setSayilar((s) => (s ? { ...s, [tur]: n } : s));
+    if (mesgulRef.current[eksen]) return;
+    const mevcut = secimRef.current[eksen];
+    const fis = fislerRef.current[eksen];
+    if (mevcut && !fisGecerli(fis)) return;
+    const hedef = mevcut === tur ? null : tur;
+    const oncekiTesekkur = tesekkur;
+    // Sayilara uygulanan iyimser fark; ulasilamazsa tersi uygulanir.
+    const farkUygula = (yon: 1 | -1) => setSayilar((s) => {
+      if (!s) return s;
+      const y = { ...s };
+      if (mevcut) y[mevcut] = Math.max(0, (y[mevcut] ?? 0) - yon);
+      if (hedef) y[hedef] = Math.max(0, (y[hedef] ?? 0) + yon);
+      return y;
+    });
+    // Yalniz bu eksen degisir; obur eksendeki secim ve fise dokunulmaz.
+    const eksenKoy = (taban: { secim: TepkiSecimi; fisler: TepkiFisleri }, t: TepkiTuru | null, f: TepkiFisleri[TepkiEkseni]) => {
+      const secimYeni: TepkiSecimi = { ...taban.secim };
+      const fislerYeni: TepkiFisleri = { ...taban.fisler };
+      if (t) secimYeni[eksen] = t; else delete secimYeni[eksen];
+      if (t && f) fislerYeni[eksen] = f; else delete fislerYeni[eksen];
+      return { secim: secimYeni, fisler: fislerYeni };
+    };
+    const simdiki = () => ({ secim: secimRef.current, fisler: fislerRef.current });
+
+    const iyimser = eksenKoy(simdiki(), hedef, undefined);
+    secimiKoy(iyimser.secim, iyimser.fisler);
+    if (eksen === 'faydali') setTesekkur(hedef !== null);
+    farkUygula(1);
+
+    mesgulRef.current = { ...mesgulRef.current, [eksen]: true };
+    void tepkiSec(slug, hedef, mevcut && fis ? fis.f : null).then((r) => {
+      const ayniYazi = slugRef.current === slug;
+      if (ayniYazi) mesgulRef.current = { ...mesgulRef.current, [eksen]: false };
+      if (!r) {
+        // Ulasilamadi: bu eksen tiklamadan onceki haline doner.
+        if (!ayniYazi) return;
+        const geri = eksenKoy(simdiki(), mevcut ?? null, fis);
+        secimiKoy(geri.secim, geri.fisler);
+        setTesekkur(oncekiTesekkur);
+        farkUygula(-1);
+        return;
+      }
+      // Fis gecmediyse (suresi doldu ya da kullanildi) geri cekme olmadi: oy yerinde, kilitli.
+      const geriCekilemedi = Boolean(mevcut) && !r.geriAlindi && hedef === null;
+      const sonTur = geriCekilemedi ? mevcut ?? null : hedef;
+      const sonFis = !geriCekilemedi && hedef && r.fis ? { f: r.fis, t: Date.now() } : undefined;
+      if (!ayniYazi) {
+        const k = eksenKoy(yerelKayit(slug), sonTur, sonFis);
+        yerelKayitYaz(slug, k.secim, k.fisler);
+        return;
+      }
+      const son = eksenKoy(simdiki(), sonTur, sonFis);
+      secimiKoy(son.secim, son.fisler);
+      yerelKayitYaz(slug, son.secim, son.fisler);
+      if (geriCekilemedi && eksen === 'faydali') setTesekkur(false);
+      // Sunucunun bildigi gercek sayilar esas (yalniz donen turler guncellenir).
+      setSayilar((s) => (s ? { ...s, ...r.sayilar } : s));
     });
   }
 
@@ -141,7 +219,10 @@ export default function YaziSonu({ slug, baslik }: { slug: string; baslik: strin
     { tur: 'dusundurdu', emoji: '🤔', ad: t('post_react_thoughtful') },
     { tur: 'zorlandim', emoji: '😅', ad: t('post_react_hard') },
   ];
-  const faydaliSayi = sayilar?.faydali ?? 0;
+  const fayda: { tur: TepkiTuru; ad: string; simge: typeof ThumbsUp }[] = [
+    { tur: 'faydali', ad: t('post_helpful_yes'), simge: ThumbsUp },
+    { tur: 'faydasiz', ad: t('post_helpful_no'), simge: ThumbsDown },
+  ];
 
   return (
     <section className="yazi-sonu" aria-label={t('post_end_label')}>
@@ -151,21 +232,30 @@ export default function YaziSonu({ slug, baslik }: { slug: string; baslik: strin
             <div className="ys-bolum">
               <div className="tepki-satir">
                 <p className="tepki-soru">{t('post_helpful_q')}</p>
-                {secim.faydali ? (
-                  <p className="tepki-tesekkur" role="status">
-                    {t('post_helpful_thanks')}
-                    {faydaliSayi > 1 ? ` ${t('post_helpful_count', { n: faydaliSayi })}` : ''}
-                  </p>
-                ) : (
-                  <div className="tepki-dugmeler">
-                    <button type="button" className="faydali-dugme" onClick={() => oyla('faydali', 'faydali')}>
-                      <ThumbsUp size={16} aria-hidden="true" /> {t('post_helpful_yes')}
-                    </button>
-                    <button type="button" className="faydali-dugme" onClick={() => oyla('faydali', 'faydasiz')}>
-                      <ThumbsDown size={16} aria-hidden="true" /> {t('post_helpful_no')}
-                    </button>
-                  </div>
-                )}
+                <div className="tepki-dugmeler">
+                  {fayda.map((f) => {
+                    const secili = secim.faydali === f.tur;
+                    const sayi = sayilar[f.tur] ?? 0;
+                    const Simge = f.simge;
+                    return (
+                      <button
+                        key={f.tur}
+                        type="button"
+                        className={secili ? 'faydali-dugme secili' : 'faydali-dugme'}
+                        aria-label={sayi > 0 ? `${f.ad}, ${sayi}` : f.ad}
+                        aria-pressed={secili}
+                        disabled={kilitli('faydali') && !secili}
+                        onClick={() => oyla('faydali', f.tur)}
+                      >
+                        <Simge size={16} aria-hidden="true" /> <span aria-hidden="true">{f.ad}</span>
+                        {sayi > 0 ? <b aria-hidden="true">{sayi}</b> : null}
+                      </button>
+                    );
+                  })}
+                </div>
+                {tesekkur ? (
+                  <p className="tepki-tesekkur" role="status">{t('post_helpful_thanks')}</p>
+                ) : null}
               </div>
 
               <div className="ifade-liste" role="group" aria-label={t('post_react_q')}>
@@ -180,7 +270,7 @@ export default function YaziSonu({ slug, baslik }: { slug: string; baslik: strin
                       data-ipucu={i.ad}
                       aria-label={sayi > 0 ? `${i.ad}, ${sayi}` : i.ad}
                       aria-pressed={secili}
-                      disabled={Boolean(secim.ifade) && !secili}
+                      disabled={kilitli('ifade') && !secili}
                       onClick={() => oyla('ifade', i.tur)}
                     >
                       <span aria-hidden="true">{i.emoji}</span>

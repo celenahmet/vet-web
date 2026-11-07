@@ -52,7 +52,13 @@
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease;
 }
-.faydali-dugme:hover { border-color: var(--color-vet-secondary); background: var(--color-vet-accent-light); }
+.faydali-dugme:hover:not(:disabled) { border-color: var(--color-vet-secondary); background: var(--color-vet-accent-light); }
+/* Oy sonrasi dugmeler kalir: secilen basili, sayi yaninda; fissiz oyda obur dugme soluk (07.11). */
+.faydali-dugme > b { font-variant-numeric: tabular-nums; }
+.faydali-dugme.secili { border-color: var(--color-vet-secondary); background: var(--color-vet-accent-light); box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-vet-secondary) 22%, transparent); }
+.faydali-dugme:disabled { cursor: default; }
+.faydali-dugme:disabled:not(.secili) { opacity: 0.45; }
+.tepki-satir > .tepki-tesekkur { flex-basis: 100%; }
 
 /* Emoji: hap bicimi, adi ipucunda, sayi yaninda (Ahmet 30.10, bote referansi). */
 .ifade-liste { display: flex; flex-wrap: wrap; gap: 8px; }
